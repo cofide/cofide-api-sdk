@@ -1,2 +1,2 @@
-# cofide-protos
+# cofide-api-sdk
 
