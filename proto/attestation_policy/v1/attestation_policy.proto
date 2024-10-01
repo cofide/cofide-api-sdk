@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proto.attestation_policy.v1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1";
+
+message AttestationPolicy {
+  AttestionPolicyKind kind = 1;
+  AttestionPolicyOptions options = 2;
+}
+
+enum AttestionPolicyKind {
+  ATTESTION_POLICY_KIND_UNSPECIFIED = 0;
+  ATTESTION_POLICY_KIND_ANNOTATED = 1;
+  ATTESTION_POLICY_KIND_NAMESPACE = 2;
+}
+
+message AttestionPolicyOptions {
+  string pod_key = 1;
+  string pod_value = 2;
+  string namespace = 3;
+}

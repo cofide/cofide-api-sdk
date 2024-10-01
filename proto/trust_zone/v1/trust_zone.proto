@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package proto.trust_zone.v1;
+
+import "proto/trust_provider/v1/trust_provider.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1";
+
+message TrustZone {
+  string name = 1;
+  string trust_domain = 2;
+  string kubernetes_cluster = 3;
+  string kubernetes_context = 4;
+  proto.trust_provider.v1.TrustProvider trust_provider = 5;
+}
