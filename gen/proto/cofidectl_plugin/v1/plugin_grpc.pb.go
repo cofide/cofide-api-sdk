@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: cofidectl_plugin/v1/plugin.proto
+// source: proto/cofidectl_plugin/v1/plugin.proto
 
-package cofidectl_pluginv1
+package v1
 
 import (
 	context "context"
@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataSourcePluginService_GetTrustZones_FullMethodName = "/proto.cofidectl_plugin.v1.DataSourcePluginService/GetTrustZones"
+	DataSourcePluginService_ListTrustZones_FullMethodName = "/proto.cofidectl_plugin.v1.DataSourcePluginService/ListTrustZones"
 )
 
 // DataSourcePluginServiceClient is the client API for DataSourcePluginService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataSourcePluginServiceClient interface {
-	GetTrustZones(ctx context.Context, in *GetTrustZonesRequest, opts ...grpc.CallOption) (*GetTrustZonesResponse, error)
+	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
 }
 
 type dataSourcePluginServiceClient struct {
@@ -37,10 +37,10 @@ func NewDataSourcePluginServiceClient(cc grpc.ClientConnInterface) DataSourcePlu
 	return &dataSourcePluginServiceClient{cc}
 }
 
-func (c *dataSourcePluginServiceClient) GetTrustZones(ctx context.Context, in *GetTrustZonesRequest, opts ...grpc.CallOption) (*GetTrustZonesResponse, error) {
+func (c *dataSourcePluginServiceClient) ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTrustZonesResponse)
-	err := c.cc.Invoke(ctx, DataSourcePluginService_GetTrustZones_FullMethodName, in, out, cOpts...)
+	out := new(ListTrustZonesResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_ListTrustZones_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *dataSourcePluginServiceClient) GetTrustZones(ctx context.Context, in *G
 // All implementations should embed UnimplementedDataSourcePluginServiceServer
 // for forward compatibility.
 type DataSourcePluginServiceServer interface {
-	GetTrustZones(context.Context, *GetTrustZonesRequest) (*GetTrustZonesResponse, error)
+	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
 }
 
 // UnimplementedDataSourcePluginServiceServer should be embedded to have
@@ -61,8 +61,8 @@ type DataSourcePluginServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDataSourcePluginServiceServer struct{}
 
-func (UnimplementedDataSourcePluginServiceServer) GetTrustZones(context.Context, *GetTrustZonesRequest) (*GetTrustZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTrustZones not implemented")
+func (UnimplementedDataSourcePluginServiceServer) ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTrustZones not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) testEmbeddedByValue() {}
 
@@ -84,20 +84,20 @@ func RegisterDataSourcePluginServiceServer(s grpc.ServiceRegistrar, srv DataSour
 	s.RegisterService(&DataSourcePluginService_ServiceDesc, srv)
 }
 
-func _DataSourcePluginService_GetTrustZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTrustZonesRequest)
+func _DataSourcePluginService_ListTrustZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTrustZonesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataSourcePluginServiceServer).GetTrustZones(ctx, in)
+		return srv.(DataSourcePluginServiceServer).ListTrustZones(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DataSourcePluginService_GetTrustZones_FullMethodName,
+		FullMethod: DataSourcePluginService_ListTrustZones_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataSourcePluginServiceServer).GetTrustZones(ctx, req.(*GetTrustZonesRequest))
+		return srv.(DataSourcePluginServiceServer).ListTrustZones(ctx, req.(*ListTrustZonesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -110,10 +110,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DataSourcePluginServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetTrustZones",
-			Handler:    _DataSourcePluginService_GetTrustZones_Handler,
+			MethodName: "ListTrustZones",
+			Handler:    _DataSourcePluginService_ListTrustZones_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cofidectl_plugin/v1/plugin.proto",
+	Metadata: "proto/cofidectl_plugin/v1/plugin.proto",
 }

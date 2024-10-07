@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.trust_provider.v1;
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_provider/v1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/trust_provider/v1";
 
 message TrustProvider {
   string name = 1;

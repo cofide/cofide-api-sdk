@@ -4,7 +4,7 @@ package proto.trust_zone.v1;
 
 import "proto/trust_provider/v1/trust_provider.proto";
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/trust_zone/v1";
 
 message TrustZone {
   string name = 1;
