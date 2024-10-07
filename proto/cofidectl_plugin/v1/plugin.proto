@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package proto.cofidectl_plugin.v1;
+
+import "proto/attestation_policy/v1/attestation_policy.proto";
+import "proto/trust_zone/v1/trust_zone.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl_plugin/v1";
+
+service DataSourcePluginService {
+  rpc GetTrustZones(GetTrustZonesRequest) returns (GetTrustZonesResponse);
+  // rpc CreateTrustZone(CreateTrustZoneRequest) returns (CreateTrustZoneResponse);
+  // rpc CreateAttestationPolicy(CreateAttestationPolicyRequest) returns (CreateAttestationPolicyResponse);
+}
+
+message GetTrustZonesRequest {}
+
+message GetTrustZonesResponse {
+  repeated proto.trust_zone.v1.TrustZone trust_zones = 1;
+}
+
+message CreateTrustZoneRequest {
+  proto.trust_zone.v1.TrustZone trust_zone = 1;
+}
+
+message CreateTrustZoneResponse {
+  proto.trust_zone.v1.TrustZone trust_zone = 1;
+}
+
+message CreateAttestationPolicyRequest {
+  proto.attestation_policy.v1.AttestationPolicy attestation_policy = 1;
+}
+
+message CreateAttestationPolicyResponse {
+  proto.attestation_policy.v1.AttestationPolicy attestation_policy = 1;
+}
