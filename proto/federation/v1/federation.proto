@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package proto.federation.v1;
+
+import "proto/trust_zone/v1/trust_zone.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/federation/v1";
+
+message Federation {
+  proto.trust_zone.v1.TrustZone left = 1;
+  proto.trust_zone.v1.TrustZone right = 2;
+}
