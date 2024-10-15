@@ -7,36 +7,9 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/trust_provider/v
 message TrustProvider {
   string name = 1;
   string kind = 2;
-  TrustProviderAgentConfig agent_config = 3;
-  TrustProviderServerConfig server_config = 4;
 }
 
-message TrustProviderAgentConfig {
-  string workload_attestor = 1;
-  bool workload_attestor_enabled = 2;
-  WorkloadAttestorConfig workload_attestor_config = 3;
-  string node_attestor = 4;
-  bool node_attestor_enabled = 5;
-}
-
-message TrustProviderServerConfig {
-  string node_attestor = 1;
-  bool node_attestor_enabled = 2;
-  NodeAttestorConfig node_attestor_config = 3;
-}
-
-message WorkloadAttestorConfig {
-  bool enabled = 1;
-  bool skip_kubelet_verification = 2;
-  bool disable_container_selectors = 3;
-  bool use_new_container_locator = 4;
-  bool verbose_container_locator_logs = 5;
-}
-
-message NodeAttestorConfig {
-  bool enabled = 1;
-  repeated string service_account_allow_list = 2;
-  repeated string audience = 3;
-  repeated string allowed_node_label_keys = 4;
-  repeated string allowed_pod_label_keys = 5;
+enum TrustProviderKind {
+  TRUST_PROVIDER_KIND_UNSPECIFIED = 0;
+  TRUST_PROVIDER_KIND_KUBERNETES = 1;
 }

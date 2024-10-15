@@ -5,18 +5,16 @@ package proto.attestation_policy.v1;
 option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/attestation_policy/v1";
 
 message AttestationPolicy {
-  AttestationPolicyKind kind = 1;
-  AttestationPolicyOptions options = 2;
+  string name = 1;
+  AttestationPolicyKind kind = 2;
+  string pod_key = 3;
+  string pod_value = 4;
+  string namespace = 5;
 }
 
 enum AttestationPolicyKind {
   ATTESTATION_POLICY_KIND_UNSPECIFIED = 0;
   ATTESTATION_POLICY_KIND_ANNOTATED = 1;
   ATTESTATION_POLICY_KIND_NAMESPACE = 2;
-}
-
-message AttestationPolicyOptions {
-  string pod_key = 1;
-  string pod_value = 2;
-  string namespace = 3;
+  ATTESTATION_POLICY_KIND_CLUSTER = 3;
 }
