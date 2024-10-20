@@ -13,3 +13,7 @@ enum TrustProviderKind {
   TRUST_PROVIDER_KIND_UNSPECIFIED = 0;
   TRUST_PROVIDER_KIND_KUBERNETES = 1;
 }
+
+message TrustProviderList {
+  repeated TrustProvider trust_providers = 1;
+}
