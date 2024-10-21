@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package proto.trust_zone.v1;
 
+import "proto/attestation_policy/v1/attestation_policy.proto";
+import "proto/federation/v1/federation.proto";
 import "proto/trust_provider/v1/trust_provider.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/trust_zone/v1";
@@ -12,4 +14,12 @@ message TrustZone {
   string kubernetes_cluster = 3;
   string kubernetes_context = 4;
   proto.trust_provider.v1.TrustProvider trust_provider = 5;
+  string bundle_endpoint_url = 6;
+  string bundle = 7;
+  repeated proto.federation.v1.Federation federations = 8;
+  repeated proto.attestation_policy.v1.AttestationPolicy attestation_policies = 9;
+}
+
+message TrustZoneList {
+  repeated TrustZone trust_zones = 1;
 }
