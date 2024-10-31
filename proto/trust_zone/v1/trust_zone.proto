@@ -19,7 +19,3 @@ message TrustZone {
   repeated proto.federation.v1.Federation federations = 8;
   repeated proto.ap_binding.v1.APBinding attestation_policies = 9;
 }
-
-message TrustZoneList {
-  repeated TrustZone trust_zones = 1;
-}

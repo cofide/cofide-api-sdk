@@ -18,7 +18,3 @@ enum AttestationPolicyKind {
   ATTESTATION_POLICY_KIND_NAMESPACE = 2;
   ATTESTATION_POLICY_KIND_CLUSTER = 3;
 }
-
-message AttestationPolicyList {
-  repeated AttestationPolicy policies = 1;
-}

@@ -8,7 +8,3 @@ message Federation {
   string left = 1;
   string right = 2;
 }
-
-message FederationList {
-  repeated Federation federations = 1;
-}
