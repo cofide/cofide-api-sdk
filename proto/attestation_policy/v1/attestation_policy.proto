@@ -6,15 +6,25 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/attestation_poli
 
 message AttestationPolicy {
   string name = 1;
-  AttestationPolicyKind kind = 2;
-  string pod_key = 3;
-  string pod_value = 4;
-  string namespace = 5;
+  oneof policy {
+    APKubernetes kubernetes = 2;
+  }
 }
 
-enum AttestationPolicyKind {
-  ATTESTATION_POLICY_KIND_UNSPECIFIED = 0;
-  ATTESTATION_POLICY_KIND_ANNOTATED = 1;
-  ATTESTATION_POLICY_KIND_NAMESPACE = 2;
-  ATTESTATION_POLICY_KIND_CLUSTER = 3;
+message APKubernetes {
+  optional APLabelSelector namespace_selector = 1;
+  optional APLabelSelector pod_selector = 2;
+}
+
+// This definition has been adapted from the LabelSelector message in Kubernetes.
+// https://github.com/kubernetes/apimachinery/blob/master/pkg/apis/meta/v1/generated.proto
+message APLabelSelector {
+  map<string, string> match_labels = 1;
+  repeated APMatchExpression match_expressions = 2;
+}
+
+message APMatchExpression {
+  string key = 1;
+  string operator = 2;
+  repeated string values = 3;
 }
