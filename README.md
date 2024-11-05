@@ -1,6 +1,6 @@
 # cofide-api-sdk
 
-[![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?workflow=buf-ci)
+[![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?workflow=buf-ci+branch%3Amain)
 
 This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs.
 
