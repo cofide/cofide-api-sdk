@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: proto/cofidectl_plugin/v1/plugin.proto
+// source: proto/cofidectl_plugin/v1alpha1/plugin.proto
 
-package v1
+package v1alpha1
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataSourcePluginService_ListTrustZones_FullMethodName = "/proto.cofidectl_plugin.v1.DataSourcePluginService/ListTrustZones"
+	DataSourcePluginService_ListTrustZones_FullMethodName = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListTrustZones"
 )
 
 // DataSourcePluginServiceClient is the client API for DataSourcePluginService service.
@@ -106,7 +106,7 @@ func _DataSourcePluginService_ListTrustZones_Handler(srv interface{}, ctx contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.cofidectl_plugin.v1.DataSourcePluginService",
+	ServiceName: "proto.cofidectl_plugin.v1alpha1.DataSourcePluginService",
 	HandlerType: (*DataSourcePluginServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -115,5 +115,5 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/cofidectl_plugin/v1/plugin.proto",
+	Metadata: "proto/cofidectl_plugin/v1alpha1/plugin.proto",
 }
