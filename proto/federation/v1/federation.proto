@@ -5,6 +5,6 @@ package proto.federation.v1;
 option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/federation/v1";
 
 message Federation {
-  string left = 1;
-  string right = 2;
+  string from = 1;
+  string to = 2;
 }
