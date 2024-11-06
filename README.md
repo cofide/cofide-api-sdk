@@ -3,10 +3,22 @@
 [![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?workflow=buf-ci+branch%3Amain)
 
 This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs.
+Services and messages are defined using Protocol Buffers (protobuf).
+
+## Prerequisites
+
+This repository uses the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview) to help generate and manage Cofide's protobuf definitions and schemas.
+The following tools must be available in order to generate code stubs.
+
+- [Go 1.22.6 toolchain](https://golang.org/doc/install)
+- [protobuf version 3 compiler](https://grpc.io/docs/protoc-installation/)
+- [Go gRPC and protobuf](https://grpc.io/docs/languages/go/quickstart/#prerequisites) build tools.
+- [Buf CLI](https://buf.build/docs/installation)
+- [Just](https://github.com/casey/just)
 
 ## Getting started
-This repository uses the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview) to help generate and manage Cofide's Protocol buffer (protobuf) definitions and schemas. To install the CLI, use the following [instructions](https://buf.build/docs/installation). For convenience, a set of useful commands have been added to the *Justfile* in the project root. If you haven't got [just](https://github.com/casey/just), you can follow these [instructions](https://github.com/casey/just) to install it.
 
+For convenience, a set of useful commands have been added to the *Justfile* in the project root.
 Some of the key commands include:
 - `just fmt` - Formats the protobuf definitions
 - `just lint` - Lints the protobuf definitions in accordance with best practices
