@@ -8,7 +8,7 @@ package proto.trust_provider.v1alpha1;
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_provider/v1alpha1";
 
 message TrustProvider {
-  string kind = 1;
+  optional string kind = 1;
 }
 
 enum TrustProviderKind {

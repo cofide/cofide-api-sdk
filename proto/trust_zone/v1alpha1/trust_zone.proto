@@ -14,11 +14,11 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1
 message TrustZone {
   string name = 1;
   string trust_domain = 2;
-  string kubernetes_cluster = 3;
-  string kubernetes_context = 4;
-  proto.trust_provider.v1alpha1.TrustProvider trust_provider = 5;
-  string bundle_endpoint_url = 6;
-  string bundle = 7;
+  optional string kubernetes_cluster = 3;
+  optional string kubernetes_context = 4;
+  optional proto.trust_provider.v1alpha1.TrustProvider trust_provider = 5;
+  optional string bundle_endpoint_url = 6;
+  optional string bundle = 7;
   repeated proto.federation.v1alpha1.Federation federations = 8;
   repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 9;
 }
