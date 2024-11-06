@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.attestation_policy.v1alpha1;
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/attestation_policy/v1alpha1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1";
 
 message AttestationPolicy {
   string name = 1;

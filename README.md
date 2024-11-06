@@ -12,7 +12,7 @@ Some of the key commands include:
 - `just lint` - Lints the protobuf definitions in accordance with best practices
 - `just proto-gen` - Generates the code stubs from the protobuf definitions using the defined plugins (specified in *buf.gen.yaml*)
 
-The `.proto` files are in the `proto` directory, and the generated stubs are in the `gen` directory.
+The `.proto` files are in the `proto` directory, and the generated stubs for Go are in the `gen/proto/go` directory.
 
 ## Stability
 The service definitions in this repository are not currently guaranteed to be backward compatible over time, and have been versioned as `v1alhpa1` to indicate this.

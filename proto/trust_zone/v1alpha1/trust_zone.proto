@@ -6,7 +6,7 @@ import "proto/ap_binding/v1alpha1/ap_binding.proto";
 import "proto/federation/v1alpha1/federation.proto";
 import "proto/trust_provider/v1alpha1/trust_provider.proto";
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/trust_zone/v1alpha1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1";
 
 message TrustZone {
   string name = 1;

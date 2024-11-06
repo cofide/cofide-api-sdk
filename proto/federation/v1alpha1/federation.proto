@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.federation.v1alpha1;
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/federation/v1alpha1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1";
 
 message Federation {
   string from = 1;
