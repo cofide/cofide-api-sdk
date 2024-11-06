@@ -5,15 +5,10 @@ package proto.trust_provider.v1;
 option go_package = "github.com/cofide/cofide-api-sdk/gen/proto/trust_provider/v1";
 
 message TrustProvider {
-  string name = 1;
-  string kind = 2;
+  string kind = 1;
 }
 
 enum TrustProviderKind {
   TRUST_PROVIDER_KIND_UNSPECIFIED = 0;
   TRUST_PROVIDER_KIND_KUBERNETES = 1;
-}
-
-message TrustProviderList {
-  repeated TrustProvider trust_providers = 1;
 }
