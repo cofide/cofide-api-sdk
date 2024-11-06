@@ -1,0 +1,33 @@
+// Copyright 2024 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.attestation_policy.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1";
+
+message AttestationPolicy {
+  string name = 1;
+  oneof policy {
+    APKubernetes kubernetes = 2;
+  }
+}
+
+message APKubernetes {
+  optional APLabelSelector namespace_selector = 1;
+  optional APLabelSelector pod_selector = 2;
+}
+
+// This definition has been adapted from the LabelSelector message in Kubernetes.
+// https://github.com/kubernetes/apimachinery/blob/master/pkg/apis/meta/v1/generated.proto
+message APLabelSelector {
+  map<string, string> match_labels = 1;
+  repeated APMatchExpression match_expressions = 2;
+}
+
+message APMatchExpression {
+  string key = 1;
+  string operator = 2;
+  repeated string values = 3;
+}

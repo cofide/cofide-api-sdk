@@ -1,0 +1,20 @@
+// Copyright 2024 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.cofidectl_plugin.v1alpha1;
+
+import "proto/trust_zone/v1alpha1/trust_zone.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl_plugin/v1alpha1";
+
+service DataSourcePluginService {
+  rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse);
+}
+
+message ListTrustZonesRequest {}
+
+message ListTrustZonesResponse {
+  repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 1;
+}

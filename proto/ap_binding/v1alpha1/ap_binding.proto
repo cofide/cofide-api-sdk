@@ -1,0 +1,14 @@
+// Copyright 2024 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.ap_binding.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1";
+
+message APBinding {
+  string trust_zone = 1;
+  string policy = 2;
+  repeated string federates_with = 3;
+}
