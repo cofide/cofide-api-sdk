@@ -2,7 +2,8 @@
 
 [![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?workflow=buf-ci+branch%3Amain)
 
-This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs.
+This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs, used for open source projects (eg [`cofidectl`](https://www.github.com/cofide/cofidectl) and the Cofide product.
+
 Services and messages are defined using Protocol Buffers (protobuf).
 
 ## Prerequisites
@@ -20,6 +21,7 @@ The following tools must be available in order to generate code stubs.
 
 For convenience, a set of useful commands have been added to the *Justfile* in the project root.
 Some of the key commands include:
+
 - `just fmt` - Formats the protobuf definitions
 - `just lint` - Lints the protobuf definitions in accordance with best practices
 - `just proto-gen` - Generates the code stubs from the protobuf definitions using the defined plugins (specified in *buf.gen.yaml*)
@@ -27,5 +29,6 @@ Some of the key commands include:
 The `.proto` files are in the `proto` directory, and the generated stubs for Go are in the `gen/proto/go` directory.
 
 ## Stability
-The service definitions in this repository are not currently guaranteed to be backward compatible over time, and have been versioned as `v1alhpa1` to indicate this.
-As the Cofide product matures, we will move to `v1` and guarantee backward compatibility from that point.
+
+The service definitions in this repository are not currently guaranteed to be backward compatible over time, and have been versioned as `v1alpha1` to indicate this.
+As Cofide projects and product mature, we will move to `v1` and guarantee backward compatibility from that point.
