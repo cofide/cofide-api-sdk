@@ -2,7 +2,7 @@
 
 [![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?workflow=buf-ci+branch%3Amain)
 
-This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs, used for open source projects (eg [`cofidectl`](https://www.github.com/cofide/cofidectl) and the Cofide product.
+This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs, used for open source projects (eg [`cofidectl`](https://www.github.com/cofide/cofidectl)) and the Cofide product.
 
 Services and messages are defined using Protocol Buffers (protobuf).
 
