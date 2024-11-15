@@ -22,6 +22,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	DataSourcePluginService_Validate_FullMethodName       = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/Validate"
 	DataSourcePluginService_ListTrustZones_FullMethodName = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListTrustZones"
 )
 
@@ -29,6 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataSourcePluginServiceClient interface {
+	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
 }
 
@@ -38,6 +40,16 @@ type dataSourcePluginServiceClient struct {
 
 func NewDataSourcePluginServiceClient(cc grpc.ClientConnInterface) DataSourcePluginServiceClient {
 	return &dataSourcePluginServiceClient{cc}
+}
+
+func (c *dataSourcePluginServiceClient) Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ValidateResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_Validate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *dataSourcePluginServiceClient) ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error) {
@@ -54,6 +66,7 @@ func (c *dataSourcePluginServiceClient) ListTrustZones(ctx context.Context, in *
 // All implementations should embed UnimplementedDataSourcePluginServiceServer
 // for forward compatibility.
 type DataSourcePluginServiceServer interface {
+	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
 }
 
@@ -64,6 +77,9 @@ type DataSourcePluginServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDataSourcePluginServiceServer struct{}
 
+func (UnimplementedDataSourcePluginServiceServer) Validate(context.Context, *ValidateRequest) (*ValidateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
+}
 func (UnimplementedDataSourcePluginServiceServer) ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTrustZones not implemented")
 }
@@ -85,6 +101,24 @@ func RegisterDataSourcePluginServiceServer(s grpc.ServiceRegistrar, srv DataSour
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&DataSourcePluginService_ServiceDesc, srv)
+}
+
+func _DataSourcePluginService_Validate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).Validate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_Validate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).Validate(ctx, req.(*ValidateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DataSourcePluginService_ListTrustZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -112,6 +146,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "proto.cofidectl_plugin.v1alpha1.DataSourcePluginService",
 	HandlerType: (*DataSourcePluginServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Validate",
+			Handler:    _DataSourcePluginService_Validate_Handler,
+		},
 		{
 			MethodName: "ListTrustZones",
 			Handler:    _DataSourcePluginService_ListTrustZones_Handler,

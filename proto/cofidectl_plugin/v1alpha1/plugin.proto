@@ -10,8 +10,13 @@ import "proto/trust_zone/v1alpha1/trust_zone.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl_plugin/v1alpha1";
 
 service DataSourcePluginService {
+  rpc Validate(ValidateRequest) returns (ValidateResponse);
   rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse);
 }
+
+message ValidateRequest {}
+
+message ValidateResponse {}
 
 message ListTrustZonesRequest {}
 
