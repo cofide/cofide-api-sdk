@@ -21,4 +21,5 @@ message TrustZone {
   optional string bundle = 7;
   repeated proto.federation.v1alpha1.Federation federations = 8;
   repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 9;
+  optional string jwt_issuer = 10;
 }
