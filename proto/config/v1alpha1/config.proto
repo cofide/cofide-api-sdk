@@ -5,6 +5,7 @@ syntax = "proto3";
 
 package proto.config.v1alpha1;
 
+import "google/protobuf/struct.proto";
 import "proto/attestation_policy/v1alpha1/attestation_policy.proto";
 import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
@@ -14,4 +15,5 @@ message Config {
   optional string data_source = 1;
   repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 2;
   repeated proto.attestation_policy.v1alpha1.AttestationPolicy attestation_policies = 3;
+  map<string, google.protobuf.Struct> plugin_config = 4;
 }
