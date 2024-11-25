@@ -1,6 +1,7 @@
 module github.com/cofide/cofide-api-sdk
 
-go 1.22.6
+go 1.22.7
+
 toolchain go1.22.9
 
 require (
