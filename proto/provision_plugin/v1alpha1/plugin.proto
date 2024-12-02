@@ -1,0 +1,42 @@
+// Copyright 2024 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.provision_plugin.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/provision_plugin/v1alpha1";
+
+service ProvisionPluginService {
+  rpc Validate(ValidateRequest) returns (ValidateResponse);
+  rpc Deploy(DeployRequest) returns (stream DeployResponse);
+  rpc TearDown(TearDownRequest) returns (stream TearDownResponse);
+}
+
+message ValidateRequest {}
+
+message ValidateResponse {}
+
+message DeployRequest {
+  optional uint32 data_source = 1;
+  optional string kube_cfg_file = 2;
+}
+
+message DeployResponse {
+  optional Status status = 1;
+}
+
+message TearDownRequest {
+  optional uint32 data_source = 1;
+}
+
+message TearDownResponse {
+  optional Status status = 1;
+}
+
+message Status {
+  optional string stage = 1;
+  optional string message = 2;
+  optional bool done = 3;
+  optional string error = 4;
+}
