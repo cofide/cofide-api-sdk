@@ -5,16 +5,119 @@ syntax = "proto3";
 
 package proto.cofidectl_plugin.v1alpha1;
 
+import "proto/ap_binding/v1alpha1/ap_binding.proto";
+import "proto/attestation_policy/v1alpha1/attestation_policy.proto";
+import "proto/federation/v1alpha1/federation.proto";
 import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl_plugin/v1alpha1";
 
 service DataSourcePluginService {
+  rpc Validate(ValidateRequest) returns (ValidateResponse);
+
+  rpc GetTrustZone(GetTrustZoneRequest) returns (GetTrustZoneResponse);
   rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse);
+  rpc AddTrustZone(AddTrustZoneRequest) returns (AddTrustZoneResponse);
+  rpc UpdateTrustZone(UpdateTrustZoneRequest) returns (UpdateTrustZoneResponse);
+
+  rpc AddAttestationPolicy(AddAttestationPolicyRequest) returns (AddAttestationPolicyResponse);
+  rpc GetAttestationPolicy(GetAttestationPolicyRequest) returns (GetAttestationPolicyResponse);
+  rpc ListAttestationPolicies(ListAttestationPoliciesRequest) returns (ListAttestationPoliciesResponse);
+
+  rpc AddAPBinding(AddAPBindingRequest) returns (AddAPBindingResponse);
+  rpc DestroyAPBinding(DestroyAPBindingRequest) returns (DestroyAPBindingResponse);
+
+  rpc AddFederation(AddFederationRequest) returns (AddFederationResponse);
+  rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse);
+  rpc ListFederationsByTrustZone(ListFederationsByTrustZoneRequest) returns (ListFederationsByTrustZoneResponse);
+}
+
+message ValidateRequest {}
+
+message ValidateResponse {}
+
+message GetTrustZoneRequest {
+  optional string name = 1;
+}
+
+message GetTrustZoneResponse {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
 message ListTrustZonesRequest {}
 
 message ListTrustZonesResponse {
   repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 1;
+}
+
+message AddTrustZoneRequest {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+}
+
+message AddTrustZoneResponse {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+}
+
+message UpdateTrustZoneRequest {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+}
+
+message UpdateTrustZoneResponse {}
+
+message AddAttestationPolicyRequest {
+  optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message AddAttestationPolicyResponse {
+  optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message GetAttestationPolicyRequest {
+  optional string name = 1;
+}
+
+message GetAttestationPolicyResponse {
+  proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message ListAttestationPoliciesRequest {}
+
+message ListAttestationPoliciesResponse {
+  repeated proto.attestation_policy.v1alpha1.AttestationPolicy policies = 1;
+}
+
+message AddAPBindingRequest {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message AddAPBindingResponse {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message DestroyAPBindingRequest {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message DestroyAPBindingResponse {}
+
+message AddFederationRequest {
+  optional proto.federation.v1alpha1.Federation federation = 1;
+}
+
+message AddFederationResponse {
+  optional proto.federation.v1alpha1.Federation federation = 1;
+}
+
+message ListFederationsRequest {}
+
+message ListFederationsResponse {
+  repeated proto.federation.v1alpha1.Federation federations = 1;
+}
+
+message ListFederationsByTrustZoneRequest {
+  optional string trust_zone_name = 1;
+}
+
+message ListFederationsByTrustZoneResponse {
+  repeated proto.federation.v1alpha1.Federation federations = 1;
 }

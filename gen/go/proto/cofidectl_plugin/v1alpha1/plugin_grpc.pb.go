@@ -22,14 +22,38 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataSourcePluginService_ListTrustZones_FullMethodName = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListTrustZones"
+	DataSourcePluginService_Validate_FullMethodName                   = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/Validate"
+	DataSourcePluginService_GetTrustZone_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetTrustZone"
+	DataSourcePluginService_ListTrustZones_FullMethodName             = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListTrustZones"
+	DataSourcePluginService_AddTrustZone_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddTrustZone"
+	DataSourcePluginService_UpdateTrustZone_FullMethodName            = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/UpdateTrustZone"
+	DataSourcePluginService_AddAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddAttestationPolicy"
+	DataSourcePluginService_GetAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetAttestationPolicy"
+	DataSourcePluginService_ListAttestationPolicies_FullMethodName    = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAttestationPolicies"
+	DataSourcePluginService_AddAPBinding_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddAPBinding"
+	DataSourcePluginService_DestroyAPBinding_FullMethodName           = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyAPBinding"
+	DataSourcePluginService_AddFederation_FullMethodName              = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddFederation"
+	DataSourcePluginService_ListFederations_FullMethodName            = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListFederations"
+	DataSourcePluginService_ListFederationsByTrustZone_FullMethodName = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListFederationsByTrustZone"
 )
 
 // DataSourcePluginServiceClient is the client API for DataSourcePluginService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataSourcePluginServiceClient interface {
+	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
+	GetTrustZone(ctx context.Context, in *GetTrustZoneRequest, opts ...grpc.CallOption) (*GetTrustZoneResponse, error)
 	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
+	AddTrustZone(ctx context.Context, in *AddTrustZoneRequest, opts ...grpc.CallOption) (*AddTrustZoneResponse, error)
+	UpdateTrustZone(ctx context.Context, in *UpdateTrustZoneRequest, opts ...grpc.CallOption) (*UpdateTrustZoneResponse, error)
+	AddAttestationPolicy(ctx context.Context, in *AddAttestationPolicyRequest, opts ...grpc.CallOption) (*AddAttestationPolicyResponse, error)
+	GetAttestationPolicy(ctx context.Context, in *GetAttestationPolicyRequest, opts ...grpc.CallOption) (*GetAttestationPolicyResponse, error)
+	ListAttestationPolicies(ctx context.Context, in *ListAttestationPoliciesRequest, opts ...grpc.CallOption) (*ListAttestationPoliciesResponse, error)
+	AddAPBinding(ctx context.Context, in *AddAPBindingRequest, opts ...grpc.CallOption) (*AddAPBindingResponse, error)
+	DestroyAPBinding(ctx context.Context, in *DestroyAPBindingRequest, opts ...grpc.CallOption) (*DestroyAPBindingResponse, error)
+	AddFederation(ctx context.Context, in *AddFederationRequest, opts ...grpc.CallOption) (*AddFederationResponse, error)
+	ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error)
+	ListFederationsByTrustZone(ctx context.Context, in *ListFederationsByTrustZoneRequest, opts ...grpc.CallOption) (*ListFederationsByTrustZoneResponse, error)
 }
 
 type dataSourcePluginServiceClient struct {
@@ -38,6 +62,26 @@ type dataSourcePluginServiceClient struct {
 
 func NewDataSourcePluginServiceClient(cc grpc.ClientConnInterface) DataSourcePluginServiceClient {
 	return &dataSourcePluginServiceClient{cc}
+}
+
+func (c *dataSourcePluginServiceClient) Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ValidateResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_Validate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) GetTrustZone(ctx context.Context, in *GetTrustZoneRequest, opts ...grpc.CallOption) (*GetTrustZoneResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTrustZoneResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_GetTrustZone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *dataSourcePluginServiceClient) ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error) {
@@ -50,11 +94,123 @@ func (c *dataSourcePluginServiceClient) ListTrustZones(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *dataSourcePluginServiceClient) AddTrustZone(ctx context.Context, in *AddTrustZoneRequest, opts ...grpc.CallOption) (*AddTrustZoneResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddTrustZoneResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_AddTrustZone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) UpdateTrustZone(ctx context.Context, in *UpdateTrustZoneRequest, opts ...grpc.CallOption) (*UpdateTrustZoneResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTrustZoneResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_UpdateTrustZone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) AddAttestationPolicy(ctx context.Context, in *AddAttestationPolicyRequest, opts ...grpc.CallOption) (*AddAttestationPolicyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddAttestationPolicyResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_AddAttestationPolicy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) GetAttestationPolicy(ctx context.Context, in *GetAttestationPolicyRequest, opts ...grpc.CallOption) (*GetAttestationPolicyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAttestationPolicyResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_GetAttestationPolicy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) ListAttestationPolicies(ctx context.Context, in *ListAttestationPoliciesRequest, opts ...grpc.CallOption) (*ListAttestationPoliciesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAttestationPoliciesResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_ListAttestationPolicies_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) AddAPBinding(ctx context.Context, in *AddAPBindingRequest, opts ...grpc.CallOption) (*AddAPBindingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddAPBindingResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_AddAPBinding_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) DestroyAPBinding(ctx context.Context, in *DestroyAPBindingRequest, opts ...grpc.CallOption) (*DestroyAPBindingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DestroyAPBindingResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_DestroyAPBinding_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) AddFederation(ctx context.Context, in *AddFederationRequest, opts ...grpc.CallOption) (*AddFederationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddFederationResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_AddFederation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListFederationsResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_ListFederations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) ListFederationsByTrustZone(ctx context.Context, in *ListFederationsByTrustZoneRequest, opts ...grpc.CallOption) (*ListFederationsByTrustZoneResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListFederationsByTrustZoneResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_ListFederationsByTrustZone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataSourcePluginServiceServer is the server API for DataSourcePluginService service.
 // All implementations should embed UnimplementedDataSourcePluginServiceServer
 // for forward compatibility.
 type DataSourcePluginServiceServer interface {
+	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
+	GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error)
 	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
+	AddTrustZone(context.Context, *AddTrustZoneRequest) (*AddTrustZoneResponse, error)
+	UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error)
+	AddAttestationPolicy(context.Context, *AddAttestationPolicyRequest) (*AddAttestationPolicyResponse, error)
+	GetAttestationPolicy(context.Context, *GetAttestationPolicyRequest) (*GetAttestationPolicyResponse, error)
+	ListAttestationPolicies(context.Context, *ListAttestationPoliciesRequest) (*ListAttestationPoliciesResponse, error)
+	AddAPBinding(context.Context, *AddAPBindingRequest) (*AddAPBindingResponse, error)
+	DestroyAPBinding(context.Context, *DestroyAPBindingRequest) (*DestroyAPBindingResponse, error)
+	AddFederation(context.Context, *AddFederationRequest) (*AddFederationResponse, error)
+	ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error)
+	ListFederationsByTrustZone(context.Context, *ListFederationsByTrustZoneRequest) (*ListFederationsByTrustZoneResponse, error)
 }
 
 // UnimplementedDataSourcePluginServiceServer should be embedded to have
@@ -64,8 +220,44 @@ type DataSourcePluginServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDataSourcePluginServiceServer struct{}
 
+func (UnimplementedDataSourcePluginServiceServer) Validate(context.Context, *ValidateRequest) (*ValidateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTrustZone not implemented")
+}
 func (UnimplementedDataSourcePluginServiceServer) ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTrustZones not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) AddTrustZone(context.Context, *AddTrustZoneRequest) (*AddTrustZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTrustZone not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZone not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) AddAttestationPolicy(context.Context, *AddAttestationPolicyRequest) (*AddAttestationPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAttestationPolicy not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) GetAttestationPolicy(context.Context, *GetAttestationPolicyRequest) (*GetAttestationPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAttestationPolicy not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) ListAttestationPolicies(context.Context, *ListAttestationPoliciesRequest) (*ListAttestationPoliciesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAttestationPolicies not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) AddAPBinding(context.Context, *AddAPBindingRequest) (*AddAPBindingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAPBinding not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) DestroyAPBinding(context.Context, *DestroyAPBindingRequest) (*DestroyAPBindingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DestroyAPBinding not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) AddFederation(context.Context, *AddFederationRequest) (*AddFederationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFederation not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFederations not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) ListFederationsByTrustZone(context.Context, *ListFederationsByTrustZoneRequest) (*ListFederationsByTrustZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFederationsByTrustZone not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) testEmbeddedByValue() {}
 
@@ -87,6 +279,42 @@ func RegisterDataSourcePluginServiceServer(s grpc.ServiceRegistrar, srv DataSour
 	s.RegisterService(&DataSourcePluginService_ServiceDesc, srv)
 }
 
+func _DataSourcePluginService_Validate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).Validate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_Validate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).Validate(ctx, req.(*ValidateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_GetTrustZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTrustZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).GetTrustZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_GetTrustZone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).GetTrustZone(ctx, req.(*GetTrustZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataSourcePluginService_ListTrustZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTrustZonesRequest)
 	if err := dec(in); err != nil {
@@ -105,6 +333,186 @@ func _DataSourcePluginService_ListTrustZones_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataSourcePluginService_AddTrustZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTrustZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).AddTrustZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_AddTrustZone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).AddTrustZone(ctx, req.(*AddTrustZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_UpdateTrustZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTrustZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).UpdateTrustZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_UpdateTrustZone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).UpdateTrustZone(ctx, req.(*UpdateTrustZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_AddAttestationPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAttestationPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).AddAttestationPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_AddAttestationPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).AddAttestationPolicy(ctx, req.(*AddAttestationPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_GetAttestationPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAttestationPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).GetAttestationPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_GetAttestationPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).GetAttestationPolicy(ctx, req.(*GetAttestationPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_ListAttestationPolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAttestationPoliciesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).ListAttestationPolicies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_ListAttestationPolicies_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).ListAttestationPolicies(ctx, req.(*ListAttestationPoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_AddAPBinding_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAPBindingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).AddAPBinding(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_AddAPBinding_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).AddAPBinding(ctx, req.(*AddAPBindingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_DestroyAPBinding_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DestroyAPBindingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).DestroyAPBinding(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_DestroyAPBinding_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).DestroyAPBinding(ctx, req.(*DestroyAPBindingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_AddFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddFederationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).AddFederation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_AddFederation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).AddFederation(ctx, req.(*AddFederationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_ListFederations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFederationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).ListFederations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_ListFederations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).ListFederations(ctx, req.(*ListFederationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_ListFederationsByTrustZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFederationsByTrustZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).ListFederationsByTrustZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_ListFederationsByTrustZone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).ListFederationsByTrustZone(ctx, req.(*ListFederationsByTrustZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataSourcePluginService_ServiceDesc is the grpc.ServiceDesc for DataSourcePluginService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -113,8 +521,56 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DataSourcePluginServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Validate",
+			Handler:    _DataSourcePluginService_Validate_Handler,
+		},
+		{
+			MethodName: "GetTrustZone",
+			Handler:    _DataSourcePluginService_GetTrustZone_Handler,
+		},
+		{
 			MethodName: "ListTrustZones",
 			Handler:    _DataSourcePluginService_ListTrustZones_Handler,
+		},
+		{
+			MethodName: "AddTrustZone",
+			Handler:    _DataSourcePluginService_AddTrustZone_Handler,
+		},
+		{
+			MethodName: "UpdateTrustZone",
+			Handler:    _DataSourcePluginService_UpdateTrustZone_Handler,
+		},
+		{
+			MethodName: "AddAttestationPolicy",
+			Handler:    _DataSourcePluginService_AddAttestationPolicy_Handler,
+		},
+		{
+			MethodName: "GetAttestationPolicy",
+			Handler:    _DataSourcePluginService_GetAttestationPolicy_Handler,
+		},
+		{
+			MethodName: "ListAttestationPolicies",
+			Handler:    _DataSourcePluginService_ListAttestationPolicies_Handler,
+		},
+		{
+			MethodName: "AddAPBinding",
+			Handler:    _DataSourcePluginService_AddAPBinding_Handler,
+		},
+		{
+			MethodName: "DestroyAPBinding",
+			Handler:    _DataSourcePluginService_DestroyAPBinding_Handler,
+		},
+		{
+			MethodName: "AddFederation",
+			Handler:    _DataSourcePluginService_AddFederation_Handler,
+		},
+		{
+			MethodName: "ListFederations",
+			Handler:    _DataSourcePluginService_ListFederations_Handler,
+		},
+		{
+			MethodName: "ListFederationsByTrustZone",
+			Handler:    _DataSourcePluginService_ListFederationsByTrustZone_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
