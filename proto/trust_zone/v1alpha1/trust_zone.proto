@@ -25,6 +25,7 @@ message TrustZone {
   optional string jwt_issuer = 10;
   optional google.protobuf.Struct extra_helm_values = 11;
   optional BundleEndpointProfile bundle_endpoint_profile = 12;
+  optional string profile = 13;
 }
 
 enum BundleEndpointProfile {
