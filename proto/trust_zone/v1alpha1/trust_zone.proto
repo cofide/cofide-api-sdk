@@ -18,13 +18,14 @@ message TrustZone {
   optional string kubernetes_cluster = 3;
   optional string kubernetes_context = 4;
   optional proto.trust_provider.v1alpha1.TrustProvider trust_provider = 5;
-  optional string bundle_endpoint_url = 6;
-  optional string bundle = 7;
-  repeated proto.federation.v1alpha1.Federation federations = 8;
-  repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 9;
-  optional string jwt_issuer = 10;
-  optional google.protobuf.Struct extra_helm_values = 11;
-  optional BundleEndpointProfile bundle_endpoint_profile = 12;
+  optional string profile = 6;
+  optional string bundle_endpoint_url = 7;
+  optional string bundle = 8;
+  repeated proto.federation.v1alpha1.Federation federations = 9;
+  repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 10;
+  optional string jwt_issuer = 11;
+  optional google.protobuf.Struct extra_helm_values = 12;
+  optional BundleEndpointProfile bundle_endpoint_profile = 13;
 }
 
 enum BundleEndpointProfile {
