@@ -1,0 +1,13 @@
+// Copyright 2024 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.plugins.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/plugins/v1alpha1";
+
+message Plugins {
+  optional string data_source = 1;
+  optional string provision = 2;
+}
