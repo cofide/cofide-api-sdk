@@ -5,28 +5,22 @@ syntax = "proto3";
 
 package proto.trust_zone.v1alpha1;
 
-import "google/protobuf/struct.proto";
 import "proto/ap_binding/v1alpha1/ap_binding.proto";
+import "proto/cluster/v1alpha1/cluster.proto";
 import "proto/federation/v1alpha1/federation.proto";
-import "proto/trust_provider/v1alpha1/trust_provider.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1";
 
 message TrustZone {
   string name = 1;
   string trust_domain = 2;
-  optional string kubernetes_cluster = 3;
-  optional string kubernetes_context = 4;
-  optional proto.trust_provider.v1alpha1.TrustProvider trust_provider = 5;
-  optional string bundle_endpoint_url = 6;
-  optional string bundle = 7;
-  repeated proto.federation.v1alpha1.Federation federations = 8;
-  repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 9;
-  optional string jwt_issuer = 10;
-  optional google.protobuf.Struct extra_helm_values = 11;
-  optional BundleEndpointProfile bundle_endpoint_profile = 12;
-  optional string profile = 13;
-  optional bool external_server = 14;
+  optional string bundle_endpoint_url = 3;
+  optional string bundle = 4;
+  repeated proto.federation.v1alpha1.Federation federations = 5;
+  repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 6;
+  optional string jwt_issuer = 7;
+  optional BundleEndpointProfile bundle_endpoint_profile = 8;
+  repeated proto.cluster.v1alpha1.Cluster clusters = 9;
 }
 
 enum BundleEndpointProfile {

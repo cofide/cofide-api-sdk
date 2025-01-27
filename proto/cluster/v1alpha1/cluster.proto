@@ -1,0 +1,21 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.cluster.v1alpha1;
+
+import "google/protobuf/struct.proto";
+import "proto/trust_provider/v1alpha1/trust_provider.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1";
+
+message Cluster {
+  optional string name = 1;
+  optional string trust_zone = 2;
+  optional string kubernetes_context = 3;
+  optional proto.trust_provider.v1alpha1.TrustProvider trust_provider = 4;
+  optional google.protobuf.Struct extra_helm_values = 5;
+  optional string profile = 6;
+  optional bool external_server = 7;
+}
