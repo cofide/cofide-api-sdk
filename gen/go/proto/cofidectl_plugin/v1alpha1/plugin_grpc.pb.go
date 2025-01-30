@@ -30,6 +30,7 @@ const (
 	DataSourcePluginService_AddCluster_FullMethodName                 = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddCluster"
 	DataSourcePluginService_GetCluster_FullMethodName                 = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetCluster"
 	DataSourcePluginService_ListClusters_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListClusters"
+	DataSourcePluginService_UpdateCluster_FullMethodName              = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/UpdateCluster"
 	DataSourcePluginService_AddAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddAttestationPolicy"
 	DataSourcePluginService_GetAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetAttestationPolicy"
 	DataSourcePluginService_ListAttestationPolicies_FullMethodName    = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAttestationPolicies"
@@ -52,6 +53,7 @@ type DataSourcePluginServiceClient interface {
 	AddCluster(ctx context.Context, in *AddClusterRequest, opts ...grpc.CallOption) (*AddClusterResponse, error)
 	GetCluster(ctx context.Context, in *GetClusterRequest, opts ...grpc.CallOption) (*GetClusterResponse, error)
 	ListClusters(ctx context.Context, in *ListClustersRequest, opts ...grpc.CallOption) (*ListClustersResponse, error)
+	UpdateCluster(ctx context.Context, in *UpdateClusterRequest, opts ...grpc.CallOption) (*UpdateClusterResponse, error)
 	AddAttestationPolicy(ctx context.Context, in *AddAttestationPolicyRequest, opts ...grpc.CallOption) (*AddAttestationPolicyResponse, error)
 	GetAttestationPolicy(ctx context.Context, in *GetAttestationPolicyRequest, opts ...grpc.CallOption) (*GetAttestationPolicyResponse, error)
 	ListAttestationPolicies(ctx context.Context, in *ListAttestationPoliciesRequest, opts ...grpc.CallOption) (*ListAttestationPoliciesResponse, error)
@@ -150,6 +152,16 @@ func (c *dataSourcePluginServiceClient) ListClusters(ctx context.Context, in *Li
 	return out, nil
 }
 
+func (c *dataSourcePluginServiceClient) UpdateCluster(ctx context.Context, in *UpdateClusterRequest, opts ...grpc.CallOption) (*UpdateClusterResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateClusterResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_UpdateCluster_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataSourcePluginServiceClient) AddAttestationPolicy(ctx context.Context, in *AddAttestationPolicyRequest, opts ...grpc.CallOption) (*AddAttestationPolicyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddAttestationPolicyResponse)
@@ -242,6 +254,7 @@ type DataSourcePluginServiceServer interface {
 	AddCluster(context.Context, *AddClusterRequest) (*AddClusterResponse, error)
 	GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error)
 	ListClusters(context.Context, *ListClustersRequest) (*ListClustersResponse, error)
+	UpdateCluster(context.Context, *UpdateClusterRequest) (*UpdateClusterResponse, error)
 	AddAttestationPolicy(context.Context, *AddAttestationPolicyRequest) (*AddAttestationPolicyResponse, error)
 	GetAttestationPolicy(context.Context, *GetAttestationPolicyRequest) (*GetAttestationPolicyResponse, error)
 	ListAttestationPolicies(context.Context, *ListAttestationPoliciesRequest) (*ListAttestationPoliciesResponse, error)
@@ -282,6 +295,9 @@ func (UnimplementedDataSourcePluginServiceServer) GetCluster(context.Context, *G
 }
 func (UnimplementedDataSourcePluginServiceServer) ListClusters(context.Context, *ListClustersRequest) (*ListClustersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListClusters not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) UpdateCluster(context.Context, *UpdateClusterRequest) (*UpdateClusterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCluster not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) AddAttestationPolicy(context.Context, *AddAttestationPolicyRequest) (*AddAttestationPolicyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddAttestationPolicy not implemented")
@@ -471,6 +487,24 @@ func _DataSourcePluginService_ListClusters_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataSourcePluginService_UpdateCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).UpdateCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_UpdateCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).UpdateCluster(ctx, req.(*UpdateClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataSourcePluginService_AddAttestationPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddAttestationPolicyRequest)
 	if err := dec(in); err != nil {
@@ -653,6 +687,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListClusters",
 			Handler:    _DataSourcePluginService_ListClusters_Handler,
+		},
+		{
+			MethodName: "UpdateCluster",
+			Handler:    _DataSourcePluginService_UpdateCluster_Handler,
 		},
 		{
 			MethodName: "AddAttestationPolicy",

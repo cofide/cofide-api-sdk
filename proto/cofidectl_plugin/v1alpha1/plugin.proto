@@ -24,6 +24,7 @@ service DataSourcePluginService {
   rpc AddCluster(AddClusterRequest) returns (AddClusterResponse);
   rpc GetCluster(GetClusterRequest) returns (GetClusterResponse);
   rpc ListClusters(ListClustersRequest) returns (ListClustersResponse);
+  rpc UpdateCluster(UpdateClusterRequest) returns (UpdateClusterResponse);
 
   rpc AddAttestationPolicy(AddAttestationPolicyRequest) returns (AddAttestationPolicyResponse);
   rpc GetAttestationPolicy(GetAttestationPolicyRequest) returns (GetAttestationPolicyResponse);
@@ -67,7 +68,9 @@ message UpdateTrustZoneRequest {
   optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
-message UpdateTrustZoneResponse {}
+message UpdateTrustZoneResponse {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+}
 
 message AddClusterRequest {
   optional proto.cluster.v1alpha1.Cluster cluster = 1;
@@ -92,6 +95,14 @@ message ListClustersRequest {
 
 message ListClustersResponse {
   repeated proto.cluster.v1alpha1.Cluster clusters = 1;
+}
+
+message UpdateClusterRequest {
+  optional proto.cluster.v1alpha1.Cluster cluster = 1;
+}
+
+message UpdateClusterResponse {
+  optional proto.cluster.v1alpha1.Cluster cluster = 1;
 }
 
 message AddAttestationPolicyRequest {
