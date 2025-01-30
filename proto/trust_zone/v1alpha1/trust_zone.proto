@@ -6,7 +6,6 @@ syntax = "proto3";
 package proto.trust_zone.v1alpha1;
 
 import "proto/ap_binding/v1alpha1/ap_binding.proto";
-import "proto/cluster/v1alpha1/cluster.proto";
 import "proto/federation/v1alpha1/federation.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1";
@@ -20,7 +19,6 @@ message TrustZone {
   repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 6;
   optional string jwt_issuer = 7;
   optional BundleEndpointProfile bundle_endpoint_profile = 8;
-  repeated proto.cluster.v1alpha1.Cluster clusters = 9;
 }
 
 enum BundleEndpointProfile {
