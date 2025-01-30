@@ -7,6 +7,7 @@ package proto.cofidectl_plugin.v1alpha1;
 
 import "proto/ap_binding/v1alpha1/ap_binding.proto";
 import "proto/attestation_policy/v1alpha1/attestation_policy.proto";
+import "proto/cluster/v1alpha1/cluster.proto";
 import "proto/federation/v1alpha1/federation.proto";
 import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
@@ -15,10 +16,14 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl_plu
 service DataSourcePluginService {
   rpc Validate(ValidateRequest) returns (ValidateResponse);
 
+  rpc AddTrustZone(AddTrustZoneRequest) returns (AddTrustZoneResponse);
   rpc GetTrustZone(GetTrustZoneRequest) returns (GetTrustZoneResponse);
   rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse);
-  rpc AddTrustZone(AddTrustZoneRequest) returns (AddTrustZoneResponse);
   rpc UpdateTrustZone(UpdateTrustZoneRequest) returns (UpdateTrustZoneResponse);
+
+  rpc AddCluster(AddClusterRequest) returns (AddClusterResponse);
+  rpc GetCluster(GetClusterRequest) returns (GetClusterResponse);
+  rpc ListClusters(ListClustersRequest) returns (ListClustersResponse);
 
   rpc AddAttestationPolicy(AddAttestationPolicyRequest) returns (AddAttestationPolicyResponse);
   rpc GetAttestationPolicy(GetAttestationPolicyRequest) returns (GetAttestationPolicyResponse);
@@ -36,6 +41,14 @@ message ValidateRequest {}
 
 message ValidateResponse {}
 
+message AddTrustZoneRequest {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+}
+
+message AddTrustZoneResponse {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+}
+
 message GetTrustZoneRequest {
   optional string name = 1;
 }
@@ -50,19 +63,36 @@ message ListTrustZonesResponse {
   repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 1;
 }
 
-message AddTrustZoneRequest {
-  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
-}
-
-message AddTrustZoneResponse {
-  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
-}
-
 message UpdateTrustZoneRequest {
   optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
 message UpdateTrustZoneResponse {}
+
+message AddClusterRequest {
+  optional proto.cluster.v1alpha1.Cluster cluster = 1;
+}
+
+message AddClusterResponse {
+  optional proto.cluster.v1alpha1.Cluster cluster = 1;
+}
+
+message GetClusterRequest {
+  optional string name = 1;
+  optional string trust_zone = 2;
+}
+
+message GetClusterResponse {
+  optional proto.cluster.v1alpha1.Cluster cluster = 1;
+}
+
+message ListClustersRequest {
+  optional string trust_zone = 1;
+}
+
+message ListClustersResponse {
+  repeated proto.cluster.v1alpha1.Cluster clusters = 1;
+}
 
 message AddAttestationPolicyRequest {
   optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
