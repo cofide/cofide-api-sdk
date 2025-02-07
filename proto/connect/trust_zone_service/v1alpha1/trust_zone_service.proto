@@ -6,6 +6,7 @@ syntax = "proto3";
 package proto.connect.trust_zone_service.v1alpha1;
 
 import "proto/spire/api/types/bundle.proto";
+import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_service/v1alpha1";
 
@@ -13,21 +14,16 @@ service TrustZoneService {
   rpc CreateTrustZone(CreateTrustZoneRequest) returns (CreateTrustZoneResponse) {}
   rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse) {}
   rpc GetTrustZoneDetails(GetTrustZoneDetailsRequest) returns (GetTrustZoneDetailsResponse) {}
-  rpc RegisterCluster(RegisterClusterRequest) returns (RegisterClusterResponse) {}
-  rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse) {}
-}
 
-message TrustZone {
-  string trustzone = 1;
-  string org_id = 2;
-  spire.api.types.Bundle bundle = 3;
-  string trustzone_id = 4;
+  rpc RegisterCluster(RegisterClusterRequest) returns (RegisterClusterResponse) {}
+
+  rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse) {}
 }
 
 message Agent {
   string agent_id = 1;
   string cluster_id = 2;
-  string trustzone_id = 3;
+  string trust_zone_id = 3;
 }
 
 message Cluster {
@@ -36,41 +32,33 @@ message Cluster {
   string oidc_pub_key = 3;
 }
 
-message ConnectEndpoint {
-  string trustzone_id = 1;
-  bool enabled = 2;
-  string type = 3;
-}
-
 message CreateTrustZoneRequest {
-  TrustZone trustzone = 1;
+  proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
 message CreateTrustZoneResponse {
-  TrustZone trustzone = 1;
-  string federation_endpoint = 2;
+  proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+  // FIXME: gRPC status?
   bool success = 3;
   string message = 4;
 }
 
-message ListTrustZonesRequest {
-  string org_id = 1;
-}
+message ListTrustZonesRequest {}
 
 message ListTrustZonesResponse {
-  repeated TrustZone trustzones = 1;
+  repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 1;
 }
 
 message GetTrustZoneDetailsRequest {
-  string trustzone_id = 1;
+  string trust_zone_id = 1;
 }
 
 message GetTrustZoneDetailsResponse {
-  TrustZone trustzone = 1;
+  proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
 message RegisterClusterRequest {
-  string trustzone_id = 1;
+  string trust_zone_id = 1;
   Cluster cluster = 2;
 }
 
