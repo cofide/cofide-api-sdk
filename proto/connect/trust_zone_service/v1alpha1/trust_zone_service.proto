@@ -1,0 +1,93 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.trust_zone_service.v1alpha1;
+
+import "proto/spire/api/types/bundle.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_service/v1alpha1";
+
+service TrustZoneService {
+  rpc CreateTrustZone(CreateTrustZoneRequest) returns (CreateTrustZoneResponse) {}
+  rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse) {}
+  rpc GetTrustZoneDetails(GetTrustZoneDetailsRequest) returns (GetTrustZoneDetailsResponse) {}
+  rpc RegisterCluster(RegisterClusterRequest) returns (RegisterClusterResponse) {}
+  rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse) {}
+}
+
+message TrustZone {
+  string trustzone = 1;
+  string org_id = 2;
+  spire.api.types.Bundle bundle = 3;
+  string trustzone_id = 4;
+}
+
+message Agent {
+  string agent_id = 1;
+  string cluster_id = 2;
+  string trustzone_id = 3;
+}
+
+message Cluster {
+  string cluster_name = 1;
+  string oidc_endpoint = 2;
+  string oidc_pub_key = 3;
+}
+
+message ConnectEndpoint {
+  string trustzone_id = 1;
+  bool enabled = 2;
+  string type = 3;
+}
+
+message CreateTrustZoneRequest {
+  TrustZone trustzone = 1;
+}
+
+message CreateTrustZoneResponse {
+  TrustZone trustzone = 1;
+  string federation_endpoint = 2;
+  bool success = 3;
+  string message = 4;
+}
+
+message ListTrustZonesRequest {
+  string org_id = 1;
+}
+
+message ListTrustZonesResponse {
+  repeated TrustZone trustzones = 1;
+}
+
+message GetTrustZoneDetailsRequest {
+  string trustzone_id = 1;
+}
+
+message GetTrustZoneDetailsResponse {
+  TrustZone trustzone = 1;
+}
+
+message RegisterClusterRequest {
+  string trustzone_id = 1;
+  Cluster cluster = 2;
+}
+
+message RegisterClusterResponse {
+  string agent_token = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+message RegisterAgentRequest {
+  Agent agent = 1;
+  string agent_token = 2;
+  spire.api.types.Bundle bundle = 3;
+}
+
+message RegisterAgentResponse {
+  bool success = 1;
+  string message = 2;
+  string agent_id = 3;
+}
