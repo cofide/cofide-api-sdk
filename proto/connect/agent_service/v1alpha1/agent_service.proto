@@ -1,0 +1,80 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.agent_service.v1alpha1;
+
+import "proto/federated_service/v1alpha1/federated_service.proto";
+import "proto/spire/api/types/bundle.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/agent_service/v1alpha1";
+
+service AgentService {
+  rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
+  rpc UpdateTrustZoneAuthority(UpdateTrustZoneAuthorityRequest) returns (UpdateTrustZoneAuthorityResponse) {}
+  rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse) {}
+  rpc RegisterFederatedService(RegisterFederatedServiceRequest) returns (RegisterFederatedServiceResponse) {}
+  rpc DeregisterFederatedService(DeregisterFederatedServiceRequest) returns (DeregisterFederatedServiceResponse) {}
+}
+
+message AgentStatus {
+  AgentStatusCode status = 1;
+  string status_message = 2;
+  int64 last_updated = 3;
+}
+
+enum AgentStatusCode {
+  AGENT_STATUS_CODE_UNSPECIFIED = 0;
+  AGENT_STATUS_CODE_RUNNING = 1;
+  AGENT_STATUS_CODE_STOPPED = 2;
+  AGENT_STATUS_CODE_ERROR = 3;
+}
+
+message UpdateTrustZoneBundleRequest {
+  spire.api.types.Bundle bundle = 1;
+}
+
+message UpdateTrustZoneBundleResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UpdateTrustZoneAuthorityRequest {
+  spire.api.types.X509Certificate x509_authority = 1;
+  spire.api.types.JWTKey jwt_authority = 2;
+}
+
+message UpdateTrustZoneAuthorityResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UpdateAgentStatusRequest {
+  AgentStatus status = 1;
+}
+
+message UpdateAgentStatusResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message RegisterFederatedServiceRequest {
+  proto.federated_service.v1alpha1.FederatedService service = 1;
+}
+
+message RegisterFederatedServiceResponse {
+  string service_id = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+message DeregisterFederatedServiceRequest {
+  string service_id = 1;
+}
+
+message DeregisterFederatedServiceResponse {
+  string service_id = 1;
+  bool success = 2;
+  string message = 3;
+}
