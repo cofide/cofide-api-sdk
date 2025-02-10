@@ -6,6 +6,12 @@ lint:
     - FIELD_NOT_REQUIRED
     - PACKAGE_NO_IMPORT_CYCLE
   disallow_comment_ignores: true
+  ignore_only:
+    # Ignore some rules for files copied from spire-api-sdk.
+    PACKAGE_DIRECTORY_MATCH:
+      - "proto/spire/api/types/bundle.proto"
+    PACKAGE_VERSION_SUFFIX:
+      - "proto/spire/api/types/bundle.proto"
 breaking:
   use:
     - FILE
