@@ -98,4 +98,3 @@ message GetFederatedServiceRequest {
 message GetFederatedServiceResponse {
   proto.federated_service.v1alpha1.FederatedService service = 1;
 }
-
