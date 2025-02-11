@@ -5,6 +5,7 @@ syntax = "proto3";
 
 package proto.connect.trust_zone_service.v1alpha1;
 
+import "proto/cluster/v1alpha1/cluster.proto";
 import "proto/spire/api/types/bundle.proto";
 import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
@@ -24,12 +25,6 @@ message Agent {
   string agent_id = 1;
   string cluster_id = 2;
   string trust_zone_id = 3;
-}
-
-message Cluster {
-  string cluster_name = 1;
-  string oidc_endpoint = 2;
-  string oidc_pub_key = 3;
 }
 
 message CreateTrustZoneRequest {
@@ -59,7 +54,7 @@ message GetTrustZoneDetailsResponse {
 
 message RegisterClusterRequest {
   string trust_zone_id = 1;
-  Cluster cluster = 2;
+  proto.cluster.v1alpha1.Cluster cluster = 2;
 }
 
 message RegisterClusterResponse {
