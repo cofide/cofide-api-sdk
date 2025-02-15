@@ -28,6 +28,7 @@ const (
 	AgentService_RegisterFederatedService_FullMethodName   = "/proto.connect.agent_service.v1alpha1.AgentService/RegisterFederatedService"
 	AgentService_DeregisterFederatedService_FullMethodName = "/proto.connect.agent_service.v1alpha1.AgentService/DeregisterFederatedService"
 	AgentService_UpdateFederatedService_FullMethodName     = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateFederatedService"
+	AgentService_GetFederatedService_FullMethodName        = "/proto.connect.agent_service.v1alpha1.AgentService/GetFederatedService"
 )
 
 // AgentServiceClient is the client API for AgentService service.
@@ -40,6 +41,7 @@ type AgentServiceClient interface {
 	RegisterFederatedService(ctx context.Context, in *RegisterFederatedServiceRequest, opts ...grpc.CallOption) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(ctx context.Context, in *DeregisterFederatedServiceRequest, opts ...grpc.CallOption) (*DeregisterFederatedServiceResponse, error)
 	UpdateFederatedService(ctx context.Context, in *UpdateFederatedServiceRequest, opts ...grpc.CallOption) (*UpdateFederatedServiceResponse, error)
+	GetFederatedService(ctx context.Context, in *GetFederatedServiceRequest, opts ...grpc.CallOption) (*GetFederatedServiceResponse, error)
 }
 
 type agentServiceClient struct {
@@ -110,6 +112,16 @@ func (c *agentServiceClient) UpdateFederatedService(ctx context.Context, in *Upd
 	return out, nil
 }
 
+func (c *agentServiceClient) GetFederatedService(ctx context.Context, in *GetFederatedServiceRequest, opts ...grpc.CallOption) (*GetFederatedServiceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFederatedServiceResponse)
+	err := c.cc.Invoke(ctx, AgentService_GetFederatedService_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AgentServiceServer is the server API for AgentService service.
 // All implementations should embed UnimplementedAgentServiceServer
 // for forward compatibility.
@@ -120,6 +132,7 @@ type AgentServiceServer interface {
 	RegisterFederatedService(context.Context, *RegisterFederatedServiceRequest) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(context.Context, *DeregisterFederatedServiceRequest) (*DeregisterFederatedServiceResponse, error)
 	UpdateFederatedService(context.Context, *UpdateFederatedServiceRequest) (*UpdateFederatedServiceResponse, error)
+	GetFederatedService(context.Context, *GetFederatedServiceRequest) (*GetFederatedServiceResponse, error)
 }
 
 // UnimplementedAgentServiceServer should be embedded to have
@@ -146,6 +159,9 @@ func (UnimplementedAgentServiceServer) DeregisterFederatedService(context.Contex
 }
 func (UnimplementedAgentServiceServer) UpdateFederatedService(context.Context, *UpdateFederatedServiceRequest) (*UpdateFederatedServiceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFederatedService not implemented")
+}
+func (UnimplementedAgentServiceServer) GetFederatedService(context.Context, *GetFederatedServiceRequest) (*GetFederatedServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFederatedService not implemented")
 }
 func (UnimplementedAgentServiceServer) testEmbeddedByValue() {}
 
@@ -275,6 +291,24 @@ func _AgentService_UpdateFederatedService_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AgentService_GetFederatedService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFederatedServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServiceServer).GetFederatedService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentService_GetFederatedService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServiceServer).GetFederatedService(ctx, req.(*GetFederatedServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AgentService_ServiceDesc is the grpc.ServiceDesc for AgentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -305,6 +339,10 @@ var AgentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateFederatedService",
 			Handler:    _AgentService_UpdateFederatedService_Handler,
+		},
+		{
+			MethodName: "GetFederatedService",
+			Handler:    _AgentService_GetFederatedService_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
