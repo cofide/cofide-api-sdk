@@ -39,9 +39,6 @@ message CreateTrustZoneRequest {
 
 message CreateTrustZoneResponse {
   proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
-  // FIXME: gRPC status?
-  bool success = 3;
-  string message = 4;
 }
 
 message ListTrustZonesRequest {
@@ -88,8 +85,6 @@ message RegisterClusterRequest {
 
 message RegisterClusterResponse {
   string agent_token = 1;
-  bool success = 2;
-  string message = 3;
 }
 
 message RegisterAgentRequest {
@@ -99,7 +94,5 @@ message RegisterAgentRequest {
 }
 
 message RegisterAgentResponse {
-  bool success = 1;
-  string message = 2;
   string agent_id = 3;
 }
