@@ -18,6 +18,7 @@ service AgentService {
   rpc DeregisterFederatedService(DeregisterFederatedServiceRequest) returns (DeregisterFederatedServiceResponse) {}
   rpc UpdateFederatedService(UpdateFederatedServiceRequest) returns (UpdateFederatedServiceResponse) {}
   rpc GetFederatedService(GetFederatedServiceRequest) returns (GetFederatedServiceResponse) {}
+  rpc ListFederatedServices(ListFederatedServicesRequest) returns (ListFederatedServicesResponse) {}
 }
 
 message AgentStatus {
@@ -97,4 +98,12 @@ message GetFederatedServiceRequest {
 
 message GetFederatedServiceResponse {
   proto.federated_service.v1alpha1.FederatedService service = 1;
+}
+
+message ListFederatedServicesRequest {
+  string org_id = 1;
+}
+
+message ListFederatedServicesResponse {
+  repeated proto.federated_service.v1alpha1.FederatedService services = 1;
 }
