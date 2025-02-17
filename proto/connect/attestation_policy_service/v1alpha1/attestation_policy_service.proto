@@ -1,0 +1,60 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.attestation_policy_service.v1alpha1;
+
+import "proto/attestation_policy/v1alpha1/attestation_policy.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/attestation_policy_service/v1alpha1";
+
+service AttestationPolicyService {
+  rpc CreateAttestationPolicy(CreateAttestationPolicyRequest) returns (CreateAttestationPolicyResponse);
+  rpc DestroyAttestationPolicy(DestroyAttestationPolicyRequest) returns (DestroyAttestationPolicyResponse);
+  rpc GetAttestationPolicy(GetAttestationPolicyRequest) returns (GetAttestationPolicyResponse);
+  rpc ListAttestationPolicies(ListAttestationPoliciesRequest) returns (ListAttestationPoliciesResponse);
+  rpc UpdateAttestationPolicy(UpdateAttestationPolicyRequest) returns (UpdateAttestationPolicyResponse);
+}
+
+message CreateAttestationPolicyRequest {
+  optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message CreateAttestationPolicyResponse {
+  optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message DestroyAttestationPolicyRequest {
+  optional string policy_id = 1;
+}
+
+message DestroyAttestationPolicyResponse {}
+
+message GetAttestationPolicyRequest {
+  optional string policy_id = 1;
+}
+
+message GetAttestationPolicyResponse {
+  optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message ListAttestationPoliciesRequest {
+  message Filter {
+    optional string name = 1;
+    optional string org_id = 2;
+  }
+  optional Filter filter = 1;
+}
+
+message ListAttestationPoliciesResponse {
+  repeated proto.attestation_policy.v1alpha1.AttestationPolicy policies = 1;
+}
+
+message UpdateAttestationPolicyRequest {
+  optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message UpdateAttestationPolicyResponse {
+  optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
