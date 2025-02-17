@@ -36,6 +36,8 @@ type TrustZoneServiceClient interface {
 	CreateTrustZone(ctx context.Context, in *CreateTrustZoneRequest, opts ...grpc.CallOption) (*CreateTrustZoneResponse, error)
 	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
 	GetTrustZoneDetails(ctx context.Context, in *GetTrustZoneDetailsRequest, opts ...grpc.CallOption) (*GetTrustZoneDetailsResponse, error)
+	// DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
+	// Cluster creation to be moved to ClusterService.CreateCluster.
 	RegisterCluster(ctx context.Context, in *RegisterClusterRequest, opts ...grpc.CallOption) (*RegisterClusterResponse, error)
 	RegisterAgent(ctx context.Context, in *RegisterAgentRequest, opts ...grpc.CallOption) (*RegisterAgentResponse, error)
 }
@@ -105,6 +107,8 @@ type TrustZoneServiceServer interface {
 	CreateTrustZone(context.Context, *CreateTrustZoneRequest) (*CreateTrustZoneResponse, error)
 	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
 	GetTrustZoneDetails(context.Context, *GetTrustZoneDetailsRequest) (*GetTrustZoneDetailsResponse, error)
+	// DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
+	// Cluster creation to be moved to ClusterService.CreateCluster.
 	RegisterCluster(context.Context, *RegisterClusterRequest) (*RegisterClusterResponse, error)
 	RegisterAgent(context.Context, *RegisterAgentRequest) (*RegisterAgentResponse, error)
 }

@@ -12,13 +12,26 @@ import "proto/spire/api/types/bundle.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/agent_service/v1alpha1";
 
 service AgentService {
+  rpc CreateAgentJoinToken(CreateAgentJoinTokenRequest) returns (CreateAgentJoinTokenResponse) {}
+
   rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
   rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse) {}
+
+  // DEPRECATED: Federated service RPCs will move to a separate service.
   rpc RegisterFederatedService(RegisterFederatedServiceRequest) returns (RegisterFederatedServiceResponse) {}
   rpc DeregisterFederatedService(DeregisterFederatedServiceRequest) returns (DeregisterFederatedServiceResponse) {}
   rpc UpdateFederatedService(UpdateFederatedServiceRequest) returns (UpdateFederatedServiceResponse) {}
   rpc GetFederatedService(GetFederatedServiceRequest) returns (GetFederatedServiceResponse) {}
   rpc ListFederatedServices(ListFederatedServicesRequest) returns (ListFederatedServicesResponse) {}
+}
+
+message CreateAgentJoinTokenRequest {
+  optional string trust_zone_id = 1;
+  optional string cluster_id = 2;
+}
+
+message CreateAgentJoinTokenResponse {
+  optional string agent_token = 1;
 }
 
 message UpdateTrustZoneBundleRequest {
