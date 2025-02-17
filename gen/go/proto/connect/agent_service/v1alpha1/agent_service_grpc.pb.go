@@ -22,6 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	AgentService_GetAgent_FullMethodName                   = "/proto.connect.agent_service.v1alpha1.AgentService/GetAgent"
+	AgentService_ListAgents_FullMethodName                 = "/proto.connect.agent_service.v1alpha1.AgentService/ListAgents"
+	AgentService_GetAgentJoinToken_FullMethodName          = "/proto.connect.agent_service.v1alpha1.AgentService/GetAgentJoinToken"
+	AgentService_AuthenticateAgent_FullMethodName          = "/proto.connect.agent_service.v1alpha1.AgentService/AuthenticateAgent"
 	AgentService_UpdateTrustZoneBundle_FullMethodName      = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateTrustZoneBundle"
 	AgentService_UpdateAgentStatus_FullMethodName          = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateAgentStatus"
 	AgentService_RegisterFederatedService_FullMethodName   = "/proto.connect.agent_service.v1alpha1.AgentService/RegisterFederatedService"
@@ -35,8 +39,14 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AgentServiceClient interface {
+	GetAgent(ctx context.Context, in *GetAgentRequest, opts ...grpc.CallOption) (*GetAgentResponse, error)
+	ListAgents(ctx context.Context, in *ListAgentsRequest, opts ...grpc.CallOption) (*ListAgentsResponse, error)
+	// TODO: Federation token?
+	GetAgentJoinToken(ctx context.Context, in *GetAgentJoinTokenRequest, opts ...grpc.CallOption) (*GetAgentJoinTokenResponse, error)
+	AuthenticateAgent(ctx context.Context, in *AuthenticateAgentRequest, opts ...grpc.CallOption) (*AuthenticateAgentResponse, error)
 	UpdateTrustZoneBundle(ctx context.Context, in *UpdateTrustZoneBundleRequest, opts ...grpc.CallOption) (*UpdateTrustZoneBundleResponse, error)
 	UpdateAgentStatus(ctx context.Context, in *UpdateAgentStatusRequest, opts ...grpc.CallOption) (*UpdateAgentStatusResponse, error)
+	// DEPRECATED: Federated service RPCs will move to a separate service.
 	RegisterFederatedService(ctx context.Context, in *RegisterFederatedServiceRequest, opts ...grpc.CallOption) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(ctx context.Context, in *DeregisterFederatedServiceRequest, opts ...grpc.CallOption) (*DeregisterFederatedServiceResponse, error)
 	UpdateFederatedService(ctx context.Context, in *UpdateFederatedServiceRequest, opts ...grpc.CallOption) (*UpdateFederatedServiceResponse, error)
@@ -50,6 +60,46 @@ type agentServiceClient struct {
 
 func NewAgentServiceClient(cc grpc.ClientConnInterface) AgentServiceClient {
 	return &agentServiceClient{cc}
+}
+
+func (c *agentServiceClient) GetAgent(ctx context.Context, in *GetAgentRequest, opts ...grpc.CallOption) (*GetAgentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAgentResponse)
+	err := c.cc.Invoke(ctx, AgentService_GetAgent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentServiceClient) ListAgents(ctx context.Context, in *ListAgentsRequest, opts ...grpc.CallOption) (*ListAgentsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAgentsResponse)
+	err := c.cc.Invoke(ctx, AgentService_ListAgents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentServiceClient) GetAgentJoinToken(ctx context.Context, in *GetAgentJoinTokenRequest, opts ...grpc.CallOption) (*GetAgentJoinTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAgentJoinTokenResponse)
+	err := c.cc.Invoke(ctx, AgentService_GetAgentJoinToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentServiceClient) AuthenticateAgent(ctx context.Context, in *AuthenticateAgentRequest, opts ...grpc.CallOption) (*AuthenticateAgentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthenticateAgentResponse)
+	err := c.cc.Invoke(ctx, AgentService_AuthenticateAgent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *agentServiceClient) UpdateTrustZoneBundle(ctx context.Context, in *UpdateTrustZoneBundleRequest, opts ...grpc.CallOption) (*UpdateTrustZoneBundleResponse, error) {
@@ -126,8 +176,14 @@ func (c *agentServiceClient) ListFederatedServices(ctx context.Context, in *List
 // All implementations should embed UnimplementedAgentServiceServer
 // for forward compatibility.
 type AgentServiceServer interface {
+	GetAgent(context.Context, *GetAgentRequest) (*GetAgentResponse, error)
+	ListAgents(context.Context, *ListAgentsRequest) (*ListAgentsResponse, error)
+	// TODO: Federation token?
+	GetAgentJoinToken(context.Context, *GetAgentJoinTokenRequest) (*GetAgentJoinTokenResponse, error)
+	AuthenticateAgent(context.Context, *AuthenticateAgentRequest) (*AuthenticateAgentResponse, error)
 	UpdateTrustZoneBundle(context.Context, *UpdateTrustZoneBundleRequest) (*UpdateTrustZoneBundleResponse, error)
 	UpdateAgentStatus(context.Context, *UpdateAgentStatusRequest) (*UpdateAgentStatusResponse, error)
+	// DEPRECATED: Federated service RPCs will move to a separate service.
 	RegisterFederatedService(context.Context, *RegisterFederatedServiceRequest) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(context.Context, *DeregisterFederatedServiceRequest) (*DeregisterFederatedServiceResponse, error)
 	UpdateFederatedService(context.Context, *UpdateFederatedServiceRequest) (*UpdateFederatedServiceResponse, error)
@@ -142,6 +198,18 @@ type AgentServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAgentServiceServer struct{}
 
+func (UnimplementedAgentServiceServer) GetAgent(context.Context, *GetAgentRequest) (*GetAgentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAgent not implemented")
+}
+func (UnimplementedAgentServiceServer) ListAgents(context.Context, *ListAgentsRequest) (*ListAgentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAgents not implemented")
+}
+func (UnimplementedAgentServiceServer) GetAgentJoinToken(context.Context, *GetAgentJoinTokenRequest) (*GetAgentJoinTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAgentJoinToken not implemented")
+}
+func (UnimplementedAgentServiceServer) AuthenticateAgent(context.Context, *AuthenticateAgentRequest) (*AuthenticateAgentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateAgent not implemented")
+}
 func (UnimplementedAgentServiceServer) UpdateTrustZoneBundle(context.Context, *UpdateTrustZoneBundleRequest) (*UpdateTrustZoneBundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneBundle not implemented")
 }
@@ -181,6 +249,78 @@ func RegisterAgentServiceServer(s grpc.ServiceRegistrar, srv AgentServiceServer)
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&AgentService_ServiceDesc, srv)
+}
+
+func _AgentService_GetAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAgentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServiceServer).GetAgent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentService_GetAgent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServiceServer).GetAgent(ctx, req.(*GetAgentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentService_ListAgents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAgentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServiceServer).ListAgents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentService_ListAgents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServiceServer).ListAgents(ctx, req.(*ListAgentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentService_GetAgentJoinToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAgentJoinTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServiceServer).GetAgentJoinToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentService_GetAgentJoinToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServiceServer).GetAgentJoinToken(ctx, req.(*GetAgentJoinTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentService_AuthenticateAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthenticateAgentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentServiceServer).AuthenticateAgent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentService_AuthenticateAgent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentServiceServer).AuthenticateAgent(ctx, req.(*AuthenticateAgentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _AgentService_UpdateTrustZoneBundle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -316,6 +456,22 @@ var AgentService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "proto.connect.agent_service.v1alpha1.AgentService",
 	HandlerType: (*AgentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetAgent",
+			Handler:    _AgentService_GetAgent_Handler,
+		},
+		{
+			MethodName: "ListAgents",
+			Handler:    _AgentService_ListAgents_Handler,
+		},
+		{
+			MethodName: "GetAgentJoinToken",
+			Handler:    _AgentService_GetAgentJoinToken_Handler,
+		},
+		{
+			MethodName: "AuthenticateAgent",
+			Handler:    _AgentService_AuthenticateAgent_Handler,
+		},
 		{
 			MethodName: "UpdateTrustZoneBundle",
 			Handler:    _AgentService_UpdateTrustZoneBundle_Handler,

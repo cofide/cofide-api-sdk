@@ -11,13 +11,29 @@ import "proto/spire/api/types/bundle.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/agent_service/v1alpha1";
 
 service AgentService {
+  rpc GetAgent(GetAgentRequest) returns (GetAgentResponse) {}
+  rpc ListAgents(ListAgentsRequest) returns (ListAgentsResponse) {}
+
+  // TODO: Federation token?
+  rpc GetAgentJoinToken(GetAgentJoinTokenRequest) returns (GetAgentJoinTokenResponse) {}
+  rpc AuthenticateAgent(AuthenticateAgentRequest) returns (AuthenticateAgentResponse) {}
+
   rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
   rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse) {}
+
+  // DEPRECATED: Federated service RPCs will move to a separate service.
   rpc RegisterFederatedService(RegisterFederatedServiceRequest) returns (RegisterFederatedServiceResponse) {}
   rpc DeregisterFederatedService(DeregisterFederatedServiceRequest) returns (DeregisterFederatedServiceResponse) {}
   rpc UpdateFederatedService(UpdateFederatedServiceRequest) returns (UpdateFederatedServiceResponse) {}
   rpc GetFederatedService(GetFederatedServiceRequest) returns (GetFederatedServiceResponse) {}
   rpc ListFederatedServices(ListFederatedServicesRequest) returns (ListFederatedServicesResponse) {}
+}
+
+// TODO: Do we need all of this info?
+message Agent {
+  string agent_id = 1;
+  string cluster_id = 2;
+  string trust_zone_id = 3;
 }
 
 message AgentStatus {
@@ -32,6 +48,40 @@ enum AgentStatusCode {
   AGENT_STATUS_CODE_STOPPED = 2;
   AGENT_STATUS_CODE_ERROR = 3;
 }
+
+message GetAgentRequest {
+  optional string agent_id = 1;
+}
+
+message GetAgentResponse {
+  optional string agent_id = 1;
+  optional AgentStatus status = 2;
+}
+
+message ListAgentsRequest {}
+
+message ListAgentsResponse {
+  // TODO: Combine into one message?
+  repeated string agent_id = 1;
+  repeated AgentStatus status = 2;
+}
+
+message GetAgentJoinTokenRequest {
+  optional string trust_zone_id = 1;
+  optional string cluster_name = 2;
+}
+
+message GetAgentJoinTokenResponse {
+  optional string token = 1;
+}
+
+message AuthenticateAgentRequest {
+  Agent agent = 1;
+  string agent_token = 2;
+  spire.api.types.Bundle bundle = 3;
+}
+
+message AuthenticateAgentResponse {}
 
 message UpdateTrustZoneBundleRequest {
   spire.api.types.Bundle bundle = 1;
