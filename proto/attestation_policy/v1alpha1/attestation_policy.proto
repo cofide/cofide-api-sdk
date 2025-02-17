@@ -37,5 +37,10 @@ message APMatchExpression {
 message APStatic {
   string spiffe_id = 1;
   string parent_id = 2;
-  map<string, string> selectors = 3;
+  repeated Selector selectors = 3;
+}
+
+message Selector {
+  string type = 1;
+  string value = 2;
 }
