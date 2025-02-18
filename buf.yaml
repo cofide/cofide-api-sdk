@@ -10,8 +10,10 @@ lint:
     # Ignore some rules for files copied from spire-api-sdk.
     PACKAGE_DIRECTORY_MATCH:
       - "proto/spire/api/types/bundle.proto"
+      - "proto/spire/api/types/selector.proto"
     PACKAGE_VERSION_SUFFIX:
       - "proto/spire/api/types/bundle.proto"
+      - "proto/spire/api/types/selector.proto"
 breaking:
   use:
     - FILE

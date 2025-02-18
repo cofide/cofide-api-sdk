@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package proto.attestation_policy.v1alpha1;
 
+import "proto/spire/api/types/selector.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1";
 
 message AttestationPolicy {
@@ -37,10 +39,5 @@ message APMatchExpression {
 message APStatic {
   string spiffe_id = 1;
   string parent_id = 2;
-  repeated Selector selectors = 3;
-}
-
-message Selector {
-  string type = 1;
-  string value = 2;
+  repeated spire.api.types.Selector selectors = 3;
 }
