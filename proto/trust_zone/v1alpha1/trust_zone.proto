@@ -20,6 +20,7 @@ message TrustZone {
   repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 6;
   optional string jwt_issuer = 7;
   optional BundleEndpointProfile bundle_endpoint_profile = 8;
+  optional string id = 9;
 }
 
 enum BundleEndpointProfile {
