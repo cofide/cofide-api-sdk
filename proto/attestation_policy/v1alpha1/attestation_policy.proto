@@ -38,6 +38,6 @@ message APMatchExpression {
 // APStatic represents a static attestation policy
 message APStatic {
   string spiffe_id = 1;
-  string parent_id = 2;
+  optional string parent_id = 2;
   repeated spire.api.types.Selector selectors = 3;
 }
