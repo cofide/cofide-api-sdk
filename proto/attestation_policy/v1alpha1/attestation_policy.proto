@@ -5,12 +5,15 @@ syntax = "proto3";
 
 package proto.attestation_policy.v1alpha1;
 
+import "proto/spire/api/types/selector.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1";
 
 message AttestationPolicy {
   string name = 1;
   oneof policy {
     APKubernetes kubernetes = 2;
+    APStatic static = 3;
   }
 }
 
@@ -30,4 +33,10 @@ message APMatchExpression {
   string key = 1;
   string operator = 2;
   repeated string values = 3;
+}
+
+// APStatic represents a static attestation policy
+message APStatic {
+  optional string spiffe_id = 1;
+  repeated spire.api.types.Selector selectors = 2;
 }
