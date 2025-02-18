@@ -12,7 +12,6 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/agent_service
 
 service AgentService {
   rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
-  rpc UpdateTrustZoneAuthority(UpdateTrustZoneAuthorityRequest) returns (UpdateTrustZoneAuthorityResponse) {}
   rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse) {}
   rpc RegisterFederatedService(RegisterFederatedServiceRequest) returns (RegisterFederatedServiceResponse) {}
   rpc DeregisterFederatedService(DeregisterFederatedServiceRequest) returns (DeregisterFederatedServiceResponse) {}
@@ -39,16 +38,6 @@ message UpdateTrustZoneBundleRequest {
 }
 
 message UpdateTrustZoneBundleResponse {
-  bool success = 1;
-  string message = 2;
-}
-
-message UpdateTrustZoneAuthorityRequest {
-  spire.api.types.X509Certificate x509_authority = 1;
-  spire.api.types.JWTKey jwt_authority = 2;
-}
-
-message UpdateTrustZoneAuthorityResponse {
   bool success = 1;
   string message = 2;
 }

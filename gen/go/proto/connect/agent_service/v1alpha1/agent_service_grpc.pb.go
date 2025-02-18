@@ -23,7 +23,6 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	AgentService_UpdateTrustZoneBundle_FullMethodName      = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateTrustZoneBundle"
-	AgentService_UpdateTrustZoneAuthority_FullMethodName   = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateTrustZoneAuthority"
 	AgentService_UpdateAgentStatus_FullMethodName          = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateAgentStatus"
 	AgentService_RegisterFederatedService_FullMethodName   = "/proto.connect.agent_service.v1alpha1.AgentService/RegisterFederatedService"
 	AgentService_DeregisterFederatedService_FullMethodName = "/proto.connect.agent_service.v1alpha1.AgentService/DeregisterFederatedService"
@@ -37,7 +36,6 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AgentServiceClient interface {
 	UpdateTrustZoneBundle(ctx context.Context, in *UpdateTrustZoneBundleRequest, opts ...grpc.CallOption) (*UpdateTrustZoneBundleResponse, error)
-	UpdateTrustZoneAuthority(ctx context.Context, in *UpdateTrustZoneAuthorityRequest, opts ...grpc.CallOption) (*UpdateTrustZoneAuthorityResponse, error)
 	UpdateAgentStatus(ctx context.Context, in *UpdateAgentStatusRequest, opts ...grpc.CallOption) (*UpdateAgentStatusResponse, error)
 	RegisterFederatedService(ctx context.Context, in *RegisterFederatedServiceRequest, opts ...grpc.CallOption) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(ctx context.Context, in *DeregisterFederatedServiceRequest, opts ...grpc.CallOption) (*DeregisterFederatedServiceResponse, error)
@@ -58,16 +56,6 @@ func (c *agentServiceClient) UpdateTrustZoneBundle(ctx context.Context, in *Upda
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateTrustZoneBundleResponse)
 	err := c.cc.Invoke(ctx, AgentService_UpdateTrustZoneBundle_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *agentServiceClient) UpdateTrustZoneAuthority(ctx context.Context, in *UpdateTrustZoneAuthorityRequest, opts ...grpc.CallOption) (*UpdateTrustZoneAuthorityResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateTrustZoneAuthorityResponse)
-	err := c.cc.Invoke(ctx, AgentService_UpdateTrustZoneAuthority_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -139,7 +127,6 @@ func (c *agentServiceClient) ListFederatedServices(ctx context.Context, in *List
 // for forward compatibility.
 type AgentServiceServer interface {
 	UpdateTrustZoneBundle(context.Context, *UpdateTrustZoneBundleRequest) (*UpdateTrustZoneBundleResponse, error)
-	UpdateTrustZoneAuthority(context.Context, *UpdateTrustZoneAuthorityRequest) (*UpdateTrustZoneAuthorityResponse, error)
 	UpdateAgentStatus(context.Context, *UpdateAgentStatusRequest) (*UpdateAgentStatusResponse, error)
 	RegisterFederatedService(context.Context, *RegisterFederatedServiceRequest) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(context.Context, *DeregisterFederatedServiceRequest) (*DeregisterFederatedServiceResponse, error)
@@ -157,9 +144,6 @@ type UnimplementedAgentServiceServer struct{}
 
 func (UnimplementedAgentServiceServer) UpdateTrustZoneBundle(context.Context, *UpdateTrustZoneBundleRequest) (*UpdateTrustZoneBundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneBundle not implemented")
-}
-func (UnimplementedAgentServiceServer) UpdateTrustZoneAuthority(context.Context, *UpdateTrustZoneAuthorityRequest) (*UpdateTrustZoneAuthorityResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneAuthority not implemented")
 }
 func (UnimplementedAgentServiceServer) UpdateAgentStatus(context.Context, *UpdateAgentStatusRequest) (*UpdateAgentStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAgentStatus not implemented")
@@ -213,24 +197,6 @@ func _AgentService_UpdateTrustZoneBundle_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentServiceServer).UpdateTrustZoneBundle(ctx, req.(*UpdateTrustZoneBundleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AgentService_UpdateTrustZoneAuthority_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTrustZoneAuthorityRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentServiceServer).UpdateTrustZoneAuthority(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AgentService_UpdateTrustZoneAuthority_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServiceServer).UpdateTrustZoneAuthority(ctx, req.(*UpdateTrustZoneAuthorityRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -353,10 +319,6 @@ var AgentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateTrustZoneBundle",
 			Handler:    _AgentService_UpdateTrustZoneBundle_Handler,
-		},
-		{
-			MethodName: "UpdateTrustZoneAuthority",
-			Handler:    _AgentService_UpdateTrustZoneAuthority_Handler,
 		},
 		{
 			MethodName: "UpdateAgentStatus",
