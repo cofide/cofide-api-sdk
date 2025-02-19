@@ -5,10 +5,11 @@ syntax = "proto3";
 
 package proto.connect.agent_service.v1alpha1;
 
+import "proto/agent/v1alpha1/agent.proto";
 import "proto/federated_service/v1alpha1/federated_service.proto";
 import "proto/spire/api/types/bundle.proto";
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/agent_service/v1alpha1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/agent_service/v1alpha1";
 
 service AgentService {
   rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
@@ -18,19 +19,6 @@ service AgentService {
   rpc UpdateFederatedService(UpdateFederatedServiceRequest) returns (UpdateFederatedServiceResponse) {}
   rpc GetFederatedService(GetFederatedServiceRequest) returns (GetFederatedServiceResponse) {}
   rpc ListFederatedServices(ListFederatedServicesRequest) returns (ListFederatedServicesResponse) {}
-}
-
-message AgentStatus {
-  AgentStatusCode status = 1;
-  string status_message = 2;
-  int64 last_updated = 3;
-}
-
-enum AgentStatusCode {
-  AGENT_STATUS_CODE_UNSPECIFIED = 0;
-  AGENT_STATUS_CODE_RUNNING = 1;
-  AGENT_STATUS_CODE_STOPPED = 2;
-  AGENT_STATUS_CODE_ERROR = 3;
 }
 
 message UpdateTrustZoneBundleRequest {
@@ -44,7 +32,7 @@ message UpdateTrustZoneBundleResponse {
 }
 
 message UpdateAgentStatusRequest {
-  AgentStatus status = 1;
+  proto.agent.v1alpha1.AgentStatus status = 1;
 }
 
 message UpdateAgentStatusResponse {
