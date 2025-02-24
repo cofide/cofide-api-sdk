@@ -5,7 +5,7 @@ go 1.22.7
 toolchain go1.22.9
 
 require (
-	github.com/spiffe/spire-api-sdk v1.11.1
+	github.com/spiffe/spire-api-sdk v1.11.2
 	google.golang.org/grpc v1.70.0
 	google.golang.org/protobuf v1.36.5
 )
