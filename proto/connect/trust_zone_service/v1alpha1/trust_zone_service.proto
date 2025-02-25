@@ -16,6 +16,8 @@ service TrustZoneService {
   rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse) {}
   rpc GetTrustZoneDetails(GetTrustZoneDetailsRequest) returns (GetTrustZoneDetailsResponse) {}
 
+  // DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
+  // Cluster creation to be moved to ClusterService.CreateCluster.
   rpc RegisterCluster(RegisterClusterRequest) returns (RegisterClusterResponse) {}
 
   rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse) {}
