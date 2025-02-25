@@ -21,6 +21,7 @@ message TrustZone {
   optional string jwt_issuer = 7;
   optional BundleEndpointProfile bundle_endpoint_profile = 8;
   optional string id = 9;
+  bool is_management_zone = 10;
 }
 
 enum BundleEndpointProfile {
