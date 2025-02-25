@@ -1,0 +1,27 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.agent.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1";
+
+message Agent {
+  optional string id = 1;
+  optional string cluster_id = 2;
+  optional string trust_zone_id = 3;
+}
+
+message AgentStatus {
+  optional AgentStatusCode status = 1;
+  optional string status_message = 2;
+  optional int64 last_updated = 3;
+}
+
+enum AgentStatusCode {
+  AGENT_STATUS_CODE_UNSPECIFIED = 0;
+  AGENT_STATUS_CODE_RUNNING = 1;
+  AGENT_STATUS_CODE_STOPPED = 2;
+  AGENT_STATUS_CODE_ERROR = 3;
+}
