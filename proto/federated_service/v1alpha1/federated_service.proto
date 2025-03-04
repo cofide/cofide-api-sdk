@@ -13,7 +13,7 @@ message FederatedService {
   string namespace = 3;
   string cluster_name = 4;
   string trust_domain = 5;
-  string gateway_ip = 6;
+  map<string, string> gatewayIPs = 6;
   map<string, string> workload_labels = 7;
   repeated string exported_trust_domains = 8;
   uint32 port = 9;
