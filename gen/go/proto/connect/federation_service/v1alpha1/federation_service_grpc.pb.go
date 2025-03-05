@@ -22,19 +22,17 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FederationService_CreatedFederation_FullMethodName = "/proto.connect.federation_service.v1alpha1.FederationService/CreatedFederation"
-	FederationService_ListFederations_FullMethodName   = "/proto.connect.federation_service.v1alpha1.FederationService/ListFederations"
-	FederationService_GetFederation_FullMethodName     = "/proto.connect.federation_service.v1alpha1.FederationService/GetFederation"
-	FederationService_DeleteFederation_FullMethodName  = "/proto.connect.federation_service.v1alpha1.FederationService/DeleteFederation"
+	FederationService_CreateFederation_FullMethodName = "/proto.connect.federation_service.v1alpha1.FederationService/CreateFederation"
+	FederationService_ListFederations_FullMethodName  = "/proto.connect.federation_service.v1alpha1.FederationService/ListFederations"
+	FederationService_DeleteFederation_FullMethodName = "/proto.connect.federation_service.v1alpha1.FederationService/DeleteFederation"
 )
 
 // FederationServiceClient is the client API for FederationService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FederationServiceClient interface {
-	CreatedFederation(ctx context.Context, in *CreateFederationRequest, opts ...grpc.CallOption) (*CreateFederationResponse, error)
+	CreateFederation(ctx context.Context, in *CreateFederationRequest, opts ...grpc.CallOption) (*CreateFederationResponse, error)
 	ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error)
-	GetFederation(ctx context.Context, in *GetFederationRequest, opts ...grpc.CallOption) (*GetFederationResponse, error)
 	DeleteFederation(ctx context.Context, in *DeleteFederationRequest, opts ...grpc.CallOption) (*DeleteFederationResponse, error)
 }
 
@@ -46,10 +44,10 @@ func NewFederationServiceClient(cc grpc.ClientConnInterface) FederationServiceCl
 	return &federationServiceClient{cc}
 }
 
-func (c *federationServiceClient) CreatedFederation(ctx context.Context, in *CreateFederationRequest, opts ...grpc.CallOption) (*CreateFederationResponse, error) {
+func (c *federationServiceClient) CreateFederation(ctx context.Context, in *CreateFederationRequest, opts ...grpc.CallOption) (*CreateFederationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateFederationResponse)
-	err := c.cc.Invoke(ctx, FederationService_CreatedFederation_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, FederationService_CreateFederation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,16 +58,6 @@ func (c *federationServiceClient) ListFederations(ctx context.Context, in *ListF
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListFederationsResponse)
 	err := c.cc.Invoke(ctx, FederationService_ListFederations_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *federationServiceClient) GetFederation(ctx context.Context, in *GetFederationRequest, opts ...grpc.CallOption) (*GetFederationResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetFederationResponse)
-	err := c.cc.Invoke(ctx, FederationService_GetFederation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,9 +78,8 @@ func (c *federationServiceClient) DeleteFederation(ctx context.Context, in *Dele
 // All implementations should embed UnimplementedFederationServiceServer
 // for forward compatibility.
 type FederationServiceServer interface {
-	CreatedFederation(context.Context, *CreateFederationRequest) (*CreateFederationResponse, error)
+	CreateFederation(context.Context, *CreateFederationRequest) (*CreateFederationResponse, error)
 	ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error)
-	GetFederation(context.Context, *GetFederationRequest) (*GetFederationResponse, error)
 	DeleteFederation(context.Context, *DeleteFederationRequest) (*DeleteFederationResponse, error)
 }
 
@@ -103,14 +90,11 @@ type FederationServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFederationServiceServer struct{}
 
-func (UnimplementedFederationServiceServer) CreatedFederation(context.Context, *CreateFederationRequest) (*CreateFederationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatedFederation not implemented")
+func (UnimplementedFederationServiceServer) CreateFederation(context.Context, *CreateFederationRequest) (*CreateFederationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFederation not implemented")
 }
 func (UnimplementedFederationServiceServer) ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFederations not implemented")
-}
-func (UnimplementedFederationServiceServer) GetFederation(context.Context, *GetFederationRequest) (*GetFederationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFederation not implemented")
 }
 func (UnimplementedFederationServiceServer) DeleteFederation(context.Context, *DeleteFederationRequest) (*DeleteFederationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFederation not implemented")
@@ -135,20 +119,20 @@ func RegisterFederationServiceServer(s grpc.ServiceRegistrar, srv FederationServ
 	s.RegisterService(&FederationService_ServiceDesc, srv)
 }
 
-func _FederationService_CreatedFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FederationService_CreateFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateFederationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FederationServiceServer).CreatedFederation(ctx, in)
+		return srv.(FederationServiceServer).CreateFederation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FederationService_CreatedFederation_FullMethodName,
+		FullMethod: FederationService_CreateFederation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FederationServiceServer).CreatedFederation(ctx, req.(*CreateFederationRequest))
+		return srv.(FederationServiceServer).CreateFederation(ctx, req.(*CreateFederationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -167,24 +151,6 @@ func _FederationService_ListFederations_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FederationServiceServer).ListFederations(ctx, req.(*ListFederationsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _FederationService_GetFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFederationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FederationServiceServer).GetFederation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: FederationService_GetFederation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FederationServiceServer).GetFederation(ctx, req.(*GetFederationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -215,16 +181,12 @@ var FederationService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*FederationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreatedFederation",
-			Handler:    _FederationService_CreatedFederation_Handler,
+			MethodName: "CreateFederation",
+			Handler:    _FederationService_CreateFederation_Handler,
 		},
 		{
 			MethodName: "ListFederations",
 			Handler:    _FederationService_ListFederations_Handler,
-		},
-		{
-			MethodName: "GetFederation",
-			Handler:    _FederationService_GetFederation_Handler,
 		},
 		{
 			MethodName: "DeleteFederation",

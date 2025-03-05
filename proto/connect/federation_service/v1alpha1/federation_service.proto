@@ -9,9 +9,8 @@ import "proto/federation/v1alpha1/federation.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/federation_service/v1alpha1";
 
 service FederationService {
-  rpc CreatedFederation(CreateFederationRequest) returns (CreateFederationResponse) {}
+  rpc CreateFederation(CreateFederationRequest) returns (CreateFederationResponse) {}
   rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse) {}
-  rpc GetFederation(GetFederationRequest) returns (GetFederationResponse) {}
   rpc DeleteFederation(DeleteFederationRequest) returns (DeleteFederationResponse) {}
 }
 
@@ -38,15 +37,6 @@ message ListFederationsRequest {
 
 message ListFederationsResponse {
   repeated proto.federation.v1alpha1.Federation federations = 1;
-}
-
-message GetFederationRequest {
-  string trust_zone_id = 1;
-  string remote_trust_zone_id = 2;
-}
-
-message GetFederationResponse {
-  proto.federation.v1alpha1.Federation federation = 1;
 }
 
 message DeleteFederationRequest {
