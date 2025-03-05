@@ -1,0 +1,60 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.federation_service.v1alpha1;
+import "proto/federation/v1alpha1/federation.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/federation_service/v1alpha1";
+
+service TrustZoneService {
+  rpc CreatedFederation(CreateFederationRequest) returns (CreateFederationResponse) {}
+  rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse) {}
+  rpc GetFederation(GetFederationRequest) returns (GetFederationResponse) {}
+  rpc DeleteFederation(DeleteFederationRequest) returns (DeleteFederationResponse) {}
+}
+
+message CreateFederationRequest {
+  proto.federation.v1alpha1.Federation federation = 1;
+}
+
+message CreateFederationResponse {
+  proto.federation.v1alpha1.Federation federation = 1;
+  bool success = 2;
+  optional string message = 3;
+}
+
+message ListFederationsRequest {
+  message Filter {
+    // we may may not need these for backwards compatibility
+    // string from = 4;
+    // string to = 5;
+    string trust_zone_id = 2;
+    string remote_trust_zone_id = 3;
+  }
+  optional Filter filter = 1;
+}
+
+message ListFederationsResponse {
+  repeated proto.federation.v1alpha1.Federation federations = 1;
+}
+
+message GetFederationRequest {
+  string trust_zone_id = 1;
+  string remote_trust_zone_id = 2;
+}
+
+message GetFederationResponse {
+  proto.federation.v1alpha1.Federation federation = 1;
+}
+
+message DeleteFederationRequest {
+  string trust_zone_id = 1;
+  string remote_trust_zone_id = 2;
+}
+
+message DeleteFederationResponse {
+  bool success = 1;
+  optional string message = 2;
+}
