@@ -22,213 +22,213 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TrustZoneService_CreatedFederation_FullMethodName = "/proto.connect.federation_service.v1alpha1.TrustZoneService/CreatedFederation"
-	TrustZoneService_ListFederations_FullMethodName   = "/proto.connect.federation_service.v1alpha1.TrustZoneService/ListFederations"
-	TrustZoneService_GetFederation_FullMethodName     = "/proto.connect.federation_service.v1alpha1.TrustZoneService/GetFederation"
-	TrustZoneService_DeleteFederation_FullMethodName  = "/proto.connect.federation_service.v1alpha1.TrustZoneService/DeleteFederation"
+	FederatedService_CreatedFederation_FullMethodName = "/proto.connect.federation_service.v1alpha1.FederatedService/CreatedFederation"
+	FederatedService_ListFederations_FullMethodName   = "/proto.connect.federation_service.v1alpha1.FederatedService/ListFederations"
+	FederatedService_GetFederation_FullMethodName     = "/proto.connect.federation_service.v1alpha1.FederatedService/GetFederation"
+	FederatedService_DeleteFederation_FullMethodName  = "/proto.connect.federation_service.v1alpha1.FederatedService/DeleteFederation"
 )
 
-// TrustZoneServiceClient is the client API for TrustZoneService service.
+// FederatedServiceClient is the client API for FederatedService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TrustZoneServiceClient interface {
+type FederatedServiceClient interface {
 	CreatedFederation(ctx context.Context, in *CreateFederationRequest, opts ...grpc.CallOption) (*CreateFederationResponse, error)
 	ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error)
 	GetFederation(ctx context.Context, in *GetFederationRequest, opts ...grpc.CallOption) (*GetFederationResponse, error)
 	DeleteFederation(ctx context.Context, in *DeleteFederationRequest, opts ...grpc.CallOption) (*DeleteFederationResponse, error)
 }
 
-type trustZoneServiceClient struct {
+type federatedServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTrustZoneServiceClient(cc grpc.ClientConnInterface) TrustZoneServiceClient {
-	return &trustZoneServiceClient{cc}
+func NewFederatedServiceClient(cc grpc.ClientConnInterface) FederatedServiceClient {
+	return &federatedServiceClient{cc}
 }
 
-func (c *trustZoneServiceClient) CreatedFederation(ctx context.Context, in *CreateFederationRequest, opts ...grpc.CallOption) (*CreateFederationResponse, error) {
+func (c *federatedServiceClient) CreatedFederation(ctx context.Context, in *CreateFederationRequest, opts ...grpc.CallOption) (*CreateFederationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateFederationResponse)
-	err := c.cc.Invoke(ctx, TrustZoneService_CreatedFederation_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, FederatedService_CreatedFederation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *trustZoneServiceClient) ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error) {
+func (c *federatedServiceClient) ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListFederationsResponse)
-	err := c.cc.Invoke(ctx, TrustZoneService_ListFederations_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, FederatedService_ListFederations_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *trustZoneServiceClient) GetFederation(ctx context.Context, in *GetFederationRequest, opts ...grpc.CallOption) (*GetFederationResponse, error) {
+func (c *federatedServiceClient) GetFederation(ctx context.Context, in *GetFederationRequest, opts ...grpc.CallOption) (*GetFederationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetFederationResponse)
-	err := c.cc.Invoke(ctx, TrustZoneService_GetFederation_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, FederatedService_GetFederation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *trustZoneServiceClient) DeleteFederation(ctx context.Context, in *DeleteFederationRequest, opts ...grpc.CallOption) (*DeleteFederationResponse, error) {
+func (c *federatedServiceClient) DeleteFederation(ctx context.Context, in *DeleteFederationRequest, opts ...grpc.CallOption) (*DeleteFederationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteFederationResponse)
-	err := c.cc.Invoke(ctx, TrustZoneService_DeleteFederation_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, FederatedService_DeleteFederation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TrustZoneServiceServer is the server API for TrustZoneService service.
-// All implementations should embed UnimplementedTrustZoneServiceServer
+// FederatedServiceServer is the server API for FederatedService service.
+// All implementations should embed UnimplementedFederatedServiceServer
 // for forward compatibility.
-type TrustZoneServiceServer interface {
+type FederatedServiceServer interface {
 	CreatedFederation(context.Context, *CreateFederationRequest) (*CreateFederationResponse, error)
 	ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error)
 	GetFederation(context.Context, *GetFederationRequest) (*GetFederationResponse, error)
 	DeleteFederation(context.Context, *DeleteFederationRequest) (*DeleteFederationResponse, error)
 }
 
-// UnimplementedTrustZoneServiceServer should be embedded to have
+// UnimplementedFederatedServiceServer should be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedTrustZoneServiceServer struct{}
+type UnimplementedFederatedServiceServer struct{}
 
-func (UnimplementedTrustZoneServiceServer) CreatedFederation(context.Context, *CreateFederationRequest) (*CreateFederationResponse, error) {
+func (UnimplementedFederatedServiceServer) CreatedFederation(context.Context, *CreateFederationRequest) (*CreateFederationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatedFederation not implemented")
 }
-func (UnimplementedTrustZoneServiceServer) ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error) {
+func (UnimplementedFederatedServiceServer) ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFederations not implemented")
 }
-func (UnimplementedTrustZoneServiceServer) GetFederation(context.Context, *GetFederationRequest) (*GetFederationResponse, error) {
+func (UnimplementedFederatedServiceServer) GetFederation(context.Context, *GetFederationRequest) (*GetFederationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFederation not implemented")
 }
-func (UnimplementedTrustZoneServiceServer) DeleteFederation(context.Context, *DeleteFederationRequest) (*DeleteFederationResponse, error) {
+func (UnimplementedFederatedServiceServer) DeleteFederation(context.Context, *DeleteFederationRequest) (*DeleteFederationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFederation not implemented")
 }
-func (UnimplementedTrustZoneServiceServer) testEmbeddedByValue() {}
+func (UnimplementedFederatedServiceServer) testEmbeddedByValue() {}
 
-// UnsafeTrustZoneServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TrustZoneServiceServer will
+// UnsafeFederatedServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FederatedServiceServer will
 // result in compilation errors.
-type UnsafeTrustZoneServiceServer interface {
-	mustEmbedUnimplementedTrustZoneServiceServer()
+type UnsafeFederatedServiceServer interface {
+	mustEmbedUnimplementedFederatedServiceServer()
 }
 
-func RegisterTrustZoneServiceServer(s grpc.ServiceRegistrar, srv TrustZoneServiceServer) {
-	// If the following call pancis, it indicates UnimplementedTrustZoneServiceServer was
+func RegisterFederatedServiceServer(s grpc.ServiceRegistrar, srv FederatedServiceServer) {
+	// If the following call pancis, it indicates UnimplementedFederatedServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&TrustZoneService_ServiceDesc, srv)
+	s.RegisterService(&FederatedService_ServiceDesc, srv)
 }
 
-func _TrustZoneService_CreatedFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FederatedService_CreatedFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateFederationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrustZoneServiceServer).CreatedFederation(ctx, in)
+		return srv.(FederatedServiceServer).CreatedFederation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TrustZoneService_CreatedFederation_FullMethodName,
+		FullMethod: FederatedService_CreatedFederation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrustZoneServiceServer).CreatedFederation(ctx, req.(*CreateFederationRequest))
+		return srv.(FederatedServiceServer).CreatedFederation(ctx, req.(*CreateFederationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TrustZoneService_ListFederations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FederatedService_ListFederations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListFederationsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrustZoneServiceServer).ListFederations(ctx, in)
+		return srv.(FederatedServiceServer).ListFederations(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TrustZoneService_ListFederations_FullMethodName,
+		FullMethod: FederatedService_ListFederations_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrustZoneServiceServer).ListFederations(ctx, req.(*ListFederationsRequest))
+		return srv.(FederatedServiceServer).ListFederations(ctx, req.(*ListFederationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TrustZoneService_GetFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FederatedService_GetFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFederationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrustZoneServiceServer).GetFederation(ctx, in)
+		return srv.(FederatedServiceServer).GetFederation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TrustZoneService_GetFederation_FullMethodName,
+		FullMethod: FederatedService_GetFederation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrustZoneServiceServer).GetFederation(ctx, req.(*GetFederationRequest))
+		return srv.(FederatedServiceServer).GetFederation(ctx, req.(*GetFederationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TrustZoneService_DeleteFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FederatedService_DeleteFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteFederationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrustZoneServiceServer).DeleteFederation(ctx, in)
+		return srv.(FederatedServiceServer).DeleteFederation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TrustZoneService_DeleteFederation_FullMethodName,
+		FullMethod: FederatedService_DeleteFederation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrustZoneServiceServer).DeleteFederation(ctx, req.(*DeleteFederationRequest))
+		return srv.(FederatedServiceServer).DeleteFederation(ctx, req.(*DeleteFederationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// TrustZoneService_ServiceDesc is the grpc.ServiceDesc for TrustZoneService service.
+// FederatedService_ServiceDesc is the grpc.ServiceDesc for FederatedService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TrustZoneService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.connect.federation_service.v1alpha1.TrustZoneService",
-	HandlerType: (*TrustZoneServiceServer)(nil),
+var FederatedService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.connect.federation_service.v1alpha1.FederatedService",
+	HandlerType: (*FederatedServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreatedFederation",
-			Handler:    _TrustZoneService_CreatedFederation_Handler,
+			Handler:    _FederatedService_CreatedFederation_Handler,
 		},
 		{
 			MethodName: "ListFederations",
-			Handler:    _TrustZoneService_ListFederations_Handler,
+			Handler:    _FederatedService_ListFederations_Handler,
 		},
 		{
 			MethodName: "GetFederation",
-			Handler:    _TrustZoneService_GetFederation_Handler,
+			Handler:    _FederatedService_GetFederation_Handler,
 		},
 		{
 			MethodName: "DeleteFederation",
-			Handler:    _TrustZoneService_DeleteFederation_Handler,
+			Handler:    _FederatedService_DeleteFederation_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
