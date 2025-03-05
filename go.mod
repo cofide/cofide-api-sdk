@@ -1,16 +1,21 @@
 module github.com/cofide/cofide-api-sdk
 
-go 1.22.7
+go 1.22.11
 
-toolchain go1.22.9
+toolchain go1.23.6
 
 require (
+	github.com/spiffe/go-spiffe/v2 v2.5.0
 	github.com/spiffe/spire-api-sdk v1.11.2
 	google.golang.org/grpc v1.70.0
 	google.golang.org/protobuf v1.36.5
 )
 
 require (
+	github.com/Microsoft/go-winio v0.6.2 // indirect
+	github.com/go-jose/go-jose/v4 v4.0.4 // indirect
+	github.com/zeebo/errs v1.4.0 // indirect
+	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
