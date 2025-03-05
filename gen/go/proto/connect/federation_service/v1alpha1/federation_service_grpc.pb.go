@@ -5,7 +5,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: proto/connect/federation_service/federation_service.proto
+// source: proto/connect/federation_service/v1alpha1/federation_service.proto
 
 package v1alpha1
 
@@ -232,5 +232,5 @@ var FederationService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/connect/federation_service/federation_service.proto",
+	Metadata: "proto/connect/federation_service/v1alpha1/federation_service.proto",
 }
