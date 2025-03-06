@@ -42,6 +42,7 @@ message ListFederationsResponse {
 message DeleteFederationRequest {
   string trust_zone_id = 1;
   string remote_trust_zone_id = 2;
+  string org_id = 3;
 }
 
 message DeleteFederationResponse {
