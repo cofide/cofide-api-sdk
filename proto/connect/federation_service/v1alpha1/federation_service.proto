@@ -26,11 +26,11 @@ message CreateFederationResponse {
 
 message ListFederationsRequest {
   message Filter {
-    // we may may not need these for backwards compatibility
-    string from = 4;
-    string to = 5;
-    string trust_zone_id = 2;
-    string remote_trust_zone_id = 3;
+    optional string org_id = 6;
+    optional string from = 4;
+    optional string to = 5;
+    optional string trust_zone_id = 2;
+    optional string remote_trust_zone_id = 3;
   }
   optional Filter filter = 1;
 }
