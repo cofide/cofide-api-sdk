@@ -4,6 +4,7 @@
 syntax = "proto3";
 
 package proto.connect.federation_service.v1alpha1;
+
 import "proto/federation/v1alpha1/federation.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/federation_service/v1alpha1";

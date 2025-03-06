@@ -8,7 +8,6 @@ package proto.federation.v1alpha1;
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1";
 
 message Federation {
-  
   optional string from = 1 [deprecated = true];
   optional string to = 2 [deprecated = true];
   optional string trust_zone_id = 3;
