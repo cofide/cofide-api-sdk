@@ -27,8 +27,6 @@ message CreateFederationResponse {
 message ListFederationsRequest {
   message Filter {
     optional string org_id = 6;
-    optional string from = 4 [deprecated = true];
-    optional string to = 5 [deprecated = true];
     optional string trust_zone_id = 2;
     optional string remote_trust_zone_id = 3;
   }
