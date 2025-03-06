@@ -27,8 +27,8 @@ message CreateFederationResponse {
 message ListFederationsRequest {
   message Filter {
     // we may may not need these for backwards compatibility
-    // string from = 4;
-    // string to = 5;
+    string from = 4;
+    string to = 5;
     string trust_zone_id = 2;
     string remote_trust_zone_id = 3;
   }
