@@ -26,5 +26,3 @@ message GatewayEntry {
   string ip = 3;
   int32 port = 4;
 }
-
-
