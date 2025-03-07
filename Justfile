@@ -19,8 +19,18 @@ ensure-protoc-gen-go:
 fmt:
     buf format -w --path proto
 
-lint:
+buf-lint:
     buf lint --path proto
 
 proto-gen: ensure-protoc-gen-go
     buf generate --path ./proto
+
+test *args:
+    go run gotest.tools/gotestsum@latest --format github-actions ./... {{args}}
+
+test-race: (test "--" "-race")
+
+go-lint *args:
+    golangci-lint run --show-stats {{args}}
+
+lint *args: buf-lint (go-lint args)
