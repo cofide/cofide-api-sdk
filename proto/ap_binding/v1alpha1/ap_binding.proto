@@ -8,7 +8,16 @@ package proto.ap_binding.v1alpha1;
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1";
 
 message APBinding {
-  string trust_zone = 1;
-  string policy = 2;
-  repeated string federates_with = 3;
+  optional string id = 4;
+  optional string org_id = 5;
+  string trust_zone = 1 [deprecated = true];
+  optional string trust_zone_id = 6;
+  string policy = 2 [deprecated = true];
+  optional string policy_id = 7;
+  repeated string federates_with = 3 [deprecated = true];
+  repeated APBindingFederation federations = 8;
+}
+
+message APBindingFederation {
+  optional string trust_zone_id = 1;
 }
