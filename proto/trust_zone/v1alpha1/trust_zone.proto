@@ -22,6 +22,7 @@ message TrustZone {
   optional BundleEndpointProfile bundle_endpoint_profile = 8;
   optional string id = 9;
   bool is_management_zone = 10;
+  optional string org_id = 11;
 }
 
 enum BundleEndpointProfile {

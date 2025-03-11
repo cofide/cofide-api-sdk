@@ -40,7 +40,14 @@ message CreateTrustZoneResponse {
   string message = 4;
 }
 
-message ListTrustZonesRequest {}
+message ListTrustZonesRequest {
+  message Filter {
+    optional string name = 1;
+    optional string org_id = 2;
+    optional string trust_domain = 3;
+  }
+  optional Filter filter = 1;
+}
 
 message ListTrustZonesResponse {
   repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 1;
