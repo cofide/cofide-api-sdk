@@ -10,7 +10,9 @@ import "proto/spire/api/types/selector.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1";
 
 message AttestationPolicy {
+  optional string id = 4;
   string name = 1;
+  optional string org_id = 5;
   oneof policy {
     APKubernetes kubernetes = 2;
     APStatic static = 3;
