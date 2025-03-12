@@ -1,0 +1,302 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/connect/agent_service/v1alpha1/agent_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AgentService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "typesBundle": {
+      "type": "object",
+      "properties": {
+        "trustDomain": {
+          "type": "string",
+          "description": "The name of the trust domain the bundle belongs to (e.g., \"example.org\")."
+        },
+        "x509Authorities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/typesX509Certificate"
+          },
+          "description": "X.509 authorities for authenticating X509-SVIDs."
+        },
+        "jwtAuthorities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/typesJWTKey"
+          },
+          "description": "JWT authorities for authenticating JWT-SVIDs."
+        },
+        "refreshHint": {
+          "type": "string",
+          "format": "int64",
+          "description": "A hint on how often the bundle should be refreshed from the bundle\nprovider, in seconds. Can be zero (meaning no hint available)."
+        },
+        "sequenceNumber": {
+          "type": "string",
+          "format": "uint64",
+          "description": "The sequence number of the bundle."
+        }
+      }
+    },
+    "typesJWTKey": {
+      "type": "object",
+      "properties": {
+        "publicKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "The PKIX encoded public key."
+        },
+        "keyId": {
+          "type": "string",
+          "description": "The key identifier."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "When the key expires (seconds since Unix epoch). If zero, the key does\nnot expire."
+        },
+        "tainted": {
+          "type": "boolean",
+          "title": "This authority is no longer secure and must not be used"
+        }
+      }
+    },
+    "typesX509Certificate": {
+      "type": "object",
+      "properties": {
+        "asn1": {
+          "type": "string",
+          "format": "byte",
+          "description": "The ASN.1 DER encoded bytes of the X.509 certificate."
+        },
+        "tainted": {
+          "type": "boolean",
+          "description": "This authority is no longer secure and must not be used."
+        }
+      }
+    },
+    "v1alpha1AgentStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/v1alpha1AgentStatusCode"
+        },
+        "statusMessage": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1alpha1AgentStatusCode": {
+      "type": "string",
+      "enum": [
+        "AGENT_STATUS_CODE_UNSPECIFIED",
+        "AGENT_STATUS_CODE_RUNNING",
+        "AGENT_STATUS_CODE_STOPPED",
+        "AGENT_STATUS_CODE_ERROR"
+      ],
+      "default": "AGENT_STATUS_CODE_UNSPECIFIED"
+    },
+    "v1alpha1CreateAgentJoinTokenResponse": {
+      "type": "object",
+      "properties": {
+        "agentToken": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1DeregisterFederatedServiceResponse": {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1FederatedService": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "clusterName": {
+          "type": "string"
+        },
+        "trustDomain": {
+          "type": "string"
+        },
+        "gatewayIp": {
+          "type": "string"
+        },
+        "workloadLabels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "exportedTrustDomains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gatewayEntries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1GatewayEntry"
+          }
+        }
+      }
+    },
+    "v1alpha1GatewayEntry": {
+      "type": "object",
+      "properties": {
+        "hostname": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1alpha1GetFederatedServiceResponse": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "$ref": "#/definitions/v1alpha1FederatedService"
+        }
+      }
+    },
+    "v1alpha1ListFederatedServicesResponse": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1FederatedService"
+          }
+        }
+      }
+    },
+    "v1alpha1RegisterFederatedServiceResponse": {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1UpdateAgentStatusResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1UpdateFederatedServiceResponse": {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1UpdateTrustZoneBundleResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

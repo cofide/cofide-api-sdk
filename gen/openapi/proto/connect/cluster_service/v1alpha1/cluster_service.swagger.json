@@ -1,0 +1,154 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/connect/cluster_service/v1alpha1/cluster_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ClusterService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "connectcluster_servicev1alpha1GetClusterResponse": {
+      "type": "object",
+      "properties": {
+        "cluster": {
+          "$ref": "#/definitions/v1alpha1Cluster"
+        }
+      }
+    },
+    "connectcluster_servicev1alpha1ListClustersResponse": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1Cluster"
+          }
+        }
+      }
+    },
+    "connectcluster_servicev1alpha1UpdateClusterResponse": {
+      "type": "object",
+      "properties": {
+        "cluster": {
+          "$ref": "#/definitions/v1alpha1Cluster"
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "v1alpha1Cluster": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "trustZone": {
+          "type": "string",
+          "description": "DEPRECATED: replaced by trust_zone_id."
+        },
+        "trustZoneId": {
+          "type": "string"
+        },
+        "kubernetesContext": {
+          "type": "string"
+        },
+        "trustProvider": {
+          "$ref": "#/definitions/v1alpha1TrustProvider"
+        },
+        "extraHelmValues": {
+          "type": "object"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "externalServer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1alpha1CreateClusterResponse": {
+      "type": "object",
+      "properties": {
+        "cluster": {
+          "$ref": "#/definitions/v1alpha1Cluster"
+        }
+      }
+    },
+    "v1alpha1DestroyClusterResponse": {
+      "type": "object"
+    },
+    "v1alpha1ListClustersRequestFilter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "trustZoneId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1TrustProvider": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
