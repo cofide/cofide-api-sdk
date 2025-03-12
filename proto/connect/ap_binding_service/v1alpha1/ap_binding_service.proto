@@ -1,0 +1,61 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.ap_binding_service.v1alpha1;
+
+import "proto/ap_binding/v1alpha1/ap_binding.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/ap_binding_service/v1alpha1";
+
+service APBindingService {
+  rpc CreateAPBinding(CreateAPBindingRequest) returns (CreateAPBindingResponse);
+  rpc DestroyAPBinding(DestroyAPBindingRequest) returns (DestroyAPBindingResponse);
+  rpc GetAPBinding(GetAPBindingRequest) returns (GetAPBindingResponse);
+  rpc ListAPBindings(ListAPBindingsRequest) returns (ListAPBindingsResponse);
+  rpc UpdateAPBinding(UpdateAPBindingRequest) returns (UpdateAPBindingResponse);
+}
+
+message CreateAPBindingRequest {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message CreateAPBindingResponse {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message DestroyAPBindingRequest {
+  optional string binding_id = 1;
+}
+
+message DestroyAPBindingResponse {}
+
+message GetAPBindingRequest {
+  optional string binding_id = 1;
+}
+
+message GetAPBindingResponse {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message ListAPBindingsRequest {
+  message Filter {
+    optional string org_id = 1;
+    optional string trust_zone_id = 2;
+    optional string policy_id = 3;
+  }
+  optional Filter filter = 1;
+}
+
+message ListAPBindingsResponse {
+  repeated proto.ap_binding.v1alpha1.APBinding bindings = 1;
+}
+
+message UpdateAPBindingRequest {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message UpdateAPBindingResponse {
+  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
