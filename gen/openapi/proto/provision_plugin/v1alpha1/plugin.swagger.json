@@ -1,0 +1,85 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/provision_plugin/v1alpha1/plugin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ProvisionPluginService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protoprovision_pluginv1alpha1ValidateResponse": {
+      "type": "object"
+    },
+    "provision_pluginv1alpha1Status": {
+      "type": "object",
+      "properties": {
+        "stage": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1DeployResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/provision_pluginv1alpha1Status"
+        }
+      }
+    },
+    "v1alpha1TearDownResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/provision_pluginv1alpha1Status"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,386 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/connect/trust_zone_service/v1alpha1/trust_zone_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TrustZoneService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "connecttrust_zone_servicev1alpha1Agent": {
+      "type": "object",
+      "properties": {
+        "agentId": {
+          "type": "string"
+        },
+        "clusterId": {
+          "type": "string"
+        },
+        "trustZoneId": {
+          "type": "string"
+        }
+      }
+    },
+    "connecttrust_zone_servicev1alpha1ListTrustZonesResponse": {
+      "type": "object",
+      "properties": {
+        "trustZones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1TrustZone"
+          }
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "typesBundle": {
+      "type": "object",
+      "properties": {
+        "trustDomain": {
+          "type": "string",
+          "description": "The name of the trust domain the bundle belongs to (e.g., \"example.org\")."
+        },
+        "x509Authorities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/typesX509Certificate"
+          },
+          "description": "X.509 authorities for authenticating X509-SVIDs."
+        },
+        "jwtAuthorities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/typesJWTKey"
+          },
+          "description": "JWT authorities for authenticating JWT-SVIDs."
+        },
+        "refreshHint": {
+          "type": "string",
+          "format": "int64",
+          "description": "A hint on how often the bundle should be refreshed from the bundle\nprovider, in seconds. Can be zero (meaning no hint available)."
+        },
+        "sequenceNumber": {
+          "type": "string",
+          "format": "uint64",
+          "description": "The sequence number of the bundle."
+        }
+      }
+    },
+    "typesJWTKey": {
+      "type": "object",
+      "properties": {
+        "publicKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "The PKIX encoded public key."
+        },
+        "keyId": {
+          "type": "string",
+          "description": "The key identifier."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "When the key expires (seconds since Unix epoch). If zero, the key does\nnot expire."
+        },
+        "tainted": {
+          "type": "boolean",
+          "title": "This authority is no longer secure and must not be used"
+        }
+      }
+    },
+    "typesX509Certificate": {
+      "type": "object",
+      "properties": {
+        "asn1": {
+          "type": "string",
+          "format": "byte",
+          "description": "The ASN.1 DER encoded bytes of the X.509 certificate."
+        },
+        "tainted": {
+          "type": "boolean",
+          "description": "This authority is no longer secure and must not be used."
+        }
+      }
+    },
+    "v1alpha1APBinding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "trustZone": {
+          "type": "string"
+        },
+        "trustZoneId": {
+          "type": "string"
+        },
+        "policy": {
+          "type": "string"
+        },
+        "policyId": {
+          "type": "string"
+        },
+        "federatesWith": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "federations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1APBindingFederation"
+          }
+        }
+      }
+    },
+    "v1alpha1APBindingFederation": {
+      "type": "object",
+      "properties": {
+        "trustZoneId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1BundleEndpointProfile": {
+      "type": "string",
+      "enum": [
+        "BUNDLE_ENDPOINT_PROFILE_UNSPECIFIED",
+        "BUNDLE_ENDPOINT_PROFILE_HTTPS_SPIFFE",
+        "BUNDLE_ENDPOINT_PROFILE_HTTPS_WEB"
+      ],
+      "default": "BUNDLE_ENDPOINT_PROFILE_UNSPECIFIED"
+    },
+    "v1alpha1Cluster": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "trustZone": {
+          "type": "string",
+          "description": "DEPRECATED: replaced by trust_zone_id."
+        },
+        "trustZoneId": {
+          "type": "string"
+        },
+        "kubernetesContext": {
+          "type": "string"
+        },
+        "trustProvider": {
+          "$ref": "#/definitions/v1alpha1TrustProvider"
+        },
+        "extraHelmValues": {
+          "type": "object"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "externalServer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1alpha1CreateTrustZoneResponse": {
+      "type": "object",
+      "properties": {
+        "trustZone": {
+          "$ref": "#/definitions/v1alpha1TrustZone"
+        },
+        "success": {
+          "type": "boolean",
+          "title": "FIXME: gRPC status?"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1Federation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "trustZoneId": {
+          "type": "string"
+        },
+        "remoteTrustZoneId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1GetTrustZoneDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "trustZone": {
+          "$ref": "#/definitions/v1alpha1TrustZone"
+        }
+      }
+    },
+    "v1alpha1ListTrustZonesRequestFilter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "trustDomain": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1RegisterAgentResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "agentId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1RegisterClusterResponse": {
+      "type": "object",
+      "properties": {
+        "agentToken": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1TrustProvider": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1TrustZone": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "trustDomain": {
+          "type": "string"
+        },
+        "bundleEndpointUrl": {
+          "type": "string"
+        },
+        "bundle": {
+          "$ref": "#/definitions/typesBundle"
+        },
+        "federations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1Federation"
+          }
+        },
+        "attestationPolicies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1APBinding"
+          }
+        },
+        "jwtIssuer": {
+          "type": "string"
+        },
+        "bundleEndpointProfile": {
+          "$ref": "#/definitions/v1alpha1BundleEndpointProfile"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isManagementZone": {
+          "type": "boolean"
+        },
+        "orgId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

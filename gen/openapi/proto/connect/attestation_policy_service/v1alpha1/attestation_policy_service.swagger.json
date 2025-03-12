@@ -1,0 +1,195 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/connect/attestation_policy_service/v1alpha1/attestation_policy_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AttestationPolicyService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "connectattestation_policy_servicev1alpha1GetAttestationPolicyResponse": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "$ref": "#/definitions/v1alpha1AttestationPolicy"
+        }
+      }
+    },
+    "connectattestation_policy_servicev1alpha1ListAttestationPoliciesResponse": {
+      "type": "object",
+      "properties": {
+        "policies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1AttestationPolicy"
+          }
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "typesSelector": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of the selector. This is typically the name of the plugin that\nproduces the selector."
+        },
+        "value": {
+          "type": "string",
+          "description": "The value of the selector."
+        }
+      }
+    },
+    "v1alpha1APKubernetes": {
+      "type": "object",
+      "properties": {
+        "namespaceSelector": {
+          "$ref": "#/definitions/v1alpha1APLabelSelector"
+        },
+        "podSelector": {
+          "$ref": "#/definitions/v1alpha1APLabelSelector"
+        }
+      }
+    },
+    "v1alpha1APLabelSelector": {
+      "type": "object",
+      "properties": {
+        "matchLabels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "matchExpressions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1APMatchExpression"
+          }
+        }
+      },
+      "title": "This definition has been adapted from the LabelSelector message in Kubernetes.\nhttps://github.com/kubernetes/apimachinery/blob/master/pkg/apis/meta/v1/generated.proto"
+    },
+    "v1alpha1APMatchExpression": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1alpha1APStatic": {
+      "type": "object",
+      "properties": {
+        "spiffeId": {
+          "type": "string"
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/typesSelector"
+          }
+        }
+      },
+      "title": "APStatic represents a static attestation policy"
+    },
+    "v1alpha1AttestationPolicy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "kubernetes": {
+          "$ref": "#/definitions/v1alpha1APKubernetes"
+        },
+        "static": {
+          "$ref": "#/definitions/v1alpha1APStatic"
+        }
+      }
+    },
+    "v1alpha1CreateAttestationPolicyResponse": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "$ref": "#/definitions/v1alpha1AttestationPolicy"
+        }
+      }
+    },
+    "v1alpha1DestroyAttestationPolicyResponse": {
+      "type": "object"
+    },
+    "v1alpha1ListAttestationPoliciesRequestFilter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1UpdateAttestationPolicyResponse": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "$ref": "#/definitions/v1alpha1AttestationPolicy"
+        }
+      }
+    }
+  }
+}

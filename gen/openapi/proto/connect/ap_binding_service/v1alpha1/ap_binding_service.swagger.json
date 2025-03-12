@@ -1,0 +1,146 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/connect/ap_binding_service/v1alpha1/ap_binding_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "APBindingService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "connectap_binding_servicev1alpha1DestroyAPBindingResponse": {
+      "type": "object"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "v1alpha1APBinding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "trustZone": {
+          "type": "string"
+        },
+        "trustZoneId": {
+          "type": "string"
+        },
+        "policy": {
+          "type": "string"
+        },
+        "policyId": {
+          "type": "string"
+        },
+        "federatesWith": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "federations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1APBindingFederation"
+          }
+        }
+      }
+    },
+    "v1alpha1APBindingFederation": {
+      "type": "object",
+      "properties": {
+        "trustZoneId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1CreateAPBindingResponse": {
+      "type": "object",
+      "properties": {
+        "binding": {
+          "$ref": "#/definitions/v1alpha1APBinding"
+        }
+      }
+    },
+    "v1alpha1GetAPBindingResponse": {
+      "type": "object",
+      "properties": {
+        "binding": {
+          "$ref": "#/definitions/v1alpha1APBinding"
+        }
+      }
+    },
+    "v1alpha1ListAPBindingsRequestFilter": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "trustZoneId": {
+          "type": "string"
+        },
+        "policyId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1ListAPBindingsResponse": {
+      "type": "object",
+      "properties": {
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1APBinding"
+          }
+        }
+      }
+    },
+    "v1alpha1UpdateAPBindingResponse": {
+      "type": "object",
+      "properties": {
+        "binding": {
+          "$ref": "#/definitions/v1alpha1APBinding"
+        }
+      }
+    }
+  }
+}
