@@ -81,6 +81,18 @@ func trustZoneMatches(trustZone *trustzonepb.TrustZone, filter *trustzonesvcpb.L
 	return true
 }
 
+func (c *fakeTrustZoneClient) UpdateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error) {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	if _, ok := c.fake.TrustZones[trustZone.GetId()]; !ok {
+		return nil, status.Error(codes.NotFound, "trust zone not found")
+	}
+
+	c.fake.TrustZones[trustZone.GetId()] = clone(trustZone)
+	return clone(trustZone), nil
+}
+
 // DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
 // Cluster creation to be moved to ClusterService.CreateCluster.
 func (c *fakeTrustZoneClient) RegisterCluster(ctx context.Context, trustZoneID string, cluster *clusterpb.Cluster) (string, error) {

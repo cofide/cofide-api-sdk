@@ -49,6 +49,10 @@ func TestTrustZoneClient_Unimplemented(t *testing.T) {
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZones)
 
+	trustZone, err = client.UpdateTrustZone(ctx, nil)
+	test.RequireUnimplemented(t, err)
+	assert.Nil(t, trustZone)
+
 	token, err := client.RegisterCluster(ctx, "", nil)
 	test.RequireUnimplemented(t, err)
 	assert.Empty(t, token)
@@ -82,6 +86,10 @@ func TestTrustZoneClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*trustzonepb.TrustZone{trustZone}, trustZones)
 
+	updatedTrustZone, err := client.UpdateTrustZone(ctx, trustZone)
+	require.NoError(t, err)
+	assert.EqualExportedValues(t, trustZone, updatedTrustZone)
+
 	cluster := fakeCluster()
 	token, err := client.RegisterCluster(ctx, fakeTrustZoneID, cluster)
 	require.NoError(t, err)
@@ -112,6 +120,11 @@ func (f *fakeTrustZoneService) ListTrustZones(ctx context.Context, req *trustzon
 func (f *fakeTrustZoneService) GetTrustZoneDetails(ctx context.Context, req *trustzonesvcpb.GetTrustZoneDetailsRequest) (*trustzonesvcpb.GetTrustZoneDetailsResponse, error) {
 	assert.EqualExportedValues(f.t, fakeTrustZoneID, req.TrustZoneId)
 	return &trustzonesvcpb.GetTrustZoneDetailsResponse{TrustZone: fakeTrustZone()}, nil
+}
+
+func (f *fakeTrustZoneService) UpdateTrustZone(ctx context.Context, req *trustzonesvcpb.UpdateTrustZoneRequest) (*trustzonesvcpb.UpdateTrustZoneResponse, error) {
+	assert.EqualExportedValues(f.t, fakeTrustZone(), req.TrustZone)
+	return &trustzonesvcpb.UpdateTrustZoneResponse{TrustZone: req.TrustZone}, nil
 }
 
 func (f *fakeTrustZoneService) RegisterCluster(ctx context.Context, req *trustzonesvcpb.RegisterClusterRequest) (*trustzonesvcpb.RegisterClusterResponse, error) {

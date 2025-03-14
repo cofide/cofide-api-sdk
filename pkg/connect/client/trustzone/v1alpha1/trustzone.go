@@ -18,6 +18,7 @@ type TrustZoneClient interface {
 	CreateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error)
 	GetTrustZone(ctx context.Context, trustZoneID string) (*trustzonepb.TrustZone, error)
 	ListTrustZones(ctx context.Context, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) ([]*trustzonepb.TrustZone, error)
+	UpdateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error)
 	// DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
 	// Cluster creation to be moved to ClusterService.CreateCluster.
 	RegisterCluster(ctx context.Context, trustZoneID string, cluster *clusterpb.Cluster) (string, error)
@@ -66,6 +67,17 @@ func (c *trustZoneClient) ListTrustZones(ctx context.Context, filter *trustzones
 	}
 
 	return resp.TrustZones, nil
+}
+
+func (c *trustZoneClient) UpdateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error) {
+	resp, err := c.trustZoneClient.UpdateTrustZone(ctx, &trustzonesvcpb.UpdateTrustZoneRequest{
+		TrustZone: trustZone,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return resp.TrustZone, nil
 }
 
 // DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
