@@ -5,6 +5,7 @@ package test
 
 import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
+	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
@@ -24,6 +25,9 @@ const (
 
 	FakeFSID   = "fake-fs-id"
 	FakeFSName = "fake-fs-name"
+
+	FakeAttestationPolicyID   = "fake-ap-id"
+	FakeAttestationPolicyName = "fake-ap-name"
 )
 
 func FakeTrustZone() *trustzonepb.TrustZone {
@@ -59,4 +63,11 @@ func FakeFederatedService() *federatedservicepb.FederatedService {
 
 func FakeBundle() *types.Bundle {
 	return &types.Bundle{TrustDomain: FakeTrustDomain}
+}
+
+func FakeAttestationPolicy() *attestationpolicypb.AttestationPolicy {
+	return &attestationpolicypb.AttestationPolicy{
+		Id:   PtrOf(FakeAttestationPolicyID),
+		Name: FakeAttestationPolicyName,
+	}
 }
