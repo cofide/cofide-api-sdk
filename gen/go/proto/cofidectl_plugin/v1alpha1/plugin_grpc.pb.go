@@ -36,6 +36,7 @@ const (
 	DataSourcePluginService_ListAttestationPolicies_FullMethodName    = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAttestationPolicies"
 	DataSourcePluginService_AddAPBinding_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddAPBinding"
 	DataSourcePluginService_DestroyAPBinding_FullMethodName           = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyAPBinding"
+	DataSourcePluginService_ListAPBindings_FullMethodName             = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAPBindings"
 	DataSourcePluginService_AddFederation_FullMethodName              = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddFederation"
 	DataSourcePluginService_ListFederations_FullMethodName            = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListFederations"
 	DataSourcePluginService_ListFederationsByTrustZone_FullMethodName = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListFederationsByTrustZone"
@@ -59,6 +60,7 @@ type DataSourcePluginServiceClient interface {
 	ListAttestationPolicies(ctx context.Context, in *ListAttestationPoliciesRequest, opts ...grpc.CallOption) (*ListAttestationPoliciesResponse, error)
 	AddAPBinding(ctx context.Context, in *AddAPBindingRequest, opts ...grpc.CallOption) (*AddAPBindingResponse, error)
 	DestroyAPBinding(ctx context.Context, in *DestroyAPBindingRequest, opts ...grpc.CallOption) (*DestroyAPBindingResponse, error)
+	ListAPBindings(ctx context.Context, in *ListAPBindingsRequest, opts ...grpc.CallOption) (*ListAPBindingsResponse, error)
 	AddFederation(ctx context.Context, in *AddFederationRequest, opts ...grpc.CallOption) (*AddFederationResponse, error)
 	ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error)
 	ListFederationsByTrustZone(ctx context.Context, in *ListFederationsByTrustZoneRequest, opts ...grpc.CallOption) (*ListFederationsByTrustZoneResponse, error)
@@ -212,6 +214,16 @@ func (c *dataSourcePluginServiceClient) DestroyAPBinding(ctx context.Context, in
 	return out, nil
 }
 
+func (c *dataSourcePluginServiceClient) ListAPBindings(ctx context.Context, in *ListAPBindingsRequest, opts ...grpc.CallOption) (*ListAPBindingsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAPBindingsResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_ListAPBindings_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataSourcePluginServiceClient) AddFederation(ctx context.Context, in *AddFederationRequest, opts ...grpc.CallOption) (*AddFederationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddFederationResponse)
@@ -260,6 +272,7 @@ type DataSourcePluginServiceServer interface {
 	ListAttestationPolicies(context.Context, *ListAttestationPoliciesRequest) (*ListAttestationPoliciesResponse, error)
 	AddAPBinding(context.Context, *AddAPBindingRequest) (*AddAPBindingResponse, error)
 	DestroyAPBinding(context.Context, *DestroyAPBindingRequest) (*DestroyAPBindingResponse, error)
+	ListAPBindings(context.Context, *ListAPBindingsRequest) (*ListAPBindingsResponse, error)
 	AddFederation(context.Context, *AddFederationRequest) (*AddFederationResponse, error)
 	ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error)
 	ListFederationsByTrustZone(context.Context, *ListFederationsByTrustZoneRequest) (*ListFederationsByTrustZoneResponse, error)
@@ -313,6 +326,9 @@ func (UnimplementedDataSourcePluginServiceServer) AddAPBinding(context.Context, 
 }
 func (UnimplementedDataSourcePluginServiceServer) DestroyAPBinding(context.Context, *DestroyAPBindingRequest) (*DestroyAPBindingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DestroyAPBinding not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) ListAPBindings(context.Context, *ListAPBindingsRequest) (*ListAPBindingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAPBindings not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) AddFederation(context.Context, *AddFederationRequest) (*AddFederationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddFederation not implemented")
@@ -595,6 +611,24 @@ func _DataSourcePluginService_DestroyAPBinding_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataSourcePluginService_ListAPBindings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAPBindingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).ListAPBindings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_ListAPBindings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).ListAPBindings(ctx, req.(*ListAPBindingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataSourcePluginService_AddFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddFederationRequest)
 	if err := dec(in); err != nil {
@@ -711,6 +745,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DestroyAPBinding",
 			Handler:    _DataSourcePluginService_DestroyAPBinding_Handler,
+		},
+		{
+			MethodName: "ListAPBindings",
+			Handler:    _DataSourcePluginService_ListAPBindings_Handler,
 		},
 		{
 			MethodName: "AddFederation",
