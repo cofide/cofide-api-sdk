@@ -14,6 +14,8 @@ import (
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 const (
@@ -102,8 +104,35 @@ func TestTrustZoneClient(t *testing.T) {
 	assert.Equal(t, fakeAgentID, agentID)
 }
 
+func TestTrustZoneClient_GetTrustZone_Unimplemented(t *testing.T) {
+	server := test.NewTestServer(t)
+	trustzonesvcpb.RegisterTrustZoneServiceServer(server.Server, &unimplementedGetTrustZoneService{
+		fakeTrustZoneService: fakeTrustZoneService{t: t},
+	})
+	server.Serve()
+
+	conn := server.CreateClientConn()
+	client := New(conn)
+	ctx := context.Background()
+
+	trustZone := fakeTrustZone()
+
+	createdTrustZone, err := client.CreateTrustZone(ctx, trustZone)
+	require.NoError(t, err)
+	assert.EqualExportedValues(t, trustZone, createdTrustZone)
+
+	// Test fallback to GetTrustZoneDetails rpc.
+	gotTrustZone, err := client.GetTrustZone(ctx, fakeTrustZoneID)
+	require.NoError(t, err)
+	assert.Equal(t, trustZone.GetId(), gotTrustZone.GetId())
+}
+
 type fakeTrustZoneService struct {
 	t *testing.T
+}
+
+type unimplementedGetTrustZoneService struct {
+	fakeTrustZoneService
 }
 
 func (f *fakeTrustZoneService) CreateTrustZone(ctx context.Context, req *trustzonesvcpb.CreateTrustZoneRequest) (*trustzonesvcpb.CreateTrustZoneResponse, error) {
@@ -115,6 +144,11 @@ func (f *fakeTrustZoneService) ListTrustZones(ctx context.Context, req *trustzon
 	assert.Equal(f.t, fakeTrustZoneName, req.Filter.GetName())
 	trustZones := []*trustzonepb.TrustZone{fakeTrustZone()}
 	return &trustzonesvcpb.ListTrustZonesResponse{TrustZones: trustZones}, nil
+}
+
+func (f *fakeTrustZoneService) GetTrustZone(ctx context.Context, req *trustzonesvcpb.GetTrustZoneRequest) (*trustzonesvcpb.GetTrustZoneResponse, error) {
+	assert.Equal(f.t, fakeTrustZoneID, req.GetTrustZoneId())
+	return &trustzonesvcpb.GetTrustZoneResponse{TrustZone: fakeTrustZone()}, nil
 }
 
 func (f *fakeTrustZoneService) GetTrustZoneDetails(ctx context.Context, req *trustzonesvcpb.GetTrustZoneDetailsRequest) (*trustzonesvcpb.GetTrustZoneDetailsResponse, error) {
@@ -138,6 +172,10 @@ func (f *fakeTrustZoneService) RegisterAgent(ctx context.Context, req *trustzone
 	assert.Equal(f.t, fakeAgentToken, req.AgentToken)
 	assert.Equal(f.t, fakeTrustDomain, req.Bundle.TrustDomain)
 	return &trustzonesvcpb.RegisterAgentResponse{AgentId: fakeAgentID}, nil
+}
+
+func (f *unimplementedGetTrustZoneService) GetTrustZone(ctx context.Context, req *trustzonesvcpb.GetTrustZoneRequest) (*trustzonesvcpb.GetTrustZoneResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTrustZone not implemented")
 }
 
 func fakeTrustZone() *trustzonepb.TrustZone {
