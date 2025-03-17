@@ -15,4 +15,6 @@ func TestClientSet(t *testing.T) {
 	require.NotNil(t, client.TrustZoneV1Alpha1())
 	require.NotNil(t, client.ClusterV1Alpha1())
 	require.NotNil(t, client.AgentV1Alpha1())
+	require.NotNil(t, client.AttestationPolicyV1Alpha1())
+	require.NotNil(t, client.APBindingV1Alhpa1())
 }
