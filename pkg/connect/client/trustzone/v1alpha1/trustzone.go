@@ -49,7 +49,7 @@ func (c *trustZoneClient) CreateTrustZone(ctx context.Context, trustZone *trustz
 
 func (c *trustZoneClient) GetTrustZone(ctx context.Context, trustZoneID string) (*trustzonepb.TrustZone, error) {
 	resp, err := c.trustZoneClient.GetTrustZone(ctx, &trustzonesvcpb.GetTrustZoneRequest{
-		TrustZoneId: trustZoneID,
+		TrustZoneId: &trustZoneID,
 	})
 	if err != nil {
 		return nil, err

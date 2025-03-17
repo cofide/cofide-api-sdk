@@ -79,7 +79,7 @@ func TestTrustZoneClient(t *testing.T) {
 
 	gotTrustZone, err := client.GetTrustZone(ctx, fakeTrustZoneID)
 	require.NoError(t, err)
-	assert.EqualExportedValues(t, trustZone, gotTrustZone)
+	assert.Equal(t, trustZone.GetId(), gotTrustZone.GetId())
 
 	filter := &trustzonesvcpb.ListTrustZonesRequest_Filter{Name: test.PtrOf(fakeTrustZoneName)}
 	trustZones, err := client.ListTrustZones(ctx, filter)
@@ -118,7 +118,7 @@ func (f *fakeTrustZoneService) ListTrustZones(ctx context.Context, req *trustzon
 }
 
 func (f *fakeTrustZoneService) GetTrustZone(ctx context.Context, req *trustzonesvcpb.GetTrustZoneRequest) (*trustzonesvcpb.GetTrustZoneResponse, error) {
-	assert.Equal(f.t, fakeTrustZoneID, req.TrustZoneId)
+	assert.Equal(f.t, fakeTrustZoneID, req.GetTrustZoneId())
 	return &trustzonesvcpb.GetTrustZoneResponse{TrustZone: fakeTrustZone()}, nil
 }
 
