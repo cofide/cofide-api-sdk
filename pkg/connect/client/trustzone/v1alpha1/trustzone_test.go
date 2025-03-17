@@ -115,10 +115,16 @@ func TestTrustZoneClient_GetTrustZone_Unimplemented(t *testing.T) {
 	client := New(conn)
 	ctx := context.Background()
 
+	trustZone := fakeTrustZone()
+
+	createdTrustZone, err := client.CreateTrustZone(ctx, trustZone)
+	require.NoError(t, err)
+	assert.EqualExportedValues(t, trustZone, createdTrustZone)
+
 	// Test fallback to GetTrustZoneDetails rpc.
 	gotTrustZone, err := client.GetTrustZone(ctx, fakeTrustZoneID)
 	require.NoError(t, err)
-	assert.Equal(t, fakeTrustZoneID, *gotTrustZone.Id)
+	assert.Equal(t, trustZone.GetId(), gotTrustZone.GetId())
 }
 
 type fakeTrustZoneService struct {
