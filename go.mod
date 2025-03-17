@@ -4,6 +4,7 @@ go 1.23.0
 toolchain go1.23.7
 
 require (
+	github.com/google/uuid v1.6.0
 	github.com/spiffe/spire-api-sdk v1.11.2
 	github.com/stretchr/testify v1.10.0
 	google.golang.org/grpc v1.71.0
