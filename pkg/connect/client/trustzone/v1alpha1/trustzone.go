@@ -57,7 +57,12 @@ func (c *trustZoneClient) GetTrustZone(ctx context.Context, trustZoneID string) 
 		return resp.TrustZone, err
 	}
 
-	if status.Convert(err).Code() == codes.Unimplemented {
+	st := status.Convert(err)
+	if st == nil {
+		return nil, err
+	}
+
+	if st.Code() == codes.Unimplemented {
 		resp, err := c.trustZoneClient.GetTrustZoneDetails(ctx, &trustzonesvcpb.GetTrustZoneDetailsRequest{
 			TrustZoneId: trustZoneID,
 		})
