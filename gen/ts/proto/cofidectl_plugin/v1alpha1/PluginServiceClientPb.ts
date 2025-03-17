@@ -641,6 +641,49 @@ export class DataSourcePluginServiceClient {
     this.methodDescriptorDestroyAPBinding);
   }
 
+  methodDescriptorListAPBindings = new grpcWeb.MethodDescriptor(
+    '/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAPBindings',
+    grpcWeb.MethodType.UNARY,
+    proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsRequest,
+    proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsResponse,
+    (request: proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsRequest) => {
+      return request.serializeBinary();
+    },
+    proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsResponse.deserializeBinary
+  );
+
+  listAPBindings(
+    request: proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsResponse>;
+
+  listAPBindings(
+    request: proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsResponse) => void): grpcWeb.ClientReadableStream<proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsResponse>;
+
+  listAPBindings(
+    request: proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: proto_cofidectl_plugin_v1alpha1_plugin_pb.ListAPBindingsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAPBindings',
+        request,
+        metadata || {},
+        this.methodDescriptorListAPBindings,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAPBindings',
+    request,
+    metadata || {},
+    this.methodDescriptorListAPBindings);
+  }
+
   methodDescriptorAddFederation = new grpcWeb.MethodDescriptor(
     '/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddFederation',
     grpcWeb.MethodType.UNARY,

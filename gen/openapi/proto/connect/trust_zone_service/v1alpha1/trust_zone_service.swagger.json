@@ -31,6 +31,14 @@
         }
       }
     },
+    "connecttrust_zone_servicev1alpha1GetTrustZoneResponse": {
+      "type": "object",
+      "properties": {
+        "trustZone": {
+          "$ref": "#/definitions/v1alpha1TrustZone"
+        }
+      }
+    },
     "connecttrust_zone_servicev1alpha1ListTrustZonesResponse": {
       "type": "object",
       "properties": {
@@ -40,6 +48,14 @@
             "type": "object",
             "$ref": "#/definitions/v1alpha1TrustZone"
           }
+        }
+      }
+    },
+    "connecttrust_zone_servicev1alpha1UpdateTrustZoneResponse": {
+      "type": "object",
+      "properties": {
+        "trustZone": {
+          "$ref": "#/definitions/v1alpha1TrustZone"
         }
       }
     },

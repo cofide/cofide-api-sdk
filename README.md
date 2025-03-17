@@ -2,9 +2,9 @@
 
 [![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?query=workflow%3Abuf-ci+branch%3Amain)
 
-This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs, used for open source projects (e.g. [`cofidectl`](https://github.com/cofide/cofidectl)) and the Cofide product.
-
+This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs, used for open source projects (e.g. [`cofidectl`](https://github.com/cofide/cofidectl)) and the Cofide Connect product.
 Services and messages are defined using Protocol Buffers (protobuf).
+This repository also contains a Go client implementation for the Cofide Connect API.
 
 ## Prerequisites
 
@@ -23,10 +23,12 @@ For convenience, a set of useful commands have been added to the *Justfile* in t
 Some of the key commands include:
 
 - `just fmt` - Formats the protobuf definitions
-- `just lint` - Lints the protobuf definitions in accordance with best practices
+- `just lint` - Lints the protobuf definitions and Go source code in accordance with best practices
 - `just proto-gen` - Generates the code stubs from the protobuf definitions using the defined plugins (specified in *buf.gen.yaml*)
+- `just test` - Runs Go unit tests
 
 The `.proto` files are in the `proto` directory, and the generated stubs for Go are in the `gen/proto/go` directory.
+The Cofide Connect API client is in the `pkg/connect/client` directory.
 
 ## Stability
 

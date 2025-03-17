@@ -83,6 +83,58 @@ func local_request_TrustZoneService_ListTrustZones_0(ctx context.Context, marsha
 
 }
 
+func request_TrustZoneService_GetTrustZone_0(ctx context.Context, marshaler runtime.Marshaler, client TrustZoneServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetTrustZoneRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetTrustZone(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TrustZoneService_GetTrustZone_0(ctx context.Context, marshaler runtime.Marshaler, server TrustZoneServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetTrustZoneRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetTrustZone(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_TrustZoneService_UpdateTrustZone_0(ctx context.Context, marshaler runtime.Marshaler, client TrustZoneServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateTrustZoneRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.UpdateTrustZone(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TrustZoneService_UpdateTrustZone_0(ctx context.Context, marshaler runtime.Marshaler, server TrustZoneServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateTrustZoneRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.UpdateTrustZone(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_TrustZoneService_GetTrustZoneDetails_0(ctx context.Context, marshaler runtime.Marshaler, client TrustZoneServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetTrustZoneDetailsRequest
 	var metadata runtime.ServerMetadata
@@ -214,6 +266,56 @@ func RegisterTrustZoneServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		}
 
 		forward_TrustZoneService_ListTrustZones_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_TrustZoneService_GetTrustZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone", runtime.WithHTTPPathPattern("/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TrustZoneService_GetTrustZone_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TrustZoneService_GetTrustZone_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_TrustZoneService_UpdateTrustZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone", runtime.WithHTTPPathPattern("/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TrustZoneService_UpdateTrustZone_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TrustZoneService_UpdateTrustZone_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -377,6 +479,50 @@ func RegisterTrustZoneServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
+	mux.Handle("POST", pattern_TrustZoneService_GetTrustZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone", runtime.WithHTTPPathPattern("/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TrustZoneService_GetTrustZone_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TrustZoneService_GetTrustZone_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_TrustZoneService_UpdateTrustZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone", runtime.WithHTTPPathPattern("/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TrustZoneService_UpdateTrustZone_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TrustZoneService_UpdateTrustZone_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_TrustZoneService_GetTrustZoneDetails_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -451,6 +597,10 @@ var (
 
 	pattern_TrustZoneService_ListTrustZones_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.connect.trust_zone_service.v1alpha1.TrustZoneService", "ListTrustZones"}, ""))
 
+	pattern_TrustZoneService_GetTrustZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.connect.trust_zone_service.v1alpha1.TrustZoneService", "GetTrustZone"}, ""))
+
+	pattern_TrustZoneService_UpdateTrustZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.connect.trust_zone_service.v1alpha1.TrustZoneService", "UpdateTrustZone"}, ""))
+
 	pattern_TrustZoneService_GetTrustZoneDetails_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.connect.trust_zone_service.v1alpha1.TrustZoneService", "GetTrustZoneDetails"}, ""))
 
 	pattern_TrustZoneService_RegisterCluster_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.connect.trust_zone_service.v1alpha1.TrustZoneService", "RegisterCluster"}, ""))
@@ -462,6 +612,10 @@ var (
 	forward_TrustZoneService_CreateTrustZone_0 = runtime.ForwardResponseMessage
 
 	forward_TrustZoneService_ListTrustZones_0 = runtime.ForwardResponseMessage
+
+	forward_TrustZoneService_GetTrustZone_0 = runtime.ForwardResponseMessage
+
+	forward_TrustZoneService_UpdateTrustZone_0 = runtime.ForwardResponseMessage
 
 	forward_TrustZoneService_GetTrustZoneDetails_0 = runtime.ForwardResponseMessage
 

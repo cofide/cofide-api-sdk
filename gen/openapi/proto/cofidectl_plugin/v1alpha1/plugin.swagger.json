@@ -72,6 +72,37 @@
         }
       }
     },
+    "protocofidectl_pluginv1alpha1GetTrustZoneResponse": {
+      "type": "object",
+      "properties": {
+        "trustZone": {
+          "$ref": "#/definitions/v1alpha1TrustZone"
+        }
+      }
+    },
+    "protocofidectl_pluginv1alpha1ListAPBindingsRequestFilter": {
+      "type": "object",
+      "properties": {
+        "trustZoneName": {
+          "type": "string"
+        },
+        "policyName": {
+          "type": "string"
+        }
+      }
+    },
+    "protocofidectl_pluginv1alpha1ListAPBindingsResponse": {
+      "type": "object",
+      "properties": {
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1APBinding"
+          }
+        }
+      }
+    },
     "protocofidectl_pluginv1alpha1ListAttestationPoliciesResponse": {
       "type": "object",
       "properties": {
@@ -125,6 +156,14 @@
       "properties": {
         "cluster": {
           "$ref": "#/definitions/v1alpha1Cluster"
+        }
+      }
+    },
+    "protocofidectl_pluginv1alpha1UpdateTrustZoneResponse": {
+      "type": "object",
+      "properties": {
+        "trustZone": {
+          "$ref": "#/definitions/v1alpha1TrustZone"
         }
       }
     },
@@ -451,14 +490,6 @@
         }
       }
     },
-    "v1alpha1GetTrustZoneResponse": {
-      "type": "object",
-      "properties": {
-        "trustZone": {
-          "$ref": "#/definitions/v1alpha1TrustZone"
-        }
-      }
-    },
     "v1alpha1ListFederationsByTrustZoneResponse": {
       "type": "object",
       "properties": {
@@ -522,14 +553,6 @@
         },
         "orgId": {
           "type": "string"
-        }
-      }
-    },
-    "v1alpha1UpdateTrustZoneResponse": {
-      "type": "object",
-      "properties": {
-        "trustZone": {
-          "$ref": "#/definitions/v1alpha1TrustZone"
         }
       }
     }

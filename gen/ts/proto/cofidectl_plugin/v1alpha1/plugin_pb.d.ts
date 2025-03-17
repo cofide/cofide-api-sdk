@@ -643,6 +643,88 @@ export namespace DestroyAPBindingResponse {
   }
 }
 
+export class ListAPBindingsRequest extends jspb.Message {
+  getFilter(): ListAPBindingsRequest.Filter | undefined;
+  setFilter(value?: ListAPBindingsRequest.Filter): ListAPBindingsRequest;
+  hasFilter(): boolean;
+  clearFilter(): ListAPBindingsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListAPBindingsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListAPBindingsRequest): ListAPBindingsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListAPBindingsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListAPBindingsRequest;
+  static deserializeBinaryFromReader(message: ListAPBindingsRequest, reader: jspb.BinaryReader): ListAPBindingsRequest;
+}
+
+export namespace ListAPBindingsRequest {
+  export type AsObject = {
+    filter?: ListAPBindingsRequest.Filter.AsObject,
+  }
+
+  export class Filter extends jspb.Message {
+    getTrustZoneName(): string;
+    setTrustZoneName(value: string): Filter;
+    hasTrustZoneName(): boolean;
+    clearTrustZoneName(): Filter;
+
+    getPolicyName(): string;
+    setPolicyName(value: string): Filter;
+    hasPolicyName(): boolean;
+    clearPolicyName(): Filter;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Filter.AsObject;
+    static toObject(includeInstance: boolean, msg: Filter): Filter.AsObject;
+    static serializeBinaryToWriter(message: Filter, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Filter;
+    static deserializeBinaryFromReader(message: Filter, reader: jspb.BinaryReader): Filter;
+  }
+
+  export namespace Filter {
+    export type AsObject = {
+      trustZoneName?: string,
+      policyName?: string,
+    }
+
+    export enum TrustZoneNameCase { 
+      _TRUST_ZONE_NAME_NOT_SET = 0,
+      TRUST_ZONE_NAME = 1,
+    }
+
+    export enum PolicyNameCase { 
+      _POLICY_NAME_NOT_SET = 0,
+      POLICY_NAME = 2,
+    }
+  }
+
+
+  export enum FilterCase { 
+    _FILTER_NOT_SET = 0,
+    FILTER = 1,
+  }
+}
+
+export class ListAPBindingsResponse extends jspb.Message {
+  getBindingsList(): Array<proto_ap_binding_v1alpha1_ap_binding_pb.APBinding>;
+  setBindingsList(value: Array<proto_ap_binding_v1alpha1_ap_binding_pb.APBinding>): ListAPBindingsResponse;
+  clearBindingsList(): ListAPBindingsResponse;
+  addBindings(value?: proto_ap_binding_v1alpha1_ap_binding_pb.APBinding, index?: number): proto_ap_binding_v1alpha1_ap_binding_pb.APBinding;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListAPBindingsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListAPBindingsResponse): ListAPBindingsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListAPBindingsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListAPBindingsResponse;
+  static deserializeBinaryFromReader(message: ListAPBindingsResponse, reader: jspb.BinaryReader): ListAPBindingsResponse;
+}
+
+export namespace ListAPBindingsResponse {
+  export type AsObject = {
+    bindingsList: Array<proto_ap_binding_v1alpha1_ap_binding_pb.APBinding.AsObject>,
+  }
+}
+
 export class AddFederationRequest extends jspb.Message {
   getFederation(): proto_federation_v1alpha1_federation_pb.Federation | undefined;
   setFederation(value?: proto_federation_v1alpha1_federation_pb.Federation): AddFederationRequest;

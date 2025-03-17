@@ -172,6 +172,56 @@ export namespace ListTrustZonesResponse {
   }
 }
 
+export class GetTrustZoneRequest extends jspb.Message {
+  getTrustZoneId(): string;
+  setTrustZoneId(value: string): GetTrustZoneRequest;
+  hasTrustZoneId(): boolean;
+  clearTrustZoneId(): GetTrustZoneRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrustZoneRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrustZoneRequest): GetTrustZoneRequest.AsObject;
+  static serializeBinaryToWriter(message: GetTrustZoneRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrustZoneRequest;
+  static deserializeBinaryFromReader(message: GetTrustZoneRequest, reader: jspb.BinaryReader): GetTrustZoneRequest;
+}
+
+export namespace GetTrustZoneRequest {
+  export type AsObject = {
+    trustZoneId?: string,
+  }
+
+  export enum TrustZoneIdCase { 
+    _TRUST_ZONE_ID_NOT_SET = 0,
+    TRUST_ZONE_ID = 1,
+  }
+}
+
+export class GetTrustZoneResponse extends jspb.Message {
+  getTrustZone(): proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone | undefined;
+  setTrustZone(value?: proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone): GetTrustZoneResponse;
+  hasTrustZone(): boolean;
+  clearTrustZone(): GetTrustZoneResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrustZoneResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrustZoneResponse): GetTrustZoneResponse.AsObject;
+  static serializeBinaryToWriter(message: GetTrustZoneResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrustZoneResponse;
+  static deserializeBinaryFromReader(message: GetTrustZoneResponse, reader: jspb.BinaryReader): GetTrustZoneResponse;
+}
+
+export namespace GetTrustZoneResponse {
+  export type AsObject = {
+    trustZone?: proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone.AsObject,
+  }
+
+  export enum TrustZoneCase { 
+    _TRUST_ZONE_NOT_SET = 0,
+    TRUST_ZONE = 1,
+  }
+}
+
 export class GetTrustZoneDetailsRequest extends jspb.Message {
   getTrustZoneId(): string;
   setTrustZoneId(value: string): GetTrustZoneDetailsRequest;
@@ -205,6 +255,46 @@ export class GetTrustZoneDetailsResponse extends jspb.Message {
 }
 
 export namespace GetTrustZoneDetailsResponse {
+  export type AsObject = {
+    trustZone?: proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone.AsObject,
+  }
+}
+
+export class UpdateTrustZoneRequest extends jspb.Message {
+  getTrustZone(): proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone | undefined;
+  setTrustZone(value?: proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone): UpdateTrustZoneRequest;
+  hasTrustZone(): boolean;
+  clearTrustZone(): UpdateTrustZoneRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateTrustZoneRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateTrustZoneRequest): UpdateTrustZoneRequest.AsObject;
+  static serializeBinaryToWriter(message: UpdateTrustZoneRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateTrustZoneRequest;
+  static deserializeBinaryFromReader(message: UpdateTrustZoneRequest, reader: jspb.BinaryReader): UpdateTrustZoneRequest;
+}
+
+export namespace UpdateTrustZoneRequest {
+  export type AsObject = {
+    trustZone?: proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone.AsObject,
+  }
+}
+
+export class UpdateTrustZoneResponse extends jspb.Message {
+  getTrustZone(): proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone | undefined;
+  setTrustZone(value?: proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone): UpdateTrustZoneResponse;
+  hasTrustZone(): boolean;
+  clearTrustZone(): UpdateTrustZoneResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateTrustZoneResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateTrustZoneResponse): UpdateTrustZoneResponse.AsObject;
+  static serializeBinaryToWriter(message: UpdateTrustZoneResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateTrustZoneResponse;
+  static deserializeBinaryFromReader(message: UpdateTrustZoneResponse, reader: jspb.BinaryReader): UpdateTrustZoneResponse;
+}
+
+export namespace UpdateTrustZoneResponse {
   export type AsObject = {
     trustZone?: proto_trust_zone_v1alpha1_trust_zone_pb.TrustZone.AsObject,
   }

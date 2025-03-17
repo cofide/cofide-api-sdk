@@ -20,6 +20,32 @@
     "connectap_binding_servicev1alpha1DestroyAPBindingResponse": {
       "type": "object"
     },
+    "connectap_binding_servicev1alpha1ListAPBindingsRequestFilter": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "trustZoneId": {
+          "type": "string"
+        },
+        "policyId": {
+          "type": "string"
+        }
+      }
+    },
+    "connectap_binding_servicev1alpha1ListAPBindingsResponse": {
+      "type": "object",
+      "properties": {
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1alpha1APBinding"
+          }
+        }
+      }
+    },
     "googlerpcStatus": {
       "type": "object",
       "properties": {
@@ -105,32 +131,6 @@
       "properties": {
         "binding": {
           "$ref": "#/definitions/v1alpha1APBinding"
-        }
-      }
-    },
-    "v1alpha1ListAPBindingsRequestFilter": {
-      "type": "object",
-      "properties": {
-        "orgId": {
-          "type": "string"
-        },
-        "trustZoneId": {
-          "type": "string"
-        },
-        "policyId": {
-          "type": "string"
-        }
-      }
-    },
-    "v1alpha1ListAPBindingsResponse": {
-      "type": "object",
-      "properties": {
-        "bindings": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1alpha1APBinding"
-          }
         }
       }
     },

@@ -125,6 +125,92 @@ export class TrustZoneServiceClient {
     this.methodDescriptorListTrustZones);
   }
 
+  methodDescriptorGetTrustZone = new grpcWeb.MethodDescriptor(
+    '/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone',
+    grpcWeb.MethodType.UNARY,
+    proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneRequest,
+    proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneResponse,
+    (request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneRequest) => {
+      return request.serializeBinary();
+    },
+    proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneResponse.deserializeBinary
+  );
+
+  getTrustZone(
+    request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneResponse>;
+
+  getTrustZone(
+    request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneResponse) => void): grpcWeb.ClientReadableStream<proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneResponse>;
+
+  getTrustZone(
+    request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.GetTrustZoneResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone',
+        request,
+        metadata || {},
+        this.methodDescriptorGetTrustZone,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone',
+    request,
+    metadata || {},
+    this.methodDescriptorGetTrustZone);
+  }
+
+  methodDescriptorUpdateTrustZone = new grpcWeb.MethodDescriptor(
+    '/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone',
+    grpcWeb.MethodType.UNARY,
+    proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneRequest,
+    proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneResponse,
+    (request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneRequest) => {
+      return request.serializeBinary();
+    },
+    proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneResponse.deserializeBinary
+  );
+
+  updateTrustZone(
+    request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneResponse>;
+
+  updateTrustZone(
+    request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneResponse) => void): grpcWeb.ClientReadableStream<proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneResponse>;
+
+  updateTrustZone(
+    request: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: proto_connect_trust_zone_service_v1alpha1_trust_zone_service_pb.UpdateTrustZoneResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone',
+        request,
+        metadata || {},
+        this.methodDescriptorUpdateTrustZone,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone',
+    request,
+    metadata || {},
+    this.methodDescriptorUpdateTrustZone);
+  }
+
   methodDescriptorGetTrustZoneDetails = new grpcWeb.MethodDescriptor(
     '/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZoneDetails',
     grpcWeb.MethodType.UNARY,
