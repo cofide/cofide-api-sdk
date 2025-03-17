@@ -50,18 +50,18 @@ func (c *agentClient) CreateAgentJoinToken(ctx context.Context, clusterID, trust
 }
 
 func (c *agentClient) UpdateTrustZoneBundle(ctx context.Context, bundle *types.Bundle) error {
-	trustzoneBundleUpdateRequest := &agentsvcpb.UpdateTrustZoneBundleRequest{
+	trustZoneBundleUpdateRequest := &agentsvcpb.UpdateTrustZoneBundleRequest{
 		Bundle: bundle,
 	}
-	return c.doUpdateTrustZoneBundle(ctx, trustzoneBundleUpdateRequest)
+	return c.doUpdateTrustZoneBundle(ctx, trustZoneBundleUpdateRequest)
 }
 
 func (c *agentClient) UpdateManagedTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error {
-	trustzoneBundleUpdateRequest := &agentsvcpb.UpdateTrustZoneBundleRequest{
+	trustZoneBundleUpdateRequest := &agentsvcpb.UpdateTrustZoneBundleRequest{
 		Bundle:      bundle,
 		TrustZoneId: trustZoneID,
 	}
-	return c.doUpdateTrustZoneBundle(ctx, trustzoneBundleUpdateRequest)
+	return c.doUpdateTrustZoneBundle(ctx, trustZoneBundleUpdateRequest)
 }
 
 func (c *agentClient) doUpdateTrustZoneBundle(ctx context.Context, req *agentsvcpb.UpdateTrustZoneBundleRequest) error {
