@@ -11,6 +11,8 @@ import (
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 // TrustZoneClient is an interface for a gRPC client for the v1alpha1 version of the Connect TrustZoneService.
@@ -51,11 +53,22 @@ func (c *trustZoneClient) GetTrustZone(ctx context.Context, trustZoneID string) 
 	resp, err := c.trustZoneClient.GetTrustZone(ctx, &trustzonesvcpb.GetTrustZoneRequest{
 		TrustZoneId: &trustZoneID,
 	})
-	if err != nil {
-		return nil, err
+	if err == nil {
+		return resp.TrustZone, err
 	}
 
-	return resp.TrustZone, nil
+	if status.Convert(err).Code() == codes.Unimplemented {
+		resp, err := c.trustZoneClient.GetTrustZoneDetails(ctx, &trustzonesvcpb.GetTrustZoneDetailsRequest{
+			TrustZoneId: trustZoneID,
+		})
+		if err != nil {
+			return nil, err
+		}
+
+		return resp.TrustZone, nil
+	}
+
+	return nil, err
 }
 
 func (c *trustZoneClient) ListTrustZones(ctx context.Context, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) ([]*trustzonepb.TrustZone, error) {
