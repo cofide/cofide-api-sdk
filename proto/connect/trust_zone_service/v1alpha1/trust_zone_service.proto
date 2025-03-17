@@ -58,11 +58,11 @@ message ListTrustZonesResponse {
 }
 
 message GetTrustZoneRequest {
-  string trust_zone_id = 1;
+  optional string trust_zone_id = 1;
 }
 
 message GetTrustZoneResponse {
-  proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
 message GetTrustZoneDetailsRequest {
