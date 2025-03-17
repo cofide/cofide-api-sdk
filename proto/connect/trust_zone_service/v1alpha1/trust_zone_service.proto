@@ -14,8 +14,11 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_se
 service TrustZoneService {
   rpc CreateTrustZone(CreateTrustZoneRequest) returns (CreateTrustZoneResponse) {}
   rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse) {}
-  rpc GetTrustZoneDetails(GetTrustZoneDetailsRequest) returns (GetTrustZoneDetailsResponse) {}
+  rpc GetTrustZone(GetTrustZoneRequest) returns (GetTrustZoneResponse) {}
   rpc UpdateTrustZone(UpdateTrustZoneRequest) returns (UpdateTrustZoneResponse) {}
+
+  // DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
+  rpc GetTrustZoneDetails(GetTrustZoneDetailsRequest) returns (GetTrustZoneDetailsResponse) {}
 
   // DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
   // Cluster creation to be moved to ClusterService.CreateCluster.
@@ -52,6 +55,14 @@ message ListTrustZonesRequest {
 
 message ListTrustZonesResponse {
   repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 1;
+}
+
+message GetTrustZoneRequest {
+  string trust_zone_id = 1;
+}
+
+message GetTrustZoneResponse {
+  proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
 message GetTrustZoneDetailsRequest {

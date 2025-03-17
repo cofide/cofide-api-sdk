@@ -117,6 +117,11 @@ func (f *fakeTrustZoneService) ListTrustZones(ctx context.Context, req *trustzon
 	return &trustzonesvcpb.ListTrustZonesResponse{TrustZones: trustZones}, nil
 }
 
+func (f *fakeTrustZoneService) GetTrustZone(ctx context.Context, req *trustzonesvcpb.GetTrustZoneRequest) (*trustzonesvcpb.GetTrustZoneResponse, error) {
+	assert.Equal(f.t, fakeTrustZoneID, req.TrustZoneId)
+	return &trustzonesvcpb.GetTrustZoneResponse{TrustZone: fakeTrustZone()}, nil
+}
+
 func (f *fakeTrustZoneService) GetTrustZoneDetails(ctx context.Context, req *trustzonesvcpb.GetTrustZoneDetailsRequest) (*trustzonesvcpb.GetTrustZoneDetailsResponse, error) {
 	assert.EqualExportedValues(f.t, fakeTrustZoneID, req.TrustZoneId)
 	return &trustzonesvcpb.GetTrustZoneDetailsResponse{TrustZone: fakeTrustZone()}, nil
