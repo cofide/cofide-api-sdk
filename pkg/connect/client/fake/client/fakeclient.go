@@ -14,6 +14,8 @@ import (
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	fakeclusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1/fake"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
+	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
+	fakefederationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1/fake"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	faketrustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1/fake"
 )
@@ -24,6 +26,7 @@ type fakeClientSet struct {
 	agentV1Alpha1             agentv1alpha1.AgentClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
+	federationV1Alpha1        federationV1Alpha1.FederationClient
 }
 
 // New instantiates a new ClientSet that fakes communication with a Connect API.
@@ -34,6 +37,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		agentV1Alpha1:             fakeagentv1alpha1.New(fake),
 		attestationPolicyV1Alpha1: fakeattestationpolicyv1alpha1.New(fake),
 		apBindingV1Alpha1:         fakeapbindingv1alpha1.New(fake),
+		federationV1Alpha1:        fakefederationV1Alpha1.New(fake),
 	}
 }
 
@@ -55,4 +59,8 @@ func (c *fakeClientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.At
 
 func (c *fakeClientSet) APBindingV1Alhpa1() apbindingv1alpha1.APBindingClient {
 	return c.apBindingV1Alpha1
+}
+
+func (c *fakeClientSet) FederationV1Alpha1() federationV1Alpha1.FederationClient {
+	return c.federationV1Alpha1
 }

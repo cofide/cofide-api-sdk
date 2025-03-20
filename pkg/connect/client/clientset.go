@@ -8,6 +8,7 @@ import (
 	apbindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/apbinding/v1alpha1"
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
+	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	"google.golang.org/grpc"
 )
@@ -20,6 +21,7 @@ type ClientSet interface {
 	AgentV1Alpha1() agentv1alpha1.AgentClient
 	AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient
 	APBindingV1Alhpa1() apbindingv1alpha1.APBindingClient
+	FederationV1Alpha1() federationV1Alpha1.FederationClient
 }
 
 type clientSet struct {
@@ -28,6 +30,7 @@ type clientSet struct {
 	agentV1Alpha1             agentv1alpha1.AgentClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
+	federationV1Alpha1        federationV1Alpha1.FederationClient
 }
 
 // New instantiates a new ClientSet for communication with a Connect API.
@@ -38,6 +41,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		agentV1Alpha1:             agentv1alpha1.New(conn),
 		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
 		apBindingV1Alpha1:         apbindingv1alpha1.New(conn),
+		federationV1Alpha1:        federationV1Alpha1.New(conn),
 	}
 }
 
@@ -59,4 +63,8 @@ func (c *clientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.Attest
 
 func (c *clientSet) APBindingV1Alhpa1() apbindingv1alpha1.APBindingClient {
 	return c.apBindingV1Alpha1
+}
+
+func (c *clientSet) FederationV1Alpha1() federationV1Alpha1.FederationClient {
+	return c.federationV1Alpha1
 }
