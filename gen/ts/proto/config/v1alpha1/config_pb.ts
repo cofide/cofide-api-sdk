@@ -8,10 +8,14 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
+import type { APBinding } from "../../ap_binding/v1alpha1/ap_binding_pb";
+import { file_proto_ap_binding_v1alpha1_ap_binding } from "../../ap_binding/v1alpha1/ap_binding_pb";
 import type { AttestationPolicy } from "../../attestation_policy/v1alpha1/attestation_policy_pb";
 import { file_proto_attestation_policy_v1alpha1_attestation_policy } from "../../attestation_policy/v1alpha1/attestation_policy_pb";
 import type { Cluster } from "../../cluster/v1alpha1/cluster_pb";
 import { file_proto_cluster_v1alpha1_cluster } from "../../cluster/v1alpha1/cluster_pb";
+import type { Federation } from "../../federation/v1alpha1/federation_pb";
+import { file_proto_federation_v1alpha1_federation } from "../../federation/v1alpha1/federation_pb";
 import type { Plugins } from "../../plugins/v1alpha1/plugins_pb";
 import { file_proto_plugins_v1alpha1_plugins } from "../../plugins/v1alpha1/plugins_pb";
 import type { TrustZone } from "../../trust_zone/v1alpha1/trust_zone_pb";
@@ -22,7 +26,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file proto/config/v1alpha1/config.proto.
  */
 export const file_proto_config_v1alpha1_config: GenFile = /*@__PURE__*/
-  fileDesc("CiJwcm90by9jb25maWcvdjFhbHBoYTEvY29uZmlnLnByb3RvEhVwcm90by5jb25maWcudjFhbHBoYTEiowMKBkNvbmZpZxI5Cgt0cnVzdF96b25lcxgBIAMoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lEjEKCGNsdXN0ZXJzGAIgAygLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVyElIKFGF0dGVzdGF0aW9uX3BvbGljaWVzGAMgAygLMjQucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkF0dGVzdGF0aW9uUG9saWN5EkYKDXBsdWdpbl9jb25maWcYBCADKAsyLy5wcm90by5jb25maWcudjFhbHBoYTEuQ29uZmlnLlBsdWdpbkNvbmZpZ0VudHJ5EjUKB3BsdWdpbnMYBSABKAsyHy5wcm90by5wbHVnaW5zLnYxYWxwaGExLlBsdWdpbnNIAIgBARpMChFQbHVnaW5Db25maWdFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0OgI4AUIKCghfcGx1Z2luc0I/Wj1naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29uZmlnL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_struct, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_cluster_v1alpha1_cluster, file_proto_plugins_v1alpha1_plugins, file_proto_trust_zone_v1alpha1_trust_zone]);
+  fileDesc("CiJwcm90by9jb25maWcvdjFhbHBoYTEvY29uZmlnLnByb3RvEhVwcm90by5jb25maWcudjFhbHBoYTEimgQKBkNvbmZpZxI5Cgt0cnVzdF96b25lcxgBIAMoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lEjEKCGNsdXN0ZXJzGAIgAygLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVyElIKFGF0dGVzdGF0aW9uX3BvbGljaWVzGAMgAygLMjQucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkF0dGVzdGF0aW9uUG9saWN5EkYKDXBsdWdpbl9jb25maWcYBCADKAsyLy5wcm90by5jb25maWcudjFhbHBoYTEuQ29uZmlnLlBsdWdpbkNvbmZpZ0VudHJ5EjUKB3BsdWdpbnMYBSABKAsyHy5wcm90by5wbHVnaW5zLnYxYWxwaGExLlBsdWdpbnNIAIgBARI6CgtmZWRlcmF0aW9ucxgGIAMoCzIlLnByb3RvLmZlZGVyYXRpb24udjFhbHBoYTEuRmVkZXJhdGlvbhI5CgthcF9iaW5kaW5ncxgHIAMoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nGkwKEVBsdWdpbkNvbmZpZ0VudHJ5EgsKA2tleRgBIAEoCRImCgV2YWx1ZRgCIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3Q6AjgBQgoKCF9wbHVnaW5zQj9aPWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb25maWcvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_struct, file_proto_ap_binding_v1alpha1_ap_binding, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_cluster_v1alpha1_cluster, file_proto_federation_v1alpha1_federation, file_proto_plugins_v1alpha1_plugins, file_proto_trust_zone_v1alpha1_trust_zone]);
 
 /**
  * @generated from message proto.config.v1alpha1.Config
@@ -52,6 +56,16 @@ export type Config = Message<"proto.config.v1alpha1.Config"> & {
    * @generated from field: optional proto.plugins.v1alpha1.Plugins plugins = 5;
    */
   plugins?: Plugins;
+
+  /**
+   * @generated from field: repeated proto.federation.v1alpha1.Federation federations = 6;
+   */
+  federations: Federation[];
+
+  /**
+   * @generated from field: repeated proto.ap_binding.v1alpha1.APBinding ap_bindings = 7;
+   */
+  apBindings: APBinding[];
 };
 
 /**

@@ -1,8 +1,10 @@
 import * as jspb from 'google-protobuf'
 
 import * as google_protobuf_struct_pb from 'google-protobuf/google/protobuf/struct_pb'; // proto import: "google/protobuf/struct.proto"
+import * as proto_ap_binding_v1alpha1_ap_binding_pb from '../../../proto/ap_binding/v1alpha1/ap_binding_pb'; // proto import: "proto/ap_binding/v1alpha1/ap_binding.proto"
 import * as proto_attestation_policy_v1alpha1_attestation_policy_pb from '../../../proto/attestation_policy/v1alpha1/attestation_policy_pb'; // proto import: "proto/attestation_policy/v1alpha1/attestation_policy.proto"
 import * as proto_cluster_v1alpha1_cluster_pb from '../../../proto/cluster/v1alpha1/cluster_pb'; // proto import: "proto/cluster/v1alpha1/cluster.proto"
+import * as proto_federation_v1alpha1_federation_pb from '../../../proto/federation/v1alpha1/federation_pb'; // proto import: "proto/federation/v1alpha1/federation.proto"
 import * as proto_plugins_v1alpha1_plugins_pb from '../../../proto/plugins/v1alpha1/plugins_pb'; // proto import: "proto/plugins/v1alpha1/plugins.proto"
 import * as proto_trust_zone_v1alpha1_trust_zone_pb from '../../../proto/trust_zone/v1alpha1/trust_zone_pb'; // proto import: "proto/trust_zone/v1alpha1/trust_zone.proto"
 
@@ -31,6 +33,16 @@ export class Config extends jspb.Message {
   hasPlugins(): boolean;
   clearPlugins(): Config;
 
+  getFederationsList(): Array<proto_federation_v1alpha1_federation_pb.Federation>;
+  setFederationsList(value: Array<proto_federation_v1alpha1_federation_pb.Federation>): Config;
+  clearFederationsList(): Config;
+  addFederations(value?: proto_federation_v1alpha1_federation_pb.Federation, index?: number): proto_federation_v1alpha1_federation_pb.Federation;
+
+  getApBindingsList(): Array<proto_ap_binding_v1alpha1_ap_binding_pb.APBinding>;
+  setApBindingsList(value: Array<proto_ap_binding_v1alpha1_ap_binding_pb.APBinding>): Config;
+  clearApBindingsList(): Config;
+  addApBindings(value?: proto_ap_binding_v1alpha1_ap_binding_pb.APBinding, index?: number): proto_ap_binding_v1alpha1_ap_binding_pb.APBinding;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Config.AsObject;
   static toObject(includeInstance: boolean, msg: Config): Config.AsObject;
@@ -46,6 +58,8 @@ export namespace Config {
     attestationPoliciesList: Array<proto_attestation_policy_v1alpha1_attestation_policy_pb.AttestationPolicy.AsObject>,
     pluginConfigMap: Array<[string, google_protobuf_struct_pb.Struct.AsObject]>,
     plugins?: proto_plugins_v1alpha1_plugins_pb.Plugins.AsObject,
+    federationsList: Array<proto_federation_v1alpha1_federation_pb.Federation.AsObject>,
+    apBindingsList: Array<proto_ap_binding_v1alpha1_ap_binding_pb.APBinding.AsObject>,
   }
 
   export enum PluginsCase { 
