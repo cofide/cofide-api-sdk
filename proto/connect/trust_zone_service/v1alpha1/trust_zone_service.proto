@@ -9,7 +9,7 @@ import "proto/cluster/v1alpha1/cluster.proto";
 import "proto/spire/api/types/bundle.proto";
 import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_service/v1alpha1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_service/v1alpha1";
 
 service TrustZoneService {
   rpc CreateTrustZone(CreateTrustZoneRequest) returns (CreateTrustZoneResponse) {}

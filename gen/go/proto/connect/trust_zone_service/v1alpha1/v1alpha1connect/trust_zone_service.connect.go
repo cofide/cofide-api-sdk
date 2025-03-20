@@ -11,7 +11,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	v1alpha1 "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_service/v1alpha1"
+	v1alpha1 "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_service/v1alpha1"
 	http "net/http"
 	strings "strings"
 )
