@@ -13,10 +13,15 @@ service FederationService {
   rpc CreateFederation(CreateFederationRequest) returns (CreateFederationResponse) {}
   rpc DestroyFederation(DestroyFederationRequest) returns (DestroyFederationResponse) {}
   rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse) {}
+  rpc GetFederation (GetFederationRequest) returns (GetFederationResponse) {}
 }
 
 message CreateFederationRequest {
   proto.federation.v1alpha1.Federation federation = 1;
+}
+
+message GetFederationRequest {
+  string federation_id = 1;
 }
 
 message CreateFederationResponse {
@@ -40,4 +45,8 @@ message ListFederationsRequest {
 
 message ListFederationsResponse {
   repeated proto.federation.v1alpha1.Federation federations = 1;
+}
+
+message GetFederationResponse {
+  proto.federation.v1alpha1.Federation federation = 1;
 }

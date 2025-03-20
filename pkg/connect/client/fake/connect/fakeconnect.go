@@ -8,6 +8,7 @@ import (
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
+	federationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
@@ -26,6 +27,7 @@ type FakeConnect struct {
 	FederatedServices   map[string]*federatedservicepb.FederatedService
 	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
 	APBindings          map[string]*apbindingpb.APBinding
+	Federations         map[string]*federationpb.Federation
 }
 
 func New() *FakeConnect {
@@ -39,6 +41,7 @@ func New() *FakeConnect {
 		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
 		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
 		APBindings:          make(map[string]*apbindingpb.APBinding),
+		Federations:         make(map[string]*federationpb.Federation),
 	}
 }
 
@@ -80,6 +83,13 @@ func (f *FakeConnect) ValidateAttestationPolicy(policyID string) error {
 func (f *FakeConnect) ValidateAPBinding(bindingID string) error {
 	if _, ok := f.APBindings[bindingID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid attestation policy binding")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateFederation(federationID string) error {
+	if _, ok := f.Federations[federationID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid federation")
 	}
 	return nil
 }

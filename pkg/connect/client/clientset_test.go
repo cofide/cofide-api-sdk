@@ -17,4 +17,5 @@ func TestClientSet(t *testing.T) {
 	require.NotNil(t, client.AgentV1Alpha1())
 	require.NotNil(t, client.AttestationPolicyV1Alpha1())
 	require.NotNil(t, client.APBindingV1Alhpa1())
+	require.NotNil(t, client.FederationV1Alpha1())
 }
