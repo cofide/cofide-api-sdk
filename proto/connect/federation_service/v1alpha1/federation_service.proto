@@ -13,7 +13,7 @@ service FederationService {
   rpc CreateFederation(CreateFederationRequest) returns (CreateFederationResponse) {}
   rpc DestroyFederation(DestroyFederationRequest) returns (DestroyFederationResponse) {}
   rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse) {}
-  rpc GetFederation (GetFederationRequest) returns (GetFederationResponse) {}
+  rpc GetFederation(GetFederationRequest) returns (GetFederationResponse) {}
 }
 
 message CreateFederationRequest {
