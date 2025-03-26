@@ -57,7 +57,7 @@ func (c *fakeClientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.At
 	return c.attestationPolicyV1Alpha1
 }
 
-func (c *fakeClientSet) APBindingV1Alhpa1() apbindingv1alpha1.APBindingClient {
+func (c *fakeClientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {
 	return c.apBindingV1Alpha1
 }
 

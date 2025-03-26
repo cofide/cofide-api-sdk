@@ -20,7 +20,7 @@ type ClientSet interface {
 	ClusterV1Alpha1() clusterv1alpha1.ClusterClient
 	AgentV1Alpha1() agentv1alpha1.AgentClient
 	AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient
-	APBindingV1Alhpa1() apbindingv1alpha1.APBindingClient
+	APBindingV1Alpha1() apbindingv1alpha1.APBindingClient
 	FederationV1Alpha1() federationV1Alpha1.FederationClient
 }
 
@@ -61,7 +61,7 @@ func (c *clientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.Attest
 	return c.attestationPolicyV1Alpha1
 }
 
-func (c *clientSet) APBindingV1Alhpa1() apbindingv1alpha1.APBindingClient {
+func (c *clientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {
 	return c.apBindingV1Alpha1
 }
 
