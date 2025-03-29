@@ -1,0 +1,24 @@
+{
+  "name": "cofide-api-sdk",
+  "version": "1.0.0",
+  "description": "[![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?query=workflow%3Abuf-ci+branch%3Amain)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cofide/cofide-api-sdk.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cofide/cofide-api-sdk/issues"
+  },
+  "homepage": "https://github.com/cofide/cofide-api-sdk#readme",
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.2.5",
+    "install": "^0.13.0",
+    "npm": "^11.2.0"
+  }
+}
