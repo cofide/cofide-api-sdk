@@ -26,6 +26,35 @@ type fakeDataStoreClient struct {
 	fake *fakeconnect.FakeConnect
 }
 
+// ListAttestedNodes implements v1alpha1.DataStoreClient.
+func (c *fakeDataStoreClient) ListAttestedNodes(ctx context.Context, req *datastorev1alpha1.ListAttestedNodesRequest) (*datastorev1alpha1.ListAttestedNodesResponse, error) {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	var nodes []*datastorev1alpha1.AttestedNode
+	for _, node := range c.fake.AttestedNodes {
+		nodes = append(nodes, node)
+	}
+
+	return &datastorev1alpha1.ListAttestedNodesResponse{Nodes: nodes}, nil
+}
+
+// ListNodeSelectors implements v1alpha1.DataStoreClient.
+func (c *fakeDataStoreClient) ListNodeSelectors(ctx context.Context, req *datastorev1alpha1.ListNodeSelectorsRequest) (*datastorev1alpha1.ListNodeSelectorsResponse, error) {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+	nodes := c.fake.AttestedNodes
+	var selectors []*datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors
+	for _, node := range nodes {
+		selectors = append(selectors, &datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors{
+			SpiffeId:  node.GetSpiffeId(),
+			Selectors: node.GetSelectors(),
+		})
+	}
+
+	return &datastorev1alpha1.ListNodeSelectorsResponse{NodeSelectors: selectors}, nil
+}
+
 // New instantiates a new fake DataStoreClient for testing purposes.
 func New(fake *fakeconnect.FakeConnect) client.DataStoreClient {
 	return &fakeDataStoreClient{
