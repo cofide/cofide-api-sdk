@@ -7,6 +7,7 @@ import (
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
+	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	federationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
@@ -28,6 +29,7 @@ type FakeConnect struct {
 	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
 	APBindings          map[string]*apbindingpb.APBinding
 	Federations         map[string]*federationpb.Federation
+	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
 }
 
 func New() *FakeConnect {
@@ -42,6 +44,7 @@ func New() *FakeConnect {
 		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
 		APBindings:          make(map[string]*apbindingpb.APBinding),
 		Federations:         make(map[string]*federationpb.Federation),
+		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
 	}
 }
 

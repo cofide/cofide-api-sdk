@@ -14,6 +14,7 @@ The following tools must be available in order to generate code stubs.
 - [Go 1.22.6 toolchain](https://golang.org/doc/install)
 - [protobuf version 3 compiler](https://grpc.io/docs/protoc-installation/)
 - [Go gRPC and protobuf](https://grpc.io/docs/languages/go/quickstart/#prerequisites) build tools.
+- [Connect RPC tools](https://connectrpc.com/docs/go/getting-started#prerequisites)
 - [Buf CLI](https://buf.build/docs/installation)
 - [Just](https://github.com/casey/just)
 
