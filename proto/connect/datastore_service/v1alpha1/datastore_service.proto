@@ -17,10 +17,21 @@ service DataStoreService {
   rpc DeleteAttestedNode(DeleteAttestedNodeRequest) returns (DeleteAttestedNodeResponse);
   rpc FetchAttestedNode(FetchAttestedNodeRequest) returns (FetchAttestedNodeResponse);
   rpc UpdateAttestedNode(UpdateAttestedNodeRequest) returns (UpdateAttestedNodeResponse);
-
+  rpc ListAttestedNodes(ListAttestedNodesRequest) returns (ListAttestedNodesResponse);
   // Node Selector operations
   rpc GetNodeSelectors(GetNodeSelectorsRequest) returns (GetNodeSelectorsResponse);
   rpc SetNodeSelectors(SetNodeSelectorsRequest) returns (SetNodeSelectorsResponse);
+  rpc ListNodeSelectors(ListNodeSelectorsRequest) returns (ListNodeSelectorsResponse);
+}
+
+message ListNodeSelectorsRequest {
+}
+message ListNodeSelectorsResponse {
+  message NodeSelectors {
+    string spiffe_id = 1;
+    repeated Selector selectors = 2;
+  }
+  repeated NodeSelectors node_selectors = 1;
 }
 
 // Node operations request/response messages
@@ -78,3 +89,10 @@ message SetNodeSelectorsRequest {
 }
 
 message SetNodeSelectorsResponse {}
+
+message ListAttestedNodesRequest {
+  
+}
+message ListAttestedNodesResponse {
+  repeated AttestedNode nodes = 1;
+}

@@ -51,12 +51,18 @@ const (
 	// DataStoreServiceUpdateAttestedNodeProcedure is the fully-qualified name of the DataStoreService's
 	// UpdateAttestedNode RPC.
 	DataStoreServiceUpdateAttestedNodeProcedure = "/proto.connect.datastore_service.v1alpha1.DataStoreService/UpdateAttestedNode"
+	// DataStoreServiceListAttestedNodesProcedure is the fully-qualified name of the DataStoreService's
+	// ListAttestedNodes RPC.
+	DataStoreServiceListAttestedNodesProcedure = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListAttestedNodes"
 	// DataStoreServiceGetNodeSelectorsProcedure is the fully-qualified name of the DataStoreService's
 	// GetNodeSelectors RPC.
 	DataStoreServiceGetNodeSelectorsProcedure = "/proto.connect.datastore_service.v1alpha1.DataStoreService/GetNodeSelectors"
 	// DataStoreServiceSetNodeSelectorsProcedure is the fully-qualified name of the DataStoreService's
 	// SetNodeSelectors RPC.
 	DataStoreServiceSetNodeSelectorsProcedure = "/proto.connect.datastore_service.v1alpha1.DataStoreService/SetNodeSelectors"
+	// DataStoreServiceListNodeSelectorsProcedure is the fully-qualified name of the DataStoreService's
+	// ListNodeSelectors RPC.
+	DataStoreServiceListNodeSelectorsProcedure = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListNodeSelectors"
 )
 
 // DataStoreServiceClient is a client for the
@@ -68,9 +74,11 @@ type DataStoreServiceClient interface {
 	DeleteAttestedNode(context.Context, *connect.Request[v1alpha1.DeleteAttestedNodeRequest]) (*connect.Response[v1alpha1.DeleteAttestedNodeResponse], error)
 	FetchAttestedNode(context.Context, *connect.Request[v1alpha1.FetchAttestedNodeRequest]) (*connect.Response[v1alpha1.FetchAttestedNodeResponse], error)
 	UpdateAttestedNode(context.Context, *connect.Request[v1alpha1.UpdateAttestedNodeRequest]) (*connect.Response[v1alpha1.UpdateAttestedNodeResponse], error)
+	ListAttestedNodes(context.Context, *connect.Request[v1alpha1.ListAttestedNodesRequest]) (*connect.Response[v1alpha1.ListAttestedNodesResponse], error)
 	// Node Selector operations
 	GetNodeSelectors(context.Context, *connect.Request[v1alpha1.GetNodeSelectorsRequest]) (*connect.Response[v1alpha1.GetNodeSelectorsResponse], error)
 	SetNodeSelectors(context.Context, *connect.Request[v1alpha1.SetNodeSelectorsRequest]) (*connect.Response[v1alpha1.SetNodeSelectorsResponse], error)
+	ListNodeSelectors(context.Context, *connect.Request[v1alpha1.ListNodeSelectorsRequest]) (*connect.Response[v1alpha1.ListNodeSelectorsResponse], error)
 }
 
 // NewDataStoreServiceClient constructs a client for the
@@ -115,6 +123,12 @@ func NewDataStoreServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(dataStoreServiceMethods.ByName("UpdateAttestedNode")),
 			connect.WithClientOptions(opts...),
 		),
+		listAttestedNodes: connect.NewClient[v1alpha1.ListAttestedNodesRequest, v1alpha1.ListAttestedNodesResponse](
+			httpClient,
+			baseURL+DataStoreServiceListAttestedNodesProcedure,
+			connect.WithSchema(dataStoreServiceMethods.ByName("ListAttestedNodes")),
+			connect.WithClientOptions(opts...),
+		),
 		getNodeSelectors: connect.NewClient[v1alpha1.GetNodeSelectorsRequest, v1alpha1.GetNodeSelectorsResponse](
 			httpClient,
 			baseURL+DataStoreServiceGetNodeSelectorsProcedure,
@@ -127,6 +141,12 @@ func NewDataStoreServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(dataStoreServiceMethods.ByName("SetNodeSelectors")),
 			connect.WithClientOptions(opts...),
 		),
+		listNodeSelectors: connect.NewClient[v1alpha1.ListNodeSelectorsRequest, v1alpha1.ListNodeSelectorsResponse](
+			httpClient,
+			baseURL+DataStoreServiceListNodeSelectorsProcedure,
+			connect.WithSchema(dataStoreServiceMethods.ByName("ListNodeSelectors")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -137,8 +157,10 @@ type dataStoreServiceClient struct {
 	deleteAttestedNode *connect.Client[v1alpha1.DeleteAttestedNodeRequest, v1alpha1.DeleteAttestedNodeResponse]
 	fetchAttestedNode  *connect.Client[v1alpha1.FetchAttestedNodeRequest, v1alpha1.FetchAttestedNodeResponse]
 	updateAttestedNode *connect.Client[v1alpha1.UpdateAttestedNodeRequest, v1alpha1.UpdateAttestedNodeResponse]
+	listAttestedNodes  *connect.Client[v1alpha1.ListAttestedNodesRequest, v1alpha1.ListAttestedNodesResponse]
 	getNodeSelectors   *connect.Client[v1alpha1.GetNodeSelectorsRequest, v1alpha1.GetNodeSelectorsResponse]
 	setNodeSelectors   *connect.Client[v1alpha1.SetNodeSelectorsRequest, v1alpha1.SetNodeSelectorsResponse]
+	listNodeSelectors  *connect.Client[v1alpha1.ListNodeSelectorsRequest, v1alpha1.ListNodeSelectorsResponse]
 }
 
 // CountAttestedNodes calls
@@ -171,6 +193,12 @@ func (c *dataStoreServiceClient) UpdateAttestedNode(ctx context.Context, req *co
 	return c.updateAttestedNode.CallUnary(ctx, req)
 }
 
+// ListAttestedNodes calls
+// proto.connect.datastore_service.v1alpha1.DataStoreService.ListAttestedNodes.
+func (c *dataStoreServiceClient) ListAttestedNodes(ctx context.Context, req *connect.Request[v1alpha1.ListAttestedNodesRequest]) (*connect.Response[v1alpha1.ListAttestedNodesResponse], error) {
+	return c.listAttestedNodes.CallUnary(ctx, req)
+}
+
 // GetNodeSelectors calls
 // proto.connect.datastore_service.v1alpha1.DataStoreService.GetNodeSelectors.
 func (c *dataStoreServiceClient) GetNodeSelectors(ctx context.Context, req *connect.Request[v1alpha1.GetNodeSelectorsRequest]) (*connect.Response[v1alpha1.GetNodeSelectorsResponse], error) {
@@ -183,6 +211,12 @@ func (c *dataStoreServiceClient) SetNodeSelectors(ctx context.Context, req *conn
 	return c.setNodeSelectors.CallUnary(ctx, req)
 }
 
+// ListNodeSelectors calls
+// proto.connect.datastore_service.v1alpha1.DataStoreService.ListNodeSelectors.
+func (c *dataStoreServiceClient) ListNodeSelectors(ctx context.Context, req *connect.Request[v1alpha1.ListNodeSelectorsRequest]) (*connect.Response[v1alpha1.ListNodeSelectorsResponse], error) {
+	return c.listNodeSelectors.CallUnary(ctx, req)
+}
+
 // DataStoreServiceHandler is an implementation of the
 // proto.connect.datastore_service.v1alpha1.DataStoreService service.
 type DataStoreServiceHandler interface {
@@ -192,9 +226,11 @@ type DataStoreServiceHandler interface {
 	DeleteAttestedNode(context.Context, *connect.Request[v1alpha1.DeleteAttestedNodeRequest]) (*connect.Response[v1alpha1.DeleteAttestedNodeResponse], error)
 	FetchAttestedNode(context.Context, *connect.Request[v1alpha1.FetchAttestedNodeRequest]) (*connect.Response[v1alpha1.FetchAttestedNodeResponse], error)
 	UpdateAttestedNode(context.Context, *connect.Request[v1alpha1.UpdateAttestedNodeRequest]) (*connect.Response[v1alpha1.UpdateAttestedNodeResponse], error)
+	ListAttestedNodes(context.Context, *connect.Request[v1alpha1.ListAttestedNodesRequest]) (*connect.Response[v1alpha1.ListAttestedNodesResponse], error)
 	// Node Selector operations
 	GetNodeSelectors(context.Context, *connect.Request[v1alpha1.GetNodeSelectorsRequest]) (*connect.Response[v1alpha1.GetNodeSelectorsResponse], error)
 	SetNodeSelectors(context.Context, *connect.Request[v1alpha1.SetNodeSelectorsRequest]) (*connect.Response[v1alpha1.SetNodeSelectorsResponse], error)
+	ListNodeSelectors(context.Context, *connect.Request[v1alpha1.ListNodeSelectorsRequest]) (*connect.Response[v1alpha1.ListNodeSelectorsResponse], error)
 }
 
 // NewDataStoreServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -234,6 +270,12 @@ func NewDataStoreServiceHandler(svc DataStoreServiceHandler, opts ...connect.Han
 		connect.WithSchema(dataStoreServiceMethods.ByName("UpdateAttestedNode")),
 		connect.WithHandlerOptions(opts...),
 	)
+	dataStoreServiceListAttestedNodesHandler := connect.NewUnaryHandler(
+		DataStoreServiceListAttestedNodesProcedure,
+		svc.ListAttestedNodes,
+		connect.WithSchema(dataStoreServiceMethods.ByName("ListAttestedNodes")),
+		connect.WithHandlerOptions(opts...),
+	)
 	dataStoreServiceGetNodeSelectorsHandler := connect.NewUnaryHandler(
 		DataStoreServiceGetNodeSelectorsProcedure,
 		svc.GetNodeSelectors,
@@ -244,6 +286,12 @@ func NewDataStoreServiceHandler(svc DataStoreServiceHandler, opts ...connect.Han
 		DataStoreServiceSetNodeSelectorsProcedure,
 		svc.SetNodeSelectors,
 		connect.WithSchema(dataStoreServiceMethods.ByName("SetNodeSelectors")),
+		connect.WithHandlerOptions(opts...),
+	)
+	dataStoreServiceListNodeSelectorsHandler := connect.NewUnaryHandler(
+		DataStoreServiceListNodeSelectorsProcedure,
+		svc.ListNodeSelectors,
+		connect.WithSchema(dataStoreServiceMethods.ByName("ListNodeSelectors")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/proto.connect.datastore_service.v1alpha1.DataStoreService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -258,10 +306,14 @@ func NewDataStoreServiceHandler(svc DataStoreServiceHandler, opts ...connect.Han
 			dataStoreServiceFetchAttestedNodeHandler.ServeHTTP(w, r)
 		case DataStoreServiceUpdateAttestedNodeProcedure:
 			dataStoreServiceUpdateAttestedNodeHandler.ServeHTTP(w, r)
+		case DataStoreServiceListAttestedNodesProcedure:
+			dataStoreServiceListAttestedNodesHandler.ServeHTTP(w, r)
 		case DataStoreServiceGetNodeSelectorsProcedure:
 			dataStoreServiceGetNodeSelectorsHandler.ServeHTTP(w, r)
 		case DataStoreServiceSetNodeSelectorsProcedure:
 			dataStoreServiceSetNodeSelectorsHandler.ServeHTTP(w, r)
+		case DataStoreServiceListNodeSelectorsProcedure:
+			dataStoreServiceListNodeSelectorsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -291,10 +343,18 @@ func (UnimplementedDataStoreServiceHandler) UpdateAttestedNode(context.Context, 
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.datastore_service.v1alpha1.DataStoreService.UpdateAttestedNode is not implemented"))
 }
 
+func (UnimplementedDataStoreServiceHandler) ListAttestedNodes(context.Context, *connect.Request[v1alpha1.ListAttestedNodesRequest]) (*connect.Response[v1alpha1.ListAttestedNodesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.datastore_service.v1alpha1.DataStoreService.ListAttestedNodes is not implemented"))
+}
+
 func (UnimplementedDataStoreServiceHandler) GetNodeSelectors(context.Context, *connect.Request[v1alpha1.GetNodeSelectorsRequest]) (*connect.Response[v1alpha1.GetNodeSelectorsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.datastore_service.v1alpha1.DataStoreService.GetNodeSelectors is not implemented"))
 }
 
 func (UnimplementedDataStoreServiceHandler) SetNodeSelectors(context.Context, *connect.Request[v1alpha1.SetNodeSelectorsRequest]) (*connect.Response[v1alpha1.SetNodeSelectorsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.datastore_service.v1alpha1.DataStoreService.SetNodeSelectors is not implemented"))
+}
+
+func (UnimplementedDataStoreServiceHandler) ListNodeSelectors(context.Context, *connect.Request[v1alpha1.ListNodeSelectorsRequest]) (*connect.Response[v1alpha1.ListNodeSelectorsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.datastore_service.v1alpha1.DataStoreService.ListNodeSelectors is not implemented"))
 }
