@@ -15,7 +15,59 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/connect/datastore_service/v1alpha1/datastore_service.proto.
  */
 export const file_proto_connect_datastore_service_v1alpha1_datastore_service: GenFile = /*@__PURE__*/
-  fileDesc("CkBwcm90by9jb25uZWN0L2RhdGFzdG9yZV9zZXJ2aWNlL3YxYWxwaGExL2RhdGFzdG9yZV9zZXJ2aWNlLnByb3RvEihwcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExIhsKGUNvdW50QXR0ZXN0ZWROb2Rlc1JlcXVlc3QiKwoaQ291bnRBdHRlc3RlZE5vZGVzUmVzcG9uc2USDQoFY291bnQYASABKAUiYQoZQ3JlYXRlQXR0ZXN0ZWROb2RlUmVxdWVzdBJECgRub2RlGAEgASgLMjYucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5BdHRlc3RlZE5vZGUiYgoaQ3JlYXRlQXR0ZXN0ZWROb2RlUmVzcG9uc2USRAoEbm9kZRgBIAEoCzI2LnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuQXR0ZXN0ZWROb2RlIi4KGURlbGV0ZUF0dGVzdGVkTm9kZVJlcXVlc3QSEQoJc3BpZmZlX2lkGAEgASgJInAKGkRlbGV0ZUF0dGVzdGVkTm9kZVJlc3BvbnNlEkkKBG5vZGUYASABKAsyNi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkF0dGVzdGVkTm9kZUgAiAEBQgcKBV9ub2RlIi0KGEZldGNoQXR0ZXN0ZWROb2RlUmVxdWVzdBIRCglzcGlmZmVfaWQYASABKAkibwoZRmV0Y2hBdHRlc3RlZE5vZGVSZXNwb25zZRJJCgRub2RlGAEgASgLMjYucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5BdHRlc3RlZE5vZGVIAIgBAUIHCgVfbm9kZSJvChlVcGRhdGVBdHRlc3RlZE5vZGVSZXF1ZXN0EkkKBG5vZGUYASABKAsyNi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkF0dGVzdGVkTm9kZUgAiAEBQgcKBV9ub2RlInAKGlVwZGF0ZUF0dGVzdGVkTm9kZVJlc3BvbnNlEkkKBG5vZGUYASABKAsyNi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkF0dGVzdGVkTm9kZUgAiAEBQgcKBV9ub2RlIiwKF0dldE5vZGVTZWxlY3RvcnNSZXF1ZXN0EhEKCXNwaWZmZV9pZBgBIAEoCSJ0ChhHZXROb2RlU2VsZWN0b3JzUmVzcG9uc2USEQoJc3BpZmZlX2lkGAEgASgJEkUKCXNlbGVjdG9ycxgCIAMoCzIyLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuU2VsZWN0b3IicwoXU2V0Tm9kZVNlbGVjdG9yc1JlcXVlc3QSEQoJc3BpZmZlX2lkGAEgASgJEkUKCXNlbGVjdG9ycxgCIAMoCzIyLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuU2VsZWN0b3IiGgoYU2V0Tm9kZVNlbGVjdG9yc1Jlc3BvbnNlMvEIChBEYXRhU3RvcmVTZXJ2aWNlEp8BChJDb3VudEF0dGVzdGVkTm9kZXMSQy5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkNvdW50QXR0ZXN0ZWROb2Rlc1JlcXVlc3QaRC5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkNvdW50QXR0ZXN0ZWROb2Rlc1Jlc3BvbnNlEp8BChJDcmVhdGVBdHRlc3RlZE5vZGUSQy5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkNyZWF0ZUF0dGVzdGVkTm9kZVJlcXVlc3QaRC5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkNyZWF0ZUF0dGVzdGVkTm9kZVJlc3BvbnNlEp8BChJEZWxldGVBdHRlc3RlZE5vZGUSQy5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkRlbGV0ZUF0dGVzdGVkTm9kZVJlcXVlc3QaRC5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkRlbGV0ZUF0dGVzdGVkTm9kZVJlc3BvbnNlEpwBChFGZXRjaEF0dGVzdGVkTm9kZRJCLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuRmV0Y2hBdHRlc3RlZE5vZGVSZXF1ZXN0GkMucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5GZXRjaEF0dGVzdGVkTm9kZVJlc3BvbnNlEp8BChJVcGRhdGVBdHRlc3RlZE5vZGUSQy5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZUF0dGVzdGVkTm9kZVJlcXVlc3QaRC5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZUF0dGVzdGVkTm9kZVJlc3BvbnNlEpkBChBHZXROb2RlU2VsZWN0b3JzEkEucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5HZXROb2RlU2VsZWN0b3JzUmVxdWVzdBpCLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuR2V0Tm9kZVNlbGVjdG9yc1Jlc3BvbnNlEpkBChBTZXROb2RlU2VsZWN0b3JzEkEucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5TZXROb2RlU2VsZWN0b3JzUmVxdWVzdBpCLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuU2V0Tm9kZVNlbGVjdG9yc1Jlc3BvbnNlQlJaUGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb25uZWN0L2RhdGFzdG9yZV9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_proto_connect_datastore_service_v1alpha1_datastore]);
+  fileDesc("CkBwcm90by9jb25uZWN0L2RhdGFzdG9yZV9zZXJ2aWNlL3YxYWxwaGExL2RhdGFzdG9yZV9zZXJ2aWNlLnByb3RvEihwcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExIhoKGExpc3ROb2RlU2VsZWN0b3JzUmVxdWVzdCLxAQoZTGlzdE5vZGVTZWxlY3RvcnNSZXNwb25zZRJpCg5ub2RlX3NlbGVjdG9ycxgBIAMoCzJRLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuTGlzdE5vZGVTZWxlY3RvcnNSZXNwb25zZS5Ob2RlU2VsZWN0b3JzGmkKDU5vZGVTZWxlY3RvcnMSEQoJc3BpZmZlX2lkGAEgASgJEkUKCXNlbGVjdG9ycxgCIAMoCzIyLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuU2VsZWN0b3IiGwoZQ291bnRBdHRlc3RlZE5vZGVzUmVxdWVzdCIrChpDb3VudEF0dGVzdGVkTm9kZXNSZXNwb25zZRINCgVjb3VudBgBIAEoBSJhChlDcmVhdGVBdHRlc3RlZE5vZGVSZXF1ZXN0EkQKBG5vZGUYASABKAsyNi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkF0dGVzdGVkTm9kZSJiChpDcmVhdGVBdHRlc3RlZE5vZGVSZXNwb25zZRJECgRub2RlGAEgASgLMjYucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5BdHRlc3RlZE5vZGUiLgoZRGVsZXRlQXR0ZXN0ZWROb2RlUmVxdWVzdBIRCglzcGlmZmVfaWQYASABKAkicAoaRGVsZXRlQXR0ZXN0ZWROb2RlUmVzcG9uc2USSQoEbm9kZRgBIAEoCzI2LnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuQXR0ZXN0ZWROb2RlSACIAQFCBwoFX25vZGUiLQoYRmV0Y2hBdHRlc3RlZE5vZGVSZXF1ZXN0EhEKCXNwaWZmZV9pZBgBIAEoCSJvChlGZXRjaEF0dGVzdGVkTm9kZVJlc3BvbnNlEkkKBG5vZGUYASABKAsyNi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkF0dGVzdGVkTm9kZUgAiAEBQgcKBV9ub2RlIm8KGVVwZGF0ZUF0dGVzdGVkTm9kZVJlcXVlc3QSSQoEbm9kZRgBIAEoCzI2LnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuQXR0ZXN0ZWROb2RlSACIAQFCBwoFX25vZGUicAoaVXBkYXRlQXR0ZXN0ZWROb2RlUmVzcG9uc2USSQoEbm9kZRgBIAEoCzI2LnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuQXR0ZXN0ZWROb2RlSACIAQFCBwoFX25vZGUiLAoXR2V0Tm9kZVNlbGVjdG9yc1JlcXVlc3QSEQoJc3BpZmZlX2lkGAEgASgJInQKGEdldE5vZGVTZWxlY3RvcnNSZXNwb25zZRIRCglzcGlmZmVfaWQYASABKAkSRQoJc2VsZWN0b3JzGAIgAygLMjIucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5TZWxlY3RvciJzChdTZXROb2RlU2VsZWN0b3JzUmVxdWVzdBIRCglzcGlmZmVfaWQYASABKAkSRQoJc2VsZWN0b3JzGAIgAygLMjIucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5TZWxlY3RvciIaChhTZXROb2RlU2VsZWN0b3JzUmVzcG9uc2UiGgoYTGlzdEF0dGVzdGVkTm9kZXNSZXF1ZXN0ImIKGUxpc3RBdHRlc3RlZE5vZGVzUmVzcG9uc2USRQoFbm9kZXMYASADKAsyNi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkF0dGVzdGVkTm9kZTKvCwoQRGF0YVN0b3JlU2VydmljZRKfAQoSQ291bnRBdHRlc3RlZE5vZGVzEkMucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5Db3VudEF0dGVzdGVkTm9kZXNSZXF1ZXN0GkQucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5Db3VudEF0dGVzdGVkTm9kZXNSZXNwb25zZRKfAQoSQ3JlYXRlQXR0ZXN0ZWROb2RlEkMucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5DcmVhdGVBdHRlc3RlZE5vZGVSZXF1ZXN0GkQucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5DcmVhdGVBdHRlc3RlZE5vZGVSZXNwb25zZRKfAQoSRGVsZXRlQXR0ZXN0ZWROb2RlEkMucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5EZWxldGVBdHRlc3RlZE5vZGVSZXF1ZXN0GkQucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5EZWxldGVBdHRlc3RlZE5vZGVSZXNwb25zZRKcAQoRRmV0Y2hBdHRlc3RlZE5vZGUSQi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkZldGNoQXR0ZXN0ZWROb2RlUmVxdWVzdBpDLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuRmV0Y2hBdHRlc3RlZE5vZGVSZXNwb25zZRKfAQoSVXBkYXRlQXR0ZXN0ZWROb2RlEkMucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5VcGRhdGVBdHRlc3RlZE5vZGVSZXF1ZXN0GkQucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5VcGRhdGVBdHRlc3RlZE5vZGVSZXNwb25zZRKcAQoRTGlzdEF0dGVzdGVkTm9kZXMSQi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkxpc3RBdHRlc3RlZE5vZGVzUmVxdWVzdBpDLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuTGlzdEF0dGVzdGVkTm9kZXNSZXNwb25zZRKZAQoQR2V0Tm9kZVNlbGVjdG9ycxJBLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuR2V0Tm9kZVNlbGVjdG9yc1JlcXVlc3QaQi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkdldE5vZGVTZWxlY3RvcnNSZXNwb25zZRKZAQoQU2V0Tm9kZVNlbGVjdG9ycxJBLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuU2V0Tm9kZVNlbGVjdG9yc1JlcXVlc3QaQi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLlNldE5vZGVTZWxlY3RvcnNSZXNwb25zZRKcAQoRTGlzdE5vZGVTZWxlY3RvcnMSQi5wcm90by5jb25uZWN0LmRhdGFzdG9yZV9zZXJ2aWNlLnYxYWxwaGExLkxpc3ROb2RlU2VsZWN0b3JzUmVxdWVzdBpDLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuTGlzdE5vZGVTZWxlY3RvcnNSZXNwb25zZUJSWlBnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29ubmVjdC9kYXRhc3RvcmVfc2VydmljZS92MWFscGhhMWIGcHJvdG8z", [file_proto_connect_datastore_service_v1alpha1_datastore]);
+
+/**
+ * @generated from message proto.connect.datastore_service.v1alpha1.ListNodeSelectorsRequest
+ */
+export type ListNodeSelectorsRequest = Message<"proto.connect.datastore_service.v1alpha1.ListNodeSelectorsRequest"> & {
+};
+
+/**
+ * Describes the message proto.connect.datastore_service.v1alpha1.ListNodeSelectorsRequest.
+ * Use `create(ListNodeSelectorsRequestSchema)` to create a new message.
+ */
+export const ListNodeSelectorsRequestSchema: GenMessage<ListNodeSelectorsRequest> = /*@__PURE__*/
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 0);
+
+/**
+ * @generated from message proto.connect.datastore_service.v1alpha1.ListNodeSelectorsResponse
+ */
+export type ListNodeSelectorsResponse = Message<"proto.connect.datastore_service.v1alpha1.ListNodeSelectorsResponse"> & {
+  /**
+   * @generated from field: repeated proto.connect.datastore_service.v1alpha1.ListNodeSelectorsResponse.NodeSelectors node_selectors = 1;
+   */
+  nodeSelectors: ListNodeSelectorsResponse_NodeSelectors[];
+};
+
+/**
+ * Describes the message proto.connect.datastore_service.v1alpha1.ListNodeSelectorsResponse.
+ * Use `create(ListNodeSelectorsResponseSchema)` to create a new message.
+ */
+export const ListNodeSelectorsResponseSchema: GenMessage<ListNodeSelectorsResponse> = /*@__PURE__*/
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 1);
+
+/**
+ * @generated from message proto.connect.datastore_service.v1alpha1.ListNodeSelectorsResponse.NodeSelectors
+ */
+export type ListNodeSelectorsResponse_NodeSelectors = Message<"proto.connect.datastore_service.v1alpha1.ListNodeSelectorsResponse.NodeSelectors"> & {
+  /**
+   * @generated from field: string spiffe_id = 1;
+   */
+  spiffeId: string;
+
+  /**
+   * @generated from field: repeated proto.connect.datastore_service.v1alpha1.Selector selectors = 2;
+   */
+  selectors: Selector[];
+};
+
+/**
+ * Describes the message proto.connect.datastore_service.v1alpha1.ListNodeSelectorsResponse.NodeSelectors.
+ * Use `create(ListNodeSelectorsResponse_NodeSelectorsSchema)` to create a new message.
+ */
+export const ListNodeSelectorsResponse_NodeSelectorsSchema: GenMessage<ListNodeSelectorsResponse_NodeSelectors> = /*@__PURE__*/
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 1, 0);
 
 /**
  * Node operations request/response messages
@@ -30,7 +82,7 @@ export type CountAttestedNodesRequest = Message<"proto.connect.datastore_service
  * Use `create(CountAttestedNodesRequestSchema)` to create a new message.
  */
 export const CountAttestedNodesRequestSchema: GenMessage<CountAttestedNodesRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 0);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 2);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.CountAttestedNodesResponse
@@ -47,7 +99,7 @@ export type CountAttestedNodesResponse = Message<"proto.connect.datastore_servic
  * Use `create(CountAttestedNodesResponseSchema)` to create a new message.
  */
 export const CountAttestedNodesResponseSchema: GenMessage<CountAttestedNodesResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 1);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 3);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.CreateAttestedNodeRequest
@@ -64,7 +116,7 @@ export type CreateAttestedNodeRequest = Message<"proto.connect.datastore_service
  * Use `create(CreateAttestedNodeRequestSchema)` to create a new message.
  */
 export const CreateAttestedNodeRequestSchema: GenMessage<CreateAttestedNodeRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 2);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 4);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.CreateAttestedNodeResponse
@@ -81,7 +133,7 @@ export type CreateAttestedNodeResponse = Message<"proto.connect.datastore_servic
  * Use `create(CreateAttestedNodeResponseSchema)` to create a new message.
  */
 export const CreateAttestedNodeResponseSchema: GenMessage<CreateAttestedNodeResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 3);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 5);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.DeleteAttestedNodeRequest
@@ -98,7 +150,7 @@ export type DeleteAttestedNodeRequest = Message<"proto.connect.datastore_service
  * Use `create(DeleteAttestedNodeRequestSchema)` to create a new message.
  */
 export const DeleteAttestedNodeRequestSchema: GenMessage<DeleteAttestedNodeRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 4);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 6);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.DeleteAttestedNodeResponse
@@ -115,7 +167,7 @@ export type DeleteAttestedNodeResponse = Message<"proto.connect.datastore_servic
  * Use `create(DeleteAttestedNodeResponseSchema)` to create a new message.
  */
 export const DeleteAttestedNodeResponseSchema: GenMessage<DeleteAttestedNodeResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 5);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 7);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.FetchAttestedNodeRequest
@@ -132,7 +184,7 @@ export type FetchAttestedNodeRequest = Message<"proto.connect.datastore_service.
  * Use `create(FetchAttestedNodeRequestSchema)` to create a new message.
  */
 export const FetchAttestedNodeRequestSchema: GenMessage<FetchAttestedNodeRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 6);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 8);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.FetchAttestedNodeResponse
@@ -149,7 +201,7 @@ export type FetchAttestedNodeResponse = Message<"proto.connect.datastore_service
  * Use `create(FetchAttestedNodeResponseSchema)` to create a new message.
  */
 export const FetchAttestedNodeResponseSchema: GenMessage<FetchAttestedNodeResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 7);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 9);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.UpdateAttestedNodeRequest
@@ -166,7 +218,7 @@ export type UpdateAttestedNodeRequest = Message<"proto.connect.datastore_service
  * Use `create(UpdateAttestedNodeRequestSchema)` to create a new message.
  */
 export const UpdateAttestedNodeRequestSchema: GenMessage<UpdateAttestedNodeRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 8);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 10);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.UpdateAttestedNodeResponse
@@ -183,7 +235,7 @@ export type UpdateAttestedNodeResponse = Message<"proto.connect.datastore_servic
  * Use `create(UpdateAttestedNodeResponseSchema)` to create a new message.
  */
 export const UpdateAttestedNodeResponseSchema: GenMessage<UpdateAttestedNodeResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 9);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 11);
 
 /**
  * Node Selector operations request/response messages
@@ -202,7 +254,7 @@ export type GetNodeSelectorsRequest = Message<"proto.connect.datastore_service.v
  * Use `create(GetNodeSelectorsRequestSchema)` to create a new message.
  */
 export const GetNodeSelectorsRequestSchema: GenMessage<GetNodeSelectorsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 10);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 12);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.GetNodeSelectorsResponse
@@ -224,7 +276,7 @@ export type GetNodeSelectorsResponse = Message<"proto.connect.datastore_service.
  * Use `create(GetNodeSelectorsResponseSchema)` to create a new message.
  */
 export const GetNodeSelectorsResponseSchema: GenMessage<GetNodeSelectorsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 11);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 13);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.SetNodeSelectorsRequest
@@ -246,7 +298,7 @@ export type SetNodeSelectorsRequest = Message<"proto.connect.datastore_service.v
  * Use `create(SetNodeSelectorsRequestSchema)` to create a new message.
  */
 export const SetNodeSelectorsRequestSchema: GenMessage<SetNodeSelectorsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 12);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 14);
 
 /**
  * @generated from message proto.connect.datastore_service.v1alpha1.SetNodeSelectorsResponse
@@ -259,7 +311,37 @@ export type SetNodeSelectorsResponse = Message<"proto.connect.datastore_service.
  * Use `create(SetNodeSelectorsResponseSchema)` to create a new message.
  */
 export const SetNodeSelectorsResponseSchema: GenMessage<SetNodeSelectorsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 13);
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 15);
+
+/**
+ * @generated from message proto.connect.datastore_service.v1alpha1.ListAttestedNodesRequest
+ */
+export type ListAttestedNodesRequest = Message<"proto.connect.datastore_service.v1alpha1.ListAttestedNodesRequest"> & {
+};
+
+/**
+ * Describes the message proto.connect.datastore_service.v1alpha1.ListAttestedNodesRequest.
+ * Use `create(ListAttestedNodesRequestSchema)` to create a new message.
+ */
+export const ListAttestedNodesRequestSchema: GenMessage<ListAttestedNodesRequest> = /*@__PURE__*/
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 16);
+
+/**
+ * @generated from message proto.connect.datastore_service.v1alpha1.ListAttestedNodesResponse
+ */
+export type ListAttestedNodesResponse = Message<"proto.connect.datastore_service.v1alpha1.ListAttestedNodesResponse"> & {
+  /**
+   * @generated from field: repeated proto.connect.datastore_service.v1alpha1.AttestedNode nodes = 1;
+   */
+  nodes: AttestedNode[];
+};
+
+/**
+ * Describes the message proto.connect.datastore_service.v1alpha1.ListAttestedNodesResponse.
+ * Use `create(ListAttestedNodesResponseSchema)` to create a new message.
+ */
+export const ListAttestedNodesResponseSchema: GenMessage<ListAttestedNodesResponse> = /*@__PURE__*/
+  messageDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 17);
 
 /**
  * DataStoreService defines the gRPC service for the SPIRE server DataStore interface
@@ -310,6 +392,14 @@ export const DataStoreService: GenService<{
     output: typeof UpdateAttestedNodeResponseSchema;
   },
   /**
+   * @generated from rpc proto.connect.datastore_service.v1alpha1.DataStoreService.ListAttestedNodes
+   */
+  listAttestedNodes: {
+    methodKind: "unary";
+    input: typeof ListAttestedNodesRequestSchema;
+    output: typeof ListAttestedNodesResponseSchema;
+  },
+  /**
    * Node Selector operations
    *
    * @generated from rpc proto.connect.datastore_service.v1alpha1.DataStoreService.GetNodeSelectors
@@ -326,6 +416,14 @@ export const DataStoreService: GenService<{
     methodKind: "unary";
     input: typeof SetNodeSelectorsRequestSchema;
     output: typeof SetNodeSelectorsResponseSchema;
+  },
+  /**
+   * @generated from rpc proto.connect.datastore_service.v1alpha1.DataStoreService.ListNodeSelectors
+   */
+  listNodeSelectors: {
+    methodKind: "unary";
+    input: typeof ListNodeSelectorsRequestSchema;
+    output: typeof ListNodeSelectorsResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_connect_datastore_service_v1alpha1_datastore_service, 0);

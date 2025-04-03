@@ -27,8 +27,10 @@ const (
 	DataStoreService_DeleteAttestedNode_FullMethodName = "/proto.connect.datastore_service.v1alpha1.DataStoreService/DeleteAttestedNode"
 	DataStoreService_FetchAttestedNode_FullMethodName  = "/proto.connect.datastore_service.v1alpha1.DataStoreService/FetchAttestedNode"
 	DataStoreService_UpdateAttestedNode_FullMethodName = "/proto.connect.datastore_service.v1alpha1.DataStoreService/UpdateAttestedNode"
+	DataStoreService_ListAttestedNodes_FullMethodName  = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListAttestedNodes"
 	DataStoreService_GetNodeSelectors_FullMethodName   = "/proto.connect.datastore_service.v1alpha1.DataStoreService/GetNodeSelectors"
 	DataStoreService_SetNodeSelectors_FullMethodName   = "/proto.connect.datastore_service.v1alpha1.DataStoreService/SetNodeSelectors"
+	DataStoreService_ListNodeSelectors_FullMethodName  = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListNodeSelectors"
 )
 
 // DataStoreServiceClient is the client API for DataStoreService service.
@@ -43,9 +45,11 @@ type DataStoreServiceClient interface {
 	DeleteAttestedNode(ctx context.Context, in *DeleteAttestedNodeRequest, opts ...grpc.CallOption) (*DeleteAttestedNodeResponse, error)
 	FetchAttestedNode(ctx context.Context, in *FetchAttestedNodeRequest, opts ...grpc.CallOption) (*FetchAttestedNodeResponse, error)
 	UpdateAttestedNode(ctx context.Context, in *UpdateAttestedNodeRequest, opts ...grpc.CallOption) (*UpdateAttestedNodeResponse, error)
+	ListAttestedNodes(ctx context.Context, in *ListAttestedNodesRequest, opts ...grpc.CallOption) (*ListAttestedNodesResponse, error)
 	// Node Selector operations
 	GetNodeSelectors(ctx context.Context, in *GetNodeSelectorsRequest, opts ...grpc.CallOption) (*GetNodeSelectorsResponse, error)
 	SetNodeSelectors(ctx context.Context, in *SetNodeSelectorsRequest, opts ...grpc.CallOption) (*SetNodeSelectorsResponse, error)
+	ListNodeSelectors(ctx context.Context, in *ListNodeSelectorsRequest, opts ...grpc.CallOption) (*ListNodeSelectorsResponse, error)
 }
 
 type dataStoreServiceClient struct {
@@ -106,6 +110,16 @@ func (c *dataStoreServiceClient) UpdateAttestedNode(ctx context.Context, in *Upd
 	return out, nil
 }
 
+func (c *dataStoreServiceClient) ListAttestedNodes(ctx context.Context, in *ListAttestedNodesRequest, opts ...grpc.CallOption) (*ListAttestedNodesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAttestedNodesResponse)
+	err := c.cc.Invoke(ctx, DataStoreService_ListAttestedNodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataStoreServiceClient) GetNodeSelectors(ctx context.Context, in *GetNodeSelectorsRequest, opts ...grpc.CallOption) (*GetNodeSelectorsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetNodeSelectorsResponse)
@@ -126,6 +140,16 @@ func (c *dataStoreServiceClient) SetNodeSelectors(ctx context.Context, in *SetNo
 	return out, nil
 }
 
+func (c *dataStoreServiceClient) ListNodeSelectors(ctx context.Context, in *ListNodeSelectorsRequest, opts ...grpc.CallOption) (*ListNodeSelectorsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListNodeSelectorsResponse)
+	err := c.cc.Invoke(ctx, DataStoreService_ListNodeSelectors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataStoreServiceServer is the server API for DataStoreService service.
 // All implementations should embed UnimplementedDataStoreServiceServer
 // for forward compatibility.
@@ -138,9 +162,11 @@ type DataStoreServiceServer interface {
 	DeleteAttestedNode(context.Context, *DeleteAttestedNodeRequest) (*DeleteAttestedNodeResponse, error)
 	FetchAttestedNode(context.Context, *FetchAttestedNodeRequest) (*FetchAttestedNodeResponse, error)
 	UpdateAttestedNode(context.Context, *UpdateAttestedNodeRequest) (*UpdateAttestedNodeResponse, error)
+	ListAttestedNodes(context.Context, *ListAttestedNodesRequest) (*ListAttestedNodesResponse, error)
 	// Node Selector operations
 	GetNodeSelectors(context.Context, *GetNodeSelectorsRequest) (*GetNodeSelectorsResponse, error)
 	SetNodeSelectors(context.Context, *SetNodeSelectorsRequest) (*SetNodeSelectorsResponse, error)
+	ListNodeSelectors(context.Context, *ListNodeSelectorsRequest) (*ListNodeSelectorsResponse, error)
 }
 
 // UnimplementedDataStoreServiceServer should be embedded to have
@@ -165,11 +191,17 @@ func (UnimplementedDataStoreServiceServer) FetchAttestedNode(context.Context, *F
 func (UnimplementedDataStoreServiceServer) UpdateAttestedNode(context.Context, *UpdateAttestedNodeRequest) (*UpdateAttestedNodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAttestedNode not implemented")
 }
+func (UnimplementedDataStoreServiceServer) ListAttestedNodes(context.Context, *ListAttestedNodesRequest) (*ListAttestedNodesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAttestedNodes not implemented")
+}
 func (UnimplementedDataStoreServiceServer) GetNodeSelectors(context.Context, *GetNodeSelectorsRequest) (*GetNodeSelectorsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNodeSelectors not implemented")
 }
 func (UnimplementedDataStoreServiceServer) SetNodeSelectors(context.Context, *SetNodeSelectorsRequest) (*SetNodeSelectorsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetNodeSelectors not implemented")
+}
+func (UnimplementedDataStoreServiceServer) ListNodeSelectors(context.Context, *ListNodeSelectorsRequest) (*ListNodeSelectorsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNodeSelectors not implemented")
 }
 func (UnimplementedDataStoreServiceServer) testEmbeddedByValue() {}
 
@@ -281,6 +313,24 @@ func _DataStoreService_UpdateAttestedNode_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataStoreService_ListAttestedNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAttestedNodesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataStoreServiceServer).ListAttestedNodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataStoreService_ListAttestedNodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataStoreServiceServer).ListAttestedNodes(ctx, req.(*ListAttestedNodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataStoreService_GetNodeSelectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetNodeSelectorsRequest)
 	if err := dec(in); err != nil {
@@ -317,6 +367,24 @@ func _DataStoreService_SetNodeSelectors_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataStoreService_ListNodeSelectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNodeSelectorsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataStoreServiceServer).ListNodeSelectors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataStoreService_ListNodeSelectors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataStoreServiceServer).ListNodeSelectors(ctx, req.(*ListNodeSelectorsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataStoreService_ServiceDesc is the grpc.ServiceDesc for DataStoreService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -345,12 +413,20 @@ var DataStoreService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataStoreService_UpdateAttestedNode_Handler,
 		},
 		{
+			MethodName: "ListAttestedNodes",
+			Handler:    _DataStoreService_ListAttestedNodes_Handler,
+		},
+		{
 			MethodName: "GetNodeSelectors",
 			Handler:    _DataStoreService_GetNodeSelectors_Handler,
 		},
 		{
 			MethodName: "SetNodeSelectors",
 			Handler:    _DataStoreService_SetNodeSelectors_Handler,
+		},
+		{
+			MethodName: "ListNodeSelectors",
+			Handler:    _DataStoreService_ListNodeSelectors_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
