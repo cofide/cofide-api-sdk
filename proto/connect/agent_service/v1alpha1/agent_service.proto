@@ -39,19 +39,13 @@ message UpdateTrustZoneBundleRequest {
   string trust_zone_id = 2;
 }
 
-message UpdateTrustZoneBundleResponse {
-  bool success = 1;
-  string message = 2;
-}
+message UpdateTrustZoneBundleResponse {}
 
 message UpdateAgentStatusRequest {
   proto.agent.v1alpha1.AgentStatus status = 1;
 }
 
-message UpdateAgentStatusResponse {
-  bool success = 1;
-  string message = 2;
-}
+message UpdateAgentStatusResponse {}
 
 message RegisterFederatedServiceRequest {
   proto.federated_service.v1alpha1.FederatedService service = 1;
@@ -59,8 +53,6 @@ message RegisterFederatedServiceRequest {
 
 message RegisterFederatedServiceResponse {
   string service_id = 1;
-  bool success = 2;
-  string message = 3;
 }
 
 message DeregisterFederatedServiceRequest {
@@ -69,8 +61,6 @@ message DeregisterFederatedServiceRequest {
 
 message DeregisterFederatedServiceResponse {
   string service_id = 1;
-  bool success = 2;
-  string message = 3;
 }
 
 message UpdateFederatedServiceRequest {
@@ -79,8 +69,6 @@ message UpdateFederatedServiceRequest {
 
 message UpdateFederatedServiceResponse {
   string service_id = 1;
-  bool success = 2;
-  string message = 3;
 }
 
 message GetFederatedServiceRequest {
