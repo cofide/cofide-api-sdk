@@ -20,6 +20,7 @@ message ValidateResponse {}
 message DeployRequest {
   optional uint32 data_source = 1;
   optional string kube_cfg_file = 2;
+  repeated string trust_zone_names = 3;
 }
 
 message DeployResponse {
@@ -29,6 +30,7 @@ message DeployResponse {
 message TearDownRequest {
   optional uint32 data_source = 1;
   optional string kube_cfg_file = 2;
+  repeated string trust_zone_names = 3;
 }
 
 message TearDownResponse {
