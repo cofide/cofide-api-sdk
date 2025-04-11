@@ -7,15 +7,12 @@ import (
 	"context"
 	"testing"
 
-	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	trustzonesvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_service/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 const (
@@ -58,10 +55,6 @@ func TestTrustZoneClient_Unimplemented(t *testing.T) {
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZone)
 
-	token, err := client.RegisterCluster(ctx, "", nil)
-	test.RequireUnimplemented(t, err)
-	assert.Empty(t, token)
-
 	agentID, err := client.RegisterAgent(ctx, nil, "", nil)
 	test.RequireUnimplemented(t, err)
 	assert.Empty(t, agentID)
@@ -98,11 +91,6 @@ func TestTrustZoneClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZone, updatedTrustZone)
 
-	cluster := fakeCluster()
-	token, err := client.RegisterCluster(ctx, fakeTrustZoneID, cluster)
-	require.NoError(t, err)
-	assert.Equal(t, fakeAgentToken, token)
-
 	agent := fakeAgent()
 	bundle := &types.Bundle{TrustDomain: fakeTrustDomain}
 	agentID, err := client.RegisterAgent(ctx, agent, fakeAgentToken, bundle)
@@ -110,35 +98,8 @@ func TestTrustZoneClient(t *testing.T) {
 	assert.Equal(t, fakeAgentID, agentID)
 }
 
-func TestTrustZoneClient_GetTrustZone_Unimplemented(t *testing.T) {
-	server := test.NewTestServer(t)
-	trustzonesvcpb.RegisterTrustZoneServiceServer(server.Server, &unimplementedGetTrustZoneService{
-		fakeTrustZoneService: fakeTrustZoneService{t: t},
-	})
-	server.Serve()
-
-	conn := server.CreateClientConn()
-	client := New(conn)
-	ctx := context.Background()
-
-	trustZone := fakeTrustZone()
-
-	createdTrustZone, err := client.CreateTrustZone(ctx, trustZone)
-	require.NoError(t, err)
-	assert.EqualExportedValues(t, trustZone, createdTrustZone)
-
-	// Test fallback to GetTrustZoneDetails rpc.
-	gotTrustZone, err := client.GetTrustZone(ctx, fakeTrustZoneID)
-	require.NoError(t, err)
-	assert.Equal(t, trustZone.GetId(), gotTrustZone.GetId())
-}
-
 type fakeTrustZoneService struct {
 	t *testing.T
-}
-
-type unimplementedGetTrustZoneService struct {
-	fakeTrustZoneService
 }
 
 func (f *fakeTrustZoneService) CreateTrustZone(ctx context.Context, req *trustzonesvcpb.CreateTrustZoneRequest) (*trustzonesvcpb.CreateTrustZoneResponse, error) {
@@ -156,11 +117,6 @@ func (f *fakeTrustZoneService) GetTrustZone(ctx context.Context, req *trustzones
 	return &trustzonesvcpb.GetTrustZoneResponse{TrustZone: fakeTrustZone()}, nil
 }
 
-func (f *fakeTrustZoneService) GetTrustZoneDetails(ctx context.Context, req *trustzonesvcpb.GetTrustZoneDetailsRequest) (*trustzonesvcpb.GetTrustZoneDetailsResponse, error) {
-	assert.EqualExportedValues(f.t, fakeTrustZoneID, req.TrustZoneId)
-	return &trustzonesvcpb.GetTrustZoneDetailsResponse{TrustZone: fakeTrustZone()}, nil
-}
-
 func (f *fakeTrustZoneService) ListTrustZones(ctx context.Context, req *trustzonesvcpb.ListTrustZonesRequest) (*trustzonesvcpb.ListTrustZonesResponse, error) {
 	assert.Equal(f.t, fakeTrustZoneName, req.Filter.GetName())
 	trustZones := []*trustzonepb.TrustZone{fakeTrustZone()}
@@ -172,12 +128,6 @@ func (f *fakeTrustZoneService) UpdateTrustZone(ctx context.Context, req *trustzo
 	return &trustzonesvcpb.UpdateTrustZoneResponse{TrustZone: req.TrustZone}, nil
 }
 
-func (f *fakeTrustZoneService) RegisterCluster(ctx context.Context, req *trustzonesvcpb.RegisterClusterRequest) (*trustzonesvcpb.RegisterClusterResponse, error) {
-	assert.EqualExportedValues(f.t, fakeCluster(), req.Cluster)
-	assert.Equal(f.t, fakeTrustZoneID, req.TrustZoneId)
-	return &trustzonesvcpb.RegisterClusterResponse{AgentToken: fakeAgentToken}, nil
-}
-
 func (f *fakeTrustZoneService) RegisterAgent(ctx context.Context, req *trustzonesvcpb.RegisterAgentRequest) (*trustzonesvcpb.RegisterAgentResponse, error) {
 	assert.EqualExportedValues(f.t, fakeAgent(), req.Agent)
 	assert.Equal(f.t, fakeAgentToken, req.AgentToken)
@@ -185,21 +135,10 @@ func (f *fakeTrustZoneService) RegisterAgent(ctx context.Context, req *trustzone
 	return &trustzonesvcpb.RegisterAgentResponse{AgentId: fakeAgentID}, nil
 }
 
-func (f *unimplementedGetTrustZoneService) GetTrustZone(ctx context.Context, req *trustzonesvcpb.GetTrustZoneRequest) (*trustzonesvcpb.GetTrustZoneResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetTrustZone not implemented")
-}
-
 func fakeTrustZone() *trustzonepb.TrustZone {
 	return &trustzonepb.TrustZone{
 		Id:   test.PtrOf(fakeTrustZoneID),
 		Name: fakeTrustZoneName,
-	}
-}
-
-func fakeCluster() *clusterpb.Cluster {
-	return &clusterpb.Cluster{
-		Id:   test.PtrOf(fakeClusterID),
-		Name: test.PtrOf(fakeClusterName),
 	}
 }
 
