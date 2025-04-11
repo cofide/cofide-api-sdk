@@ -29,6 +29,21 @@ func Test_fakeTrustZoneClient_CreateTrustZone(t *testing.T) {
 	assert.EqualExportedValues(t, trustZone, fake.TrustZones[*createdTrustZone.Id])
 }
 
+func Test_fakeTrustZoneClient_DestroyTrustZone(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	err := client.DestroyTrustZone(ctx, test.FakeTrustZoneID)
+	require.Error(t, err)
+
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+
+	err = client.DestroyTrustZone(ctx, test.FakeTrustZoneID)
+	require.NoError(t, err)
+	require.Nil(t, fake.TrustZones[test.FakeTrustZoneID])
+}
+
 func Test_fakeTrustZoneClient_GetTrustZone(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)

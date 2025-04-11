@@ -41,6 +41,17 @@ func (c *fakeTrustZoneClient) CreateTrustZone(ctx context.Context, trustZone *tr
 	return clone(trustZone), nil
 }
 
+func (c *fakeTrustZoneClient) DestroyTrustZone(ctx context.Context, trustZoneID string) error {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	if _, ok := c.fake.TrustZones[trustZoneID]; !ok {
+		return status.Error(codes.NotFound, "trust zone not found")
+	}
+	delete(c.fake.TrustZones, trustZoneID)
+	return nil
+}
+
 func (c *fakeTrustZoneClient) GetTrustZone(ctx context.Context, trustZoneID string) (*trustzonepb.TrustZone, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()

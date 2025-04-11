@@ -43,6 +43,9 @@ func TestTrustZoneClient_Unimplemented(t *testing.T) {
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZone)
 
+	err = client.DestroyTrustZone(ctx, "")
+	test.RequireUnimplemented(t, err)
+
 	trustZone, err = client.GetTrustZone(ctx, "")
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZone)
@@ -78,6 +81,9 @@ func TestTrustZoneClient(t *testing.T) {
 	createdTrustZone, err := client.CreateTrustZone(ctx, trustZone)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZone, createdTrustZone)
+
+	err = client.DestroyTrustZone(ctx, fakeTrustZoneID)
+	require.NoError(t, err)
 
 	gotTrustZone, err := client.GetTrustZone(ctx, fakeTrustZoneID)
 	require.NoError(t, err)
@@ -140,10 +146,9 @@ func (f *fakeTrustZoneService) CreateTrustZone(ctx context.Context, req *trustzo
 	return &trustzonesvcpb.CreateTrustZoneResponse{TrustZone: req.TrustZone}, nil
 }
 
-func (f *fakeTrustZoneService) ListTrustZones(ctx context.Context, req *trustzonesvcpb.ListTrustZonesRequest) (*trustzonesvcpb.ListTrustZonesResponse, error) {
-	assert.Equal(f.t, fakeTrustZoneName, req.Filter.GetName())
-	trustZones := []*trustzonepb.TrustZone{fakeTrustZone()}
-	return &trustzonesvcpb.ListTrustZonesResponse{TrustZones: trustZones}, nil
+func (f *fakeTrustZoneService) DestroyTrustZone(ctx context.Context, req *trustzonesvcpb.DestroyTrustZoneRequest) (*trustzonesvcpb.DestroyTrustZoneResponse, error) {
+	assert.Equal(f.t, fakeTrustZoneID, req.GetTrustZoneId())
+	return &trustzonesvcpb.DestroyTrustZoneResponse{}, nil
 }
 
 func (f *fakeTrustZoneService) GetTrustZone(ctx context.Context, req *trustzonesvcpb.GetTrustZoneRequest) (*trustzonesvcpb.GetTrustZoneResponse, error) {
@@ -154,6 +159,12 @@ func (f *fakeTrustZoneService) GetTrustZone(ctx context.Context, req *trustzones
 func (f *fakeTrustZoneService) GetTrustZoneDetails(ctx context.Context, req *trustzonesvcpb.GetTrustZoneDetailsRequest) (*trustzonesvcpb.GetTrustZoneDetailsResponse, error) {
 	assert.EqualExportedValues(f.t, fakeTrustZoneID, req.TrustZoneId)
 	return &trustzonesvcpb.GetTrustZoneDetailsResponse{TrustZone: fakeTrustZone()}, nil
+}
+
+func (f *fakeTrustZoneService) ListTrustZones(ctx context.Context, req *trustzonesvcpb.ListTrustZonesRequest) (*trustzonesvcpb.ListTrustZonesResponse, error) {
+	assert.Equal(f.t, fakeTrustZoneName, req.Filter.GetName())
+	trustZones := []*trustzonepb.TrustZone{fakeTrustZone()}
+	return &trustzonesvcpb.ListTrustZonesResponse{TrustZones: trustZones}, nil
 }
 
 func (f *fakeTrustZoneService) UpdateTrustZone(ctx context.Context, req *trustzonesvcpb.UpdateTrustZoneRequest) (*trustzonesvcpb.UpdateTrustZoneResponse, error) {

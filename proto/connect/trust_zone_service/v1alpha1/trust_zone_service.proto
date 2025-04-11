@@ -13,8 +13,9 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust
 
 service TrustZoneService {
   rpc CreateTrustZone(CreateTrustZoneRequest) returns (CreateTrustZoneResponse) {}
-  rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse) {}
+  rpc DestroyTrustZone(DestroyTrustZoneRequest) returns (DestroyTrustZoneResponse) {}
   rpc GetTrustZone(GetTrustZoneRequest) returns (GetTrustZoneResponse) {}
+  rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse) {}
   rpc UpdateTrustZone(UpdateTrustZoneRequest) returns (UpdateTrustZoneResponse) {}
 
   // DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
@@ -41,6 +42,20 @@ message CreateTrustZoneResponse {
   proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
+message DestroyTrustZoneRequest {
+  optional string trust_zone_id = 1;
+}
+
+message DestroyTrustZoneResponse {}
+
+message GetTrustZoneRequest {
+  optional string trust_zone_id = 1;
+}
+
+message GetTrustZoneResponse {
+  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+}
+
 message ListTrustZonesRequest {
   message Filter {
     optional string name = 1;
@@ -52,14 +67,6 @@ message ListTrustZonesRequest {
 
 message ListTrustZonesResponse {
   repeated proto.trust_zone.v1alpha1.TrustZone trust_zones = 1;
-}
-
-message GetTrustZoneRequest {
-  optional string trust_zone_id = 1;
-}
-
-message GetTrustZoneResponse {
-  optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
 
 message GetTrustZoneDetailsRequest {

@@ -23,8 +23,9 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	TrustZoneService_CreateTrustZone_FullMethodName     = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/CreateTrustZone"
-	TrustZoneService_ListTrustZones_FullMethodName      = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/ListTrustZones"
+	TrustZoneService_DestroyTrustZone_FullMethodName    = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/DestroyTrustZone"
 	TrustZoneService_GetTrustZone_FullMethodName        = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone"
+	TrustZoneService_ListTrustZones_FullMethodName      = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/ListTrustZones"
 	TrustZoneService_UpdateTrustZone_FullMethodName     = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"
 	TrustZoneService_GetTrustZoneDetails_FullMethodName = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZoneDetails"
 	TrustZoneService_RegisterCluster_FullMethodName     = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterCluster"
@@ -36,8 +37,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrustZoneServiceClient interface {
 	CreateTrustZone(ctx context.Context, in *CreateTrustZoneRequest, opts ...grpc.CallOption) (*CreateTrustZoneResponse, error)
-	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
+	DestroyTrustZone(ctx context.Context, in *DestroyTrustZoneRequest, opts ...grpc.CallOption) (*DestroyTrustZoneResponse, error)
 	GetTrustZone(ctx context.Context, in *GetTrustZoneRequest, opts ...grpc.CallOption) (*GetTrustZoneResponse, error)
+	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(ctx context.Context, in *UpdateTrustZoneRequest, opts ...grpc.CallOption) (*UpdateTrustZoneResponse, error)
 	// DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
 	GetTrustZoneDetails(ctx context.Context, in *GetTrustZoneDetailsRequest, opts ...grpc.CallOption) (*GetTrustZoneDetailsResponse, error)
@@ -65,10 +67,10 @@ func (c *trustZoneServiceClient) CreateTrustZone(ctx context.Context, in *Create
 	return out, nil
 }
 
-func (c *trustZoneServiceClient) ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error) {
+func (c *trustZoneServiceClient) DestroyTrustZone(ctx context.Context, in *DestroyTrustZoneRequest, opts ...grpc.CallOption) (*DestroyTrustZoneResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListTrustZonesResponse)
-	err := c.cc.Invoke(ctx, TrustZoneService_ListTrustZones_FullMethodName, in, out, cOpts...)
+	out := new(DestroyTrustZoneResponse)
+	err := c.cc.Invoke(ctx, TrustZoneService_DestroyTrustZone_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -79,6 +81,16 @@ func (c *trustZoneServiceClient) GetTrustZone(ctx context.Context, in *GetTrustZ
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTrustZoneResponse)
 	err := c.cc.Invoke(ctx, TrustZoneService_GetTrustZone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trustZoneServiceClient) ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTrustZonesResponse)
+	err := c.cc.Invoke(ctx, TrustZoneService_ListTrustZones_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,8 +142,9 @@ func (c *trustZoneServiceClient) RegisterAgent(ctx context.Context, in *Register
 // for forward compatibility.
 type TrustZoneServiceServer interface {
 	CreateTrustZone(context.Context, *CreateTrustZoneRequest) (*CreateTrustZoneResponse, error)
-	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
+	DestroyTrustZone(context.Context, *DestroyTrustZoneRequest) (*DestroyTrustZoneResponse, error)
 	GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error)
+	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error)
 	// DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
 	GetTrustZoneDetails(context.Context, *GetTrustZoneDetailsRequest) (*GetTrustZoneDetailsResponse, error)
@@ -151,11 +164,14 @@ type UnimplementedTrustZoneServiceServer struct{}
 func (UnimplementedTrustZoneServiceServer) CreateTrustZone(context.Context, *CreateTrustZoneRequest) (*CreateTrustZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTrustZone not implemented")
 }
-func (UnimplementedTrustZoneServiceServer) ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListTrustZones not implemented")
+func (UnimplementedTrustZoneServiceServer) DestroyTrustZone(context.Context, *DestroyTrustZoneRequest) (*DestroyTrustZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DestroyTrustZone not implemented")
 }
 func (UnimplementedTrustZoneServiceServer) GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrustZone not implemented")
+}
+func (UnimplementedTrustZoneServiceServer) ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTrustZones not implemented")
 }
 func (UnimplementedTrustZoneServiceServer) UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZone not implemented")
@@ -207,20 +223,20 @@ func _TrustZoneService_CreateTrustZone_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TrustZoneService_ListTrustZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListTrustZonesRequest)
+func _TrustZoneService_DestroyTrustZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DestroyTrustZoneRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrustZoneServiceServer).ListTrustZones(ctx, in)
+		return srv.(TrustZoneServiceServer).DestroyTrustZone(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TrustZoneService_ListTrustZones_FullMethodName,
+		FullMethod: TrustZoneService_DestroyTrustZone_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrustZoneServiceServer).ListTrustZones(ctx, req.(*ListTrustZonesRequest))
+		return srv.(TrustZoneServiceServer).DestroyTrustZone(ctx, req.(*DestroyTrustZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -239,6 +255,24 @@ func _TrustZoneService_GetTrustZone_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TrustZoneServiceServer).GetTrustZone(ctx, req.(*GetTrustZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrustZoneService_ListTrustZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTrustZonesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrustZoneServiceServer).ListTrustZones(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrustZoneService_ListTrustZones_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrustZoneServiceServer).ListTrustZones(ctx, req.(*ListTrustZonesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -327,12 +361,16 @@ var TrustZoneService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TrustZoneService_CreateTrustZone_Handler,
 		},
 		{
-			MethodName: "ListTrustZones",
-			Handler:    _TrustZoneService_ListTrustZones_Handler,
+			MethodName: "DestroyTrustZone",
+			Handler:    _TrustZoneService_DestroyTrustZone_Handler,
 		},
 		{
 			MethodName: "GetTrustZone",
 			Handler:    _TrustZoneService_GetTrustZone_Handler,
+		},
+		{
+			MethodName: "ListTrustZones",
+			Handler:    _TrustZoneService_ListTrustZones_Handler,
 		},
 		{
 			MethodName: "UpdateTrustZone",

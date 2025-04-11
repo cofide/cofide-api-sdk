@@ -39,12 +39,15 @@ const (
 	// TrustZoneServiceCreateTrustZoneProcedure is the fully-qualified name of the TrustZoneService's
 	// CreateTrustZone RPC.
 	TrustZoneServiceCreateTrustZoneProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/CreateTrustZone"
-	// TrustZoneServiceListTrustZonesProcedure is the fully-qualified name of the TrustZoneService's
-	// ListTrustZones RPC.
-	TrustZoneServiceListTrustZonesProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/ListTrustZones"
+	// TrustZoneServiceDestroyTrustZoneProcedure is the fully-qualified name of the TrustZoneService's
+	// DestroyTrustZone RPC.
+	TrustZoneServiceDestroyTrustZoneProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/DestroyTrustZone"
 	// TrustZoneServiceGetTrustZoneProcedure is the fully-qualified name of the TrustZoneService's
 	// GetTrustZone RPC.
 	TrustZoneServiceGetTrustZoneProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone"
+	// TrustZoneServiceListTrustZonesProcedure is the fully-qualified name of the TrustZoneService's
+	// ListTrustZones RPC.
+	TrustZoneServiceListTrustZonesProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/ListTrustZones"
 	// TrustZoneServiceUpdateTrustZoneProcedure is the fully-qualified name of the TrustZoneService's
 	// UpdateTrustZone RPC.
 	TrustZoneServiceUpdateTrustZoneProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"
@@ -63,8 +66,9 @@ const (
 // proto.connect.trust_zone_service.v1alpha1.TrustZoneService service.
 type TrustZoneServiceClient interface {
 	CreateTrustZone(context.Context, *connect.Request[v1alpha1.CreateTrustZoneRequest]) (*connect.Response[v1alpha1.CreateTrustZoneResponse], error)
-	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
+	DestroyTrustZone(context.Context, *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error)
 	GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error)
+	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	// DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
 	GetTrustZoneDetails(context.Context, *connect.Request[v1alpha1.GetTrustZoneDetailsRequest]) (*connect.Response[v1alpha1.GetTrustZoneDetailsResponse], error)
@@ -92,16 +96,22 @@ func NewTrustZoneServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(trustZoneServiceMethods.ByName("CreateTrustZone")),
 			connect.WithClientOptions(opts...),
 		),
-		listTrustZones: connect.NewClient[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse](
+		destroyTrustZone: connect.NewClient[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse](
 			httpClient,
-			baseURL+TrustZoneServiceListTrustZonesProcedure,
-			connect.WithSchema(trustZoneServiceMethods.ByName("ListTrustZones")),
+			baseURL+TrustZoneServiceDestroyTrustZoneProcedure,
+			connect.WithSchema(trustZoneServiceMethods.ByName("DestroyTrustZone")),
 			connect.WithClientOptions(opts...),
 		),
 		getTrustZone: connect.NewClient[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse](
 			httpClient,
 			baseURL+TrustZoneServiceGetTrustZoneProcedure,
 			connect.WithSchema(trustZoneServiceMethods.ByName("GetTrustZone")),
+			connect.WithClientOptions(opts...),
+		),
+		listTrustZones: connect.NewClient[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse](
+			httpClient,
+			baseURL+TrustZoneServiceListTrustZonesProcedure,
+			connect.WithSchema(trustZoneServiceMethods.ByName("ListTrustZones")),
 			connect.WithClientOptions(opts...),
 		),
 		updateTrustZone: connect.NewClient[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse](
@@ -134,8 +144,9 @@ func NewTrustZoneServiceClient(httpClient connect.HTTPClient, baseURL string, op
 // trustZoneServiceClient implements TrustZoneServiceClient.
 type trustZoneServiceClient struct {
 	createTrustZone     *connect.Client[v1alpha1.CreateTrustZoneRequest, v1alpha1.CreateTrustZoneResponse]
-	listTrustZones      *connect.Client[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse]
+	destroyTrustZone    *connect.Client[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse]
 	getTrustZone        *connect.Client[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse]
+	listTrustZones      *connect.Client[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse]
 	updateTrustZone     *connect.Client[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse]
 	getTrustZoneDetails *connect.Client[v1alpha1.GetTrustZoneDetailsRequest, v1alpha1.GetTrustZoneDetailsResponse]
 	registerCluster     *connect.Client[v1alpha1.RegisterClusterRequest, v1alpha1.RegisterClusterResponse]
@@ -147,14 +158,20 @@ func (c *trustZoneServiceClient) CreateTrustZone(ctx context.Context, req *conne
 	return c.createTrustZone.CallUnary(ctx, req)
 }
 
-// ListTrustZones calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.ListTrustZones.
-func (c *trustZoneServiceClient) ListTrustZones(ctx context.Context, req *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error) {
-	return c.listTrustZones.CallUnary(ctx, req)
+// DestroyTrustZone calls
+// proto.connect.trust_zone_service.v1alpha1.TrustZoneService.DestroyTrustZone.
+func (c *trustZoneServiceClient) DestroyTrustZone(ctx context.Context, req *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error) {
+	return c.destroyTrustZone.CallUnary(ctx, req)
 }
 
 // GetTrustZone calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.GetTrustZone.
 func (c *trustZoneServiceClient) GetTrustZone(ctx context.Context, req *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error) {
 	return c.getTrustZone.CallUnary(ctx, req)
+}
+
+// ListTrustZones calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.ListTrustZones.
+func (c *trustZoneServiceClient) ListTrustZones(ctx context.Context, req *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error) {
+	return c.listTrustZones.CallUnary(ctx, req)
 }
 
 // UpdateTrustZone calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.UpdateTrustZone.
@@ -182,8 +199,9 @@ func (c *trustZoneServiceClient) RegisterAgent(ctx context.Context, req *connect
 // proto.connect.trust_zone_service.v1alpha1.TrustZoneService service.
 type TrustZoneServiceHandler interface {
 	CreateTrustZone(context.Context, *connect.Request[v1alpha1.CreateTrustZoneRequest]) (*connect.Response[v1alpha1.CreateTrustZoneResponse], error)
-	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
+	DestroyTrustZone(context.Context, *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error)
 	GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error)
+	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	// DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
 	GetTrustZoneDetails(context.Context, *connect.Request[v1alpha1.GetTrustZoneDetailsRequest]) (*connect.Response[v1alpha1.GetTrustZoneDetailsResponse], error)
@@ -206,16 +224,22 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 		connect.WithSchema(trustZoneServiceMethods.ByName("CreateTrustZone")),
 		connect.WithHandlerOptions(opts...),
 	)
-	trustZoneServiceListTrustZonesHandler := connect.NewUnaryHandler(
-		TrustZoneServiceListTrustZonesProcedure,
-		svc.ListTrustZones,
-		connect.WithSchema(trustZoneServiceMethods.ByName("ListTrustZones")),
+	trustZoneServiceDestroyTrustZoneHandler := connect.NewUnaryHandler(
+		TrustZoneServiceDestroyTrustZoneProcedure,
+		svc.DestroyTrustZone,
+		connect.WithSchema(trustZoneServiceMethods.ByName("DestroyTrustZone")),
 		connect.WithHandlerOptions(opts...),
 	)
 	trustZoneServiceGetTrustZoneHandler := connect.NewUnaryHandler(
 		TrustZoneServiceGetTrustZoneProcedure,
 		svc.GetTrustZone,
 		connect.WithSchema(trustZoneServiceMethods.ByName("GetTrustZone")),
+		connect.WithHandlerOptions(opts...),
+	)
+	trustZoneServiceListTrustZonesHandler := connect.NewUnaryHandler(
+		TrustZoneServiceListTrustZonesProcedure,
+		svc.ListTrustZones,
+		connect.WithSchema(trustZoneServiceMethods.ByName("ListTrustZones")),
 		connect.WithHandlerOptions(opts...),
 	)
 	trustZoneServiceUpdateTrustZoneHandler := connect.NewUnaryHandler(
@@ -246,10 +270,12 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 		switch r.URL.Path {
 		case TrustZoneServiceCreateTrustZoneProcedure:
 			trustZoneServiceCreateTrustZoneHandler.ServeHTTP(w, r)
-		case TrustZoneServiceListTrustZonesProcedure:
-			trustZoneServiceListTrustZonesHandler.ServeHTTP(w, r)
+		case TrustZoneServiceDestroyTrustZoneProcedure:
+			trustZoneServiceDestroyTrustZoneHandler.ServeHTTP(w, r)
 		case TrustZoneServiceGetTrustZoneProcedure:
 			trustZoneServiceGetTrustZoneHandler.ServeHTTP(w, r)
+		case TrustZoneServiceListTrustZonesProcedure:
+			trustZoneServiceListTrustZonesHandler.ServeHTTP(w, r)
 		case TrustZoneServiceUpdateTrustZoneProcedure:
 			trustZoneServiceUpdateTrustZoneHandler.ServeHTTP(w, r)
 		case TrustZoneServiceGetTrustZoneDetailsProcedure:
@@ -271,12 +297,16 @@ func (UnimplementedTrustZoneServiceHandler) CreateTrustZone(context.Context, *co
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.CreateTrustZone is not implemented"))
 }
 
-func (UnimplementedTrustZoneServiceHandler) ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.ListTrustZones is not implemented"))
+func (UnimplementedTrustZoneServiceHandler) DestroyTrustZone(context.Context, *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.DestroyTrustZone is not implemented"))
 }
 
 func (UnimplementedTrustZoneServiceHandler) GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.GetTrustZone is not implemented"))
+}
+
+func (UnimplementedTrustZoneServiceHandler) ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.ListTrustZones is not implemented"))
 }
 
 func (UnimplementedTrustZoneServiceHandler) UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error) {
