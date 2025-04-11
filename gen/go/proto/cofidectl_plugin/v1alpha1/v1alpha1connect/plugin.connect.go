@@ -42,6 +42,9 @@ const (
 	// DataSourcePluginServiceAddTrustZoneProcedure is the fully-qualified name of the
 	// DataSourcePluginService's AddTrustZone RPC.
 	DataSourcePluginServiceAddTrustZoneProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddTrustZone"
+	// DataSourcePluginServiceDestroyTrustZoneProcedure is the fully-qualified name of the
+	// DataSourcePluginService's DestroyTrustZone RPC.
+	DataSourcePluginServiceDestroyTrustZoneProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyTrustZone"
 	// DataSourcePluginServiceGetTrustZoneProcedure is the fully-qualified name of the
 	// DataSourcePluginService's GetTrustZone RPC.
 	DataSourcePluginServiceGetTrustZoneProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetTrustZone"
@@ -54,6 +57,9 @@ const (
 	// DataSourcePluginServiceAddClusterProcedure is the fully-qualified name of the
 	// DataSourcePluginService's AddCluster RPC.
 	DataSourcePluginServiceAddClusterProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddCluster"
+	// DataSourcePluginServiceDestroyClusterProcedure is the fully-qualified name of the
+	// DataSourcePluginService's DestroyCluster RPC.
+	DataSourcePluginServiceDestroyClusterProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyCluster"
 	// DataSourcePluginServiceGetClusterProcedure is the fully-qualified name of the
 	// DataSourcePluginService's GetCluster RPC.
 	DataSourcePluginServiceGetClusterProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetCluster"
@@ -66,6 +72,9 @@ const (
 	// DataSourcePluginServiceAddAttestationPolicyProcedure is the fully-qualified name of the
 	// DataSourcePluginService's AddAttestationPolicy RPC.
 	DataSourcePluginServiceAddAttestationPolicyProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddAttestationPolicy"
+	// DataSourcePluginServiceDestroyAttestationPolicyProcedure is the fully-qualified name of the
+	// DataSourcePluginService's DestroyAttestationPolicy RPC.
+	DataSourcePluginServiceDestroyAttestationPolicyProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyAttestationPolicy"
 	// DataSourcePluginServiceGetAttestationPolicyProcedure is the fully-qualified name of the
 	// DataSourcePluginService's GetAttestationPolicy RPC.
 	DataSourcePluginServiceGetAttestationPolicyProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetAttestationPolicy"
@@ -84,6 +93,9 @@ const (
 	// DataSourcePluginServiceAddFederationProcedure is the fully-qualified name of the
 	// DataSourcePluginService's AddFederation RPC.
 	DataSourcePluginServiceAddFederationProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddFederation"
+	// DataSourcePluginServiceDestroyFederationProcedure is the fully-qualified name of the
+	// DataSourcePluginService's DestroyFederation RPC.
+	DataSourcePluginServiceDestroyFederationProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyFederation"
 	// DataSourcePluginServiceListFederationsProcedure is the fully-qualified name of the
 	// DataSourcePluginService's ListFederations RPC.
 	DataSourcePluginServiceListFederationsProcedure = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListFederations"
@@ -97,20 +109,24 @@ const (
 type DataSourcePluginServiceClient interface {
 	Validate(context.Context, *connect.Request[v1alpha1.ValidateRequest]) (*connect.Response[v1alpha1.ValidateResponse], error)
 	AddTrustZone(context.Context, *connect.Request[v1alpha1.AddTrustZoneRequest]) (*connect.Response[v1alpha1.AddTrustZoneResponse], error)
+	DestroyTrustZone(context.Context, *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error)
 	GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error)
 	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	AddCluster(context.Context, *connect.Request[v1alpha1.AddClusterRequest]) (*connect.Response[v1alpha1.AddClusterResponse], error)
+	DestroyCluster(context.Context, *connect.Request[v1alpha1.DestroyClusterRequest]) (*connect.Response[v1alpha1.DestroyClusterResponse], error)
 	GetCluster(context.Context, *connect.Request[v1alpha1.GetClusterRequest]) (*connect.Response[v1alpha1.GetClusterResponse], error)
 	ListClusters(context.Context, *connect.Request[v1alpha1.ListClustersRequest]) (*connect.Response[v1alpha1.ListClustersResponse], error)
 	UpdateCluster(context.Context, *connect.Request[v1alpha1.UpdateClusterRequest]) (*connect.Response[v1alpha1.UpdateClusterResponse], error)
 	AddAttestationPolicy(context.Context, *connect.Request[v1alpha1.AddAttestationPolicyRequest]) (*connect.Response[v1alpha1.AddAttestationPolicyResponse], error)
+	DestroyAttestationPolicy(context.Context, *connect.Request[v1alpha1.DestroyAttestationPolicyRequest]) (*connect.Response[v1alpha1.DestroyAttestationPolicyResponse], error)
 	GetAttestationPolicy(context.Context, *connect.Request[v1alpha1.GetAttestationPolicyRequest]) (*connect.Response[v1alpha1.GetAttestationPolicyResponse], error)
 	ListAttestationPolicies(context.Context, *connect.Request[v1alpha1.ListAttestationPoliciesRequest]) (*connect.Response[v1alpha1.ListAttestationPoliciesResponse], error)
 	AddAPBinding(context.Context, *connect.Request[v1alpha1.AddAPBindingRequest]) (*connect.Response[v1alpha1.AddAPBindingResponse], error)
 	DestroyAPBinding(context.Context, *connect.Request[v1alpha1.DestroyAPBindingRequest]) (*connect.Response[v1alpha1.DestroyAPBindingResponse], error)
 	ListAPBindings(context.Context, *connect.Request[v1alpha1.ListAPBindingsRequest]) (*connect.Response[v1alpha1.ListAPBindingsResponse], error)
 	AddFederation(context.Context, *connect.Request[v1alpha1.AddFederationRequest]) (*connect.Response[v1alpha1.AddFederationResponse], error)
+	DestroyFederation(context.Context, *connect.Request[v1alpha1.DestroyFederationRequest]) (*connect.Response[v1alpha1.DestroyFederationResponse], error)
 	ListFederations(context.Context, *connect.Request[v1alpha1.ListFederationsRequest]) (*connect.Response[v1alpha1.ListFederationsResponse], error)
 	ListFederationsByTrustZone(context.Context, *connect.Request[v1alpha1.ListFederationsByTrustZoneRequest]) (*connect.Response[v1alpha1.ListFederationsByTrustZoneResponse], error)
 }
@@ -139,6 +155,12 @@ func NewDataSourcePluginServiceClient(httpClient connect.HTTPClient, baseURL str
 			connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddTrustZone")),
 			connect.WithClientOptions(opts...),
 		),
+		destroyTrustZone: connect.NewClient[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse](
+			httpClient,
+			baseURL+DataSourcePluginServiceDestroyTrustZoneProcedure,
+			connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyTrustZone")),
+			connect.WithClientOptions(opts...),
+		),
 		getTrustZone: connect.NewClient[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse](
 			httpClient,
 			baseURL+DataSourcePluginServiceGetTrustZoneProcedure,
@@ -163,6 +185,12 @@ func NewDataSourcePluginServiceClient(httpClient connect.HTTPClient, baseURL str
 			connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddCluster")),
 			connect.WithClientOptions(opts...),
 		),
+		destroyCluster: connect.NewClient[v1alpha1.DestroyClusterRequest, v1alpha1.DestroyClusterResponse](
+			httpClient,
+			baseURL+DataSourcePluginServiceDestroyClusterProcedure,
+			connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyCluster")),
+			connect.WithClientOptions(opts...),
+		),
 		getCluster: connect.NewClient[v1alpha1.GetClusterRequest, v1alpha1.GetClusterResponse](
 			httpClient,
 			baseURL+DataSourcePluginServiceGetClusterProcedure,
@@ -185,6 +213,12 @@ func NewDataSourcePluginServiceClient(httpClient connect.HTTPClient, baseURL str
 			httpClient,
 			baseURL+DataSourcePluginServiceAddAttestationPolicyProcedure,
 			connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddAttestationPolicy")),
+			connect.WithClientOptions(opts...),
+		),
+		destroyAttestationPolicy: connect.NewClient[v1alpha1.DestroyAttestationPolicyRequest, v1alpha1.DestroyAttestationPolicyResponse](
+			httpClient,
+			baseURL+DataSourcePluginServiceDestroyAttestationPolicyProcedure,
+			connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyAttestationPolicy")),
 			connect.WithClientOptions(opts...),
 		),
 		getAttestationPolicy: connect.NewClient[v1alpha1.GetAttestationPolicyRequest, v1alpha1.GetAttestationPolicyResponse](
@@ -223,6 +257,12 @@ func NewDataSourcePluginServiceClient(httpClient connect.HTTPClient, baseURL str
 			connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddFederation")),
 			connect.WithClientOptions(opts...),
 		),
+		destroyFederation: connect.NewClient[v1alpha1.DestroyFederationRequest, v1alpha1.DestroyFederationResponse](
+			httpClient,
+			baseURL+DataSourcePluginServiceDestroyFederationProcedure,
+			connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyFederation")),
+			connect.WithClientOptions(opts...),
+		),
 		listFederations: connect.NewClient[v1alpha1.ListFederationsRequest, v1alpha1.ListFederationsResponse](
 			httpClient,
 			baseURL+DataSourcePluginServiceListFederationsProcedure,
@@ -242,20 +282,24 @@ func NewDataSourcePluginServiceClient(httpClient connect.HTTPClient, baseURL str
 type dataSourcePluginServiceClient struct {
 	validate                   *connect.Client[v1alpha1.ValidateRequest, v1alpha1.ValidateResponse]
 	addTrustZone               *connect.Client[v1alpha1.AddTrustZoneRequest, v1alpha1.AddTrustZoneResponse]
+	destroyTrustZone           *connect.Client[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse]
 	getTrustZone               *connect.Client[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse]
 	listTrustZones             *connect.Client[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse]
 	updateTrustZone            *connect.Client[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse]
 	addCluster                 *connect.Client[v1alpha1.AddClusterRequest, v1alpha1.AddClusterResponse]
+	destroyCluster             *connect.Client[v1alpha1.DestroyClusterRequest, v1alpha1.DestroyClusterResponse]
 	getCluster                 *connect.Client[v1alpha1.GetClusterRequest, v1alpha1.GetClusterResponse]
 	listClusters               *connect.Client[v1alpha1.ListClustersRequest, v1alpha1.ListClustersResponse]
 	updateCluster              *connect.Client[v1alpha1.UpdateClusterRequest, v1alpha1.UpdateClusterResponse]
 	addAttestationPolicy       *connect.Client[v1alpha1.AddAttestationPolicyRequest, v1alpha1.AddAttestationPolicyResponse]
+	destroyAttestationPolicy   *connect.Client[v1alpha1.DestroyAttestationPolicyRequest, v1alpha1.DestroyAttestationPolicyResponse]
 	getAttestationPolicy       *connect.Client[v1alpha1.GetAttestationPolicyRequest, v1alpha1.GetAttestationPolicyResponse]
 	listAttestationPolicies    *connect.Client[v1alpha1.ListAttestationPoliciesRequest, v1alpha1.ListAttestationPoliciesResponse]
 	addAPBinding               *connect.Client[v1alpha1.AddAPBindingRequest, v1alpha1.AddAPBindingResponse]
 	destroyAPBinding           *connect.Client[v1alpha1.DestroyAPBindingRequest, v1alpha1.DestroyAPBindingResponse]
 	listAPBindings             *connect.Client[v1alpha1.ListAPBindingsRequest, v1alpha1.ListAPBindingsResponse]
 	addFederation              *connect.Client[v1alpha1.AddFederationRequest, v1alpha1.AddFederationResponse]
+	destroyFederation          *connect.Client[v1alpha1.DestroyFederationRequest, v1alpha1.DestroyFederationResponse]
 	listFederations            *connect.Client[v1alpha1.ListFederationsRequest, v1alpha1.ListFederationsResponse]
 	listFederationsByTrustZone *connect.Client[v1alpha1.ListFederationsByTrustZoneRequest, v1alpha1.ListFederationsByTrustZoneResponse]
 }
@@ -268,6 +312,11 @@ func (c *dataSourcePluginServiceClient) Validate(ctx context.Context, req *conne
 // AddTrustZone calls proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.AddTrustZone.
 func (c *dataSourcePluginServiceClient) AddTrustZone(ctx context.Context, req *connect.Request[v1alpha1.AddTrustZoneRequest]) (*connect.Response[v1alpha1.AddTrustZoneResponse], error) {
 	return c.addTrustZone.CallUnary(ctx, req)
+}
+
+// DestroyTrustZone calls proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyTrustZone.
+func (c *dataSourcePluginServiceClient) DestroyTrustZone(ctx context.Context, req *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error) {
+	return c.destroyTrustZone.CallUnary(ctx, req)
 }
 
 // GetTrustZone calls proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.GetTrustZone.
@@ -290,6 +339,11 @@ func (c *dataSourcePluginServiceClient) AddCluster(ctx context.Context, req *con
 	return c.addCluster.CallUnary(ctx, req)
 }
 
+// DestroyCluster calls proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyCluster.
+func (c *dataSourcePluginServiceClient) DestroyCluster(ctx context.Context, req *connect.Request[v1alpha1.DestroyClusterRequest]) (*connect.Response[v1alpha1.DestroyClusterResponse], error) {
+	return c.destroyCluster.CallUnary(ctx, req)
+}
+
 // GetCluster calls proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.GetCluster.
 func (c *dataSourcePluginServiceClient) GetCluster(ctx context.Context, req *connect.Request[v1alpha1.GetClusterRequest]) (*connect.Response[v1alpha1.GetClusterResponse], error) {
 	return c.getCluster.CallUnary(ctx, req)
@@ -309,6 +363,12 @@ func (c *dataSourcePluginServiceClient) UpdateCluster(ctx context.Context, req *
 // proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.AddAttestationPolicy.
 func (c *dataSourcePluginServiceClient) AddAttestationPolicy(ctx context.Context, req *connect.Request[v1alpha1.AddAttestationPolicyRequest]) (*connect.Response[v1alpha1.AddAttestationPolicyResponse], error) {
 	return c.addAttestationPolicy.CallUnary(ctx, req)
+}
+
+// DestroyAttestationPolicy calls
+// proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyAttestationPolicy.
+func (c *dataSourcePluginServiceClient) DestroyAttestationPolicy(ctx context.Context, req *connect.Request[v1alpha1.DestroyAttestationPolicyRequest]) (*connect.Response[v1alpha1.DestroyAttestationPolicyResponse], error) {
+	return c.destroyAttestationPolicy.CallUnary(ctx, req)
 }
 
 // GetAttestationPolicy calls
@@ -343,6 +403,12 @@ func (c *dataSourcePluginServiceClient) AddFederation(ctx context.Context, req *
 	return c.addFederation.CallUnary(ctx, req)
 }
 
+// DestroyFederation calls
+// proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyFederation.
+func (c *dataSourcePluginServiceClient) DestroyFederation(ctx context.Context, req *connect.Request[v1alpha1.DestroyFederationRequest]) (*connect.Response[v1alpha1.DestroyFederationResponse], error) {
+	return c.destroyFederation.CallUnary(ctx, req)
+}
+
 // ListFederations calls proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.ListFederations.
 func (c *dataSourcePluginServiceClient) ListFederations(ctx context.Context, req *connect.Request[v1alpha1.ListFederationsRequest]) (*connect.Response[v1alpha1.ListFederationsResponse], error) {
 	return c.listFederations.CallUnary(ctx, req)
@@ -359,20 +425,24 @@ func (c *dataSourcePluginServiceClient) ListFederationsByTrustZone(ctx context.C
 type DataSourcePluginServiceHandler interface {
 	Validate(context.Context, *connect.Request[v1alpha1.ValidateRequest]) (*connect.Response[v1alpha1.ValidateResponse], error)
 	AddTrustZone(context.Context, *connect.Request[v1alpha1.AddTrustZoneRequest]) (*connect.Response[v1alpha1.AddTrustZoneResponse], error)
+	DestroyTrustZone(context.Context, *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error)
 	GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error)
 	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	AddCluster(context.Context, *connect.Request[v1alpha1.AddClusterRequest]) (*connect.Response[v1alpha1.AddClusterResponse], error)
+	DestroyCluster(context.Context, *connect.Request[v1alpha1.DestroyClusterRequest]) (*connect.Response[v1alpha1.DestroyClusterResponse], error)
 	GetCluster(context.Context, *connect.Request[v1alpha1.GetClusterRequest]) (*connect.Response[v1alpha1.GetClusterResponse], error)
 	ListClusters(context.Context, *connect.Request[v1alpha1.ListClustersRequest]) (*connect.Response[v1alpha1.ListClustersResponse], error)
 	UpdateCluster(context.Context, *connect.Request[v1alpha1.UpdateClusterRequest]) (*connect.Response[v1alpha1.UpdateClusterResponse], error)
 	AddAttestationPolicy(context.Context, *connect.Request[v1alpha1.AddAttestationPolicyRequest]) (*connect.Response[v1alpha1.AddAttestationPolicyResponse], error)
+	DestroyAttestationPolicy(context.Context, *connect.Request[v1alpha1.DestroyAttestationPolicyRequest]) (*connect.Response[v1alpha1.DestroyAttestationPolicyResponse], error)
 	GetAttestationPolicy(context.Context, *connect.Request[v1alpha1.GetAttestationPolicyRequest]) (*connect.Response[v1alpha1.GetAttestationPolicyResponse], error)
 	ListAttestationPolicies(context.Context, *connect.Request[v1alpha1.ListAttestationPoliciesRequest]) (*connect.Response[v1alpha1.ListAttestationPoliciesResponse], error)
 	AddAPBinding(context.Context, *connect.Request[v1alpha1.AddAPBindingRequest]) (*connect.Response[v1alpha1.AddAPBindingResponse], error)
 	DestroyAPBinding(context.Context, *connect.Request[v1alpha1.DestroyAPBindingRequest]) (*connect.Response[v1alpha1.DestroyAPBindingResponse], error)
 	ListAPBindings(context.Context, *connect.Request[v1alpha1.ListAPBindingsRequest]) (*connect.Response[v1alpha1.ListAPBindingsResponse], error)
 	AddFederation(context.Context, *connect.Request[v1alpha1.AddFederationRequest]) (*connect.Response[v1alpha1.AddFederationResponse], error)
+	DestroyFederation(context.Context, *connect.Request[v1alpha1.DestroyFederationRequest]) (*connect.Response[v1alpha1.DestroyFederationResponse], error)
 	ListFederations(context.Context, *connect.Request[v1alpha1.ListFederationsRequest]) (*connect.Response[v1alpha1.ListFederationsResponse], error)
 	ListFederationsByTrustZone(context.Context, *connect.Request[v1alpha1.ListFederationsByTrustZoneRequest]) (*connect.Response[v1alpha1.ListFederationsByTrustZoneResponse], error)
 }
@@ -394,6 +464,12 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 		DataSourcePluginServiceAddTrustZoneProcedure,
 		svc.AddTrustZone,
 		connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddTrustZone")),
+		connect.WithHandlerOptions(opts...),
+	)
+	dataSourcePluginServiceDestroyTrustZoneHandler := connect.NewUnaryHandler(
+		DataSourcePluginServiceDestroyTrustZoneProcedure,
+		svc.DestroyTrustZone,
+		connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyTrustZone")),
 		connect.WithHandlerOptions(opts...),
 	)
 	dataSourcePluginServiceGetTrustZoneHandler := connect.NewUnaryHandler(
@@ -420,6 +496,12 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 		connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddCluster")),
 		connect.WithHandlerOptions(opts...),
 	)
+	dataSourcePluginServiceDestroyClusterHandler := connect.NewUnaryHandler(
+		DataSourcePluginServiceDestroyClusterProcedure,
+		svc.DestroyCluster,
+		connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyCluster")),
+		connect.WithHandlerOptions(opts...),
+	)
 	dataSourcePluginServiceGetClusterHandler := connect.NewUnaryHandler(
 		DataSourcePluginServiceGetClusterProcedure,
 		svc.GetCluster,
@@ -442,6 +524,12 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 		DataSourcePluginServiceAddAttestationPolicyProcedure,
 		svc.AddAttestationPolicy,
 		connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddAttestationPolicy")),
+		connect.WithHandlerOptions(opts...),
+	)
+	dataSourcePluginServiceDestroyAttestationPolicyHandler := connect.NewUnaryHandler(
+		DataSourcePluginServiceDestroyAttestationPolicyProcedure,
+		svc.DestroyAttestationPolicy,
+		connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyAttestationPolicy")),
 		connect.WithHandlerOptions(opts...),
 	)
 	dataSourcePluginServiceGetAttestationPolicyHandler := connect.NewUnaryHandler(
@@ -480,6 +568,12 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 		connect.WithSchema(dataSourcePluginServiceMethods.ByName("AddFederation")),
 		connect.WithHandlerOptions(opts...),
 	)
+	dataSourcePluginServiceDestroyFederationHandler := connect.NewUnaryHandler(
+		DataSourcePluginServiceDestroyFederationProcedure,
+		svc.DestroyFederation,
+		connect.WithSchema(dataSourcePluginServiceMethods.ByName("DestroyFederation")),
+		connect.WithHandlerOptions(opts...),
+	)
 	dataSourcePluginServiceListFederationsHandler := connect.NewUnaryHandler(
 		DataSourcePluginServiceListFederationsProcedure,
 		svc.ListFederations,
@@ -498,6 +592,8 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 			dataSourcePluginServiceValidateHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceAddTrustZoneProcedure:
 			dataSourcePluginServiceAddTrustZoneHandler.ServeHTTP(w, r)
+		case DataSourcePluginServiceDestroyTrustZoneProcedure:
+			dataSourcePluginServiceDestroyTrustZoneHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceGetTrustZoneProcedure:
 			dataSourcePluginServiceGetTrustZoneHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceListTrustZonesProcedure:
@@ -506,6 +602,8 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 			dataSourcePluginServiceUpdateTrustZoneHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceAddClusterProcedure:
 			dataSourcePluginServiceAddClusterHandler.ServeHTTP(w, r)
+		case DataSourcePluginServiceDestroyClusterProcedure:
+			dataSourcePluginServiceDestroyClusterHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceGetClusterProcedure:
 			dataSourcePluginServiceGetClusterHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceListClustersProcedure:
@@ -514,6 +612,8 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 			dataSourcePluginServiceUpdateClusterHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceAddAttestationPolicyProcedure:
 			dataSourcePluginServiceAddAttestationPolicyHandler.ServeHTTP(w, r)
+		case DataSourcePluginServiceDestroyAttestationPolicyProcedure:
+			dataSourcePluginServiceDestroyAttestationPolicyHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceGetAttestationPolicyProcedure:
 			dataSourcePluginServiceGetAttestationPolicyHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceListAttestationPoliciesProcedure:
@@ -526,6 +626,8 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 			dataSourcePluginServiceListAPBindingsHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceAddFederationProcedure:
 			dataSourcePluginServiceAddFederationHandler.ServeHTTP(w, r)
+		case DataSourcePluginServiceDestroyFederationProcedure:
+			dataSourcePluginServiceDestroyFederationHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceListFederationsProcedure:
 			dataSourcePluginServiceListFederationsHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceListFederationsByTrustZoneProcedure:
@@ -547,6 +649,10 @@ func (UnimplementedDataSourcePluginServiceHandler) AddTrustZone(context.Context,
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.AddTrustZone is not implemented"))
 }
 
+func (UnimplementedDataSourcePluginServiceHandler) DestroyTrustZone(context.Context, *connect.Request[v1alpha1.DestroyTrustZoneRequest]) (*connect.Response[v1alpha1.DestroyTrustZoneResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyTrustZone is not implemented"))
+}
+
 func (UnimplementedDataSourcePluginServiceHandler) GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.GetTrustZone is not implemented"))
 }
@@ -563,6 +669,10 @@ func (UnimplementedDataSourcePluginServiceHandler) AddCluster(context.Context, *
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.AddCluster is not implemented"))
 }
 
+func (UnimplementedDataSourcePluginServiceHandler) DestroyCluster(context.Context, *connect.Request[v1alpha1.DestroyClusterRequest]) (*connect.Response[v1alpha1.DestroyClusterResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyCluster is not implemented"))
+}
+
 func (UnimplementedDataSourcePluginServiceHandler) GetCluster(context.Context, *connect.Request[v1alpha1.GetClusterRequest]) (*connect.Response[v1alpha1.GetClusterResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.GetCluster is not implemented"))
 }
@@ -577,6 +687,10 @@ func (UnimplementedDataSourcePluginServiceHandler) UpdateCluster(context.Context
 
 func (UnimplementedDataSourcePluginServiceHandler) AddAttestationPolicy(context.Context, *connect.Request[v1alpha1.AddAttestationPolicyRequest]) (*connect.Response[v1alpha1.AddAttestationPolicyResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.AddAttestationPolicy is not implemented"))
+}
+
+func (UnimplementedDataSourcePluginServiceHandler) DestroyAttestationPolicy(context.Context, *connect.Request[v1alpha1.DestroyAttestationPolicyRequest]) (*connect.Response[v1alpha1.DestroyAttestationPolicyResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyAttestationPolicy is not implemented"))
 }
 
 func (UnimplementedDataSourcePluginServiceHandler) GetAttestationPolicy(context.Context, *connect.Request[v1alpha1.GetAttestationPolicyRequest]) (*connect.Response[v1alpha1.GetAttestationPolicyResponse], error) {
@@ -601,6 +715,10 @@ func (UnimplementedDataSourcePluginServiceHandler) ListAPBindings(context.Contex
 
 func (UnimplementedDataSourcePluginServiceHandler) AddFederation(context.Context, *connect.Request[v1alpha1.AddFederationRequest]) (*connect.Response[v1alpha1.AddFederationResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.AddFederation is not implemented"))
+}
+
+func (UnimplementedDataSourcePluginServiceHandler) DestroyFederation(context.Context, *connect.Request[v1alpha1.DestroyFederationRequest]) (*connect.Response[v1alpha1.DestroyFederationResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha1.DataSourcePluginService.DestroyFederation is not implemented"))
 }
 
 func (UnimplementedDataSourcePluginServiceHandler) ListFederations(context.Context, *connect.Request[v1alpha1.ListFederationsRequest]) (*connect.Response[v1alpha1.ListFederationsResponse], error) {

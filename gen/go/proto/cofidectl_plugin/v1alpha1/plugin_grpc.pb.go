@@ -24,20 +24,24 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DataSourcePluginService_Validate_FullMethodName                   = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/Validate"
 	DataSourcePluginService_AddTrustZone_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddTrustZone"
+	DataSourcePluginService_DestroyTrustZone_FullMethodName           = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyTrustZone"
 	DataSourcePluginService_GetTrustZone_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetTrustZone"
 	DataSourcePluginService_ListTrustZones_FullMethodName             = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListTrustZones"
 	DataSourcePluginService_UpdateTrustZone_FullMethodName            = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/UpdateTrustZone"
 	DataSourcePluginService_AddCluster_FullMethodName                 = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddCluster"
+	DataSourcePluginService_DestroyCluster_FullMethodName             = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyCluster"
 	DataSourcePluginService_GetCluster_FullMethodName                 = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetCluster"
 	DataSourcePluginService_ListClusters_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListClusters"
 	DataSourcePluginService_UpdateCluster_FullMethodName              = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/UpdateCluster"
 	DataSourcePluginService_AddAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddAttestationPolicy"
+	DataSourcePluginService_DestroyAttestationPolicy_FullMethodName   = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyAttestationPolicy"
 	DataSourcePluginService_GetAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/GetAttestationPolicy"
 	DataSourcePluginService_ListAttestationPolicies_FullMethodName    = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAttestationPolicies"
 	DataSourcePluginService_AddAPBinding_FullMethodName               = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddAPBinding"
 	DataSourcePluginService_DestroyAPBinding_FullMethodName           = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyAPBinding"
 	DataSourcePluginService_ListAPBindings_FullMethodName             = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListAPBindings"
 	DataSourcePluginService_AddFederation_FullMethodName              = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/AddFederation"
+	DataSourcePluginService_DestroyFederation_FullMethodName          = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/DestroyFederation"
 	DataSourcePluginService_ListFederations_FullMethodName            = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListFederations"
 	DataSourcePluginService_ListFederationsByTrustZone_FullMethodName = "/proto.cofidectl_plugin.v1alpha1.DataSourcePluginService/ListFederationsByTrustZone"
 )
@@ -48,20 +52,24 @@ const (
 type DataSourcePluginServiceClient interface {
 	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	AddTrustZone(ctx context.Context, in *AddTrustZoneRequest, opts ...grpc.CallOption) (*AddTrustZoneResponse, error)
+	DestroyTrustZone(ctx context.Context, in *DestroyTrustZoneRequest, opts ...grpc.CallOption) (*DestroyTrustZoneResponse, error)
 	GetTrustZone(ctx context.Context, in *GetTrustZoneRequest, opts ...grpc.CallOption) (*GetTrustZoneResponse, error)
 	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(ctx context.Context, in *UpdateTrustZoneRequest, opts ...grpc.CallOption) (*UpdateTrustZoneResponse, error)
 	AddCluster(ctx context.Context, in *AddClusterRequest, opts ...grpc.CallOption) (*AddClusterResponse, error)
+	DestroyCluster(ctx context.Context, in *DestroyClusterRequest, opts ...grpc.CallOption) (*DestroyClusterResponse, error)
 	GetCluster(ctx context.Context, in *GetClusterRequest, opts ...grpc.CallOption) (*GetClusterResponse, error)
 	ListClusters(ctx context.Context, in *ListClustersRequest, opts ...grpc.CallOption) (*ListClustersResponse, error)
 	UpdateCluster(ctx context.Context, in *UpdateClusterRequest, opts ...grpc.CallOption) (*UpdateClusterResponse, error)
 	AddAttestationPolicy(ctx context.Context, in *AddAttestationPolicyRequest, opts ...grpc.CallOption) (*AddAttestationPolicyResponse, error)
+	DestroyAttestationPolicy(ctx context.Context, in *DestroyAttestationPolicyRequest, opts ...grpc.CallOption) (*DestroyAttestationPolicyResponse, error)
 	GetAttestationPolicy(ctx context.Context, in *GetAttestationPolicyRequest, opts ...grpc.CallOption) (*GetAttestationPolicyResponse, error)
 	ListAttestationPolicies(ctx context.Context, in *ListAttestationPoliciesRequest, opts ...grpc.CallOption) (*ListAttestationPoliciesResponse, error)
 	AddAPBinding(ctx context.Context, in *AddAPBindingRequest, opts ...grpc.CallOption) (*AddAPBindingResponse, error)
 	DestroyAPBinding(ctx context.Context, in *DestroyAPBindingRequest, opts ...grpc.CallOption) (*DestroyAPBindingResponse, error)
 	ListAPBindings(ctx context.Context, in *ListAPBindingsRequest, opts ...grpc.CallOption) (*ListAPBindingsResponse, error)
 	AddFederation(ctx context.Context, in *AddFederationRequest, opts ...grpc.CallOption) (*AddFederationResponse, error)
+	DestroyFederation(ctx context.Context, in *DestroyFederationRequest, opts ...grpc.CallOption) (*DestroyFederationResponse, error)
 	ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error)
 	ListFederationsByTrustZone(ctx context.Context, in *ListFederationsByTrustZoneRequest, opts ...grpc.CallOption) (*ListFederationsByTrustZoneResponse, error)
 }
@@ -88,6 +96,16 @@ func (c *dataSourcePluginServiceClient) AddTrustZone(ctx context.Context, in *Ad
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddTrustZoneResponse)
 	err := c.cc.Invoke(ctx, DataSourcePluginService_AddTrustZone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) DestroyTrustZone(ctx context.Context, in *DestroyTrustZoneRequest, opts ...grpc.CallOption) (*DestroyTrustZoneResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DestroyTrustZoneResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_DestroyTrustZone_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -134,6 +152,16 @@ func (c *dataSourcePluginServiceClient) AddCluster(ctx context.Context, in *AddC
 	return out, nil
 }
 
+func (c *dataSourcePluginServiceClient) DestroyCluster(ctx context.Context, in *DestroyClusterRequest, opts ...grpc.CallOption) (*DestroyClusterResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DestroyClusterResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_DestroyCluster_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataSourcePluginServiceClient) GetCluster(ctx context.Context, in *GetClusterRequest, opts ...grpc.CallOption) (*GetClusterResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetClusterResponse)
@@ -168,6 +196,16 @@ func (c *dataSourcePluginServiceClient) AddAttestationPolicy(ctx context.Context
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddAttestationPolicyResponse)
 	err := c.cc.Invoke(ctx, DataSourcePluginService_AddAttestationPolicy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) DestroyAttestationPolicy(ctx context.Context, in *DestroyAttestationPolicyRequest, opts ...grpc.CallOption) (*DestroyAttestationPolicyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DestroyAttestationPolicyResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_DestroyAttestationPolicy_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -234,6 +272,16 @@ func (c *dataSourcePluginServiceClient) AddFederation(ctx context.Context, in *A
 	return out, nil
 }
 
+func (c *dataSourcePluginServiceClient) DestroyFederation(ctx context.Context, in *DestroyFederationRequest, opts ...grpc.CallOption) (*DestroyFederationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DestroyFederationResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_DestroyFederation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataSourcePluginServiceClient) ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListFederationsResponse)
@@ -260,20 +308,24 @@ func (c *dataSourcePluginServiceClient) ListFederationsByTrustZone(ctx context.C
 type DataSourcePluginServiceServer interface {
 	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	AddTrustZone(context.Context, *AddTrustZoneRequest) (*AddTrustZoneResponse, error)
+	DestroyTrustZone(context.Context, *DestroyTrustZoneRequest) (*DestroyTrustZoneResponse, error)
 	GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error)
 	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error)
 	AddCluster(context.Context, *AddClusterRequest) (*AddClusterResponse, error)
+	DestroyCluster(context.Context, *DestroyClusterRequest) (*DestroyClusterResponse, error)
 	GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error)
 	ListClusters(context.Context, *ListClustersRequest) (*ListClustersResponse, error)
 	UpdateCluster(context.Context, *UpdateClusterRequest) (*UpdateClusterResponse, error)
 	AddAttestationPolicy(context.Context, *AddAttestationPolicyRequest) (*AddAttestationPolicyResponse, error)
+	DestroyAttestationPolicy(context.Context, *DestroyAttestationPolicyRequest) (*DestroyAttestationPolicyResponse, error)
 	GetAttestationPolicy(context.Context, *GetAttestationPolicyRequest) (*GetAttestationPolicyResponse, error)
 	ListAttestationPolicies(context.Context, *ListAttestationPoliciesRequest) (*ListAttestationPoliciesResponse, error)
 	AddAPBinding(context.Context, *AddAPBindingRequest) (*AddAPBindingResponse, error)
 	DestroyAPBinding(context.Context, *DestroyAPBindingRequest) (*DestroyAPBindingResponse, error)
 	ListAPBindings(context.Context, *ListAPBindingsRequest) (*ListAPBindingsResponse, error)
 	AddFederation(context.Context, *AddFederationRequest) (*AddFederationResponse, error)
+	DestroyFederation(context.Context, *DestroyFederationRequest) (*DestroyFederationResponse, error)
 	ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error)
 	ListFederationsByTrustZone(context.Context, *ListFederationsByTrustZoneRequest) (*ListFederationsByTrustZoneResponse, error)
 }
@@ -291,6 +343,9 @@ func (UnimplementedDataSourcePluginServiceServer) Validate(context.Context, *Val
 func (UnimplementedDataSourcePluginServiceServer) AddTrustZone(context.Context, *AddTrustZoneRequest) (*AddTrustZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTrustZone not implemented")
 }
+func (UnimplementedDataSourcePluginServiceServer) DestroyTrustZone(context.Context, *DestroyTrustZoneRequest) (*DestroyTrustZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DestroyTrustZone not implemented")
+}
 func (UnimplementedDataSourcePluginServiceServer) GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrustZone not implemented")
 }
@@ -303,6 +358,9 @@ func (UnimplementedDataSourcePluginServiceServer) UpdateTrustZone(context.Contex
 func (UnimplementedDataSourcePluginServiceServer) AddCluster(context.Context, *AddClusterRequest) (*AddClusterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddCluster not implemented")
 }
+func (UnimplementedDataSourcePluginServiceServer) DestroyCluster(context.Context, *DestroyClusterRequest) (*DestroyClusterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DestroyCluster not implemented")
+}
 func (UnimplementedDataSourcePluginServiceServer) GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCluster not implemented")
 }
@@ -314,6 +372,9 @@ func (UnimplementedDataSourcePluginServiceServer) UpdateCluster(context.Context,
 }
 func (UnimplementedDataSourcePluginServiceServer) AddAttestationPolicy(context.Context, *AddAttestationPolicyRequest) (*AddAttestationPolicyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddAttestationPolicy not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) DestroyAttestationPolicy(context.Context, *DestroyAttestationPolicyRequest) (*DestroyAttestationPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DestroyAttestationPolicy not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) GetAttestationPolicy(context.Context, *GetAttestationPolicyRequest) (*GetAttestationPolicyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAttestationPolicy not implemented")
@@ -332,6 +393,9 @@ func (UnimplementedDataSourcePluginServiceServer) ListAPBindings(context.Context
 }
 func (UnimplementedDataSourcePluginServiceServer) AddFederation(context.Context, *AddFederationRequest) (*AddFederationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddFederation not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) DestroyFederation(context.Context, *DestroyFederationRequest) (*DestroyFederationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DestroyFederation not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFederations not implemented")
@@ -391,6 +455,24 @@ func _DataSourcePluginService_AddTrustZone_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataSourcePluginServiceServer).AddTrustZone(ctx, req.(*AddTrustZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_DestroyTrustZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DestroyTrustZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).DestroyTrustZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_DestroyTrustZone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).DestroyTrustZone(ctx, req.(*DestroyTrustZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -467,6 +549,24 @@ func _DataSourcePluginService_AddCluster_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataSourcePluginService_DestroyCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DestroyClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).DestroyCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_DestroyCluster_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).DestroyCluster(ctx, req.(*DestroyClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataSourcePluginService_GetCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetClusterRequest)
 	if err := dec(in); err != nil {
@@ -535,6 +635,24 @@ func _DataSourcePluginService_AddAttestationPolicy_Handler(srv interface{}, ctx 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataSourcePluginServiceServer).AddAttestationPolicy(ctx, req.(*AddAttestationPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_DestroyAttestationPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DestroyAttestationPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).DestroyAttestationPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_DestroyAttestationPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).DestroyAttestationPolicy(ctx, req.(*DestroyAttestationPolicyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -647,6 +765,24 @@ func _DataSourcePluginService_AddFederation_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataSourcePluginService_DestroyFederation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DestroyFederationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).DestroyFederation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_DestroyFederation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).DestroyFederation(ctx, req.(*DestroyFederationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataSourcePluginService_ListFederations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListFederationsRequest)
 	if err := dec(in); err != nil {
@@ -699,6 +835,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataSourcePluginService_AddTrustZone_Handler,
 		},
 		{
+			MethodName: "DestroyTrustZone",
+			Handler:    _DataSourcePluginService_DestroyTrustZone_Handler,
+		},
+		{
 			MethodName: "GetTrustZone",
 			Handler:    _DataSourcePluginService_GetTrustZone_Handler,
 		},
@@ -715,6 +855,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataSourcePluginService_AddCluster_Handler,
 		},
 		{
+			MethodName: "DestroyCluster",
+			Handler:    _DataSourcePluginService_DestroyCluster_Handler,
+		},
+		{
 			MethodName: "GetCluster",
 			Handler:    _DataSourcePluginService_GetCluster_Handler,
 		},
@@ -729,6 +873,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddAttestationPolicy",
 			Handler:    _DataSourcePluginService_AddAttestationPolicy_Handler,
+		},
+		{
+			MethodName: "DestroyAttestationPolicy",
+			Handler:    _DataSourcePluginService_DestroyAttestationPolicy_Handler,
 		},
 		{
 			MethodName: "GetAttestationPolicy",
@@ -753,6 +901,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddFederation",
 			Handler:    _DataSourcePluginService_AddFederation_Handler,
+		},
+		{
+			MethodName: "DestroyFederation",
+			Handler:    _DataSourcePluginService_DestroyFederation_Handler,
 		},
 		{
 			MethodName: "ListFederations",
