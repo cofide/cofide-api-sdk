@@ -80,28 +80,6 @@ func Test_fakeTrustZoneClient_ListTrustZones(t *testing.T) {
 	assert.EqualExportedValues(t, []*trustzonepb.TrustZone{trustZone}, trustZones)
 }
 
-func Test_fakeTrustZoneClient_RegisterCluster(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
-	ctx := context.Background()
-
-	trustZone := test.FakeTrustZone()
-	cluster := test.FakeCluster()
-
-	_, err := client.RegisterCluster(ctx, test.FakeTrustZoneID, cluster)
-	require.Error(t, err)
-
-	fake.TrustZones[test.FakeTrustZoneID] = trustZone
-
-	agentToken, err := client.RegisterCluster(ctx, test.FakeTrustZoneID, cluster)
-	require.NoError(t, err)
-	for clusterID := range fake.Clusters {
-		cluster.Id = &clusterID
-	}
-	assert.EqualExportedValues(t, cluster, fake.Clusters[cluster.GetId()])
-	assert.Equal(t, fake.AgentJoinTokens[test.FakeTrustZoneID][cluster.GetId()], agentToken)
-}
-
 func Test_fakeTrustZoneClient_RegisterAgent(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)

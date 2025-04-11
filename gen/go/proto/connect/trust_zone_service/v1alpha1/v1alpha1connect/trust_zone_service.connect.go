@@ -51,12 +51,6 @@ const (
 	// TrustZoneServiceUpdateTrustZoneProcedure is the fully-qualified name of the TrustZoneService's
 	// UpdateTrustZone RPC.
 	TrustZoneServiceUpdateTrustZoneProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"
-	// TrustZoneServiceGetTrustZoneDetailsProcedure is the fully-qualified name of the
-	// TrustZoneService's GetTrustZoneDetails RPC.
-	TrustZoneServiceGetTrustZoneDetailsProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZoneDetails"
-	// TrustZoneServiceRegisterClusterProcedure is the fully-qualified name of the TrustZoneService's
-	// RegisterCluster RPC.
-	TrustZoneServiceRegisterClusterProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterCluster"
 	// TrustZoneServiceRegisterAgentProcedure is the fully-qualified name of the TrustZoneService's
 	// RegisterAgent RPC.
 	TrustZoneServiceRegisterAgentProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterAgent"
@@ -70,11 +64,6 @@ type TrustZoneServiceClient interface {
 	GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error)
 	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
-	// DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
-	GetTrustZoneDetails(context.Context, *connect.Request[v1alpha1.GetTrustZoneDetailsRequest]) (*connect.Response[v1alpha1.GetTrustZoneDetailsResponse], error)
-	// DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
-	// Cluster creation to be moved to ClusterService.CreateCluster.
-	RegisterCluster(context.Context, *connect.Request[v1alpha1.RegisterClusterRequest]) (*connect.Response[v1alpha1.RegisterClusterResponse], error)
 	RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error)
 }
 
@@ -120,18 +109,6 @@ func NewTrustZoneServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(trustZoneServiceMethods.ByName("UpdateTrustZone")),
 			connect.WithClientOptions(opts...),
 		),
-		getTrustZoneDetails: connect.NewClient[v1alpha1.GetTrustZoneDetailsRequest, v1alpha1.GetTrustZoneDetailsResponse](
-			httpClient,
-			baseURL+TrustZoneServiceGetTrustZoneDetailsProcedure,
-			connect.WithSchema(trustZoneServiceMethods.ByName("GetTrustZoneDetails")),
-			connect.WithClientOptions(opts...),
-		),
-		registerCluster: connect.NewClient[v1alpha1.RegisterClusterRequest, v1alpha1.RegisterClusterResponse](
-			httpClient,
-			baseURL+TrustZoneServiceRegisterClusterProcedure,
-			connect.WithSchema(trustZoneServiceMethods.ByName("RegisterCluster")),
-			connect.WithClientOptions(opts...),
-		),
 		registerAgent: connect.NewClient[v1alpha1.RegisterAgentRequest, v1alpha1.RegisterAgentResponse](
 			httpClient,
 			baseURL+TrustZoneServiceRegisterAgentProcedure,
@@ -143,14 +120,12 @@ func NewTrustZoneServiceClient(httpClient connect.HTTPClient, baseURL string, op
 
 // trustZoneServiceClient implements TrustZoneServiceClient.
 type trustZoneServiceClient struct {
-	createTrustZone     *connect.Client[v1alpha1.CreateTrustZoneRequest, v1alpha1.CreateTrustZoneResponse]
-	destroyTrustZone    *connect.Client[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse]
-	getTrustZone        *connect.Client[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse]
-	listTrustZones      *connect.Client[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse]
-	updateTrustZone     *connect.Client[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse]
-	getTrustZoneDetails *connect.Client[v1alpha1.GetTrustZoneDetailsRequest, v1alpha1.GetTrustZoneDetailsResponse]
-	registerCluster     *connect.Client[v1alpha1.RegisterClusterRequest, v1alpha1.RegisterClusterResponse]
-	registerAgent       *connect.Client[v1alpha1.RegisterAgentRequest, v1alpha1.RegisterAgentResponse]
+	createTrustZone  *connect.Client[v1alpha1.CreateTrustZoneRequest, v1alpha1.CreateTrustZoneResponse]
+	destroyTrustZone *connect.Client[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse]
+	getTrustZone     *connect.Client[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse]
+	listTrustZones   *connect.Client[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse]
+	updateTrustZone  *connect.Client[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse]
+	registerAgent    *connect.Client[v1alpha1.RegisterAgentRequest, v1alpha1.RegisterAgentResponse]
 }
 
 // CreateTrustZone calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.CreateTrustZone.
@@ -179,17 +154,6 @@ func (c *trustZoneServiceClient) UpdateTrustZone(ctx context.Context, req *conne
 	return c.updateTrustZone.CallUnary(ctx, req)
 }
 
-// GetTrustZoneDetails calls
-// proto.connect.trust_zone_service.v1alpha1.TrustZoneService.GetTrustZoneDetails.
-func (c *trustZoneServiceClient) GetTrustZoneDetails(ctx context.Context, req *connect.Request[v1alpha1.GetTrustZoneDetailsRequest]) (*connect.Response[v1alpha1.GetTrustZoneDetailsResponse], error) {
-	return c.getTrustZoneDetails.CallUnary(ctx, req)
-}
-
-// RegisterCluster calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterCluster.
-func (c *trustZoneServiceClient) RegisterCluster(ctx context.Context, req *connect.Request[v1alpha1.RegisterClusterRequest]) (*connect.Response[v1alpha1.RegisterClusterResponse], error) {
-	return c.registerCluster.CallUnary(ctx, req)
-}
-
 // RegisterAgent calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterAgent.
 func (c *trustZoneServiceClient) RegisterAgent(ctx context.Context, req *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error) {
 	return c.registerAgent.CallUnary(ctx, req)
@@ -203,11 +167,6 @@ type TrustZoneServiceHandler interface {
 	GetTrustZone(context.Context, *connect.Request[v1alpha1.GetTrustZoneRequest]) (*connect.Response[v1alpha1.GetTrustZoneResponse], error)
 	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
-	// DEPRECATED: GetTrustZoneDetails to be replaced with GetTrustZone.
-	GetTrustZoneDetails(context.Context, *connect.Request[v1alpha1.GetTrustZoneDetailsRequest]) (*connect.Response[v1alpha1.GetTrustZoneDetailsResponse], error)
-	// DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
-	// Cluster creation to be moved to ClusterService.CreateCluster.
-	RegisterCluster(context.Context, *connect.Request[v1alpha1.RegisterClusterRequest]) (*connect.Response[v1alpha1.RegisterClusterResponse], error)
 	RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error)
 }
 
@@ -248,18 +207,6 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 		connect.WithSchema(trustZoneServiceMethods.ByName("UpdateTrustZone")),
 		connect.WithHandlerOptions(opts...),
 	)
-	trustZoneServiceGetTrustZoneDetailsHandler := connect.NewUnaryHandler(
-		TrustZoneServiceGetTrustZoneDetailsProcedure,
-		svc.GetTrustZoneDetails,
-		connect.WithSchema(trustZoneServiceMethods.ByName("GetTrustZoneDetails")),
-		connect.WithHandlerOptions(opts...),
-	)
-	trustZoneServiceRegisterClusterHandler := connect.NewUnaryHandler(
-		TrustZoneServiceRegisterClusterProcedure,
-		svc.RegisterCluster,
-		connect.WithSchema(trustZoneServiceMethods.ByName("RegisterCluster")),
-		connect.WithHandlerOptions(opts...),
-	)
 	trustZoneServiceRegisterAgentHandler := connect.NewUnaryHandler(
 		TrustZoneServiceRegisterAgentProcedure,
 		svc.RegisterAgent,
@@ -278,10 +225,6 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 			trustZoneServiceListTrustZonesHandler.ServeHTTP(w, r)
 		case TrustZoneServiceUpdateTrustZoneProcedure:
 			trustZoneServiceUpdateTrustZoneHandler.ServeHTTP(w, r)
-		case TrustZoneServiceGetTrustZoneDetailsProcedure:
-			trustZoneServiceGetTrustZoneDetailsHandler.ServeHTTP(w, r)
-		case TrustZoneServiceRegisterClusterProcedure:
-			trustZoneServiceRegisterClusterHandler.ServeHTTP(w, r)
 		case TrustZoneServiceRegisterAgentProcedure:
 			trustZoneServiceRegisterAgentHandler.ServeHTTP(w, r)
 		default:
@@ -311,14 +254,6 @@ func (UnimplementedTrustZoneServiceHandler) ListTrustZones(context.Context, *con
 
 func (UnimplementedTrustZoneServiceHandler) UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.UpdateTrustZone is not implemented"))
-}
-
-func (UnimplementedTrustZoneServiceHandler) GetTrustZoneDetails(context.Context, *connect.Request[v1alpha1.GetTrustZoneDetailsRequest]) (*connect.Response[v1alpha1.GetTrustZoneDetailsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.GetTrustZoneDetails is not implemented"))
-}
-
-func (UnimplementedTrustZoneServiceHandler) RegisterCluster(context.Context, *connect.Request[v1alpha1.RegisterClusterRequest]) (*connect.Response[v1alpha1.RegisterClusterResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterCluster is not implemented"))
 }
 
 func (UnimplementedTrustZoneServiceHandler) RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error) {
