@@ -18,6 +18,7 @@ import (
 // TrustZoneClient is an interface for a gRPC client for the v1alpha1 version of the Connect TrustZoneService.
 type TrustZoneClient interface {
 	CreateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error)
+	DestroyTrustZone(ctx context.Context, trustZoneID string) error
 	GetTrustZone(ctx context.Context, trustZoneID string) (*trustzonepb.TrustZone, error)
 	ListTrustZones(ctx context.Context, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) ([]*trustzonepb.TrustZone, error)
 	UpdateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error)
@@ -47,6 +48,13 @@ func (c *trustZoneClient) CreateTrustZone(ctx context.Context, trustZone *trustz
 	}
 
 	return resp.TrustZone, nil
+}
+
+func (c *trustZoneClient) DestroyTrustZone(ctx context.Context, trustZoneID string) error {
+	_, err := c.trustZoneClient.DestroyTrustZone(ctx, &trustzonesvcpb.DestroyTrustZoneRequest{
+		TrustZoneId: &trustZoneID,
+	})
+	return err
 }
 
 func (c *trustZoneClient) GetTrustZone(ctx context.Context, trustZoneID string) (*trustzonepb.TrustZone, error) {
