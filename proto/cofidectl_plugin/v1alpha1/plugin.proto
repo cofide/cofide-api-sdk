@@ -17,16 +17,19 @@ service DataSourcePluginService {
   rpc Validate(ValidateRequest) returns (ValidateResponse);
 
   rpc AddTrustZone(AddTrustZoneRequest) returns (AddTrustZoneResponse);
+  rpc DestroyTrustZone(DestroyTrustZoneRequest) returns (DestroyTrustZoneResponse);
   rpc GetTrustZone(GetTrustZoneRequest) returns (GetTrustZoneResponse);
   rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse);
   rpc UpdateTrustZone(UpdateTrustZoneRequest) returns (UpdateTrustZoneResponse);
 
   rpc AddCluster(AddClusterRequest) returns (AddClusterResponse);
+  rpc DestroyCluster(DestroyClusterRequest) returns (DestroyClusterResponse);
   rpc GetCluster(GetClusterRequest) returns (GetClusterResponse);
   rpc ListClusters(ListClustersRequest) returns (ListClustersResponse);
   rpc UpdateCluster(UpdateClusterRequest) returns (UpdateClusterResponse);
 
   rpc AddAttestationPolicy(AddAttestationPolicyRequest) returns (AddAttestationPolicyResponse);
+  rpc DestroyAttestationPolicy(DestroyAttestationPolicyRequest) returns (DestroyAttestationPolicyResponse);
   rpc GetAttestationPolicy(GetAttestationPolicyRequest) returns (GetAttestationPolicyResponse);
   rpc ListAttestationPolicies(ListAttestationPoliciesRequest) returns (ListAttestationPoliciesResponse);
 
@@ -35,6 +38,7 @@ service DataSourcePluginService {
   rpc ListAPBindings(ListAPBindingsRequest) returns (ListAPBindingsResponse);
 
   rpc AddFederation(AddFederationRequest) returns (AddFederationResponse);
+  rpc DestroyFederation(DestroyFederationRequest) returns (DestroyFederationResponse);
   rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse);
   rpc ListFederationsByTrustZone(ListFederationsByTrustZoneRequest) returns (ListFederationsByTrustZoneResponse);
 }
@@ -50,6 +54,12 @@ message AddTrustZoneRequest {
 message AddTrustZoneResponse {
   optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
 }
+
+message DestroyTrustZoneRequest {
+  optional string name = 1;
+}
+
+message DestroyTrustZoneResponse {}
 
 message GetTrustZoneRequest {
   optional string name = 1;
@@ -80,6 +90,13 @@ message AddClusterRequest {
 message AddClusterResponse {
   optional proto.cluster.v1alpha1.Cluster cluster = 1;
 }
+
+message DestroyClusterRequest {
+  optional string name = 1;
+  optional string trust_zone = 2;
+}
+
+message DestroyClusterResponse {}
 
 message GetClusterRequest {
   optional string name = 1;
@@ -113,6 +130,12 @@ message AddAttestationPolicyRequest {
 message AddAttestationPolicyResponse {
   optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
 }
+
+message DestroyAttestationPolicyRequest {
+  optional string name = 1;
+}
+
+message DestroyAttestationPolicyResponse {}
 
 message GetAttestationPolicyRequest {
   optional string name = 1;
@@ -161,6 +184,12 @@ message AddFederationRequest {
 message AddFederationResponse {
   optional proto.federation.v1alpha1.Federation federation = 1;
 }
+
+message DestroyFederationRequest {
+  optional proto.federation.v1alpha1.Federation federation = 1;
+}
+
+message DestroyFederationResponse {}
 
 message ListFederationsRequest {}
 
