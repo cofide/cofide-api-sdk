@@ -24,15 +24,6 @@ service DataStoreService {
   rpc ListNodeSelectors(ListNodeSelectorsRequest) returns (ListNodeSelectorsResponse);
 }
 
-message ListNodeSelectorsRequest {}
-message ListNodeSelectorsResponse {
-  message NodeSelectors {
-    string spiffe_id = 1;
-    repeated Selector selectors = 2;
-  }
-  repeated NodeSelectors node_selectors = 1;
-}
-
 // Node operations request/response messages
 message CountAttestedNodesRequest {}
 
@@ -72,6 +63,11 @@ message UpdateAttestedNodeResponse {
   optional AttestedNode node = 1;
 }
 
+message ListAttestedNodesRequest {}
+message ListAttestedNodesResponse {
+  repeated AttestedNode nodes = 1;
+}
+
 // Node Selector operations request/response messages
 message GetNodeSelectorsRequest {
   string spiffe_id = 1;
@@ -89,7 +85,11 @@ message SetNodeSelectorsRequest {
 
 message SetNodeSelectorsResponse {}
 
-message ListAttestedNodesRequest {}
-message ListAttestedNodesResponse {
-  repeated AttestedNode nodes = 1;
+message ListNodeSelectorsRequest {}
+message ListNodeSelectorsResponse {
+  message NodeSelectors {
+    string spiffe_id = 1;
+    repeated Selector selectors = 2;
+  }
+  repeated NodeSelectors node_selectors = 1;
 }
