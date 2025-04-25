@@ -23,7 +23,7 @@ type ClientSet interface {
 	AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient
 	APBindingV1Alpha1() apbindingv1alpha1.APBindingClient
 	FederationV1Alpha1() federationV1Alpha1.FederationClient
-	DataStoreV1alpha1() datastorev1alpha1.DataStoreClient
+	DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient
 }
 
 type clientSet struct {
@@ -49,7 +49,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 	}
 }
 
-func (c *clientSet) DataStoreV1alpha1() datastorev1alpha1.DataStoreClient {
+func (c *clientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
 	return c.datastoreV1Alpha1
 }
 

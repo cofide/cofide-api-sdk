@@ -19,7 +19,6 @@ import (
 func setupTest() (*FakeDataStore, client.DataStoreClient) {
 	fake := &FakeDataStore{
 		AttestedNodes: make(map[string]*datastorev1alpha1.AttestedNode),
-		NodeSelectors: make(map[string][]*datastorev1alpha1.Selector),
 	}
 	connect := fakeconnect.New()
 	client := New(connect)
@@ -181,7 +180,7 @@ func TestListAttestedNodes(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, listResp)
 	assert.Len(t, listResp.Nodes, 3)
-	
+
 	// Verify all nodes are returned
 	for _, expectedNode := range nodes {
 		found := false
@@ -210,15 +209,20 @@ func TestListNodeSelectors(t *testing.T) {
 		node := &datastorev1alpha1.AttestedNode{
 			CertSerialNumber: "selector-test-" + strconv.Itoa(i),
 			SpiffeId:         spiffeID,
+		}
+
+		_, err := client.CreateAttestedNode(context.Background(), &datastorev1alpha1.CreateAttestedNodeRequest{
+			Node: node,
+		})
+		require.NoError(t, err)
+		_, err = client.SetNodeSelectors(context.Background(), &datastorev1alpha1.SetNodeSelectorsRequest{
+			SpiffeId: spiffeID,
 			Selectors: []*datastorev1alpha1.Selector{
 				{Type: "type" + strconv.Itoa(i), Value: "value" + strconv.Itoa(i)},
 				{Type: "common", Value: "shared"},
 			},
-		}
-		
-		_, err := client.CreateAttestedNode(context.Background(), &datastorev1alpha1.CreateAttestedNodeRequest{
-			Node: node,
 		})
+
 		require.NoError(t, err)
 	}
 
@@ -226,21 +230,21 @@ func TestListNodeSelectors(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, listResp)
 	assert.Len(t, listResp.NodeSelectors, nodeCount)
-	
+
 	// Verify all node selectors are returned
 	for i := 0; i < nodeCount; i++ {
 		spiffeID := "spiffe://example.org/selector-node-" + strconv.Itoa(i)
 		found := false
-		
+
 		for _, nodeSelector := range listResp.NodeSelectors {
 			if nodeSelector.SpiffeId == spiffeID {
 				found = true
 				assert.Len(t, nodeSelector.Selectors, 2)
-				
+
 				// Check for specific selector
 				specificFound := false
 				commonFound := false
-				
+
 				for _, selector := range nodeSelector.Selectors {
 					if selector.Type == "type"+strconv.Itoa(i) && selector.Value == "value"+strconv.Itoa(i) {
 						specificFound = true
@@ -249,13 +253,13 @@ func TestListNodeSelectors(t *testing.T) {
 						commonFound = true
 					}
 				}
-				
+
 				assert.True(t, specificFound, "Specific selector not found for node: %s", spiffeID)
 				assert.True(t, commonFound, "Common selector not found for node: %s", spiffeID)
 				break
 			}
 		}
-		
+
 		assert.True(t, found, "Node selector not found in list response: %s", spiffeID)
 	}
 }
@@ -268,7 +272,7 @@ func TestErrorCases(t *testing.T) {
 		SpiffeId: "spiffe://example.org/non-existent",
 	})
 	require.Error(t, err)
-	
+
 	// Test updating non-existent node
 	_, err = client.UpdateAttestedNode(context.Background(), &datastorev1alpha1.UpdateAttestedNodeRequest{
 		Node: &datastorev1alpha1.AttestedNode{
@@ -276,19 +280,19 @@ func TestErrorCases(t *testing.T) {
 		},
 	})
 	require.Error(t, err)
-	
+
 	// Test deleting non-existent node
 	_, err = client.DeleteAttestedNode(context.Background(), &datastorev1alpha1.DeleteAttestedNodeRequest{
 		SpiffeId: "spiffe://example.org/non-existent",
 	})
 	require.Error(t, err)
-	
+
 	// Test getting selectors for non-existent node
 	_, err = client.GetNodeSelectors(context.Background(), &datastorev1alpha1.GetNodeSelectorsRequest{
 		SpiffeId: "spiffe://example.org/non-existent",
 	})
 	require.Error(t, err)
-	
+
 	// Test setting selectors for non-existent node
 	_, err = client.SetNodeSelectors(context.Background(), &datastorev1alpha1.SetNodeSelectorsRequest{
 		SpiffeId: "spiffe://example.org/non-existent",

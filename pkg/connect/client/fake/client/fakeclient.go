@@ -45,7 +45,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 	}
 }
 
-func (c *fakeClientSet) DataStoreV1alpha1() datastorev1alpha1.DataStoreClient {
+func (c *fakeClientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
 	return c.datastoreV1Alpha1
 }
 
