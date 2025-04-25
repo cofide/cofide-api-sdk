@@ -107,12 +107,12 @@ func (c *fakeDataStoreClient) UpdateAttestedNode(ctx context.Context, req *datas
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	_, exists := c.fake.AttestedNodes[req.Node.GetSpiffeId()]
+	existing, exists := c.fake.AttestedNodes[req.Node.GetSpiffeId()]
 	if !exists {
 		return nil, status.Error(codes.NotFound, "node not found")
 	}
 	newNode := proto.Clone(req.Node).(*datastorev1alpha1.AttestedNode)
-	newNode.Selectors = nil
+	newNode.Selectors = existing.GetSelectors()
 	c.fake.AttestedNodes[req.Node.GetSpiffeId()] = newNode
 	return &datastorev1alpha1.UpdateAttestedNodeResponse{Node: proto.Clone(newNode).(*datastorev1alpha1.AttestedNode)}, nil
 }

@@ -78,6 +78,56 @@ func TestUpdateAttestedNode(t *testing.T) {
 	assert.Equal(t, updatedNode, fetchResp.Node)
 }
 
+func TestUpdateAttestedNodePreservesSelectors(t *testing.T) {
+	_, client := setupTest()
+
+	// Create a node
+	spiffeID := "spiffe://example.org/preserve-selectors"
+	node := &datastorev1alpha1.AttestedNode{
+		CertSerialNumber: "9876",
+		CertNotAfter:     5000,
+		SpiffeId:         spiffeID,
+	}
+
+	resp, err := client.CreateAttestedNode(context.Background(), &datastorev1alpha1.CreateAttestedNodeRequest{
+		Node: node,
+	})
+	require.NoError(t, err)
+
+	// Set selectors
+	selectors := []*datastorev1alpha1.Selector{
+		{Type: "type1", Value: "value1"},
+		{Type: "type2", Value: "value2"},
+	}
+	_, err = client.SetNodeSelectors(context.Background(), &datastorev1alpha1.SetNodeSelectorsRequest{
+		SpiffeId:  spiffeID,
+		Selectors: selectors,
+	})
+	require.NoError(t, err)
+
+	// Update the node
+	updatedNode := resp.Node
+	updatedNode.CertSerialNumber = "5432"
+	updatedNode.CertNotAfter = 6000
+
+	updateResp, err := client.UpdateAttestedNode(context.Background(), &datastorev1alpha1.UpdateAttestedNodeRequest{
+		Node: updatedNode,
+	})
+	require.NoError(t, err)
+
+	// Verify node was updated
+	assert.Equal(t, "5432", updateResp.Node.CertSerialNumber)
+	assert.Equal(t, int64(6000), updateResp.Node.CertNotAfter)
+
+	// Verify selectors are preserved
+	getResp, err := client.GetNodeSelectors(context.Background(), &datastorev1alpha1.GetNodeSelectorsRequest{
+		SpiffeId: spiffeID,
+	})
+	require.NoError(t, err)
+	require.Len(t, getResp.Selectors, 2)
+	assert.Equal(t, selectors, getResp.Selectors)
+}
+
 func TestDeleteAttestedNode(t *testing.T) {
 	_, client := setupTest()
 
