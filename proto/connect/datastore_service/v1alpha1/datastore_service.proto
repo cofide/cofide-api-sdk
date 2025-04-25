@@ -1,0 +1,132 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.datastore_service.v1alpha1;
+
+import "proto/connect/datastore_service/v1alpha1/datastore.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1";
+
+// DataStoreService defines the gRPC service for the SPIRE server DataStore interface
+service DataStoreService {
+  // Node operations
+  rpc CountAttestedNodes(CountAttestedNodesRequest) returns (CountAttestedNodesResponse);
+  rpc CreateAttestedNode(CreateAttestedNodeRequest) returns (CreateAttestedNodeResponse);
+  rpc DeleteAttestedNode(DeleteAttestedNodeRequest) returns (DeleteAttestedNodeResponse);
+  rpc FetchAttestedNode(FetchAttestedNodeRequest) returns (FetchAttestedNodeResponse);
+  rpc UpdateAttestedNode(UpdateAttestedNodeRequest) returns (UpdateAttestedNodeResponse);
+  rpc ListAttestedNodes(ListAttestedNodesRequest) returns (ListAttestedNodesResponse);
+  // Node Selector operations
+  rpc GetNodeSelectors(GetNodeSelectorsRequest) returns (GetNodeSelectorsResponse);
+  rpc SetNodeSelectors(SetNodeSelectorsRequest) returns (SetNodeSelectorsResponse);
+  rpc ListNodeSelectors(ListNodeSelectorsRequest) returns (ListNodeSelectorsResponse);
+}
+
+// Node operations request/response messages
+message CountAttestedNodesRequest {}
+
+message CountAttestedNodesResponse {
+  int32 count = 1;
+}
+
+message CreateAttestedNodeRequest {
+  AttestedNode node = 1;
+}
+
+message CreateAttestedNodeResponse {
+  AttestedNode node = 1;
+}
+
+message DeleteAttestedNodeRequest {
+  string spiffe_id = 1;
+}
+
+message DeleteAttestedNodeResponse {
+  optional AttestedNode node = 1;
+}
+
+message FetchAttestedNodeRequest {
+  string spiffe_id = 1;
+}
+
+message FetchAttestedNodeResponse {
+  optional AttestedNode node = 1;
+}
+
+message UpdateAttestedNodeRequest {
+  AttestedNode node = 1;
+  AttestedNodeMask mask = 2;
+}
+
+message AttestedNodeMask {
+  bool attestation_data_type = 1;
+  bool cert_serial_number = 2;
+  bool cert_not_after = 3;
+  bool new_cert_serial_number = 4;
+  bool new_cert_not_after = 5;
+  bool can_reattest = 7;
+}
+
+message UpdateAttestedNodeResponse {
+  optional AttestedNode node = 1;
+}
+
+message ListAttestedNodesRequest {
+  // Filters nodes by attestation type
+  optional string by_attestation_type = 1;
+  // Filters nodes by banned status
+  optional bool by_banned = 2;
+  // Filters nodes that expire before the specified timestamp
+  optional int64 by_expires_before = 3;
+  // Filters nodes by selectors
+  message BySelectors {
+    repeated Selector selectors = 1;
+    MatchBehavior match = 2;
+  }
+  enum MatchBehavior {
+    MATCH_BEHAVIOR_EXACT_UNSPECIFIED = 0;
+    MATCH_BEHAVIOR_SUBSET = 1;
+    MATCH_BEHAVIOR_SUPERSET = 2;
+    MATCH_BEHAVIOR_MATCH_ANY = 3;
+  }
+  optional BySelectors by_selector_match = 4;
+  // Whether to fetch selectors with nodes
+  optional bool fetch_selectors = 5;
+  // Filters nodes by ability to re-attest
+  optional bool by_can_reattest = 6;
+}
+
+message ListAttestedNodesResponse {
+  repeated AttestedNode nodes = 1;
+}
+
+// Node Selector operations request/response messages
+message GetNodeSelectorsRequest {
+  string spiffe_id = 1;
+}
+
+message GetNodeSelectorsResponse {
+  string spiffe_id = 1;
+  repeated Selector selectors = 2;
+}
+
+message SetNodeSelectorsRequest {
+  string spiffe_id = 1;
+  repeated Selector selectors = 2;
+}
+
+message SetNodeSelectorsResponse {}
+
+message ListNodeSelectorsRequest {
+  optional int64 valid_at = 1;
+}
+
+message ListNodeSelectorsResponse {
+  message NodeSelectors {
+    string spiffe_id = 1;
+    repeated Selector selectors = 2;
+  }
+  repeated NodeSelectors node_selectors = 1;
+}

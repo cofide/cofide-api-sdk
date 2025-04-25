@@ -1,0 +1,50 @@
+// Taken from: https://github.com/spiffe/spire/blob/main/proto/spire/common/common.proto
+
+syntax = "proto3";
+
+package proto.connect.datastore_service.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1";
+
+/** A type which describes the conditions under which a registration
+   entry is matched. */
+message Selector {
+  /** A selector type represents the type of attestation used in attesting
+     the entity (Eg: AWS, K8). */
+  string type = 1;
+  /** The value to be attested. */
+  string value = 2;
+}
+
+/** Represents a type with a list of Selector. */
+message Selectors {
+  /** A list of Selector. */
+  repeated Selector entries = 1;
+}
+
+/* Represents an attested SPIRE agent */
+message AttestedNode {
+  // Node SPIFFE ID
+  string spiffe_id = 1;
+
+  // Attestation data type
+  string attestation_data_type = 2;
+
+  // Node certificate serial number
+  string cert_serial_number = 3;
+
+  // Node certificate not_after (seconds since unix epoch)
+  int64 cert_not_after = 4;
+
+  // Node certificate serial number
+  string new_cert_serial_number = 5;
+
+  // Node certificate not_after (seconds since unix epoch)
+  int64 new_cert_not_after = 6;
+
+  // Node selectors
+  repeated Selector selectors = 7;
+
+  // CanReattest field (can the attestation safely be deleted and recreated automatically)
+  bool can_reattest = 8;
+}
