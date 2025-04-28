@@ -125,8 +125,7 @@ message ListNodeSelectorsRequest {
 
 message ListNodeSelectorsResponse {
   message NodeSelectors {
-    string spiffe_id = 1;
-    repeated Selector selectors = 2;
+    repeated Selector selectors = 1;
   }
-  repeated NodeSelectors node_selectors = 1;
+  map<string, NodeSelectors> selectors = 1;
 }

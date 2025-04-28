@@ -51,16 +51,15 @@ func (c *fakeDataStoreClient) ListNodeSelectors(ctx context.Context, req *datast
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 	nodes := c.fake.AttestedNodes
-	var selectors []*datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors
+	selectors := make(map[string]*datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors)
 	for _, node := range nodes {
 		newNode := proto.Clone(node).(*datastorev1alpha1.AttestedNode)
-		selectors = append(selectors, &datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors{
-			SpiffeId:  newNode.GetSpiffeId(),
+		selectors[newNode.GetSpiffeId()] = &datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors{
 			Selectors: newNode.GetSelectors(),
-		})
+		}
 	}
 
-	return &datastorev1alpha1.ListNodeSelectorsResponse{NodeSelectors: selectors}, nil
+	return &datastorev1alpha1.ListNodeSelectorsResponse{Selectors: selectors}, nil
 }
 
 func (c *fakeDataStoreClient) CountAttestedNodes(ctx context.Context, req *datastorev1alpha1.CountAttestedNodesRequest) (*datastorev1alpha1.CountAttestedNodesResponse, error) {

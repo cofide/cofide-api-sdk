@@ -279,15 +279,15 @@ func TestListNodeSelectors(t *testing.T) {
 	listResp, err := client.ListNodeSelectors(context.Background(), &datastorev1alpha1.ListNodeSelectorsRequest{})
 	require.NoError(t, err)
 	require.NotNil(t, listResp)
-	assert.Len(t, listResp.NodeSelectors, nodeCount)
+	assert.Len(t, listResp.Selectors, nodeCount)
 
 	// Verify all node selectors are returned
 	for i := 0; i < nodeCount; i++ {
 		spiffeID := "spiffe://example.org/selector-node-" + strconv.Itoa(i)
 		found := false
 
-		for _, nodeSelector := range listResp.NodeSelectors {
-			if nodeSelector.SpiffeId == spiffeID {
+		for id, nodeSelector := range listResp.Selectors {
+			if id == spiffeID {
 				found = true
 				assert.Len(t, nodeSelector.Selectors, 2)
 

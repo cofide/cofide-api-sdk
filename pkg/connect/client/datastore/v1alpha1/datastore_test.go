@@ -101,12 +101,11 @@ func TestDataStoreClient(t *testing.T) {
 	// Test ListNodeSelectors
 	listSelectorsResp, err := client.ListNodeSelectors(ctx, &datastorev1alpha1.ListNodeSelectorsRequest{})
 	require.NoError(t, err)
-	assert.EqualExportedValues(t, []*datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors{
-		{
-			SpiffeId:  fakeSpiffeID,
+	assert.EqualExportedValues(t, map[string]*datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors{
+		fakeSpiffeID: {
 			Selectors: selectors,
 		},
-	}, listSelectorsResp.NodeSelectors)
+	}, listSelectorsResp.Selectors)
 
 	// Test DeleteAttestedNode
 	deleteResp, err := client.DeleteAttestedNode(ctx, &datastorev1alpha1.DeleteAttestedNodeRequest{SpiffeId: fakeSpiffeID})
@@ -159,13 +158,12 @@ func (f *fakeDataStoreService) SetNodeSelectors(ctx context.Context, req *datast
 }
 
 func (f *fakeDataStoreService) ListNodeSelectors(ctx context.Context, req *datastorev1alpha1.ListNodeSelectorsRequest) (*datastorev1alpha1.ListNodeSelectorsResponse, error) {
-	nodeSelectors := []*datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors{
-		{
-			SpiffeId:  fakeSpiffeID,
-			Selectors: fakeNodeSelectors(),
-		},
+	nodeSelectors := &datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors{
+		Selectors: fakeNodeSelectors(),
 	}
-	return &datastorev1alpha1.ListNodeSelectorsResponse{NodeSelectors: nodeSelectors}, nil
+	selectors := make(map[string]*datastorev1alpha1.ListNodeSelectorsResponse_NodeSelectors)
+	selectors[fakeSpiffeID] = nodeSelectors
+	return &datastorev1alpha1.ListNodeSelectorsResponse{Selectors: selectors}, nil
 }
 
 func fakeAttestedNode() *datastorev1alpha1.AttestedNode {
