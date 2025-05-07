@@ -7,13 +7,14 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Message } from "@bufbuild/protobuf";
+import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/provision_plugin/v1alpha1/plugin.proto.
  */
 export const file_proto_provision_plugin_v1alpha1_plugin: GenFile = /*@__PURE__*/
-  fileDesc("Cixwcm90by9wcm92aXNpb25fcGx1Z2luL3YxYWxwaGExL3BsdWdpbi5wcm90bxIfcHJvdG8ucHJvdmlzaW9uX3BsdWdpbi52MWFscGhhMSIRCg9WYWxpZGF0ZVJlcXVlc3QiEgoQVmFsaWRhdGVSZXNwb25zZSKBAQoNRGVwbG95UmVxdWVzdBIYCgtkYXRhX3NvdXJjZRgBIAEoDUgAiAEBEhoKDWt1YmVfY2ZnX2ZpbGUYAiABKAlIAYgBARIYChB0cnVzdF96b25lX25hbWVzGAMgAygJQg4KDF9kYXRhX3NvdXJjZUIQCg5fa3ViZV9jZmdfZmlsZSJZCg5EZXBsb3lSZXNwb25zZRI8CgZzdGF0dXMYASABKAsyJy5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLlN0YXR1c0gAiAEBQgkKB19zdGF0dXMigwEKD1RlYXJEb3duUmVxdWVzdBIYCgtkYXRhX3NvdXJjZRgBIAEoDUgAiAEBEhoKDWt1YmVfY2ZnX2ZpbGUYAiABKAlIAYgBARIYChB0cnVzdF96b25lX25hbWVzGAMgAygJQg4KDF9kYXRhX3NvdXJjZUIQCg5fa3ViZV9jZmdfZmlsZSJbChBUZWFyRG93blJlc3BvbnNlEjwKBnN0YXR1cxgBIAEoCzInLnByb3RvLnByb3Zpc2lvbl9wbHVnaW4udjFhbHBoYTEuU3RhdHVzSACIAQFCCQoHX3N0YXR1cyKCAQoGU3RhdHVzEhIKBXN0YWdlGAEgASgJSACIAQESFAoHbWVzc2FnZRgCIAEoCUgBiAEBEhEKBGRvbmUYAyABKAhIAogBARISCgVlcnJvchgEIAEoCUgDiAEBQggKBl9zdGFnZUIKCghfbWVzc2FnZUIHCgVfZG9uZUIICgZfZXJyb3Iy6QIKFlByb3Zpc2lvblBsdWdpblNlcnZpY2USbwoIVmFsaWRhdGUSMC5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLlZhbGlkYXRlUmVxdWVzdBoxLnByb3RvLnByb3Zpc2lvbl9wbHVnaW4udjFhbHBoYTEuVmFsaWRhdGVSZXNwb25zZRJrCgZEZXBsb3kSLi5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLkRlcGxveVJlcXVlc3QaLy5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLkRlcGxveVJlc3BvbnNlMAEScQoIVGVhckRvd24SMC5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLlRlYXJEb3duUmVxdWVzdBoxLnByb3RvLnByb3Zpc2lvbl9wbHVnaW4udjFhbHBoYTEuVGVhckRvd25SZXNwb25zZTABQklaR2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9wcm92aXNpb25fcGx1Z2luL3YxYWxwaGExYgZwcm90bzM");
+  fileDesc("Cixwcm90by9wcm92aXNpb25fcGx1Z2luL3YxYWxwaGExL3BsdWdpbi5wcm90bxIfcHJvdG8ucHJvdmlzaW9uX3BsdWdpbi52MWFscGhhMSIRCg9WYWxpZGF0ZVJlcXVlc3QiEgoQVmFsaWRhdGVSZXNwb25zZSKBAQoNRGVwbG95UmVxdWVzdBIYCgtkYXRhX3NvdXJjZRgBIAEoDUgAiAEBEhoKDWt1YmVfY2ZnX2ZpbGUYAiABKAlIAYgBARIYChB0cnVzdF96b25lX25hbWVzGAMgAygJQg4KDF9kYXRhX3NvdXJjZUIQCg5fa3ViZV9jZmdfZmlsZSJZCg5EZXBsb3lSZXNwb25zZRI8CgZzdGF0dXMYASABKAsyJy5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLlN0YXR1c0gAiAEBQgkKB19zdGF0dXMigwEKD1RlYXJEb3duUmVxdWVzdBIYCgtkYXRhX3NvdXJjZRgBIAEoDUgAiAEBEhoKDWt1YmVfY2ZnX2ZpbGUYAiABKAlIAYgBARIYChB0cnVzdF96b25lX25hbWVzGAMgAygJQg4KDF9kYXRhX3NvdXJjZUIQCg5fa3ViZV9jZmdfZmlsZSJbChBUZWFyRG93blJlc3BvbnNlEjwKBnN0YXR1cxgBIAEoCzInLnByb3RvLnByb3Zpc2lvbl9wbHVnaW4udjFhbHBoYTEuU3RhdHVzSACIAQFCCQoHX3N0YXR1cyKeAQoUR2V0SGVsbVZhbHVlc1JlcXVlc3QSGAoLZGF0YV9zb3VyY2UYASABKA1IAIgBARIcCg90cnVzdF96b25lX25hbWUYAiABKAlIAYgBARIZCgxjbHVzdGVyX25hbWUYAyABKAlIAogBAUIOCgxfZGF0YV9zb3VyY2VCEgoQX3RydXN0X3pvbmVfbmFtZUIPCg1fY2x1c3Rlcl9uYW1lIloKFUdldEhlbG1WYWx1ZXNSZXNwb25zZRIxCgtoZWxtX3ZhbHVlcxgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RIAIgBAUIOCgxfaGVsbV92YWx1ZXMiggEKBlN0YXR1cxISCgVzdGFnZRgBIAEoCUgAiAEBEhQKB21lc3NhZ2UYAiABKAlIAYgBARIRCgRkb25lGAMgASgISAKIAQESEgoFZXJyb3IYBCABKAlIA4gBAUIICgZfc3RhZ2VCCgoIX21lc3NhZ2VCBwoFX2RvbmVCCAoGX2Vycm9yMukDChZQcm92aXNpb25QbHVnaW5TZXJ2aWNlEm8KCFZhbGlkYXRlEjAucHJvdG8ucHJvdmlzaW9uX3BsdWdpbi52MWFscGhhMS5WYWxpZGF0ZVJlcXVlc3QaMS5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLlZhbGlkYXRlUmVzcG9uc2USawoGRGVwbG95Ei4ucHJvdG8ucHJvdmlzaW9uX3BsdWdpbi52MWFscGhhMS5EZXBsb3lSZXF1ZXN0Gi8ucHJvdG8ucHJvdmlzaW9uX3BsdWdpbi52MWFscGhhMS5EZXBsb3lSZXNwb25zZTABEnEKCFRlYXJEb3duEjAucHJvdG8ucHJvdmlzaW9uX3BsdWdpbi52MWFscGhhMS5UZWFyRG93blJlcXVlc3QaMS5wcm90by5wcm92aXNpb25fcGx1Z2luLnYxYWxwaGExLlRlYXJEb3duUmVzcG9uc2UwARJ+Cg1HZXRIZWxtVmFsdWVzEjUucHJvdG8ucHJvdmlzaW9uX3BsdWdpbi52MWFscGhhMS5HZXRIZWxtVmFsdWVzUmVxdWVzdBo2LnByb3RvLnByb3Zpc2lvbl9wbHVnaW4udjFhbHBoYTEuR2V0SGVsbVZhbHVlc1Jlc3BvbnNlQklaR2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9wcm92aXNpb25fcGx1Z2luL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_struct]);
 
 /**
  * @generated from message proto.provision_plugin.v1alpha1.ValidateRequest
@@ -130,6 +131,50 @@ export const TearDownResponseSchema: GenMessage<TearDownResponse> = /*@__PURE__*
   messageDesc(file_proto_provision_plugin_v1alpha1_plugin, 5);
 
 /**
+ * @generated from message proto.provision_plugin.v1alpha1.GetHelmValuesRequest
+ */
+export type GetHelmValuesRequest = Message<"proto.provision_plugin.v1alpha1.GetHelmValuesRequest"> & {
+  /**
+   * @generated from field: optional uint32 data_source = 1;
+   */
+  dataSource?: number;
+
+  /**
+   * @generated from field: optional string trust_zone_name = 2;
+   */
+  trustZoneName?: string;
+
+  /**
+   * @generated from field: optional string cluster_name = 3;
+   */
+  clusterName?: string;
+};
+
+/**
+ * Describes the message proto.provision_plugin.v1alpha1.GetHelmValuesRequest.
+ * Use `create(GetHelmValuesRequestSchema)` to create a new message.
+ */
+export const GetHelmValuesRequestSchema: GenMessage<GetHelmValuesRequest> = /*@__PURE__*/
+  messageDesc(file_proto_provision_plugin_v1alpha1_plugin, 6);
+
+/**
+ * @generated from message proto.provision_plugin.v1alpha1.GetHelmValuesResponse
+ */
+export type GetHelmValuesResponse = Message<"proto.provision_plugin.v1alpha1.GetHelmValuesResponse"> & {
+  /**
+   * @generated from field: optional google.protobuf.Struct helm_values = 5;
+   */
+  helmValues?: JsonObject;
+};
+
+/**
+ * Describes the message proto.provision_plugin.v1alpha1.GetHelmValuesResponse.
+ * Use `create(GetHelmValuesResponseSchema)` to create a new message.
+ */
+export const GetHelmValuesResponseSchema: GenMessage<GetHelmValuesResponse> = /*@__PURE__*/
+  messageDesc(file_proto_provision_plugin_v1alpha1_plugin, 7);
+
+/**
  * @generated from message proto.provision_plugin.v1alpha1.Status
  */
 export type Status = Message<"proto.provision_plugin.v1alpha1.Status"> & {
@@ -159,7 +204,7 @@ export type Status = Message<"proto.provision_plugin.v1alpha1.Status"> & {
  * Use `create(StatusSchema)` to create a new message.
  */
 export const StatusSchema: GenMessage<Status> = /*@__PURE__*/
-  messageDesc(file_proto_provision_plugin_v1alpha1_plugin, 6);
+  messageDesc(file_proto_provision_plugin_v1alpha1_plugin, 8);
 
 /**
  * @generated from service proto.provision_plugin.v1alpha1.ProvisionPluginService
@@ -188,6 +233,14 @@ export const ProvisionPluginService: GenService<{
     methodKind: "server_streaming";
     input: typeof TearDownRequestSchema;
     output: typeof TearDownResponseSchema;
+  },
+  /**
+   * @generated from rpc proto.provision_plugin.v1alpha1.ProvisionPluginService.GetHelmValues
+   */
+  getHelmValues: {
+    methodKind: "unary";
+    input: typeof GetHelmValuesRequestSchema;
+    output: typeof GetHelmValuesResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_provision_plugin_v1alpha1_plugin, 0);

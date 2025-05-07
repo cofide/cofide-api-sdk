@@ -22,9 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProvisionPluginService_Validate_FullMethodName = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/Validate"
-	ProvisionPluginService_Deploy_FullMethodName   = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/Deploy"
-	ProvisionPluginService_TearDown_FullMethodName = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/TearDown"
+	ProvisionPluginService_Validate_FullMethodName      = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/Validate"
+	ProvisionPluginService_Deploy_FullMethodName        = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/Deploy"
+	ProvisionPluginService_TearDown_FullMethodName      = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/TearDown"
+	ProvisionPluginService_GetHelmValues_FullMethodName = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/GetHelmValues"
 )
 
 // ProvisionPluginServiceClient is the client API for ProvisionPluginService service.
@@ -34,6 +35,7 @@ type ProvisionPluginServiceClient interface {
 	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	Deploy(ctx context.Context, in *DeployRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[DeployResponse], error)
 	TearDown(ctx context.Context, in *TearDownRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[TearDownResponse], error)
+	GetHelmValues(ctx context.Context, in *GetHelmValuesRequest, opts ...grpc.CallOption) (*GetHelmValuesResponse, error)
 }
 
 type provisionPluginServiceClient struct {
@@ -92,6 +94,16 @@ func (c *provisionPluginServiceClient) TearDown(ctx context.Context, in *TearDow
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ProvisionPluginService_TearDownClient = grpc.ServerStreamingClient[TearDownResponse]
 
+func (c *provisionPluginServiceClient) GetHelmValues(ctx context.Context, in *GetHelmValuesRequest, opts ...grpc.CallOption) (*GetHelmValuesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetHelmValuesResponse)
+	err := c.cc.Invoke(ctx, ProvisionPluginService_GetHelmValues_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProvisionPluginServiceServer is the server API for ProvisionPluginService service.
 // All implementations should embed UnimplementedProvisionPluginServiceServer
 // for forward compatibility.
@@ -99,6 +111,7 @@ type ProvisionPluginServiceServer interface {
 	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	Deploy(*DeployRequest, grpc.ServerStreamingServer[DeployResponse]) error
 	TearDown(*TearDownRequest, grpc.ServerStreamingServer[TearDownResponse]) error
+	GetHelmValues(context.Context, *GetHelmValuesRequest) (*GetHelmValuesResponse, error)
 }
 
 // UnimplementedProvisionPluginServiceServer should be embedded to have
@@ -116,6 +129,9 @@ func (UnimplementedProvisionPluginServiceServer) Deploy(*DeployRequest, grpc.Ser
 }
 func (UnimplementedProvisionPluginServiceServer) TearDown(*TearDownRequest, grpc.ServerStreamingServer[TearDownResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method TearDown not implemented")
+}
+func (UnimplementedProvisionPluginServiceServer) GetHelmValues(context.Context, *GetHelmValuesRequest) (*GetHelmValuesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHelmValues not implemented")
 }
 func (UnimplementedProvisionPluginServiceServer) testEmbeddedByValue() {}
 
@@ -177,6 +193,24 @@ func _ProvisionPluginService_TearDown_Handler(srv interface{}, stream grpc.Serve
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ProvisionPluginService_TearDownServer = grpc.ServerStreamingServer[TearDownResponse]
 
+func _ProvisionPluginService_GetHelmValues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHelmValuesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProvisionPluginServiceServer).GetHelmValues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProvisionPluginService_GetHelmValues_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProvisionPluginServiceServer).GetHelmValues(ctx, req.(*GetHelmValuesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProvisionPluginService_ServiceDesc is the grpc.ServiceDesc for ProvisionPluginService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -187,6 +221,10 @@ var ProvisionPluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Validate",
 			Handler:    _ProvisionPluginService_Validate_Handler,
+		},
+		{
+			MethodName: "GetHelmValues",
+			Handler:    _ProvisionPluginService_GetHelmValues_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
