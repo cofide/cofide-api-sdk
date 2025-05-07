@@ -5,12 +5,15 @@ syntax = "proto3";
 
 package proto.provision_plugin.v1alpha1;
 
+import "google/protobuf/struct.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/provision_plugin/v1alpha1";
 
 service ProvisionPluginService {
   rpc Validate(ValidateRequest) returns (ValidateResponse);
   rpc Deploy(DeployRequest) returns (stream DeployResponse);
   rpc TearDown(TearDownRequest) returns (stream TearDownResponse);
+  rpc GetHelmValues(GetHelmValuesRequest) returns (GetHelmValuesResponse);
 }
 
 message ValidateRequest {}
@@ -35,6 +38,15 @@ message TearDownRequest {
 
 message TearDownResponse {
   optional Status status = 1;
+}
+
+message GetHelmValuesRequest {
+  optional string trust_zone_name = 1;
+  optional string cluster_name = 2;
+}
+
+message GetHelmValuesResponse {
+  optional google.protobuf.Struct helm_values = 5;
 }
 
 message Status {
