@@ -45,6 +45,9 @@ const (
 	// ProvisionPluginServiceTearDownProcedure is the fully-qualified name of the
 	// ProvisionPluginService's TearDown RPC.
 	ProvisionPluginServiceTearDownProcedure = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/TearDown"
+	// ProvisionPluginServiceGetHelmValuesProcedure is the fully-qualified name of the
+	// ProvisionPluginService's GetHelmValues RPC.
+	ProvisionPluginServiceGetHelmValuesProcedure = "/proto.provision_plugin.v1alpha1.ProvisionPluginService/GetHelmValues"
 )
 
 // ProvisionPluginServiceClient is a client for the
@@ -53,6 +56,7 @@ type ProvisionPluginServiceClient interface {
 	Validate(context.Context, *connect.Request[v1alpha1.ValidateRequest]) (*connect.Response[v1alpha1.ValidateResponse], error)
 	Deploy(context.Context, *connect.Request[v1alpha1.DeployRequest]) (*connect.ServerStreamForClient[v1alpha1.DeployResponse], error)
 	TearDown(context.Context, *connect.Request[v1alpha1.TearDownRequest]) (*connect.ServerStreamForClient[v1alpha1.TearDownResponse], error)
+	GetHelmValues(context.Context, *connect.Request[v1alpha1.GetHelmValuesRequest]) (*connect.Response[v1alpha1.GetHelmValuesResponse], error)
 }
 
 // NewProvisionPluginServiceClient constructs a client for the
@@ -85,14 +89,21 @@ func NewProvisionPluginServiceClient(httpClient connect.HTTPClient, baseURL stri
 			connect.WithSchema(provisionPluginServiceMethods.ByName("TearDown")),
 			connect.WithClientOptions(opts...),
 		),
+		getHelmValues: connect.NewClient[v1alpha1.GetHelmValuesRequest, v1alpha1.GetHelmValuesResponse](
+			httpClient,
+			baseURL+ProvisionPluginServiceGetHelmValuesProcedure,
+			connect.WithSchema(provisionPluginServiceMethods.ByName("GetHelmValues")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // provisionPluginServiceClient implements ProvisionPluginServiceClient.
 type provisionPluginServiceClient struct {
-	validate *connect.Client[v1alpha1.ValidateRequest, v1alpha1.ValidateResponse]
-	deploy   *connect.Client[v1alpha1.DeployRequest, v1alpha1.DeployResponse]
-	tearDown *connect.Client[v1alpha1.TearDownRequest, v1alpha1.TearDownResponse]
+	validate      *connect.Client[v1alpha1.ValidateRequest, v1alpha1.ValidateResponse]
+	deploy        *connect.Client[v1alpha1.DeployRequest, v1alpha1.DeployResponse]
+	tearDown      *connect.Client[v1alpha1.TearDownRequest, v1alpha1.TearDownResponse]
+	getHelmValues *connect.Client[v1alpha1.GetHelmValuesRequest, v1alpha1.GetHelmValuesResponse]
 }
 
 // Validate calls proto.provision_plugin.v1alpha1.ProvisionPluginService.Validate.
@@ -110,12 +121,18 @@ func (c *provisionPluginServiceClient) TearDown(ctx context.Context, req *connec
 	return c.tearDown.CallServerStream(ctx, req)
 }
 
+// GetHelmValues calls proto.provision_plugin.v1alpha1.ProvisionPluginService.GetHelmValues.
+func (c *provisionPluginServiceClient) GetHelmValues(ctx context.Context, req *connect.Request[v1alpha1.GetHelmValuesRequest]) (*connect.Response[v1alpha1.GetHelmValuesResponse], error) {
+	return c.getHelmValues.CallUnary(ctx, req)
+}
+
 // ProvisionPluginServiceHandler is an implementation of the
 // proto.provision_plugin.v1alpha1.ProvisionPluginService service.
 type ProvisionPluginServiceHandler interface {
 	Validate(context.Context, *connect.Request[v1alpha1.ValidateRequest]) (*connect.Response[v1alpha1.ValidateResponse], error)
 	Deploy(context.Context, *connect.Request[v1alpha1.DeployRequest], *connect.ServerStream[v1alpha1.DeployResponse]) error
 	TearDown(context.Context, *connect.Request[v1alpha1.TearDownRequest], *connect.ServerStream[v1alpha1.TearDownResponse]) error
+	GetHelmValues(context.Context, *connect.Request[v1alpha1.GetHelmValuesRequest]) (*connect.Response[v1alpha1.GetHelmValuesResponse], error)
 }
 
 // NewProvisionPluginServiceHandler builds an HTTP handler from the service implementation. It
@@ -143,6 +160,12 @@ func NewProvisionPluginServiceHandler(svc ProvisionPluginServiceHandler, opts ..
 		connect.WithSchema(provisionPluginServiceMethods.ByName("TearDown")),
 		connect.WithHandlerOptions(opts...),
 	)
+	provisionPluginServiceGetHelmValuesHandler := connect.NewUnaryHandler(
+		ProvisionPluginServiceGetHelmValuesProcedure,
+		svc.GetHelmValues,
+		connect.WithSchema(provisionPluginServiceMethods.ByName("GetHelmValues")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.provision_plugin.v1alpha1.ProvisionPluginService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ProvisionPluginServiceValidateProcedure:
@@ -151,6 +174,8 @@ func NewProvisionPluginServiceHandler(svc ProvisionPluginServiceHandler, opts ..
 			provisionPluginServiceDeployHandler.ServeHTTP(w, r)
 		case ProvisionPluginServiceTearDownProcedure:
 			provisionPluginServiceTearDownHandler.ServeHTTP(w, r)
+		case ProvisionPluginServiceGetHelmValuesProcedure:
+			provisionPluginServiceGetHelmValuesHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -170,4 +195,8 @@ func (UnimplementedProvisionPluginServiceHandler) Deploy(context.Context, *conne
 
 func (UnimplementedProvisionPluginServiceHandler) TearDown(context.Context, *connect.Request[v1alpha1.TearDownRequest], *connect.ServerStream[v1alpha1.TearDownResponse]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("proto.provision_plugin.v1alpha1.ProvisionPluginService.TearDown is not implemented"))
+}
+
+func (UnimplementedProvisionPluginServiceHandler) GetHelmValues(context.Context, *connect.Request[v1alpha1.GetHelmValuesRequest]) (*connect.Response[v1alpha1.GetHelmValuesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.provision_plugin.v1alpha1.ProvisionPluginService.GetHelmValues is not implemented"))
 }
