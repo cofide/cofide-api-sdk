@@ -55,7 +55,7 @@ message AddTrustZoneResponse {
 }
 
 message DestroyTrustZoneRequest {
-  optional string name = 1;
+  optional string id = 1;
 }
 
 message DestroyTrustZoneResponse {}
@@ -134,13 +134,13 @@ message AddAttestationPolicyResponse {
 }
 
 message DestroyAttestationPolicyRequest {
-  optional string name = 1;
+  optional string id = 1;
 }
 
 message DestroyAttestationPolicyResponse {}
 
 message GetAttestationPolicyRequest {
-  optional string name = 1;
+  optional string id = 1;
 }
 
 message GetAttestationPolicyResponse {
@@ -162,7 +162,7 @@ message AddAPBindingResponse {
 }
 
 message DestroyAPBindingRequest {
-  optional proto.ap_binding.v1alpha1.APBinding binding = 1;
+  optional string id = 1;
 }
 
 message DestroyAPBindingResponse {}
@@ -188,7 +188,7 @@ message AddFederationResponse {
 }
 
 message DestroyFederationRequest {
-  optional proto.federation.v1alpha1.Federation federation = 1;
+  optional string id = 1;
 }
 
 message DestroyFederationResponse {}
