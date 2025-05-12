@@ -69,7 +69,7 @@ type ProvisionPluginServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewProvisionPluginServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) ProvisionPluginServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	provisionPluginServiceMethods := v1alpha1.File_proto_provision_plugin_v1alpha2_plugin_proto.Services().ByName("ProvisionPluginService").Methods()
+	provisionPluginServiceMethods := v1alpha1.File_proto_provision_plugin_v1alpha1_plugin_proto.Services().ByName("ProvisionPluginService").Methods()
 	return &provisionPluginServiceClient{
 		validate: connect.NewClient[v1alpha1.ValidateRequest, v1alpha1.ValidateResponse](
 			httpClient,
@@ -141,7 +141,7 @@ type ProvisionPluginServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewProvisionPluginServiceHandler(svc ProvisionPluginServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	provisionPluginServiceMethods := v1alpha1.File_proto_provision_plugin_v1alpha2_plugin_proto.Services().ByName("ProvisionPluginService").Methods()
+	provisionPluginServiceMethods := v1alpha1.File_proto_provision_plugin_v1alpha1_plugin_proto.Services().ByName("ProvisionPluginService").Methods()
 	provisionPluginServiceValidateHandler := connect.NewUnaryHandler(
 		ProvisionPluginServiceValidateProcedure,
 		svc.Validate,
