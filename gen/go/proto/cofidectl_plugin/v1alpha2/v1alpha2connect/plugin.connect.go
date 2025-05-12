@@ -48,6 +48,9 @@ const (
 	// DataSourcePluginServiceGetTrustZoneProcedure is the fully-qualified name of the
 	// DataSourcePluginService's GetTrustZone RPC.
 	DataSourcePluginServiceGetTrustZoneProcedure = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetTrustZone"
+	// DataSourcePluginServiceGetTrustZoneByNameProcedure is the fully-qualified name of the
+	// DataSourcePluginService's GetTrustZoneByName RPC.
+	DataSourcePluginServiceGetTrustZoneByNameProcedure = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetTrustZoneByName"
 	// DataSourcePluginServiceListTrustZonesProcedure is the fully-qualified name of the
 	// DataSourcePluginService's ListTrustZones RPC.
 	DataSourcePluginServiceListTrustZonesProcedure = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListTrustZones"
@@ -108,6 +111,7 @@ type DataSourcePluginServiceClient interface {
 	AddTrustZone(context.Context, *connect.Request[v1alpha2.AddTrustZoneRequest]) (*connect.Response[v1alpha2.AddTrustZoneResponse], error)
 	DestroyTrustZone(context.Context, *connect.Request[v1alpha2.DestroyTrustZoneRequest]) (*connect.Response[v1alpha2.DestroyTrustZoneResponse], error)
 	GetTrustZone(context.Context, *connect.Request[v1alpha2.GetTrustZoneRequest]) (*connect.Response[v1alpha2.GetTrustZoneResponse], error)
+	GetTrustZoneByName(context.Context, *connect.Request[v1alpha2.GetTrustZoneByNameRequest]) (*connect.Response[v1alpha2.GetTrustZoneByNameResponse], error)
 	ListTrustZones(context.Context, *connect.Request[v1alpha2.ListTrustZonesRequest]) (*connect.Response[v1alpha2.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha2.UpdateTrustZoneRequest]) (*connect.Response[v1alpha2.UpdateTrustZoneResponse], error)
 	AddCluster(context.Context, *connect.Request[v1alpha2.AddClusterRequest]) (*connect.Response[v1alpha2.AddClusterResponse], error)
@@ -161,6 +165,12 @@ func NewDataSourcePluginServiceClient(httpClient connect.HTTPClient, baseURL str
 			httpClient,
 			baseURL+DataSourcePluginServiceGetTrustZoneProcedure,
 			connect.WithSchema(dataSourcePluginServiceMethods.ByName("GetTrustZone")),
+			connect.WithClientOptions(opts...),
+		),
+		getTrustZoneByName: connect.NewClient[v1alpha2.GetTrustZoneByNameRequest, v1alpha2.GetTrustZoneByNameResponse](
+			httpClient,
+			baseURL+DataSourcePluginServiceGetTrustZoneByNameProcedure,
+			connect.WithSchema(dataSourcePluginServiceMethods.ByName("GetTrustZoneByName")),
 			connect.WithClientOptions(opts...),
 		),
 		listTrustZones: connect.NewClient[v1alpha2.ListTrustZonesRequest, v1alpha2.ListTrustZonesResponse](
@@ -274,6 +284,7 @@ type dataSourcePluginServiceClient struct {
 	addTrustZone             *connect.Client[v1alpha2.AddTrustZoneRequest, v1alpha2.AddTrustZoneResponse]
 	destroyTrustZone         *connect.Client[v1alpha2.DestroyTrustZoneRequest, v1alpha2.DestroyTrustZoneResponse]
 	getTrustZone             *connect.Client[v1alpha2.GetTrustZoneRequest, v1alpha2.GetTrustZoneResponse]
+	getTrustZoneByName       *connect.Client[v1alpha2.GetTrustZoneByNameRequest, v1alpha2.GetTrustZoneByNameResponse]
 	listTrustZones           *connect.Client[v1alpha2.ListTrustZonesRequest, v1alpha2.ListTrustZonesResponse]
 	updateTrustZone          *connect.Client[v1alpha2.UpdateTrustZoneRequest, v1alpha2.UpdateTrustZoneResponse]
 	addCluster               *connect.Client[v1alpha2.AddClusterRequest, v1alpha2.AddClusterResponse]
@@ -311,6 +322,12 @@ func (c *dataSourcePluginServiceClient) DestroyTrustZone(ctx context.Context, re
 // GetTrustZone calls proto.cofidectl_plugin.v1alpha2.DataSourcePluginService.GetTrustZone.
 func (c *dataSourcePluginServiceClient) GetTrustZone(ctx context.Context, req *connect.Request[v1alpha2.GetTrustZoneRequest]) (*connect.Response[v1alpha2.GetTrustZoneResponse], error) {
 	return c.getTrustZone.CallUnary(ctx, req)
+}
+
+// GetTrustZoneByName calls
+// proto.cofidectl_plugin.v1alpha2.DataSourcePluginService.GetTrustZoneByName.
+func (c *dataSourcePluginServiceClient) GetTrustZoneByName(ctx context.Context, req *connect.Request[v1alpha2.GetTrustZoneByNameRequest]) (*connect.Response[v1alpha2.GetTrustZoneByNameResponse], error) {
+	return c.getTrustZoneByName.CallUnary(ctx, req)
 }
 
 // ListTrustZones calls proto.cofidectl_plugin.v1alpha2.DataSourcePluginService.ListTrustZones.
@@ -410,6 +427,7 @@ type DataSourcePluginServiceHandler interface {
 	AddTrustZone(context.Context, *connect.Request[v1alpha2.AddTrustZoneRequest]) (*connect.Response[v1alpha2.AddTrustZoneResponse], error)
 	DestroyTrustZone(context.Context, *connect.Request[v1alpha2.DestroyTrustZoneRequest]) (*connect.Response[v1alpha2.DestroyTrustZoneResponse], error)
 	GetTrustZone(context.Context, *connect.Request[v1alpha2.GetTrustZoneRequest]) (*connect.Response[v1alpha2.GetTrustZoneResponse], error)
+	GetTrustZoneByName(context.Context, *connect.Request[v1alpha2.GetTrustZoneByNameRequest]) (*connect.Response[v1alpha2.GetTrustZoneByNameResponse], error)
 	ListTrustZones(context.Context, *connect.Request[v1alpha2.ListTrustZonesRequest]) (*connect.Response[v1alpha2.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha2.UpdateTrustZoneRequest]) (*connect.Response[v1alpha2.UpdateTrustZoneResponse], error)
 	AddCluster(context.Context, *connect.Request[v1alpha2.AddClusterRequest]) (*connect.Response[v1alpha2.AddClusterResponse], error)
@@ -458,6 +476,12 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 		DataSourcePluginServiceGetTrustZoneProcedure,
 		svc.GetTrustZone,
 		connect.WithSchema(dataSourcePluginServiceMethods.ByName("GetTrustZone")),
+		connect.WithHandlerOptions(opts...),
+	)
+	dataSourcePluginServiceGetTrustZoneByNameHandler := connect.NewUnaryHandler(
+		DataSourcePluginServiceGetTrustZoneByNameProcedure,
+		svc.GetTrustZoneByName,
+		connect.WithSchema(dataSourcePluginServiceMethods.ByName("GetTrustZoneByName")),
 		connect.WithHandlerOptions(opts...),
 	)
 	dataSourcePluginServiceListTrustZonesHandler := connect.NewUnaryHandler(
@@ -572,6 +596,8 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 			dataSourcePluginServiceDestroyTrustZoneHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceGetTrustZoneProcedure:
 			dataSourcePluginServiceGetTrustZoneHandler.ServeHTTP(w, r)
+		case DataSourcePluginServiceGetTrustZoneByNameProcedure:
+			dataSourcePluginServiceGetTrustZoneByNameHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceListTrustZonesProcedure:
 			dataSourcePluginServiceListTrustZonesHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceUpdateTrustZoneProcedure:
@@ -629,6 +655,10 @@ func (UnimplementedDataSourcePluginServiceHandler) DestroyTrustZone(context.Cont
 
 func (UnimplementedDataSourcePluginServiceHandler) GetTrustZone(context.Context, *connect.Request[v1alpha2.GetTrustZoneRequest]) (*connect.Response[v1alpha2.GetTrustZoneResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha2.DataSourcePluginService.GetTrustZone is not implemented"))
+}
+
+func (UnimplementedDataSourcePluginServiceHandler) GetTrustZoneByName(context.Context, *connect.Request[v1alpha2.GetTrustZoneByNameRequest]) (*connect.Response[v1alpha2.GetTrustZoneByNameResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl_plugin.v1alpha2.DataSourcePluginService.GetTrustZoneByName is not implemented"))
 }
 
 func (UnimplementedDataSourcePluginServiceHandler) ListTrustZones(context.Context, *connect.Request[v1alpha2.ListTrustZonesRequest]) (*connect.Response[v1alpha2.ListTrustZonesResponse], error) {

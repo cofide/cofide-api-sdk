@@ -42,8 +42,7 @@ message TearDownResponse {
 
 message GetHelmValuesRequest {
   optional uint32 data_source = 1;
-  optional string trust_zone_name = 2;
-  optional string cluster_id = 3;
+  optional string cluster_id = 2;
 }
 
 message GetHelmValuesResponse {

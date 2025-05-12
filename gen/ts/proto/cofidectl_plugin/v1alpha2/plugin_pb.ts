@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cofidectl_plugin/v1alpha2/plugin.proto.
  */
 export const file_proto_cofidectl_plugin_v1alpha2_plugin: GenFile = /*@__PURE__*/
-  fileDesc("Cixwcm90by9jb2ZpZGVjdGxfcGx1Z2luL3YxYWxwaGEyL3BsdWdpbi5wcm90bxIfcHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMiIRCg9WYWxpZGF0ZVJlcXVlc3QiEgoQVmFsaWRhdGVSZXNwb25zZSJjChNBZGRUcnVzdFpvbmVSZXF1ZXN0Ej0KCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZUgAiAEBQg0KC190cnVzdF96b25lImQKFEFkZFRydXN0Wm9uZVJlc3BvbnNlEj0KCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZUgAiAEBQg0KC190cnVzdF96b25lIjEKF0Rlc3Ryb3lUcnVzdFpvbmVSZXF1ZXN0Eg8KAmlkGAEgASgJSACIAQFCBQoDX2lkIhoKGERlc3Ryb3lUcnVzdFpvbmVSZXNwb25zZSJJChNHZXRUcnVzdFpvbmVSZXF1ZXN0EhEKBG5hbWUYASABKAlIAIgBARIPCgJpZBgCIAEoCUgBiAEBQgcKBV9uYW1lQgUKA19pZCJkChRHZXRUcnVzdFpvbmVSZXNwb25zZRI9Cgp0cnVzdF96b25lGAEgASgLMiQucHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS5UcnVzdFpvbmVIAIgBAUINCgtfdHJ1c3Rfem9uZSIXChVMaXN0VHJ1c3Rab25lc1JlcXVlc3QiUwoWTGlzdFRydXN0Wm9uZXNSZXNwb25zZRI5Cgt0cnVzdF96b25lcxgBIAMoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lImYKFlVwZGF0ZVRydXN0Wm9uZVJlcXVlc3QSPQoKdHJ1c3Rfem9uZRgBIAEoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lSACIAQFCDQoLX3RydXN0X3pvbmUiZwoXVXBkYXRlVHJ1c3Rab25lUmVzcG9uc2USPQoKdHJ1c3Rfem9uZRgBIAEoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lSACIAQFCDQoLX3RydXN0X3pvbmUiVgoRQWRkQ2x1c3RlclJlcXVlc3QSNQoHY2x1c3RlchgBIAEoCzIfLnByb3RvLmNsdXN0ZXIudjFhbHBoYTEuQ2x1c3RlckgAiAEBQgoKCF9jbHVzdGVyIlcKEkFkZENsdXN0ZXJSZXNwb25zZRI1CgdjbHVzdGVyGAEgASgLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVySACIAQFCCgoIX2NsdXN0ZXIieQoVRGVzdHJveUNsdXN0ZXJSZXF1ZXN0EhEKBG5hbWUYASABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAIgASgJSAGIAQESDwoCaWQYAyABKAlIAogBAUIHCgVfbmFtZUIQCg5fdHJ1c3Rfem9uZV9pZEIFCgNfaWQiGAoWRGVzdHJveUNsdXN0ZXJSZXNwb25zZSJ1ChFHZXRDbHVzdGVyUmVxdWVzdBIRCgRuYW1lGAEgASgJSACIAQESGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUgBiAEBEg8KAmlkGAMgASgJSAKIAQFCBwoFX25hbWVCEAoOX3RydXN0X3pvbmVfaWRCBQoDX2lkIlcKEkdldENsdXN0ZXJSZXNwb25zZRI1CgdjbHVzdGVyGAEgASgLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVySACIAQFCCgoIX2NsdXN0ZXIiQwoTTGlzdENsdXN0ZXJzUmVxdWVzdBIaCg10cnVzdF96b25lX2lkGAEgASgJSACIAQFCEAoOX3RydXN0X3pvbmVfaWQiSQoUTGlzdENsdXN0ZXJzUmVzcG9uc2USMQoIY2x1c3RlcnMYASADKAsyHy5wcm90by5jbHVzdGVyLnYxYWxwaGExLkNsdXN0ZXIiWQoUVXBkYXRlQ2x1c3RlclJlcXVlc3QSNQoHY2x1c3RlchgBIAEoCzIfLnByb3RvLmNsdXN0ZXIudjFhbHBoYTEuQ2x1c3RlckgAiAEBQgoKCF9jbHVzdGVyIloKFVVwZGF0ZUNsdXN0ZXJSZXNwb25zZRI1CgdjbHVzdGVyGAEgASgLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVySACIAQFCCgoIX2NsdXN0ZXIicwobQWRkQXR0ZXN0YXRpb25Qb2xpY3lSZXF1ZXN0EkkKBnBvbGljeRgBIAEoCzI0LnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BdHRlc3RhdGlvblBvbGljeUgAiAEBQgkKB19wb2xpY3kidAocQWRkQXR0ZXN0YXRpb25Qb2xpY3lSZXNwb25zZRJJCgZwb2xpY3kYASABKAsyNC5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQXR0ZXN0YXRpb25Qb2xpY3lIAIgBAUIJCgdfcG9saWN5IjkKH0Rlc3Ryb3lBdHRlc3RhdGlvblBvbGljeVJlcXVlc3QSDwoCaWQYASABKAlIAIgBAUIFCgNfaWQiIgogRGVzdHJveUF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2UiNQobR2V0QXR0ZXN0YXRpb25Qb2xpY3lSZXF1ZXN0Eg8KAmlkGAEgASgJSACIAQFCBQoDX2lkImQKHEdldEF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USRAoGcG9saWN5GAEgASgLMjQucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkF0dGVzdGF0aW9uUG9saWN5IiAKHkxpc3RBdHRlc3RhdGlvblBvbGljaWVzUmVxdWVzdCJpCh9MaXN0QXR0ZXN0YXRpb25Qb2xpY2llc1Jlc3BvbnNlEkYKCHBvbGljaWVzGAEgAygLMjQucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkF0dGVzdGF0aW9uUG9saWN5Il0KE0FkZEFQQmluZGluZ1JlcXVlc3QSOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQFCCgoIX2JpbmRpbmciXgoUQWRkQVBCaW5kaW5nUmVzcG9uc2USOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQFCCgoIX2JpbmRpbmciMQoXRGVzdHJveUFQQmluZGluZ1JlcXVlc3QSDwoCaWQYASABKAlIAIgBAUIFCgNfaWQiGgoYRGVzdHJveUFQQmluZGluZ1Jlc3BvbnNlItQBChVMaXN0QVBCaW5kaW5nc1JlcXVlc3QSUgoGZmlsdGVyGAEgASgLMj0ucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5MaXN0QVBCaW5kaW5nc1JlcXVlc3QuRmlsdGVySACIAQEaXAoGRmlsdGVyEhoKDXRydXN0X3pvbmVfaWQYASABKAlIAIgBARIWCglwb2xpY3lfaWQYAiABKAlIAYgBAUIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkQgkKB19maWx0ZXIiUAoWTGlzdEFQQmluZGluZ3NSZXNwb25zZRI2CghiaW5kaW5ncxgBIAMoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nImUKFEFkZEZlZGVyYXRpb25SZXF1ZXN0Ej4KCmZlZGVyYXRpb24YASABKAsyJS5wcm90by5mZWRlcmF0aW9uLnYxYWxwaGExLkZlZGVyYXRpb25IAIgBAUINCgtfZmVkZXJhdGlvbiJmChVBZGRGZWRlcmF0aW9uUmVzcG9uc2USPgoKZmVkZXJhdGlvbhgBIAEoCzIlLnByb3RvLmZlZGVyYXRpb24udjFhbHBoYTEuRmVkZXJhdGlvbkgAiAEBQg0KC19mZWRlcmF0aW9uIjIKGERlc3Ryb3lGZWRlcmF0aW9uUmVxdWVzdBIPCgJpZBgBIAEoCUgAiAEBQgUKA19pZCIbChlEZXN0cm95RmVkZXJhdGlvblJlc3BvbnNlIrABChZMaXN0RmVkZXJhdGlvbnNSZXF1ZXN0ElMKBmZpbHRlchgBIAEoCzI+LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuTGlzdEZlZGVyYXRpb25zUmVxdWVzdC5GaWx0ZXJIAIgBARo2CgZGaWx0ZXISGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkQgkKB19maWx0ZXIiVQoXTGlzdEZlZGVyYXRpb25zUmVzcG9uc2USOgoLZmVkZXJhdGlvbnMYASADKAsyJS5wcm90by5mZWRlcmF0aW9uLnYxYWxwaGExLkZlZGVyYXRpb24ylBYKF0RhdGFTb3VyY2VQbHVnaW5TZXJ2aWNlEm8KCFZhbGlkYXRlEjAucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5WYWxpZGF0ZVJlcXVlc3QaMS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlZhbGlkYXRlUmVzcG9uc2USewoMQWRkVHJ1c3Rab25lEjQucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRUcnVzdFpvbmVSZXF1ZXN0GjUucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRUcnVzdFpvbmVSZXNwb25zZRKHAQoQRGVzdHJveVRydXN0Wm9uZRI4LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveVRydXN0Wm9uZVJlcXVlc3QaOS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkRlc3Ryb3lUcnVzdFpvbmVSZXNwb25zZRJ7CgxHZXRUcnVzdFpvbmUSNC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldFRydXN0Wm9uZVJlcXVlc3QaNS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldFRydXN0Wm9uZVJlc3BvbnNlEoEBCg5MaXN0VHJ1c3Rab25lcxI2LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuTGlzdFRydXN0Wm9uZXNSZXF1ZXN0GjcucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5MaXN0VHJ1c3Rab25lc1Jlc3BvbnNlEoQBCg9VcGRhdGVUcnVzdFpvbmUSNy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlVwZGF0ZVRydXN0Wm9uZVJlcXVlc3QaOC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlVwZGF0ZVRydXN0Wm9uZVJlc3BvbnNlEnUKCkFkZENsdXN0ZXISMi5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkFkZENsdXN0ZXJSZXF1ZXN0GjMucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRDbHVzdGVyUmVzcG9uc2USgQEKDkRlc3Ryb3lDbHVzdGVyEjYucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5EZXN0cm95Q2x1c3RlclJlcXVlc3QaNy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkRlc3Ryb3lDbHVzdGVyUmVzcG9uc2USdQoKR2V0Q2x1c3RlchIyLnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuR2V0Q2x1c3RlclJlcXVlc3QaMy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldENsdXN0ZXJSZXNwb25zZRJ7CgxMaXN0Q2x1c3RlcnMSNC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RDbHVzdGVyc1JlcXVlc3QaNS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RDbHVzdGVyc1Jlc3BvbnNlEn4KDVVwZGF0ZUNsdXN0ZXISNS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlVwZGF0ZUNsdXN0ZXJSZXF1ZXN0GjYucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5VcGRhdGVDbHVzdGVyUmVzcG9uc2USkwEKFEFkZEF0dGVzdGF0aW9uUG9saWN5EjwucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRBdHRlc3RhdGlvblBvbGljeVJlcXVlc3QaPS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkFkZEF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USnwEKGERlc3Ryb3lBdHRlc3RhdGlvblBvbGljeRJALnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUF0dGVzdGF0aW9uUG9saWN5UmVxdWVzdBpBLnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USkwEKFEdldEF0dGVzdGF0aW9uUG9saWN5EjwucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5HZXRBdHRlc3RhdGlvblBvbGljeVJlcXVlc3QaPS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldEF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USnAEKF0xpc3RBdHRlc3RhdGlvblBvbGljaWVzEj8ucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5MaXN0QXR0ZXN0YXRpb25Qb2xpY2llc1JlcXVlc3QaQC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RBdHRlc3RhdGlvblBvbGljaWVzUmVzcG9uc2USewoMQWRkQVBCaW5kaW5nEjQucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRBUEJpbmRpbmdSZXF1ZXN0GjUucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRBUEJpbmRpbmdSZXNwb25zZRKHAQoQRGVzdHJveUFQQmluZGluZxI4LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUFQQmluZGluZ1JlcXVlc3QaOS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkRlc3Ryb3lBUEJpbmRpbmdSZXNwb25zZRKBAQoOTGlzdEFQQmluZGluZ3MSNi5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RBUEJpbmRpbmdzUmVxdWVzdBo3LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuTGlzdEFQQmluZGluZ3NSZXNwb25zZRJ+Cg1BZGRGZWRlcmF0aW9uEjUucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRGZWRlcmF0aW9uUmVxdWVzdBo2LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuQWRkRmVkZXJhdGlvblJlc3BvbnNlEooBChFEZXN0cm95RmVkZXJhdGlvbhI5LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUZlZGVyYXRpb25SZXF1ZXN0GjoucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5EZXN0cm95RmVkZXJhdGlvblJlc3BvbnNlEoQBCg9MaXN0RmVkZXJhdGlvbnMSNy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RGZWRlcmF0aW9uc1JlcXVlc3QaOC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RGZWRlcmF0aW9uc1Jlc3BvbnNlQklaR2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb2ZpZGVjdGxfcGx1Z2luL3YxYWxwaGEyYgZwcm90bzM", [file_proto_ap_binding_v1alpha1_ap_binding, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_cluster_v1alpha1_cluster, file_proto_federation_v1alpha1_federation, file_proto_trust_zone_v1alpha1_trust_zone]);
+  fileDesc("Cixwcm90by9jb2ZpZGVjdGxfcGx1Z2luL3YxYWxwaGEyL3BsdWdpbi5wcm90bxIfcHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMiIRCg9WYWxpZGF0ZVJlcXVlc3QiEgoQVmFsaWRhdGVSZXNwb25zZSJjChNBZGRUcnVzdFpvbmVSZXF1ZXN0Ej0KCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZUgAiAEBQg0KC190cnVzdF96b25lImQKFEFkZFRydXN0Wm9uZVJlc3BvbnNlEj0KCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZUgAiAEBQg0KC190cnVzdF96b25lIjEKF0Rlc3Ryb3lUcnVzdFpvbmVSZXF1ZXN0Eg8KAmlkGAEgASgJSACIAQFCBQoDX2lkIhoKGERlc3Ryb3lUcnVzdFpvbmVSZXNwb25zZSItChNHZXRUcnVzdFpvbmVSZXF1ZXN0Eg8KAmlkGAEgASgJSACIAQFCBQoDX2lkImQKFEdldFRydXN0Wm9uZVJlc3BvbnNlEj0KCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZUgAiAEBQg0KC190cnVzdF96b25lIjcKGUdldFRydXN0Wm9uZUJ5TmFtZVJlcXVlc3QSEQoEbmFtZRgBIAEoCUgAiAEBQgcKBV9uYW1lImoKGkdldFRydXN0Wm9uZUJ5TmFtZVJlc3BvbnNlEj0KCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZUgAiAEBQg0KC190cnVzdF96b25lIhcKFUxpc3RUcnVzdFpvbmVzUmVxdWVzdCJTChZMaXN0VHJ1c3Rab25lc1Jlc3BvbnNlEjkKC3RydXN0X3pvbmVzGAEgAygLMiQucHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS5UcnVzdFpvbmUiZgoWVXBkYXRlVHJ1c3Rab25lUmVxdWVzdBI9Cgp0cnVzdF96b25lGAEgASgLMiQucHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS5UcnVzdFpvbmVIAIgBAUINCgtfdHJ1c3Rfem9uZSJnChdVcGRhdGVUcnVzdFpvbmVSZXNwb25zZRI9Cgp0cnVzdF96b25lGAEgASgLMiQucHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS5UcnVzdFpvbmVIAIgBAUINCgtfdHJ1c3Rfem9uZSJWChFBZGRDbHVzdGVyUmVxdWVzdBI1CgdjbHVzdGVyGAEgASgLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVySACIAQFCCgoIX2NsdXN0ZXIiVwoSQWRkQ2x1c3RlclJlc3BvbnNlEjUKB2NsdXN0ZXIYASABKAsyHy5wcm90by5jbHVzdGVyLnYxYWxwaGExLkNsdXN0ZXJIAIgBAUIKCghfY2x1c3RlciIvChVEZXN0cm95Q2x1c3RlclJlcXVlc3QSDwoCaWQYASABKAlIAIgBAUIFCgNfaWQiGAoWRGVzdHJveUNsdXN0ZXJSZXNwb25zZSJ1ChFHZXRDbHVzdGVyUmVxdWVzdBIRCgRuYW1lGAEgASgJSACIAQESGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUgBiAEBEg8KAmlkGAMgASgJSAKIAQFCBwoFX25hbWVCEAoOX3RydXN0X3pvbmVfaWRCBQoDX2lkIlcKEkdldENsdXN0ZXJSZXNwb25zZRI1CgdjbHVzdGVyGAEgASgLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVySACIAQFCCgoIX2NsdXN0ZXIiQwoTTGlzdENsdXN0ZXJzUmVxdWVzdBIaCg10cnVzdF96b25lX2lkGAEgASgJSACIAQFCEAoOX3RydXN0X3pvbmVfaWQiSQoUTGlzdENsdXN0ZXJzUmVzcG9uc2USMQoIY2x1c3RlcnMYASADKAsyHy5wcm90by5jbHVzdGVyLnYxYWxwaGExLkNsdXN0ZXIiWQoUVXBkYXRlQ2x1c3RlclJlcXVlc3QSNQoHY2x1c3RlchgBIAEoCzIfLnByb3RvLmNsdXN0ZXIudjFhbHBoYTEuQ2x1c3RlckgAiAEBQgoKCF9jbHVzdGVyIloKFVVwZGF0ZUNsdXN0ZXJSZXNwb25zZRI1CgdjbHVzdGVyGAEgASgLMh8ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVySACIAQFCCgoIX2NsdXN0ZXIicwobQWRkQXR0ZXN0YXRpb25Qb2xpY3lSZXF1ZXN0EkkKBnBvbGljeRgBIAEoCzI0LnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BdHRlc3RhdGlvblBvbGljeUgAiAEBQgkKB19wb2xpY3kidAocQWRkQXR0ZXN0YXRpb25Qb2xpY3lSZXNwb25zZRJJCgZwb2xpY3kYASABKAsyNC5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQXR0ZXN0YXRpb25Qb2xpY3lIAIgBAUIJCgdfcG9saWN5IjkKH0Rlc3Ryb3lBdHRlc3RhdGlvblBvbGljeVJlcXVlc3QSDwoCaWQYASABKAlIAIgBAUIFCgNfaWQiIgogRGVzdHJveUF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2UiNQobR2V0QXR0ZXN0YXRpb25Qb2xpY3lSZXF1ZXN0Eg8KAmlkGAEgASgJSACIAQFCBQoDX2lkImQKHEdldEF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USRAoGcG9saWN5GAEgASgLMjQucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkF0dGVzdGF0aW9uUG9saWN5IiAKHkxpc3RBdHRlc3RhdGlvblBvbGljaWVzUmVxdWVzdCJpCh9MaXN0QXR0ZXN0YXRpb25Qb2xpY2llc1Jlc3BvbnNlEkYKCHBvbGljaWVzGAEgAygLMjQucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkF0dGVzdGF0aW9uUG9saWN5Il0KE0FkZEFQQmluZGluZ1JlcXVlc3QSOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQFCCgoIX2JpbmRpbmciXgoUQWRkQVBCaW5kaW5nUmVzcG9uc2USOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQFCCgoIX2JpbmRpbmciMQoXRGVzdHJveUFQQmluZGluZ1JlcXVlc3QSDwoCaWQYASABKAlIAIgBAUIFCgNfaWQiGgoYRGVzdHJveUFQQmluZGluZ1Jlc3BvbnNlItQBChVMaXN0QVBCaW5kaW5nc1JlcXVlc3QSUgoGZmlsdGVyGAEgASgLMj0ucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5MaXN0QVBCaW5kaW5nc1JlcXVlc3QuRmlsdGVySACIAQEaXAoGRmlsdGVyEhoKDXRydXN0X3pvbmVfaWQYASABKAlIAIgBARIWCglwb2xpY3lfaWQYAiABKAlIAYgBAUIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkQgkKB19maWx0ZXIiUAoWTGlzdEFQQmluZGluZ3NSZXNwb25zZRI2CghiaW5kaW5ncxgBIAMoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nImUKFEFkZEZlZGVyYXRpb25SZXF1ZXN0Ej4KCmZlZGVyYXRpb24YASABKAsyJS5wcm90by5mZWRlcmF0aW9uLnYxYWxwaGExLkZlZGVyYXRpb25IAIgBAUINCgtfZmVkZXJhdGlvbiJmChVBZGRGZWRlcmF0aW9uUmVzcG9uc2USPgoKZmVkZXJhdGlvbhgBIAEoCzIlLnByb3RvLmZlZGVyYXRpb24udjFhbHBoYTEuRmVkZXJhdGlvbkgAiAEBQg0KC19mZWRlcmF0aW9uIjIKGERlc3Ryb3lGZWRlcmF0aW9uUmVxdWVzdBIPCgJpZBgBIAEoCUgAiAEBQgUKA19pZCIbChlEZXN0cm95RmVkZXJhdGlvblJlc3BvbnNlIrABChZMaXN0RmVkZXJhdGlvbnNSZXF1ZXN0ElMKBmZpbHRlchgBIAEoCzI+LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuTGlzdEZlZGVyYXRpb25zUmVxdWVzdC5GaWx0ZXJIAIgBARo2CgZGaWx0ZXISGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkQgkKB19maWx0ZXIiVQoXTGlzdEZlZGVyYXRpb25zUmVzcG9uc2USOgoLZmVkZXJhdGlvbnMYASADKAsyJS5wcm90by5mZWRlcmF0aW9uLnYxYWxwaGExLkZlZGVyYXRpb24ypBcKF0RhdGFTb3VyY2VQbHVnaW5TZXJ2aWNlEm8KCFZhbGlkYXRlEjAucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5WYWxpZGF0ZVJlcXVlc3QaMS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlZhbGlkYXRlUmVzcG9uc2USewoMQWRkVHJ1c3Rab25lEjQucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRUcnVzdFpvbmVSZXF1ZXN0GjUucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRUcnVzdFpvbmVSZXNwb25zZRKHAQoQRGVzdHJveVRydXN0Wm9uZRI4LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveVRydXN0Wm9uZVJlcXVlc3QaOS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkRlc3Ryb3lUcnVzdFpvbmVSZXNwb25zZRJ7CgxHZXRUcnVzdFpvbmUSNC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldFRydXN0Wm9uZVJlcXVlc3QaNS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldFRydXN0Wm9uZVJlc3BvbnNlEo0BChJHZXRUcnVzdFpvbmVCeU5hbWUSOi5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldFRydXN0Wm9uZUJ5TmFtZVJlcXVlc3QaOy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldFRydXN0Wm9uZUJ5TmFtZVJlc3BvbnNlEoEBCg5MaXN0VHJ1c3Rab25lcxI2LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuTGlzdFRydXN0Wm9uZXNSZXF1ZXN0GjcucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5MaXN0VHJ1c3Rab25lc1Jlc3BvbnNlEoQBCg9VcGRhdGVUcnVzdFpvbmUSNy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlVwZGF0ZVRydXN0Wm9uZVJlcXVlc3QaOC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlVwZGF0ZVRydXN0Wm9uZVJlc3BvbnNlEnUKCkFkZENsdXN0ZXISMi5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkFkZENsdXN0ZXJSZXF1ZXN0GjMucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRDbHVzdGVyUmVzcG9uc2USgQEKDkRlc3Ryb3lDbHVzdGVyEjYucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5EZXN0cm95Q2x1c3RlclJlcXVlc3QaNy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkRlc3Ryb3lDbHVzdGVyUmVzcG9uc2USdQoKR2V0Q2x1c3RlchIyLnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuR2V0Q2x1c3RlclJlcXVlc3QaMy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldENsdXN0ZXJSZXNwb25zZRJ7CgxMaXN0Q2x1c3RlcnMSNC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RDbHVzdGVyc1JlcXVlc3QaNS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RDbHVzdGVyc1Jlc3BvbnNlEn4KDVVwZGF0ZUNsdXN0ZXISNS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLlVwZGF0ZUNsdXN0ZXJSZXF1ZXN0GjYucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5VcGRhdGVDbHVzdGVyUmVzcG9uc2USkwEKFEFkZEF0dGVzdGF0aW9uUG9saWN5EjwucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRBdHRlc3RhdGlvblBvbGljeVJlcXVlc3QaPS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkFkZEF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USnwEKGERlc3Ryb3lBdHRlc3RhdGlvblBvbGljeRJALnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUF0dGVzdGF0aW9uUG9saWN5UmVxdWVzdBpBLnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USkwEKFEdldEF0dGVzdGF0aW9uUG9saWN5EjwucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5HZXRBdHRlc3RhdGlvblBvbGljeVJlcXVlc3QaPS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkdldEF0dGVzdGF0aW9uUG9saWN5UmVzcG9uc2USnAEKF0xpc3RBdHRlc3RhdGlvblBvbGljaWVzEj8ucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5MaXN0QXR0ZXN0YXRpb25Qb2xpY2llc1JlcXVlc3QaQC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RBdHRlc3RhdGlvblBvbGljaWVzUmVzcG9uc2USewoMQWRkQVBCaW5kaW5nEjQucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRBUEJpbmRpbmdSZXF1ZXN0GjUucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRBUEJpbmRpbmdSZXNwb25zZRKHAQoQRGVzdHJveUFQQmluZGluZxI4LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUFQQmluZGluZ1JlcXVlc3QaOS5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkRlc3Ryb3lBUEJpbmRpbmdSZXNwb25zZRKBAQoOTGlzdEFQQmluZGluZ3MSNi5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RBUEJpbmRpbmdzUmVxdWVzdBo3LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuTGlzdEFQQmluZGluZ3NSZXNwb25zZRJ+Cg1BZGRGZWRlcmF0aW9uEjUucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5BZGRGZWRlcmF0aW9uUmVxdWVzdBo2LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuQWRkRmVkZXJhdGlvblJlc3BvbnNlEooBChFEZXN0cm95RmVkZXJhdGlvbhI5LnByb3RvLmNvZmlkZWN0bF9wbHVnaW4udjFhbHBoYTIuRGVzdHJveUZlZGVyYXRpb25SZXF1ZXN0GjoucHJvdG8uY29maWRlY3RsX3BsdWdpbi52MWFscGhhMi5EZXN0cm95RmVkZXJhdGlvblJlc3BvbnNlEoQBCg9MaXN0RmVkZXJhdGlvbnMSNy5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RGZWRlcmF0aW9uc1JlcXVlc3QaOC5wcm90by5jb2ZpZGVjdGxfcGx1Z2luLnYxYWxwaGEyLkxpc3RGZWRlcmF0aW9uc1Jlc3BvbnNlQklaR2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb2ZpZGVjdGxfcGx1Z2luL3YxYWxwaGEyYgZwcm90bzM", [file_proto_ap_binding_v1alpha1_ap_binding, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_cluster_v1alpha1_cluster, file_proto_federation_v1alpha1_federation, file_proto_trust_zone_v1alpha1_trust_zone]);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ValidateRequest
@@ -120,12 +120,7 @@ export const DestroyTrustZoneResponseSchema: GenMessage<DestroyTrustZoneResponse
  */
 export type GetTrustZoneRequest = Message<"proto.cofidectl_plugin.v1alpha2.GetTrustZoneRequest"> & {
   /**
-   * @generated from field: optional string name = 1;
-   */
-  name?: string;
-
-  /**
-   * @generated from field: optional string id = 2;
+   * @generated from field: optional string id = 1;
    */
   id?: string;
 };
@@ -155,6 +150,40 @@ export const GetTrustZoneResponseSchema: GenMessage<GetTrustZoneResponse> = /*@_
   messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 7);
 
 /**
+ * @generated from message proto.cofidectl_plugin.v1alpha2.GetTrustZoneByNameRequest
+ */
+export type GetTrustZoneByNameRequest = Message<"proto.cofidectl_plugin.v1alpha2.GetTrustZoneByNameRequest"> & {
+  /**
+   * @generated from field: optional string name = 1;
+   */
+  name?: string;
+};
+
+/**
+ * Describes the message proto.cofidectl_plugin.v1alpha2.GetTrustZoneByNameRequest.
+ * Use `create(GetTrustZoneByNameRequestSchema)` to create a new message.
+ */
+export const GetTrustZoneByNameRequestSchema: GenMessage<GetTrustZoneByNameRequest> = /*@__PURE__*/
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 8);
+
+/**
+ * @generated from message proto.cofidectl_plugin.v1alpha2.GetTrustZoneByNameResponse
+ */
+export type GetTrustZoneByNameResponse = Message<"proto.cofidectl_plugin.v1alpha2.GetTrustZoneByNameResponse"> & {
+  /**
+   * @generated from field: optional proto.trust_zone.v1alpha1.TrustZone trust_zone = 1;
+   */
+  trustZone?: TrustZone;
+};
+
+/**
+ * Describes the message proto.cofidectl_plugin.v1alpha2.GetTrustZoneByNameResponse.
+ * Use `create(GetTrustZoneByNameResponseSchema)` to create a new message.
+ */
+export const GetTrustZoneByNameResponseSchema: GenMessage<GetTrustZoneByNameResponse> = /*@__PURE__*/
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 9);
+
+/**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListTrustZonesRequest
  */
 export type ListTrustZonesRequest = Message<"proto.cofidectl_plugin.v1alpha2.ListTrustZonesRequest"> & {
@@ -165,7 +194,7 @@ export type ListTrustZonesRequest = Message<"proto.cofidectl_plugin.v1alpha2.Lis
  * Use `create(ListTrustZonesRequestSchema)` to create a new message.
  */
 export const ListTrustZonesRequestSchema: GenMessage<ListTrustZonesRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 8);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 10);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListTrustZonesResponse
@@ -182,7 +211,7 @@ export type ListTrustZonesResponse = Message<"proto.cofidectl_plugin.v1alpha2.Li
  * Use `create(ListTrustZonesResponseSchema)` to create a new message.
  */
 export const ListTrustZonesResponseSchema: GenMessage<ListTrustZonesResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 9);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 11);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.UpdateTrustZoneRequest
@@ -199,7 +228,7 @@ export type UpdateTrustZoneRequest = Message<"proto.cofidectl_plugin.v1alpha2.Up
  * Use `create(UpdateTrustZoneRequestSchema)` to create a new message.
  */
 export const UpdateTrustZoneRequestSchema: GenMessage<UpdateTrustZoneRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 10);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 12);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.UpdateTrustZoneResponse
@@ -216,7 +245,7 @@ export type UpdateTrustZoneResponse = Message<"proto.cofidectl_plugin.v1alpha2.U
  * Use `create(UpdateTrustZoneResponseSchema)` to create a new message.
  */
 export const UpdateTrustZoneResponseSchema: GenMessage<UpdateTrustZoneResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 11);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 13);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddClusterRequest
@@ -233,7 +262,7 @@ export type AddClusterRequest = Message<"proto.cofidectl_plugin.v1alpha2.AddClus
  * Use `create(AddClusterRequestSchema)` to create a new message.
  */
 export const AddClusterRequestSchema: GenMessage<AddClusterRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 12);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 14);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddClusterResponse
@@ -250,24 +279,14 @@ export type AddClusterResponse = Message<"proto.cofidectl_plugin.v1alpha2.AddClu
  * Use `create(AddClusterResponseSchema)` to create a new message.
  */
 export const AddClusterResponseSchema: GenMessage<AddClusterResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 13);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 15);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyClusterRequest
  */
 export type DestroyClusterRequest = Message<"proto.cofidectl_plugin.v1alpha2.DestroyClusterRequest"> & {
   /**
-   * @generated from field: optional string name = 1;
-   */
-  name?: string;
-
-  /**
-   * @generated from field: optional string trust_zone_id = 2;
-   */
-  trustZoneId?: string;
-
-  /**
-   * @generated from field: optional string id = 3;
+   * @generated from field: optional string id = 1;
    */
   id?: string;
 };
@@ -277,7 +296,7 @@ export type DestroyClusterRequest = Message<"proto.cofidectl_plugin.v1alpha2.Des
  * Use `create(DestroyClusterRequestSchema)` to create a new message.
  */
 export const DestroyClusterRequestSchema: GenMessage<DestroyClusterRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 14);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 16);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyClusterResponse
@@ -290,7 +309,7 @@ export type DestroyClusterResponse = Message<"proto.cofidectl_plugin.v1alpha2.De
  * Use `create(DestroyClusterResponseSchema)` to create a new message.
  */
 export const DestroyClusterResponseSchema: GenMessage<DestroyClusterResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 15);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 17);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.GetClusterRequest
@@ -317,7 +336,7 @@ export type GetClusterRequest = Message<"proto.cofidectl_plugin.v1alpha2.GetClus
  * Use `create(GetClusterRequestSchema)` to create a new message.
  */
 export const GetClusterRequestSchema: GenMessage<GetClusterRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 16);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 18);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.GetClusterResponse
@@ -334,7 +353,7 @@ export type GetClusterResponse = Message<"proto.cofidectl_plugin.v1alpha2.GetClu
  * Use `create(GetClusterResponseSchema)` to create a new message.
  */
 export const GetClusterResponseSchema: GenMessage<GetClusterResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 17);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 19);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListClustersRequest
@@ -351,7 +370,7 @@ export type ListClustersRequest = Message<"proto.cofidectl_plugin.v1alpha2.ListC
  * Use `create(ListClustersRequestSchema)` to create a new message.
  */
 export const ListClustersRequestSchema: GenMessage<ListClustersRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 18);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 20);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListClustersResponse
@@ -368,7 +387,7 @@ export type ListClustersResponse = Message<"proto.cofidectl_plugin.v1alpha2.List
  * Use `create(ListClustersResponseSchema)` to create a new message.
  */
 export const ListClustersResponseSchema: GenMessage<ListClustersResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 19);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 21);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.UpdateClusterRequest
@@ -385,7 +404,7 @@ export type UpdateClusterRequest = Message<"proto.cofidectl_plugin.v1alpha2.Upda
  * Use `create(UpdateClusterRequestSchema)` to create a new message.
  */
 export const UpdateClusterRequestSchema: GenMessage<UpdateClusterRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 20);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 22);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.UpdateClusterResponse
@@ -402,7 +421,7 @@ export type UpdateClusterResponse = Message<"proto.cofidectl_plugin.v1alpha2.Upd
  * Use `create(UpdateClusterResponseSchema)` to create a new message.
  */
 export const UpdateClusterResponseSchema: GenMessage<UpdateClusterResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 21);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 23);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddAttestationPolicyRequest
@@ -419,7 +438,7 @@ export type AddAttestationPolicyRequest = Message<"proto.cofidectl_plugin.v1alph
  * Use `create(AddAttestationPolicyRequestSchema)` to create a new message.
  */
 export const AddAttestationPolicyRequestSchema: GenMessage<AddAttestationPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 22);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 24);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddAttestationPolicyResponse
@@ -436,7 +455,7 @@ export type AddAttestationPolicyResponse = Message<"proto.cofidectl_plugin.v1alp
  * Use `create(AddAttestationPolicyResponseSchema)` to create a new message.
  */
 export const AddAttestationPolicyResponseSchema: GenMessage<AddAttestationPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 23);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 25);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyAttestationPolicyRequest
@@ -453,7 +472,7 @@ export type DestroyAttestationPolicyRequest = Message<"proto.cofidectl_plugin.v1
  * Use `create(DestroyAttestationPolicyRequestSchema)` to create a new message.
  */
 export const DestroyAttestationPolicyRequestSchema: GenMessage<DestroyAttestationPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 24);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 26);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyAttestationPolicyResponse
@@ -466,7 +485,7 @@ export type DestroyAttestationPolicyResponse = Message<"proto.cofidectl_plugin.v
  * Use `create(DestroyAttestationPolicyResponseSchema)` to create a new message.
  */
 export const DestroyAttestationPolicyResponseSchema: GenMessage<DestroyAttestationPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 25);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 27);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.GetAttestationPolicyRequest
@@ -483,7 +502,7 @@ export type GetAttestationPolicyRequest = Message<"proto.cofidectl_plugin.v1alph
  * Use `create(GetAttestationPolicyRequestSchema)` to create a new message.
  */
 export const GetAttestationPolicyRequestSchema: GenMessage<GetAttestationPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 26);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 28);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.GetAttestationPolicyResponse
@@ -500,7 +519,7 @@ export type GetAttestationPolicyResponse = Message<"proto.cofidectl_plugin.v1alp
  * Use `create(GetAttestationPolicyResponseSchema)` to create a new message.
  */
 export const GetAttestationPolicyResponseSchema: GenMessage<GetAttestationPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 27);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 29);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListAttestationPoliciesRequest
@@ -513,7 +532,7 @@ export type ListAttestationPoliciesRequest = Message<"proto.cofidectl_plugin.v1a
  * Use `create(ListAttestationPoliciesRequestSchema)` to create a new message.
  */
 export const ListAttestationPoliciesRequestSchema: GenMessage<ListAttestationPoliciesRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 28);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 30);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListAttestationPoliciesResponse
@@ -530,7 +549,7 @@ export type ListAttestationPoliciesResponse = Message<"proto.cofidectl_plugin.v1
  * Use `create(ListAttestationPoliciesResponseSchema)` to create a new message.
  */
 export const ListAttestationPoliciesResponseSchema: GenMessage<ListAttestationPoliciesResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 29);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 31);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddAPBindingRequest
@@ -547,7 +566,7 @@ export type AddAPBindingRequest = Message<"proto.cofidectl_plugin.v1alpha2.AddAP
  * Use `create(AddAPBindingRequestSchema)` to create a new message.
  */
 export const AddAPBindingRequestSchema: GenMessage<AddAPBindingRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 30);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 32);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddAPBindingResponse
@@ -564,7 +583,7 @@ export type AddAPBindingResponse = Message<"proto.cofidectl_plugin.v1alpha2.AddA
  * Use `create(AddAPBindingResponseSchema)` to create a new message.
  */
 export const AddAPBindingResponseSchema: GenMessage<AddAPBindingResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 31);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 33);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyAPBindingRequest
@@ -581,7 +600,7 @@ export type DestroyAPBindingRequest = Message<"proto.cofidectl_plugin.v1alpha2.D
  * Use `create(DestroyAPBindingRequestSchema)` to create a new message.
  */
 export const DestroyAPBindingRequestSchema: GenMessage<DestroyAPBindingRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 32);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 34);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyAPBindingResponse
@@ -594,7 +613,7 @@ export type DestroyAPBindingResponse = Message<"proto.cofidectl_plugin.v1alpha2.
  * Use `create(DestroyAPBindingResponseSchema)` to create a new message.
  */
 export const DestroyAPBindingResponseSchema: GenMessage<DestroyAPBindingResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 33);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 35);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListAPBindingsRequest
@@ -611,7 +630,7 @@ export type ListAPBindingsRequest = Message<"proto.cofidectl_plugin.v1alpha2.Lis
  * Use `create(ListAPBindingsRequestSchema)` to create a new message.
  */
 export const ListAPBindingsRequestSchema: GenMessage<ListAPBindingsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 34);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 36);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListAPBindingsRequest.Filter
@@ -633,7 +652,7 @@ export type ListAPBindingsRequest_Filter = Message<"proto.cofidectl_plugin.v1alp
  * Use `create(ListAPBindingsRequest_FilterSchema)` to create a new message.
  */
 export const ListAPBindingsRequest_FilterSchema: GenMessage<ListAPBindingsRequest_Filter> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 34, 0);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 36, 0);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListAPBindingsResponse
@@ -650,7 +669,7 @@ export type ListAPBindingsResponse = Message<"proto.cofidectl_plugin.v1alpha2.Li
  * Use `create(ListAPBindingsResponseSchema)` to create a new message.
  */
 export const ListAPBindingsResponseSchema: GenMessage<ListAPBindingsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 35);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 37);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddFederationRequest
@@ -667,7 +686,7 @@ export type AddFederationRequest = Message<"proto.cofidectl_plugin.v1alpha2.AddF
  * Use `create(AddFederationRequestSchema)` to create a new message.
  */
 export const AddFederationRequestSchema: GenMessage<AddFederationRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 36);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 38);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.AddFederationResponse
@@ -684,7 +703,7 @@ export type AddFederationResponse = Message<"proto.cofidectl_plugin.v1alpha2.Add
  * Use `create(AddFederationResponseSchema)` to create a new message.
  */
 export const AddFederationResponseSchema: GenMessage<AddFederationResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 37);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 39);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyFederationRequest
@@ -701,7 +720,7 @@ export type DestroyFederationRequest = Message<"proto.cofidectl_plugin.v1alpha2.
  * Use `create(DestroyFederationRequestSchema)` to create a new message.
  */
 export const DestroyFederationRequestSchema: GenMessage<DestroyFederationRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 38);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 40);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.DestroyFederationResponse
@@ -714,7 +733,7 @@ export type DestroyFederationResponse = Message<"proto.cofidectl_plugin.v1alpha2
  * Use `create(DestroyFederationResponseSchema)` to create a new message.
  */
 export const DestroyFederationResponseSchema: GenMessage<DestroyFederationResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 39);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 41);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListFederationsRequest
@@ -731,7 +750,7 @@ export type ListFederationsRequest = Message<"proto.cofidectl_plugin.v1alpha2.Li
  * Use `create(ListFederationsRequestSchema)` to create a new message.
  */
 export const ListFederationsRequestSchema: GenMessage<ListFederationsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 40);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 42);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListFederationsRequest.Filter
@@ -748,7 +767,7 @@ export type ListFederationsRequest_Filter = Message<"proto.cofidectl_plugin.v1al
  * Use `create(ListFederationsRequest_FilterSchema)` to create a new message.
  */
 export const ListFederationsRequest_FilterSchema: GenMessage<ListFederationsRequest_Filter> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 40, 0);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 42, 0);
 
 /**
  * @generated from message proto.cofidectl_plugin.v1alpha2.ListFederationsResponse
@@ -765,7 +784,7 @@ export type ListFederationsResponse = Message<"proto.cofidectl_plugin.v1alpha2.L
  * Use `create(ListFederationsResponseSchema)` to create a new message.
  */
 export const ListFederationsResponseSchema: GenMessage<ListFederationsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 41);
+  messageDesc(file_proto_cofidectl_plugin_v1alpha2_plugin, 43);
 
 /**
  * @generated from service proto.cofidectl_plugin.v1alpha2.DataSourcePluginService
@@ -802,6 +821,14 @@ export const DataSourcePluginService: GenService<{
     methodKind: "unary";
     input: typeof GetTrustZoneRequestSchema;
     output: typeof GetTrustZoneResponseSchema;
+  },
+  /**
+   * @generated from rpc proto.cofidectl_plugin.v1alpha2.DataSourcePluginService.GetTrustZoneByName
+   */
+  getTrustZoneByName: {
+    methodKind: "unary";
+    input: typeof GetTrustZoneByNameRequestSchema;
+    output: typeof GetTrustZoneByNameResponseSchema;
   },
   /**
    * @generated from rpc proto.cofidectl_plugin.v1alpha2.DataSourcePluginService.ListTrustZones

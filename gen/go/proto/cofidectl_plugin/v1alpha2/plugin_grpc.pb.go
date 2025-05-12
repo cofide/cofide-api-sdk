@@ -26,6 +26,7 @@ const (
 	DataSourcePluginService_AddTrustZone_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddTrustZone"
 	DataSourcePluginService_DestroyTrustZone_FullMethodName         = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyTrustZone"
 	DataSourcePluginService_GetTrustZone_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetTrustZone"
+	DataSourcePluginService_GetTrustZoneByName_FullMethodName       = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetTrustZoneByName"
 	DataSourcePluginService_ListTrustZones_FullMethodName           = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListTrustZones"
 	DataSourcePluginService_UpdateTrustZone_FullMethodName          = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/UpdateTrustZone"
 	DataSourcePluginService_AddCluster_FullMethodName               = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddCluster"
@@ -53,6 +54,7 @@ type DataSourcePluginServiceClient interface {
 	AddTrustZone(ctx context.Context, in *AddTrustZoneRequest, opts ...grpc.CallOption) (*AddTrustZoneResponse, error)
 	DestroyTrustZone(ctx context.Context, in *DestroyTrustZoneRequest, opts ...grpc.CallOption) (*DestroyTrustZoneResponse, error)
 	GetTrustZone(ctx context.Context, in *GetTrustZoneRequest, opts ...grpc.CallOption) (*GetTrustZoneResponse, error)
+	GetTrustZoneByName(ctx context.Context, in *GetTrustZoneByNameRequest, opts ...grpc.CallOption) (*GetTrustZoneByNameResponse, error)
 	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(ctx context.Context, in *UpdateTrustZoneRequest, opts ...grpc.CallOption) (*UpdateTrustZoneResponse, error)
 	AddCluster(ctx context.Context, in *AddClusterRequest, opts ...grpc.CallOption) (*AddClusterResponse, error)
@@ -114,6 +116,16 @@ func (c *dataSourcePluginServiceClient) GetTrustZone(ctx context.Context, in *Ge
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTrustZoneResponse)
 	err := c.cc.Invoke(ctx, DataSourcePluginService_GetTrustZone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourcePluginServiceClient) GetTrustZoneByName(ctx context.Context, in *GetTrustZoneByNameRequest, opts ...grpc.CallOption) (*GetTrustZoneByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTrustZoneByNameResponse)
+	err := c.cc.Invoke(ctx, DataSourcePluginService_GetTrustZoneByName_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -298,6 +310,7 @@ type DataSourcePluginServiceServer interface {
 	AddTrustZone(context.Context, *AddTrustZoneRequest) (*AddTrustZoneResponse, error)
 	DestroyTrustZone(context.Context, *DestroyTrustZoneRequest) (*DestroyTrustZoneResponse, error)
 	GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error)
+	GetTrustZoneByName(context.Context, *GetTrustZoneByNameRequest) (*GetTrustZoneByNameResponse, error)
 	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error)
 	AddCluster(context.Context, *AddClusterRequest) (*AddClusterResponse, error)
@@ -335,6 +348,9 @@ func (UnimplementedDataSourcePluginServiceServer) DestroyTrustZone(context.Conte
 }
 func (UnimplementedDataSourcePluginServiceServer) GetTrustZone(context.Context, *GetTrustZoneRequest) (*GetTrustZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrustZone not implemented")
+}
+func (UnimplementedDataSourcePluginServiceServer) GetTrustZoneByName(context.Context, *GetTrustZoneByNameRequest) (*GetTrustZoneByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTrustZoneByName not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTrustZones not implemented")
@@ -475,6 +491,24 @@ func _DataSourcePluginService_GetTrustZone_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataSourcePluginServiceServer).GetTrustZone(ctx, req.(*GetTrustZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSourcePluginService_GetTrustZoneByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTrustZoneByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourcePluginServiceServer).GetTrustZoneByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourcePluginService_GetTrustZoneByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourcePluginServiceServer).GetTrustZoneByName(ctx, req.(*GetTrustZoneByNameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -807,6 +841,10 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTrustZone",
 			Handler:    _DataSourcePluginService_GetTrustZone_Handler,
+		},
+		{
+			MethodName: "GetTrustZoneByName",
+			Handler:    _DataSourcePluginService_GetTrustZoneByName_Handler,
 		},
 		{
 			MethodName: "ListTrustZones",
