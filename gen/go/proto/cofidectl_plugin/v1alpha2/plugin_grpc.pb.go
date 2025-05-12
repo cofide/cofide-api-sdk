@@ -22,28 +22,27 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataSourcePluginService_Validate_FullMethodName                   = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/Validate"
-	DataSourcePluginService_AddTrustZone_FullMethodName               = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddTrustZone"
-	DataSourcePluginService_DestroyTrustZone_FullMethodName           = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyTrustZone"
-	DataSourcePluginService_GetTrustZone_FullMethodName               = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetTrustZone"
-	DataSourcePluginService_ListTrustZones_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListTrustZones"
-	DataSourcePluginService_UpdateTrustZone_FullMethodName            = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/UpdateTrustZone"
-	DataSourcePluginService_AddCluster_FullMethodName                 = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddCluster"
-	DataSourcePluginService_DestroyCluster_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyCluster"
-	DataSourcePluginService_GetCluster_FullMethodName                 = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetCluster"
-	DataSourcePluginService_ListClusters_FullMethodName               = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListClusters"
-	DataSourcePluginService_UpdateCluster_FullMethodName              = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/UpdateCluster"
-	DataSourcePluginService_AddAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddAttestationPolicy"
-	DataSourcePluginService_DestroyAttestationPolicy_FullMethodName   = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyAttestationPolicy"
-	DataSourcePluginService_GetAttestationPolicy_FullMethodName       = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetAttestationPolicy"
-	DataSourcePluginService_ListAttestationPolicies_FullMethodName    = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListAttestationPolicies"
-	DataSourcePluginService_AddAPBinding_FullMethodName               = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddAPBinding"
-	DataSourcePluginService_DestroyAPBinding_FullMethodName           = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyAPBinding"
-	DataSourcePluginService_ListAPBindings_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListAPBindings"
-	DataSourcePluginService_AddFederation_FullMethodName              = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddFederation"
-	DataSourcePluginService_DestroyFederation_FullMethodName          = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyFederation"
-	DataSourcePluginService_ListFederations_FullMethodName            = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListFederations"
-	DataSourcePluginService_ListFederationsByTrustZone_FullMethodName = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListFederationsByTrustZone"
+	DataSourcePluginService_Validate_FullMethodName                 = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/Validate"
+	DataSourcePluginService_AddTrustZone_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddTrustZone"
+	DataSourcePluginService_DestroyTrustZone_FullMethodName         = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyTrustZone"
+	DataSourcePluginService_GetTrustZone_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetTrustZone"
+	DataSourcePluginService_ListTrustZones_FullMethodName           = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListTrustZones"
+	DataSourcePluginService_UpdateTrustZone_FullMethodName          = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/UpdateTrustZone"
+	DataSourcePluginService_AddCluster_FullMethodName               = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddCluster"
+	DataSourcePluginService_DestroyCluster_FullMethodName           = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyCluster"
+	DataSourcePluginService_GetCluster_FullMethodName               = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetCluster"
+	DataSourcePluginService_ListClusters_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListClusters"
+	DataSourcePluginService_UpdateCluster_FullMethodName            = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/UpdateCluster"
+	DataSourcePluginService_AddAttestationPolicy_FullMethodName     = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddAttestationPolicy"
+	DataSourcePluginService_DestroyAttestationPolicy_FullMethodName = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyAttestationPolicy"
+	DataSourcePluginService_GetAttestationPolicy_FullMethodName     = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/GetAttestationPolicy"
+	DataSourcePluginService_ListAttestationPolicies_FullMethodName  = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListAttestationPolicies"
+	DataSourcePluginService_AddAPBinding_FullMethodName             = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddAPBinding"
+	DataSourcePluginService_DestroyAPBinding_FullMethodName         = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyAPBinding"
+	DataSourcePluginService_ListAPBindings_FullMethodName           = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListAPBindings"
+	DataSourcePluginService_AddFederation_FullMethodName            = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/AddFederation"
+	DataSourcePluginService_DestroyFederation_FullMethodName        = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/DestroyFederation"
+	DataSourcePluginService_ListFederations_FullMethodName          = "/proto.cofidectl_plugin.v1alpha2.DataSourcePluginService/ListFederations"
 )
 
 // DataSourcePluginServiceClient is the client API for DataSourcePluginService service.
@@ -71,7 +70,6 @@ type DataSourcePluginServiceClient interface {
 	AddFederation(ctx context.Context, in *AddFederationRequest, opts ...grpc.CallOption) (*AddFederationResponse, error)
 	DestroyFederation(ctx context.Context, in *DestroyFederationRequest, opts ...grpc.CallOption) (*DestroyFederationResponse, error)
 	ListFederations(ctx context.Context, in *ListFederationsRequest, opts ...grpc.CallOption) (*ListFederationsResponse, error)
-	ListFederationsByTrustZone(ctx context.Context, in *ListFederationsByTrustZoneRequest, opts ...grpc.CallOption) (*ListFederationsByTrustZoneResponse, error)
 }
 
 type dataSourcePluginServiceClient struct {
@@ -292,16 +290,6 @@ func (c *dataSourcePluginServiceClient) ListFederations(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *dataSourcePluginServiceClient) ListFederationsByTrustZone(ctx context.Context, in *ListFederationsByTrustZoneRequest, opts ...grpc.CallOption) (*ListFederationsByTrustZoneResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListFederationsByTrustZoneResponse)
-	err := c.cc.Invoke(ctx, DataSourcePluginService_ListFederationsByTrustZone_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DataSourcePluginServiceServer is the server API for DataSourcePluginService service.
 // All implementations should embed UnimplementedDataSourcePluginServiceServer
 // for forward compatibility.
@@ -327,7 +315,6 @@ type DataSourcePluginServiceServer interface {
 	AddFederation(context.Context, *AddFederationRequest) (*AddFederationResponse, error)
 	DestroyFederation(context.Context, *DestroyFederationRequest) (*DestroyFederationResponse, error)
 	ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error)
-	ListFederationsByTrustZone(context.Context, *ListFederationsByTrustZoneRequest) (*ListFederationsByTrustZoneResponse, error)
 }
 
 // UnimplementedDataSourcePluginServiceServer should be embedded to have
@@ -399,9 +386,6 @@ func (UnimplementedDataSourcePluginServiceServer) DestroyFederation(context.Cont
 }
 func (UnimplementedDataSourcePluginServiceServer) ListFederations(context.Context, *ListFederationsRequest) (*ListFederationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFederations not implemented")
-}
-func (UnimplementedDataSourcePluginServiceServer) ListFederationsByTrustZone(context.Context, *ListFederationsByTrustZoneRequest) (*ListFederationsByTrustZoneResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListFederationsByTrustZone not implemented")
 }
 func (UnimplementedDataSourcePluginServiceServer) testEmbeddedByValue() {}
 
@@ -801,24 +785,6 @@ func _DataSourcePluginService_ListFederations_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataSourcePluginService_ListFederationsByTrustZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListFederationsByTrustZoneRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataSourcePluginServiceServer).ListFederationsByTrustZone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataSourcePluginService_ListFederationsByTrustZone_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataSourcePluginServiceServer).ListFederationsByTrustZone(ctx, req.(*ListFederationsByTrustZoneRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // DataSourcePluginService_ServiceDesc is the grpc.ServiceDesc for DataSourcePluginService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -909,10 +875,6 @@ var DataSourcePluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListFederations",
 			Handler:    _DataSourcePluginService_ListFederations_Handler,
-		},
-		{
-			MethodName: "ListFederationsByTrustZone",
-			Handler:    _DataSourcePluginService_ListFederationsByTrustZone_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

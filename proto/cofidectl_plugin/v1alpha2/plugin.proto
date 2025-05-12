@@ -40,7 +40,6 @@ service DataSourcePluginService {
   rpc AddFederation(AddFederationRequest) returns (AddFederationResponse);
   rpc DestroyFederation(DestroyFederationRequest) returns (DestroyFederationResponse);
   rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse);
-  rpc ListFederationsByTrustZone(ListFederationsByTrustZoneRequest) returns (ListFederationsByTrustZoneResponse);
 }
 
 message ValidateRequest {}
@@ -94,7 +93,7 @@ message AddClusterResponse {
 
 message DestroyClusterRequest {
   optional string name = 1;
-  optional string trust_zone = 2;
+  optional string trust_zone_id = 2;
   optional string id = 3;
 }
 
@@ -102,7 +101,7 @@ message DestroyClusterResponse {}
 
 message GetClusterRequest {
   optional string name = 1;
-  optional string trust_zone = 2;
+  optional string trust_zone_id = 2;
   optional string id = 3;
 }
 
@@ -111,7 +110,7 @@ message GetClusterResponse {
 }
 
 message ListClustersRequest {
-  optional string trust_zone = 1;
+  optional string trust_zone_id = 1;
 }
 
 message ListClustersResponse {
@@ -194,16 +193,13 @@ message DestroyFederationRequest {
 
 message DestroyFederationResponse {}
 
-message ListFederationsRequest {}
+message ListFederationsRequest {
+  message Filter {
+    optional string trust_zone_id = 1;
+  }
+  optional Filter filter = 1;
+}
 
 message ListFederationsResponse {
-  repeated proto.federation.v1alpha1.Federation federations = 1;
-}
-
-message ListFederationsByTrustZoneRequest {
-  optional string trust_zone_id = 1;
-}
-
-message ListFederationsByTrustZoneResponse {
   repeated proto.federation.v1alpha1.Federation federations = 1;
 }
