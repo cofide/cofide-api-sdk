@@ -1,13 +1,13 @@
-// Copyright 2024 Cofide Limited.
+// Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
 syntax = "proto3";
 
-package proto.provision_plugin.v1alpha2;
+package proto.cofidectl.provision_plugin.v1alpha2;
 
 import "google/protobuf/struct.proto";
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/provision_plugin/v1alpha2";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl/provision_plugin/v1alpha2";
 
 service ProvisionPluginService {
   rpc Validate(ValidateRequest) returns (ValidateResponse);
@@ -23,7 +23,7 @@ message ValidateResponse {}
 message DeployRequest {
   optional uint32 data_source = 1;
   optional string kube_cfg_file = 2;
-  repeated string trust_zone_names = 3;
+  repeated string trust_zone_ids = 3;
 }
 
 message DeployResponse {
@@ -33,7 +33,7 @@ message DeployResponse {
 message TearDownRequest {
   optional uint32 data_source = 1;
   optional string kube_cfg_file = 2;
-  repeated string trust_zone_names = 3;
+  repeated string trust_zone_ids = 3;
 }
 
 message TearDownResponse {

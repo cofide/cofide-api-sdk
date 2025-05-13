@@ -1,9 +1,9 @@
-// Copyright 2024 Cofide Limited.
+// Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
 syntax = "proto3";
 
-package proto.cofidectl_plugin.v1alpha2;
+package proto.cofidectl.datasource_plugin.v1alpha2;
 
 import "proto/ap_binding/v1alpha1/ap_binding.proto";
 import "proto/attestation_policy/v1alpha1/attestation_policy.proto";
@@ -11,7 +11,7 @@ import "proto/cluster/v1alpha1/cluster.proto";
 import "proto/federation/v1alpha1/federation.proto";
 import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl_plugin/v1alpha2";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl/datasource_plugin/v1alpha2";
 
 service DataSourcePluginService {
   rpc Validate(ValidateRequest) returns (ValidateResponse);
@@ -26,12 +26,14 @@ service DataSourcePluginService {
   rpc AddCluster(AddClusterRequest) returns (AddClusterResponse);
   rpc DestroyCluster(DestroyClusterRequest) returns (DestroyClusterResponse);
   rpc GetCluster(GetClusterRequest) returns (GetClusterResponse);
+  rpc GetClusterByName(GetClusterByNameRequest) returns (GetClusterByNameResponse);
   rpc ListClusters(ListClustersRequest) returns (ListClustersResponse);
   rpc UpdateCluster(UpdateClusterRequest) returns (UpdateClusterResponse);
 
   rpc AddAttestationPolicy(AddAttestationPolicyRequest) returns (AddAttestationPolicyResponse);
   rpc DestroyAttestationPolicy(DestroyAttestationPolicyRequest) returns (DestroyAttestationPolicyResponse);
   rpc GetAttestationPolicy(GetAttestationPolicyRequest) returns (GetAttestationPolicyResponse);
+  rpc GetAttestationPolicyByName(GetAttestationPolicyByNameRequest) returns (GetAttestationPolicyByNameResponse);
   rpc ListAttestationPolicies(ListAttestationPoliciesRequest) returns (ListAttestationPoliciesResponse);
 
   rpc AddAPBinding(AddAPBindingRequest) returns (AddAPBindingResponse);
@@ -106,17 +108,27 @@ message DestroyClusterRequest {
 message DestroyClusterResponse {}
 
 message GetClusterRequest {
-  optional string name = 1;
-  optional string trust_zone_id = 2;
-  optional string id = 3;
+  optional string id = 1;
 }
 
 message GetClusterResponse {
   optional proto.cluster.v1alpha1.Cluster cluster = 1;
 }
 
+message GetClusterByNameRequest {
+  optional string name = 1;
+  optional string trust_zone_id = 2;
+}
+
+message GetClusterByNameResponse {
+  optional proto.cluster.v1alpha1.Cluster cluster = 1;
+}
+
 message ListClustersRequest {
-  optional string trust_zone_id = 1;
+  message Filter {
+    optional string trust_zone_id = 1;
+  }
+  optional Filter filter = 1;
 }
 
 message ListClustersResponse {
@@ -150,6 +162,14 @@ message GetAttestationPolicyRequest {
 }
 
 message GetAttestationPolicyResponse {
+  proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+message GetAttestationPolicyByNameRequest {
+  optional string name = 1;
+}
+
+message GetAttestationPolicyByNameResponse {
   proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
 }
 
