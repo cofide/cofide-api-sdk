@@ -1,0 +1,57 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.cofidectl.provision_plugin.v1alpha2;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cofidectl/provision_plugin/v1alpha2";
+
+service ProvisionPluginService {
+  rpc Validate(ValidateRequest) returns (ValidateResponse);
+  rpc Deploy(DeployRequest) returns (stream DeployResponse);
+  rpc TearDown(TearDownRequest) returns (stream TearDownResponse);
+  rpc GetHelmValues(GetHelmValuesRequest) returns (GetHelmValuesResponse);
+}
+
+message ValidateRequest {}
+
+message ValidateResponse {}
+
+message DeployRequest {
+  optional uint32 data_source = 1;
+  optional string kube_cfg_file = 2;
+  repeated string trust_zone_ids = 3;
+}
+
+message DeployResponse {
+  optional Status status = 1;
+}
+
+message TearDownRequest {
+  optional uint32 data_source = 1;
+  optional string kube_cfg_file = 2;
+  repeated string trust_zone_ids = 3;
+}
+
+message TearDownResponse {
+  optional Status status = 1;
+}
+
+message GetHelmValuesRequest {
+  optional uint32 data_source = 1;
+  optional string cluster_id = 2;
+}
+
+message GetHelmValuesResponse {
+  optional google.protobuf.Struct helm_values = 5;
+}
+
+message Status {
+  optional string stage = 1;
+  optional string message = 2;
+  optional bool done = 3;
+  optional string error = 4;
+}
