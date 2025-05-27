@@ -1,0 +1,14 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.workload.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
+
+message Workload {
+  string id = 1;
+  string trust_zone_id = 2;
+  string cluster_id = 3;
+}
