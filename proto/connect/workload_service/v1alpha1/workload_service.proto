@@ -1,0 +1,61 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.workload_service.v1alpha1;
+
+import "proto/workload/v1alpha1/workload.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1";
+
+service WorkloadService {
+  rpc CreateWorkload(CreateWorkloadRequest) returns (CreateWorkloadResponse);
+  rpc DestroyWorkload(DestroyWorkloadRequest) returns (DestroyWorkloadResponse);
+  rpc GetWorkload(GetWorkloadRequest) returns (GetWorkloadResponse);
+  rpc ListWorkloads(ListWorkloadsRequest) returns (ListWorkloadsResponse);
+  rpc UpdateWorkload(UpdateWorkloadRequest) returns (UpdateWorkloadResponse);
+}
+
+message CreateWorkloadRequest {
+  optional proto.workload.v1alpha1.Workload workload = 1;
+}
+
+message CreateWorkloadResponse {
+  optional proto.workload.v1alpha1.Workload workload = 1;
+}
+
+message DestroyWorkloadRequest {
+  optional string workload_id = 1;
+}
+
+message DestroyWorkloadResponse {}
+
+message GetWorkloadRequest {
+  optional string workload_id = 1;
+}
+
+message GetWorkloadResponse {
+  optional proto.workload.v1alpha1.Workload workload = 1;
+}
+
+message ListWorkloadsRequest {
+  message Filter {
+    optional string name = 1;
+    optional string org_id = 2;
+    optional string trust_zone_id = 3;
+  }
+  optional Filter filter = 1;
+}
+
+message ListWorkloadsResponse {
+  repeated proto.workload.v1alpha1.Workload workloads = 1;
+}
+
+message UpdateWorkloadRequest {
+  optional proto.workload.v1alpha1.Workload workload = 1;
+}
+
+message UpdateWorkloadResponse {
+  optional proto.workload.v1alpha1.Workload workload = 1;
+}
