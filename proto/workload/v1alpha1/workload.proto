@@ -5,12 +5,31 @@ syntax = "proto3";
 
 package proto.workload.v1alpha1;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
 
 message Workload {
-  optional string name = 1;
-  optional string namespace = 2;
-  optional string cluster_id = 3;
-  optional string trust_zone_id = 4;
-  optional string spiffe_id = 5;
+  string uid = 1;
+  string name = 2;
+  string namespace = 3;
+  string service_account_name = 4;
+  google.protobuf.Timestamp creation_timestamp = 5;
+  google.protobuf.Timestamp start_time = 6;
+  google.protobuf.Timestamp observed_timestamp = 7;
+  map<string, string> labels = 8;
+  map<string, string> annotations = 9;
+  ObservationEvent event_type = 10; 
+}
+
+message ContainerInfo {
+  string name = 1;
+  string image = 2;
+}
+
+enum ObservationEvent {
+  OBSERVATION_EVENT_UNSPECIFIED = 0;
+  OBSERVATION_EVENT_ADDED = 1;
+  OBSERVATION_EVENT_MODIFIED = 2;
+  OBSERVATION_EVENT_DELETED = 3;
 }

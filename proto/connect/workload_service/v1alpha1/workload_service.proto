@@ -9,53 +9,30 @@ import "proto/workload/v1alpha1/workload.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1";
 
-service WorkloadService {
-  rpc CreateWorkload(CreateWorkloadRequest) returns (CreateWorkloadResponse);
-  rpc DestroyWorkload(DestroyWorkloadRequest) returns (DestroyWorkloadResponse);
-  rpc GetWorkload(GetWorkloadRequest) returns (GetWorkloadResponse);
-  rpc ListWorkloads(ListWorkloadsRequest) returns (ListWorkloadsResponse);
-  rpc UpdateWorkload(UpdateWorkloadRequest) returns (UpdateWorkloadResponse);
+service WorkloadObservationService {
+  rpc PublishWorkloadEvents(stream PublishWorkloadEventsRequest) returns (PublishWorkloadEventsResponse);
+  rpc ObserveWorkloadEvents(ObserveWorkloadEventsRequest) returns (stream ObserveWorkloadEventsResponse);
 }
 
-message CreateWorkloadRequest {
-  optional proto.workload.v1alpha1.Workload workload = 1;
+message PublishWorkloadEventsRequest {
+  proto.workload.v1alpha1.Workload workload = 1;
 }
 
-message CreateWorkloadResponse {
-  optional proto.workload.v1alpha1.Workload workload = 1;
+message ObserveWorkloadEventsResponse {
+  proto.workload.v1alpha1.Workload workload = 1;
 }
 
-message DestroyWorkloadRequest {
-  optional string workload_id = 1;
+message PublishWorkloadEventsResponse {
+  optional string message = 1;
 }
 
-message DestroyWorkloadResponse {}
-
-message GetWorkloadRequest {
-  optional string workload_id = 1;
-}
-
-message GetWorkloadResponse {
-  optional proto.workload.v1alpha1.Workload workload = 1;
-}
-
-message ListWorkloadsRequest {
-  message Filter {
-    optional string name = 1;
-    optional string org_id = 2;
-    optional string trust_zone_id = 3;
+message ObserveWorkloadEventsRequest {
+  message StreamFilter {
+    optional string namespace = 1;
+    optional string cluster_id = 2;
+    map<string, string> label_selector = 3;
+    optional string trust_zone_id = 4;
   }
-  optional Filter filter = 1;
+  optional StreamFilter filter = 1;
 }
 
-message ListWorkloadsResponse {
-  repeated proto.workload.v1alpha1.Workload workloads = 1;
-}
-
-message UpdateWorkloadRequest {
-  optional proto.workload.v1alpha1.Workload workload = 1;
-}
-
-message UpdateWorkloadResponse {
-  optional proto.workload.v1alpha1.Workload workload = 1;
-}
