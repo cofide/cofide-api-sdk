@@ -22,253 +22,94 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WorkloadService_CreateWorkload_FullMethodName  = "/proto.connect.workload_service.v1alpha1.WorkloadService/CreateWorkload"
-	WorkloadService_DestroyWorkload_FullMethodName = "/proto.connect.workload_service.v1alpha1.WorkloadService/DestroyWorkload"
-	WorkloadService_GetWorkload_FullMethodName     = "/proto.connect.workload_service.v1alpha1.WorkloadService/GetWorkload"
-	WorkloadService_ListWorkloads_FullMethodName   = "/proto.connect.workload_service.v1alpha1.WorkloadService/ListWorkloads"
-	WorkloadService_UpdateWorkload_FullMethodName  = "/proto.connect.workload_service.v1alpha1.WorkloadService/UpdateWorkload"
+	WorkloadObservationService_PublishWorkloadEvents_FullMethodName = "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/PublishWorkloadEvents"
 )
 
-// WorkloadServiceClient is the client API for WorkloadService service.
+// WorkloadObservationServiceClient is the client API for WorkloadObservationService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type WorkloadServiceClient interface {
-	CreateWorkload(ctx context.Context, in *CreateWorkloadRequest, opts ...grpc.CallOption) (*CreateWorkloadResponse, error)
-	DestroyWorkload(ctx context.Context, in *DestroyWorkloadRequest, opts ...grpc.CallOption) (*DestroyWorkloadResponse, error)
-	GetWorkload(ctx context.Context, in *GetWorkloadRequest, opts ...grpc.CallOption) (*GetWorkloadResponse, error)
-	ListWorkloads(ctx context.Context, in *ListWorkloadsRequest, opts ...grpc.CallOption) (*ListWorkloadsResponse, error)
-	UpdateWorkload(ctx context.Context, in *UpdateWorkloadRequest, opts ...grpc.CallOption) (*UpdateWorkloadResponse, error)
+type WorkloadObservationServiceClient interface {
+	PublishWorkloadEvents(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse], error)
 }
 
-type workloadServiceClient struct {
+type workloadObservationServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewWorkloadServiceClient(cc grpc.ClientConnInterface) WorkloadServiceClient {
-	return &workloadServiceClient{cc}
+func NewWorkloadObservationServiceClient(cc grpc.ClientConnInterface) WorkloadObservationServiceClient {
+	return &workloadObservationServiceClient{cc}
 }
 
-func (c *workloadServiceClient) CreateWorkload(ctx context.Context, in *CreateWorkloadRequest, opts ...grpc.CallOption) (*CreateWorkloadResponse, error) {
+func (c *workloadObservationServiceClient) PublishWorkloadEvents(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateWorkloadResponse)
-	err := c.cc.Invoke(ctx, WorkloadService_CreateWorkload_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &WorkloadObservationService_ServiceDesc.Streams[0], WorkloadObservationService_PublishWorkloadEvents_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]{ClientStream: stream}
+	return x, nil
 }
 
-func (c *workloadServiceClient) DestroyWorkload(ctx context.Context, in *DestroyWorkloadRequest, opts ...grpc.CallOption) (*DestroyWorkloadResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DestroyWorkloadResponse)
-	err := c.cc.Invoke(ctx, WorkloadService_DestroyWorkload_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type WorkloadObservationService_PublishWorkloadEventsClient = grpc.ClientStreamingClient[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]
 
-func (c *workloadServiceClient) GetWorkload(ctx context.Context, in *GetWorkloadRequest, opts ...grpc.CallOption) (*GetWorkloadResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetWorkloadResponse)
-	err := c.cc.Invoke(ctx, WorkloadService_GetWorkload_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *workloadServiceClient) ListWorkloads(ctx context.Context, in *ListWorkloadsRequest, opts ...grpc.CallOption) (*ListWorkloadsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListWorkloadsResponse)
-	err := c.cc.Invoke(ctx, WorkloadService_ListWorkloads_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *workloadServiceClient) UpdateWorkload(ctx context.Context, in *UpdateWorkloadRequest, opts ...grpc.CallOption) (*UpdateWorkloadResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateWorkloadResponse)
-	err := c.cc.Invoke(ctx, WorkloadService_UpdateWorkload_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// WorkloadServiceServer is the server API for WorkloadService service.
-// All implementations should embed UnimplementedWorkloadServiceServer
+// WorkloadObservationServiceServer is the server API for WorkloadObservationService service.
+// All implementations should embed UnimplementedWorkloadObservationServiceServer
 // for forward compatibility.
-type WorkloadServiceServer interface {
-	CreateWorkload(context.Context, *CreateWorkloadRequest) (*CreateWorkloadResponse, error)
-	DestroyWorkload(context.Context, *DestroyWorkloadRequest) (*DestroyWorkloadResponse, error)
-	GetWorkload(context.Context, *GetWorkloadRequest) (*GetWorkloadResponse, error)
-	ListWorkloads(context.Context, *ListWorkloadsRequest) (*ListWorkloadsResponse, error)
-	UpdateWorkload(context.Context, *UpdateWorkloadRequest) (*UpdateWorkloadResponse, error)
+type WorkloadObservationServiceServer interface {
+	PublishWorkloadEvents(grpc.ClientStreamingServer[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]) error
 }
 
-// UnimplementedWorkloadServiceServer should be embedded to have
+// UnimplementedWorkloadObservationServiceServer should be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedWorkloadServiceServer struct{}
+type UnimplementedWorkloadObservationServiceServer struct{}
 
-func (UnimplementedWorkloadServiceServer) CreateWorkload(context.Context, *CreateWorkloadRequest) (*CreateWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateWorkload not implemented")
+func (UnimplementedWorkloadObservationServiceServer) PublishWorkloadEvents(grpc.ClientStreamingServer[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method PublishWorkloadEvents not implemented")
 }
-func (UnimplementedWorkloadServiceServer) DestroyWorkload(context.Context, *DestroyWorkloadRequest) (*DestroyWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DestroyWorkload not implemented")
-}
-func (UnimplementedWorkloadServiceServer) GetWorkload(context.Context, *GetWorkloadRequest) (*GetWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWorkload not implemented")
-}
-func (UnimplementedWorkloadServiceServer) ListWorkloads(context.Context, *ListWorkloadsRequest) (*ListWorkloadsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListWorkloads not implemented")
-}
-func (UnimplementedWorkloadServiceServer) UpdateWorkload(context.Context, *UpdateWorkloadRequest) (*UpdateWorkloadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateWorkload not implemented")
-}
-func (UnimplementedWorkloadServiceServer) testEmbeddedByValue() {}
+func (UnimplementedWorkloadObservationServiceServer) testEmbeddedByValue() {}
 
-// UnsafeWorkloadServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to WorkloadServiceServer will
+// UnsafeWorkloadObservationServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WorkloadObservationServiceServer will
 // result in compilation errors.
-type UnsafeWorkloadServiceServer interface {
-	mustEmbedUnimplementedWorkloadServiceServer()
+type UnsafeWorkloadObservationServiceServer interface {
+	mustEmbedUnimplementedWorkloadObservationServiceServer()
 }
 
-func RegisterWorkloadServiceServer(s grpc.ServiceRegistrar, srv WorkloadServiceServer) {
-	// If the following call pancis, it indicates UnimplementedWorkloadServiceServer was
+func RegisterWorkloadObservationServiceServer(s grpc.ServiceRegistrar, srv WorkloadObservationServiceServer) {
+	// If the following call pancis, it indicates UnimplementedWorkloadObservationServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&WorkloadService_ServiceDesc, srv)
+	s.RegisterService(&WorkloadObservationService_ServiceDesc, srv)
 }
 
-func _WorkloadService_CreateWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateWorkloadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkloadServiceServer).CreateWorkload(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkloadService_CreateWorkload_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkloadServiceServer).CreateWorkload(ctx, req.(*CreateWorkloadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+func _WorkloadObservationService_PublishWorkloadEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(WorkloadObservationServiceServer).PublishWorkloadEvents(&grpc.GenericServerStream[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]{ServerStream: stream})
 }
 
-func _WorkloadService_DestroyWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DestroyWorkloadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkloadServiceServer).DestroyWorkload(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkloadService_DestroyWorkload_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkloadServiceServer).DestroyWorkload(ctx, req.(*DestroyWorkloadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type WorkloadObservationService_PublishWorkloadEventsServer = grpc.ClientStreamingServer[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]
 
-func _WorkloadService_GetWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWorkloadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkloadServiceServer).GetWorkload(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkloadService_GetWorkload_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkloadServiceServer).GetWorkload(ctx, req.(*GetWorkloadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _WorkloadService_ListWorkloads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListWorkloadsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkloadServiceServer).ListWorkloads(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkloadService_ListWorkloads_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkloadServiceServer).ListWorkloads(ctx, req.(*ListWorkloadsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _WorkloadService_UpdateWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateWorkloadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkloadServiceServer).UpdateWorkload(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkloadService_UpdateWorkload_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkloadServiceServer).UpdateWorkload(ctx, req.(*UpdateWorkloadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// WorkloadService_ServiceDesc is the grpc.ServiceDesc for WorkloadService service.
+// WorkloadObservationService_ServiceDesc is the grpc.ServiceDesc for WorkloadObservationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var WorkloadService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.connect.workload_service.v1alpha1.WorkloadService",
-	HandlerType: (*WorkloadServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
+var WorkloadObservationService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.connect.workload_service.v1alpha1.WorkloadObservationService",
+	HandlerType: (*WorkloadObservationServiceServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "CreateWorkload",
-			Handler:    _WorkloadService_CreateWorkload_Handler,
-		},
-		{
-			MethodName: "DestroyWorkload",
-			Handler:    _WorkloadService_DestroyWorkload_Handler,
-		},
-		{
-			MethodName: "GetWorkload",
-			Handler:    _WorkloadService_GetWorkload_Handler,
-		},
-		{
-			MethodName: "ListWorkloads",
-			Handler:    _WorkloadService_ListWorkloads_Handler,
-		},
-		{
-			MethodName: "UpdateWorkload",
-			Handler:    _WorkloadService_UpdateWorkload_Handler,
+			StreamName:    "PublishWorkloadEvents",
+			Handler:       _WorkloadObservationService_PublishWorkloadEvents_Handler,
+			ClientStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/connect/workload_service/v1alpha1/workload_service.proto",
 }

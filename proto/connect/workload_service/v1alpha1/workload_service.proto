@@ -11,28 +11,12 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workl
 
 service WorkloadObservationService {
   rpc PublishWorkloadEvents(stream PublishWorkloadEventsRequest) returns (PublishWorkloadEventsResponse);
-  rpc ObserveWorkloadEvents(ObserveWorkloadEventsRequest) returns (stream ObserveWorkloadEventsResponse);
 }
 
 message PublishWorkloadEventsRequest {
   proto.workload.v1alpha1.Workload workload = 1;
 }
 
-message ObserveWorkloadEventsResponse {
-  proto.workload.v1alpha1.Workload workload = 1;
-}
-
 message PublishWorkloadEventsResponse {
   optional string message = 1;
 }
-
-message ObserveWorkloadEventsRequest {
-  message StreamFilter {
-    optional string namespace = 1;
-    optional string cluster_id = 2;
-    map<string, string> label_selector = 3;
-    optional string trust_zone_id = 4;
-  }
-  optional StreamFilter filter = 1;
-}
-

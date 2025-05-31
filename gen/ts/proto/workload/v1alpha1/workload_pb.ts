@@ -5,44 +5,81 @@
 // @generated from file proto/workload/v1alpha1/workload.proto (package proto.workload.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiyAEKCFdvcmtsb2FkEhEKBG5hbWUYASABKAlIAIgBARIWCgluYW1lc3BhY2UYAiABKAlIAYgBARIXCgpjbHVzdGVyX2lkGAMgASgJSAKIAQESGgoNdHJ1c3Rfem9uZV9pZBgEIAEoCUgDiAEBEhYKCXNwaWZmZV9pZBgFIAEoCUgEiAEBQgcKBV9uYW1lQgwKCl9uYW1lc3BhY2VCDQoLX2NsdXN0ZXJfaWRCEAoOX3RydXN0X3pvbmVfaWRCDAoKX3NwaWZmZV9pZEJBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw");
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEixwQKCFdvcmtsb2FkEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRISCgpjbHVzdGVyX2lkGAQgASgJEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAUgASgJEhEKCW5vZGVfbmFtZRgGIAEoCRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnN0YXJ0X3RpbWUYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEm9ic2VydmVkX3RpbWVzdGFtcBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASPQoGbGFiZWxzGAogAygLMi0ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuV29ya2xvYWQuTGFiZWxzRW50cnkSRwoLYW5ub3RhdGlvbnMYCyADKAsyMi5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZC5Bbm5vdGF0aW9uc0VudHJ5Ej0KCmV2ZW50X3R5cGUYDCABKA4yKS5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbkV2ZW50Gi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIiwKDUNvbnRhaW5lckluZm8SDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSqRAQoQT2JzZXJ2YXRpb25FdmVudBIhCh1PQlNFUlZBVElPTl9FVkVOVF9VTlNQRUNJRklFRBAAEhsKF09CU0VSVkFUSU9OX0VWRU5UX0FEREVEEAESHgoaT0JTRVJWQVRJT05fRVZFTlRfTU9ESUZJRUQQAhIdChlPQlNFUlZBVElPTl9FVkVOVF9ERUxFVEVEEANCQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message proto.workload.v1alpha1.Workload
  */
 export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
   /**
-   * @generated from field: optional string name = 1;
+   * @generated from field: string uid = 1;
    */
-  name?: string;
+  uid: string;
 
   /**
-   * @generated from field: optional string namespace = 2;
+   * @generated from field: string name = 2;
    */
-  namespace?: string;
+  name: string;
 
   /**
-   * @generated from field: optional string cluster_id = 3;
+   * @generated from field: string namespace = 3;
    */
-  clusterId?: string;
+  namespace: string;
 
   /**
-   * @generated from field: optional string trust_zone_id = 4;
+   * @generated from field: string cluster_id = 4;
    */
-  trustZoneId?: string;
+  clusterId: string;
 
   /**
-   * @generated from field: optional string spiffe_id = 5;
+   * @generated from field: string service_account_name = 5;
    */
-  spiffeId?: string;
+  serviceAccountName: string;
+
+  /**
+   * @generated from field: string node_name = 6;
+   */
+  nodeName: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp creation_timestamp = 7;
+   */
+  creationTimestamp?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp start_time = 8;
+   */
+  startTime?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp observed_timestamp = 9;
+   */
+  observedTimestamp?: Timestamp;
+
+  /**
+   * @generated from field: map<string, string> labels = 10;
+   */
+  labels: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, string> annotations = 11;
+   */
+  annotations: { [key: string]: string };
+
+  /**
+   * @generated from field: proto.workload.v1alpha1.ObservationEvent event_type = 12;
+   */
+  eventType: ObservationEvent;
 };
 
 /**
@@ -51,4 +88,57 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
  */
 export const WorkloadSchema: GenMessage<Workload> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload, 0);
+
+/**
+ * @generated from message proto.workload.v1alpha1.ContainerInfo
+ */
+export type ContainerInfo = Message<"proto.workload.v1alpha1.ContainerInfo"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string image = 2;
+   */
+  image: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.ContainerInfo.
+ * Use `create(ContainerInfoSchema)` to create a new message.
+ */
+export const ContainerInfoSchema: GenMessage<ContainerInfo> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 1);
+
+/**
+ * @generated from enum proto.workload.v1alpha1.ObservationEvent
+ */
+export enum ObservationEvent {
+  /**
+   * @generated from enum value: OBSERVATION_EVENT_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: OBSERVATION_EVENT_ADDED = 1;
+   */
+  ADDED = 1,
+
+  /**
+   * @generated from enum value: OBSERVATION_EVENT_MODIFIED = 2;
+   */
+  MODIFIED = 2,
+
+  /**
+   * @generated from enum value: OBSERVATION_EVENT_DELETED = 3;
+   */
+  DELETED = 3,
+}
+
+/**
+ * Describes the enum proto.workload.v1alpha1.ObservationEvent.
+ */
+export const ObservationEventSchema: GenEnum<ObservationEvent> = /*@__PURE__*/
+  enumDesc(file_proto_workload_v1alpha1_workload, 0);
 

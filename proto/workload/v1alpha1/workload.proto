@@ -13,13 +13,15 @@ message Workload {
   string uid = 1;
   string name = 2;
   string namespace = 3;
-  string service_account_name = 4;
-  google.protobuf.Timestamp creation_timestamp = 5;
-  google.protobuf.Timestamp start_time = 6;
-  google.protobuf.Timestamp observed_timestamp = 7;
-  map<string, string> labels = 8;
-  map<string, string> annotations = 9;
-  ObservationEvent event_type = 10; 
+  string cluster_id = 4;
+  string service_account_name = 5;
+  string node_name = 6;
+  google.protobuf.Timestamp creation_timestamp = 7;
+  google.protobuf.Timestamp start_time = 8;
+  google.protobuf.Timestamp observed_timestamp = 9;
+  map<string, string> labels = 10;
+  map<string, string> annotations = 11;
+  ObservationEvent event_type = 12; 
 }
 
 message ContainerInfo {

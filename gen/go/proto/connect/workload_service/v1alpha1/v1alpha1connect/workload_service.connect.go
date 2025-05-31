@@ -24,8 +24,9 @@ import (
 const _ = connect.IsAtLeastVersion1_13_0
 
 const (
-	// WorkloadServiceName is the fully-qualified name of the WorkloadService service.
-	WorkloadServiceName = "proto.connect.workload_service.v1alpha1.WorkloadService"
+	// WorkloadObservationServiceName is the fully-qualified name of the WorkloadObservationService
+	// service.
+	WorkloadObservationServiceName = "proto.connect.workload_service.v1alpha1.WorkloadObservationService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -36,196 +37,81 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// WorkloadServiceCreateWorkloadProcedure is the fully-qualified name of the WorkloadService's
-	// CreateWorkload RPC.
-	WorkloadServiceCreateWorkloadProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/CreateWorkload"
-	// WorkloadServiceDestroyWorkloadProcedure is the fully-qualified name of the WorkloadService's
-	// DestroyWorkload RPC.
-	WorkloadServiceDestroyWorkloadProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/DestroyWorkload"
-	// WorkloadServiceGetWorkloadProcedure is the fully-qualified name of the WorkloadService's
-	// GetWorkload RPC.
-	WorkloadServiceGetWorkloadProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/GetWorkload"
-	// WorkloadServiceListWorkloadsProcedure is the fully-qualified name of the WorkloadService's
-	// ListWorkloads RPC.
-	WorkloadServiceListWorkloadsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/ListWorkloads"
-	// WorkloadServiceUpdateWorkloadProcedure is the fully-qualified name of the WorkloadService's
-	// UpdateWorkload RPC.
-	WorkloadServiceUpdateWorkloadProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/UpdateWorkload"
+	// WorkloadObservationServicePublishWorkloadEventsProcedure is the fully-qualified name of the
+	// WorkloadObservationService's PublishWorkloadEvents RPC.
+	WorkloadObservationServicePublishWorkloadEventsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/PublishWorkloadEvents"
 )
 
-// WorkloadServiceClient is a client for the proto.connect.workload_service.v1alpha1.WorkloadService
-// service.
-type WorkloadServiceClient interface {
-	CreateWorkload(context.Context, *connect.Request[v1alpha1.CreateWorkloadRequest]) (*connect.Response[v1alpha1.CreateWorkloadResponse], error)
-	DestroyWorkload(context.Context, *connect.Request[v1alpha1.DestroyWorkloadRequest]) (*connect.Response[v1alpha1.DestroyWorkloadResponse], error)
-	GetWorkload(context.Context, *connect.Request[v1alpha1.GetWorkloadRequest]) (*connect.Response[v1alpha1.GetWorkloadResponse], error)
-	ListWorkloads(context.Context, *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error)
-	UpdateWorkload(context.Context, *connect.Request[v1alpha1.UpdateWorkloadRequest]) (*connect.Response[v1alpha1.UpdateWorkloadResponse], error)
+// WorkloadObservationServiceClient is a client for the
+// proto.connect.workload_service.v1alpha1.WorkloadObservationService service.
+type WorkloadObservationServiceClient interface {
+	PublishWorkloadEvents(context.Context) *connect.ClientStreamForClient[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]
 }
 
-// NewWorkloadServiceClient constructs a client for the
-// proto.connect.workload_service.v1alpha1.WorkloadService service. By default, it uses the Connect
-// protocol with the binary Protobuf Codec, asks for gzipped responses, and sends uncompressed
-// requests. To use the gRPC or gRPC-Web protocols, supply the connect.WithGRPC() or
+// NewWorkloadObservationServiceClient constructs a client for the
+// proto.connect.workload_service.v1alpha1.WorkloadObservationService service. By default, it uses
+// the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
+// uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the connect.WithGRPC() or
 // connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewWorkloadServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) WorkloadServiceClient {
+func NewWorkloadObservationServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) WorkloadObservationServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	workloadServiceMethods := v1alpha1.File_proto_connect_workload_service_v1alpha1_workload_service_proto.Services().ByName("WorkloadService").Methods()
-	return &workloadServiceClient{
-		createWorkload: connect.NewClient[v1alpha1.CreateWorkloadRequest, v1alpha1.CreateWorkloadResponse](
+	workloadObservationServiceMethods := v1alpha1.File_proto_connect_workload_service_v1alpha1_workload_service_proto.Services().ByName("WorkloadObservationService").Methods()
+	return &workloadObservationServiceClient{
+		publishWorkloadEvents: connect.NewClient[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse](
 			httpClient,
-			baseURL+WorkloadServiceCreateWorkloadProcedure,
-			connect.WithSchema(workloadServiceMethods.ByName("CreateWorkload")),
-			connect.WithClientOptions(opts...),
-		),
-		destroyWorkload: connect.NewClient[v1alpha1.DestroyWorkloadRequest, v1alpha1.DestroyWorkloadResponse](
-			httpClient,
-			baseURL+WorkloadServiceDestroyWorkloadProcedure,
-			connect.WithSchema(workloadServiceMethods.ByName("DestroyWorkload")),
-			connect.WithClientOptions(opts...),
-		),
-		getWorkload: connect.NewClient[v1alpha1.GetWorkloadRequest, v1alpha1.GetWorkloadResponse](
-			httpClient,
-			baseURL+WorkloadServiceGetWorkloadProcedure,
-			connect.WithSchema(workloadServiceMethods.ByName("GetWorkload")),
-			connect.WithClientOptions(opts...),
-		),
-		listWorkloads: connect.NewClient[v1alpha1.ListWorkloadsRequest, v1alpha1.ListWorkloadsResponse](
-			httpClient,
-			baseURL+WorkloadServiceListWorkloadsProcedure,
-			connect.WithSchema(workloadServiceMethods.ByName("ListWorkloads")),
-			connect.WithClientOptions(opts...),
-		),
-		updateWorkload: connect.NewClient[v1alpha1.UpdateWorkloadRequest, v1alpha1.UpdateWorkloadResponse](
-			httpClient,
-			baseURL+WorkloadServiceUpdateWorkloadProcedure,
-			connect.WithSchema(workloadServiceMethods.ByName("UpdateWorkload")),
+			baseURL+WorkloadObservationServicePublishWorkloadEventsProcedure,
+			connect.WithSchema(workloadObservationServiceMethods.ByName("PublishWorkloadEvents")),
 			connect.WithClientOptions(opts...),
 		),
 	}
 }
 
-// workloadServiceClient implements WorkloadServiceClient.
-type workloadServiceClient struct {
-	createWorkload  *connect.Client[v1alpha1.CreateWorkloadRequest, v1alpha1.CreateWorkloadResponse]
-	destroyWorkload *connect.Client[v1alpha1.DestroyWorkloadRequest, v1alpha1.DestroyWorkloadResponse]
-	getWorkload     *connect.Client[v1alpha1.GetWorkloadRequest, v1alpha1.GetWorkloadResponse]
-	listWorkloads   *connect.Client[v1alpha1.ListWorkloadsRequest, v1alpha1.ListWorkloadsResponse]
-	updateWorkload  *connect.Client[v1alpha1.UpdateWorkloadRequest, v1alpha1.UpdateWorkloadResponse]
+// workloadObservationServiceClient implements WorkloadObservationServiceClient.
+type workloadObservationServiceClient struct {
+	publishWorkloadEvents *connect.Client[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]
 }
 
-// CreateWorkload calls proto.connect.workload_service.v1alpha1.WorkloadService.CreateWorkload.
-func (c *workloadServiceClient) CreateWorkload(ctx context.Context, req *connect.Request[v1alpha1.CreateWorkloadRequest]) (*connect.Response[v1alpha1.CreateWorkloadResponse], error) {
-	return c.createWorkload.CallUnary(ctx, req)
+// PublishWorkloadEvents calls
+// proto.connect.workload_service.v1alpha1.WorkloadObservationService.PublishWorkloadEvents.
+func (c *workloadObservationServiceClient) PublishWorkloadEvents(ctx context.Context) *connect.ClientStreamForClient[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse] {
+	return c.publishWorkloadEvents.CallClientStream(ctx)
 }
 
-// DestroyWorkload calls proto.connect.workload_service.v1alpha1.WorkloadService.DestroyWorkload.
-func (c *workloadServiceClient) DestroyWorkload(ctx context.Context, req *connect.Request[v1alpha1.DestroyWorkloadRequest]) (*connect.Response[v1alpha1.DestroyWorkloadResponse], error) {
-	return c.destroyWorkload.CallUnary(ctx, req)
+// WorkloadObservationServiceHandler is an implementation of the
+// proto.connect.workload_service.v1alpha1.WorkloadObservationService service.
+type WorkloadObservationServiceHandler interface {
+	PublishWorkloadEvents(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadEventsRequest]) (*connect.Response[v1alpha1.PublishWorkloadEventsResponse], error)
 }
 
-// GetWorkload calls proto.connect.workload_service.v1alpha1.WorkloadService.GetWorkload.
-func (c *workloadServiceClient) GetWorkload(ctx context.Context, req *connect.Request[v1alpha1.GetWorkloadRequest]) (*connect.Response[v1alpha1.GetWorkloadResponse], error) {
-	return c.getWorkload.CallUnary(ctx, req)
-}
-
-// ListWorkloads calls proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloads.
-func (c *workloadServiceClient) ListWorkloads(ctx context.Context, req *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error) {
-	return c.listWorkloads.CallUnary(ctx, req)
-}
-
-// UpdateWorkload calls proto.connect.workload_service.v1alpha1.WorkloadService.UpdateWorkload.
-func (c *workloadServiceClient) UpdateWorkload(ctx context.Context, req *connect.Request[v1alpha1.UpdateWorkloadRequest]) (*connect.Response[v1alpha1.UpdateWorkloadResponse], error) {
-	return c.updateWorkload.CallUnary(ctx, req)
-}
-
-// WorkloadServiceHandler is an implementation of the
-// proto.connect.workload_service.v1alpha1.WorkloadService service.
-type WorkloadServiceHandler interface {
-	CreateWorkload(context.Context, *connect.Request[v1alpha1.CreateWorkloadRequest]) (*connect.Response[v1alpha1.CreateWorkloadResponse], error)
-	DestroyWorkload(context.Context, *connect.Request[v1alpha1.DestroyWorkloadRequest]) (*connect.Response[v1alpha1.DestroyWorkloadResponse], error)
-	GetWorkload(context.Context, *connect.Request[v1alpha1.GetWorkloadRequest]) (*connect.Response[v1alpha1.GetWorkloadResponse], error)
-	ListWorkloads(context.Context, *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error)
-	UpdateWorkload(context.Context, *connect.Request[v1alpha1.UpdateWorkloadRequest]) (*connect.Response[v1alpha1.UpdateWorkloadResponse], error)
-}
-
-// NewWorkloadServiceHandler builds an HTTP handler from the service implementation. It returns the
-// path on which to mount the handler and the handler itself.
+// NewWorkloadObservationServiceHandler builds an HTTP handler from the service implementation. It
+// returns the path on which to mount the handler and the handler itself.
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewWorkloadServiceHandler(svc WorkloadServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	workloadServiceMethods := v1alpha1.File_proto_connect_workload_service_v1alpha1_workload_service_proto.Services().ByName("WorkloadService").Methods()
-	workloadServiceCreateWorkloadHandler := connect.NewUnaryHandler(
-		WorkloadServiceCreateWorkloadProcedure,
-		svc.CreateWorkload,
-		connect.WithSchema(workloadServiceMethods.ByName("CreateWorkload")),
+func NewWorkloadObservationServiceHandler(svc WorkloadObservationServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	workloadObservationServiceMethods := v1alpha1.File_proto_connect_workload_service_v1alpha1_workload_service_proto.Services().ByName("WorkloadObservationService").Methods()
+	workloadObservationServicePublishWorkloadEventsHandler := connect.NewClientStreamHandler(
+		WorkloadObservationServicePublishWorkloadEventsProcedure,
+		svc.PublishWorkloadEvents,
+		connect.WithSchema(workloadObservationServiceMethods.ByName("PublishWorkloadEvents")),
 		connect.WithHandlerOptions(opts...),
 	)
-	workloadServiceDestroyWorkloadHandler := connect.NewUnaryHandler(
-		WorkloadServiceDestroyWorkloadProcedure,
-		svc.DestroyWorkload,
-		connect.WithSchema(workloadServiceMethods.ByName("DestroyWorkload")),
-		connect.WithHandlerOptions(opts...),
-	)
-	workloadServiceGetWorkloadHandler := connect.NewUnaryHandler(
-		WorkloadServiceGetWorkloadProcedure,
-		svc.GetWorkload,
-		connect.WithSchema(workloadServiceMethods.ByName("GetWorkload")),
-		connect.WithHandlerOptions(opts...),
-	)
-	workloadServiceListWorkloadsHandler := connect.NewUnaryHandler(
-		WorkloadServiceListWorkloadsProcedure,
-		svc.ListWorkloads,
-		connect.WithSchema(workloadServiceMethods.ByName("ListWorkloads")),
-		connect.WithHandlerOptions(opts...),
-	)
-	workloadServiceUpdateWorkloadHandler := connect.NewUnaryHandler(
-		WorkloadServiceUpdateWorkloadProcedure,
-		svc.UpdateWorkload,
-		connect.WithSchema(workloadServiceMethods.ByName("UpdateWorkload")),
-		connect.WithHandlerOptions(opts...),
-	)
-	return "/proto.connect.workload_service.v1alpha1.WorkloadService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case WorkloadServiceCreateWorkloadProcedure:
-			workloadServiceCreateWorkloadHandler.ServeHTTP(w, r)
-		case WorkloadServiceDestroyWorkloadProcedure:
-			workloadServiceDestroyWorkloadHandler.ServeHTTP(w, r)
-		case WorkloadServiceGetWorkloadProcedure:
-			workloadServiceGetWorkloadHandler.ServeHTTP(w, r)
-		case WorkloadServiceListWorkloadsProcedure:
-			workloadServiceListWorkloadsHandler.ServeHTTP(w, r)
-		case WorkloadServiceUpdateWorkloadProcedure:
-			workloadServiceUpdateWorkloadHandler.ServeHTTP(w, r)
+		case WorkloadObservationServicePublishWorkloadEventsProcedure:
+			workloadObservationServicePublishWorkloadEventsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
 	})
 }
 
-// UnimplementedWorkloadServiceHandler returns CodeUnimplemented from all methods.
-type UnimplementedWorkloadServiceHandler struct{}
+// UnimplementedWorkloadObservationServiceHandler returns CodeUnimplemented from all methods.
+type UnimplementedWorkloadObservationServiceHandler struct{}
 
-func (UnimplementedWorkloadServiceHandler) CreateWorkload(context.Context, *connect.Request[v1alpha1.CreateWorkloadRequest]) (*connect.Response[v1alpha1.CreateWorkloadResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.CreateWorkload is not implemented"))
-}
-
-func (UnimplementedWorkloadServiceHandler) DestroyWorkload(context.Context, *connect.Request[v1alpha1.DestroyWorkloadRequest]) (*connect.Response[v1alpha1.DestroyWorkloadResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.DestroyWorkload is not implemented"))
-}
-
-func (UnimplementedWorkloadServiceHandler) GetWorkload(context.Context, *connect.Request[v1alpha1.GetWorkloadRequest]) (*connect.Response[v1alpha1.GetWorkloadResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.GetWorkload is not implemented"))
-}
-
-func (UnimplementedWorkloadServiceHandler) ListWorkloads(context.Context, *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloads is not implemented"))
-}
-
-func (UnimplementedWorkloadServiceHandler) UpdateWorkload(context.Context, *connect.Request[v1alpha1.UpdateWorkloadRequest]) (*connect.Response[v1alpha1.UpdateWorkloadResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.UpdateWorkload is not implemented"))
+func (UnimplementedWorkloadObservationServiceHandler) PublishWorkloadEvents(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadEventsRequest]) (*connect.Response[v1alpha1.PublishWorkloadEventsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadObservationService.PublishWorkloadEvents is not implemented"))
 }
