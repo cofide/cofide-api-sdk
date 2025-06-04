@@ -21,7 +21,8 @@ message Workload {
   google.protobuf.Timestamp observed_timestamp = 9;
   map<string, string> labels = 10;
   map<string, string> annotations = 11;
-  ObservationEvent event_type = 12; 
+  ObservationEvent event_type = 12;
+  bool is_cofide_enabled = 13;
 }
 
 message ContainerInfo {
