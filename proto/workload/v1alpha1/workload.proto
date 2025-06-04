@@ -10,7 +10,7 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
 
 message Workload {
-  string uid = 1;
+  string id = 1;
   string name = 2;
   string namespace = 3;
   string cluster_id = 4;
@@ -22,12 +22,17 @@ message Workload {
   map<string, string> labels = 10;
   map<string, string> annotations = 11;
   ObservationEvent event_type = 12;
-  bool is_cofide_enabled = 13;
+  repeated WorkloadCondition conditions = 13;
 }
 
 message ContainerInfo {
   string name = 1;
   string image = 2;
+}
+
+message WorkloadCondition {
+  string type = 1;
+  string status = 2;
 }
 
 enum ObservationEvent {

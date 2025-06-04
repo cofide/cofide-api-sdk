@@ -15,16 +15,16 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi4gQKCFdvcmtsb2FkEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRISCgpjbHVzdGVyX2lkGAQgASgJEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAUgASgJEhEKCW5vZGVfbmFtZRgGIAEoCRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnN0YXJ0X3RpbWUYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEm9ic2VydmVkX3RpbWVzdGFtcBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASPQoGbGFiZWxzGAogAygLMi0ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuV29ya2xvYWQuTGFiZWxzRW50cnkSRwoLYW5ub3RhdGlvbnMYCyADKAsyMi5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZC5Bbm5vdGF0aW9uc0VudHJ5Ej0KCmV2ZW50X3R5cGUYDCABKA4yKS5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbkV2ZW50EhkKEWlzX2NvZmlkZV9lbmFibGVkGA0gASgIGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIiwKDUNvbnRhaW5lckluZm8SDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSqRAQoQT2JzZXJ2YXRpb25FdmVudBIhCh1PQlNFUlZBVElPTl9FVkVOVF9VTlNQRUNJRklFRBAAEhsKF09CU0VSVkFUSU9OX0VWRU5UX0FEREVEEAESHgoaT0JTRVJWQVRJT05fRVZFTlRfTU9ESUZJRUQQAhIdChlPQlNFUlZBVElPTl9FVkVOVF9ERUxFVEVEEANCQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEihgUKCFdvcmtsb2FkEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkSEQoJbmFtZXNwYWNlGAMgASgJEhIKCmNsdXN0ZXJfaWQYBCABKAkSHAoUc2VydmljZV9hY2NvdW50X25hbWUYBSABKAkSEQoJbm9kZV9uYW1lGAYgASgJEjYKEmNyZWF0aW9uX3RpbWVzdGFtcBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKc3RhcnRfdGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASNgoSb2JzZXJ2ZWRfdGltZXN0YW1wGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI9CgZsYWJlbHMYCiADKAsyLS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZC5MYWJlbHNFbnRyeRJHCgthbm5vdGF0aW9ucxgLIAMoCzIyLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkLkFubm90YXRpb25zRW50cnkSPQoKZXZlbnRfdHlwZRgMIAEoDjIpLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLk9ic2VydmF0aW9uRXZlbnQSPgoKY29uZGl0aW9ucxgNIAMoCzIqLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkQ29uZGl0aW9uGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIiwKDUNvbnRhaW5lckluZm8SDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSIxChFXb3JrbG9hZENvbmRpdGlvbhIMCgR0eXBlGAEgASgJEg4KBnN0YXR1cxgCIAEoCSqRAQoQT2JzZXJ2YXRpb25FdmVudBIhCh1PQlNFUlZBVElPTl9FVkVOVF9VTlNQRUNJRklFRBAAEhsKF09CU0VSVkFUSU9OX0VWRU5UX0FEREVEEAESHgoaT0JTRVJWQVRJT05fRVZFTlRfTU9ESUZJRUQQAhIdChlPQlNFUlZBVElPTl9FVkVOVF9ERUxFVEVEEANCQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message proto.workload.v1alpha1.Workload
  */
 export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
   /**
-   * @generated from field: string uid = 1;
+   * @generated from field: string id = 1;
    */
-  uid: string;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -82,9 +82,9 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
   eventType: ObservationEvent;
 
   /**
-   * @generated from field: bool is_cofide_enabled = 13;
+   * @generated from field: repeated proto.workload.v1alpha1.WorkloadCondition conditions = 13;
    */
-  isCofideEnabled: boolean;
+  conditions: WorkloadCondition[];
 };
 
 /**
@@ -115,6 +115,28 @@ export type ContainerInfo = Message<"proto.workload.v1alpha1.ContainerInfo"> & {
  */
 export const ContainerInfoSchema: GenMessage<ContainerInfo> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload, 1);
+
+/**
+ * @generated from message proto.workload.v1alpha1.WorkloadCondition
+ */
+export type WorkloadCondition = Message<"proto.workload.v1alpha1.WorkloadCondition"> & {
+  /**
+   * @generated from field: string type = 1;
+   */
+  type: string;
+
+  /**
+   * @generated from field: string status = 2;
+   */
+  status: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.WorkloadCondition.
+ * Use `create(WorkloadConditionSchema)` to create a new message.
+ */
+export const WorkloadConditionSchema: GenMessage<WorkloadCondition> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 2);
 
 /**
  * @generated from enum proto.workload.v1alpha1.ObservationEvent
