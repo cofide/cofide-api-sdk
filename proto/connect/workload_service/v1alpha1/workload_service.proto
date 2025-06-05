@@ -11,6 +11,7 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workl
 
 service WorkloadObservationService {
   rpc PublishWorkloadEvents(stream PublishWorkloadEventsRequest) returns (PublishWorkloadEventsResponse);
+  rpc ListWorkloads(ListWorkloadsRequest) returns (ListWorkloadsResponse);
 }
 
 message ListWorkloadsRequest {

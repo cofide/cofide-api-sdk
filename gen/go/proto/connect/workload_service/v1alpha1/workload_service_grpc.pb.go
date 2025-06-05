@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	WorkloadObservationService_PublishWorkloadEvents_FullMethodName = "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/PublishWorkloadEvents"
+	WorkloadObservationService_ListWorkloads_FullMethodName         = "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/ListWorkloads"
 )
 
 // WorkloadObservationServiceClient is the client API for WorkloadObservationService service.
@@ -30,6 +31,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WorkloadObservationServiceClient interface {
 	PublishWorkloadEvents(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse], error)
+	ListWorkloads(ctx context.Context, in *ListWorkloadsRequest, opts ...grpc.CallOption) (*ListWorkloadsResponse, error)
 }
 
 type workloadObservationServiceClient struct {
@@ -53,11 +55,22 @@ func (c *workloadObservationServiceClient) PublishWorkloadEvents(ctx context.Con
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type WorkloadObservationService_PublishWorkloadEventsClient = grpc.ClientStreamingClient[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]
 
+func (c *workloadObservationServiceClient) ListWorkloads(ctx context.Context, in *ListWorkloadsRequest, opts ...grpc.CallOption) (*ListWorkloadsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListWorkloadsResponse)
+	err := c.cc.Invoke(ctx, WorkloadObservationService_ListWorkloads_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WorkloadObservationServiceServer is the server API for WorkloadObservationService service.
 // All implementations should embed UnimplementedWorkloadObservationServiceServer
 // for forward compatibility.
 type WorkloadObservationServiceServer interface {
 	PublishWorkloadEvents(grpc.ClientStreamingServer[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]) error
+	ListWorkloads(context.Context, *ListWorkloadsRequest) (*ListWorkloadsResponse, error)
 }
 
 // UnimplementedWorkloadObservationServiceServer should be embedded to have
@@ -69,6 +82,9 @@ type UnimplementedWorkloadObservationServiceServer struct{}
 
 func (UnimplementedWorkloadObservationServiceServer) PublishWorkloadEvents(grpc.ClientStreamingServer[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method PublishWorkloadEvents not implemented")
+}
+func (UnimplementedWorkloadObservationServiceServer) ListWorkloads(context.Context, *ListWorkloadsRequest) (*ListWorkloadsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListWorkloads not implemented")
 }
 func (UnimplementedWorkloadObservationServiceServer) testEmbeddedByValue() {}
 
@@ -97,13 +113,36 @@ func _WorkloadObservationService_PublishWorkloadEvents_Handler(srv interface{}, 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type WorkloadObservationService_PublishWorkloadEventsServer = grpc.ClientStreamingServer[PublishWorkloadEventsRequest, PublishWorkloadEventsResponse]
 
+func _WorkloadObservationService_ListWorkloads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListWorkloadsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkloadObservationServiceServer).ListWorkloads(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkloadObservationService_ListWorkloads_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkloadObservationServiceServer).ListWorkloads(ctx, req.(*ListWorkloadsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WorkloadObservationService_ServiceDesc is the grpc.ServiceDesc for WorkloadObservationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var WorkloadObservationService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "proto.connect.workload_service.v1alpha1.WorkloadObservationService",
 	HandlerType: (*WorkloadObservationServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListWorkloads",
+			Handler:    _WorkloadObservationService_ListWorkloads_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "PublishWorkloadEvents",

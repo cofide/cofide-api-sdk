@@ -40,12 +40,16 @@ const (
 	// WorkloadObservationServicePublishWorkloadEventsProcedure is the fully-qualified name of the
 	// WorkloadObservationService's PublishWorkloadEvents RPC.
 	WorkloadObservationServicePublishWorkloadEventsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/PublishWorkloadEvents"
+	// WorkloadObservationServiceListWorkloadsProcedure is the fully-qualified name of the
+	// WorkloadObservationService's ListWorkloads RPC.
+	WorkloadObservationServiceListWorkloadsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/ListWorkloads"
 )
 
 // WorkloadObservationServiceClient is a client for the
 // proto.connect.workload_service.v1alpha1.WorkloadObservationService service.
 type WorkloadObservationServiceClient interface {
 	PublishWorkloadEvents(context.Context) *connect.ClientStreamForClient[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]
+	ListWorkloads(context.Context, *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error)
 }
 
 // NewWorkloadObservationServiceClient constructs a client for the
@@ -66,12 +70,19 @@ func NewWorkloadObservationServiceClient(httpClient connect.HTTPClient, baseURL 
 			connect.WithSchema(workloadObservationServiceMethods.ByName("PublishWorkloadEvents")),
 			connect.WithClientOptions(opts...),
 		),
+		listWorkloads: connect.NewClient[v1alpha1.ListWorkloadsRequest, v1alpha1.ListWorkloadsResponse](
+			httpClient,
+			baseURL+WorkloadObservationServiceListWorkloadsProcedure,
+			connect.WithSchema(workloadObservationServiceMethods.ByName("ListWorkloads")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // workloadObservationServiceClient implements WorkloadObservationServiceClient.
 type workloadObservationServiceClient struct {
 	publishWorkloadEvents *connect.Client[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]
+	listWorkloads         *connect.Client[v1alpha1.ListWorkloadsRequest, v1alpha1.ListWorkloadsResponse]
 }
 
 // PublishWorkloadEvents calls
@@ -80,10 +91,17 @@ func (c *workloadObservationServiceClient) PublishWorkloadEvents(ctx context.Con
 	return c.publishWorkloadEvents.CallClientStream(ctx)
 }
 
+// ListWorkloads calls
+// proto.connect.workload_service.v1alpha1.WorkloadObservationService.ListWorkloads.
+func (c *workloadObservationServiceClient) ListWorkloads(ctx context.Context, req *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error) {
+	return c.listWorkloads.CallUnary(ctx, req)
+}
+
 // WorkloadObservationServiceHandler is an implementation of the
 // proto.connect.workload_service.v1alpha1.WorkloadObservationService service.
 type WorkloadObservationServiceHandler interface {
 	PublishWorkloadEvents(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadEventsRequest]) (*connect.Response[v1alpha1.PublishWorkloadEventsResponse], error)
+	ListWorkloads(context.Context, *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error)
 }
 
 // NewWorkloadObservationServiceHandler builds an HTTP handler from the service implementation. It
@@ -99,10 +117,18 @@ func NewWorkloadObservationServiceHandler(svc WorkloadObservationServiceHandler,
 		connect.WithSchema(workloadObservationServiceMethods.ByName("PublishWorkloadEvents")),
 		connect.WithHandlerOptions(opts...),
 	)
+	workloadObservationServiceListWorkloadsHandler := connect.NewUnaryHandler(
+		WorkloadObservationServiceListWorkloadsProcedure,
+		svc.ListWorkloads,
+		connect.WithSchema(workloadObservationServiceMethods.ByName("ListWorkloads")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.connect.workload_service.v1alpha1.WorkloadObservationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case WorkloadObservationServicePublishWorkloadEventsProcedure:
 			workloadObservationServicePublishWorkloadEventsHandler.ServeHTTP(w, r)
+		case WorkloadObservationServiceListWorkloadsProcedure:
+			workloadObservationServiceListWorkloadsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -114,4 +140,8 @@ type UnimplementedWorkloadObservationServiceHandler struct{}
 
 func (UnimplementedWorkloadObservationServiceHandler) PublishWorkloadEvents(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadEventsRequest]) (*connect.Response[v1alpha1.PublishWorkloadEventsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadObservationService.PublishWorkloadEvents is not implemented"))
+}
+
+func (UnimplementedWorkloadObservationServiceHandler) ListWorkloads(context.Context, *connect.Request[v1alpha1.ListWorkloadsRequest]) (*connect.Response[v1alpha1.ListWorkloadsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadObservationService.ListWorkloads is not implemented"))
 }
