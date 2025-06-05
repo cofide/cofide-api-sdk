@@ -23,7 +23,7 @@ message Workload {
   map<string, string> annotations = 11;
   ObservationEvent event_type = 12;
   repeated WorkloadCondition conditions = 13;
-  optional string kubernetes_uid = 14;
+  string platform_id = 14;
 }
 
 message ContainerInfo {
