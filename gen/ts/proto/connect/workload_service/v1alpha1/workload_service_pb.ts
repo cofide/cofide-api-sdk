@@ -15,7 +15,58 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/connect/workload_service/v1alpha1/workload_service.proto.
  */
 export const file_proto_connect_workload_service_v1alpha1_workload_service: GenFile = /*@__PURE__*/
-  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIlMKHFB1Ymxpc2hXb3JrbG9hZEV2ZW50c1JlcXVlc3QSMwoId29ya2xvYWQYASABKAsyIS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZCJBCh1QdWJsaXNoV29ya2xvYWRFdmVudHNSZXNwb25zZRIUCgdtZXNzYWdlGAEgASgJSACIAQFCCgoIX21lc3NhZ2UyxwEKGldvcmtsb2FkT2JzZXJ2YXRpb25TZXJ2aWNlEqgBChVQdWJsaXNoV29ya2xvYWRFdmVudHMSRS5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuUHVibGlzaFdvcmtsb2FkRXZlbnRzUmVxdWVzdBpGLnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRFdmVudHNSZXNwb25zZSgBQlFaT2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTFiBnByb3RvMw", [file_proto_workload_v1alpha1_workload]);
+  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIq4BChRMaXN0V29ya2xvYWRzUmVxdWVzdBJZCgZmaWx0ZXIYASABKAsyRC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2Fkc1JlcXVlc3QuRmlsdGVySACIAQEaMAoGRmlsdGVyEhcKCmNsdXN0ZXJfaWQYASABKAlIAIgBAUINCgtfY2x1c3Rlcl9pZEIJCgdfZmlsdGVyIk0KFUxpc3RXb3JrbG9hZHNSZXNwb25zZRI0Cgl3b3JrbG9hZHMYASADKAsyIS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZCJTChxQdWJsaXNoV29ya2xvYWRFdmVudHNSZXF1ZXN0EjMKCHdvcmtsb2FkGAEgASgLMiEucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuV29ya2xvYWQiQQodUHVibGlzaFdvcmtsb2FkRXZlbnRzUmVzcG9uc2USFAoHbWVzc2FnZRgBIAEoCUgAiAEBQgoKCF9tZXNzYWdlMscBChpXb3JrbG9hZE9ic2VydmF0aW9uU2VydmljZRKoAQoVUHVibGlzaFdvcmtsb2FkRXZlbnRzEkUucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLlB1Ymxpc2hXb3JrbG9hZEV2ZW50c1JlcXVlc3QaRi5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuUHVibGlzaFdvcmtsb2FkRXZlbnRzUmVzcG9uc2UoAUJRWk9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29ubmVjdC93b3JrbG9hZF9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_proto_workload_v1alpha1_workload]);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadsRequest
+ */
+export type ListWorkloadsRequest = Message<"proto.connect.workload_service.v1alpha1.ListWorkloadsRequest"> & {
+  /**
+   * @generated from field: optional proto.connect.workload_service.v1alpha1.ListWorkloadsRequest.Filter filter = 1;
+   */
+  filter?: ListWorkloadsRequest_Filter;
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.ListWorkloadsRequest.
+ * Use `create(ListWorkloadsRequestSchema)` to create a new message.
+ */
+export const ListWorkloadsRequestSchema: GenMessage<ListWorkloadsRequest> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 0);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadsRequest.Filter
+ */
+export type ListWorkloadsRequest_Filter = Message<"proto.connect.workload_service.v1alpha1.ListWorkloadsRequest.Filter"> & {
+  /**
+   * @generated from field: optional string cluster_id = 1;
+   */
+  clusterId?: string;
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.ListWorkloadsRequest.Filter.
+ * Use `create(ListWorkloadsRequest_FilterSchema)` to create a new message.
+ */
+export const ListWorkloadsRequest_FilterSchema: GenMessage<ListWorkloadsRequest_Filter> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 0, 0);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadsResponse
+ */
+export type ListWorkloadsResponse = Message<"proto.connect.workload_service.v1alpha1.ListWorkloadsResponse"> & {
+  /**
+   * @generated from field: repeated proto.workload.v1alpha1.Workload workloads = 1;
+   */
+  workloads: Workload[];
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.ListWorkloadsResponse.
+ * Use `create(ListWorkloadsResponseSchema)` to create a new message.
+ */
+export const ListWorkloadsResponseSchema: GenMessage<ListWorkloadsResponse> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 1);
 
 /**
  * @generated from message proto.connect.workload_service.v1alpha1.PublishWorkloadEventsRequest
@@ -32,7 +83,7 @@ export type PublishWorkloadEventsRequest = Message<"proto.connect.workload_servi
  * Use `create(PublishWorkloadEventsRequestSchema)` to create a new message.
  */
 export const PublishWorkloadEventsRequestSchema: GenMessage<PublishWorkloadEventsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 0);
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 2);
 
 /**
  * @generated from message proto.connect.workload_service.v1alpha1.PublishWorkloadEventsResponse
@@ -49,7 +100,7 @@ export type PublishWorkloadEventsResponse = Message<"proto.connect.workload_serv
  * Use `create(PublishWorkloadEventsResponseSchema)` to create a new message.
  */
 export const PublishWorkloadEventsResponseSchema: GenMessage<PublishWorkloadEventsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 1);
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 3);
 
 /**
  * @generated from service proto.connect.workload_service.v1alpha1.WorkloadObservationService

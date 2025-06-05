@@ -13,6 +13,17 @@ service WorkloadObservationService {
   rpc PublishWorkloadEvents(stream PublishWorkloadEventsRequest) returns (PublishWorkloadEventsResponse);
 }
 
+message ListWorkloadsRequest {
+  message Filter {
+    optional string cluster_id = 1;
+  }
+  optional Filter filter = 1;
+}
+
+message ListWorkloadsResponse {
+  repeated proto.workload.v1alpha1.Workload workloads = 1;
+}
+
 message PublishWorkloadEventsRequest {
   proto.workload.v1alpha1.Workload workload = 1;
 }
