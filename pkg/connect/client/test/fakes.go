@@ -10,6 +10,7 @@ import (
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
+	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 )
 
@@ -31,6 +32,11 @@ const (
 	FakeAttestationPolicyName = "fake-ap-name"
 
 	FakeAPBindingID = "fake-ap-binding-id"
+
+	FakeWorkloadID      = "fake-workload-id"
+	FakeK8sPodUID       = "fake-k8s-pod-uid"
+	FakeK8sPodName      = "fake-k8s-pod-name"
+	FakeK8sPodNamespace = "fake-k8s-pod-namespace"
 )
 
 func FakeTrustZone() *trustzonepb.TrustZone {
@@ -80,5 +86,23 @@ func FakeAPBinding() *apbindingpb.APBinding {
 		Id:          PtrOf(FakeAPBindingID),
 		TrustZoneId: PtrOf(FakeTrustZoneID),
 		PolicyId:    PtrOf(FakeAttestationPolicyID),
+	}
+}
+
+func FakeK8sPodWorkload() *workloadpb.Workload {
+	return &workloadpb.Workload{
+		Id:          FakeWorkloadID,
+		TrustZoneId: FakeTrustZoneID,
+		ClusterId:   FakeClusterID,
+		Type:        workloadpb.WorkloadType_WORKLOAD_TYPE_KUBERNETES_POD,
+		Workload: &workloadpb.Workload_KubernetesPod{
+			KubernetesPod: &workloadpb.KubernetesPod{
+				Metadata: &workloadpb.KubernetesMetadata{
+					Uid:       FakeK8sPodUID,
+					Name:      FakeK8sPodName,
+					Namespace: FakeK8sPodNamespace,
+				},
+			},
+		},
 	}
 }
