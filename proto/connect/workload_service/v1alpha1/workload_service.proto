@@ -1,0 +1,33 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.workload_service.v1alpha1;
+
+import "proto/workload/v1alpha1/workload.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1";
+
+service WorkloadService {
+  rpc ListWorkloads(ListWorkloadsRequest) returns (ListWorkloadsResponse);
+  rpc PublishWorkloads(stream PublishWorkloadsRequest) returns (PublishWorkloadsResponse);
+}
+
+message ListWorkloadsRequest {
+  message Filter {
+    optional string trust_zone_id = 1;
+    optional string cluster_id = 2;
+  }
+  optional Filter filter = 1;
+}
+
+message ListWorkloadsResponse {
+  repeated proto.workload.v1alpha1.Workload workloads = 1;
+}
+
+message PublishWorkloadsRequest {
+  repeated proto.workload.v1alpha1.Workload workloads = 1;
+}
+
+message PublishWorkloadsResponse {}
