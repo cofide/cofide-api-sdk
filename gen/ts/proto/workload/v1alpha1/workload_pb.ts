@@ -7,13 +7,15 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiQQoIV29ya2xvYWQSCgoCaWQYASABKAkSFQoNdHJ1c3Rfem9uZV9pZBgCIAEoCRISCgpjbHVzdGVyX2lkGAMgASgJQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z");
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEipAIKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASOgoMb2JzZXJ2YXRpb25zGAYgAygLMiQucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuT2JzZXJ2YXRpb24SNgoSb2JzZXJ2ZWRfdGltZXN0YW1wGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIPCgdkZWxldGVkGAggASgIQgoKCHdvcmtsb2FkIi4KC09ic2VydmF0aW9uEhAKCHR5cGVfdXJsGAEgASgJEg0KBXZhbHVlGAIgASgJIvEBCg1LdWJlcm5ldGVzUG9kEj0KCG1ldGFkYXRhGAEgASgLMisucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJEhEKCW5vZGVfbmFtZRgDIAEoCRJACgpjb250YWluZXJzGAQgAygLMiwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc0NvbnRhaW5lchIuCgpzdGFydF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCL5AgoSS3ViZXJuZXRlc01ldGFkYXRhEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRJHCgZsYWJlbHMYBCADKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuTGFiZWxzRW50cnkSUQoLYW5ub3RhdGlvbnMYBSADKAsyPC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuQW5ub3RhdGlvbnNFbnRyeRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIjIKE0t1YmVybmV0ZXNDb250YWluZXISDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCUJBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message proto.workload.v1alpha1.Workload
@@ -25,6 +27,11 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
   id: string;
 
   /**
+   * @generated from field: string org_id = 4;
+   */
+  orgId: string;
+
+  /**
    * @generated from field: string trust_zone_id = 2;
    */
   trustZoneId: string;
@@ -33,6 +40,32 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
    * @generated from field: string cluster_id = 3;
    */
   clusterId: string;
+
+  /**
+   * @generated from oneof proto.workload.v1alpha1.Workload.workload
+   */
+  workload: {
+    /**
+     * @generated from field: proto.workload.v1alpha1.KubernetesPod kubernetes_pod = 5;
+     */
+    value: KubernetesPod;
+    case: "kubernetesPod";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: repeated proto.workload.v1alpha1.Observation observations = 6;
+   */
+  observations: Observation[];
+
+  /**
+   * @generated from field: google.protobuf.Timestamp observed_timestamp = 7;
+   */
+  observedTimestamp?: Timestamp;
+
+  /**
+   * @generated from field: bool deleted = 8;
+   */
+  deleted: boolean;
 };
 
 /**
@@ -41,4 +74,127 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
  */
 export const WorkloadSchema: GenMessage<Workload> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload, 0);
+
+/**
+ * @generated from message proto.workload.v1alpha1.Observation
+ */
+export type Observation = Message<"proto.workload.v1alpha1.Observation"> & {
+  /**
+   * @generated from field: string type_url = 1;
+   */
+  typeUrl: string;
+
+  /**
+   * @generated from field: string value = 2;
+   */
+  value: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.Observation.
+ * Use `create(ObservationSchema)` to create a new message.
+ */
+export const ObservationSchema: GenMessage<Observation> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 1);
+
+/**
+ * @generated from message proto.workload.v1alpha1.KubernetesPod
+ */
+export type KubernetesPod = Message<"proto.workload.v1alpha1.KubernetesPod"> & {
+  /**
+   * @generated from field: proto.workload.v1alpha1.KubernetesMetadata metadata = 1;
+   */
+  metadata?: KubernetesMetadata;
+
+  /**
+   * @generated from field: string service_account_name = 2;
+   */
+  serviceAccountName: string;
+
+  /**
+   * @generated from field: string node_name = 3;
+   */
+  nodeName: string;
+
+  /**
+   * @generated from field: repeated proto.workload.v1alpha1.KubernetesContainer containers = 4;
+   */
+  containers: KubernetesContainer[];
+
+  /**
+   * @generated from field: google.protobuf.Timestamp start_time = 5;
+   */
+  startTime?: Timestamp;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.KubernetesPod.
+ * Use `create(KubernetesPodSchema)` to create a new message.
+ */
+export const KubernetesPodSchema: GenMessage<KubernetesPod> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 2);
+
+/**
+ * @generated from message proto.workload.v1alpha1.KubernetesMetadata
+ */
+export type KubernetesMetadata = Message<"proto.workload.v1alpha1.KubernetesMetadata"> & {
+  /**
+   * @generated from field: string uid = 1;
+   */
+  uid: string;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string namespace = 3;
+   */
+  namespace: string;
+
+  /**
+   * @generated from field: map<string, string> labels = 4;
+   */
+  labels: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, string> annotations = 5;
+   */
+  annotations: { [key: string]: string };
+
+  /**
+   * @generated from field: google.protobuf.Timestamp creation_timestamp = 6;
+   */
+  creationTimestamp?: Timestamp;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.KubernetesMetadata.
+ * Use `create(KubernetesMetadataSchema)` to create a new message.
+ */
+export const KubernetesMetadataSchema: GenMessage<KubernetesMetadata> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 3);
+
+/**
+ * @generated from message proto.workload.v1alpha1.KubernetesContainer
+ */
+export type KubernetesContainer = Message<"proto.workload.v1alpha1.KubernetesContainer"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string image = 2;
+   */
+  image: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.KubernetesContainer.
+ * Use `create(KubernetesContainerSchema)` to create a new message.
+ */
+export const KubernetesContainerSchema: GenMessage<KubernetesContainer> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 4);
 

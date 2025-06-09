@@ -16,6 +16,7 @@ service WorkloadService {
 
 message ListWorkloadsRequest {
   message Filter {
+    optional string org_id = 3;
     optional string trust_zone_id = 1;
     optional string cluster_id = 2;
   }
