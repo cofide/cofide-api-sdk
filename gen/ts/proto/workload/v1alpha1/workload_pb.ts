@@ -5,8 +5,8 @@
 // @generated from file proto/workload/v1alpha1/workload.proto (package proto.workload.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Timestamp, Value } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEipAIKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASOgoMb2JzZXJ2YXRpb25zGAYgAygLMiQucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuT2JzZXJ2YXRpb24SNgoSb2JzZXJ2ZWRfdGltZXN0YW1wGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIPCgdkZWxldGVkGAggASgIQgoKCHdvcmtsb2FkIkYKC09ic2VydmF0aW9uEhAKCHR5cGVfdXJsGAEgASgJEiUKBXZhbHVlGAIgASgLMhYuZ29vZ2xlLnByb3RvYnVmLlZhbHVlIvEBCg1LdWJlcm5ldGVzUG9kEj0KCG1ldGFkYXRhGAEgASgLMisucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJEhEKCW5vZGVfbmFtZRgDIAEoCRJACgpjb250YWluZXJzGAQgAygLMiwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc0NvbnRhaW5lchIuCgpzdGFydF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCL5AgoSS3ViZXJuZXRlc01ldGFkYXRhEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRJHCgZsYWJlbHMYBCADKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuTGFiZWxzRW50cnkSUQoLYW5ub3RhdGlvbnMYBSADKAsyPC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuQW5ub3RhdGlvbnNFbnRyeRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIjIKE0t1YmVybmV0ZXNDb250YWluZXISDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCUJBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi2QIKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSMwoEdHlwZRgJIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZRJACg5rdWJlcm5ldGVzX3BvZBgFIAEoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNQb2RIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAhCCgoId29ya2xvYWQiRgoLT2JzZXJ2YXRpb24SEAoIdHlwZV91cmwYASABKAkSJQoFdmFsdWUYAiABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUi8QEKDUt1YmVybmV0ZXNQb2QSPQoIbWV0YWRhdGEYASABKAsyKy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGESHAoUc2VydmljZV9hY2NvdW50X25hbWUYAiABKAkSEQoJbm9kZV9uYW1lGAMgASgJEkAKCmNvbnRhaW5lcnMYBCADKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzQ29udGFpbmVyEi4KCnN0YXJ0X3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIvkCChJLdWJlcm5ldGVzTWV0YWRhdGESCwoDdWlkGAEgASgJEgwKBG5hbWUYAiABKAkSEQoJbmFtZXNwYWNlGAMgASgJEkcKBmxhYmVscxgEIAMoCzI3LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5MYWJlbHNFbnRyeRJRCgthbm5vdGF0aW9ucxgFIAMoCzI8LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5Bbm5vdGF0aW9uc0VudHJ5EjYKEmNyZWF0aW9uX3RpbWVzdGFtcBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLQoLTGFiZWxzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARoyChBBbm5vdGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiMgoTS3ViZXJuZXRlc0NvbnRhaW5lchIMCgRuYW1lGAEgASgJEg0KBWltYWdlGAIgASgJKk8KDFdvcmtsb2FkVHlwZRIdChlXT1JLTE9BRF9UWVBFX1VOU1BFQ0lGSUVEEAASIAocV09SS0xPQURfVFlQRV9LVUJFUk5FVEVTX1BPRBABQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message proto.workload.v1alpha1.Workload
@@ -40,6 +40,11 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
    * @generated from field: string cluster_id = 3;
    */
   clusterId: string;
+
+  /**
+   * @generated from field: proto.workload.v1alpha1.WorkloadType type = 9;
+   */
+  type: WorkloadType;
 
   /**
    * @generated from oneof proto.workload.v1alpha1.Workload.workload
@@ -197,4 +202,25 @@ export type KubernetesContainer = Message<"proto.workload.v1alpha1.KubernetesCon
  */
 export const KubernetesContainerSchema: GenMessage<KubernetesContainer> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload, 4);
+
+/**
+ * @generated from enum proto.workload.v1alpha1.WorkloadType
+ */
+export enum WorkloadType {
+  /**
+   * @generated from enum value: WORKLOAD_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: WORKLOAD_TYPE_KUBERNETES_POD = 1;
+   */
+  KUBERNETES_POD = 1,
+}
+
+/**
+ * Describes the enum proto.workload.v1alpha1.WorkloadType.
+ */
+export const WorkloadTypeSchema: GenEnum<WorkloadType> = /*@__PURE__*/
+  enumDesc(file_proto_workload_v1alpha1_workload, 0);
 
