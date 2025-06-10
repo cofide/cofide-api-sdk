@@ -5,6 +5,7 @@ syntax = "proto3";
 
 package proto.workload.v1alpha1;
 
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
@@ -24,7 +25,7 @@ message Workload {
 
 message Observation {
   string type_url = 1;
-  string value = 2;
+  google.protobuf.Value value = 2;
 }
 
 message KubernetesPod {
