@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/federation/v1alpha1/federation.proto.
  */
 export const file_proto_federation_v1alpha1_federation: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by9mZWRlcmF0aW9uL3YxYWxwaGExL2ZlZGVyYXRpb24ucHJvdG8SGXByb3RvLmZlZGVyYXRpb24udjFhbHBoYTEi0AEKCkZlZGVyYXRpb24SDwoCaWQYBiABKAlIAIgBARITCgZvcmdfaWQYBSABKAlIAYgBARIQCgRmcm9tGAEgASgJQgIYARIOCgJ0bxgCIAEoCUICGAESGgoNdHJ1c3Rfem9uZV9pZBgDIAEoCUgCiAEBEiEKFHJlbW90ZV90cnVzdF96b25lX2lkGAQgASgJSAOIAQFCBQoDX2lkQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCFwoVX3JlbW90ZV90cnVzdF96b25lX2lkQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9mZWRlcmF0aW9uL3YxYWxwaGExYgZwcm90bzM");
+  fileDesc("Cipwcm90by9mZWRlcmF0aW9uL3YxYWxwaGExL2ZlZGVyYXRpb24ucHJvdG8SGXByb3RvLmZlZGVyYXRpb24udjFhbHBoYTEirgEKCkZlZGVyYXRpb24SDwoCaWQYBiABKAlIAIgBARITCgZvcmdfaWQYBSABKAlIAYgBARIaCg10cnVzdF96b25lX2lkGAMgASgJSAKIAQESIQoUcmVtb3RlX3RydXN0X3pvbmVfaWQYBCABKAlIA4gBAUIFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIXChVfcmVtb3RlX3RydXN0X3pvbmVfaWRCQ1pBZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2ZlZGVyYXRpb24vdjFhbHBoYTFiBnByb3RvMw");
 
 /**
  * @generated from message proto.federation.v1alpha1.Federation
@@ -28,18 +28,6 @@ export type Federation = Message<"proto.federation.v1alpha1.Federation"> & {
    * @generated from field: optional string org_id = 5;
    */
   orgId?: string;
-
-  /**
-   * @generated from field: string from = 1 [deprecated = true];
-   * @deprecated
-   */
-  from: string;
-
-  /**
-   * @generated from field: string to = 2 [deprecated = true];
-   * @deprecated
-   */
-  to: string;
 
   /**
    * @generated from field: optional string trust_zone_id = 3;

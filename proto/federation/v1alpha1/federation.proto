@@ -11,8 +11,6 @@ message Federation {
   optional string id = 6;
   optional string org_id = 5;
 
-  string from = 1 [deprecated = true];
-  string to = 2 [deprecated = true];
   optional string trust_zone_id = 3;
   optional string remote_trust_zone_id = 4;
 }

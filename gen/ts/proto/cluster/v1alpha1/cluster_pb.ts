@@ -16,7 +16,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file proto/cluster/v1alpha1/cluster.proto.
  */
 export const file_proto_cluster_v1alpha1_cluster: GenFile = /*@__PURE__*/
-  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEi7AMKB0NsdXN0ZXISDwoCaWQYCCABKAlIAIgBARIRCgRuYW1lGAEgASgJSAGIAQESEwoGb3JnX2lkGAkgASgJSAKIAQESFwoKdHJ1c3Rfem9uZRgCIAEoCUgDiAEBEhoKDXRydXN0X3pvbmVfaWQYCiABKAlIBIgBARIfChJrdWJlcm5ldGVzX2NvbnRleHQYAyABKAlIBYgBARJJCg50cnVzdF9wcm92aWRlchgEIAEoCzIsLnByb3RvLnRydXN0X3Byb3ZpZGVyLnYxYWxwaGExLlRydXN0UHJvdmlkZXJIBogBARI3ChFleHRyYV9oZWxtX3ZhbHVlcxgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RIB4gBARIUCgdwcm9maWxlGAYgASgJSAiIAQESHAoPZXh0ZXJuYWxfc2VydmVyGAcgASgISAmIAQFCBQoDX2lkQgcKBV9uYW1lQgkKB19vcmdfaWRCDQoLX3RydXN0X3pvbmVCEAoOX3RydXN0X3pvbmVfaWRCFQoTX2t1YmVybmV0ZXNfY29udGV4dEIRCg9fdHJ1c3RfcHJvdmlkZXJCFAoSX2V4dHJhX2hlbG1fdmFsdWVzQgoKCF9wcm9maWxlQhIKEF9leHRlcm5hbF9zZXJ2ZXJCQFo+Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2NsdXN0ZXIvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_struct, file_proto_trust_provider_v1alpha1_trust_provider]);
+  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEixAMKB0NsdXN0ZXISDwoCaWQYCCABKAlIAIgBARIRCgRuYW1lGAEgASgJSAGIAQESEwoGb3JnX2lkGAkgASgJSAKIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgDiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgEiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgFiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgGiAEBEhQKB3Byb2ZpbGUYBiABKAlIB4gBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICIgBAUIFCgNfaWRCBwoFX25hbWVCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIVChNfa3ViZXJuZXRlc19jb250ZXh0QhEKD190cnVzdF9wcm92aWRlckIUChJfZXh0cmFfaGVsbV92YWx1ZXNCCgoIX3Byb2ZpbGVCEgoQX2V4dGVybmFsX3NlcnZlckJAWj5naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2x1c3Rlci92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_proto_trust_provider_v1alpha1_trust_provider]);
 
 /**
  * @generated from message proto.cluster.v1alpha1.Cluster
@@ -36,13 +36,6 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
    * @generated from field: optional string org_id = 9;
    */
   orgId?: string;
-
-  /**
-   * DEPRECATED: replaced by trust_zone_id.
-   *
-   * @generated from field: optional string trust_zone = 2;
-   */
-  trustZone?: string;
 
   /**
    * @generated from field: optional string trust_zone_id = 10;
