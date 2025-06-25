@@ -38,6 +38,7 @@ message KubernetesPod {
   KubernetesMetadata metadata = 1;
   string service_account_name = 2;
   string node_name = 3;
+  string node_uid = 6;
   repeated KubernetesContainer containers = 4;
   google.protobuf.Timestamp start_time = 5;
 }
