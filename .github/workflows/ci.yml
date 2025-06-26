@@ -32,3 +32,10 @@ jobs:
           go-version-file: go.mod
       - name: Build and run tests with race detector enabled
         run: just test-race
+      - name: Code coverage
+        uses: gwatts/go-coverage-action@0eeb450410f73455b8b21fdb92d94de26dadd624
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Ignore code-generated files when calculating coverage totals
+          ignore-pattern: |
+            ^gen/.*
