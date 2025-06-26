@@ -18,6 +18,8 @@ import (
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
 	fakefederationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1/fake"
+	identityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1"
+	fakeidentityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1/fake"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	faketrustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1/fake"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
@@ -33,6 +35,7 @@ type fakeClientSet struct {
 	federationV1Alpha1        federationV1Alpha1.FederationClient
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
+	identityV1Alpha1          identityv1alpha1.IdentityClient
 }
 
 // New instantiates a new ClientSet that fakes communication with a Connect API.
@@ -46,6 +49,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		federationV1Alpha1:        fakefederationV1Alpha1.New(fake),
 		datastoreV1Alpha1:         fakedatastorev1alpha1.New(fake),
 		workloadV1Alpha1:          fakeworkloadv1alpha1.New(fake),
+		identityV1Alpha1:          fakeidentityv1alpha1.New(fake),
 	}
 }
 
@@ -79,4 +83,8 @@ func (c *fakeClientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
 
 func (c *fakeClientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 	return c.workloadV1Alpha1
+}
+
+func (c *fakeClientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
+	return c.identityV1Alpha1
 }
