@@ -11,6 +11,7 @@ import (
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	federationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
+	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -30,6 +31,7 @@ type FakeConnect struct {
 	APBindings          map[string]*apbindingpb.APBinding
 	Federations         map[string]*federationpb.Federation
 	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
+	Workloads           map[string]*workloadpb.Workload
 }
 
 func New() *FakeConnect {
@@ -45,6 +47,7 @@ func New() *FakeConnect {
 		APBindings:          make(map[string]*apbindingpb.APBinding),
 		Federations:         make(map[string]*federationpb.Federation),
 		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
+		Workloads:           make(map[string]*workloadpb.Workload),
 	}
 }
 
@@ -93,6 +96,13 @@ func (f *FakeConnect) ValidateAPBinding(bindingID string) error {
 func (f *FakeConnect) ValidateFederation(federationID string) error {
 	if _, ok := f.Federations[federationID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid federation")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateWorkload(workloadID string) error {
+	if _, ok := f.Workloads[workloadID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid workload")
 	}
 	return nil
 }
