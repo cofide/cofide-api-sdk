@@ -1,0 +1,40 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.identity_service.v1alpha1;
+
+import "proto/identity/v1alpha1/identity.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/identity_service/v1alpha1";
+
+service IdentityService {
+  rpc GetIdentity(GetIdentityRequest) returns (GetIdentityResponse);
+  rpc ListIdentities(ListIdentitiesRequest) returns (ListIdentitiesResponse);
+}
+
+message GetIdentityRequest {
+  string identity_id = 1;
+}
+
+message GetIdentityResponse {
+  proto.identity.v1alpha1.Identity identity = 1;
+}
+
+message ListIdentitiesRequest {
+  message Filter {
+    optional string org_id = 1;
+    optional string trust_zone_id = 2;
+    optional string cluster_id = 3;
+    optional string attestation_policy_id = 4;
+    optional string ap_binding_id = 5;
+    optional string workload_id = 6;
+    optional string spiffe_id = 7;
+  }
+  optional Filter filter = 1;
+}
+
+message ListIdentitiesResponse {
+  repeated proto.identity.v1alpha1.Identity identities = 1;
+}

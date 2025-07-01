@@ -9,6 +9,7 @@ import (
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
+	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
@@ -37,6 +38,12 @@ const (
 	FakeK8sPodUID       = "fake-k8s-pod-uid"
 	FakeK8sPodName      = "fake-k8s-pod-name"
 	FakeK8sPodNamespace = "fake-k8s-pod-namespace"
+
+	FakeIdentityID    = "fake-identity-id"
+	FakeSPIFFEID      = "spiffe://fake.trust.domain/ns/fake-k8s-pod-namespace/sa/fake-k8s-pod-service-account"
+	FakeParentID      = "spiffe://fake.trust.domain/spire/agent/k8s_psat/fake-cluster-name/fake-spire-agent"
+	FakeSelectorType  = "fake-selector-type"
+	FakeSelectorValue = "fake-selector-value"
 )
 
 func FakeTrustZone() *trustzonepb.TrustZone {
@@ -102,6 +109,28 @@ func FakeK8sPodWorkload() *workloadpb.Workload {
 					Name:      FakeK8sPodName,
 					Namespace: FakeK8sPodNamespace,
 				},
+			},
+		},
+	}
+}
+
+func FakeIdentity() *identitypb.Identity {
+	return &identitypb.Identity{
+		Id:          FakeIdentityID,
+		TrustZoneId: FakeTrustZoneID,
+		ClusterId:   FakeClusterID,
+		WorkloadId:  FakeWorkloadID,
+		SpiffeId:    FakeSPIFFEID,
+		ParentId:    FakeParentID,
+		Selectors: []*identitypb.Selector{
+			{
+				Type:  FakeSelectorType,
+				Value: FakeSelectorValue,
+			},
+		},
+		Federations: []*identitypb.IdentityFederation{
+			{
+				TrustZoneId: PtrOf(FakeTrustZoneID),
 			},
 		},
 	}

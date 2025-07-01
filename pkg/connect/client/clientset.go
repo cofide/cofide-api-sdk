@@ -10,6 +10,7 @@ import (
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
+	identityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
 
@@ -27,6 +28,7 @@ type ClientSet interface {
 	FederationV1Alpha1() federationV1Alpha1.FederationClient
 	DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient
 	WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient
+	IdentityV1Alpha1() identityv1alpha1.IdentityClient
 }
 
 type clientSet struct {
@@ -38,6 +40,7 @@ type clientSet struct {
 	federationV1Alpha1        federationV1Alpha1.FederationClient
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
+	identityV1Alpha1          identityv1alpha1.IdentityClient
 }
 
 // New instantiates a new ClientSet for communication with a Connect API.
@@ -51,6 +54,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		federationV1Alpha1:        federationV1Alpha1.New(conn),
 		datastoreV1Alpha1:         datastorev1alpha1.New(conn),
 		workloadV1Alpha1:          workloadv1alpha1.New(conn),
+		identityV1Alpha1:          identityv1alpha1.New(conn),
 	}
 }
 
@@ -84,4 +88,8 @@ func (c *clientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
 
 func (c *clientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 	return c.workloadV1Alpha1
+}
+
+func (c *clientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
+	return c.identityV1Alpha1
 }
