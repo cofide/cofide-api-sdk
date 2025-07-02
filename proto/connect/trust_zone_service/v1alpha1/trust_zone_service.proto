@@ -87,11 +87,10 @@ message RegisterAgentResponse {
 
 message RegisterTrustZoneServerRequest {
   TrustZoneServer trust_zone_server = 1;
-  string token = 2;
-  spire.api.types.Bundle bundle = 3;
+  spire.api.types.Bundle bundle = 2;
 }
 
 message RegisterTrustZoneServerResponse {
-  string trust_zone_server_id = 1;
+  bool success = 1;
 }
 
