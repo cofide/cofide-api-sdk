@@ -93,4 +93,3 @@ message RegisterTrustZoneServerRequest {
 message RegisterTrustZoneServerResponse {
   bool success = 1;
 }
-
