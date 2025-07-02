@@ -23,5 +23,5 @@ message Cluster {
   optional google.protobuf.Struct extra_helm_values = 5;
   optional string profile = 6;
   optional bool external_server = 7;
-  optional string oidc_discovery_endpoint = 11;
+  optional string oidc_issuer_url = 11;
 }
