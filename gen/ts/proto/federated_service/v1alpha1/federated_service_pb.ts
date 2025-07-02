@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/federated_service/v1alpha1/federated_service.proto.
  */
 export const file_proto_federated_service_v1alpha1_federated_service: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMS9mZWRlcmF0ZWRfc2VydmljZS5wcm90bxIgcHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEi+gIKEEZlZGVyYXRlZFNlcnZpY2USCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSFAoMY2x1c3Rlcl9uYW1lGAQgASgJEhQKDHRydXN0X2RvbWFpbhgFIAEoCRJfCg93b3JrbG9hZF9sYWJlbHMYByADKAsyRi5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5GZWRlcmF0ZWRTZXJ2aWNlLldvcmtsb2FkTGFiZWxzRW50cnkSHgoWZXhwb3J0ZWRfdHJ1c3RfZG9tYWlucxgIIAMoCRIMCgRwb3J0GAkgASgNEkcKD2dhdGV3YXlfZW50cmllcxgKIAMoCzIuLnByb3RvLmZlZGVyYXRlZF9zZXJ2aWNlLnYxYWxwaGExLkdhdGV3YXlFbnRyeRo1ChNXb3JrbG9hZExhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiSAoMR2F0ZXdheUVudHJ5EhAKCGhvc3RuYW1lGAEgASgJEgwKBHR5cGUYAiABKAkSCgoCaXAYAyABKAkSDAoEcG9ydBgEIAEoBUJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vZmVkZXJhdGVkX3NlcnZpY2UvdjFhbHBoYTFiBnByb3RvMw");
+  fileDesc("Cjhwcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMS9mZWRlcmF0ZWRfc2VydmljZS5wcm90bxIgcHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEiwAMKEEZlZGVyYXRlZFNlcnZpY2USCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSFAoMY2x1c3Rlcl9uYW1lGAQgASgJEhQKDHRydXN0X2RvbWFpbhgFIAEoCRJfCg93b3JrbG9hZF9sYWJlbHMYByADKAsyRi5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5GZWRlcmF0ZWRTZXJ2aWNlLldvcmtsb2FkTGFiZWxzRW50cnkSHgoWZXhwb3J0ZWRfdHJ1c3RfZG9tYWlucxgIIAMoCRIMCgRwb3J0GAkgASgNEkcKD2dhdGV3YXlfZW50cmllcxgKIAMoCzIuLnByb3RvLmZlZGVyYXRlZF9zZXJ2aWNlLnYxYWxwaGExLkdhdGV3YXlFbnRyeRJECg1nYXRld2F5X3NwZWNzGAsgAygLMi0ucHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEuR2F0ZXdheVNwZWMaNQoTV29ya2xvYWRMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIkgKDEdhdGV3YXlFbnRyeRIQCghob3N0bmFtZRgBIAEoCRIMCgR0eXBlGAIgASgJEgoKAmlwGAMgASgJEgwKBHBvcnQYBCABKAUiRwoLR2F0ZXdheVNwZWMSEAoIaG9zdG5hbWUYASABKAkSDAoEdHlwZRgCIAEoCRIKCgJpcBgDIAEoCRIMCgRwb3J0GAQgASgFQkpaSGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMWIGcHJvdG8z");
 
 /**
  * @generated from message proto.federated_service.v1alpha1.FederatedService
@@ -63,6 +63,11 @@ export type FederatedService = Message<"proto.federated_service.v1alpha1.Federat
    * @generated from field: repeated proto.federated_service.v1alpha1.GatewayEntry gateway_entries = 10;
    */
   gatewayEntries: GatewayEntry[];
+
+  /**
+   * @generated from field: repeated proto.federated_service.v1alpha1.GatewaySpec gateway_specs = 11;
+   */
+  gatewaySpecs: GatewaySpec[];
 };
 
 /**
@@ -103,4 +108,36 @@ export type GatewayEntry = Message<"proto.federated_service.v1alpha1.GatewayEntr
  */
 export const GatewayEntrySchema: GenMessage<GatewayEntry> = /*@__PURE__*/
   messageDesc(file_proto_federated_service_v1alpha1_federated_service, 1);
+
+/**
+ * @generated from message proto.federated_service.v1alpha1.GatewaySpec
+ */
+export type GatewaySpec = Message<"proto.federated_service.v1alpha1.GatewaySpec"> & {
+  /**
+   * @generated from field: string hostname = 1;
+   */
+  hostname: string;
+
+  /**
+   * @generated from field: string type = 2;
+   */
+  type: string;
+
+  /**
+   * @generated from field: string ip = 3;
+   */
+  ip: string;
+
+  /**
+   * @generated from field: int32 port = 4;
+   */
+  port: number;
+};
+
+/**
+ * Describes the message proto.federated_service.v1alpha1.GatewaySpec.
+ * Use `create(GatewaySpecSchema)` to create a new message.
+ */
+export const GatewaySpecSchema: GenMessage<GatewaySpec> = /*@__PURE__*/
+  messageDesc(file_proto_federated_service_v1alpha1_federated_service, 2);
 

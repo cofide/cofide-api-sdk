@@ -17,9 +17,17 @@ message FederatedService {
   repeated string exported_trust_domains = 8;
   uint32 port = 9;
   repeated GatewayEntry gateway_entries = 10;
+  repeated GatewaySpec gateway_specs = 11;
 }
 
 message GatewayEntry {
+  string hostname = 1;
+  string type = 2;
+  string ip = 3;
+  int32 port = 4;
+}
+
+message GatewaySpec {
   string hostname = 1;
   string type = 2;
   string ip = 3;
