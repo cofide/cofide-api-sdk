@@ -54,6 +54,9 @@ const (
 	// TrustZoneServiceRegisterAgentProcedure is the fully-qualified name of the TrustZoneService's
 	// RegisterAgent RPC.
 	TrustZoneServiceRegisterAgentProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterAgent"
+	// TrustZoneServiceRegisterTrustZoneServerProcedure is the fully-qualified name of the
+	// TrustZoneService's RegisterTrustZoneServer RPC.
+	TrustZoneServiceRegisterTrustZoneServerProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterTrustZoneServer"
 )
 
 // TrustZoneServiceClient is a client for the
@@ -65,6 +68,7 @@ type TrustZoneServiceClient interface {
 	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error)
+	RegisterTrustZoneServer(context.Context, *connect.Request[v1alpha1.RegisterTrustZoneServerRequest]) (*connect.Response[v1alpha1.RegisterTrustZoneServerResponse], error)
 }
 
 // NewTrustZoneServiceClient constructs a client for the
@@ -115,17 +119,24 @@ func NewTrustZoneServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(trustZoneServiceMethods.ByName("RegisterAgent")),
 			connect.WithClientOptions(opts...),
 		),
+		registerTrustZoneServer: connect.NewClient[v1alpha1.RegisterTrustZoneServerRequest, v1alpha1.RegisterTrustZoneServerResponse](
+			httpClient,
+			baseURL+TrustZoneServiceRegisterTrustZoneServerProcedure,
+			connect.WithSchema(trustZoneServiceMethods.ByName("RegisterTrustZoneServer")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // trustZoneServiceClient implements TrustZoneServiceClient.
 type trustZoneServiceClient struct {
-	createTrustZone  *connect.Client[v1alpha1.CreateTrustZoneRequest, v1alpha1.CreateTrustZoneResponse]
-	destroyTrustZone *connect.Client[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse]
-	getTrustZone     *connect.Client[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse]
-	listTrustZones   *connect.Client[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse]
-	updateTrustZone  *connect.Client[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse]
-	registerAgent    *connect.Client[v1alpha1.RegisterAgentRequest, v1alpha1.RegisterAgentResponse]
+	createTrustZone         *connect.Client[v1alpha1.CreateTrustZoneRequest, v1alpha1.CreateTrustZoneResponse]
+	destroyTrustZone        *connect.Client[v1alpha1.DestroyTrustZoneRequest, v1alpha1.DestroyTrustZoneResponse]
+	getTrustZone            *connect.Client[v1alpha1.GetTrustZoneRequest, v1alpha1.GetTrustZoneResponse]
+	listTrustZones          *connect.Client[v1alpha1.ListTrustZonesRequest, v1alpha1.ListTrustZonesResponse]
+	updateTrustZone         *connect.Client[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse]
+	registerAgent           *connect.Client[v1alpha1.RegisterAgentRequest, v1alpha1.RegisterAgentResponse]
+	registerTrustZoneServer *connect.Client[v1alpha1.RegisterTrustZoneServerRequest, v1alpha1.RegisterTrustZoneServerResponse]
 }
 
 // CreateTrustZone calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.CreateTrustZone.
@@ -159,6 +170,12 @@ func (c *trustZoneServiceClient) RegisterAgent(ctx context.Context, req *connect
 	return c.registerAgent.CallUnary(ctx, req)
 }
 
+// RegisterTrustZoneServer calls
+// proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterTrustZoneServer.
+func (c *trustZoneServiceClient) RegisterTrustZoneServer(ctx context.Context, req *connect.Request[v1alpha1.RegisterTrustZoneServerRequest]) (*connect.Response[v1alpha1.RegisterTrustZoneServerResponse], error) {
+	return c.registerTrustZoneServer.CallUnary(ctx, req)
+}
+
 // TrustZoneServiceHandler is an implementation of the
 // proto.connect.trust_zone_service.v1alpha1.TrustZoneService service.
 type TrustZoneServiceHandler interface {
@@ -168,6 +185,7 @@ type TrustZoneServiceHandler interface {
 	ListTrustZones(context.Context, *connect.Request[v1alpha1.ListTrustZonesRequest]) (*connect.Response[v1alpha1.ListTrustZonesResponse], error)
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error)
+	RegisterTrustZoneServer(context.Context, *connect.Request[v1alpha1.RegisterTrustZoneServerRequest]) (*connect.Response[v1alpha1.RegisterTrustZoneServerResponse], error)
 }
 
 // NewTrustZoneServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -213,6 +231,12 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 		connect.WithSchema(trustZoneServiceMethods.ByName("RegisterAgent")),
 		connect.WithHandlerOptions(opts...),
 	)
+	trustZoneServiceRegisterTrustZoneServerHandler := connect.NewUnaryHandler(
+		TrustZoneServiceRegisterTrustZoneServerProcedure,
+		svc.RegisterTrustZoneServer,
+		connect.WithSchema(trustZoneServiceMethods.ByName("RegisterTrustZoneServer")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case TrustZoneServiceCreateTrustZoneProcedure:
@@ -227,6 +251,8 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 			trustZoneServiceUpdateTrustZoneHandler.ServeHTTP(w, r)
 		case TrustZoneServiceRegisterAgentProcedure:
 			trustZoneServiceRegisterAgentHandler.ServeHTTP(w, r)
+		case TrustZoneServiceRegisterTrustZoneServerProcedure:
+			trustZoneServiceRegisterTrustZoneServerHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -258,4 +284,8 @@ func (UnimplementedTrustZoneServiceHandler) UpdateTrustZone(context.Context, *co
 
 func (UnimplementedTrustZoneServiceHandler) RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterAgent is not implemented"))
+}
+
+func (UnimplementedTrustZoneServiceHandler) RegisterTrustZoneServer(context.Context, *connect.Request[v1alpha1.RegisterTrustZoneServerRequest]) (*connect.Response[v1alpha1.RegisterTrustZoneServerResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterTrustZoneServer is not implemented"))
 }

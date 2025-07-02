@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/connect/trust_zone_service/v1alpha1/trust_zone_service.proto.
  */
 export const file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service: GenFile = /*@__PURE__*/
-  fileDesc("CkJwcm90by9jb25uZWN0L3RydXN0X3pvbmVfc2VydmljZS92MWFscGhhMS90cnVzdF96b25lX3NlcnZpY2UucHJvdG8SKXByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExIkQKBUFnZW50EhAKCGFnZW50X2lkGAEgASgJEhIKCmNsdXN0ZXJfaWQYAiABKAkSFQoNdHJ1c3Rfem9uZV9pZBgDIAEoCSJSChZDcmVhdGVUcnVzdFpvbmVSZXF1ZXN0EjgKCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZSJTChdDcmVhdGVUcnVzdFpvbmVSZXNwb25zZRI4Cgp0cnVzdF96b25lGAEgASgLMiQucHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS5UcnVzdFpvbmUiRwoXRGVzdHJveVRydXN0Wm9uZVJlcXVlc3QSGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkIhoKGERlc3Ryb3lUcnVzdFpvbmVSZXNwb25zZSJDChNHZXRUcnVzdFpvbmVSZXF1ZXN0EhoKDXRydXN0X3pvbmVfaWQYASABKAlIAIgBAUIQCg5fdHJ1c3Rfem9uZV9pZCJkChRHZXRUcnVzdFpvbmVSZXNwb25zZRI9Cgp0cnVzdF96b25lGAEgASgLMiQucHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS5UcnVzdFpvbmVIAIgBAUINCgtfdHJ1c3Rfem9uZSLyAQoVTGlzdFRydXN0Wm9uZXNSZXF1ZXN0ElwKBmZpbHRlchgBIAEoCzJHLnByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExLkxpc3RUcnVzdFpvbmVzUmVxdWVzdC5GaWx0ZXJIAIgBARpwCgZGaWx0ZXISEQoEbmFtZRgBIAEoCUgAiAEBEhMKBm9yZ19pZBgCIAEoCUgBiAEBEhkKDHRydXN0X2RvbWFpbhgDIAEoCUgCiAEBQgcKBV9uYW1lQgkKB19vcmdfaWRCDwoNX3RydXN0X2RvbWFpbkIJCgdfZmlsdGVyIlMKFkxpc3RUcnVzdFpvbmVzUmVzcG9uc2USOQoLdHJ1c3Rfem9uZXMYASADKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZSJSChZVcGRhdGVUcnVzdFpvbmVSZXF1ZXN0EjgKCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZSJTChdVcGRhdGVUcnVzdFpvbmVSZXNwb25zZRI4Cgp0cnVzdF96b25lGAEgASgLMiQucHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS5UcnVzdFpvbmUilQEKFFJlZ2lzdGVyQWdlbnRSZXF1ZXN0Ej8KBWFnZW50GAEgASgLMjAucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuQWdlbnQSEwoLYWdlbnRfdG9rZW4YAiABKAkSJwoGYnVuZGxlGAMgASgLMhcuc3BpcmUuYXBpLnR5cGVzLkJ1bmRsZSIpChVSZWdpc3RlckFnZW50UmVzcG9uc2USEAoIYWdlbnRfaWQYAyABKAkysQcKEFRydXN0Wm9uZVNlcnZpY2USmgEKD0NyZWF0ZVRydXN0Wm9uZRJBLnByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExLkNyZWF0ZVRydXN0Wm9uZVJlcXVlc3QaQi5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5DcmVhdGVUcnVzdFpvbmVSZXNwb25zZSIAEp0BChBEZXN0cm95VHJ1c3Rab25lEkIucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuRGVzdHJveVRydXN0Wm9uZVJlcXVlc3QaQy5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5EZXN0cm95VHJ1c3Rab25lUmVzcG9uc2UiABKRAQoMR2V0VHJ1c3Rab25lEj4ucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuR2V0VHJ1c3Rab25lUmVxdWVzdBo/LnByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExLkdldFRydXN0Wm9uZVJlc3BvbnNlIgASlwEKDkxpc3RUcnVzdFpvbmVzEkAucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuTGlzdFRydXN0Wm9uZXNSZXF1ZXN0GkEucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuTGlzdFRydXN0Wm9uZXNSZXNwb25zZSIAEpoBCg9VcGRhdGVUcnVzdFpvbmUSQS5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5VcGRhdGVUcnVzdFpvbmVSZXF1ZXN0GkIucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuVXBkYXRlVHJ1c3Rab25lUmVzcG9uc2UiABKUAQoNUmVnaXN0ZXJBZ2VudBI/LnByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExLlJlZ2lzdGVyQWdlbnRSZXF1ZXN0GkAucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuUmVnaXN0ZXJBZ2VudFJlc3BvbnNlIgBCU1pRZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nvbm5lY3QvdHJ1c3Rfem9uZV9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_proto_spire_api_types_bundle, file_proto_trust_zone_v1alpha1_trust_zone]);
+  fileDesc("CkJwcm90by9jb25uZWN0L3RydXN0X3pvbmVfc2VydmljZS92MWFscGhhMS90cnVzdF96b25lX3NlcnZpY2UucHJvdG8SKXByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExIkQKBUFnZW50EhAKCGFnZW50X2lkGAEgASgJEhIKCmNsdXN0ZXJfaWQYAiABKAkSFQoNdHJ1c3Rfem9uZV9pZBgDIAEoCSI8Cg9UcnVzdFpvbmVTZXJ2ZXISEgoKY2x1c3Rlcl9pZBgBIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJIlIKFkNyZWF0ZVRydXN0Wm9uZVJlcXVlc3QSOAoKdHJ1c3Rfem9uZRgBIAEoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lIlMKF0NyZWF0ZVRydXN0Wm9uZVJlc3BvbnNlEjgKCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZSJHChdEZXN0cm95VHJ1c3Rab25lUmVxdWVzdBIaCg10cnVzdF96b25lX2lkGAEgASgJSACIAQFCEAoOX3RydXN0X3pvbmVfaWQiGgoYRGVzdHJveVRydXN0Wm9uZVJlc3BvbnNlIkMKE0dldFRydXN0Wm9uZVJlcXVlc3QSGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkImQKFEdldFRydXN0Wm9uZVJlc3BvbnNlEj0KCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZUgAiAEBQg0KC190cnVzdF96b25lIvIBChVMaXN0VHJ1c3Rab25lc1JlcXVlc3QSXAoGZmlsdGVyGAEgASgLMkcucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuTGlzdFRydXN0Wm9uZXNSZXF1ZXN0LkZpbHRlckgAiAEBGnAKBkZpbHRlchIRCgRuYW1lGAEgASgJSACIAQESEwoGb3JnX2lkGAIgASgJSAGIAQESGQoMdHJ1c3RfZG9tYWluGAMgASgJSAKIAQFCBwoFX25hbWVCCQoHX29yZ19pZEIPCg1fdHJ1c3RfZG9tYWluQgkKB19maWx0ZXIiUwoWTGlzdFRydXN0Wm9uZXNSZXNwb25zZRI5Cgt0cnVzdF96b25lcxgBIAMoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lIlIKFlVwZGF0ZVRydXN0Wm9uZVJlcXVlc3QSOAoKdHJ1c3Rfem9uZRgBIAEoCzIkLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuVHJ1c3Rab25lIlMKF1VwZGF0ZVRydXN0Wm9uZVJlc3BvbnNlEjgKCnRydXN0X3pvbmUYASABKAsyJC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLlRydXN0Wm9uZSKVAQoUUmVnaXN0ZXJBZ2VudFJlcXVlc3QSPwoFYWdlbnQYASABKAsyMC5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5BZ2VudBITCgthZ2VudF90b2tlbhgCIAEoCRInCgZidW5kbGUYAyABKAsyFy5zcGlyZS5hcGkudHlwZXMuQnVuZGxlIikKFVJlZ2lzdGVyQWdlbnRSZXNwb25zZRIQCghhZ2VudF9pZBgDIAEoCSKvAQoeUmVnaXN0ZXJUcnVzdFpvbmVTZXJ2ZXJSZXF1ZXN0ElUKEXRydXN0X3pvbmVfc2VydmVyGAEgASgLMjoucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuVHJ1c3Rab25lU2VydmVyEg0KBXRva2VuGAIgASgJEicKBmJ1bmRsZRgDIAEoCzIXLnNwaXJlLmFwaS50eXBlcy5CdW5kbGUiPwofUmVnaXN0ZXJUcnVzdFpvbmVTZXJ2ZXJSZXNwb25zZRIcChR0cnVzdF96b25lX3NlcnZlcl9pZBgBIAEoCTLmCAoQVHJ1c3Rab25lU2VydmljZRKaAQoPQ3JlYXRlVHJ1c3Rab25lEkEucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuQ3JlYXRlVHJ1c3Rab25lUmVxdWVzdBpCLnByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExLkNyZWF0ZVRydXN0Wm9uZVJlc3BvbnNlIgASnQEKEERlc3Ryb3lUcnVzdFpvbmUSQi5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5EZXN0cm95VHJ1c3Rab25lUmVxdWVzdBpDLnByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExLkRlc3Ryb3lUcnVzdFpvbmVSZXNwb25zZSIAEpEBCgxHZXRUcnVzdFpvbmUSPi5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5HZXRUcnVzdFpvbmVSZXF1ZXN0Gj8ucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuR2V0VHJ1c3Rab25lUmVzcG9uc2UiABKXAQoOTGlzdFRydXN0Wm9uZXMSQC5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5MaXN0VHJ1c3Rab25lc1JlcXVlc3QaQS5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5MaXN0VHJ1c3Rab25lc1Jlc3BvbnNlIgASmgEKD1VwZGF0ZVRydXN0Wm9uZRJBLnByb3RvLmNvbm5lY3QudHJ1c3Rfem9uZV9zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZVRydXN0Wm9uZVJlcXVlc3QaQi5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5VcGRhdGVUcnVzdFpvbmVSZXNwb25zZSIAEpQBCg1SZWdpc3RlckFnZW50Ej8ucHJvdG8uY29ubmVjdC50cnVzdF96b25lX3NlcnZpY2UudjFhbHBoYTEuUmVnaXN0ZXJBZ2VudFJlcXVlc3QaQC5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5SZWdpc3RlckFnZW50UmVzcG9uc2UiABKyAQoXUmVnaXN0ZXJUcnVzdFpvbmVTZXJ2ZXISSS5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5SZWdpc3RlclRydXN0Wm9uZVNlcnZlclJlcXVlc3QaSi5wcm90by5jb25uZWN0LnRydXN0X3pvbmVfc2VydmljZS52MWFscGhhMS5SZWdpc3RlclRydXN0Wm9uZVNlcnZlclJlc3BvbnNlIgBCU1pRZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nvbm5lY3QvdHJ1c3Rfem9uZV9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_proto_spire_api_types_bundle, file_proto_trust_zone_v1alpha1_trust_zone]);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.Agent
@@ -47,6 +47,28 @@ export const AgentSchema: GenMessage<Agent> = /*@__PURE__*/
   messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 0);
 
 /**
+ * @generated from message proto.connect.trust_zone_service.v1alpha1.TrustZoneServer
+ */
+export type TrustZoneServer = Message<"proto.connect.trust_zone_service.v1alpha1.TrustZoneServer"> & {
+  /**
+   * @generated from field: string cluster_id = 1;
+   */
+  clusterId: string;
+
+  /**
+   * @generated from field: string trust_zone_id = 2;
+   */
+  trustZoneId: string;
+};
+
+/**
+ * Describes the message proto.connect.trust_zone_service.v1alpha1.TrustZoneServer.
+ * Use `create(TrustZoneServerSchema)` to create a new message.
+ */
+export const TrustZoneServerSchema: GenMessage<TrustZoneServer> = /*@__PURE__*/
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 1);
+
+/**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.CreateTrustZoneRequest
  */
 export type CreateTrustZoneRequest = Message<"proto.connect.trust_zone_service.v1alpha1.CreateTrustZoneRequest"> & {
@@ -61,7 +83,7 @@ export type CreateTrustZoneRequest = Message<"proto.connect.trust_zone_service.v
  * Use `create(CreateTrustZoneRequestSchema)` to create a new message.
  */
 export const CreateTrustZoneRequestSchema: GenMessage<CreateTrustZoneRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 1);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 2);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.CreateTrustZoneResponse
@@ -78,7 +100,7 @@ export type CreateTrustZoneResponse = Message<"proto.connect.trust_zone_service.
  * Use `create(CreateTrustZoneResponseSchema)` to create a new message.
  */
 export const CreateTrustZoneResponseSchema: GenMessage<CreateTrustZoneResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 2);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 3);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.DestroyTrustZoneRequest
@@ -95,7 +117,7 @@ export type DestroyTrustZoneRequest = Message<"proto.connect.trust_zone_service.
  * Use `create(DestroyTrustZoneRequestSchema)` to create a new message.
  */
 export const DestroyTrustZoneRequestSchema: GenMessage<DestroyTrustZoneRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 3);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 4);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.DestroyTrustZoneResponse
@@ -108,7 +130,7 @@ export type DestroyTrustZoneResponse = Message<"proto.connect.trust_zone_service
  * Use `create(DestroyTrustZoneResponseSchema)` to create a new message.
  */
 export const DestroyTrustZoneResponseSchema: GenMessage<DestroyTrustZoneResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 4);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 5);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.GetTrustZoneRequest
@@ -125,7 +147,7 @@ export type GetTrustZoneRequest = Message<"proto.connect.trust_zone_service.v1al
  * Use `create(GetTrustZoneRequestSchema)` to create a new message.
  */
 export const GetTrustZoneRequestSchema: GenMessage<GetTrustZoneRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 5);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 6);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.GetTrustZoneResponse
@@ -142,7 +164,7 @@ export type GetTrustZoneResponse = Message<"proto.connect.trust_zone_service.v1a
  * Use `create(GetTrustZoneResponseSchema)` to create a new message.
  */
 export const GetTrustZoneResponseSchema: GenMessage<GetTrustZoneResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 6);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 7);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.ListTrustZonesRequest
@@ -159,7 +181,7 @@ export type ListTrustZonesRequest = Message<"proto.connect.trust_zone_service.v1
  * Use `create(ListTrustZonesRequestSchema)` to create a new message.
  */
 export const ListTrustZonesRequestSchema: GenMessage<ListTrustZonesRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 7);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 8);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.ListTrustZonesRequest.Filter
@@ -186,7 +208,7 @@ export type ListTrustZonesRequest_Filter = Message<"proto.connect.trust_zone_ser
  * Use `create(ListTrustZonesRequest_FilterSchema)` to create a new message.
  */
 export const ListTrustZonesRequest_FilterSchema: GenMessage<ListTrustZonesRequest_Filter> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 7, 0);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 8, 0);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.ListTrustZonesResponse
@@ -203,7 +225,7 @@ export type ListTrustZonesResponse = Message<"proto.connect.trust_zone_service.v
  * Use `create(ListTrustZonesResponseSchema)` to create a new message.
  */
 export const ListTrustZonesResponseSchema: GenMessage<ListTrustZonesResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 8);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 9);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.UpdateTrustZoneRequest
@@ -220,7 +242,7 @@ export type UpdateTrustZoneRequest = Message<"proto.connect.trust_zone_service.v
  * Use `create(UpdateTrustZoneRequestSchema)` to create a new message.
  */
 export const UpdateTrustZoneRequestSchema: GenMessage<UpdateTrustZoneRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 9);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 10);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.UpdateTrustZoneResponse
@@ -237,7 +259,7 @@ export type UpdateTrustZoneResponse = Message<"proto.connect.trust_zone_service.
  * Use `create(UpdateTrustZoneResponseSchema)` to create a new message.
  */
 export const UpdateTrustZoneResponseSchema: GenMessage<UpdateTrustZoneResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 10);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 11);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.RegisterAgentRequest
@@ -264,7 +286,7 @@ export type RegisterAgentRequest = Message<"proto.connect.trust_zone_service.v1a
  * Use `create(RegisterAgentRequestSchema)` to create a new message.
  */
 export const RegisterAgentRequestSchema: GenMessage<RegisterAgentRequest> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 11);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 12);
 
 /**
  * @generated from message proto.connect.trust_zone_service.v1alpha1.RegisterAgentResponse
@@ -281,7 +303,51 @@ export type RegisterAgentResponse = Message<"proto.connect.trust_zone_service.v1
  * Use `create(RegisterAgentResponseSchema)` to create a new message.
  */
 export const RegisterAgentResponseSchema: GenMessage<RegisterAgentResponse> = /*@__PURE__*/
-  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 12);
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 13);
+
+/**
+ * @generated from message proto.connect.trust_zone_service.v1alpha1.RegisterTrustZoneServerRequest
+ */
+export type RegisterTrustZoneServerRequest = Message<"proto.connect.trust_zone_service.v1alpha1.RegisterTrustZoneServerRequest"> & {
+  /**
+   * @generated from field: proto.connect.trust_zone_service.v1alpha1.TrustZoneServer trust_zone_server = 1;
+   */
+  trustZoneServer?: TrustZoneServer;
+
+  /**
+   * @generated from field: string token = 2;
+   */
+  token: string;
+
+  /**
+   * @generated from field: spire.api.types.Bundle bundle = 3;
+   */
+  bundle?: Bundle;
+};
+
+/**
+ * Describes the message proto.connect.trust_zone_service.v1alpha1.RegisterTrustZoneServerRequest.
+ * Use `create(RegisterTrustZoneServerRequestSchema)` to create a new message.
+ */
+export const RegisterTrustZoneServerRequestSchema: GenMessage<RegisterTrustZoneServerRequest> = /*@__PURE__*/
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 14);
+
+/**
+ * @generated from message proto.connect.trust_zone_service.v1alpha1.RegisterTrustZoneServerResponse
+ */
+export type RegisterTrustZoneServerResponse = Message<"proto.connect.trust_zone_service.v1alpha1.RegisterTrustZoneServerResponse"> & {
+  /**
+   * @generated from field: string trust_zone_server_id = 1;
+   */
+  trustZoneServerId: string;
+};
+
+/**
+ * Describes the message proto.connect.trust_zone_service.v1alpha1.RegisterTrustZoneServerResponse.
+ * Use `create(RegisterTrustZoneServerResponseSchema)` to create a new message.
+ */
+export const RegisterTrustZoneServerResponseSchema: GenMessage<RegisterTrustZoneServerResponse> = /*@__PURE__*/
+  messageDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 15);
 
 /**
  * @generated from service proto.connect.trust_zone_service.v1alpha1.TrustZoneService
@@ -334,6 +400,14 @@ export const TrustZoneService: GenService<{
     methodKind: "unary";
     input: typeof RegisterAgentRequestSchema;
     output: typeof RegisterAgentResponseSchema;
+  },
+  /**
+   * @generated from rpc proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterTrustZoneServer
+   */
+  registerTrustZoneServer: {
+    methodKind: "unary";
+    input: typeof RegisterTrustZoneServerRequestSchema;
+    output: typeof RegisterTrustZoneServerResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_connect_trust_zone_service_v1alpha1_trust_zone_service, 0);
