@@ -22,12 +22,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TrustZoneService_CreateTrustZone_FullMethodName  = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/CreateTrustZone"
-	TrustZoneService_DestroyTrustZone_FullMethodName = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/DestroyTrustZone"
-	TrustZoneService_GetTrustZone_FullMethodName     = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone"
-	TrustZoneService_ListTrustZones_FullMethodName   = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/ListTrustZones"
-	TrustZoneService_UpdateTrustZone_FullMethodName  = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"
-	TrustZoneService_RegisterAgent_FullMethodName    = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterAgent"
+	TrustZoneService_CreateTrustZone_FullMethodName         = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/CreateTrustZone"
+	TrustZoneService_DestroyTrustZone_FullMethodName        = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/DestroyTrustZone"
+	TrustZoneService_GetTrustZone_FullMethodName            = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/GetTrustZone"
+	TrustZoneService_ListTrustZones_FullMethodName          = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/ListTrustZones"
+	TrustZoneService_UpdateTrustZone_FullMethodName         = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"
+	TrustZoneService_RegisterAgent_FullMethodName           = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterAgent"
+	TrustZoneService_RegisterTrustZoneServer_FullMethodName = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterTrustZoneServer"
 )
 
 // TrustZoneServiceClient is the client API for TrustZoneService service.
@@ -40,6 +41,7 @@ type TrustZoneServiceClient interface {
 	ListTrustZones(ctx context.Context, in *ListTrustZonesRequest, opts ...grpc.CallOption) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(ctx context.Context, in *UpdateTrustZoneRequest, opts ...grpc.CallOption) (*UpdateTrustZoneResponse, error)
 	RegisterAgent(ctx context.Context, in *RegisterAgentRequest, opts ...grpc.CallOption) (*RegisterAgentResponse, error)
+	RegisterTrustZoneServer(ctx context.Context, in *RegisterTrustZoneServerRequest, opts ...grpc.CallOption) (*RegisterTrustZoneServerResponse, error)
 }
 
 type trustZoneServiceClient struct {
@@ -110,6 +112,16 @@ func (c *trustZoneServiceClient) RegisterAgent(ctx context.Context, in *Register
 	return out, nil
 }
 
+func (c *trustZoneServiceClient) RegisterTrustZoneServer(ctx context.Context, in *RegisterTrustZoneServerRequest, opts ...grpc.CallOption) (*RegisterTrustZoneServerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegisterTrustZoneServerResponse)
+	err := c.cc.Invoke(ctx, TrustZoneService_RegisterTrustZoneServer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TrustZoneServiceServer is the server API for TrustZoneService service.
 // All implementations should embed UnimplementedTrustZoneServiceServer
 // for forward compatibility.
@@ -120,6 +132,7 @@ type TrustZoneServiceServer interface {
 	ListTrustZones(context.Context, *ListTrustZonesRequest) (*ListTrustZonesResponse, error)
 	UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error)
 	RegisterAgent(context.Context, *RegisterAgentRequest) (*RegisterAgentResponse, error)
+	RegisterTrustZoneServer(context.Context, *RegisterTrustZoneServerRequest) (*RegisterTrustZoneServerResponse, error)
 }
 
 // UnimplementedTrustZoneServiceServer should be embedded to have
@@ -146,6 +159,9 @@ func (UnimplementedTrustZoneServiceServer) UpdateTrustZone(context.Context, *Upd
 }
 func (UnimplementedTrustZoneServiceServer) RegisterAgent(context.Context, *RegisterAgentRequest) (*RegisterAgentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterAgent not implemented")
+}
+func (UnimplementedTrustZoneServiceServer) RegisterTrustZoneServer(context.Context, *RegisterTrustZoneServerRequest) (*RegisterTrustZoneServerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterTrustZoneServer not implemented")
 }
 func (UnimplementedTrustZoneServiceServer) testEmbeddedByValue() {}
 
@@ -275,6 +291,24 @@ func _TrustZoneService_RegisterAgent_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrustZoneService_RegisterTrustZoneServer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterTrustZoneServerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrustZoneServiceServer).RegisterTrustZoneServer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrustZoneService_RegisterTrustZoneServer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrustZoneServiceServer).RegisterTrustZoneServer(ctx, req.(*RegisterTrustZoneServerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TrustZoneService_ServiceDesc is the grpc.ServiceDesc for TrustZoneService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -305,6 +339,10 @@ var TrustZoneService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisterAgent",
 			Handler:    _TrustZoneService_RegisterAgent_Handler,
+		},
+		{
+			MethodName: "RegisterTrustZoneServer",
+			Handler:    _TrustZoneService_RegisterTrustZoneServer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
