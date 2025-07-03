@@ -20,6 +20,7 @@ type TrustZoneClient interface {
 	ListTrustZones(ctx context.Context, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) ([]*trustzonepb.TrustZone, error)
 	UpdateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error)
 	RegisterAgent(ctx context.Context, agent *trustzonesvcpb.Agent, token string, bundle *types.Bundle) (string, error)
+	RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle) (bool, error)
 }
 
 type trustZoneClient struct {
@@ -95,4 +96,16 @@ func (c *trustZoneClient) RegisterAgent(ctx context.Context, agent *trustzonesvc
 	}
 
 	return resp.AgentId, nil
+}
+
+func (c *trustZoneClient) RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle) (bool, error) {
+	resp, err := c.trustZoneClient.RegisterTrustZoneServer(ctx, &trustzonesvcpb.RegisterTrustZoneServerRequest{
+		TrustZoneServer: server,
+		Bundle:     bundle,
+	})
+	if err != nil {
+		return false, err
+	}
+
+	return resp.Success, nil
 }
