@@ -98,8 +98,7 @@ func TestTrustZoneClient(t *testing.T) {
 	assert.Equal(t, fakeAgentID, agentID)
 
 	tzs := fakeTrustZoneServer()
-	ok, err := client.RegisterTrustZoneServer(ctx, tzs, bundle)
-	require.True(t, ok)
+	err = client.RegisterTrustZoneServer(ctx, tzs, bundle)
 	require.NoError(t, err)
 }
 
