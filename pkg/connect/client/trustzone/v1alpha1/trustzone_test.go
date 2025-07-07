@@ -96,6 +96,11 @@ func TestTrustZoneClient(t *testing.T) {
 	agentID, err := client.RegisterAgent(ctx, agent, fakeAgentToken, bundle)
 	require.NoError(t, err)
 	assert.Equal(t, fakeAgentID, agentID)
+
+	tzs := fakeTrustZoneServer()
+	ok, err := client.RegisterTrustZoneServer(ctx, tzs, bundle)
+	require.True(t, ok)
+	require.NoError(t, err)
 }
 
 type fakeTrustZoneService struct {
