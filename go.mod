@@ -5,7 +5,7 @@ go 1.23.10
 require (
 	connectrpc.com/connect v1.18.1
 	github.com/google/uuid v1.6.0
-	github.com/spiffe/spire-api-sdk v1.12.0
+	github.com/spiffe/spire-api-sdk v1.12.4
 	github.com/stretchr/testify v1.10.0
 	google.golang.org/grpc v1.73.0
 	google.golang.org/protobuf v1.36.6
