@@ -96,6 +96,10 @@ func TestTrustZoneClient(t *testing.T) {
 	agentID, err := client.RegisterAgent(ctx, agent, fakeAgentToken, bundle)
 	require.NoError(t, err)
 	assert.Equal(t, fakeAgentID, agentID)
+
+	tzs := fakeTrustZoneServer()
+	err = client.RegisterTrustZoneServer(ctx, tzs, bundle)
+	require.NoError(t, err)
 }
 
 type fakeTrustZoneService struct {
@@ -135,6 +139,11 @@ func (f *fakeTrustZoneService) RegisterAgent(ctx context.Context, req *trustzone
 	return &trustzonesvcpb.RegisterAgentResponse{AgentId: fakeAgentID}, nil
 }
 
+func (f *fakeTrustZoneService) RegisterTrustZoneServer(ctx context.Context, req *trustzonesvcpb.RegisterTrustZoneServerRequest) (*trustzonesvcpb.RegisterTrustZoneServerResponse, error) {
+	assert.EqualExportedValues(f.t, fakeTrustZoneServer(), req.TrustZoneServer)
+	return &trustzonesvcpb.RegisterTrustZoneServerResponse{}, nil
+}
+
 func fakeTrustZone() *trustzonepb.TrustZone {
 	return &trustzonepb.TrustZone{
 		Id:   test.PtrOf(fakeTrustZoneID),
@@ -147,5 +156,11 @@ func fakeAgent() *trustzonesvcpb.Agent {
 		AgentId:     fakeAgentID,
 		ClusterId:   fakeClusterID,
 		TrustZoneId: fakeTrustZoneID,
+	}
+}
+
+func fakeTrustZoneServer() *trustzonesvcpb.TrustZoneServer {
+	return &trustzonesvcpb.TrustZoneServer{
+		ClusterId: fakeClusterID,
 	}
 }
