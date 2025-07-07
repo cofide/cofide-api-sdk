@@ -141,7 +141,7 @@ func (f *fakeTrustZoneService) RegisterAgent(ctx context.Context, req *trustzone
 
 func (f *fakeTrustZoneService) RegisterTrustZoneServer(ctx context.Context, req *trustzonesvcpb.RegisterTrustZoneServerRequest) (*trustzonesvcpb.RegisterTrustZoneServerResponse, error) {
 	assert.EqualExportedValues(f.t, fakeTrustZoneServer(), req.TrustZoneServer)
-	return &trustzonesvcpb.RegisterTrustZoneServerResponse{Success: true}, nil
+	return &trustzonesvcpb.RegisterTrustZoneServerResponse{}, nil
 }
 
 func fakeTrustZone() *trustzonepb.TrustZone {
@@ -162,6 +162,5 @@ func fakeAgent() *trustzonesvcpb.Agent {
 func fakeTrustZoneServer() *trustzonesvcpb.TrustZoneServer {
 	return &trustzonesvcpb.TrustZoneServer{
 		ClusterId: fakeClusterID,
-		TrustZoneId: fakeTrustZoneID,
 	}
 }

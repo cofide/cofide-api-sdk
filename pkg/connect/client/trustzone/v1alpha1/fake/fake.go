@@ -151,13 +151,10 @@ func (c *fakeTrustZoneClient) RegisterTrustZoneServer(ctx context.Context, serve
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	if _, ok := c.fake.TrustZones[server.TrustZoneId]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid trust zone")
-	}
 	if _, ok := c.fake.Clusters[server.ClusterId]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid cluster")
 	}
-	c.fake.TrustZoneBundles[server.GetTrustZoneId()] = cloneBundle(bundle)
+
 	return nil
 }
 

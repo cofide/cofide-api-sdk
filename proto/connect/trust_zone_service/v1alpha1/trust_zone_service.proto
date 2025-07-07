@@ -29,7 +29,6 @@ message Agent {
 
 message TrustZoneServer {
   string cluster_id = 1;
-  string trust_zone_id = 2;
 }
 
 message CreateTrustZoneRequest {
@@ -91,5 +90,5 @@ message RegisterTrustZoneServerRequest {
 }
 
 message RegisterTrustZoneServerResponse {
-  bool success = 1;
+  // Empty for the moment
 }
