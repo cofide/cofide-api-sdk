@@ -57,6 +57,9 @@ const (
 	// TrustZoneServiceRegisterTrustZoneServerProcedure is the fully-qualified name of the
 	// TrustZoneService's RegisterTrustZoneServer RPC.
 	TrustZoneServiceRegisterTrustZoneServerProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterTrustZoneServer"
+	// TrustZoneServiceUpdateTrustZoneBundleProcedure is the fully-qualified name of the
+	// TrustZoneService's UpdateTrustZoneBundle RPC.
+	TrustZoneServiceUpdateTrustZoneBundleProcedure = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZoneBundle"
 )
 
 // TrustZoneServiceClient is a client for the
@@ -69,6 +72,7 @@ type TrustZoneServiceClient interface {
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error)
 	RegisterTrustZoneServer(context.Context, *connect.Request[v1alpha1.RegisterTrustZoneServerRequest]) (*connect.Response[v1alpha1.RegisterTrustZoneServerResponse], error)
+	UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error)
 }
 
 // NewTrustZoneServiceClient constructs a client for the
@@ -125,6 +129,12 @@ func NewTrustZoneServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(trustZoneServiceMethods.ByName("RegisterTrustZoneServer")),
 			connect.WithClientOptions(opts...),
 		),
+		updateTrustZoneBundle: connect.NewClient[v1alpha1.UpdateTrustZoneBundleRequest, v1alpha1.UpdateTrustZoneBundleResponse](
+			httpClient,
+			baseURL+TrustZoneServiceUpdateTrustZoneBundleProcedure,
+			connect.WithSchema(trustZoneServiceMethods.ByName("UpdateTrustZoneBundle")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -137,6 +147,7 @@ type trustZoneServiceClient struct {
 	updateTrustZone         *connect.Client[v1alpha1.UpdateTrustZoneRequest, v1alpha1.UpdateTrustZoneResponse]
 	registerAgent           *connect.Client[v1alpha1.RegisterAgentRequest, v1alpha1.RegisterAgentResponse]
 	registerTrustZoneServer *connect.Client[v1alpha1.RegisterTrustZoneServerRequest, v1alpha1.RegisterTrustZoneServerResponse]
+	updateTrustZoneBundle   *connect.Client[v1alpha1.UpdateTrustZoneBundleRequest, v1alpha1.UpdateTrustZoneBundleResponse]
 }
 
 // CreateTrustZone calls proto.connect.trust_zone_service.v1alpha1.TrustZoneService.CreateTrustZone.
@@ -176,6 +187,12 @@ func (c *trustZoneServiceClient) RegisterTrustZoneServer(ctx context.Context, re
 	return c.registerTrustZoneServer.CallUnary(ctx, req)
 }
 
+// UpdateTrustZoneBundle calls
+// proto.connect.trust_zone_service.v1alpha1.TrustZoneService.UpdateTrustZoneBundle.
+func (c *trustZoneServiceClient) UpdateTrustZoneBundle(ctx context.Context, req *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error) {
+	return c.updateTrustZoneBundle.CallUnary(ctx, req)
+}
+
 // TrustZoneServiceHandler is an implementation of the
 // proto.connect.trust_zone_service.v1alpha1.TrustZoneService service.
 type TrustZoneServiceHandler interface {
@@ -186,6 +203,7 @@ type TrustZoneServiceHandler interface {
 	UpdateTrustZone(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneResponse], error)
 	RegisterAgent(context.Context, *connect.Request[v1alpha1.RegisterAgentRequest]) (*connect.Response[v1alpha1.RegisterAgentResponse], error)
 	RegisterTrustZoneServer(context.Context, *connect.Request[v1alpha1.RegisterTrustZoneServerRequest]) (*connect.Response[v1alpha1.RegisterTrustZoneServerResponse], error)
+	UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error)
 }
 
 // NewTrustZoneServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -237,6 +255,12 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 		connect.WithSchema(trustZoneServiceMethods.ByName("RegisterTrustZoneServer")),
 		connect.WithHandlerOptions(opts...),
 	)
+	trustZoneServiceUpdateTrustZoneBundleHandler := connect.NewUnaryHandler(
+		TrustZoneServiceUpdateTrustZoneBundleProcedure,
+		svc.UpdateTrustZoneBundle,
+		connect.WithSchema(trustZoneServiceMethods.ByName("UpdateTrustZoneBundle")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case TrustZoneServiceCreateTrustZoneProcedure:
@@ -253,6 +277,8 @@ func NewTrustZoneServiceHandler(svc TrustZoneServiceHandler, opts ...connect.Han
 			trustZoneServiceRegisterAgentHandler.ServeHTTP(w, r)
 		case TrustZoneServiceRegisterTrustZoneServerProcedure:
 			trustZoneServiceRegisterTrustZoneServerHandler.ServeHTTP(w, r)
+		case TrustZoneServiceUpdateTrustZoneBundleProcedure:
+			trustZoneServiceUpdateTrustZoneBundleHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -288,4 +314,8 @@ func (UnimplementedTrustZoneServiceHandler) RegisterAgent(context.Context, *conn
 
 func (UnimplementedTrustZoneServiceHandler) RegisterTrustZoneServer(context.Context, *connect.Request[v1alpha1.RegisterTrustZoneServerRequest]) (*connect.Response[v1alpha1.RegisterTrustZoneServerResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterTrustZoneServer is not implemented"))
+}
+
+func (UnimplementedTrustZoneServiceHandler) UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_service.v1alpha1.TrustZoneService.UpdateTrustZoneBundle is not implemented"))
 }

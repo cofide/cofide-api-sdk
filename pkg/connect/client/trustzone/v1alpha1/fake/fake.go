@@ -15,6 +15,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 )
@@ -151,13 +152,44 @@ func (c *fakeTrustZoneClient) RegisterTrustZoneServer(ctx context.Context, serve
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	if _, ok := c.fake.Clusters[server.ClusterId]; !ok {
+	cluster, ok := c.fake.Clusters[server.ClusterId]
+	if !ok {
 		return status.Error(codes.InvalidArgument, "invalid cluster")
 	}
 
+	c.fake.TrustZoneBundles[cluster.GetTrustZoneId()] = cloneBundle(bundle)
 	return nil
 }
 
+func (c *fakeTrustZoneClient) UpdateTrustZoneBundle(ctx context.Context, bundle *types.Bundle) error {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	agentID, err := getAgentIDFromMetadata(ctx)
+	if err != nil {
+		return err
+	}
+
+	if err := c.fake.ValidateAgent(agentID); err != nil {
+		return err
+	}
+
+	agent := c.fake.Agents[agentID]
+	c.fake.TrustZoneBundles[agent.GetTrustZoneId()] = cloneBundle(bundle)
+	return nil
+}
+
+func (c *fakeTrustZoneClient) UpdateManagedTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	if err := c.fake.ValidateTrustZone(trustZoneID); err != nil {
+		return err
+	}
+
+	c.fake.TrustZoneBundles[trustZoneID] = cloneBundle(bundle)
+	return nil
+}
 
 func clone(trustZone *trustzonepb.TrustZone) *trustzonepb.TrustZone {
 	return proto.Clone(trustZone).(*trustzonepb.TrustZone)
@@ -169,4 +201,16 @@ func cloneCluster(cluster *clusterpb.Cluster) *clusterpb.Cluster {
 
 func cloneBundle(bundle *types.Bundle) *types.Bundle {
 	return proto.Clone(bundle).(*types.Bundle)
+}
+
+func getAgentIDFromMetadata(ctx context.Context) (string, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return "", status.Error(codes.Unauthenticated, "missing gRPC metadata")
+	}
+	agentIDs := md.Get("agent-id")
+	if len(agentIDs) != 1 {
+		return "", status.Error(codes.Unauthenticated, "missing agent ID gRPC metadata")
+	}
+	return agentIDs[0], nil
 }
