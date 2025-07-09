@@ -58,6 +58,9 @@ func TestTrustZoneClient_Unimplemented(t *testing.T) {
 	agentID, err := client.RegisterAgent(ctx, nil, "", nil)
 	test.RequireUnimplemented(t, err)
 	assert.Empty(t, agentID)
+
+	err = client.RegisterTrustZoneServer(ctx, nil, nil)
+	test.RequireUnimplemented(t, err)
 }
 
 func TestTrustZoneClient(t *testing.T) {
@@ -99,6 +102,13 @@ func TestTrustZoneClient(t *testing.T) {
 
 	tzs := fakeTrustZoneServer()
 	err = client.RegisterTrustZoneServer(ctx, tzs, bundle)
+	require.NoError(t, err)
+
+	fakeBundle := &types.Bundle{TrustDomain: fakeTrustDomain}
+	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
+	require.NoError(t, err)
+
+	err = client.UpdateManagedTrustZoneBundle(ctx, fakeTrustZoneID, fakeBundle)
 	require.NoError(t, err)
 }
 
@@ -142,6 +152,14 @@ func (f *fakeTrustZoneService) RegisterAgent(ctx context.Context, req *trustzone
 func (f *fakeTrustZoneService) RegisterTrustZoneServer(ctx context.Context, req *trustzonesvcpb.RegisterTrustZoneServerRequest) (*trustzonesvcpb.RegisterTrustZoneServerResponse, error) {
 	assert.EqualExportedValues(f.t, fakeTrustZoneServer(), req.TrustZoneServer)
 	return &trustzonesvcpb.RegisterTrustZoneServerResponse{}, nil
+}
+
+func (f *fakeTrustZoneService) UpdateTrustZoneBundle(ctx context.Context, req *trustzonesvcpb.UpdateTrustZoneBundleRequest) (*trustzonesvcpb.UpdateTrustZoneBundleResponse, error) {
+	assert.Equal(f.t, fakeTrustDomain, req.Bundle.TrustDomain)
+	if req.TrustZoneId != "" {
+		assert.Equal(f.t, fakeTrustZoneID, req.GetTrustZoneId())
+	}
+	return &trustzonesvcpb.UpdateTrustZoneBundleResponse{}, nil
 }
 
 func fakeTrustZone() *trustzonepb.TrustZone {
