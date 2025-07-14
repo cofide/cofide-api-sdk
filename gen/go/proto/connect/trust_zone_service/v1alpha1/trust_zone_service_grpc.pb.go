@@ -29,6 +29,7 @@ const (
 	TrustZoneService_UpdateTrustZone_FullMethodName         = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZone"
 	TrustZoneService_RegisterAgent_FullMethodName           = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterAgent"
 	TrustZoneService_RegisterTrustZoneServer_FullMethodName = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/RegisterTrustZoneServer"
+	TrustZoneService_UpdateTrustZoneBundle_FullMethodName   = "/proto.connect.trust_zone_service.v1alpha1.TrustZoneService/UpdateTrustZoneBundle"
 )
 
 // TrustZoneServiceClient is the client API for TrustZoneService service.
@@ -42,6 +43,7 @@ type TrustZoneServiceClient interface {
 	UpdateTrustZone(ctx context.Context, in *UpdateTrustZoneRequest, opts ...grpc.CallOption) (*UpdateTrustZoneResponse, error)
 	RegisterAgent(ctx context.Context, in *RegisterAgentRequest, opts ...grpc.CallOption) (*RegisterAgentResponse, error)
 	RegisterTrustZoneServer(ctx context.Context, in *RegisterTrustZoneServerRequest, opts ...grpc.CallOption) (*RegisterTrustZoneServerResponse, error)
+	UpdateTrustZoneBundle(ctx context.Context, in *UpdateTrustZoneBundleRequest, opts ...grpc.CallOption) (*UpdateTrustZoneBundleResponse, error)
 }
 
 type trustZoneServiceClient struct {
@@ -122,6 +124,16 @@ func (c *trustZoneServiceClient) RegisterTrustZoneServer(ctx context.Context, in
 	return out, nil
 }
 
+func (c *trustZoneServiceClient) UpdateTrustZoneBundle(ctx context.Context, in *UpdateTrustZoneBundleRequest, opts ...grpc.CallOption) (*UpdateTrustZoneBundleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTrustZoneBundleResponse)
+	err := c.cc.Invoke(ctx, TrustZoneService_UpdateTrustZoneBundle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TrustZoneServiceServer is the server API for TrustZoneService service.
 // All implementations should embed UnimplementedTrustZoneServiceServer
 // for forward compatibility.
@@ -133,6 +145,7 @@ type TrustZoneServiceServer interface {
 	UpdateTrustZone(context.Context, *UpdateTrustZoneRequest) (*UpdateTrustZoneResponse, error)
 	RegisterAgent(context.Context, *RegisterAgentRequest) (*RegisterAgentResponse, error)
 	RegisterTrustZoneServer(context.Context, *RegisterTrustZoneServerRequest) (*RegisterTrustZoneServerResponse, error)
+	UpdateTrustZoneBundle(context.Context, *UpdateTrustZoneBundleRequest) (*UpdateTrustZoneBundleResponse, error)
 }
 
 // UnimplementedTrustZoneServiceServer should be embedded to have
@@ -162,6 +175,9 @@ func (UnimplementedTrustZoneServiceServer) RegisterAgent(context.Context, *Regis
 }
 func (UnimplementedTrustZoneServiceServer) RegisterTrustZoneServer(context.Context, *RegisterTrustZoneServerRequest) (*RegisterTrustZoneServerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterTrustZoneServer not implemented")
+}
+func (UnimplementedTrustZoneServiceServer) UpdateTrustZoneBundle(context.Context, *UpdateTrustZoneBundleRequest) (*UpdateTrustZoneBundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneBundle not implemented")
 }
 func (UnimplementedTrustZoneServiceServer) testEmbeddedByValue() {}
 
@@ -309,6 +325,24 @@ func _TrustZoneService_RegisterTrustZoneServer_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrustZoneService_UpdateTrustZoneBundle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTrustZoneBundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrustZoneServiceServer).UpdateTrustZoneBundle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrustZoneService_UpdateTrustZoneBundle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrustZoneServiceServer).UpdateTrustZoneBundle(ctx, req.(*UpdateTrustZoneBundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TrustZoneService_ServiceDesc is the grpc.ServiceDesc for TrustZoneService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -343,6 +377,10 @@ var TrustZoneService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisterTrustZoneServer",
 			Handler:    _TrustZoneService_RegisterTrustZoneServer_Handler,
+		},
+		{
+			MethodName: "UpdateTrustZoneBundle",
+			Handler:    _TrustZoneService_UpdateTrustZoneBundle_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

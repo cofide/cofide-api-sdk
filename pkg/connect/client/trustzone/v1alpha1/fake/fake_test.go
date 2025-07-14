@@ -13,6 +13,7 @@ import (
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"google.golang.org/grpc/metadata"
 )
 
 func Test_fakeTrustZoneClient_CreateTrustZone(t *testing.T) {
@@ -100,10 +101,79 @@ func Test_fakeTrustZoneClient_RegisterAgent(t *testing.T) {
 	assert.EqualExportedValues(t, expectedAgent, fake.Agents[agentID])
 }
 
+func Test_fakeTrustZoneClient_RegisterTrustZoneServer(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	server := fakeTrustZoneServer()
+
+	err := client.RegisterTrustZoneServer(ctx, server, test.FakeBundle())
+	require.Error(t, err)
+
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+	fake.Clusters[test.FakeClusterID] = test.FakeCluster()
+
+	err = client.RegisterTrustZoneServer(ctx, server, test.FakeBundle())
+	require.NoError(t, err)
+	expectedBundle := test.FakeBundle()
+	assert.EqualExportedValues(t, expectedBundle, fake.TrustZoneBundles[test.FakeTrustZoneID])
+}
+
+func Test_fakeTrustZoneClient_UpdateTrustZoneBundle(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	fakeBundle := test.FakeBundle()
+
+	err := client.UpdateTrustZoneBundle(ctx, fakeBundle)
+	require.Error(t, err)
+
+	md := metadata.MD{"agent-id": []string{test.FakeAgentID}}
+	ctx = metadata.NewIncomingContext(ctx, md)
+
+	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
+	require.Error(t, err)
+
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+
+	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
+	require.Error(t, err)
+
+	fake.Agents[test.FakeAgentID] = test.FakeAgent()
+
+	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
+	require.NoError(t, err)
+	assert.Equal(t, fake.TrustZoneBundles[test.FakeTrustZoneID], fakeBundle)
+}
+
+func Test_fakeTrustZoneClient_UpdateManagedTrustZoneBundle(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	fakeBundle := test.FakeBundle()
+	err := client.UpdateManagedTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
+	require.Error(t, err)
+
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+
+	err = client.UpdateManagedTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
+	require.NoError(t, err)
+	assert.Equal(t, fake.TrustZoneBundles[test.FakeTrustZoneID], fakeBundle)
+}
+
 func fakeAgent() *trustzonesvcpb.Agent {
 	return &trustzonesvcpb.Agent{
 		AgentId:     test.FakeAgentID,
 		ClusterId:   test.FakeClusterID,
 		TrustZoneId: test.FakeTrustZoneID,
+	}
+}
+
+func fakeTrustZoneServer() *trustzonesvcpb.TrustZoneServer {
+	return &trustzonesvcpb.TrustZoneServer{
+		ClusterId: test.FakeClusterID,
 	}
 }

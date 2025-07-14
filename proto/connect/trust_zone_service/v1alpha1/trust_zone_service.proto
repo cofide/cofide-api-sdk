@@ -19,6 +19,7 @@ service TrustZoneService {
 
   rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse) {}
   rpc RegisterTrustZoneServer(RegisterTrustZoneServerRequest) returns (RegisterTrustZoneServerResponse) {}
+  rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
 }
 
 message Agent {
@@ -92,3 +93,10 @@ message RegisterTrustZoneServerRequest {
 message RegisterTrustZoneServerResponse {
   // Empty for the moment
 }
+
+message UpdateTrustZoneBundleRequest {
+  spire.api.types.Bundle bundle = 1;
+  string trust_zone_id = 2;
+}
+
+message UpdateTrustZoneBundleResponse {}
