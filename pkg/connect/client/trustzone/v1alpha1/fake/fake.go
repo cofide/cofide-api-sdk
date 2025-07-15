@@ -7,7 +7,6 @@ import (
 	"context"
 
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
-	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	trustzonesvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_service/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
@@ -105,28 +104,6 @@ func (c *fakeTrustZoneClient) UpdateTrustZone(ctx context.Context, trustZone *tr
 	return clone(trustZone), nil
 }
 
-// DEPRECATED: Agent join token creation moved to AgentService.CreateAgentJoinToken.
-// Cluster creation to be moved to ClusterService.CreateCluster.
-func (c *fakeTrustZoneClient) RegisterCluster(ctx context.Context, trustZoneID string, cluster *clusterpb.Cluster) (string, error) {
-	c.fake.Mu.Lock()
-	defer c.fake.Mu.Unlock()
-
-	if _, ok := c.fake.TrustZones[trustZoneID]; !ok {
-		return "", status.Error(codes.InvalidArgument, "")
-	}
-	cluster = cloneCluster(cluster)
-	id := uuid.New().String()
-	cluster.Id = &id
-	cluster.TrustZoneId = &trustZoneID
-	c.fake.Clusters[id] = cluster
-	if c.fake.AgentJoinTokens[trustZoneID] == nil {
-		c.fake.AgentJoinTokens[trustZoneID] = make(map[string]string)
-	}
-	token := uuid.New().String()
-	c.fake.AgentJoinTokens[trustZoneID][cluster.GetId()] = token
-	return token, nil
-}
-
 func (c *fakeTrustZoneClient) RegisterAgent(ctx context.Context, agent *trustzonesvcpb.Agent, token string, bundle *types.Bundle) (string, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
@@ -193,10 +170,6 @@ func (c *fakeTrustZoneClient) UpdateManagedTrustZoneBundle(ctx context.Context, 
 
 func clone(trustZone *trustzonepb.TrustZone) *trustzonepb.TrustZone {
 	return proto.Clone(trustZone).(*trustzonepb.TrustZone)
-}
-
-func cloneCluster(cluster *clusterpb.Cluster) *clusterpb.Cluster {
-	return proto.Clone(cluster).(*clusterpb.Cluster)
 }
 
 func cloneBundle(bundle *types.Bundle) *types.Bundle {
