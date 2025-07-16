@@ -21,8 +21,7 @@ type TrustZoneClient interface {
 	UpdateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error)
 	RegisterAgent(ctx context.Context, agent *trustzonesvcpb.Agent, token string, bundle *types.Bundle) (string, error)
 	RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle) error
-	UpdateTrustZoneBundle(ctx context.Context, bundle *types.Bundle) error
-	UpdateManagedTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error
+	UpdateTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error
 }
 
 type trustZoneClient struct {
@@ -109,23 +108,11 @@ func (c *trustZoneClient) RegisterTrustZoneServer(ctx context.Context, server *t
 	return err
 }
 
-func (c *trustZoneClient) UpdateTrustZoneBundle(ctx context.Context, bundle *types.Bundle) error {
-	trustZoneBundleUpdateRequest := &trustzonesvcpb.UpdateTrustZoneBundleRequest{
-		Bundle: bundle,
-	}
-	return c.updateTrustZoneBundle(ctx, trustZoneBundleUpdateRequest)
-}
-
-func (c *trustZoneClient) UpdateManagedTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error {
-	trustZoneBundleUpdateRequest := &trustzonesvcpb.UpdateTrustZoneBundleRequest{
+func (c *trustZoneClient) UpdateTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error {
+	_, err := c.trustZoneClient.UpdateTrustZoneBundle(ctx, &trustzonesvcpb.UpdateTrustZoneBundleRequest{
 		Bundle:      bundle,
 		TrustZoneId: trustZoneID,
-	}
-	return c.updateTrustZoneBundle(ctx, trustZoneBundleUpdateRequest)
-}
-
-func (c *trustZoneClient) updateTrustZoneBundle(ctx context.Context, req *trustzonesvcpb.UpdateTrustZoneBundleRequest) error {
-	_, err := c.trustZoneClient.UpdateTrustZoneBundle(ctx, req)
+	})
 	if err != nil {
 		return err
 	}

@@ -13,7 +13,6 @@ import (
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc/metadata"
 )
 
 func Test_fakeTrustZoneClient_CreateTrustZone(t *testing.T) {
@@ -126,40 +125,18 @@ func Test_fakeTrustZoneClient_UpdateTrustZoneBundle(t *testing.T) {
 	ctx := context.Background()
 
 	fakeBundle := test.FakeBundle()
-
-	err := client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.Error(t, err)
-
-	md := metadata.MD{"agent-id": []string{test.FakeAgentID}}
-	ctx = metadata.NewIncomingContext(ctx, md)
-
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
+	err := client.UpdateTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
 	require.Error(t, err)
 
 	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
 
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.Error(t, err)
-
-	fake.Agents[test.FakeAgentID] = test.FakeAgent()
-
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
+	err = client.UpdateTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
 	require.NoError(t, err)
 	assert.Equal(t, fake.TrustZoneBundles[test.FakeTrustZoneID], fakeBundle)
-}
+	assert.NotSame(t, fake.TrustZoneBundles[test.FakeTrustZoneID], fakeBundle)
 
-func Test_fakeTrustZoneClient_UpdateManagedTrustZoneBundle(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
-	ctx := context.Background()
-
-	fakeBundle := test.FakeBundle()
-	err := client.UpdateManagedTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
-	require.Error(t, err)
-
-	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
-
-	err = client.UpdateManagedTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
+	fakeBundle.SequenceNumber = 42
+	err = client.UpdateTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
 	require.NoError(t, err)
 	assert.Equal(t, fake.TrustZoneBundles[test.FakeTrustZoneID], fakeBundle)
 }
