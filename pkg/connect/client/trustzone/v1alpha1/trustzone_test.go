@@ -105,10 +105,7 @@ func TestTrustZoneClient(t *testing.T) {
 	require.NoError(t, err)
 
 	fakeBundle := &types.Bundle{TrustDomain: fakeTrustDomain}
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.NoError(t, err)
-
-	err = client.UpdateManagedTrustZoneBundle(ctx, fakeTrustZoneID, fakeBundle)
+	err = client.UpdateTrustZoneBundle(ctx, fakeTrustZoneID, fakeBundle)
 	require.NoError(t, err)
 }
 
