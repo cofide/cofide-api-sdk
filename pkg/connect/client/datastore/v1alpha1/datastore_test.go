@@ -87,6 +87,11 @@ func TestDataStoreClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*datastorev1alpha1.AttestedNode{node}, listResp.Nodes)
 
+	// Test UpdateAttestedNode
+	updateResp, err := client.UpdateAttestedNode(ctx, &datastorev1alpha1.UpdateAttestedNodeRequest{Node: node})
+	require.NoError(t, err)
+	assert.EqualExportedValues(t, node, updateResp.Node)
+
 	// Test GetNodeSelectors
 	selectors := fakeNodeSelectors()
 	getSelectorsResp, err := client.GetNodeSelectors(ctx, &datastorev1alpha1.GetNodeSelectorsRequest{SpiffeId: fakeSpiffeID})
@@ -143,6 +148,7 @@ func (f *fakeDataStoreService) ListAttestedNodes(ctx context.Context, req *datas
 }
 
 func (f *fakeDataStoreService) UpdateAttestedNode(ctx context.Context, req *datastorev1alpha1.UpdateAttestedNodeRequest) (*datastorev1alpha1.UpdateAttestedNodeResponse, error) {
+	assert.Equal(f.t, fakeAttestedNode(), req.Node)
 	return &datastorev1alpha1.UpdateAttestedNodeResponse{Node: req.Node}, nil
 }
 

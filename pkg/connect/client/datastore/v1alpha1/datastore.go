@@ -85,7 +85,7 @@ func (c *datastoreClient) FetchAttestedNode(ctx context.Context, req *datastorev
 }
 
 func (c *datastoreClient) UpdateAttestedNode(ctx context.Context, req *datastorev1alpha1.UpdateAttestedNodeRequest) (*datastorev1alpha1.UpdateAttestedNodeResponse, error) {
-	resp, err := c.client.UpdateAttestedNode(ctx, &datastorev1alpha1.UpdateAttestedNodeRequest{})
+	resp, err := c.client.UpdateAttestedNode(ctx, req)
 	if err != nil {
 		return nil, err
 	}
