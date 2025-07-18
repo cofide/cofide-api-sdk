@@ -19,30 +19,12 @@ type DataStoreClient interface {
 	ListAttestedNodes(ctx context.Context, req *datastorev1alpha1.ListAttestedNodesRequest) (*datastorev1alpha1.ListAttestedNodesResponse, error)
 	UpdateAttestedNode(ctx context.Context, req *datastorev1alpha1.UpdateAttestedNodeRequest) (*datastorev1alpha1.UpdateAttestedNodeResponse, error)
 	GetNodeSelectors(ctx context.Context, req *datastorev1alpha1.GetNodeSelectorsRequest) (*datastorev1alpha1.GetNodeSelectorsResponse, error)
-	SetNodeSelectors(ctx context.Context, req *datastorev1alpha1.SetNodeSelectorsRequest) (*datastorev1alpha1.SetNodeSelectorsResponse, error)
 	ListNodeSelectors(ctx context.Context, req *datastorev1alpha1.ListNodeSelectorsRequest) (*datastorev1alpha1.ListNodeSelectorsResponse, error)
+	SetNodeSelectors(ctx context.Context, req *datastorev1alpha1.SetNodeSelectorsRequest) (*datastorev1alpha1.SetNodeSelectorsResponse, error)
 }
 
 type datastoreClient struct {
 	client datastorev1alpha1.DataStoreServiceClient
-}
-
-// ListAttestedNodes implements DataStoreClient.
-func (c *datastoreClient) ListAttestedNodes(ctx context.Context, req *datastorev1alpha1.ListAttestedNodesRequest) (*datastorev1alpha1.ListAttestedNodesResponse, error) {
-	resp, err := c.client.ListAttestedNodes(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
-}
-
-// ListNodeSelectors implements DataStoreClient.
-func (c *datastoreClient) ListNodeSelectors(ctx context.Context, req *datastorev1alpha1.ListNodeSelectorsRequest) (*datastorev1alpha1.ListNodeSelectorsResponse, error) {
-	resp, err := c.client.ListNodeSelectors(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
 }
 
 // New instantiates a new DataStoreClient for communication with a Connect API.
@@ -53,57 +35,37 @@ func New(conn grpc.ClientConnInterface) DataStoreClient {
 }
 
 func (c *datastoreClient) CountAttestedNodes(ctx context.Context, req *datastorev1alpha1.CountAttestedNodesRequest) (*datastorev1alpha1.CountAttestedNodesResponse, error) {
-	resp, err := c.client.CountAttestedNodes(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
+	return c.client.CountAttestedNodes(ctx, req)
 }
 
 func (c *datastoreClient) CreateAttestedNode(ctx context.Context, req *datastorev1alpha1.CreateAttestedNodeRequest) (*datastorev1alpha1.CreateAttestedNodeResponse, error) {
-	resp, err := c.client.CreateAttestedNode(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
+	return c.client.CreateAttestedNode(ctx, req)
 }
 
 func (c *datastoreClient) DeleteAttestedNode(ctx context.Context, req *datastorev1alpha1.DeleteAttestedNodeRequest) (*datastorev1alpha1.DeleteAttestedNodeResponse, error) {
-	resp, err := c.client.DeleteAttestedNode(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
+	return c.client.DeleteAttestedNode(ctx, req)
 }
 
 func (c *datastoreClient) FetchAttestedNode(ctx context.Context, req *datastorev1alpha1.FetchAttestedNodeRequest) (*datastorev1alpha1.FetchAttestedNodeResponse, error) {
-	resp, err := c.client.FetchAttestedNode(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
+	return c.client.FetchAttestedNode(ctx, req)
+}
+
+func (c *datastoreClient) ListAttestedNodes(ctx context.Context, req *datastorev1alpha1.ListAttestedNodesRequest) (*datastorev1alpha1.ListAttestedNodesResponse, error) {
+	return c.client.ListAttestedNodes(ctx, req)
 }
 
 func (c *datastoreClient) UpdateAttestedNode(ctx context.Context, req *datastorev1alpha1.UpdateAttestedNodeRequest) (*datastorev1alpha1.UpdateAttestedNodeResponse, error) {
-	resp, err := c.client.UpdateAttestedNode(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
+	return c.client.UpdateAttestedNode(ctx, req)
 }
 
 func (c *datastoreClient) GetNodeSelectors(ctx context.Context, req *datastorev1alpha1.GetNodeSelectorsRequest) (*datastorev1alpha1.GetNodeSelectorsResponse, error) {
-	resp, err := c.client.GetNodeSelectors(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
+	return c.client.GetNodeSelectors(ctx, req)
+}
+
+func (c *datastoreClient) ListNodeSelectors(ctx context.Context, req *datastorev1alpha1.ListNodeSelectorsRequest) (*datastorev1alpha1.ListNodeSelectorsResponse, error) {
+	return c.client.ListNodeSelectors(ctx, req)
 }
 
 func (c *datastoreClient) SetNodeSelectors(ctx context.Context, req *datastorev1alpha1.SetNodeSelectorsRequest) (*datastorev1alpha1.SetNodeSelectorsResponse, error) {
-	resp, err := c.client.SetNodeSelectors(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
+	return c.client.SetNodeSelectors(ctx, req)
 }
