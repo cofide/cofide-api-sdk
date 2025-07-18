@@ -77,6 +77,11 @@ func TestDataStoreClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, node, createResp.Node)
 
+	// Test DeleteAttestedNode
+	deleteResp, err := client.DeleteAttestedNode(ctx, &datastorev1alpha1.DeleteAttestedNodeRequest{SpiffeId: fakeSpiffeID})
+	require.NoError(t, err)
+	assert.NotNil(t, deleteResp)
+
 	// Test FetchAttestedNode
 	fetchResp, err := client.FetchAttestedNode(ctx, &datastorev1alpha1.FetchAttestedNodeRequest{SpiffeId: fakeSpiffeID})
 	require.NoError(t, err)
@@ -98,11 +103,6 @@ func TestDataStoreClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, selectors, getSelectorsResp.Selectors)
 
-	// Test SetNodeSelectors
-	setSelectorsResp, err := client.SetNodeSelectors(ctx, &datastorev1alpha1.SetNodeSelectorsRequest{SpiffeId: fakeSpiffeID, Selectors: selectors})
-	require.NoError(t, err)
-	assert.NotNil(t, setSelectorsResp)
-
 	// Test ListNodeSelectors
 	listSelectorsResp, err := client.ListNodeSelectors(ctx, &datastorev1alpha1.ListNodeSelectorsRequest{})
 	require.NoError(t, err)
@@ -112,10 +112,10 @@ func TestDataStoreClient(t *testing.T) {
 		},
 	}, listSelectorsResp.Selectors)
 
-	// Test DeleteAttestedNode
-	deleteResp, err := client.DeleteAttestedNode(ctx, &datastorev1alpha1.DeleteAttestedNodeRequest{SpiffeId: fakeSpiffeID})
+	// Test SetNodeSelectors
+	setSelectorsResp, err := client.SetNodeSelectors(ctx, &datastorev1alpha1.SetNodeSelectorsRequest{SpiffeId: fakeSpiffeID, Selectors: selectors})
 	require.NoError(t, err)
-	assert.NotNil(t, deleteResp)
+	assert.NotNil(t, setSelectorsResp)
 }
 
 type fakeDataStoreService struct {
