@@ -130,7 +130,9 @@ func FakeIdentity() *identitypb.Identity {
 		},
 		Federations: []*identitypb.IdentityFederation{
 			{
-				TrustZoneId: PtrOf(FakeTrustZoneID),
+				Federation: &identitypb.IdentityFederation_TrustZoneId{
+					TrustZoneId: FakeTrustZoneID,
+				},
 			},
 		},
 	}
