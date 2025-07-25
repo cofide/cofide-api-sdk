@@ -30,5 +30,8 @@ message Selector {
 }
 
 message IdentityFederation {
-  optional string trust_zone_id = 1;
+  oneof federation {
+    string trust_zone_id = 1;
+    string trust_domain = 2;
+  }
 }
