@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/identity/v1alpha1/identity.proto.
  */
 export const file_proto_identity_v1alpha1_identity: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by9pZGVudGl0eS92MWFscGhhMS9pZGVudGl0eS5wcm90bxIXcHJvdG8uaWRlbnRpdHkudjFhbHBoYTEi6gIKCElkZW50aXR5EgoKAmlkGAEgASgJEg4KBm9yZ19pZBgCIAEoCRIVCg10cnVzdF96b25lX2lkGAMgASgJEhIKCmNsdXN0ZXJfaWQYBCABKAkSHQoVYXR0ZXN0YXRpb25fcG9saWN5X2lkGAUgASgJEhUKDWFwX2JpbmRpbmdfaWQYBiABKAkSEwoLd29ya2xvYWRfaWQYByABKAkSEQoJc3BpZmZlX2lkGAggASgJEhEKCXBhcmVudF9pZBgJIAEoCRI0CglzZWxlY3RvcnMYCiADKAsyIS5wcm90by5pZGVudGl0eS52MWFscGhhMS5TZWxlY3RvchJACgtmZWRlcmF0aW9ucxgLIAMoCzIrLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5RmVkZXJhdGlvbhIuCgpjcmVhdGVkX2F0GAwgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCInCghTZWxlY3RvchIMCgR0eXBlGAEgASgJEg0KBXZhbHVlGAIgASgJIkIKEklkZW50aXR5RmVkZXJhdGlvbhIaCg10cnVzdF96b25lX2lkGAEgASgJSACIAQFCEAoOX3RydXN0X3pvbmVfaWRCQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2lkZW50aXR5L3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by9pZGVudGl0eS92MWFscGhhMS9pZGVudGl0eS5wcm90bxIXcHJvdG8uaWRlbnRpdHkudjFhbHBoYTEi6gIKCElkZW50aXR5EgoKAmlkGAEgASgJEg4KBm9yZ19pZBgCIAEoCRIVCg10cnVzdF96b25lX2lkGAMgASgJEhIKCmNsdXN0ZXJfaWQYBCABKAkSHQoVYXR0ZXN0YXRpb25fcG9saWN5X2lkGAUgASgJEhUKDWFwX2JpbmRpbmdfaWQYBiABKAkSEwoLd29ya2xvYWRfaWQYByABKAkSEQoJc3BpZmZlX2lkGAggASgJEhEKCXBhcmVudF9pZBgJIAEoCRI0CglzZWxlY3RvcnMYCiADKAsyIS5wcm90by5pZGVudGl0eS52MWFscGhhMS5TZWxlY3RvchJACgtmZWRlcmF0aW9ucxgLIAMoCzIrLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5RmVkZXJhdGlvbhIuCgpjcmVhdGVkX2F0GAwgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCInCghTZWxlY3RvchIMCgR0eXBlGAEgASgJEg0KBXZhbHVlGAIgASgJIlMKEklkZW50aXR5RmVkZXJhdGlvbhIXCg10cnVzdF96b25lX2lkGAEgASgJSAASFgoMdHJ1c3RfZG9tYWluGAIgASgJSABCDAoKZmVkZXJhdGlvbkJBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vaWRlbnRpdHkvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message proto.identity.v1alpha1.Identity
@@ -116,9 +116,21 @@ export const SelectorSchema: GenMessage<Selector> = /*@__PURE__*/
  */
 export type IdentityFederation = Message<"proto.identity.v1alpha1.IdentityFederation"> & {
   /**
-   * @generated from field: optional string trust_zone_id = 1;
+   * @generated from oneof proto.identity.v1alpha1.IdentityFederation.federation
    */
-  trustZoneId?: string;
+  federation: {
+    /**
+     * @generated from field: string trust_zone_id = 1;
+     */
+    value: string;
+    case: "trustZoneId";
+  } | {
+    /**
+     * @generated from field: string trust_domain = 2;
+     */
+    value: string;
+    case: "trustDomain";
+  } | { case: undefined; value?: undefined };
 };
 
 /**
