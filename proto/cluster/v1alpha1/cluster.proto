@@ -11,12 +11,13 @@ import "proto/trust_provider/v1alpha1/trust_provider.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1";
 
 message Cluster {
+  reserved 2;
+  reserved "trust_zone";
+
   optional string id = 8;
   optional string name = 1;
   optional string org_id = 9;
 
-  // DEPRECATED: replaced by trust_zone_id.
-  optional string trust_zone = 2;
   optional string trust_zone_id = 10;
   optional string kubernetes_context = 3;
   optional proto.trust_provider.v1alpha1.TrustProvider trust_provider = 4;
