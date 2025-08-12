@@ -324,8 +324,6 @@ export const AgentService: GenService<{
     output: typeof UpdateAgentStatusResponseSchema;
   },
   /**
-   * DEPRECATED: Federated service RPCs will move to a separate service.
-   *
    * @generated from rpc proto.connect.agent_service.v1alpha1.AgentService.RegisterFederatedService
    */
   registerFederatedService: {

@@ -67,7 +67,6 @@ type AgentServiceClient interface {
 	CreateAgentJoinToken(context.Context, *connect.Request[v1alpha1.CreateAgentJoinTokenRequest]) (*connect.Response[v1alpha1.CreateAgentJoinTokenResponse], error)
 	UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error)
 	UpdateAgentStatus(context.Context, *connect.Request[v1alpha1.UpdateAgentStatusRequest]) (*connect.Response[v1alpha1.UpdateAgentStatusResponse], error)
-	// DEPRECATED: Federated service RPCs will move to a separate service.
 	RegisterFederatedService(context.Context, *connect.Request[v1alpha1.RegisterFederatedServiceRequest]) (*connect.Response[v1alpha1.RegisterFederatedServiceResponse], error)
 	DeregisterFederatedService(context.Context, *connect.Request[v1alpha1.DeregisterFederatedServiceRequest]) (*connect.Response[v1alpha1.DeregisterFederatedServiceResponse], error)
 	UpdateFederatedService(context.Context, *connect.Request[v1alpha1.UpdateFederatedServiceRequest]) (*connect.Response[v1alpha1.UpdateFederatedServiceResponse], error)
@@ -202,7 +201,6 @@ type AgentServiceHandler interface {
 	CreateAgentJoinToken(context.Context, *connect.Request[v1alpha1.CreateAgentJoinTokenRequest]) (*connect.Response[v1alpha1.CreateAgentJoinTokenResponse], error)
 	UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error)
 	UpdateAgentStatus(context.Context, *connect.Request[v1alpha1.UpdateAgentStatusRequest]) (*connect.Response[v1alpha1.UpdateAgentStatusResponse], error)
-	// DEPRECATED: Federated service RPCs will move to a separate service.
 	RegisterFederatedService(context.Context, *connect.Request[v1alpha1.RegisterFederatedServiceRequest]) (*connect.Response[v1alpha1.RegisterFederatedServiceResponse], error)
 	DeregisterFederatedService(context.Context, *connect.Request[v1alpha1.DeregisterFederatedServiceRequest]) (*connect.Response[v1alpha1.DeregisterFederatedServiceResponse], error)
 	UpdateFederatedService(context.Context, *connect.Request[v1alpha1.UpdateFederatedServiceRequest]) (*connect.Response[v1alpha1.UpdateFederatedServiceResponse], error)

@@ -39,7 +39,6 @@ type AgentServiceClient interface {
 	CreateAgentJoinToken(ctx context.Context, in *CreateAgentJoinTokenRequest, opts ...grpc.CallOption) (*CreateAgentJoinTokenResponse, error)
 	UpdateTrustZoneBundle(ctx context.Context, in *UpdateTrustZoneBundleRequest, opts ...grpc.CallOption) (*UpdateTrustZoneBundleResponse, error)
 	UpdateAgentStatus(ctx context.Context, in *UpdateAgentStatusRequest, opts ...grpc.CallOption) (*UpdateAgentStatusResponse, error)
-	// DEPRECATED: Federated service RPCs will move to a separate service.
 	RegisterFederatedService(ctx context.Context, in *RegisterFederatedServiceRequest, opts ...grpc.CallOption) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(ctx context.Context, in *DeregisterFederatedServiceRequest, opts ...grpc.CallOption) (*DeregisterFederatedServiceResponse, error)
 	UpdateFederatedService(ctx context.Context, in *UpdateFederatedServiceRequest, opts ...grpc.CallOption) (*UpdateFederatedServiceResponse, error)
@@ -142,7 +141,6 @@ type AgentServiceServer interface {
 	CreateAgentJoinToken(context.Context, *CreateAgentJoinTokenRequest) (*CreateAgentJoinTokenResponse, error)
 	UpdateTrustZoneBundle(context.Context, *UpdateTrustZoneBundleRequest) (*UpdateTrustZoneBundleResponse, error)
 	UpdateAgentStatus(context.Context, *UpdateAgentStatusRequest) (*UpdateAgentStatusResponse, error)
-	// DEPRECATED: Federated service RPCs will move to a separate service.
 	RegisterFederatedService(context.Context, *RegisterFederatedServiceRequest) (*RegisterFederatedServiceResponse, error)
 	DeregisterFederatedService(context.Context, *DeregisterFederatedServiceRequest) (*DeregisterFederatedServiceResponse, error)
 	UpdateFederatedService(context.Context, *UpdateFederatedServiceRequest) (*UpdateFederatedServiceResponse, error)

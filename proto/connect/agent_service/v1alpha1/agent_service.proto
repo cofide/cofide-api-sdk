@@ -17,7 +17,6 @@ service AgentService {
   rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
   rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse) {}
 
-  // DEPRECATED: Federated service RPCs will move to a separate service.
   rpc RegisterFederatedService(RegisterFederatedServiceRequest) returns (RegisterFederatedServiceResponse) {}
   rpc DeregisterFederatedService(DeregisterFederatedServiceRequest) returns (DeregisterFederatedServiceResponse) {}
   rpc UpdateFederatedService(UpdateFederatedServiceRequest) returns (UpdateFederatedServiceResponse) {}
