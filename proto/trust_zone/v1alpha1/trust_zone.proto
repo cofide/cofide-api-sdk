@@ -5,19 +5,18 @@ syntax = "proto3";
 
 package proto.trust_zone.v1alpha1;
 
-import "proto/ap_binding/v1alpha1/ap_binding.proto";
-import "proto/federation/v1alpha1/federation.proto";
 import "proto/spire/api/types/bundle.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1";
 
 message TrustZone {
+  reserved 5, 6;
+  reserved "federations", "attestation_policies";
+
   string name = 1;
   string trust_domain = 2;
   optional string bundle_endpoint_url = 3;
   optional spire.api.types.Bundle bundle = 4;
-  repeated proto.federation.v1alpha1.Federation federations = 5 [deprecated = true];
-  repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 6 [deprecated = true];
   optional string jwt_issuer = 7;
   optional BundleEndpointProfile bundle_endpoint_profile = 8;
   optional string id = 9;

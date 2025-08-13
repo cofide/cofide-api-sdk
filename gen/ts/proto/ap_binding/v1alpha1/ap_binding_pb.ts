@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/ap_binding/v1alpha1/ap_binding.proto.
  */
 export const file_proto_ap_binding_v1alpha1_ap_binding: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by9hcF9iaW5kaW5nL3YxYWxwaGExL2FwX2JpbmRpbmcucHJvdG8SGXByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEipAIKCUFQQmluZGluZxIPCgJpZBgEIAEoCUgAiAEBEhMKBm9yZ19pZBgFIAEoCUgBiAEBEhYKCnRydXN0X3pvbmUYASABKAlCAhgBEhoKDXRydXN0X3pvbmVfaWQYBiABKAlIAogBARISCgZwb2xpY3kYAiABKAlCAhgBEhYKCXBvbGljeV9pZBgHIAEoCUgDiAEBEhoKDmZlZGVyYXRlc193aXRoGAMgAygJQgIYARJDCgtmZWRlcmF0aW9ucxgIIAMoCzIuLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nRmVkZXJhdGlvbkIFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkIkMKE0FQQmluZGluZ0ZlZGVyYXRpb24SGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9hcF9iaW5kaW5nL3YxYWxwaGExYgZwcm90bzM");
+  fileDesc("Cipwcm90by9hcF9iaW5kaW5nL3YxYWxwaGExL2FwX2JpbmRpbmcucHJvdG8SGXByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEikgIKCUFQQmluZGluZxIPCgJpZBgEIAEoCUgAiAEBEhMKBm9yZ19pZBgFIAEoCUgBiAEBEhoKDXRydXN0X3pvbmVfaWQYBiABKAlIAogBARIWCglwb2xpY3lfaWQYByABKAlIA4gBARJDCgtmZWRlcmF0aW9ucxgIIAMoCzIuLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nRmVkZXJhdGlvbkIFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkSgQIARACSgQIAhADSgQIAxAEUgp0cnVzdF96b25lUgZwb2xpY3lSDmZlZGVyYXRlc193aXRoIkMKE0FQQmluZGluZ0ZlZGVyYXRpb24SGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9hcF9iaW5kaW5nL3YxYWxwaGExYgZwcm90bzM");
 
 /**
  * @generated from message proto.ap_binding.v1alpha1.APBinding
@@ -30,32 +30,14 @@ export type APBinding = Message<"proto.ap_binding.v1alpha1.APBinding"> & {
   orgId?: string;
 
   /**
-   * @generated from field: string trust_zone = 1 [deprecated = true];
-   * @deprecated
-   */
-  trustZone: string;
-
-  /**
    * @generated from field: optional string trust_zone_id = 6;
    */
   trustZoneId?: string;
 
   /**
-   * @generated from field: string policy = 2 [deprecated = true];
-   * @deprecated
-   */
-  policy: string;
-
-  /**
    * @generated from field: optional string policy_id = 7;
    */
   policyId?: string;
-
-  /**
-   * @generated from field: repeated string federates_with = 3 [deprecated = true];
-   * @deprecated
-   */
-  federatesWith: string[];
 
   /**
    * @generated from field: repeated proto.ap_binding.v1alpha1.APBindingFederation federations = 8;
