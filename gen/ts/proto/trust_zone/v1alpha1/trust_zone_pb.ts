@@ -7,10 +7,6 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { APBinding } from "../../ap_binding/v1alpha1/ap_binding_pb";
-import { file_proto_ap_binding_v1alpha1_ap_binding } from "../../ap_binding/v1alpha1/ap_binding_pb";
-import type { Federation } from "../../federation/v1alpha1/federation_pb";
-import { file_proto_federation_v1alpha1_federation } from "../../federation/v1alpha1/federation_pb";
 import type { Bundle } from "../../spire/api/types/bundle_pb";
 import { file_proto_spire_api_types_bundle } from "../../spire/api/types/bundle_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -19,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/trust_zone/v1alpha1/trust_zone.proto.
  */
 export const file_proto_trust_zone_v1alpha1_trust_zone: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by90cnVzdF96b25lL3YxYWxwaGExL3RydXN0X3pvbmUucHJvdG8SGXByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEimgQKCVRydXN0Wm9uZRIMCgRuYW1lGAEgASgJEhQKDHRydXN0X2RvbWFpbhgCIAEoCRIgChNidW5kbGVfZW5kcG9pbnRfdXJsGAMgASgJSACIAQESLAoGYnVuZGxlGAQgASgLMhcuc3BpcmUuYXBpLnR5cGVzLkJ1bmRsZUgBiAEBEj4KC2ZlZGVyYXRpb25zGAUgAygLMiUucHJvdG8uZmVkZXJhdGlvbi52MWFscGhhMS5GZWRlcmF0aW9uQgIYARJGChRhdHRlc3RhdGlvbl9wb2xpY2llcxgGIAMoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nQgIYARIXCgpqd3RfaXNzdWVyGAcgASgJSAKIAQESVgoXYnVuZGxlX2VuZHBvaW50X3Byb2ZpbGUYCCABKA4yMC5wcm90by50cnVzdF96b25lLnYxYWxwaGExLkJ1bmRsZUVuZHBvaW50UHJvZmlsZUgDiAEBEg8KAmlkGAkgASgJSASIAQESGgoSaXNfbWFuYWdlbWVudF96b25lGAogASgIEhMKBm9yZ19pZBgLIAEoCUgFiAEBQhYKFF9idW5kbGVfZW5kcG9pbnRfdXJsQgkKB19idW5kbGVCDQoLX2p3dF9pc3N1ZXJCGgoYX2J1bmRsZV9lbmRwb2ludF9wcm9maWxlQgUKA19pZEIJCgdfb3JnX2lkKpEBChVCdW5kbGVFbmRwb2ludFByb2ZpbGUSJwojQlVORExFX0VORFBPSU5UX1BST0ZJTEVfVU5TUEVDSUZJRUQQABIoCiRCVU5ETEVfRU5EUE9JTlRfUFJPRklMRV9IVFRQU19TUElGRkUQARIlCiFCVU5ETEVfRU5EUE9JTlRfUFJPRklMRV9IVFRQU19XRUIQAkJDWkFnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vdHJ1c3Rfem9uZS92MWFscGhhMWIGcHJvdG8z", [file_proto_ap_binding_v1alpha1_ap_binding, file_proto_federation_v1alpha1_federation, file_proto_spire_api_types_bundle]);
+  fileDesc("Cipwcm90by90cnVzdF96b25lL3YxYWxwaGExL3RydXN0X3pvbmUucHJvdG8SGXByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEiwQMKCVRydXN0Wm9uZRIMCgRuYW1lGAEgASgJEhQKDHRydXN0X2RvbWFpbhgCIAEoCRIgChNidW5kbGVfZW5kcG9pbnRfdXJsGAMgASgJSACIAQESLAoGYnVuZGxlGAQgASgLMhcuc3BpcmUuYXBpLnR5cGVzLkJ1bmRsZUgBiAEBEhcKCmp3dF9pc3N1ZXIYByABKAlIAogBARJWChdidW5kbGVfZW5kcG9pbnRfcHJvZmlsZRgIIAEoDjIwLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuQnVuZGxlRW5kcG9pbnRQcm9maWxlSAOIAQESDwoCaWQYCSABKAlIBIgBARIaChJpc19tYW5hZ2VtZW50X3pvbmUYCiABKAgSEwoGb3JnX2lkGAsgASgJSAWIAQFCFgoUX2J1bmRsZV9lbmRwb2ludF91cmxCCQoHX2J1bmRsZUINCgtfand0X2lzc3VlckIaChhfYnVuZGxlX2VuZHBvaW50X3Byb2ZpbGVCBQoDX2lkQgkKB19vcmdfaWRKBAgFEAZKBAgGEAdSC2ZlZGVyYXRpb25zUhRhdHRlc3RhdGlvbl9wb2xpY2llcyqRAQoVQnVuZGxlRW5kcG9pbnRQcm9maWxlEicKI0JVTkRMRV9FTkRQT0lOVF9QUk9GSUxFX1VOU1BFQ0lGSUVEEAASKAokQlVORExFX0VORFBPSU5UX1BST0ZJTEVfSFRUUFNfU1BJRkZFEAESJQohQlVORExFX0VORFBPSU5UX1BST0ZJTEVfSFRUUFNfV0VCEAJCQ1pBZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3RydXN0X3pvbmUvdjFhbHBoYTFiBnByb3RvMw", [file_proto_spire_api_types_bundle]);
 
 /**
  * @generated from message proto.trust_zone.v1alpha1.TrustZone
@@ -44,18 +40,6 @@ export type TrustZone = Message<"proto.trust_zone.v1alpha1.TrustZone"> & {
    * @generated from field: optional spire.api.types.Bundle bundle = 4;
    */
   bundle?: Bundle;
-
-  /**
-   * @generated from field: repeated proto.federation.v1alpha1.Federation federations = 5 [deprecated = true];
-   * @deprecated
-   */
-  federations: Federation[];
-
-  /**
-   * @generated from field: repeated proto.ap_binding.v1alpha1.APBinding attestation_policies = 6 [deprecated = true];
-   * @deprecated
-   */
-  attestationPolicies: APBinding[];
 
   /**
    * @generated from field: optional string jwt_issuer = 7;
