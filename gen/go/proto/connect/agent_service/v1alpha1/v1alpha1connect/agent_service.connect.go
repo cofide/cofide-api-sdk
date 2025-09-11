@@ -39,9 +39,6 @@ const (
 	// AgentServiceCreateAgentJoinTokenProcedure is the fully-qualified name of the AgentService's
 	// CreateAgentJoinToken RPC.
 	AgentServiceCreateAgentJoinTokenProcedure = "/proto.connect.agent_service.v1alpha1.AgentService/CreateAgentJoinToken"
-	// AgentServiceUpdateTrustZoneBundleProcedure is the fully-qualified name of the AgentService's
-	// UpdateTrustZoneBundle RPC.
-	AgentServiceUpdateTrustZoneBundleProcedure = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateTrustZoneBundle"
 	// AgentServiceUpdateAgentStatusProcedure is the fully-qualified name of the AgentService's
 	// UpdateAgentStatus RPC.
 	AgentServiceUpdateAgentStatusProcedure = "/proto.connect.agent_service.v1alpha1.AgentService/UpdateAgentStatus"
@@ -65,7 +62,6 @@ const (
 // AgentServiceClient is a client for the proto.connect.agent_service.v1alpha1.AgentService service.
 type AgentServiceClient interface {
 	CreateAgentJoinToken(context.Context, *connect.Request[v1alpha1.CreateAgentJoinTokenRequest]) (*connect.Response[v1alpha1.CreateAgentJoinTokenResponse], error)
-	UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error)
 	UpdateAgentStatus(context.Context, *connect.Request[v1alpha1.UpdateAgentStatusRequest]) (*connect.Response[v1alpha1.UpdateAgentStatusResponse], error)
 	RegisterFederatedService(context.Context, *connect.Request[v1alpha1.RegisterFederatedServiceRequest]) (*connect.Response[v1alpha1.RegisterFederatedServiceResponse], error)
 	DeregisterFederatedService(context.Context, *connect.Request[v1alpha1.DeregisterFederatedServiceRequest]) (*connect.Response[v1alpha1.DeregisterFederatedServiceResponse], error)
@@ -90,12 +86,6 @@ func NewAgentServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			httpClient,
 			baseURL+AgentServiceCreateAgentJoinTokenProcedure,
 			connect.WithSchema(agentServiceMethods.ByName("CreateAgentJoinToken")),
-			connect.WithClientOptions(opts...),
-		),
-		updateTrustZoneBundle: connect.NewClient[v1alpha1.UpdateTrustZoneBundleRequest, v1alpha1.UpdateTrustZoneBundleResponse](
-			httpClient,
-			baseURL+AgentServiceUpdateTrustZoneBundleProcedure,
-			connect.WithSchema(agentServiceMethods.ByName("UpdateTrustZoneBundle")),
 			connect.WithClientOptions(opts...),
 		),
 		updateAgentStatus: connect.NewClient[v1alpha1.UpdateAgentStatusRequest, v1alpha1.UpdateAgentStatusResponse](
@@ -140,7 +130,6 @@ func NewAgentServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 // agentServiceClient implements AgentServiceClient.
 type agentServiceClient struct {
 	createAgentJoinToken       *connect.Client[v1alpha1.CreateAgentJoinTokenRequest, v1alpha1.CreateAgentJoinTokenResponse]
-	updateTrustZoneBundle      *connect.Client[v1alpha1.UpdateTrustZoneBundleRequest, v1alpha1.UpdateTrustZoneBundleResponse]
 	updateAgentStatus          *connect.Client[v1alpha1.UpdateAgentStatusRequest, v1alpha1.UpdateAgentStatusResponse]
 	registerFederatedService   *connect.Client[v1alpha1.RegisterFederatedServiceRequest, v1alpha1.RegisterFederatedServiceResponse]
 	deregisterFederatedService *connect.Client[v1alpha1.DeregisterFederatedServiceRequest, v1alpha1.DeregisterFederatedServiceResponse]
@@ -153,12 +142,6 @@ type agentServiceClient struct {
 // proto.connect.agent_service.v1alpha1.AgentService.CreateAgentJoinToken.
 func (c *agentServiceClient) CreateAgentJoinToken(ctx context.Context, req *connect.Request[v1alpha1.CreateAgentJoinTokenRequest]) (*connect.Response[v1alpha1.CreateAgentJoinTokenResponse], error) {
 	return c.createAgentJoinToken.CallUnary(ctx, req)
-}
-
-// UpdateTrustZoneBundle calls
-// proto.connect.agent_service.v1alpha1.AgentService.UpdateTrustZoneBundle.
-func (c *agentServiceClient) UpdateTrustZoneBundle(ctx context.Context, req *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error) {
-	return c.updateTrustZoneBundle.CallUnary(ctx, req)
 }
 
 // UpdateAgentStatus calls proto.connect.agent_service.v1alpha1.AgentService.UpdateAgentStatus.
@@ -199,7 +182,6 @@ func (c *agentServiceClient) ListFederatedServices(ctx context.Context, req *con
 // service.
 type AgentServiceHandler interface {
 	CreateAgentJoinToken(context.Context, *connect.Request[v1alpha1.CreateAgentJoinTokenRequest]) (*connect.Response[v1alpha1.CreateAgentJoinTokenResponse], error)
-	UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error)
 	UpdateAgentStatus(context.Context, *connect.Request[v1alpha1.UpdateAgentStatusRequest]) (*connect.Response[v1alpha1.UpdateAgentStatusResponse], error)
 	RegisterFederatedService(context.Context, *connect.Request[v1alpha1.RegisterFederatedServiceRequest]) (*connect.Response[v1alpha1.RegisterFederatedServiceResponse], error)
 	DeregisterFederatedService(context.Context, *connect.Request[v1alpha1.DeregisterFederatedServiceRequest]) (*connect.Response[v1alpha1.DeregisterFederatedServiceResponse], error)
@@ -219,12 +201,6 @@ func NewAgentServiceHandler(svc AgentServiceHandler, opts ...connect.HandlerOpti
 		AgentServiceCreateAgentJoinTokenProcedure,
 		svc.CreateAgentJoinToken,
 		connect.WithSchema(agentServiceMethods.ByName("CreateAgentJoinToken")),
-		connect.WithHandlerOptions(opts...),
-	)
-	agentServiceUpdateTrustZoneBundleHandler := connect.NewUnaryHandler(
-		AgentServiceUpdateTrustZoneBundleProcedure,
-		svc.UpdateTrustZoneBundle,
-		connect.WithSchema(agentServiceMethods.ByName("UpdateTrustZoneBundle")),
 		connect.WithHandlerOptions(opts...),
 	)
 	agentServiceUpdateAgentStatusHandler := connect.NewUnaryHandler(
@@ -267,8 +243,6 @@ func NewAgentServiceHandler(svc AgentServiceHandler, opts ...connect.HandlerOpti
 		switch r.URL.Path {
 		case AgentServiceCreateAgentJoinTokenProcedure:
 			agentServiceCreateAgentJoinTokenHandler.ServeHTTP(w, r)
-		case AgentServiceUpdateTrustZoneBundleProcedure:
-			agentServiceUpdateTrustZoneBundleHandler.ServeHTTP(w, r)
 		case AgentServiceUpdateAgentStatusProcedure:
 			agentServiceUpdateAgentStatusHandler.ServeHTTP(w, r)
 		case AgentServiceRegisterFederatedServiceProcedure:
@@ -292,10 +266,6 @@ type UnimplementedAgentServiceHandler struct{}
 
 func (UnimplementedAgentServiceHandler) CreateAgentJoinToken(context.Context, *connect.Request[v1alpha1.CreateAgentJoinTokenRequest]) (*connect.Response[v1alpha1.CreateAgentJoinTokenResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.agent_service.v1alpha1.AgentService.CreateAgentJoinToken is not implemented"))
-}
-
-func (UnimplementedAgentServiceHandler) UpdateTrustZoneBundle(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneBundleRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneBundleResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.agent_service.v1alpha1.AgentService.UpdateTrustZoneBundle is not implemented"))
 }
 
 func (UnimplementedAgentServiceHandler) UpdateAgentStatus(context.Context, *connect.Request[v1alpha1.UpdateAgentStatusRequest]) (*connect.Response[v1alpha1.UpdateAgentStatusResponse], error) {

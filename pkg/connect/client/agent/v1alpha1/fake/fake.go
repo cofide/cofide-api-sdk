@@ -11,7 +11,6 @@ import (
 	agentv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/agent/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/google/uuid"
-	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
@@ -46,36 +45,6 @@ func (c *fakeAgentClient) CreateAgentJoinToken(ctx context.Context, clusterID, t
 	token := uuid.New().String()
 	c.fake.AgentJoinTokens[trustZoneID][clusterID] = token
 	return token, nil
-}
-
-func (c *fakeAgentClient) UpdateTrustZoneBundle(ctx context.Context, bundle *types.Bundle) error {
-	c.fake.Mu.Lock()
-	defer c.fake.Mu.Unlock()
-
-	agentID, err := getAgentIDFromMetadata(ctx)
-	if err != nil {
-		return err
-	}
-
-	if err := c.fake.ValidateAgent(agentID); err != nil {
-		return err
-	}
-
-	agent := c.fake.Agents[agentID]
-	c.fake.TrustZoneBundles[agent.GetTrustZoneId()] = cloneBundle(bundle)
-	return nil
-}
-
-func (c *fakeAgentClient) UpdateManagedTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error {
-	c.fake.Mu.Lock()
-	defer c.fake.Mu.Unlock()
-
-	if err := c.fake.ValidateTrustZone(trustZoneID); err != nil {
-		return err
-	}
-
-	c.fake.TrustZoneBundles[trustZoneID] = cloneBundle(bundle)
-	return nil
 }
 
 func (c *fakeAgentClient) UpdateAgentStatus(ctx context.Context, agentStatus *agentpb.AgentStatus) error {
@@ -151,10 +120,6 @@ func (c *fakeAgentClient) ListFederatedServices(ctx context.Context) ([]*federat
 		fss = append(fss, cloneFS(fs))
 	}
 	return fss, nil
-}
-
-func cloneBundle(bundle *types.Bundle) *types.Bundle {
-	return proto.Clone(bundle).(*types.Bundle)
 }
 
 func cloneStatus(status *agentpb.AgentStatus) *agentpb.AgentStatus {
