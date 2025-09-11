@@ -11,7 +11,6 @@ import (
 	agentsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/agent_service/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
-	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -39,12 +38,6 @@ func TestAgentClient_Unimplemented(t *testing.T) {
 	token, err := client.CreateAgentJoinToken(ctx, "", "")
 	test.RequireUnimplemented(t, err)
 	assert.Empty(t, token)
-
-	err = client.UpdateTrustZoneBundle(ctx, nil)
-	test.RequireUnimplemented(t, err)
-
-	err = client.UpdateManagedTrustZoneBundle(ctx, "", nil)
-	test.RequireUnimplemented(t, err)
 
 	err = client.UpdateAgentStatus(ctx, nil)
 	test.RequireUnimplemented(t, err)
@@ -81,13 +74,6 @@ func TestAgentClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, fakeAgentToken, token)
 
-	fakeBundle := &types.Bundle{TrustDomain: fakeTrustDomain}
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.NoError(t, err)
-
-	err = client.UpdateManagedTrustZoneBundle(ctx, fakeTrustZoneID, fakeBundle)
-	require.NoError(t, err)
-
 	status := &agentpb.AgentStatus{Status: agentpb.AgentStatusCode_AGENT_STATUS_CODE_RUNNING.Enum()}
 	err = client.UpdateAgentStatus(ctx, status)
 	require.NoError(t, err)
@@ -120,14 +106,6 @@ func (f *fakeAgentService) CreateAgentJoinToken(ctx context.Context, req *agents
 	assert.Equal(f.t, fakeClusterID, req.GetClusterId())
 	assert.Equal(f.t, fakeTrustZoneID, req.GetTrustZoneId())
 	return &agentsvcpb.CreateAgentJoinTokenResponse{AgentToken: test.PtrOf(fakeAgentToken)}, nil
-}
-
-func (f *fakeAgentService) UpdateTrustZoneBundle(ctx context.Context, req *agentsvcpb.UpdateTrustZoneBundleRequest) (*agentsvcpb.UpdateTrustZoneBundleResponse, error) {
-	assert.Equal(f.t, fakeTrustDomain, req.Bundle.TrustDomain)
-	if req.TrustZoneId != "" {
-		assert.Equal(f.t, fakeTrustZoneID, req.GetTrustZoneId())
-	}
-	return &agentsvcpb.UpdateTrustZoneBundleResponse{}, nil
 }
 
 func (f *fakeAgentService) UpdateAgentStatus(ctx context.Context, req *agentsvcpb.UpdateAgentStatusRequest) (*agentsvcpb.UpdateAgentStatusResponse, error) {

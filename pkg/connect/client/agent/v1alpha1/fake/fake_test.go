@@ -36,50 +36,6 @@ func Test_fakeAgentClient_CreateAgentJoinToken(t *testing.T) {
 	assert.Equal(t, fake.AgentJoinTokens[test.FakeTrustZoneID][test.FakeClusterID], token)
 }
 
-func Test_fakeAgentClient_UpdateTrustZoneBundle(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
-	ctx := context.Background()
-
-	fakeBundle := test.FakeBundle()
-
-	err := client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.Error(t, err)
-
-	md := metadata.MD{"agent-id": []string{test.FakeAgentID}}
-	ctx = metadata.NewIncomingContext(ctx, md)
-
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.Error(t, err)
-
-	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
-
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.Error(t, err)
-
-	fake.Agents[test.FakeAgentID] = test.FakeAgent()
-
-	err = client.UpdateTrustZoneBundle(ctx, fakeBundle)
-	require.NoError(t, err)
-	assert.Equal(t, fake.TrustZoneBundles[test.FakeTrustZoneID], fakeBundle)
-}
-
-func Test_fakeAgentClient_UpdateManagedTrustZoneBundle(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
-	ctx := context.Background()
-
-	fakeBundle := test.FakeBundle()
-	err := client.UpdateManagedTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
-	require.Error(t, err)
-
-	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
-
-	err = client.UpdateManagedTrustZoneBundle(ctx, test.FakeTrustZoneID, fakeBundle)
-	require.NoError(t, err)
-	assert.Equal(t, fake.TrustZoneBundles[test.FakeTrustZoneID], fakeBundle)
-}
-
 func Test_fakeAgentClient_UpdateAgentStatus(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)

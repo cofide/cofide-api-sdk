@@ -7,14 +7,11 @@ package proto.connect.agent_service.v1alpha1;
 
 import "proto/agent/v1alpha1/agent.proto";
 import "proto/federated_service/v1alpha1/federated_service.proto";
-import "proto/spire/api/types/bundle.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/agent_service/v1alpha1";
 
 service AgentService {
   rpc CreateAgentJoinToken(CreateAgentJoinTokenRequest) returns (CreateAgentJoinTokenResponse) {}
-
-  rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse) {}
   rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse) {}
 
   rpc RegisterFederatedService(RegisterFederatedServiceRequest) returns (RegisterFederatedServiceResponse) {}
@@ -32,13 +29,6 @@ message CreateAgentJoinTokenRequest {
 message CreateAgentJoinTokenResponse {
   optional string agent_token = 1;
 }
-
-message UpdateTrustZoneBundleRequest {
-  spire.api.types.Bundle bundle = 1;
-  string trust_zone_id = 2;
-}
-
-message UpdateTrustZoneBundleResponse {}
 
 message UpdateAgentStatusRequest {
   proto.agent.v1alpha1.AgentStatus status = 1;

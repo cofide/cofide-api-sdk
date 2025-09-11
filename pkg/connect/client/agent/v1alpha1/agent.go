@@ -9,15 +9,12 @@ import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	agentsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/agent_service/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
-	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc"
 )
 
 // AgentClient is an interface for a gRPC client for the v1alpha1 version of the Connect AgentService.
 type AgentClient interface {
 	CreateAgentJoinToken(ctx context.Context, clusterID, trustZoneID string) (string, error)
-	UpdateTrustZoneBundle(ctx context.Context, bundle *types.Bundle) error
-	UpdateManagedTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error
 	UpdateAgentStatus(ctx context.Context, status *agentpb.AgentStatus) error
 	// DEPRECATED: Federated services will move to a separate client.
 	RegisterFederatedService(ctx context.Context, fs *federatedservicepb.FederatedService) (string, error)
@@ -47,29 +44,6 @@ func (c *agentClient) CreateAgentJoinToken(ctx context.Context, clusterID, trust
 		return "", err
 	}
 	return resp.GetAgentToken(), nil
-}
-
-func (c *agentClient) UpdateTrustZoneBundle(ctx context.Context, bundle *types.Bundle) error {
-	trustZoneBundleUpdateRequest := &agentsvcpb.UpdateTrustZoneBundleRequest{
-		Bundle: bundle,
-	}
-	return c.doUpdateTrustZoneBundle(ctx, trustZoneBundleUpdateRequest)
-}
-
-func (c *agentClient) UpdateManagedTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error {
-	trustZoneBundleUpdateRequest := &agentsvcpb.UpdateTrustZoneBundleRequest{
-		Bundle:      bundle,
-		TrustZoneId: trustZoneID,
-	}
-	return c.doUpdateTrustZoneBundle(ctx, trustZoneBundleUpdateRequest)
-}
-
-func (c *agentClient) doUpdateTrustZoneBundle(ctx context.Context, req *agentsvcpb.UpdateTrustZoneBundleRequest) error {
-	_, err := c.client.UpdateTrustZoneBundle(ctx, req)
-	if err != nil {
-		return err
-	}
-	return nil
 }
 
 func (c *agentClient) UpdateAgentStatus(ctx context.Context, status *agentpb.AgentStatus) error {
