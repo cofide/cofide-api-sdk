@@ -18,6 +18,7 @@ message FederatedService {
   uint32 port = 9;
   repeated GatewayEntry gateway_entries = 10;
   repeated GatewaySpec gateway_specs = 11;
+  TLSMode tls_mode = 12;
 }
 
 message GatewayEntry {
@@ -32,4 +33,10 @@ message GatewaySpec {
   string type = 2;
   string ip = 3;
   int32 port = 4;
+}
+
+enum TLSMode {
+  TLS_MODE_UNSPECIFIED = 0;
+  TLS_MODE_MTLS = 1;
+  TLS_MODE_ISTIO_MTLS = 2;
 }
