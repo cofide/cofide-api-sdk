@@ -5,15 +5,15 @@
 // @generated from file proto/federated_service/v1alpha1/federated_service.proto (package proto.federated_service.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/federated_service/v1alpha1/federated_service.proto.
  */
 export const file_proto_federated_service_v1alpha1_federated_service: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMS9mZWRlcmF0ZWRfc2VydmljZS5wcm90bxIgcHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEiwAMKEEZlZGVyYXRlZFNlcnZpY2USCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSFAoMY2x1c3Rlcl9uYW1lGAQgASgJEhQKDHRydXN0X2RvbWFpbhgFIAEoCRJfCg93b3JrbG9hZF9sYWJlbHMYByADKAsyRi5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5GZWRlcmF0ZWRTZXJ2aWNlLldvcmtsb2FkTGFiZWxzRW50cnkSHgoWZXhwb3J0ZWRfdHJ1c3RfZG9tYWlucxgIIAMoCRIMCgRwb3J0GAkgASgNEkcKD2dhdGV3YXlfZW50cmllcxgKIAMoCzIuLnByb3RvLmZlZGVyYXRlZF9zZXJ2aWNlLnYxYWxwaGExLkdhdGV3YXlFbnRyeRJECg1nYXRld2F5X3NwZWNzGAsgAygLMi0ucHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEuR2F0ZXdheVNwZWMaNQoTV29ya2xvYWRMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIkgKDEdhdGV3YXlFbnRyeRIQCghob3N0bmFtZRgBIAEoCRIMCgR0eXBlGAIgASgJEgoKAmlwGAMgASgJEgwKBHBvcnQYBCABKAUiRwoLR2F0ZXdheVNwZWMSEAoIaG9zdG5hbWUYASABKAkSDAoEdHlwZRgCIAEoCRIKCgJpcBgDIAEoCRIMCgRwb3J0GAQgASgFQkpaSGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMWIGcHJvdG8z");
+  fileDesc("Cjhwcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMS9mZWRlcmF0ZWRfc2VydmljZS5wcm90bxIgcHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEi/QMKEEZlZGVyYXRlZFNlcnZpY2USCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSFAoMY2x1c3Rlcl9uYW1lGAQgASgJEhQKDHRydXN0X2RvbWFpbhgFIAEoCRJfCg93b3JrbG9hZF9sYWJlbHMYByADKAsyRi5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5GZWRlcmF0ZWRTZXJ2aWNlLldvcmtsb2FkTGFiZWxzRW50cnkSHgoWZXhwb3J0ZWRfdHJ1c3RfZG9tYWlucxgIIAMoCRIMCgRwb3J0GAkgASgNEkcKD2dhdGV3YXlfZW50cmllcxgKIAMoCzIuLnByb3RvLmZlZGVyYXRlZF9zZXJ2aWNlLnYxYWxwaGExLkdhdGV3YXlFbnRyeRJECg1nYXRld2F5X3NwZWNzGAsgAygLMi0ucHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEuR2F0ZXdheVNwZWMSOwoIdGxzX21vZGUYDCABKA4yKS5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5UTFNNb2RlGjUKE1dvcmtsb2FkTGFiZWxzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASJICgxHYXRld2F5RW50cnkSEAoIaG9zdG5hbWUYASABKAkSDAoEdHlwZRgCIAEoCRIKCgJpcBgDIAEoCRIMCgRwb3J0GAQgASgFIkcKC0dhdGV3YXlTcGVjEhAKCGhvc3RuYW1lGAEgASgJEgwKBHR5cGUYAiABKAkSCgoCaXAYAyABKAkSDAoEcG9ydBgEIAEoBSpPCgdUTFNNb2RlEhgKFFRMU19NT0RFX1VOU1BFQ0lGSUVEEAASEQoNVExTX01PREVfTVRMUxABEhcKE1RMU19NT0RFX0lTVElPX01UTFMQAkJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vZmVkZXJhdGVkX3NlcnZpY2UvdjFhbHBoYTFiBnByb3RvMw");
 
 /**
  * @generated from message proto.federated_service.v1alpha1.FederatedService
@@ -68,6 +68,11 @@ export type FederatedService = Message<"proto.federated_service.v1alpha1.Federat
    * @generated from field: repeated proto.federated_service.v1alpha1.GatewaySpec gateway_specs = 11;
    */
   gatewaySpecs: GatewaySpec[];
+
+  /**
+   * @generated from field: proto.federated_service.v1alpha1.TLSMode tls_mode = 12;
+   */
+  tlsMode: TLSMode;
 };
 
 /**
@@ -140,4 +145,30 @@ export type GatewaySpec = Message<"proto.federated_service.v1alpha1.GatewaySpec"
  */
 export const GatewaySpecSchema: GenMessage<GatewaySpec> = /*@__PURE__*/
   messageDesc(file_proto_federated_service_v1alpha1_federated_service, 2);
+
+/**
+ * @generated from enum proto.federated_service.v1alpha1.TLSMode
+ */
+export enum TLSMode {
+  /**
+   * @generated from enum value: TLS_MODE_UNSPECIFIED = 0;
+   */
+  TLS_MODE_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: TLS_MODE_MTLS = 1;
+   */
+  TLS_MODE_MTLS = 1,
+
+  /**
+   * @generated from enum value: TLS_MODE_ISTIO_MTLS = 2;
+   */
+  TLS_MODE_ISTIO_MTLS = 2,
+}
+
+/**
+ * Describes the enum proto.federated_service.v1alpha1.TLSMode.
+ */
+export const TLSModeSchema: GenEnum<TLSMode> = /*@__PURE__*/
+  enumDesc(file_proto_federated_service_v1alpha1_federated_service, 0);
 
