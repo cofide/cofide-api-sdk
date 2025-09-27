@@ -22,6 +22,7 @@ message AttestationPolicy {
 message APKubernetes {
   optional APLabelSelector namespace_selector = 1;
   optional APLabelSelector pod_selector = 2;
+  optional string dns_name_templates = 3;
 }
 
 // This definition has been adapted from the LabelSelector message in Kubernetes.
