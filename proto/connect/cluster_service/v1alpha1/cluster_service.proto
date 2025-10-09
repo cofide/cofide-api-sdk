@@ -43,7 +43,7 @@ message ListClustersRequest {
   message Filter {
     optional string name = 1;
     optional string org_id = 2;
-    optional string trust_zone_id = 3;
+    repeated string trust_zone_id = 3;
   }
   optional Filter filter = 1;
 }
