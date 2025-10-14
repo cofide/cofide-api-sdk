@@ -1,6 +1,6 @@
 module github.com/cofide/cofide-api-sdk
 
-go 1.24.0
+go 1.24.9
 
 require (
 	connectrpc.com/connect v1.18.1
