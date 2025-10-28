@@ -24,6 +24,12 @@ message Selectors {
 
 /* Represents an attested SPIRE agent */
 message AttestedNode {
+  // Organisation ID
+  string org_id = 9;
+
+  // Trust zone ID
+  string trust_zone_id = 10;
+
   // Node SPIFFE ID
   string spiffe_id = 1;
 

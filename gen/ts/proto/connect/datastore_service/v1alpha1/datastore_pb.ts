@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/connect/datastore_service/v1alpha1/datastore.proto.
  */
 export const file_proto_connect_datastore_service_v1alpha1_datastore: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by9jb25uZWN0L2RhdGFzdG9yZV9zZXJ2aWNlL3YxYWxwaGExL2RhdGFzdG9yZS5wcm90bxIocHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMSInCghTZWxlY3RvchIMCgR0eXBlGAEgASgJEg0KBXZhbHVlGAIgASgJIlAKCVNlbGVjdG9ycxJDCgdlbnRyaWVzGAEgAygLMjIucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5TZWxlY3RvciKNAgoMQXR0ZXN0ZWROb2RlEhEKCXNwaWZmZV9pZBgBIAEoCRIdChVhdHRlc3RhdGlvbl9kYXRhX3R5cGUYAiABKAkSGgoSY2VydF9zZXJpYWxfbnVtYmVyGAMgASgJEhYKDmNlcnRfbm90X2FmdGVyGAQgASgDEh4KFm5ld19jZXJ0X3NlcmlhbF9udW1iZXIYBSABKAkSGgoSbmV3X2NlcnRfbm90X2FmdGVyGAYgASgDEkUKCXNlbGVjdG9ycxgHIAMoCzIyLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuU2VsZWN0b3ISFAoMY2FuX3JlYXR0ZXN0GAggASgIQlJaUGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb25uZWN0L2RhdGFzdG9yZV9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM");
+  fileDesc("Cjhwcm90by9jb25uZWN0L2RhdGFzdG9yZV9zZXJ2aWNlL3YxYWxwaGExL2RhdGFzdG9yZS5wcm90bxIocHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMSInCghTZWxlY3RvchIMCgR0eXBlGAEgASgJEg0KBXZhbHVlGAIgASgJIlAKCVNlbGVjdG9ycxJDCgdlbnRyaWVzGAEgAygLMjIucHJvdG8uY29ubmVjdC5kYXRhc3RvcmVfc2VydmljZS52MWFscGhhMS5TZWxlY3RvciK0AgoMQXR0ZXN0ZWROb2RlEg4KBm9yZ19pZBgJIAEoCRIVCg10cnVzdF96b25lX2lkGAogASgJEhEKCXNwaWZmZV9pZBgBIAEoCRIdChVhdHRlc3RhdGlvbl9kYXRhX3R5cGUYAiABKAkSGgoSY2VydF9zZXJpYWxfbnVtYmVyGAMgASgJEhYKDmNlcnRfbm90X2FmdGVyGAQgASgDEh4KFm5ld19jZXJ0X3NlcmlhbF9udW1iZXIYBSABKAkSGgoSbmV3X2NlcnRfbm90X2FmdGVyGAYgASgDEkUKCXNlbGVjdG9ycxgHIAMoCzIyLnByb3RvLmNvbm5lY3QuZGF0YXN0b3JlX3NlcnZpY2UudjFhbHBoYTEuU2VsZWN0b3ISFAoMY2FuX3JlYXR0ZXN0GAggASgIQlJaUGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb25uZWN0L2RhdGFzdG9yZV9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM");
 
 /**
  * * A type which describes the conditions under which a registration
@@ -71,6 +71,20 @@ export const SelectorsSchema: GenMessage<Selectors> = /*@__PURE__*/
  * @generated from message proto.connect.datastore_service.v1alpha1.AttestedNode
  */
 export type AttestedNode = Message<"proto.connect.datastore_service.v1alpha1.AttestedNode"> & {
+  /**
+   * Organisation ID
+   *
+   * @generated from field: string org_id = 9;
+   */
+  orgId: string;
+
+  /**
+   * Trust zone ID
+   *
+   * @generated from field: string trust_zone_id = 10;
+   */
+  trustZoneId: string;
+
   /**
    * Node SPIFFE ID
    *
