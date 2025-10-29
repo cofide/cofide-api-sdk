@@ -11,6 +11,7 @@ import (
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	federationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
+	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
@@ -21,6 +22,7 @@ import (
 // FakeConnect implements the state for a fake Connect service.
 type FakeConnect struct {
 	Mu                  sync.Mutex
+	Organizations       map[string]*organizationpb.Organization
 	TrustZones          map[string]*trustzonepb.TrustZone
 	TrustZoneBundles    map[string]*types.Bundle
 	Clusters            map[string]*clusterpb.Cluster
@@ -38,6 +40,7 @@ type FakeConnect struct {
 
 func New() *FakeConnect {
 	return &FakeConnect{
+		Organizations:       make(map[string]*organizationpb.Organization),
 		TrustZones:          make(map[string]*trustzonepb.TrustZone),
 		TrustZoneBundles:    make(map[string]*types.Bundle),
 		Clusters:            make(map[string]*clusterpb.Cluster),
@@ -52,6 +55,13 @@ func New() *FakeConnect {
 		Workloads:           make(map[string]*workloadpb.Workload),
 		Identities:          make(map[string]*identitypb.Identity),
 	}
+}
+
+func (f *FakeConnect) ValidateOrganization(organizationID string) error {
+	if _, ok := f.Organizations[organizationID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid organization")
+	}
+	return nil
 }
 
 func (f *FakeConnect) ValidateTrustZone(trustZoneID string) error {

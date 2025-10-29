@@ -11,6 +11,7 @@ import (
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
 	identityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1"
+	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
 
@@ -20,6 +21,7 @@ import (
 // ClientSet is an interface that provides methods for accessing individual
 // versioned clients for specific gRPC services in Cofide Connect API.
 type ClientSet interface {
+	OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient
 	TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient
 	ClusterV1Alpha1() clusterv1alpha1.ClusterClient
 	AgentV1Alpha1() agentv1alpha1.AgentClient
@@ -32,6 +34,7 @@ type ClientSet interface {
 }
 
 type clientSet struct {
+	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
 	agentV1Alpha1             agentv1alpha1.AgentClient
@@ -46,6 +49,7 @@ type clientSet struct {
 // New instantiates a new ClientSet for communication with a Connect API.
 func New(conn grpc.ClientConnInterface) ClientSet {
 	return &clientSet{
+		organizationV1Alpha1:      organizationv1alpha1.New(conn),
 		trustZoneV1Alpha1:         trustzonev1alpha1.New(conn),
 		clusterV1Alpha1:           clusterv1alpha1.New(conn),
 		agentV1Alpha1:             agentv1alpha1.New(conn),
@@ -56,6 +60,10 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		workloadV1Alpha1:          workloadv1alpha1.New(conn),
 		identityV1Alpha1:          identityv1alpha1.New(conn),
 	}
+}
+
+func (c *clientSet) OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient {
+	return c.organizationV1Alpha1
 }
 
 func (c *clientSet) TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient {
