@@ -66,7 +66,7 @@ type fakeOrganizationService struct {
 }
 
 func (f *fakeOrganizationService) GetOrganization(ctx context.Context, req *organizationsvcpb.GetOrganizationRequest) (*organizationsvcpb.GetOrganizationResponse, error) {
-	assert.Equal(f.t, fakeOrganizationID, req.GetOrganizationId())
+	assert.Equal(f.t, fakeOrganizationID, req.GetOrgId())
 	return &organizationsvcpb.GetOrganizationResponse{Organization: fakeOrganization()}, nil
 }
 
@@ -78,7 +78,7 @@ func (f *fakeOrganizationService) ListOrganizations(ctx context.Context, req *or
 
 func fakeOrganization() *organizationpb.Organization {
 	return &organizationpb.Organization{
-		Id:   test.PtrOf(fakeOrganizationID),
+		Id:   fakeOrganizationID,
 		Name: fakeOrganizationName,
 	}
 }

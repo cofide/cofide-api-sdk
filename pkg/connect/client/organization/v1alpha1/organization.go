@@ -30,7 +30,7 @@ func New(conn grpc.ClientConnInterface) OrganizationClient {
 
 func (c *organizationClient) GetOrganization(ctx context.Context, organizationID string) (*organizationpb.Organization, error) {
 	resp, err := c.client.GetOrganization(ctx, &organizationsvcpb.GetOrganizationRequest{
-		OrganizationId: &organizationID,
+		OrgId: &organizationID,
 	})
 	if err != nil {
 		return nil, err

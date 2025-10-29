@@ -52,7 +52,7 @@ const (
 
 func FakeOrganization() *organizationpb.Organization {
 	return &organizationpb.Organization{
-		Id:   PtrOf(FakeOrganizationID),
+		Id:   FakeOrganizationID,
 		Name: FakeOrganizationName,
 	}
 }

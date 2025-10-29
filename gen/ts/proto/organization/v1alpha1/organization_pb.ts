@@ -13,16 +13,16 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/organization/v1alpha1/organization.proto.
  */
 export const file_proto_organization_v1alpha1_organization: GenFile = /*@__PURE__*/
-  fileDesc("Ci5wcm90by9vcmdhbml6YXRpb24vdjFhbHBoYTEvb3JnYW5pemF0aW9uLnByb3RvEhtwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEiNAoMT3JnYW5pemF0aW9uEg8KAmlkGAEgASgJSACIAQESDAoEbmFtZRgCIAEoCUIFCgNfaWRCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL29yZ2FuaXphdGlvbi92MWFscGhhMWIGcHJvdG8z");
+  fileDesc("Ci5wcm90by9vcmdhbml6YXRpb24vdjFhbHBoYTEvb3JnYW5pemF0aW9uLnByb3RvEhtwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEiKAoMT3JnYW5pemF0aW9uEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAlCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL29yZ2FuaXphdGlvbi92MWFscGhhMWIGcHJvdG8z");
 
 /**
  * @generated from message proto.organization.v1alpha1.Organization
  */
 export type Organization = Message<"proto.organization.v1alpha1.Organization"> & {
   /**
-   * @generated from field: optional string id = 1;
+   * @generated from field: string id = 1;
    */
-  id?: string;
+  id: string;
 
   /**
    * @generated from field: string name = 2;

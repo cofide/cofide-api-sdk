@@ -15,7 +15,7 @@ service OrganizationService {
 }
 
 message GetOrganizationRequest {
-  optional string organization_id = 1;
+  optional string org_id = 1;
 }
 
 message GetOrganizationResponse {
