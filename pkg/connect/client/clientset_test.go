@@ -12,6 +12,7 @@ import (
 func TestClientSet(t *testing.T) {
 	client := New(nil)
 	require.NotNil(t, client)
+	require.NotNil(t, client.OrganizationV1Alpha1())
 	require.NotNil(t, client.TrustZoneV1Alpha1())
 	require.NotNil(t, client.ClusterV1Alpha1())
 	require.NotNil(t, client.AgentV1Alpha1())

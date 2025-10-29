@@ -10,12 +10,16 @@ import (
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
+	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 )
 
 const (
+	FakeOrganizationID   = "fake-org-id"
+	FakeOrganizationName = "fake-org-name"
+
 	FakeTrustZoneID   = "fake-tz-id"
 	FakeTrustZoneName = "fake-tz-name"
 	FakeTrustDomain   = "fake.trust.domain"
@@ -45,6 +49,13 @@ const (
 	FakeSelectorType  = "fake-selector-type"
 	FakeSelectorValue = "fake-selector-value"
 )
+
+func FakeOrganization() *organizationpb.Organization {
+	return &organizationpb.Organization{
+		Id:   FakeOrganizationID,
+		Name: FakeOrganizationName,
+	}
+}
 
 func FakeTrustZone() *trustzonepb.TrustZone {
 	return &trustzonepb.TrustZone{
