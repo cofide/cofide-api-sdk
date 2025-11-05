@@ -1,0 +1,75 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.role_binding.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1";
+
+message RoleBinding {
+  string id = 1;
+  string role_id = 2;
+  oneof principal {
+    User user = 3;
+  }
+  Resource resource = 4;
+}
+
+message User {
+  ClaimReq claim_req = 1;
+}
+
+message Resource {
+  ResourceType type = 1;
+  string id = 2;
+}
+
+message ClaimReq {
+  oneof condition {
+    StringEqualsOp string_equals_op = 1;
+    StringInOp string_in_op = 2;
+    ContainsOp contains_op = 3;
+    AndOp and_op = 4;
+    OrOp or_op = 5;
+  }
+}
+
+message AndOp {
+  repeated ClaimReq conditions = 1;
+}
+
+message OrOp {
+  repeated ClaimReq conditions = 1;
+}
+
+message StringEqualsOp {
+  string claim = 1;
+  string value = 2;
+}
+
+message StringInOp {
+  string claim = 1;
+  repeated string values = 2;
+}
+
+message ContainsOp {
+  string claim = 1;
+  string value = 2;
+}
+
+enum ResourceType {
+  RESOURCE_TYPE_UNSPECIFIED = 0;
+  RESOURCE_TYPE_AP_BINDING = 1;
+  RESOURCE_TYPE_ATTESTATION_POLICY = 2;
+  RESOURCE_TYPE_CLUSTER = 3;
+  RESOURCE_TYPE_FEDERATED_SERVICE = 4;
+  RESOURCE_TYPE_FEDERATION = 5;
+  RESOURCE_TYPE_IDENTITY = 6;
+  RESOURCE_TYPE_ATTESTED_NODE = 7;
+  RESOURCE_TYPE_NODE_SELECTOR = 8;
+  RESOURCE_TYPE_ORGANIZATION = 9;
+  RESOURCE_TYPE_SYSTEM = 10;
+  RESOURCE_TYPE_TRUST_ZONE = 11;
+  RESOURCE_TYPE_WORKLOAD = 12;
+}

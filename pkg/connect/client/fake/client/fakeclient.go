@@ -22,6 +22,8 @@ import (
 	fakeidentityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1/fake"
 	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
 	fakeorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1/fake"
+	rolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1"
+	fakerolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1/fake"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	faketrustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1/fake"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
@@ -39,6 +41,7 @@ type fakeClientSet struct {
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
 	identityV1Alpha1          identityv1alpha1.IdentityClient
+	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
 }
 
 // New instantiates a new ClientSet that fakes communication with a Connect API.
@@ -54,6 +57,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		datastoreV1Alpha1:         fakedatastorev1alpha1.New(fake),
 		workloadV1Alpha1:          fakeworkloadv1alpha1.New(fake),
 		identityV1Alpha1:          fakeidentityv1alpha1.New(fake),
+		roleBindingV1Alpha1:       fakerolebindingv1alpha1.New(fake),
 	}
 }
 
@@ -95,4 +99,8 @@ func (c *fakeClientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 
 func (c *fakeClientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
 	return c.identityV1Alpha1
+}
+
+func (c *fakeClientSet) RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient {
+	return c.roleBindingV1Alpha1
 }

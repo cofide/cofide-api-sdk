@@ -1,0 +1,61 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.role_binding_service.v1alpha1;
+
+import "proto/role_binding/v1alpha1/role_binding.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/role_binding_service/v1alpha1";
+
+service RoleBindingService {
+  rpc CreateRoleBinding(CreateRoleBindingRequest) returns (CreateRoleBindingResponse) {}
+  rpc DestroyRoleBinding(DestroyRoleBindingRequest) returns (DestroyRoleBindingResponse) {}
+  rpc GetRoleBinding(GetRoleBindingRequest) returns (GetRoleBindingResponse) {}
+  rpc ListRoleBindings(ListRoleBindingsRequest) returns (ListRoleBindingsResponse) {}
+  rpc UpdateRoleBinding(UpdateRoleBindingRequest) returns (UpdateRoleBindingResponse) {}
+}
+
+message CreateRoleBindingRequest {
+  proto.role_binding.v1alpha1.RoleBinding role_binding = 1;
+}
+
+message CreateRoleBindingResponse {
+  proto.role_binding.v1alpha1.RoleBinding role_binding = 1;
+}
+
+message DestroyRoleBindingRequest {
+  string role_binding_id = 1;
+}
+
+message DestroyRoleBindingResponse {}
+
+message GetRoleBindingRequest {
+  string role_binding_id = 1;
+}
+
+message GetRoleBindingResponse {
+  optional proto.role_binding.v1alpha1.RoleBinding role_binding = 1;
+}
+
+message ListRoleBindingsRequest {
+  message Filter {
+    optional string role_id = 1;
+    optional proto.role_binding.v1alpha1.ResourceType resource_type = 2;
+    optional string resource_id = 3;
+  }
+  optional Filter filter = 1;
+}
+
+message ListRoleBindingsResponse {
+  repeated proto.role_binding.v1alpha1.RoleBinding role_bindings = 1;
+}
+
+message UpdateRoleBindingRequest {
+  proto.role_binding.v1alpha1.RoleBinding role_binding = 1;
+}
+
+message UpdateRoleBindingResponse {
+  proto.role_binding.v1alpha1.RoleBinding role_binding = 1;
+}
