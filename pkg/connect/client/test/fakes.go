@@ -52,8 +52,7 @@ const (
 
 	FakeRoleBindingID                            = "fake-rb-id"
 	FakeRoleID                                   = "fake-role-id"
-	FakeClaimName                                = "fake-claim-name"
-	FakeClaimValue                               = "fake-claim-value"
+	FakeUserID                                   = "fake-user-id"
 	FakeResourceID                               = FakeAPBindingID
 	FakeResourceType  rolebindingpb.ResourceType = rolebindingpb.ResourceType_RESOURCE_TYPE_AP_BINDING
 )
@@ -163,14 +162,7 @@ func FakeRoleBinding() *rolebindingpb.RoleBinding {
 		RoleId: FakeRoleID,
 		Principal: &rolebindingpb.RoleBinding_User{
 			User: &rolebindingpb.User{
-				ClaimReq: &rolebindingpb.ClaimReq{
-					Condition: &rolebindingpb.ClaimReq_StringEqualsOp{
-						StringEqualsOp: &rolebindingpb.StringEqualsOp{
-							Claim: FakeClaimName,
-							Value: FakeClaimValue,
-						},
-					},
-				},
+				Id: FakeUserID,
 			},
 		},
 		Resource: &rolebindingpb.Resource{

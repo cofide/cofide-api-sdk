@@ -42,8 +42,10 @@ message GetRoleBindingResponse {
 message ListRoleBindingsRequest {
   message Filter {
     optional string role_id = 1;
-    optional proto.role_binding.v1alpha1.ResourceType resource_type = 2;
-    optional string resource_id = 3;
+    optional string user_id = 2;
+    optional string group_id = 3;
+    optional proto.role_binding.v1alpha1.ResourceType resource_type = 4;
+    optional string resource_id = 5;
   }
   optional Filter filter = 1;
 }

@@ -12,50 +12,24 @@ message RoleBinding {
   string role_id = 2;
   oneof principal {
     User user = 3;
+    Group group = 4;
   }
-  Resource resource = 4;
+  Resource resource = 5;
 }
 
 message User {
-  ClaimReq claim_req = 1;
+  // This is matched against the "sub" claim of the JWT presented by a user.
+  string id = 1;
+}
+
+message Group {
+  // For users this is matched against the list of values in the "groups" claim of the JWT presented by a user.
+  string id = 1;
 }
 
 message Resource {
   ResourceType type = 1;
   string id = 2;
-}
-
-message ClaimReq {
-  oneof condition {
-    StringEqualsOp string_equals_op = 1;
-    StringInOp string_in_op = 2;
-    ContainsOp contains_op = 3;
-    AndOp and_op = 4;
-    OrOp or_op = 5;
-  }
-}
-
-message AndOp {
-  repeated ClaimReq conditions = 1;
-}
-
-message OrOp {
-  repeated ClaimReq conditions = 1;
-}
-
-message StringEqualsOp {
-  string claim = 1;
-  string value = 2;
-}
-
-message StringInOp {
-  string claim = 1;
-  repeated string values = 2;
-}
-
-message ContainsOp {
-  string claim = 1;
-  string value = 2;
 }
 
 enum ResourceType {

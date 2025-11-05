@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/role_binding/v1alpha1/role_binding.proto.
  */
 export const file_proto_role_binding_v1alpha1_role_binding: GenFile = /*@__PURE__*/
-  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEiowEKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASNwoIcmVzb3VyY2UYBCABKAsyJS5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuUmVzb3VyY2VCCwoJcHJpbmNpcGFsIkAKBFVzZXISOAoJY2xhaW1fcmVxGAEgASgLMiUucHJvdG8ucm9sZV9iaW5kaW5nLnYxYWxwaGExLkNsYWltUmVxIk8KCFJlc291cmNlEjcKBHR5cGUYASABKA4yKS5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuUmVzb3VyY2VUeXBlEgoKAmlkGAIgASgJIssCCghDbGFpbVJlcRJHChBzdHJpbmdfZXF1YWxzX29wGAEgASgLMisucHJvdG8ucm9sZV9iaW5kaW5nLnYxYWxwaGExLlN0cmluZ0VxdWFsc09wSAASPwoMc3RyaW5nX2luX29wGAIgASgLMicucHJvdG8ucm9sZV9iaW5kaW5nLnYxYWxwaGExLlN0cmluZ0luT3BIABI+Cgtjb250YWluc19vcBgDIAEoCzInLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Db250YWluc09wSAASNAoGYW5kX29wGAQgASgLMiIucHJvdG8ucm9sZV9iaW5kaW5nLnYxYWxwaGExLkFuZE9wSAASMgoFb3Jfb3AYBSABKAsyIS5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuT3JPcEgAQgsKCWNvbmRpdGlvbiJCCgVBbmRPcBI5Cgpjb25kaXRpb25zGAEgAygLMiUucHJvdG8ucm9sZV9iaW5kaW5nLnYxYWxwaGExLkNsYWltUmVxIkEKBE9yT3ASOQoKY29uZGl0aW9ucxgBIAMoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5DbGFpbVJlcSIuCg5TdHJpbmdFcXVhbHNPcBINCgVjbGFpbRgBIAEoCRINCgV2YWx1ZRgCIAEoCSIrCgpTdHJpbmdJbk9wEg0KBWNsYWltGAEgASgJEg4KBnZhbHVlcxgCIAMoCSIqCgpDb250YWluc09wEg0KBWNsYWltGAEgASgJEg0KBXZhbHVlGAIgASgJKqEDCgxSZXNvdXJjZVR5cGUSHQoZUkVTT1VSQ0VfVFlQRV9VTlNQRUNJRklFRBAAEhwKGFJFU09VUkNFX1RZUEVfQVBfQklORElORxABEiQKIFJFU09VUkNFX1RZUEVfQVRURVNUQVRJT05fUE9MSUNZEAISGQoVUkVTT1VSQ0VfVFlQRV9DTFVTVEVSEAMSIwofUkVTT1VSQ0VfVFlQRV9GRURFUkFURURfU0VSVklDRRAEEhwKGFJFU09VUkNFX1RZUEVfRkVERVJBVElPThAFEhoKFlJFU09VUkNFX1RZUEVfSURFTlRJVFkQBhIfChtSRVNPVVJDRV9UWVBFX0FUVEVTVEVEX05PREUQBxIfChtSRVNPVVJDRV9UWVBFX05PREVfU0VMRUNUT1IQCBIeChpSRVNPVVJDRV9UWVBFX09SR0FOSVpBVElPThAJEhgKFFJFU09VUkNFX1RZUEVfU1lTVEVNEAoSHAoYUkVTT1VSQ0VfVFlQRV9UUlVTVF9aT05FEAsSGgoWUkVTT1VSQ0VfVFlQRV9XT1JLTE9BRBAMQkVaQ2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTFiBnByb3RvMw");
+  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEi2AEKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASMwoFZ3JvdXAYBCABKAsyIi5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuR3JvdXBIABI3CghyZXNvdXJjZRgFIAEoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5SZXNvdXJjZUILCglwcmluY2lwYWwiEgoEVXNlchIKCgJpZBgBIAEoCSITCgVHcm91cBIKCgJpZBgBIAEoCSJPCghSZXNvdXJjZRI3CgR0eXBlGAEgASgOMikucHJvdG8ucm9sZV9iaW5kaW5nLnYxYWxwaGExLlJlc291cmNlVHlwZRIKCgJpZBgCIAEoCSqhAwoMUmVzb3VyY2VUeXBlEh0KGVJFU09VUkNFX1RZUEVfVU5TUEVDSUZJRUQQABIcChhSRVNPVVJDRV9UWVBFX0FQX0JJTkRJTkcQARIkCiBSRVNPVVJDRV9UWVBFX0FUVEVTVEFUSU9OX1BPTElDWRACEhkKFVJFU09VUkNFX1RZUEVfQ0xVU1RFUhADEiMKH1JFU09VUkNFX1RZUEVfRkVERVJBVEVEX1NFUlZJQ0UQBBIcChhSRVNPVVJDRV9UWVBFX0ZFREVSQVRJT04QBRIaChZSRVNPVVJDRV9UWVBFX0lERU5USVRZEAYSHwobUkVTT1VSQ0VfVFlQRV9BVFRFU1RFRF9OT0RFEAcSHwobUkVTT1VSQ0VfVFlQRV9OT0RFX1NFTEVDVE9SEAgSHgoaUkVTT1VSQ0VfVFlQRV9PUkdBTklaQVRJT04QCRIYChRSRVNPVVJDRV9UWVBFX1NZU1RFTRAKEhwKGFJFU09VUkNFX1RZUEVfVFJVU1RfWk9ORRALEhoKFlJFU09VUkNFX1RZUEVfV09SS0xPQUQQDEJFWkNnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vcm9sZV9iaW5kaW5nL3YxYWxwaGExYgZwcm90bzM");
 
 /**
  * @generated from message proto.role_binding.v1alpha1.RoleBinding
@@ -38,10 +38,16 @@ export type RoleBinding = Message<"proto.role_binding.v1alpha1.RoleBinding"> & {
      */
     value: User;
     case: "user";
+  } | {
+    /**
+     * @generated from field: proto.role_binding.v1alpha1.Group group = 4;
+     */
+    value: Group;
+    case: "group";
   } | { case: undefined; value?: undefined };
 
   /**
-   * @generated from field: proto.role_binding.v1alpha1.Resource resource = 4;
+   * @generated from field: proto.role_binding.v1alpha1.Resource resource = 5;
    */
   resource?: Resource;
 };
@@ -58,9 +64,11 @@ export const RoleBindingSchema: GenMessage<RoleBinding> = /*@__PURE__*/
  */
 export type User = Message<"proto.role_binding.v1alpha1.User"> & {
   /**
-   * @generated from field: proto.role_binding.v1alpha1.ClaimReq claim_req = 1;
+   * This is matched against the "sub" claim of the JWT presented by a user.
+   *
+   * @generated from field: string id = 1;
    */
-  claimReq?: ClaimReq;
+  id: string;
 };
 
 /**
@@ -69,6 +77,25 @@ export type User = Message<"proto.role_binding.v1alpha1.User"> & {
  */
 export const UserSchema: GenMessage<User> = /*@__PURE__*/
   messageDesc(file_proto_role_binding_v1alpha1_role_binding, 1);
+
+/**
+ * @generated from message proto.role_binding.v1alpha1.Group
+ */
+export type Group = Message<"proto.role_binding.v1alpha1.Group"> & {
+  /**
+   * For users this is matched against the list of values in the "groups" claim of the JWT presented by a user.
+   *
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message proto.role_binding.v1alpha1.Group.
+ * Use `create(GroupSchema)` to create a new message.
+ */
+export const GroupSchema: GenMessage<Group> = /*@__PURE__*/
+  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 2);
 
 /**
  * @generated from message proto.role_binding.v1alpha1.Resource
@@ -90,154 +117,7 @@ export type Resource = Message<"proto.role_binding.v1alpha1.Resource"> & {
  * Use `create(ResourceSchema)` to create a new message.
  */
 export const ResourceSchema: GenMessage<Resource> = /*@__PURE__*/
-  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 2);
-
-/**
- * @generated from message proto.role_binding.v1alpha1.ClaimReq
- */
-export type ClaimReq = Message<"proto.role_binding.v1alpha1.ClaimReq"> & {
-  /**
-   * @generated from oneof proto.role_binding.v1alpha1.ClaimReq.condition
-   */
-  condition: {
-    /**
-     * @generated from field: proto.role_binding.v1alpha1.StringEqualsOp string_equals_op = 1;
-     */
-    value: StringEqualsOp;
-    case: "stringEqualsOp";
-  } | {
-    /**
-     * @generated from field: proto.role_binding.v1alpha1.StringInOp string_in_op = 2;
-     */
-    value: StringInOp;
-    case: "stringInOp";
-  } | {
-    /**
-     * @generated from field: proto.role_binding.v1alpha1.ContainsOp contains_op = 3;
-     */
-    value: ContainsOp;
-    case: "containsOp";
-  } | {
-    /**
-     * @generated from field: proto.role_binding.v1alpha1.AndOp and_op = 4;
-     */
-    value: AndOp;
-    case: "andOp";
-  } | {
-    /**
-     * @generated from field: proto.role_binding.v1alpha1.OrOp or_op = 5;
-     */
-    value: OrOp;
-    case: "orOp";
-  } | { case: undefined; value?: undefined };
-};
-
-/**
- * Describes the message proto.role_binding.v1alpha1.ClaimReq.
- * Use `create(ClaimReqSchema)` to create a new message.
- */
-export const ClaimReqSchema: GenMessage<ClaimReq> = /*@__PURE__*/
   messageDesc(file_proto_role_binding_v1alpha1_role_binding, 3);
-
-/**
- * @generated from message proto.role_binding.v1alpha1.AndOp
- */
-export type AndOp = Message<"proto.role_binding.v1alpha1.AndOp"> & {
-  /**
-   * @generated from field: repeated proto.role_binding.v1alpha1.ClaimReq conditions = 1;
-   */
-  conditions: ClaimReq[];
-};
-
-/**
- * Describes the message proto.role_binding.v1alpha1.AndOp.
- * Use `create(AndOpSchema)` to create a new message.
- */
-export const AndOpSchema: GenMessage<AndOp> = /*@__PURE__*/
-  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 4);
-
-/**
- * @generated from message proto.role_binding.v1alpha1.OrOp
- */
-export type OrOp = Message<"proto.role_binding.v1alpha1.OrOp"> & {
-  /**
-   * @generated from field: repeated proto.role_binding.v1alpha1.ClaimReq conditions = 1;
-   */
-  conditions: ClaimReq[];
-};
-
-/**
- * Describes the message proto.role_binding.v1alpha1.OrOp.
- * Use `create(OrOpSchema)` to create a new message.
- */
-export const OrOpSchema: GenMessage<OrOp> = /*@__PURE__*/
-  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 5);
-
-/**
- * @generated from message proto.role_binding.v1alpha1.StringEqualsOp
- */
-export type StringEqualsOp = Message<"proto.role_binding.v1alpha1.StringEqualsOp"> & {
-  /**
-   * @generated from field: string claim = 1;
-   */
-  claim: string;
-
-  /**
-   * @generated from field: string value = 2;
-   */
-  value: string;
-};
-
-/**
- * Describes the message proto.role_binding.v1alpha1.StringEqualsOp.
- * Use `create(StringEqualsOpSchema)` to create a new message.
- */
-export const StringEqualsOpSchema: GenMessage<StringEqualsOp> = /*@__PURE__*/
-  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 6);
-
-/**
- * @generated from message proto.role_binding.v1alpha1.StringInOp
- */
-export type StringInOp = Message<"proto.role_binding.v1alpha1.StringInOp"> & {
-  /**
-   * @generated from field: string claim = 1;
-   */
-  claim: string;
-
-  /**
-   * @generated from field: repeated string values = 2;
-   */
-  values: string[];
-};
-
-/**
- * Describes the message proto.role_binding.v1alpha1.StringInOp.
- * Use `create(StringInOpSchema)` to create a new message.
- */
-export const StringInOpSchema: GenMessage<StringInOp> = /*@__PURE__*/
-  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 7);
-
-/**
- * @generated from message proto.role_binding.v1alpha1.ContainsOp
- */
-export type ContainsOp = Message<"proto.role_binding.v1alpha1.ContainsOp"> & {
-  /**
-   * @generated from field: string claim = 1;
-   */
-  claim: string;
-
-  /**
-   * @generated from field: string value = 2;
-   */
-  value: string;
-};
-
-/**
- * Describes the message proto.role_binding.v1alpha1.ContainsOp.
- * Use `create(ContainsOpSchema)` to create a new message.
- */
-export const ContainsOpSchema: GenMessage<ContainsOp> = /*@__PURE__*/
-  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 8);
 
 /**
  * @generated from enum proto.role_binding.v1alpha1.ResourceType
