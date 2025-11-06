@@ -19,12 +19,12 @@ message RoleBinding {
 
 message User {
   // This is matched against the "sub" claim of the JWT presented by a user.
-  string id = 1;
+  string subject = 1;
 }
 
 message Group {
   // For users this is matched against the list of values in the "groups" claim of the JWT presented by a user.
-  string id = 1;
+  string claim_value = 1;
 }
 
 message Resource {

@@ -80,10 +80,10 @@ func roleBindingMatches(roleBinding *rolebindingpb.RoleBinding, filter *rolebind
 	if filter.RoleId != nil && roleBinding.GetRoleId() != *filter.RoleId {
 		return false
 	}
-	if filter.UserId != nil && roleBinding.GetUser().GetId() != *filter.UserId {
+	if filter.UserSubject != nil && roleBinding.GetUser().GetSubject() != *filter.UserSubject {
 		return false
 	}
-	if filter.GroupId != nil && roleBinding.GetGroup().GetId() != *filter.GroupId {
+	if filter.GroupClaimValue != nil && roleBinding.GetGroup().GetClaimValue() != *filter.GroupClaimValue {
 		return false
 	}
 	if filter.ResourceId != nil && roleBinding.GetResource().GetId() != *filter.ResourceId {

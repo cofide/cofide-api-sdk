@@ -17,7 +17,7 @@ import (
 const (
 	fakeRoleBindingID = "fake-rb-id"
 	fakeRoleID        = "fake-role-id"
-	fakeUserID        = "fake-user-id"
+	fakeUserSubject   = "fake-user-subject"
 	fakeResourceType  = rolebindingpb.ResourceType_RESOURCE_TYPE_AP_BINDING
 	fakeResourceID    = "fake-apb-id"
 )
@@ -121,7 +121,7 @@ func fakeRoleBinding() *rolebindingpb.RoleBinding {
 		RoleId: fakeRoleID,
 		Principal: &rolebindingpb.RoleBinding_User{
 			User: &rolebindingpb.User{
-				Id: fakeUserID,
+				Subject: fakeUserSubject,
 			},
 		},
 		Resource: &rolebindingpb.Resource{
