@@ -11,6 +11,7 @@ import (
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
+	rolebindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
@@ -48,6 +49,12 @@ const (
 	FakeParentID      = "spiffe://fake.trust.domain/spire/agent/k8s_psat/fake-cluster-name/fake-spire-agent"
 	FakeSelectorType  = "fake-selector-type"
 	FakeSelectorValue = "fake-selector-value"
+
+	FakeRoleBindingID                            = "fake-rb-id"
+	FakeRoleID                                   = "fake-role-id"
+	FakeUserSubject                              = "fake-user-subject"
+	FakeResourceID                               = FakeAPBindingID
+	FakeResourceType  rolebindingpb.ResourceType = rolebindingpb.ResourceType_RESOURCE_TYPE_AP_BINDING
 )
 
 func FakeOrganization() *organizationpb.Organization {
@@ -145,6 +152,22 @@ func FakeIdentity() *identitypb.Identity {
 					TrustZoneId: FakeTrustZoneID,
 				},
 			},
+		},
+	}
+}
+
+func FakeRoleBinding() *rolebindingpb.RoleBinding {
+	return &rolebindingpb.RoleBinding{
+		Id:     FakeRoleBindingID,
+		RoleId: FakeRoleID,
+		Principal: &rolebindingpb.RoleBinding_User{
+			User: &rolebindingpb.User{
+				Subject: FakeUserSubject,
+			},
+		},
+		Resource: &rolebindingpb.Resource{
+			Id:   FakeResourceID,
+			Type: FakeResourceType,
 		},
 	}
 }

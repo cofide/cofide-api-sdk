@@ -12,6 +12,7 @@ import (
 	federationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
+	rolebindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
@@ -36,6 +37,7 @@ type FakeConnect struct {
 	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
 	Workloads           map[string]*workloadpb.Workload
 	Identities          map[string]*identitypb.Identity
+	RoleBindings        map[string]*rolebindingpb.RoleBinding
 }
 
 func New() *FakeConnect {
@@ -54,6 +56,7 @@ func New() *FakeConnect {
 		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
 		Workloads:           make(map[string]*workloadpb.Workload),
 		Identities:          make(map[string]*identitypb.Identity),
+		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
 	}
 }
 
@@ -123,6 +126,13 @@ func (f *FakeConnect) ValidateWorkload(workloadID string) error {
 func (f *FakeConnect) ValidateIdentity(identityID string) error {
 	if _, ok := f.Identities[identityID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid identity")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateRoleBinding(roleBindingID string) error {
+	if _, ok := f.RoleBindings[roleBindingID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid role binding")
 	}
 	return nil
 }
