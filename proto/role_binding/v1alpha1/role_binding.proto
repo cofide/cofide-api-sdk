@@ -28,22 +28,17 @@ message Group {
 }
 
 message Resource {
-  ResourceType type = 1;
+  /**
+   * type can be one of the following:
+   * AttestationPolicyBinding
+   * AttestationPolicy
+   * Cluster
+   * FederatedService
+   * Federation
+   * Organization
+   * System
+   * TrustZone
+   */
+  string type = 1;
   string id = 2;
-}
-
-enum ResourceType {
-  RESOURCE_TYPE_UNSPECIFIED = 0;
-  RESOURCE_TYPE_AP_BINDING = 1;
-  RESOURCE_TYPE_ATTESTATION_POLICY = 2;
-  RESOURCE_TYPE_CLUSTER = 3;
-  RESOURCE_TYPE_FEDERATED_SERVICE = 4;
-  RESOURCE_TYPE_FEDERATION = 5;
-  RESOURCE_TYPE_IDENTITY = 6;
-  RESOURCE_TYPE_ATTESTED_NODE = 7;
-  RESOURCE_TYPE_NODE_SELECTOR = 8;
-  RESOURCE_TYPE_ORGANIZATION = 9;
-  RESOURCE_TYPE_SYSTEM = 10;
-  RESOURCE_TYPE_TRUST_ZONE = 11;
-  RESOURCE_TYPE_WORKLOAD = 12;
 }

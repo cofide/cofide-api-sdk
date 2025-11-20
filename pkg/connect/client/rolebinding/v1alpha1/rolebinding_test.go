@@ -18,7 +18,7 @@ const (
 	fakeRoleBindingID = "fake-rb-id"
 	fakeRoleID        = "fake-role-id"
 	fakeUserSubject   = "fake-user-subject"
-	fakeResourceType  = rolebindingpb.ResourceType_RESOURCE_TYPE_AP_BINDING
+	fakeResourceType  = "AttestationPolicyBinding"
 	fakeResourceID    = "fake-apb-id"
 )
 

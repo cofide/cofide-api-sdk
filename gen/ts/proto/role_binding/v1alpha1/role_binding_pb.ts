@@ -5,15 +5,15 @@
 // @generated from file proto/role_binding/v1alpha1/role_binding.proto (package proto.role_binding.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/role_binding/v1alpha1/role_binding.proto.
  */
 export const file_proto_role_binding_v1alpha1_role_binding: GenFile = /*@__PURE__*/
-  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEi2AEKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASMwoFZ3JvdXAYBCABKAsyIi5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuR3JvdXBIABI3CghyZXNvdXJjZRgFIAEoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5SZXNvdXJjZUILCglwcmluY2lwYWwiFwoEVXNlchIPCgdzdWJqZWN0GAEgASgJIhwKBUdyb3VwEhMKC2NsYWltX3ZhbHVlGAEgASgJIk8KCFJlc291cmNlEjcKBHR5cGUYASABKA4yKS5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuUmVzb3VyY2VUeXBlEgoKAmlkGAIgASgJKqEDCgxSZXNvdXJjZVR5cGUSHQoZUkVTT1VSQ0VfVFlQRV9VTlNQRUNJRklFRBAAEhwKGFJFU09VUkNFX1RZUEVfQVBfQklORElORxABEiQKIFJFU09VUkNFX1RZUEVfQVRURVNUQVRJT05fUE9MSUNZEAISGQoVUkVTT1VSQ0VfVFlQRV9DTFVTVEVSEAMSIwofUkVTT1VSQ0VfVFlQRV9GRURFUkFURURfU0VSVklDRRAEEhwKGFJFU09VUkNFX1RZUEVfRkVERVJBVElPThAFEhoKFlJFU09VUkNFX1RZUEVfSURFTlRJVFkQBhIfChtSRVNPVVJDRV9UWVBFX0FUVEVTVEVEX05PREUQBxIfChtSRVNPVVJDRV9UWVBFX05PREVfU0VMRUNUT1IQCBIeChpSRVNPVVJDRV9UWVBFX09SR0FOSVpBVElPThAJEhgKFFJFU09VUkNFX1RZUEVfU1lTVEVNEAoSHAoYUkVTT1VSQ0VfVFlQRV9UUlVTVF9aT05FEAsSGgoWUkVTT1VSQ0VfVFlQRV9XT1JLTE9BRBAMQkVaQ2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTFiBnByb3RvMw");
+  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEi2AEKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASMwoFZ3JvdXAYBCABKAsyIi5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuR3JvdXBIABI3CghyZXNvdXJjZRgFIAEoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5SZXNvdXJjZUILCglwcmluY2lwYWwiFwoEVXNlchIPCgdzdWJqZWN0GAEgASgJIhwKBUdyb3VwEhMKC2NsYWltX3ZhbHVlGAEgASgJIiQKCFJlc291cmNlEgwKBHR5cGUYASABKAkSCgoCaWQYAiABKAlCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3JvbGVfYmluZGluZy92MWFscGhhMWIGcHJvdG8z");
 
 /**
  * @generated from message proto.role_binding.v1alpha1.RoleBinding
@@ -102,9 +102,20 @@ export const GroupSchema: GenMessage<Group> = /*@__PURE__*/
  */
 export type Resource = Message<"proto.role_binding.v1alpha1.Resource"> & {
   /**
-   * @generated from field: proto.role_binding.v1alpha1.ResourceType type = 1;
+   * *
+   * type can be one of the following:
+   * AttestationPolicyBinding
+   * AttestationPolicy
+   * Cluster
+   * FederatedService
+   * Federation
+   * Organization
+   * System
+   * TrustZone
+   *
+   * @generated from field: string type = 1;
    */
-  type: ResourceType;
+  type: string;
 
   /**
    * @generated from field: string id = 2;
@@ -118,80 +129,4 @@ export type Resource = Message<"proto.role_binding.v1alpha1.Resource"> & {
  */
 export const ResourceSchema: GenMessage<Resource> = /*@__PURE__*/
   messageDesc(file_proto_role_binding_v1alpha1_role_binding, 3);
-
-/**
- * @generated from enum proto.role_binding.v1alpha1.ResourceType
- */
-export enum ResourceType {
-  /**
-   * @generated from enum value: RESOURCE_TYPE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_AP_BINDING = 1;
-   */
-  AP_BINDING = 1,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_ATTESTATION_POLICY = 2;
-   */
-  ATTESTATION_POLICY = 2,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_CLUSTER = 3;
-   */
-  CLUSTER = 3,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_FEDERATED_SERVICE = 4;
-   */
-  FEDERATED_SERVICE = 4,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_FEDERATION = 5;
-   */
-  FEDERATION = 5,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_IDENTITY = 6;
-   */
-  IDENTITY = 6,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_ATTESTED_NODE = 7;
-   */
-  ATTESTED_NODE = 7,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_NODE_SELECTOR = 8;
-   */
-  NODE_SELECTOR = 8,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_ORGANIZATION = 9;
-   */
-  ORGANIZATION = 9,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_SYSTEM = 10;
-   */
-  SYSTEM = 10,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_TRUST_ZONE = 11;
-   */
-  TRUST_ZONE = 11,
-
-  /**
-   * @generated from enum value: RESOURCE_TYPE_WORKLOAD = 12;
-   */
-  WORKLOAD = 12,
-}
-
-/**
- * Describes the enum proto.role_binding.v1alpha1.ResourceType.
- */
-export const ResourceTypeSchema: GenEnum<ResourceType> = /*@__PURE__*/
-  enumDesc(file_proto_role_binding_v1alpha1_role_binding, 0);
 

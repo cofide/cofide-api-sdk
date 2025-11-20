@@ -50,11 +50,11 @@ const (
 	FakeSelectorType  = "fake-selector-type"
 	FakeSelectorValue = "fake-selector-value"
 
-	FakeRoleBindingID                            = "fake-rb-id"
-	FakeRoleID                                   = "fake-role-id"
-	FakeUserSubject                              = "fake-user-subject"
-	FakeResourceID                               = FakeAPBindingID
-	FakeResourceType  rolebindingpb.ResourceType = rolebindingpb.ResourceType_RESOURCE_TYPE_AP_BINDING
+	FakeRoleBindingID = "fake-rb-id"
+	FakeRoleID        = "fake-role-id"
+	FakeUserSubject   = "fake-user-subject"
+	FakeResourceID    = FakeAPBindingID
+	FakeResourceType  = "AttestationPolicyBinding"
 )
 
 func FakeOrganization() *organizationpb.Organization {
