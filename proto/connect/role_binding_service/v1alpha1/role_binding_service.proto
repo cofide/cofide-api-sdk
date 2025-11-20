@@ -44,7 +44,7 @@ message ListRoleBindingsRequest {
     optional string role_id = 1;
     optional string user_subject = 2;
     optional string group_claim_value = 3;
-    optional proto.role_binding.v1alpha1.ResourceType resource_type = 4;
+    optional string resource_type = 4;
     optional string resource_id = 5;
   }
   optional Filter filter = 1;
