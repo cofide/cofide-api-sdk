@@ -13,6 +13,7 @@ message AttestationPolicy {
   optional string id = 4;
   string name = 1;
   optional string org_id = 5;
+  optional string spiffe_id_template = 6;
   oneof policy {
     APKubernetes kubernetes = 2;
     APStatic static = 3;
