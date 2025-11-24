@@ -23,7 +23,16 @@ message APKubernetes {
   optional APLabelSelector namespace_selector = 1;
   optional APLabelSelector pod_selector = 2;
   repeated string dns_name_templates = 3;
-  optional string spiffe_id_template = 4;
+
+  // Custom SPIFFE ID path format for Connect identity issuance
+  // This defines the identity path appended to domain of the
+  // trust zone it is bound to
+  //
+  // Valid template components:
+  // {{ .ClusterName }} - Name of cluster
+  // {{ .PodMeta.Namespace }} - Namespace of the pod
+  // {{ .PodSpec.ServiceAccountName }} - Service account of the pod
+  optional string spiffe_id_path_template = 4;
 }
 
 // This definition has been adapted from the LabelSelector message in Kubernetes.
