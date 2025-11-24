@@ -25,7 +25,7 @@ message APKubernetes {
   repeated string dns_name_templates = 3;
 
   // Custom SPIFFEID path format for Connect identity issuance
-  // This defines the identity path appended to domain of the 
+  // This defines the identity path appended to domain of the
   // trust zone it is bound to
   //
   // Valid template components:
@@ -34,7 +34,7 @@ message APKubernetes {
   //     {{ .PodMeta.Namespace }} - Namespace of the pod
   // {{ .PodSpec }} - Kubernetes PodSpec object
   //     {{ .PodSpec.ServiceAccountName }} - Service account of the pod
-  optional string spiffe_id_template = 4;
+  optional string spiffe_id_path_template = 4;
 }
 
 // This definition has been adapted from the LabelSelector message in Kubernetes.
