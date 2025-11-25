@@ -136,19 +136,14 @@ type APKubernetes struct {
 	NamespaceSelector *APLabelSelector       `protobuf:"bytes,1,opt,name=namespace_selector,json=namespaceSelector,proto3,oneof" json:"namespace_selector,omitempty"`
 	PodSelector       *APLabelSelector       `protobuf:"bytes,2,opt,name=pod_selector,json=podSelector,proto3,oneof" json:"pod_selector,omitempty"`
 	DnsNameTemplates  []string               `protobuf:"bytes,3,rep,name=dns_name_templates,json=dnsNameTemplates,proto3" json:"dns_name_templates,omitempty"`
-	// Custom SPIFFEID path format for Connect identity issuance
+	// Custom SPIFFE ID path format for Connect identity issuance
 	// This defines the identity path appended to domain of the
 	// trust zone it is bound to
 	//
 	// Valid template components:
 	// {{ .ClusterName }} - Name of cluster
-	// {{ .PodMeta }} - Kubernetes PodMeta object
-	//
-	//	{{ .PodMeta.Namespace }} - Namespace of the pod
-	//
-	// {{ .PodSpec }} - Kubernetes PodSpec object
-	//
-	//	{{ .PodSpec.ServiceAccountName }} - Service account of the pod
+	// {{ .PodMeta.Namespace }} - Namespace of the pod
+	// {{ .PodSpec.ServiceAccountName }} - Service account of the pod
 	SpiffeIdPathTemplate *string `protobuf:"bytes,4,opt,name=spiffe_id_path_template,json=spiffeIdPathTemplate,proto3,oneof" json:"spiffe_id_path_template,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache

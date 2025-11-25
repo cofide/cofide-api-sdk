@@ -81,16 +81,14 @@ export type APKubernetes = Message<"proto.attestation_policy.v1alpha1.APKubernet
   dnsNameTemplates: string[];
 
   /**
-   * Custom SPIFFEID path format for Connect identity issuance
-   * This defines the identity path appended to domain of the 
+   * Custom SPIFFE ID path format for Connect identity issuance
+   * This defines the identity path appended to domain of the
    * trust zone it is bound to
    *
    * Valid template components:
    * {{ .ClusterName }} - Name of cluster
-   * {{ .PodMeta }} - Kubernetes PodMeta object
-   *     {{ .PodMeta.Namespace }} - Namespace of the pod
-   * {{ .PodSpec }} - Kubernetes PodSpec object
-   *     {{ .PodSpec.ServiceAccountName }} - Service account of the pod
+   * {{ .PodMeta.Namespace }} - Namespace of the pod
+   * {{ .PodSpec.ServiceAccountName }} - Service account of the pod
    *
    * @generated from field: optional string spiffe_id_path_template = 4;
    */
