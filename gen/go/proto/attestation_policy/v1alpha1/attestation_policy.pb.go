@@ -140,6 +140,13 @@ type APKubernetes struct {
 	// This defines the identity path appended to domain of the
 	// trust zone it is bound to
 	//
+	// An example spiffe_id_path_template and corresponding SPIFFE ID:
+	// ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}
+	// => spiffe://<trust_domain_of_trust_zone>/ns/.../sa/...
+	//
+	// This is supported in both Connect and OSS SPIRE via spire-controller-manager
+	// Note that the supported templates are a subset of those in the SCM
+	//
 	// Valid template components:
 	// {{ .ClusterName }} - Name of cluster
 	// {{ .PodMeta.Namespace }} - Namespace of the pod
