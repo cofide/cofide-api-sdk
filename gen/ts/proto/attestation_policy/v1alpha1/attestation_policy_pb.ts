@@ -88,6 +88,8 @@ export type APKubernetes = Message<"proto.attestation_policy.v1alpha1.APKubernet
    * Valid template components:
    * {{ .ClusterName }} - Name of cluster
    * {{ .PodMeta.Namespace }} - Namespace of the pod
+   * {{ index .PodMeta.Labels "key" }} - Pod label value of a provided key
+   * {{ index .PodMeta.Annotations "key" }} - Pod annotation value of a provided key
    * {{ .PodSpec.ServiceAccountName }} - Service account of the pod
    *
    * @generated from field: optional string spiffe_id_path_template = 4;
