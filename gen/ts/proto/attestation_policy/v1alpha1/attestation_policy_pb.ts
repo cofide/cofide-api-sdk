@@ -85,9 +85,18 @@ export type APKubernetes = Message<"proto.attestation_policy.v1alpha1.APKubernet
    * This defines the identity path appended to domain of the
    * trust zone it is bound to
    *
+   * An example spiffe_id_path_template and corresponding SPIFFE ID:
+   * ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}
+   * => spiffe://<trust_domain_of_trust_zone>/ns/.../sa/...
+   *
+   * This is supported in both Connect and OSS SPIRE via spire-controller-manager
+   * Note that the supported templates are a subset of those in the SCM
+   *
    * Valid template components:
    * {{ .ClusterName }} - Name of cluster
    * {{ .PodMeta.Namespace }} - Namespace of the pod
+   * {{ index .PodMeta.Labels "key" }} - Pod label value of a provided key
+   * {{ index .PodMeta.Annotations "key" }} - Pod annotation value of a provided key
    * {{ .PodSpec.ServiceAccountName }} - Service account of the pod
    *
    * @generated from field: optional string spiffe_id_path_template = 4;
