@@ -8,7 +8,7 @@ require (
 	github.com/spiffe/spire-api-sdk v1.13.3
 	github.com/stretchr/testify v1.11.1
 	google.golang.org/grpc v1.77.0
-	google.golang.org/protobuf v1.36.10
+	google.golang.org/protobuf v1.36.11
 )
 
 require (
