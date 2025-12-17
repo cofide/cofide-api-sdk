@@ -59,8 +59,9 @@ message APMatchExpression {
 
 // APStatic represents a static attestation policy
 message APStatic {
-  optional string spiffe_id = 1;
-  optional string parent_id = 3;
+  optional string spiffe_id = 1 [deprecated = true];
+  optional string spiffe_id_path = 5;
+  optional string parent_id_path = 3;
   repeated spire.api.types.Selector selectors = 2;
   repeated string dns_names = 4;
 }
