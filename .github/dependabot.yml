@@ -5,7 +5,20 @@
 
 version: 2
 updates:
-  - package-ecosystem: "gomod" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
       interval: "weekly"
+
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # Restrict dependency updates to patch-level. As a library, we should not
+      # force minor updates onto our consumers.
+      all:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
