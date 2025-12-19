@@ -20,6 +20,7 @@ message Identity {
   string spiffe_id = 8;
   string parent_id = 9;
   repeated Selector selectors = 10;
+  repeated string dns_names = 13;
   repeated IdentityFederation federations = 11;
   google.protobuf.Timestamp created_at = 12;
 }

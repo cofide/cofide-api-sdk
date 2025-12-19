@@ -49,6 +49,7 @@ const (
 	FakeParentID      = "spiffe://fake.trust.domain/spire/agent/k8s_psat/fake-cluster-name/fake-spire-agent"
 	FakeSelectorType  = "fake-selector-type"
 	FakeSelectorValue = "fake-selector-value"
+	FakeDNSName       = "fake.name.example.org"
 
 	FakeRoleBindingID = "fake-rb-id"
 	FakeRoleID        = "fake-role-id"
@@ -145,6 +146,9 @@ func FakeIdentity() *identitypb.Identity {
 				Type:  FakeSelectorType,
 				Value: FakeSelectorValue,
 			},
+		},
+		DnsNames: []string{
+			FakeDNSName,
 		},
 		Federations: []*identitypb.IdentityFederation{
 			{
