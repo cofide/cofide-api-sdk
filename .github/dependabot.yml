@@ -14,11 +14,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    groups:
+    ignore:
       # Restrict dependency updates to patch-level. As a library, we should not
       # force minor updates onto our consumers.
-      all:
-        patterns:
-          - "*"
-        update-types:
-          - "patch"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
