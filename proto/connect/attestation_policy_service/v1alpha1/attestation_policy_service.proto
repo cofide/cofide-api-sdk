@@ -43,6 +43,7 @@ message ListAttestationPoliciesRequest {
   message Filter {
     optional string name = 1;
     optional string org_id = 2;
+    optional AttestationPolicyKind kind = 3;
   }
   optional Filter filter = 1;
 }
@@ -57,4 +58,11 @@ message UpdateAttestationPolicyRequest {
 
 message UpdateAttestationPolicyResponse {
   optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
+}
+
+enum AttestationPolicyKind {
+  ATTESTATION_POLICY_KIND_UNSPECIFIED = 0;
+  ATTESTATION_POLICY_KIND_KUBERNETES = 1;
+  ATTESTATION_POLICY_KIND_STATIC = 2;
+  ATTESTATION_POLICY_KIND_TPM_NODE = 3;
 }
