@@ -1,4 +1,4 @@
-// Copyright 2024 Cofide Limited.
+// Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
 syntax = "proto3";
@@ -16,6 +16,7 @@ message AttestationPolicy {
   oneof policy {
     APKubernetes kubernetes = 2;
     APStatic static = 3;
+    APTPMNode tpm_node = 6;
   }
 }
 
@@ -64,4 +65,15 @@ message APStatic {
   optional string parent_id_path = 3;
   repeated spire.api.types.Selector selectors = 2;
   repeated string dns_names = 4;
+}
+
+// APTPMNode represents a node (agent) attesting using a Trusted Platform Module (TPM).
+message APTPMNode {
+  TPMAttestation attestation = 1;
+  // Either: explicitly set selector values for the node, the plugin will add the selector type (tpm)
+  repeated string selector_values = 2;
+}
+
+message TPMAttestation {
+  optional string ek_hash = 1;
 }
