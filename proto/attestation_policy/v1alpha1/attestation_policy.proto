@@ -70,10 +70,14 @@ message APStatic {
 // APTPMNode represents a node (agent) attesting using a Trusted Platform Module (TPM).
 message APTPMNode {
   TPMAttestation attestation = 1;
-  // Either: explicitly set selector values for the node, the plugin will add the selector type (tpm)
+  // selector_values are the values of node selectors to use for this node.
+  // The key of the selectors will be "tpm".
   repeated string selector_values = 2;
 }
 
+// TPMAttestation represents attestation requirements for a node (agent) attesting using a Trusted
+// Platform Module (TPM).
 message TPMAttestation {
+  // ek_hash is the SHA256 hash of the TPM's Endorsement Key (EK).
   optional string ek_hash = 1;
 }
