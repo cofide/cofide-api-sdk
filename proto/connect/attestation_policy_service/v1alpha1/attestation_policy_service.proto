@@ -44,6 +44,10 @@ message ListAttestationPoliciesRequest {
     optional string name = 1;
     optional string org_id = 2;
     optional AttestationPolicyKind kind = 3;
+    optional TPMNodeFilter tpm_node = 4;
+  }
+  message TPMNodeFilter {
+    optional string ek_hash = 1;
   }
   optional Filter filter = 1;
 }

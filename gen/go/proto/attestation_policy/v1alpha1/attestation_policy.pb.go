@@ -429,7 +429,8 @@ func (x *APStatic) GetDnsNames() []string {
 type APTPMNode struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
 	Attestation *TPMAttestation        `protobuf:"bytes,1,opt,name=attestation,proto3" json:"attestation,omitempty"`
-	// Either: explicitly set selector values for the node, the plugin will add the selector type (tpm)
+	// selector_values are the values of node selectors to use for this node.
+	// The key of the selectors will be "tpm".
 	SelectorValues []string `protobuf:"bytes,2,rep,name=selector_values,json=selectorValues,proto3" json:"selector_values,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -479,9 +480,12 @@ func (x *APTPMNode) GetSelectorValues() []string {
 	return nil
 }
 
+// TPMAttestation represents attestation requirements for a node (agent) attesting using a Trusted
+// Platform Module (TPM).
 type TPMAttestation struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EkHash        *string                `protobuf:"bytes,1,opt,name=ek_hash,json=ekHash,proto3,oneof" json:"ek_hash,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ek_hash is the SHA256 hash of the TPM's Endorsement Key (EK).
+	EkHash        *string `protobuf:"bytes,1,opt,name=ek_hash,json=ekHash,proto3,oneof" json:"ek_hash,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

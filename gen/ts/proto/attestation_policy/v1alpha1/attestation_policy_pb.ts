@@ -221,7 +221,8 @@ export type APTPMNode = Message<"proto.attestation_policy.v1alpha1.APTPMNode"> &
   attestation?: TPMAttestation;
 
   /**
-   * Either: explicitly set selector values for the node, the plugin will add the selector type (tpm)
+   * selector_values are the values of node selectors to use for this node.
+   * The key of the selectors will be "tpm".
    *
    * @generated from field: repeated string selector_values = 2;
    */
@@ -236,10 +237,15 @@ export const APTPMNodeSchema: GenMessage<APTPMNode> = /*@__PURE__*/
   messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 5);
 
 /**
+ * TPMAttestation represents attestation requirements for a node (agent) attesting using a Trusted
+ * Platform Module (TPM).
+ *
  * @generated from message proto.attestation_policy.v1alpha1.TPMAttestation
  */
 export type TPMAttestation = Message<"proto.attestation_policy.v1alpha1.TPMAttestation"> & {
   /**
+   * ek_hash is the SHA256 hash of the TPM's Endorsement Key (EK).
+   *
    * @generated from field: optional string ek_hash = 1;
    */
   ekHash?: string;
