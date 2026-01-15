@@ -1,0 +1,20 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.trust_zone_server.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1";
+
+message TrustZoneServer {
+  string id = 1;
+  // Trust Zone managed by this server
+  string trust_zone_id = 2;
+  // Cluster in which the server should be deployed
+  string cluster_id = 3;
+  // Kubernetes namespace in which the server should be deployed (consumsers should default to spire-server if this is empty)
+  string kubernetes_namespace = 4;
+  // Name of kubernetes service account to deploy with the server (consumsers should default to spire-server if this is empty)
+  string kubernetes_service_account = 5;
+}

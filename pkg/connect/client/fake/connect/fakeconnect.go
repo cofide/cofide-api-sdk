@@ -14,6 +14,7 @@ import (
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
 	rolebindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
+	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
@@ -26,6 +27,7 @@ type FakeConnect struct {
 	Organizations       map[string]*organizationpb.Organization
 	TrustZones          map[string]*trustzonepb.TrustZone
 	TrustZoneBundles    map[string]*types.Bundle
+	TrustZoneServers    map[string]*trustzoneserverpb.TrustZoneServer
 	Clusters            map[string]*clusterpb.Cluster
 	Agents              map[string]*agentpb.Agent
 	AgentJoinTokens     map[string]map[string]string
@@ -45,6 +47,7 @@ func New() *FakeConnect {
 		Organizations:       make(map[string]*organizationpb.Organization),
 		TrustZones:          make(map[string]*trustzonepb.TrustZone),
 		TrustZoneBundles:    make(map[string]*types.Bundle),
+		TrustZoneServers:    make(map[string]*trustzoneserverpb.TrustZoneServer),
 		Clusters:            make(map[string]*clusterpb.Cluster),
 		Agents:              make(map[string]*agentpb.Agent),
 		AgentJoinTokens:     make(map[string]map[string]string),
@@ -70,6 +73,13 @@ func (f *FakeConnect) ValidateOrganization(organizationID string) error {
 func (f *FakeConnect) ValidateTrustZone(trustZoneID string) error {
 	if _, ok := f.TrustZones[trustZoneID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid trust zone")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateTrustZoneServer(trustZoneServerID string) error {
+	if _, ok := f.TrustZoneServers[trustZoneServerID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid trust zone server")
 	}
 	return nil
 }
