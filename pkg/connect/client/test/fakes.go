@@ -13,6 +13,7 @@ import (
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
 	rolebindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
+	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 )
@@ -24,6 +25,10 @@ const (
 	FakeTrustZoneID   = "fake-tz-id"
 	FakeTrustZoneName = "fake-tz-name"
 	FakeTrustDomain   = "fake.trust.domain"
+
+	FakeTrustZoneServerID        = "fake-tzs-id"
+	FakeKubernetesNamespace      = "fake-kubernetes-namespace"
+	FakeKubernetesServiceAccount = "fake-kubernetes-service-account"
 
 	FakeClusterID   = "fake-cluster-id"
 	FakeClusterName = "fake-cluster-name"
@@ -70,6 +75,16 @@ func FakeTrustZone() *trustzonepb.TrustZone {
 		Id:          PtrOf(FakeTrustZoneID),
 		Name:        FakeTrustZoneName,
 		TrustDomain: FakeTrustDomain,
+	}
+}
+
+func FakeTrustZoneServer() *trustzoneserverpb.TrustZoneServer {
+	return &trustzoneserverpb.TrustZoneServer{
+		Id:                       FakeTrustZoneServerID,
+		TrustZoneId:              FakeTrustZoneID,
+		ClusterId:                FakeClusterID,
+		KubernetesNamespace:      FakeKubernetesNamespace,
+		KubernetesServiceAccount: FakeKubernetesServiceAccount,
 	}
 }
 
