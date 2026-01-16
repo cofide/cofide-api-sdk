@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/trust_zone_server/v1alpha1/trust_zone_server.proto.
  */
 export const file_proto_trust_zone_server_v1alpha1_trust_zone_server: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEiigEKD1RydXN0Wm9uZVNlcnZlchIKCgJpZBgBIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSHAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAkSIgoaa3ViZXJuZXRlc19zZXJ2aWNlX2FjY291bnQYBSABKAlCSlpIZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3RydXN0X3pvbmVfc2VydmVyL3YxYWxwaGExYgZwcm90bzM");
+  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEimgEKD1RydXN0Wm9uZVNlcnZlchIKCgJpZBgBIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSHAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAkSIgoaa3ViZXJuZXRlc19zZXJ2aWNlX2FjY291bnQYBSABKAkSDgoGb3JnX2lkGAYgASgJQkpaSGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMWIGcHJvdG8z");
 
 /**
  * @generated from message proto.trust_zone_server.v1alpha1.TrustZoneServer
@@ -51,6 +51,13 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
    * @generated from field: string kubernetes_service_account = 5;
    */
   kubernetesServiceAccount: string;
+
+  /**
+   * Organization to which the server belongs (read-only for clients, matches the organization of the server's trust zone)
+   *
+   * @generated from field: string org_id = 6;
+   */
+  orgId: string;
 };
 
 /**
