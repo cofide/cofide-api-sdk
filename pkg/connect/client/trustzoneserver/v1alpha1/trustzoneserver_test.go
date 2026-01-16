@@ -31,24 +31,23 @@ func TestTrustZoneServerClient_Unimplemented(t *testing.T) {
 
 	conn := server.CreateClientConn()
 	client := New(conn)
-	ctx := context.Background()
 
-	trustZone, err := client.CreateTrustZoneServer(ctx, nil)
+	trustZone, err := client.CreateTrustZoneServer(t.Context(), nil)
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZone)
 
-	err = client.DestroyTrustZoneServer(ctx, "")
+	err = client.DestroyTrustZoneServer(t.Context(), "")
 	test.RequireUnimplemented(t, err)
 
-	trustZone, err = client.GetTrustZoneServer(ctx, "")
+	trustZone, err = client.GetTrustZoneServer(t.Context(), "")
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZone)
 
-	trustZones, err := client.ListTrustZoneServers(ctx, nil)
+	trustZones, err := client.ListTrustZoneServers(t.Context(), nil)
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZones)
 
-	trustZone, err = client.UpdateTrustZoneServer(ctx, nil)
+	trustZone, err = client.UpdateTrustZoneServer(t.Context(), nil)
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZone)
 }
@@ -60,27 +59,26 @@ func TestTrustZoneServerClient(t *testing.T) {
 
 	conn := server.CreateClientConn()
 	client := New(conn)
-	ctx := context.Background()
 
 	trustZoneServer := fakeTrustZoneServer()
 
-	createdTrustZone, err := client.CreateTrustZoneServer(ctx, trustZoneServer)
+	createdTrustZone, err := client.CreateTrustZoneServer(t.Context(), trustZoneServer)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZoneServer, createdTrustZone)
 
-	err = client.DestroyTrustZoneServer(ctx, fakeTrustZoneServerID)
+	err = client.DestroyTrustZoneServer(t.Context(), fakeTrustZoneServerID)
 	require.NoError(t, err)
 
-	gotTrustZoneServer, err := client.GetTrustZoneServer(ctx, fakeTrustZoneServerID)
+	gotTrustZoneServer, err := client.GetTrustZoneServer(t.Context(), fakeTrustZoneServerID)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZoneServer, gotTrustZoneServer)
 
 	filter := &trustzoneserversvcpb.ListTrustZoneServersRequest_Filter{TrustZoneId: fakeTrustZoneID}
-	trustZoneServers, err := client.ListTrustZoneServers(ctx, filter)
+	trustZoneServers, err := client.ListTrustZoneServers(t.Context(), filter)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*trustzoneserverpb.TrustZoneServer{trustZoneServer}, trustZoneServers)
 
-	updatedTrustZoneServer, err := client.UpdateTrustZoneServer(ctx, trustZoneServer)
+	updatedTrustZoneServer, err := client.UpdateTrustZoneServer(t.Context(), trustZoneServer)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZoneServer, updatedTrustZoneServer)
 }

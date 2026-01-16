@@ -52,6 +52,7 @@ message ListTrustZoneServersRequest {
   message Filter {
     string trust_zone_id = 1;
     string cluster_id = 2;
+    string org_id = 3;
   }
   optional Filter filter = 1;
 }

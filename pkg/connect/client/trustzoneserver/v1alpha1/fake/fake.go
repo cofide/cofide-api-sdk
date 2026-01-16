@@ -65,16 +65,31 @@ func (c *fakeTrustZoneServerClient) ListTrustZoneServers(ctx context.Context, fi
 
 	trustZoneServers := []*trustzoneserverpb.TrustZoneServer{}
 	for _, trustZoneServer := range c.fake.TrustZoneServers {
-		if trustZoneServerMatches(trustZoneServer, filter) {
+		if c.trustZoneServerMatches(trustZoneServer, filter) {
 			trustZoneServers = append(trustZoneServers, clone(trustZoneServer))
 		}
 	}
 	return trustZoneServers, nil
 }
 
-func trustZoneServerMatches(trustZoneServer *trustzoneserverpb.TrustZoneServer, filter *trustzoneserversvcpb.ListTrustZoneServersRequest_Filter) bool {
+func (c *fakeTrustZoneServerClient) trustZoneServerMatches(trustZoneServer *trustzoneserverpb.TrustZoneServer, filter *trustzoneserversvcpb.ListTrustZoneServersRequest_Filter) bool {
 	if filter == nil {
 		return true
+	}
+	if filter.OrgId != "" {
+		// Org ID field should be read only for clients, so it may not be set on the stored trust zone server
+		// If it is, use that to filter by
+		// Otherwise filter by the org ID of a linked trust zone (if one exists)
+		serverOrgId := trustZoneServer.GetOrgId()
+		if serverOrgId == "" {
+			trustZone, ok := c.fake.TrustZones[trustZoneServer.GetTrustZoneId()]
+			if ok {
+				serverOrgId = trustZone.GetOrgId()
+			}
+		}
+		if serverOrgId != filter.OrgId {
+			return false
+		}
 	}
 	if filter.TrustZoneId != "" && trustZoneServer.GetTrustZoneId() != filter.TrustZoneId {
 		return false

@@ -17,4 +17,6 @@ message TrustZoneServer {
   string kubernetes_namespace = 4;
   // Name of kubernetes service account to deploy with the server (consumsers should default to spire-server if this is empty)
   string kubernetes_service_account = 5;
+  // Organization to which the server belongs (read-only for clients, matches the organization of the server's trust zone)
+  string org_id = 6;
 }
