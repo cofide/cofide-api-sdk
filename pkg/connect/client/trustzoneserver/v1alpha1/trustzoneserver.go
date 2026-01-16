@@ -44,14 +44,14 @@ func (c *trustZoneServerClient) CreateTrustZoneServer(ctx context.Context, trust
 
 func (c *trustZoneServerClient) DestroyTrustZoneServer(ctx context.Context, trustZoneServerID string) error {
 	_, err := c.trustZoneServerClient.DestroyTrustZoneServer(ctx, &trustzoneserversvcpb.DestroyTrustZoneServerRequest{
-		TrustZoneServerId: &trustZoneServerID,
+		TrustZoneServerId: trustZoneServerID,
 	})
 	return err
 }
 
 func (c *trustZoneServerClient) GetTrustZoneServer(ctx context.Context, trustZoneServerID string) (*trustzoneserverpb.TrustZoneServer, error) {
 	resp, err := c.trustZoneServerClient.GetTrustZoneServer(ctx, &trustzoneserversvcpb.GetTrustZoneServerRequest{
-		TrustZoneServerId: &trustZoneServerID,
+		TrustZoneServerId: trustZoneServerID,
 	})
 	if err != nil {
 		return nil, err
