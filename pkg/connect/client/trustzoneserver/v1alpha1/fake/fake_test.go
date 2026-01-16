@@ -4,7 +4,6 @@
 package fake
 
 import (
-	"context"
 	"testing"
 
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
@@ -17,11 +16,10 @@ import (
 func Test_fakeTrustZoneServerClient_CreateTrustZoneServer(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)
-	ctx := context.Background()
 
 	trustZoneServer := test.FakeTrustZoneServer()
 
-	createdTrustZoneServer, err := client.CreateTrustZoneServer(ctx, trustZoneServer)
+	createdTrustZoneServer, err := client.CreateTrustZoneServer(t.Context(), trustZoneServer)
 	require.NoError(t, err)
 	trustZoneServer.Id = createdTrustZoneServer.Id
 	assert.EqualExportedValues(t, trustZoneServer, createdTrustZoneServer)
@@ -31,14 +29,13 @@ func Test_fakeTrustZoneServerClient_CreateTrustZoneServer(t *testing.T) {
 func Test_fakeTrustZoneServerClient_DestroyTrustZoneServer(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)
-	ctx := context.Background()
 
-	err := client.DestroyTrustZoneServer(ctx, test.FakeTrustZoneServerID)
+	err := client.DestroyTrustZoneServer(t.Context(), test.FakeTrustZoneServerID)
 	require.Error(t, err)
 
 	fake.TrustZoneServers[test.FakeTrustZoneServerID] = test.FakeTrustZoneServer()
 
-	err = client.DestroyTrustZoneServer(ctx, test.FakeTrustZoneServerID)
+	err = client.DestroyTrustZoneServer(t.Context(), test.FakeTrustZoneServerID)
 	require.NoError(t, err)
 	require.Nil(t, fake.TrustZoneServers[test.FakeTrustZoneServerID])
 }
@@ -46,16 +43,15 @@ func Test_fakeTrustZoneServerClient_DestroyTrustZoneServer(t *testing.T) {
 func Test_fakeTrustZoneServerClient_GetTrustZoneServer(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)
-	ctx := context.Background()
 
 	trustZoneServer := test.FakeTrustZoneServer()
 
-	_, err := client.GetTrustZoneServer(ctx, test.FakeTrustZoneServerID)
+	_, err := client.GetTrustZoneServer(t.Context(), test.FakeTrustZoneServerID)
 	require.Error(t, err)
 
 	fake.TrustZoneServers[test.FakeTrustZoneServerID] = test.FakeTrustZoneServer()
 
-	gotTrustZoneServer, err := client.GetTrustZoneServer(ctx, test.FakeTrustZoneServerID)
+	gotTrustZoneServer, err := client.GetTrustZoneServer(t.Context(), test.FakeTrustZoneServerID)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZoneServer, gotTrustZoneServer)
 	assert.EqualExportedValues(t, trustZoneServer, fake.TrustZoneServers[test.FakeTrustZoneServerID])
@@ -64,17 +60,16 @@ func Test_fakeTrustZoneServerClient_GetTrustZoneServer(t *testing.T) {
 func Test_fakeTrustZoneServerClient_ListTrustZoneServers(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)
-	ctx := context.Background()
 
 	trustZoneServer := test.FakeTrustZoneServer()
 
-	trustZoneServers, err := client.ListTrustZoneServers(ctx, nil)
+	trustZoneServers, err := client.ListTrustZoneServers(t.Context(), nil)
 	require.NoError(t, err)
-	assert.EqualExportedValues(t, []*trustzoneserverpb.TrustZoneServer{}, trustZoneServers)
+	assert.Empty(t, trustZoneServers)
 
 	fake.TrustZoneServers[test.FakeTrustZoneServerID] = test.FakeTrustZoneServer()
 
-	trustZoneServers, err = client.ListTrustZoneServers(ctx, nil)
+	trustZoneServers, err = client.ListTrustZoneServers(t.Context(), nil)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*trustzoneserverpb.TrustZoneServer{trustZoneServer}, trustZoneServers)
 }
