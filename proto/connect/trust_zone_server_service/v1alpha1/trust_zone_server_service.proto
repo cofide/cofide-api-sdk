@@ -35,13 +35,13 @@ message CreateTrustZoneServerResponse {
 }
 
 message DestroyTrustZoneServerRequest {
-  optional string trust_zone_server_id = 1;
+  string trust_zone_server_id = 1;
 }
 
 message DestroyTrustZoneServerResponse {}
 
 message GetTrustZoneServerRequest {
-  optional string trust_zone_server_id = 1;
+  string trust_zone_server_id = 1;
 }
 
 message GetTrustZoneServerResponse {
