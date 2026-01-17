@@ -13,11 +13,10 @@ import (
 
 // TrustZoneServerClient is an interface for a gRPC client for the v1alpha1 version of the Connect TrustZoneServerService.
 type TrustZoneServerClient interface {
-	CreateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error)
+	CreateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserversvcpb.CreateTrustZoneServerRequest) (*trustzoneserverpb.TrustZoneServer, error)
 	DestroyTrustZoneServer(ctx context.Context, trustZoneServerID string) error
 	GetTrustZoneServer(ctx context.Context, trustZoneServerID string) (*trustzoneserverpb.TrustZoneServer, error)
 	ListTrustZoneServers(ctx context.Context, filter *trustzoneserversvcpb.ListTrustZoneServersRequest_Filter) ([]*trustzoneserverpb.TrustZoneServer, error)
-	UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error)
 }
 
 type trustZoneServerClient struct {
@@ -31,10 +30,11 @@ func New(conn grpc.ClientConnInterface) TrustZoneServerClient {
 	}
 }
 
-func (c *trustZoneServerClient) CreateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error) {
-	resp, err := c.trustZoneServerClient.CreateTrustZoneServer(ctx, &trustzoneserversvcpb.CreateTrustZoneServerRequest{
-		TrustZoneServer: trustZoneServer,
-	})
+func (c *trustZoneServerClient) CreateTrustZoneServer(
+	ctx context.Context,
+	createTrustZoneServerRequest *trustzoneserversvcpb.CreateTrustZoneServerRequest,
+) (*trustzoneserverpb.TrustZoneServer, error) {
+	resp, err := c.trustZoneServerClient.CreateTrustZoneServer(ctx, createTrustZoneServerRequest)
 	if err != nil {
 		return nil, err
 	}
@@ -69,15 +69,4 @@ func (c *trustZoneServerClient) ListTrustZoneServers(ctx context.Context, filter
 	}
 
 	return resp.TrustZoneServers, nil
-}
-
-func (c *trustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error) {
-	resp, err := c.trustZoneServerClient.UpdateTrustZoneServer(ctx, &trustzoneserversvcpb.UpdateTrustZoneServerRequest{
-		TrustZoneServer: trustZoneServer,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	return resp.TrustZoneServer, nil
 }

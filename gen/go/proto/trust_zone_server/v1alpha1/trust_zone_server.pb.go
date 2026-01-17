@@ -31,11 +31,11 @@ type TrustZoneServer struct {
 	TrustZoneId string `protobuf:"bytes,2,opt,name=trust_zone_id,json=trustZoneId,proto3" json:"trust_zone_id,omitempty"`
 	// Cluster in which the server should be deployed
 	ClusterId string `protobuf:"bytes,3,opt,name=cluster_id,json=clusterId,proto3" json:"cluster_id,omitempty"`
-	// Kubernetes namespace in which the server should be deployed (consumsers should default to spire-server if this is empty)
+	// Kubernetes namespace in which the server should be deployed (consumers should default to spire-server if this is empty)
 	KubernetesNamespace string `protobuf:"bytes,4,opt,name=kubernetes_namespace,json=kubernetesNamespace,proto3" json:"kubernetes_namespace,omitempty"`
-	// Name of kubernetes service account to deploy with the server (consumsers should default to spire-server if this is empty)
+	// Name of kubernetes service account to deploy with the server (consumers should default to spire-server if this is empty)
 	KubernetesServiceAccount string `protobuf:"bytes,5,opt,name=kubernetes_service_account,json=kubernetesServiceAccount,proto3" json:"kubernetes_service_account,omitempty"`
-	// Organization to which the server belongs (read-only for clients, matches the organization of the server's trust zone)
+	// Organization to which the server belongs (matches the organization of the server's trust zone)
 	OrgId         string `protobuf:"bytes,6,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

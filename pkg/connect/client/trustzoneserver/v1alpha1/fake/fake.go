@@ -27,12 +27,20 @@ func New(fake *fakeconnect.FakeConnect) trustzoneserverv1alpha1.TrustZoneServerC
 	}
 }
 
-func (c *fakeTrustZoneServerClient) CreateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error) {
+func (c *fakeTrustZoneServerClient) CreateTrustZoneServer(ctx context.Context, createTrustZoneServerRequest *trustzoneserversvcpb.CreateTrustZoneServerRequest) (*trustzoneserverpb.TrustZoneServer, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	trustZoneServer = clone(trustZoneServer)
-	trustZoneServer.Id = uuid.New().String()
+	trustZoneServer := &trustzoneserverpb.TrustZoneServer{
+		Id:                       uuid.NewString(),
+		TrustZoneId:              createTrustZoneServerRequest.GetTrustZoneId(),
+		ClusterId:                createTrustZoneServerRequest.GetClusterId(),
+		KubernetesNamespace:      createTrustZoneServerRequest.GetKubernetesNamespace(),
+		KubernetesServiceAccount: createTrustZoneServerRequest.GetKubernetesServiceAccount(),
+	}
+	if trustZone, ok := c.fake.TrustZones[trustZoneServer.GetTrustZoneId()]; ok {
+		trustZoneServer.OrgId = trustZone.GetOrgId()
+	}
 	c.fake.TrustZoneServers[trustZoneServer.GetId()] = trustZoneServer
 	return clone(trustZoneServer), nil
 }
@@ -98,18 +106,6 @@ func (c *fakeTrustZoneServerClient) trustZoneServerMatches(trustZoneServer *trus
 		return false
 	}
 	return true
-}
-
-func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error) {
-	c.fake.Mu.Lock()
-	defer c.fake.Mu.Unlock()
-
-	if _, ok := c.fake.TrustZoneServers[trustZoneServer.GetId()]; !ok {
-		return nil, status.Error(codes.NotFound, "trust zone server not found")
-	}
-
-	c.fake.TrustZoneServers[trustZoneServer.GetId()] = clone(trustZoneServer)
-	return clone(trustZoneServer), nil
 }
 
 func clone(trustZoneServer *trustzoneserverpb.TrustZoneServer) *trustzoneserverpb.TrustZoneServer {

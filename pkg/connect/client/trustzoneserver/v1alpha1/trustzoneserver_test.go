@@ -46,10 +46,6 @@ func TestTrustZoneServerClient_Unimplemented(t *testing.T) {
 	trustZones, err := client.ListTrustZoneServers(t.Context(), nil)
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZones)
-
-	trustZone, err = client.UpdateTrustZoneServer(t.Context(), nil)
-	test.RequireUnimplemented(t, err)
-	assert.Nil(t, trustZone)
 }
 
 func TestTrustZoneServerClient(t *testing.T) {
@@ -60,14 +56,18 @@ func TestTrustZoneServerClient(t *testing.T) {
 	conn := server.CreateClientConn()
 	client := New(conn)
 
-	trustZoneServer := fakeTrustZoneServer()
+	trustZoneServer := test.FakeTrustZoneServer()
 
-	createdTrustZone, err := client.CreateTrustZoneServer(t.Context(), trustZoneServer)
+	createdTrustZone, err := client.CreateTrustZoneServer(t.Context(), &trustzoneserversvcpb.CreateTrustZoneServerRequest{
+		TrustZoneId:              trustZoneServer.GetTrustZoneId(),
+		ClusterId:                trustZoneServer.GetClusterId(),
+		KubernetesNamespace:      trustZoneServer.GetKubernetesNamespace(),
+		KubernetesServiceAccount: trustZoneServer.GetKubernetesServiceAccount(),
+	})
 	require.NoError(t, err)
+	trustZoneServer.Id = createdTrustZone.GetId()
+	trustZoneServer.OrgId = createdTrustZone.GetOrgId()
 	assert.EqualExportedValues(t, trustZoneServer, createdTrustZone)
-
-	err = client.DestroyTrustZoneServer(t.Context(), fakeTrustZoneServerID)
-	require.NoError(t, err)
 
 	gotTrustZoneServer, err := client.GetTrustZoneServer(t.Context(), fakeTrustZoneServerID)
 	require.NoError(t, err)
@@ -77,10 +77,6 @@ func TestTrustZoneServerClient(t *testing.T) {
 	trustZoneServers, err := client.ListTrustZoneServers(t.Context(), filter)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*trustzoneserverpb.TrustZoneServer{trustZoneServer}, trustZoneServers)
-
-	updatedTrustZoneServer, err := client.UpdateTrustZoneServer(t.Context(), trustZoneServer)
-	require.NoError(t, err)
-	assert.EqualExportedValues(t, trustZoneServer, updatedTrustZoneServer)
 }
 
 type fakeTrustZoneServerService struct {
@@ -88,8 +84,15 @@ type fakeTrustZoneServerService struct {
 }
 
 func (f *fakeTrustZoneServerService) CreateTrustZoneServer(ctx context.Context, req *trustzoneserversvcpb.CreateTrustZoneServerRequest) (*trustzoneserversvcpb.CreateTrustZoneServerResponse, error) {
-	assert.EqualExportedValues(f.t, fakeTrustZoneServer(), req.TrustZoneServer)
-	return &trustzoneserversvcpb.CreateTrustZoneServerResponse{TrustZoneServer: req.TrustZoneServer}, nil
+	trustZoneServer := test.FakeTrustZoneServer()
+	expectedInput := &trustzoneserversvcpb.CreateTrustZoneServerRequest{
+		TrustZoneId:              trustZoneServer.GetTrustZoneId(),
+		ClusterId:                trustZoneServer.GetClusterId(),
+		KubernetesNamespace:      trustZoneServer.GetKubernetesNamespace(),
+		KubernetesServiceAccount: trustZoneServer.GetKubernetesServiceAccount(),
+	}
+	assert.EqualExportedValues(f.t, expectedInput, req)
+	return &trustzoneserversvcpb.CreateTrustZoneServerResponse{TrustZoneServer: trustZoneServer}, nil
 }
 
 func (f *fakeTrustZoneServerService) DestroyTrustZoneServer(ctx context.Context, req *trustzoneserversvcpb.DestroyTrustZoneServerRequest) (*trustzoneserversvcpb.DestroyTrustZoneServerResponse, error) {
@@ -99,26 +102,11 @@ func (f *fakeTrustZoneServerService) DestroyTrustZoneServer(ctx context.Context,
 
 func (f *fakeTrustZoneServerService) GetTrustZoneServer(ctx context.Context, req *trustzoneserversvcpb.GetTrustZoneServerRequest) (*trustzoneserversvcpb.GetTrustZoneServerResponse, error) {
 	assert.Equal(f.t, fakeTrustZoneServerID, req.GetTrustZoneServerId())
-	return &trustzoneserversvcpb.GetTrustZoneServerResponse{TrustZoneServer: fakeTrustZoneServer()}, nil
+	return &trustzoneserversvcpb.GetTrustZoneServerResponse{TrustZoneServer: test.FakeTrustZoneServer()}, nil
 }
 
 func (f *fakeTrustZoneServerService) ListTrustZoneServers(ctx context.Context, req *trustzoneserversvcpb.ListTrustZoneServersRequest) (*trustzoneserversvcpb.ListTrustZoneServersResponse, error) {
 	assert.Equal(f.t, fakeTrustZoneID, req.Filter.GetTrustZoneId())
-	trustZoneServers := []*trustzoneserverpb.TrustZoneServer{fakeTrustZoneServer()}
+	trustZoneServers := []*trustzoneserverpb.TrustZoneServer{test.FakeTrustZoneServer()}
 	return &trustzoneserversvcpb.ListTrustZoneServersResponse{TrustZoneServers: trustZoneServers}, nil
-}
-
-func (f *fakeTrustZoneServerService) UpdateTrustZoneServer(ctx context.Context, req *trustzoneserversvcpb.UpdateTrustZoneServerRequest) (*trustzoneserversvcpb.UpdateTrustZoneServerResponse, error) {
-	assert.EqualExportedValues(f.t, fakeTrustZoneServer(), req.TrustZoneServer)
-	return &trustzoneserversvcpb.UpdateTrustZoneServerResponse{TrustZoneServer: req.TrustZoneServer}, nil
-}
-
-func fakeTrustZoneServer() *trustzoneserverpb.TrustZoneServer {
-	return &trustzoneserverpb.TrustZoneServer{
-		Id:                       fakeTrustZoneServerID,
-		TrustZoneId:              fakeTrustZoneID,
-		ClusterId:                fakeClusterID,
-		KubernetesNamespace:      fakeKubernetesNamespace,
-		KubernetesServiceAccount: fakeKubernetesServiceAccount,
-	}
 }

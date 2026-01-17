@@ -21,13 +21,17 @@ service TrustZoneServerService {
   rpc GetTrustZoneServer(GetTrustZoneServerRequest) returns (GetTrustZoneServerResponse) {}
   // List TrustZoneServers.
   rpc ListTrustZoneServers(ListTrustZoneServersRequest) returns (ListTrustZoneServersResponse) {}
-  // Update a TrustZoneServer.
-  // Server implementations may prevent some fields from being updated.
-  rpc UpdateTrustZoneServer(UpdateTrustZoneServerRequest) returns (UpdateTrustZoneServerResponse) {}
 }
 
 message CreateTrustZoneServerRequest {
-  proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1;
+  // Trust Zone managed by this server
+  string trust_zone_id = 1;
+  // Cluster in which the server should be deployed
+  string cluster_id = 2;
+  // Kubernetes namespace in which the server should be deployed (consumers should default to spire-server if this is empty)
+  string kubernetes_namespace = 3;
+  // Name of kubernetes service account to deploy with the server (consumers should default to spire-server if this is empty)
+  string kubernetes_service_account = 4;
 }
 
 message CreateTrustZoneServerResponse {
@@ -59,12 +63,4 @@ message ListTrustZoneServersRequest {
 
 message ListTrustZoneServersResponse {
   repeated proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_servers = 1;
-}
-
-message UpdateTrustZoneServerRequest {
-  proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1;
-}
-
-message UpdateTrustZoneServerResponse {
-  proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1;
 }

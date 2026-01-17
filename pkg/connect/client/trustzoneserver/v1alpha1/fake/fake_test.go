@@ -6,6 +6,7 @@ package fake
 import (
 	"testing"
 
+	trustzoneserversvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_server_service/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
@@ -19,9 +20,15 @@ func Test_fakeTrustZoneServerClient_CreateTrustZoneServer(t *testing.T) {
 
 	trustZoneServer := test.FakeTrustZoneServer()
 
-	createdTrustZoneServer, err := client.CreateTrustZoneServer(t.Context(), trustZoneServer)
+	createdTrustZoneServer, err := client.CreateTrustZoneServer(t.Context(), &trustzoneserversvcpb.CreateTrustZoneServerRequest{
+		TrustZoneId:              trustZoneServer.GetTrustZoneId(),
+		ClusterId:                trustZoneServer.GetClusterId(),
+		KubernetesNamespace:      trustZoneServer.GetKubernetesNamespace(),
+		KubernetesServiceAccount: trustZoneServer.GetKubernetesServiceAccount(),
+	})
 	require.NoError(t, err)
-	trustZoneServer.Id = createdTrustZoneServer.Id
+	trustZoneServer.Id = createdTrustZoneServer.GetId()
+	trustZoneServer.OrgId = createdTrustZoneServer.GetOrgId()
 	assert.EqualExportedValues(t, trustZoneServer, createdTrustZoneServer)
 	assert.EqualExportedValues(t, trustZoneServer, fake.TrustZoneServers[createdTrustZoneServer.Id])
 }

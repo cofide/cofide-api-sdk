@@ -39,21 +39,21 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
   clusterId: string;
 
   /**
-   * Kubernetes namespace in which the server should be deployed (consumsers should default to spire-server if this is empty)
+   * Kubernetes namespace in which the server should be deployed (consumers should default to spire-server if this is empty)
    *
    * @generated from field: string kubernetes_namespace = 4;
    */
   kubernetesNamespace: string;
 
   /**
-   * Name of kubernetes service account to deploy with the server (consumsers should default to spire-server if this is empty)
+   * Name of kubernetes service account to deploy with the server (consumers should default to spire-server if this is empty)
    *
    * @generated from field: string kubernetes_service_account = 5;
    */
   kubernetesServiceAccount: string;
 
   /**
-   * Organization to which the server belongs (read-only for clients, matches the organization of the server's trust zone)
+   * Organization to which the server belongs (matches the organization of the server's trust zone)
    *
    * @generated from field: string org_id = 6;
    */

@@ -81,6 +81,7 @@ func FakeTrustZone() *trustzonepb.TrustZone {
 func FakeTrustZoneServer() *trustzoneserverpb.TrustZoneServer {
 	return &trustzoneserverpb.TrustZoneServer{
 		Id:                       FakeTrustZoneServerID,
+		OrgId:                    FakeOrganizationID,
 		TrustZoneId:              FakeTrustZoneID,
 		ClusterId:                FakeClusterID,
 		KubernetesNamespace:      FakeKubernetesNamespace,

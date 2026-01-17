@@ -26,7 +26,6 @@ const (
 	TrustZoneServerService_DestroyTrustZoneServer_FullMethodName = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/DestroyTrustZoneServer"
 	TrustZoneServerService_GetTrustZoneServer_FullMethodName     = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/GetTrustZoneServer"
 	TrustZoneServerService_ListTrustZoneServers_FullMethodName   = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/ListTrustZoneServers"
-	TrustZoneServerService_UpdateTrustZoneServer_FullMethodName  = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServer"
 )
 
 // TrustZoneServerServiceClient is the client API for TrustZoneServerService service.
@@ -45,9 +44,6 @@ type TrustZoneServerServiceClient interface {
 	GetTrustZoneServer(ctx context.Context, in *GetTrustZoneServerRequest, opts ...grpc.CallOption) (*GetTrustZoneServerResponse, error)
 	// List TrustZoneServers.
 	ListTrustZoneServers(ctx context.Context, in *ListTrustZoneServersRequest, opts ...grpc.CallOption) (*ListTrustZoneServersResponse, error)
-	// Update a TrustZoneServer.
-	// Server implementations may prevent some fields from being updated.
-	UpdateTrustZoneServer(ctx context.Context, in *UpdateTrustZoneServerRequest, opts ...grpc.CallOption) (*UpdateTrustZoneServerResponse, error)
 }
 
 type trustZoneServerServiceClient struct {
@@ -98,16 +94,6 @@ func (c *trustZoneServerServiceClient) ListTrustZoneServers(ctx context.Context,
 	return out, nil
 }
 
-func (c *trustZoneServerServiceClient) UpdateTrustZoneServer(ctx context.Context, in *UpdateTrustZoneServerRequest, opts ...grpc.CallOption) (*UpdateTrustZoneServerResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateTrustZoneServerResponse)
-	err := c.cc.Invoke(ctx, TrustZoneServerService_UpdateTrustZoneServer_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // TrustZoneServerServiceServer is the server API for TrustZoneServerService service.
 // All implementations should embed UnimplementedTrustZoneServerServiceServer
 // for forward compatibility.
@@ -124,9 +110,6 @@ type TrustZoneServerServiceServer interface {
 	GetTrustZoneServer(context.Context, *GetTrustZoneServerRequest) (*GetTrustZoneServerResponse, error)
 	// List TrustZoneServers.
 	ListTrustZoneServers(context.Context, *ListTrustZoneServersRequest) (*ListTrustZoneServersResponse, error)
-	// Update a TrustZoneServer.
-	// Server implementations may prevent some fields from being updated.
-	UpdateTrustZoneServer(context.Context, *UpdateTrustZoneServerRequest) (*UpdateTrustZoneServerResponse, error)
 }
 
 // UnimplementedTrustZoneServerServiceServer should be embedded to have
@@ -147,9 +130,6 @@ func (UnimplementedTrustZoneServerServiceServer) GetTrustZoneServer(context.Cont
 }
 func (UnimplementedTrustZoneServerServiceServer) ListTrustZoneServers(context.Context, *ListTrustZoneServersRequest) (*ListTrustZoneServersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTrustZoneServers not implemented")
-}
-func (UnimplementedTrustZoneServerServiceServer) UpdateTrustZoneServer(context.Context, *UpdateTrustZoneServerRequest) (*UpdateTrustZoneServerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneServer not implemented")
 }
 func (UnimplementedTrustZoneServerServiceServer) testEmbeddedByValue() {}
 
@@ -243,24 +223,6 @@ func _TrustZoneServerService_ListTrustZoneServers_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TrustZoneServerService_UpdateTrustZoneServer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTrustZoneServerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TrustZoneServerServiceServer).UpdateTrustZoneServer(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TrustZoneServerService_UpdateTrustZoneServer_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrustZoneServerServiceServer).UpdateTrustZoneServer(ctx, req.(*UpdateTrustZoneServerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // TrustZoneServerService_ServiceDesc is the grpc.ServiceDesc for TrustZoneServerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -283,10 +245,6 @@ var TrustZoneServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTrustZoneServers",
 			Handler:    _TrustZoneServerService_ListTrustZoneServers_Handler,
-		},
-		{
-			MethodName: "UpdateTrustZoneServer",
-			Handler:    _TrustZoneServerService_UpdateTrustZoneServer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
