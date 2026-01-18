@@ -13,6 +13,8 @@ require (
 	google.golang.org/protobuf v1.36.11
 )
 
+require google.golang.org/genproto/googleapis/api v0.0.0-20260114163908-3f89685c29c3
+
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

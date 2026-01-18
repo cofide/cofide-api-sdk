@@ -14,6 +14,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
 type fakeTrustZoneServerClient struct {
@@ -100,16 +102,47 @@ func (c *fakeTrustZoneServerClient) trustZoneServerMatches(trustZoneServer *trus
 	return true
 }
 
-func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error) {
+func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer, updatePaths []string) (*trustzoneserverpb.TrustZoneServer, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	if _, ok := c.fake.TrustZoneServers[trustZoneServer.GetId()]; !ok {
+	existing, ok := c.fake.TrustZoneServers[trustZoneServer.GetId()]
+	if !ok {
 		return nil, status.Error(codes.NotFound, "trust zone server not found")
 	}
 
-	c.fake.TrustZoneServers[trustZoneServer.GetId()] = clone(trustZoneServer)
-	return clone(trustZoneServer), nil
+	if len(updatePaths) > 0 {
+		// Create fieldMask from the provided paths
+		mask, err := fieldmaskpb.New(trustZoneServer, updatePaths...)
+		if err != nil {
+			return nil, status.Errorf(codes.InvalidArgument, "invalid update mask: %v", err)
+		}
+
+		// Update existing record field-by-field based on mask
+		srcReflect := trustZoneServer.ProtoReflect()
+		destReflect := existing.ProtoReflect()
+
+		for _, path := range mask.GetPaths() {
+			// Find field descriptor by Proto name
+			fd := srcReflect.Descriptor().Fields().ByName(protoreflect.Name(path))
+			if fd == nil {
+				// Find field descriptor by JSON name (Proto and JSON names are supported)
+				fd = srcReflect.Descriptor().Fields().ByJSONName(path)
+			}
+
+			if fd != nil {
+				// Copy value from source to destination
+				destReflect.Set(fd, srcReflect.Get(fd))
+			}
+		}
+	} else {
+		// If no paths provided, full replacement (standard AIP behavior)
+		existing = clone(trustZoneServer)
+	}
+
+	// Existing may have been partially updated or entirely replaced, so explicitly set it to cover both cases
+	c.fake.TrustZoneServers[trustZoneServer.GetId()] = existing
+	return clone(existing), nil
 }
 
 func clone(trustZoneServer *trustzoneserverpb.TrustZoneServer) *trustzoneserverpb.TrustZoneServer {
