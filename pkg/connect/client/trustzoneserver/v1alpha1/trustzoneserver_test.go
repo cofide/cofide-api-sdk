@@ -47,7 +47,7 @@ func TestTrustZoneServerClient_Unimplemented(t *testing.T) {
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZones)
 
-	trustZone, err = client.UpdateTrustZoneServer(t.Context(), nil)
+	trustZone, err = client.UpdateTrustZoneServer(t.Context(), nil, nil)
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, trustZone)
 }
@@ -78,7 +78,7 @@ func TestTrustZoneServerClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*trustzoneserverpb.TrustZoneServer{trustZoneServer}, trustZoneServers)
 
-	updatedTrustZoneServer, err := client.UpdateTrustZoneServer(t.Context(), trustZoneServer)
+	updatedTrustZoneServer, err := client.UpdateTrustZoneServer(t.Context(), trustZoneServer, nil)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZoneServer, updatedTrustZoneServer)
 }
