@@ -100,16 +100,26 @@ func (c *fakeTrustZoneServerClient) trustZoneServerMatches(trustZoneServer *trus
 	return true
 }
 
-func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer) (*trustzoneserverpb.TrustZoneServer, error) {
+func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer, updateMask *trustzoneserversvcpb.UpdateTrustZoneServerRequest_UpdateMask) (*trustzoneserverpb.TrustZoneServer, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	if _, ok := c.fake.TrustZoneServers[trustZoneServer.GetId()]; !ok {
+	existing, ok := c.fake.TrustZoneServers[trustZoneServer.GetId()]
+	if !ok {
 		return nil, status.Error(codes.NotFound, "trust zone server not found")
 	}
 
-	c.fake.TrustZoneServers[trustZoneServer.GetId()] = clone(trustZoneServer)
-	return clone(trustZoneServer), nil
+	var new *trustzoneserverpb.TrustZoneServer
+	if updateMask == nil {
+		new = clone(trustZoneServer)
+	} else {
+		new = clone(existing)
+		// Once update of fields is supported, handle the ones set in the update mask and update here
+	}
+
+	// Existing may have been partially updated or entirely replaced, so explicitly set it to cover both cases
+	c.fake.TrustZoneServers[trustZoneServer.GetId()] = new
+	return clone(new), nil
 }
 
 func clone(trustZoneServer *trustzoneserverpb.TrustZoneServer) *trustzoneserverpb.TrustZoneServer {
