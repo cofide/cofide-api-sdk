@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/trust_zone_server/v1alpha1/trust_zone_server.proto.
  */
 export const file_proto_trust_zone_server_v1alpha1_trust_zone_server: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEiygMKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSOgoKY2x1c3Rlcl9pZBgDIAEoCUIm4EEC+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISIQoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCA+BBAhInChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUID4EECEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uOpEB6kGNAQowcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEvVHJ1c3Rab25lU2VydmVyEllvcmdhbml6YXRpb25zL3tvcmdhbml6YXRpb259L3RydXN0Wm9uZXMve3RydXN0X3pvbmV9L3RydXN0Wm9uZVNlcnZlcnMve3RydXN0X3pvbmVfc2VydmVyfUJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vdHJ1c3Rfem9uZV9zZXJ2ZXIvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_api_resource]);
+  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEiggMKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSOgoKY2x1c3Rlcl9pZBgDIAEoCUIm4EEC+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISIQoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCA+BBARInChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUID4EEBEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uOkrqQUcKMHByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExL1RydXN0Wm9uZVNlcnZlchITe3RydXN0X3pvbmVfc2VydmVyfUJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vdHJ1c3Rfem9uZV9zZXJ2ZXIvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_api_resource]);
 
 /**
  * TrustZoneServer defines how the server managing a trust zone should be deployed.
@@ -46,21 +46,21 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
   clusterId: string;
 
   /**
-   * Kubernetes namespace in which the server should be deployed. Required on create, optional on update.
+   * Kubernetes namespace in which the server should be deployed. If not provided the API service should set this.
    *
    * @generated from field: string kubernetes_namespace = 4;
    */
   kubernetesNamespace: string;
 
   /**
-   * Name of kubernetes service account to deploy with the server. Required on create, optional on update.
+   * Name of kubernetes service account to deploy with the server. If not provided the API service should set this.
    *
    * @generated from field: string kubernetes_service_account = 5;
    */
   kubernetesServiceAccount: string;
 
   /**
-   * Organization to which the server belongs. Derived from the trust zone. Required on create, optional on update.
+   * Organization to which the server belongs. Derived from the trust zone by the API service.
    *
    * @generated from field: string org_id = 6;
    */
