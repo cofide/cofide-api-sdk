@@ -5,12 +5,10 @@ package v1alpha1
 
 import (
 	"context"
-	"fmt"
 
 	trustzoneserversvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_server_service/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	"google.golang.org/grpc"
-	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
 // TrustZoneServerClient is an interface for a gRPC client for the v1alpha1 version of the Connect TrustZoneServerService.
@@ -19,7 +17,7 @@ type TrustZoneServerClient interface {
 	DestroyTrustZoneServer(ctx context.Context, trustZoneServerID string) error
 	GetTrustZoneServer(ctx context.Context, trustZoneServerID string) (*trustzoneserverpb.TrustZoneServer, error)
 	ListTrustZoneServers(ctx context.Context, filter *trustzoneserversvcpb.ListTrustZoneServersRequest_Filter) ([]*trustzoneserverpb.TrustZoneServer, error)
-	UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer, updatePaths []string) (*trustzoneserverpb.TrustZoneServer, error)
+	UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer, updateMask *trustzoneserversvcpb.UpdateTrustZoneServerRequest_UpdateMask) (*trustzoneserverpb.TrustZoneServer, error)
 }
 
 type trustZoneServerClient struct {
@@ -76,20 +74,12 @@ func (c *trustZoneServerClient) ListTrustZoneServers(ctx context.Context, filter
 func (c *trustZoneServerClient) UpdateTrustZoneServer(
 	ctx context.Context,
 	trustZoneServer *trustzoneserverpb.TrustZoneServer,
-	updatePaths []string,
+	updateMask *trustzoneserversvcpb.UpdateTrustZoneServerRequest_UpdateMask,
 ) (*trustzoneserverpb.TrustZoneServer, error) {
-	req := &trustzoneserversvcpb.UpdateTrustZoneServerRequest{
+	resp, err := c.trustZoneServerClient.UpdateTrustZoneServer(ctx, &trustzoneserversvcpb.UpdateTrustZoneServerRequest{
 		TrustZoneServer: trustZoneServer,
-	}
-	// Only attach the mask if paths are actually provided
-	if len(updatePaths) > 0 {
-		mask, err := fieldmaskpb.New(trustZoneServer, updatePaths...)
-		if err != nil {
-			return nil, fmt.Errorf("invalid update mask: %w", err)
-		}
-		req.UpdateMask = mask
-	}
-	resp, err := c.trustZoneServerClient.UpdateTrustZoneServer(ctx, req)
+		UpdateMask:      updateMask,
+	})
 	if err != nil {
 		return nil, err
 	}

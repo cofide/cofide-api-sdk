@@ -7,7 +7,6 @@ package proto.connect.trust_zone_server_service.v1alpha1;
 
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
-import "google/protobuf/field_mask.proto";
 import "proto/trust_zone_server/v1alpha1/trust_zone_server.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_server_service/v1alpha1";
@@ -80,10 +79,15 @@ message ListTrustZoneServersResponse {
 }
 
 message UpdateTrustZoneServerRequest {
+  message UpdateMask {
+    // No fields are currently supported for update
+    // When they are they will be added to this mask which serves as a placeholder currently
+  }
+
   proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1 [(google.api.field_behavior) = REQUIRED];
 
   // The list of fields to be updated. If not provided a full replacement will be made.
-  google.protobuf.FieldMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+  optional UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message UpdateTrustZoneServerResponse {

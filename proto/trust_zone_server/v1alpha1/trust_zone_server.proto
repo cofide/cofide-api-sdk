@@ -33,9 +33,15 @@ message TrustZoneServer {
     (google.api.resource_reference).type = "proto.cluster.v1alpha1/Cluster"
   ];
   // Kubernetes namespace in which the server should be deployed. If not provided the API service should set this.
-  string kubernetes_namespace = 4 [(google.api.field_behavior) = OPTIONAL];
+  string kubernetes_namespace = 4 [
+    (google.api.field_behavior) = OPTIONAL,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
   // Name of kubernetes service account to deploy with the server. If not provided the API service should set this.
-  string kubernetes_service_account = 5 [(google.api.field_behavior) = OPTIONAL];
+  string kubernetes_service_account = 5 [
+    (google.api.field_behavior) = OPTIONAL,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
   // Organization to which the server belongs. Derived from the trust zone by the API service.
   string org_id = 6 [
     (google.api.field_behavior) = OUTPUT_ONLY,
