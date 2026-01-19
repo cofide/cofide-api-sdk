@@ -9,11 +9,10 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/spiffe/spire-api-sdk v1.12.4
 	github.com/stretchr/testify v1.10.0
+	google.golang.org/genproto/googleapis/api v0.0.0-20260114163908-3f89685c29c3
 	google.golang.org/grpc v1.73.1
 	google.golang.org/protobuf v1.36.11
 )
-
-require google.golang.org/genproto/googleapis/api v0.0.0-20260114163908-3f89685c29c3
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
