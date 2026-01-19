@@ -25,9 +25,11 @@ message TrustZoneServer {
     (google.api.field_behavior) = IMMUTABLE,
     (google.api.resource_reference).type = "proto.trust_zone.v1alpha1/TrustZone"
   ];
-  // Cluster in which the server should be deployed. Required on create, optional on update.
+  // Cluster in which the server should be deployed.
+  // Immutable after creation.
   string cluster_id = 3 [
     (google.api.field_behavior) = REQUIRED,
+    (google.api.field_behavior) = IMMUTABLE,
     (google.api.resource_reference).type = "proto.cluster.v1alpha1/Cluster"
   ];
   // Kubernetes namespace in which the server should be deployed. If not provided the API service should set this.
