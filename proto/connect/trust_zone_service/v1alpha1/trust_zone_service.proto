@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package proto.connect.trust_zone_service.v1alpha1;
 
+import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
 import "proto/spire/api/types/bundle.proto";
 import "proto/trust_zone/v1alpha1/trust_zone.proto";
 
@@ -86,8 +88,14 @@ message RegisterAgentResponse {
 }
 
 message RegisterTrustZoneServerRequest {
+  // To be deprecated, registration of a trust zone server by just specifying the cluster ID
+  // Consumers should provide a trust zone server ID instead
   TrustZoneServer trust_zone_server = 1;
   spire.api.types.Bundle bundle = 2;
+  string trust_zone_server_id = 3 [
+    (google.api.field_behavior) = OPTIONAL,
+    (google.api.resource_reference).type = "proto.trust_zone_server.v1alpha1/TrustZoneServer"
+  ];
 }
 
 message RegisterTrustZoneServerResponse {

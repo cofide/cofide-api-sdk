@@ -59,7 +59,7 @@ func TestTrustZoneClient_Unimplemented(t *testing.T) {
 	test.RequireUnimplemented(t, err)
 	assert.Empty(t, agentID)
 
-	err = client.RegisterTrustZoneServer(ctx, nil, nil)
+	err = client.RegisterTrustZoneServer(ctx, nil, nil, "")
 	test.RequireUnimplemented(t, err)
 }
 
@@ -101,7 +101,7 @@ func TestTrustZoneClient(t *testing.T) {
 	assert.Equal(t, fakeAgentID, agentID)
 
 	tzs := fakeTrustZoneServer()
-	err = client.RegisterTrustZoneServer(ctx, tzs, bundle)
+	err = client.RegisterTrustZoneServer(ctx, tzs, bundle, "")
 	require.NoError(t, err)
 
 	fakeBundle := &types.Bundle{TrustDomain: fakeTrustDomain}
