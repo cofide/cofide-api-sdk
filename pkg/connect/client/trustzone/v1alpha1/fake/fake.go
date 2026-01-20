@@ -124,16 +124,26 @@ func (c *fakeTrustZoneClient) RegisterAgent(ctx context.Context, agent *trustzon
 	return id, nil
 }
 
-func (c *fakeTrustZoneClient) RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle) error {
+func (c *fakeTrustZoneClient) RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle, trustZoneServerID string) error {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	cluster, ok := c.fake.Clusters[server.ClusterId]
-	if !ok {
-		return status.Error(codes.InvalidArgument, "invalid cluster")
+	var trustZoneID string
+	if trustZoneServerID != "" {
+		trustZoneServer, ok := c.fake.TrustZoneServers[trustZoneServerID]
+		if !ok {
+			return status.Error(codes.InvalidArgument, "invalid trust zone server ID")
+		}
+		trustZoneID = trustZoneServer.GetTrustZoneId()
+	} else {
+		cluster, ok := c.fake.Clusters[server.ClusterId]
+		if !ok {
+			return status.Error(codes.InvalidArgument, "invalid cluster")
+		}
+		trustZoneID = cluster.GetTrustZoneId()
 	}
 
-	c.fake.TrustZoneBundles[cluster.GetTrustZoneId()] = cloneBundle(bundle)
+	c.fake.TrustZoneBundles[trustZoneID] = cloneBundle(bundle)
 	return nil
 }
 

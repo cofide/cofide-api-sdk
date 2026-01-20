@@ -20,7 +20,7 @@ type TrustZoneClient interface {
 	ListTrustZones(ctx context.Context, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) ([]*trustzonepb.TrustZone, error)
 	UpdateTrustZone(ctx context.Context, trustZone *trustzonepb.TrustZone) (*trustzonepb.TrustZone, error)
 	RegisterAgent(ctx context.Context, agent *trustzonesvcpb.Agent, token string, bundle *types.Bundle) (string, error)
-	RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle) error
+	RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle, trustZoneServerID string) error
 	UpdateTrustZoneBundle(ctx context.Context, trustZoneID string, bundle *types.Bundle) error
 }
 
@@ -99,11 +99,12 @@ func (c *trustZoneClient) RegisterAgent(ctx context.Context, agent *trustzonesvc
 	return resp.AgentId, nil
 }
 
-func (c *trustZoneClient) RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle) error {
+func (c *trustZoneClient) RegisterTrustZoneServer(ctx context.Context, server *trustzonesvcpb.TrustZoneServer, bundle *types.Bundle, trustZoneServerID string) error {
 	// RegisterTrustZoneServerResponse currently empty
 	_, err := c.trustZoneClient.RegisterTrustZoneServer(ctx, &trustzonesvcpb.RegisterTrustZoneServerRequest{
-		TrustZoneServer: server,
-		Bundle:          bundle,
+		TrustZoneServer:   server,
+		Bundle:            bundle,
+		TrustZoneServerId: trustZoneServerID,
 	})
 	return err
 }
