@@ -33,18 +33,18 @@ import (
 )
 
 type fakeClientSet struct {
+	agentV1Alpha1             agentv1alpha1.AgentClient
+	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
+	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
+	clusterV1Alpha1           clusterv1alpha1.ClusterClient
+	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
+	federationV1Alpha1        federationV1Alpha1.FederationClient
+	identityV1Alpha1          identityv1alpha1.IdentityClient
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
+	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
 	trustZoneServerV1Alpha1   trustzoneserverv1alpha1.TrustZoneServerClient
-	clusterV1Alpha1           clusterv1alpha1.ClusterClient
-	agentV1Alpha1             agentv1alpha1.AgentClient
-	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
-	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
-	federationV1Alpha1        federationV1Alpha1.FederationClient
-	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
-	identityV1Alpha1          identityv1alpha1.IdentityClient
-	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
 }
 
 // New instantiates a new ClientSet that fakes communication with a Connect API.
