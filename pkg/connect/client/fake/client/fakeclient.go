@@ -26,6 +26,8 @@ import (
 	fakerolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1/fake"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	faketrustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1/fake"
+	trustzoneserverv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzoneserver/v1alpha1"
+	faketrustzoneserverv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzoneserver/v1alpha1/fake"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
 	fakeworkloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1/fake"
 )
@@ -33,6 +35,7 @@ import (
 type fakeClientSet struct {
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
+	trustZoneServerV1Alpha1   trustzoneserverv1alpha1.TrustZoneServerClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
 	agentV1Alpha1             agentv1alpha1.AgentClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
@@ -49,6 +52,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 	return &fakeClientSet{
 		organizationV1Alpha1:      fakeorganizationv1alpha1.New(fake),
 		trustZoneV1Alpha1:         faketrustzonev1alpha1.New(fake),
+		trustZoneServerV1Alpha1:   faketrustzoneserverv1alpha1.New(fake),
 		clusterV1Alpha1:           fakeclusterv1alpha1.New(fake),
 		agentV1Alpha1:             fakeagentv1alpha1.New(fake),
 		attestationPolicyV1Alpha1: fakeattestationpolicyv1alpha1.New(fake),
@@ -67,6 +71,10 @@ func (c *fakeClientSet) OrganizationV1Alpha1() organizationv1alpha1.Organization
 
 func (c *fakeClientSet) TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient {
 	return c.trustZoneV1Alpha1
+}
+
+func (c *fakeClientSet) TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneServerClient {
+	return c.trustZoneServerV1Alpha1
 }
 
 func (c *fakeClientSet) ClusterV1Alpha1() clusterv1alpha1.ClusterClient {
