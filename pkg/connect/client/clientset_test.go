@@ -23,4 +23,5 @@ func TestClientSet(t *testing.T) {
 	require.NotNil(t, client.DataStoreV1Alpha1())
 	require.NotNil(t, client.WorkloadV1Alpha1())
 	require.NotNil(t, client.IdentityV1Alpha1())
+	require.NotNil(t, client.RoleBindingV1Alpha1())
 }
