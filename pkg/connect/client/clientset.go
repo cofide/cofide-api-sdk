@@ -55,23 +55,55 @@ type clientSet struct {
 // New instantiates a new ClientSet for communication with a Connect API.
 func New(conn grpc.ClientConnInterface) ClientSet {
 	return &clientSet{
+		agentV1Alpha1:             agentv1alpha1.New(conn),
+		apBindingV1Alpha1:         apbindingv1alpha1.New(conn),
+		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
+		clusterV1Alpha1:           clusterv1alpha1.New(conn),
+		datastoreV1Alpha1:         datastorev1alpha1.New(conn),
+		federationV1Alpha1:        federationV1Alpha1.New(conn),
+		identityV1Alpha1:          identityv1alpha1.New(conn),
 		organizationV1Alpha1:      organizationv1alpha1.New(conn),
+		roleBindingV1Alpha1:       rolebindingv1alpha1.New(conn),
 		trustZoneV1Alpha1:         trustzonev1alpha1.New(conn),
 		trustZoneServerV1Alpha1:   trustzoneserverv1alpha1.New(conn),
-		clusterV1Alpha1:           clusterv1alpha1.New(conn),
-		agentV1Alpha1:             agentv1alpha1.New(conn),
-		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
-		apBindingV1Alpha1:         apbindingv1alpha1.New(conn),
-		federationV1Alpha1:        federationV1Alpha1.New(conn),
-		datastoreV1Alpha1:         datastorev1alpha1.New(conn),
 		workloadV1Alpha1:          workloadv1alpha1.New(conn),
-		identityV1Alpha1:          identityv1alpha1.New(conn),
-		roleBindingV1Alpha1:       rolebindingv1alpha1.New(conn),
 	}
+}
+
+func (c *clientSet) AgentV1Alpha1() agentv1alpha1.AgentClient {
+	return c.agentV1Alpha1
+}
+
+func (c *clientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {
+	return c.apBindingV1Alpha1
+}
+
+func (c *clientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient {
+	return c.attestationPolicyV1Alpha1
+}
+
+func (c *clientSet) ClusterV1Alpha1() clusterv1alpha1.ClusterClient {
+	return c.clusterV1Alpha1
+}
+
+func (c *clientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
+	return c.datastoreV1Alpha1
+}
+
+func (c *clientSet) FederationV1Alpha1() federationV1Alpha1.FederationClient {
+	return c.federationV1Alpha1
+}
+
+func (c *clientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
+	return c.identityV1Alpha1
 }
 
 func (c *clientSet) OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient {
 	return c.organizationV1Alpha1
+}
+
+func (c *clientSet) RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient {
+	return c.roleBindingV1Alpha1
 }
 
 func (c *clientSet) TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient {
@@ -82,38 +114,6 @@ func (c *clientSet) TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneS
 	return c.trustZoneServerV1Alpha1
 }
 
-func (c *clientSet) ClusterV1Alpha1() clusterv1alpha1.ClusterClient {
-	return c.clusterV1Alpha1
-}
-
-func (c *clientSet) AgentV1Alpha1() agentv1alpha1.AgentClient {
-	return c.agentV1Alpha1
-}
-
-func (c *clientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient {
-	return c.attestationPolicyV1Alpha1
-}
-
-func (c *clientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {
-	return c.apBindingV1Alpha1
-}
-
-func (c *clientSet) FederationV1Alpha1() federationV1Alpha1.FederationClient {
-	return c.federationV1Alpha1
-}
-
-func (c *clientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
-	return c.datastoreV1Alpha1
-}
-
 func (c *clientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 	return c.workloadV1Alpha1
-}
-
-func (c *clientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
-	return c.identityV1Alpha1
-}
-
-func (c *clientSet) RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient {
-	return c.roleBindingV1Alpha1
 }
