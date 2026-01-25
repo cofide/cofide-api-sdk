@@ -26,6 +26,10 @@ service TrustZoneServerService {
   // Update a TrustZoneServer.
   // Server implementations may prevent some fields from being updated.
   rpc UpdateTrustZoneServer(UpdateTrustZoneServerRequest) returns (UpdateTrustZoneServerResponse) {}
+  // Creates a temporary token that can be used by a server to register with Connect.
+  // Usually servers should register using a non-shared token that can be verified by the API server, join tokens should
+  // only be used when this is not possible.
+  rpc CreateJoinToken(CreateJoinTokenRequest) returns (CreateJoinTokenResponse) {}
 }
 
 message CreateTrustZoneServerRequest {
@@ -92,4 +96,15 @@ message UpdateTrustZoneServerRequest {
 
 message UpdateTrustZoneServerResponse {
   proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1;
+}
+
+message CreateJoinTokenRequest {
+  string trust_zone_server_id = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference).type = "proto.trust_zone_server.v1alpha1/TrustZoneServer"
+  ];
+}
+
+message CreateJoinTokenResponse {
+  string join_token = 1;
 }

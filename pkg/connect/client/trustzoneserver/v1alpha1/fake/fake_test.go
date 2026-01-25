@@ -108,3 +108,19 @@ func Test_fakeTrustZoneServerClient_ListTrustZoneServers(t *testing.T) {
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*trustzoneserverpb.TrustZoneServer{trustZoneServer}, trustZoneServers)
 }
+
+func Test_fakeTrustZoneServerClient_CreateJoinToken(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+
+	trustZoneServer := test.FakeTrustZoneServer()
+
+	_, err := client.CreateJoinToken(t.Context(), trustZoneServer.GetId())
+	require.Error(t, err)
+
+	fake.TrustZoneServers[trustZoneServer.GetId()] = trustZoneServer
+
+	token, err := client.CreateJoinToken(t.Context(), trustZoneServer.GetId())
+	require.NoError(t, err)
+	assert.NotEmpty(t, token)
+}
