@@ -16,6 +16,8 @@ import (
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func Test_fakeTrustZoneClient_CreateTrustZone(t *testing.T) {
@@ -112,20 +114,33 @@ func Test_fakeTrustZoneClient_RegisterTrustZoneServer(t *testing.T) {
 	fake.TrustZones[trustZone1.GetId()] = trustZone1
 	trustZone2 := &trustzonepb.TrustZone{Id: test.PtrOf("trust-zone-2"), TrustDomain: "trust-domain-2"}
 	fake.TrustZones[trustZone2.GetId()] = trustZone2
+	trustZone3 := &trustzonepb.TrustZone{Id: test.PtrOf("trust-zone-3"), TrustDomain: "trust-domain-3"}
+	fake.TrustZones[trustZone3.GetId()] = trustZone3
+	trustZone4 := &trustzonepb.TrustZone{Id: test.PtrOf("trust-zone-4"), TrustDomain: "trust-domain-4"}
+	fake.TrustZones[trustZone4.GetId()] = trustZone4
 	cluster1 := &clusterpb.Cluster{Id: test.PtrOf("cluster-1"), TrustZoneId: test.PtrOf(trustZone1.GetId())}
 	fake.Clusters[cluster1.GetId()] = cluster1
 	trustZoneSever1 := &trustzoneserverpb.TrustZoneServer{Id: "trust-zone-server-1", TrustZoneId: trustZone2.GetId(), ClusterId: cluster1.GetId()}
 	fake.TrustZoneServers[trustZoneSever1.GetId()] = trustZoneSever1
+	trustZoneSever2 := &trustzoneserverpb.TrustZoneServer{Id: "trust-zone-server-2", TrustZoneId: trustZone3.GetId(), ClusterId: cluster1.GetId()}
+	fake.TrustZoneServers[trustZoneSever2.GetId()] = trustZoneSever2
+	trustZoneSever3 := &trustzoneserverpb.TrustZoneServer{Id: "trust-zone-server-3", TrustZoneId: trustZone3.GetId(), ClusterId: cluster1.GetId()}
+	fake.TrustZoneServers[trustZoneSever3.GetId()] = trustZoneSever3
+	token := "join-token"
+	fake.TrustZoneServerJoinTokens[trustZoneSever2.GetId()] = map[string]struct{}{token: struct{}{}}
 
 	type registrationInput struct {
 		trustZoneServer   *trustzonesvcpb.TrustZoneServer
 		bundle            *types.Bundle
 		trustZoneServerID string
+		joinToken         string
 	}
 	tests := []struct {
 		name                      string
 		input                     registrationInput
 		expectedBundleTrustZoneID string
+		wantErrMsg                string
+		wantErrCode               codes.Code
 	}{
 		{
 			name: "Registration using cluster ID",
@@ -143,11 +158,37 @@ func Test_fakeTrustZoneClient_RegisterTrustZoneServer(t *testing.T) {
 			},
 			expectedBundleTrustZoneID: trustZone2.GetId(),
 		},
+		{
+			name: "Registration using trust zone server ID and valid join token",
+			input: registrationInput{
+				bundle:            &types.Bundle{TrustDomain: trustZone3.GetTrustDomain()},
+				trustZoneServerID: trustZoneSever2.GetId(),
+				joinToken:         token,
+			},
+			expectedBundleTrustZoneID: trustZone3.GetId(),
+		},
+		{
+			name: "Registration using trust zone server ID and invalid join token",
+			input: registrationInput{
+				bundle:            &types.Bundle{TrustDomain: trustZone3.GetTrustDomain()},
+				trustZoneServerID: trustZoneSever3.GetId(),
+				joinToken:         "invalid",
+			},
+			wantErrMsg:  "rpc error: code = Unauthenticated desc = invalid token",
+			wantErrCode: codes.Unauthenticated,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
-			err := client.RegisterTrustZoneServer(t.Context(), tt.input.trustZoneServer, tt.input.bundle, tt.input.trustZoneServerID)
+			err := client.RegisterTrustZoneServer(t.Context(), tt.input.trustZoneServer, tt.input.bundle, tt.input.trustZoneServerID, tt.input.joinToken)
+			if tt.wantErrMsg != "" {
+				require.EqualError(t, err, tt.wantErrMsg)
+				statusFromErr, ok := status.FromError(err)
+				require.True(t, ok)
+				assert.Equal(t, tt.wantErrCode, statusFromErr.Code())
+				return
+			}
 			require.NoError(t, err)
 			assert.EqualExportedValues(t, tt.input.bundle, fake.TrustZoneBundles[tt.expectedBundleTrustZoneID])
 		})

@@ -51,6 +51,9 @@ const (
 	// TrustZoneServerServiceUpdateTrustZoneServerProcedure is the fully-qualified name of the
 	// TrustZoneServerService's UpdateTrustZoneServer RPC.
 	TrustZoneServerServiceUpdateTrustZoneServerProcedure = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServer"
+	// TrustZoneServerServiceCreateJoinTokenProcedure is the fully-qualified name of the
+	// TrustZoneServerService's CreateJoinToken RPC.
+	TrustZoneServerServiceCreateJoinTokenProcedure = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/CreateJoinToken"
 )
 
 // TrustZoneServerServiceClient is a client for the
@@ -69,6 +72,10 @@ type TrustZoneServerServiceClient interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerResponse], error)
+	// Creates a temporary token that can be used by a server to register with Connect.
+	// Usually servers should register using a non-shared token that can be verified by the API server, join tokens should
+	// only be used when this is not possible.
+	CreateJoinToken(context.Context, *connect.Request[v1alpha1.CreateJoinTokenRequest]) (*connect.Response[v1alpha1.CreateJoinTokenResponse], error)
 }
 
 // NewTrustZoneServerServiceClient constructs a client for the
@@ -113,6 +120,12 @@ func NewTrustZoneServerServiceClient(httpClient connect.HTTPClient, baseURL stri
 			connect.WithSchema(trustZoneServerServiceMethods.ByName("UpdateTrustZoneServer")),
 			connect.WithClientOptions(opts...),
 		),
+		createJoinToken: connect.NewClient[v1alpha1.CreateJoinTokenRequest, v1alpha1.CreateJoinTokenResponse](
+			httpClient,
+			baseURL+TrustZoneServerServiceCreateJoinTokenProcedure,
+			connect.WithSchema(trustZoneServerServiceMethods.ByName("CreateJoinToken")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -123,6 +136,7 @@ type trustZoneServerServiceClient struct {
 	getTrustZoneServer     *connect.Client[v1alpha1.GetTrustZoneServerRequest, v1alpha1.GetTrustZoneServerResponse]
 	listTrustZoneServers   *connect.Client[v1alpha1.ListTrustZoneServersRequest, v1alpha1.ListTrustZoneServersResponse]
 	updateTrustZoneServer  *connect.Client[v1alpha1.UpdateTrustZoneServerRequest, v1alpha1.UpdateTrustZoneServerResponse]
+	createJoinToken        *connect.Client[v1alpha1.CreateJoinTokenRequest, v1alpha1.CreateJoinTokenResponse]
 }
 
 // CreateTrustZoneServer calls
@@ -155,6 +169,12 @@ func (c *trustZoneServerServiceClient) UpdateTrustZoneServer(ctx context.Context
 	return c.updateTrustZoneServer.CallUnary(ctx, req)
 }
 
+// CreateJoinToken calls
+// proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.CreateJoinToken.
+func (c *trustZoneServerServiceClient) CreateJoinToken(ctx context.Context, req *connect.Request[v1alpha1.CreateJoinTokenRequest]) (*connect.Response[v1alpha1.CreateJoinTokenResponse], error) {
+	return c.createJoinToken.CallUnary(ctx, req)
+}
+
 // TrustZoneServerServiceHandler is an implementation of the
 // proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService service.
 type TrustZoneServerServiceHandler interface {
@@ -171,6 +191,10 @@ type TrustZoneServerServiceHandler interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerResponse], error)
+	// Creates a temporary token that can be used by a server to register with Connect.
+	// Usually servers should register using a non-shared token that can be verified by the API server, join tokens should
+	// only be used when this is not possible.
+	CreateJoinToken(context.Context, *connect.Request[v1alpha1.CreateJoinTokenRequest]) (*connect.Response[v1alpha1.CreateJoinTokenResponse], error)
 }
 
 // NewTrustZoneServerServiceHandler builds an HTTP handler from the service implementation. It
@@ -210,6 +234,12 @@ func NewTrustZoneServerServiceHandler(svc TrustZoneServerServiceHandler, opts ..
 		connect.WithSchema(trustZoneServerServiceMethods.ByName("UpdateTrustZoneServer")),
 		connect.WithHandlerOptions(opts...),
 	)
+	trustZoneServerServiceCreateJoinTokenHandler := connect.NewUnaryHandler(
+		TrustZoneServerServiceCreateJoinTokenProcedure,
+		svc.CreateJoinToken,
+		connect.WithSchema(trustZoneServerServiceMethods.ByName("CreateJoinToken")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case TrustZoneServerServiceCreateTrustZoneServerProcedure:
@@ -222,6 +252,8 @@ func NewTrustZoneServerServiceHandler(svc TrustZoneServerServiceHandler, opts ..
 			trustZoneServerServiceListTrustZoneServersHandler.ServeHTTP(w, r)
 		case TrustZoneServerServiceUpdateTrustZoneServerProcedure:
 			trustZoneServerServiceUpdateTrustZoneServerHandler.ServeHTTP(w, r)
+		case TrustZoneServerServiceCreateJoinTokenProcedure:
+			trustZoneServerServiceCreateJoinTokenHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -249,4 +281,8 @@ func (UnimplementedTrustZoneServerServiceHandler) ListTrustZoneServers(context.C
 
 func (UnimplementedTrustZoneServerServiceHandler) UpdateTrustZoneServer(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.UpdateTrustZoneServer is not implemented"))
+}
+
+func (UnimplementedTrustZoneServerServiceHandler) CreateJoinToken(context.Context, *connect.Request[v1alpha1.CreateJoinTokenRequest]) (*connect.Response[v1alpha1.CreateJoinTokenResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.CreateJoinToken is not implemented"))
 }
