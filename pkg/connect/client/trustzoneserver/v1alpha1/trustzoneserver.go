@@ -18,6 +18,7 @@ type TrustZoneServerClient interface {
 	GetTrustZoneServer(ctx context.Context, trustZoneServerID string) (*trustzoneserverpb.TrustZoneServer, error)
 	ListTrustZoneServers(ctx context.Context, filter *trustzoneserversvcpb.ListTrustZoneServersRequest_Filter) ([]*trustzoneserverpb.TrustZoneServer, error)
 	UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer, updateMask *trustzoneserversvcpb.UpdateTrustZoneServerRequest_UpdateMask) (*trustzoneserverpb.TrustZoneServer, error)
+	CreateJoinToken(ctx context.Context, trustZoneServerID string) (string, error)
 }
 
 type trustZoneServerClient struct {
@@ -85,4 +86,12 @@ func (c *trustZoneServerClient) UpdateTrustZoneServer(
 	}
 
 	return resp.TrustZoneServer, nil
+}
+
+func (c *trustZoneServerClient) CreateJoinToken(ctx context.Context, trustZoneServerID string) (string, error) {
+	resp, err := c.trustZoneServerClient.CreateJoinToken(ctx, &trustzoneserversvcpb.CreateJoinTokenRequest{TrustZoneServerId: trustZoneServerID})
+	if err != nil {
+		return "", err
+	}
+	return resp.JoinToken, nil
 }
