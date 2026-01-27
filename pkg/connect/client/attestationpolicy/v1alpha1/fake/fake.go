@@ -33,6 +33,7 @@ func (c *fakeAttestationPolicyClient) CreateAttestationPolicy(ctx context.Contex
 	policy = clone(policy)
 	policy.Id = &id
 	c.fake.AttestationPolicies[policy.GetId()] = policy
+
 	return clone(policy), nil
 }
 
@@ -61,14 +62,14 @@ func (c *fakeAttestationPolicyClient) ListAttestationPolicies(ctx context.Contex
 
 	policies := []*attestationpolicypb.AttestationPolicy{}
 	for _, policy := range c.fake.AttestationPolicies {
-		if policyMatches(policy, filter) {
+		if c.policyMatches(policy, filter) {
 			policies = append(policies, clone(policy))
 		}
 	}
 	return policies, nil
 }
 
-func policyMatches(policy *attestationpolicypb.AttestationPolicy, filter *attestationpolicysvcpb.ListAttestationPoliciesRequest_Filter) bool {
+func (c *fakeAttestationPolicyClient) policyMatches(policy *attestationpolicypb.AttestationPolicy, filter *attestationpolicysvcpb.ListAttestationPoliciesRequest_Filter) bool {
 	if filter == nil {
 		return true
 	}
@@ -77,6 +78,17 @@ func policyMatches(policy *attestationpolicypb.AttestationPolicy, filter *attest
 	}
 	if filter.OrgId != nil && policy.GetOrgId() != *filter.OrgId {
 		return false
+	}
+	if filter.TrustZoneId != nil {
+		for _, apb := range c.fake.APBindings {
+			if apb.GetTrustZoneId() == *filter.TrustZoneId {
+				// If we find an APB with this trust_zone_id
+				// then exit the search through the APBs
+				break
+			}
+			// No trust_zone_id matches found => return false
+			return false
+		}
 	}
 	return true
 }

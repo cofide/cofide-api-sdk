@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/gen/go/proto/connect/attestation_policy_service/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
@@ -73,6 +74,25 @@ func Test_fakeAttestationPolicyClient_ListAttestationPolicies(t *testing.T) {
 	policys, err := client.ListAttestationPolicies(ctx, nil)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*attestationpolicypb.AttestationPolicy{policy}, policys)
+}
+
+func Test_fakeAttestationPolicyClient_ListAttestationPolicies_TrustZoneIDFilter(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	policy := test.FakeAttestationPolicy()
+	fake.AttestationPolicies[test.FakeAttestationPolicyID] = policy
+	fake.APBindings[*test.FakeAPBinding().Id] = test.FakeAPBinding()
+
+	policies, err := client.ListAttestationPolicies(ctx, &v1alpha1.ListAttestationPoliciesRequest_Filter{TrustZoneId: test.PtrOf(test.FakeTrustZoneID)})
+	require.NoError(t, err)
+
+	assert.EqualExportedValues(t, []*attestationpolicypb.AttestationPolicy{policy}, policies)
+
+	expectEmpty, err := client.ListAttestationPolicies(ctx, &v1alpha1.ListAttestationPoliciesRequest_Filter{TrustZoneId: test.PtrOf("non-existent")})
+	require.NoError(t, err)
+	require.Empty(t, expectEmpty)
 }
 
 func Test_fakeAttestationPolicyClient_UpdateAttestationPolicy(t *testing.T) {

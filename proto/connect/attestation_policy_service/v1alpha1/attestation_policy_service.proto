@@ -43,6 +43,7 @@ message ListAttestationPoliciesRequest {
   message Filter {
     optional string name = 1;
     optional string org_id = 2;
+    optional string trust_zone_id = 5;
     optional AttestationPolicyKind kind = 3;
     optional TPMNodeFilter tpm_node = 4;
   }
