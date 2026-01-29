@@ -19,7 +19,6 @@
   "homepage": "https://github.com/cofide/cofide-api-sdk#readme",
   "dependencies": {
     "@bufbuild/protobuf": "^2.2.5",
-    "@buf/googleapis_googleapis.bufbuild_es": "^2.2.3",
     "install": "^0.13.0",
     "npm": "^11.7.0"
   }
