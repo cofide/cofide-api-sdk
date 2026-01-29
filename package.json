@@ -1,5 +1,9 @@
 {
   "name": "cofide-api-sdk",
+  "type": "module",
+  "exports": {
+    "./gen/ts/*": "./gen/ts/*"
+  },
   "version": "1.0.0",
   "description": "[![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?query=workflow%3Abuf-ci+branch%3Amain)",
   "main": "index.js",
