@@ -80,8 +80,8 @@ message ListTrustZoneServersResponse {
 
 message UpdateTrustZoneServerRequest {
   message UpdateMask {
-    // No fields are currently supported for update
-    // When they are they will be added to this mask which serves as a placeholder currently
+    // Set to true to update helm values of trust zone server to those provided.
+    bool helm_values = 1 [(google.api.field_behavior) = OPTIONAL];
   }
 
   proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1 [(google.api.field_behavior) = REQUIRED];

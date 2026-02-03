@@ -9,13 +9,14 @@ import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import { file_google_api_resource } from "../../../google/api/resource_pb";
-import type { Message } from "@bufbuild/protobuf";
+import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/trust_zone_server/v1alpha1/trust_zone_server.proto.
  */
 export const file_proto_trust_zone_server_v1alpha1_trust_zone_server: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEiiwMKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSPQoKY2x1c3Rlcl9pZBgDIAEoCUIp4EEC4EEF+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISJAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCBuBBAeBBBRIqChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUIG4EEB4EEFEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uOkrqQUcKMHByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExL1RydXN0Wm9uZVNlcnZlchITe3RydXN0X3pvbmVfc2VydmVyfUJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vdHJ1c3Rfem9uZV9zZXJ2ZXIvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_api_resource]);
+  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEivgMKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSPQoKY2x1c3Rlcl9pZBgDIAEoCUIp4EEC4EEF+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISJAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCBuBBAeBBBRIqChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUIG4EEB4EEFEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uEjEKC2hlbG1fdmFsdWVzGAcgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEID4EEBOkrqQUcKMHByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExL1RydXN0Wm9uZVNlcnZlchITe3RydXN0X3pvbmVfc2VydmVyfUJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vdHJ1c3Rfem9uZV9zZXJ2ZXIvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_api_resource, file_google_protobuf_struct]);
 
 /**
  * TrustZoneServer defines how the server managing a trust zone should be deployed.
@@ -66,6 +67,13 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
    * @generated from field: string org_id = 6;
    */
   orgId: string;
+
+  /**
+   * Helm values to configure the server install with.
+   *
+   * @generated from field: google.protobuf.Struct helm_values = 7;
+   */
+  helmValues?: JsonObject;
 };
 
 /**
