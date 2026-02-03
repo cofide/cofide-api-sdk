@@ -14,6 +14,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/structpb"
 )
 
 type fakeTrustZoneServerClient struct {
@@ -114,7 +115,10 @@ func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, t
 		new = clone(trustZoneServer)
 	} else {
 		new = clone(existing)
-		// Once update of fields is supported, handle the ones set in the update mask and update here
+		if updateMask.GetHelmValues() {
+			new.HelmValues = proto.Clone(trustZoneServer.GetHelmValues()).(*structpb.Struct)
+		}
+		// As update of other fields is supported, update the ones set in the update mask here
 	}
 
 	// Existing may have been partially updated or entirely replaced, so explicitly set it to cover both cases
