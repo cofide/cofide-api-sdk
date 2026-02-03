@@ -1,6 +1,6 @@
 module github.com/cofide/cofide-api-sdk
 
-go 1.24.11
+go 1.24.12
 
 // NOTE: Take care to avoid forcing unnecessary upgrades on consumers when
 // updating dependencies.
