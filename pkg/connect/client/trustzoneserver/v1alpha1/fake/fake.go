@@ -126,6 +126,25 @@ func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, t
 	return clone(new), nil
 }
 
+func (c *fakeTrustZoneServerClient) CreateJoinToken(ctx context.Context, trustZoneServerID string) (string, error) {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	if _, ok := c.fake.TrustZoneServers[trustZoneServerID]; !ok {
+		return "", status.Error(codes.NotFound, "trust zone server not found")
+	}
+
+	token := uuid.NewString()
+	existingJoinTokens := c.fake.TrustZoneServerJoinTokens[trustZoneServerID]
+	if existingJoinTokens == nil {
+		existingJoinTokens = make(map[string]struct{})
+	}
+	existingJoinTokens[token] = struct{}{}
+	c.fake.TrustZoneServerJoinTokens[trustZoneServerID] = existingJoinTokens
+
+	return token, nil
+}
+
 func clone(trustZoneServer *trustzoneserverpb.TrustZoneServer) *trustzoneserverpb.TrustZoneServer {
 	return proto.Clone(trustZoneServer).(*trustzoneserverpb.TrustZoneServer)
 }

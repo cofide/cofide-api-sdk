@@ -467,6 +467,94 @@ func (x *UpdateTrustZoneServerResponse) GetTrustZoneServer() *v1alpha1.TrustZone
 	return nil
 }
 
+type CreateJoinTokenRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	TrustZoneServerId string                 `protobuf:"bytes,1,opt,name=trust_zone_server_id,json=trustZoneServerId,proto3" json:"trust_zone_server_id,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *CreateJoinTokenRequest) Reset() {
+	*x = CreateJoinTokenRequest{}
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateJoinTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateJoinTokenRequest) ProtoMessage() {}
+
+func (x *CreateJoinTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateJoinTokenRequest.ProtoReflect.Descriptor instead.
+func (*CreateJoinTokenRequest) Descriptor() ([]byte, []int) {
+	return file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CreateJoinTokenRequest) GetTrustZoneServerId() string {
+	if x != nil {
+		return x.TrustZoneServerId
+	}
+	return ""
+}
+
+type CreateJoinTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	JoinToken     string                 `protobuf:"bytes,1,opt,name=join_token,json=joinToken,proto3" json:"join_token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateJoinTokenResponse) Reset() {
+	*x = CreateJoinTokenResponse{}
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateJoinTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateJoinTokenResponse) ProtoMessage() {}
+
+func (x *CreateJoinTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateJoinTokenResponse.ProtoReflect.Descriptor instead.
+func (*CreateJoinTokenResponse) Descriptor() ([]byte, []int) {
+	return file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *CreateJoinTokenResponse) GetJoinToken() string {
+	if x != nil {
+		return x.JoinToken
+	}
+	return ""
+}
+
 type ListTrustZoneServersRequest_Filter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TrustZoneId   string                 `protobuf:"bytes,1,opt,name=trust_zone_id,json=trustZoneId,proto3" json:"trust_zone_id,omitempty"`
@@ -478,7 +566,7 @@ type ListTrustZoneServersRequest_Filter struct {
 
 func (x *ListTrustZoneServersRequest_Filter) Reset() {
 	*x = ListTrustZoneServersRequest_Filter{}
-	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[10]
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -490,7 +578,7 @@ func (x *ListTrustZoneServersRequest_Filter) String() string {
 func (*ListTrustZoneServersRequest_Filter) ProtoMessage() {}
 
 func (x *ListTrustZoneServersRequest_Filter) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[10]
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -537,7 +625,7 @@ type UpdateTrustZoneServerRequest_UpdateMask struct {
 
 func (x *UpdateTrustZoneServerRequest_UpdateMask) Reset() {
 	*x = UpdateTrustZoneServerRequest_UpdateMask{}
-	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[11]
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -549,7 +637,7 @@ func (x *UpdateTrustZoneServerRequest_UpdateMask) String() string {
 func (*UpdateTrustZoneServerRequest_UpdateMask) ProtoMessage() {}
 
 func (x *UpdateTrustZoneServerRequest_UpdateMask) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[11]
+	mi := &file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -697,7 +785,19 @@ var file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_serv
 	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e,
 	0x54, 0x72, 0x75, 0x73, 0x74, 0x5a, 0x6f, 0x6e, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52,
 	0x0f, 0x74, 0x72, 0x75, 0x73, 0x74, 0x5a, 0x6f, 0x6e, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x32, 0xc0, 0x07, 0x0a, 0x16, 0x54, 0x72, 0x75, 0x73, 0x74, 0x5a, 0x6f, 0x6e, 0x65, 0x53, 0x65,
+	0x22, 0x83, 0x01, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4a, 0x6f, 0x69, 0x6e, 0x54,
+	0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x69, 0x0a, 0x14, 0x74,
+	0x72, 0x75, 0x73, 0x74, 0x5f, 0x7a, 0x6f, 0x6e, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x38, 0xe0, 0x41, 0x02, 0xfa, 0x41,
+	0x32, 0x0a, 0x30, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x74, 0x72, 0x75, 0x73, 0x74, 0x5f, 0x7a,
+	0x6f, 0x6e, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x31, 0x2f, 0x54, 0x72, 0x75, 0x73, 0x74, 0x5a, 0x6f, 0x6e, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x52, 0x11, 0x74, 0x72, 0x75, 0x73, 0x74, 0x5a, 0x6f, 0x6e, 0x65, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0x38, 0x0a, 0x17, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x4a, 0x6f, 0x69, 0x6e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x6a, 0x6f, 0x69, 0x6e, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6a, 0x6f, 0x69, 0x6e, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x32, 0xeb, 0x08, 0x0a, 0x16, 0x54, 0x72, 0x75, 0x73, 0x74, 0x5a, 0x6f, 0x6e, 0x65, 0x53, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0xba, 0x01, 0x0a, 0x15,
 	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x72, 0x75, 0x73, 0x74, 0x5a, 0x6f, 0x6e, 0x65, 0x53,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x4e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x63, 0x6f,
@@ -757,13 +857,24 @@ var file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_serv
 	0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
 	0x68, 0x61, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x72, 0x75, 0x73, 0x74, 0x5a,
 	0x6f, 0x6e, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x00, 0x42, 0x5a, 0x5a, 0x58, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x63, 0x6f, 0x66, 0x69, 0x64, 0x65, 0x2f, 0x63, 0x6f, 0x66, 0x69, 0x64, 0x65, 0x2d,
-	0x61, 0x70, 0x69, 0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2f, 0x74, 0x72, 0x75,
-	0x73, 0x74, 0x5f, 0x7a, 0x6f, 0x6e, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x73,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x22, 0x00, 0x12, 0xa8, 0x01, 0x0a, 0x0f, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4a, 0x6f,
+	0x69, 0x6e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x48, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
+	0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2e, 0x74, 0x72, 0x75, 0x73, 0x74, 0x5f, 0x7a, 0x6f,
+	0x6e, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4a, 0x6f, 0x69, 0x6e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x49, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x2e, 0x74, 0x72, 0x75, 0x73, 0x74, 0x5f, 0x7a, 0x6f, 0x6e, 0x65, 0x5f, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4a, 0x6f, 0x69, 0x6e, 0x54,
+	0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x5a,
+	0x5a, 0x58, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6f, 0x66,
+	0x69, 0x64, 0x65, 0x2f, 0x63, 0x6f, 0x66, 0x69, 0x64, 0x65, 0x2d, 0x61, 0x70, 0x69, 0x2d, 0x73,
+	0x64, 0x6b, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
+	0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2f, 0x74, 0x72, 0x75, 0x73, 0x74, 0x5f, 0x7a, 0x6f,
+	0x6e, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 })
 
 var (
@@ -778,7 +889,7 @@ func file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_ser
 	return file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_rawDescData
 }
 
-var file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_goTypes = []any{
 	(*CreateTrustZoneServerRequest)(nil),            // 0: proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerRequest
 	(*CreateTrustZoneServerResponse)(nil),           // 1: proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerResponse
@@ -790,31 +901,35 @@ var file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_serv
 	(*ListTrustZoneServersResponse)(nil),            // 7: proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersResponse
 	(*UpdateTrustZoneServerRequest)(nil),            // 8: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest
 	(*UpdateTrustZoneServerResponse)(nil),           // 9: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerResponse
-	(*ListTrustZoneServersRequest_Filter)(nil),      // 10: proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersRequest.Filter
-	(*UpdateTrustZoneServerRequest_UpdateMask)(nil), // 11: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.UpdateMask
-	(*v1alpha1.TrustZoneServer)(nil),                // 12: proto.trust_zone_server.v1alpha1.TrustZoneServer
+	(*CreateJoinTokenRequest)(nil),                  // 10: proto.connect.trust_zone_server_service.v1alpha1.CreateJoinTokenRequest
+	(*CreateJoinTokenResponse)(nil),                 // 11: proto.connect.trust_zone_server_service.v1alpha1.CreateJoinTokenResponse
+	(*ListTrustZoneServersRequest_Filter)(nil),      // 12: proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersRequest.Filter
+	(*UpdateTrustZoneServerRequest_UpdateMask)(nil), // 13: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.UpdateMask
+	(*v1alpha1.TrustZoneServer)(nil),                // 14: proto.trust_zone_server.v1alpha1.TrustZoneServer
 }
 var file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_depIdxs = []int32{
-	12, // 0: proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerRequest.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
-	12, // 1: proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerResponse.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
-	12, // 2: proto.connect.trust_zone_server_service.v1alpha1.GetTrustZoneServerResponse.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
-	10, // 3: proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersRequest.filter:type_name -> proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersRequest.Filter
-	12, // 4: proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersResponse.trust_zone_servers:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
-	12, // 5: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
-	11, // 6: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.update_mask:type_name -> proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.UpdateMask
-	12, // 7: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerResponse.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
+	14, // 0: proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerRequest.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
+	14, // 1: proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerResponse.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
+	14, // 2: proto.connect.trust_zone_server_service.v1alpha1.GetTrustZoneServerResponse.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
+	12, // 3: proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersRequest.filter:type_name -> proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersRequest.Filter
+	14, // 4: proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersResponse.trust_zone_servers:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
+	14, // 5: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
+	13, // 6: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.update_mask:type_name -> proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.UpdateMask
+	14, // 7: proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerResponse.trust_zone_server:type_name -> proto.trust_zone_server.v1alpha1.TrustZoneServer
 	0,  // 8: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.CreateTrustZoneServer:input_type -> proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerRequest
 	2,  // 9: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.DestroyTrustZoneServer:input_type -> proto.connect.trust_zone_server_service.v1alpha1.DestroyTrustZoneServerRequest
 	4,  // 10: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.GetTrustZoneServer:input_type -> proto.connect.trust_zone_server_service.v1alpha1.GetTrustZoneServerRequest
 	6,  // 11: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.ListTrustZoneServers:input_type -> proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersRequest
 	8,  // 12: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.UpdateTrustZoneServer:input_type -> proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest
-	1,  // 13: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.CreateTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerResponse
-	3,  // 14: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.DestroyTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.DestroyTrustZoneServerResponse
-	5,  // 15: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.GetTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.GetTrustZoneServerResponse
-	7,  // 16: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.ListTrustZoneServers:output_type -> proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersResponse
-	9,  // 17: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.UpdateTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerResponse
-	13, // [13:18] is the sub-list for method output_type
-	8,  // [8:13] is the sub-list for method input_type
+	10, // 13: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.CreateJoinToken:input_type -> proto.connect.trust_zone_server_service.v1alpha1.CreateJoinTokenRequest
+	1,  // 14: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.CreateTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.CreateTrustZoneServerResponse
+	3,  // 15: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.DestroyTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.DestroyTrustZoneServerResponse
+	5,  // 16: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.GetTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.GetTrustZoneServerResponse
+	7,  // 17: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.ListTrustZoneServers:output_type -> proto.connect.trust_zone_server_service.v1alpha1.ListTrustZoneServersResponse
+	9,  // 18: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.UpdateTrustZoneServer:output_type -> proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerResponse
+	11, // 19: proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.CreateJoinToken:output_type -> proto.connect.trust_zone_server_service.v1alpha1.CreateJoinTokenResponse
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name
 	8,  // [8:8] is the sub-list for extension extendee
 	0,  // [0:8] is the sub-list for field type_name
@@ -835,7 +950,7 @@ func file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_ser
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_rawDesc), len(file_proto_connect_trust_zone_server_service_v1alpha1_trust_zone_server_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

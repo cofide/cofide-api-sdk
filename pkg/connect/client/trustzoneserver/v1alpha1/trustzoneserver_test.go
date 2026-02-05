@@ -10,6 +10,7 @@ import (
 	trustzoneserversvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_server_service/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
+	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -81,6 +82,10 @@ func TestTrustZoneServerClient(t *testing.T) {
 	updatedTrustZoneServer, err := client.UpdateTrustZoneServer(t.Context(), trustZoneServer, nil)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZoneServer, updatedTrustZoneServer)
+
+	token, err := client.CreateJoinToken(t.Context(), trustZoneServer.Id)
+	require.NoError(t, err)
+	assert.NotEmpty(t, token)
 }
 
 type fakeTrustZoneServerService struct {
@@ -111,6 +116,11 @@ func (f *fakeTrustZoneServerService) ListTrustZoneServers(ctx context.Context, r
 func (f *fakeTrustZoneServerService) UpdateTrustZoneServer(ctx context.Context, req *trustzoneserversvcpb.UpdateTrustZoneServerRequest) (*trustzoneserversvcpb.UpdateTrustZoneServerResponse, error) {
 	assert.EqualExportedValues(f.t, fakeTrustZoneServer(), req.TrustZoneServer)
 	return &trustzoneserversvcpb.UpdateTrustZoneServerResponse{TrustZoneServer: req.TrustZoneServer}, nil
+}
+
+func (f *fakeTrustZoneServerService) CreateJoinToken(ctx context.Context, req *trustzoneserversvcpb.CreateJoinTokenRequest) (*trustzoneserversvcpb.CreateJoinTokenResponse, error) {
+	assert.EqualExportedValues(f.t, fakeTrustZoneServer().GetId(), req.TrustZoneServerId)
+	return &trustzoneserversvcpb.CreateJoinTokenResponse{JoinToken: uuid.NewString()}, nil
 }
 
 func fakeTrustZoneServer() *trustzoneserverpb.TrustZoneServer {

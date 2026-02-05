@@ -96,6 +96,7 @@ message RegisterTrustZoneServerRequest {
     (google.api.field_behavior) = OPTIONAL,
     (google.api.resource_reference).type = "proto.trust_zone_server.v1alpha1/TrustZoneServer"
   ];
+  string join_token = 4 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message RegisterTrustZoneServerResponse {

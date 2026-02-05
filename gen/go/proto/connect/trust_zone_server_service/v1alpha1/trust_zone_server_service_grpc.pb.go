@@ -27,6 +27,7 @@ const (
 	TrustZoneServerService_GetTrustZoneServer_FullMethodName     = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/GetTrustZoneServer"
 	TrustZoneServerService_ListTrustZoneServers_FullMethodName   = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/ListTrustZoneServers"
 	TrustZoneServerService_UpdateTrustZoneServer_FullMethodName  = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServer"
+	TrustZoneServerService_CreateJoinToken_FullMethodName        = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/CreateJoinToken"
 )
 
 // TrustZoneServerServiceClient is the client API for TrustZoneServerService service.
@@ -48,6 +49,10 @@ type TrustZoneServerServiceClient interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(ctx context.Context, in *UpdateTrustZoneServerRequest, opts ...grpc.CallOption) (*UpdateTrustZoneServerResponse, error)
+	// Creates a temporary token that can be used by a server to register with Connect.
+	// Usually servers should register using a non-shared token that can be verified by the API server, join tokens should
+	// only be used when this is not possible.
+	CreateJoinToken(ctx context.Context, in *CreateJoinTokenRequest, opts ...grpc.CallOption) (*CreateJoinTokenResponse, error)
 }
 
 type trustZoneServerServiceClient struct {
@@ -108,6 +113,16 @@ func (c *trustZoneServerServiceClient) UpdateTrustZoneServer(ctx context.Context
 	return out, nil
 }
 
+func (c *trustZoneServerServiceClient) CreateJoinToken(ctx context.Context, in *CreateJoinTokenRequest, opts ...grpc.CallOption) (*CreateJoinTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateJoinTokenResponse)
+	err := c.cc.Invoke(ctx, TrustZoneServerService_CreateJoinToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TrustZoneServerServiceServer is the server API for TrustZoneServerService service.
 // All implementations should embed UnimplementedTrustZoneServerServiceServer
 // for forward compatibility.
@@ -127,6 +142,10 @@ type TrustZoneServerServiceServer interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(context.Context, *UpdateTrustZoneServerRequest) (*UpdateTrustZoneServerResponse, error)
+	// Creates a temporary token that can be used by a server to register with Connect.
+	// Usually servers should register using a non-shared token that can be verified by the API server, join tokens should
+	// only be used when this is not possible.
+	CreateJoinToken(context.Context, *CreateJoinTokenRequest) (*CreateJoinTokenResponse, error)
 }
 
 // UnimplementedTrustZoneServerServiceServer should be embedded to have
@@ -150,6 +169,9 @@ func (UnimplementedTrustZoneServerServiceServer) ListTrustZoneServers(context.Co
 }
 func (UnimplementedTrustZoneServerServiceServer) UpdateTrustZoneServer(context.Context, *UpdateTrustZoneServerRequest) (*UpdateTrustZoneServerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneServer not implemented")
+}
+func (UnimplementedTrustZoneServerServiceServer) CreateJoinToken(context.Context, *CreateJoinTokenRequest) (*CreateJoinTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateJoinToken not implemented")
 }
 func (UnimplementedTrustZoneServerServiceServer) testEmbeddedByValue() {}
 
@@ -261,6 +283,24 @@ func _TrustZoneServerService_UpdateTrustZoneServer_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrustZoneServerService_CreateJoinToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateJoinTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrustZoneServerServiceServer).CreateJoinToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrustZoneServerService_CreateJoinToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrustZoneServerServiceServer).CreateJoinToken(ctx, req.(*CreateJoinTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TrustZoneServerService_ServiceDesc is the grpc.ServiceDesc for TrustZoneServerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -287,6 +327,10 @@ var TrustZoneServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateTrustZoneServer",
 			Handler:    _TrustZoneServerService_UpdateTrustZoneServer_Handler,
+		},
+		{
+			MethodName: "CreateJoinToken",
+			Handler:    _TrustZoneServerService_CreateJoinToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

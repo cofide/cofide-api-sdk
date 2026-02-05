@@ -23,43 +23,45 @@ import (
 
 // FakeConnect implements the state for a fake Connect service.
 type FakeConnect struct {
-	Mu                  sync.Mutex
-	Organizations       map[string]*organizationpb.Organization
-	TrustZones          map[string]*trustzonepb.TrustZone
-	TrustZoneBundles    map[string]*types.Bundle
-	TrustZoneServers    map[string]*trustzoneserverpb.TrustZoneServer
-	Clusters            map[string]*clusterpb.Cluster
-	Agents              map[string]*agentpb.Agent
-	AgentJoinTokens     map[string]map[string]string
-	AgentStatus         map[string]*agentpb.AgentStatus
-	FederatedServices   map[string]*federatedservicepb.FederatedService
-	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
-	APBindings          map[string]*apbindingpb.APBinding
-	Federations         map[string]*federationpb.Federation
-	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
-	Workloads           map[string]*workloadpb.Workload
-	Identities          map[string]*identitypb.Identity
-	RoleBindings        map[string]*rolebindingpb.RoleBinding
+	Mu                        sync.Mutex
+	Organizations             map[string]*organizationpb.Organization
+	TrustZones                map[string]*trustzonepb.TrustZone
+	TrustZoneBundles          map[string]*types.Bundle
+	TrustZoneServers          map[string]*trustzoneserverpb.TrustZoneServer
+	TrustZoneServerJoinTokens map[string]map[string]struct{}
+	Clusters                  map[string]*clusterpb.Cluster
+	Agents                    map[string]*agentpb.Agent
+	AgentJoinTokens           map[string]map[string]string
+	AgentStatus               map[string]*agentpb.AgentStatus
+	FederatedServices         map[string]*federatedservicepb.FederatedService
+	AttestationPolicies       map[string]*attestationpolicypb.AttestationPolicy
+	APBindings                map[string]*apbindingpb.APBinding
+	Federations               map[string]*federationpb.Federation
+	AttestedNodes             map[string]*datastoresvcpb.AttestedNode
+	Workloads                 map[string]*workloadpb.Workload
+	Identities                map[string]*identitypb.Identity
+	RoleBindings              map[string]*rolebindingpb.RoleBinding
 }
 
 func New() *FakeConnect {
 	return &FakeConnect{
-		Organizations:       make(map[string]*organizationpb.Organization),
-		TrustZones:          make(map[string]*trustzonepb.TrustZone),
-		TrustZoneBundles:    make(map[string]*types.Bundle),
-		TrustZoneServers:    make(map[string]*trustzoneserverpb.TrustZoneServer),
-		Clusters:            make(map[string]*clusterpb.Cluster),
-		Agents:              make(map[string]*agentpb.Agent),
-		AgentJoinTokens:     make(map[string]map[string]string),
-		AgentStatus:         make(map[string]*agentpb.AgentStatus),
-		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
-		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
-		APBindings:          make(map[string]*apbindingpb.APBinding),
-		Federations:         make(map[string]*federationpb.Federation),
-		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
-		Workloads:           make(map[string]*workloadpb.Workload),
-		Identities:          make(map[string]*identitypb.Identity),
-		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
+		Organizations:             make(map[string]*organizationpb.Organization),
+		TrustZones:                make(map[string]*trustzonepb.TrustZone),
+		TrustZoneBundles:          make(map[string]*types.Bundle),
+		TrustZoneServers:          make(map[string]*trustzoneserverpb.TrustZoneServer),
+		TrustZoneServerJoinTokens: make(map[string]map[string]struct{}),
+		Clusters:                  make(map[string]*clusterpb.Cluster),
+		Agents:                    make(map[string]*agentpb.Agent),
+		AgentJoinTokens:           make(map[string]map[string]string),
+		AgentStatus:               make(map[string]*agentpb.AgentStatus),
+		FederatedServices:         make(map[string]*federatedservicepb.FederatedService),
+		AttestationPolicies:       make(map[string]*attestationpolicypb.AttestationPolicy),
+		APBindings:                make(map[string]*apbindingpb.APBinding),
+		Federations:               make(map[string]*federationpb.Federation),
+		AttestedNodes:             make(map[string]*datastoresvcpb.AttestedNode),
+		Workloads:                 make(map[string]*workloadpb.Workload),
+		Identities:                make(map[string]*identitypb.Identity),
+		RoleBindings:              make(map[string]*rolebindingpb.RoleBinding),
 	}
 }
 
