@@ -5,10 +5,47 @@ syntax = "proto3";
 
 package proto.trust_provider.v1alpha1;
 
+import "google/api/field_behavior.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_provider/v1alpha1";
+
+message K8sPsatConfig {
+  // Whether to enable the k8s psat node attestor plugin with a Connect datasource.
+  bool enabled = 1;
+  message ServiceAccount {
+    string namespace = 1;
+    string service_account_name = 2;
+  }
+  // Namespace and name of service accounts agents can use tokens from to attest nodes in this cluster.
+  // At least 1 must be provided if the SPIRE server is outside the cluster.
+  repeated ServiceAccount allowed_service_accounts = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Node labels that can be used as selectors in this cluster.
+  repeated string allowed_node_label_keys = 3 [(google.api.field_behavior) = OPTIONAL];
+  // Pod labels that can be used as selectors in this cluster.
+  repeated string allowed_pod_label_keys = 4 [(google.api.field_behavior) = OPTIONAL];
+  // CA certificate of the cluster's API server.
+  // Optional, but required if the SPIRE server is outside the cluster and the cluster's API server CA is not
+  // already trusted by the SPIRE server (very likely).
+  bytes api_server_ca_cert = 5 [(google.api.field_behavior) = OPTIONAL];
+  // Cluster's API server URL.
+  // Required if the SPIRE server is outside the cluster.
+  string api_server_url = 6 [(google.api.field_behavior) = OPTIONAL];
+  // Alternative TLS server name to verify the presented certificate with if the hostname of the API server URL is
+  // not in the presented certificate.
+  string api_server_tls_server_name = 7 [(google.api.field_behavior) = OPTIONAL];
+  // Proxy URL of the API server (if running behind a proxy).
+  string api_server_proxy_url = 8 [(google.api.field_behavior) = OPTIONAL];
+  // Audience the SPIRE server should use in the JWT presented to the cluster's API server.
+  // Required if the SPIRE server is outside the cluster.
+  string spire_server_audience = 9 [(google.api.field_behavior) = OPTIONAL];
+}
 
 message TrustProvider {
   optional string kind = 1;
+  // Configuration for the k8s psat node attestor plugin when using a Connect datasource with remote clusters.
+  K8sPsatConfig k8s_psat_config = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Configuration for additional server plugins goes here. More than one may be enabled, to allow node attestation in
+  // a cluster to be done in multiple different ways.
 }
 
 enum TrustProviderKind {

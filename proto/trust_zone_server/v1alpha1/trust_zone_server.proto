@@ -24,6 +24,17 @@ enum TrustZoneServerStatus {
   TRUST_ZONE_SERVER_STATUS_DELETING_ERROR = 6;
 }
 
+message ConnectK8sPsatConfig {
+  // Audiences that can be presented by SPIRE agents in remote clusters to perform node attestation when this server
+  // is using the k8s psat plugin with the Connect datasource.
+  // At least 1 must be provided if there are remote clusters in the trust zone.
+  repeated string audiences = 1 [(google.api.field_behavior) = REQUIRED];
+  // Path to use for the SPIFFE ID in the JWT presented by the SPIRE server to the cluster's API server when this
+  // server is using the k8s psat plugin with the Connect datasource.
+  // This must be configured to be an allowed subject in the remote cluster's API server.
+  string spire_server_spiffe_id_path = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
 // TrustZoneServer defines how the server managing a trust zone should be deployed.
 message TrustZoneServer {
   message Status {
@@ -78,4 +89,6 @@ message TrustZoneServer {
   google.protobuf.Timestamp last_updated_at = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of resource deletion by user.
   google.protobuf.Timestamp deleted_at = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Configuration for the k8s psat node attestor plugin when using a Connect datasource with remote clusters.
+  ConnectK8sPsatConfig connect_k8s_psat_config = 12 [(google.api.field_behavior) = OPTIONAL];
 }

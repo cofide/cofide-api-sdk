@@ -17,7 +17,37 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file proto/trust_zone_server/v1alpha1/trust_zone_server.proto.
  */
 export const file_proto_trust_zone_server_v1alpha1_trust_zone_server: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEivwYKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSPQoKY2x1c3Rlcl9pZBgDIAEoCUIp4EEC4EEF+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISJAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCBuBBAeBBBRIqChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUIG4EEB4EEFEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uEjEKC2hlbG1fdmFsdWVzGAcgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEID4EEBEk0KBnN0YXR1cxgIIAEoCzI4LnByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExLlRydXN0Wm9uZVNlcnZlci5TdGF0dXNCA+BBAxIzCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIzCgpkZWxldGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDGosBCgZTdGF0dXMSRwoGc3RhdHVzGAEgASgOMjcucHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEuVHJ1c3Rab25lU2VydmVyU3RhdHVzEjgKFGxhc3RfdHJhbnNpdGlvbl90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDpK6kFHCjBwcm90by50cnVzdF96b25lX3NlcnZlci52MWFscGhhMS9UcnVzdFpvbmVTZXJ2ZXISE3t0cnVzdF96b25lX3NlcnZlcn0qwQIKFVRydXN0Wm9uZVNlcnZlclN0YXR1cxIoCiRUUlVTVF9aT05FX1NFUlZFUl9TVEFUVVNfVU5TUEVDSUZJRUQQABIpCiVUUlVTVF9aT05FX1NFUlZFUl9TVEFUVVNfUFJPVklTSU9OSU5HEAESKAokVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX1BST1ZJU0lPTkVEEAISLworVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX1BST1ZJU0lPTklOR19FUlJPUhADEiUKIVRSVVNUX1pPTkVfU0VSVkVSX1NUQVRVU19ERUxFVElORxAEEiQKIFRSVVNUX1pPTkVfU0VSVkVSX1NUQVRVU19ERUxFVEVEEAUSKwonVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX0RFTEVUSU5HX0VSUk9SEAZCSlpIZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3RydXN0X3pvbmVfc2VydmVyL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_api_resource, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEiWAoUQ29ubmVjdEs4c1BzYXRDb25maWcSFgoJYXVkaWVuY2VzGAEgAygJQgPgQQISKAobc3BpcmVfc2VydmVyX3NwaWZmZV9pZF9wYXRoGAIgASgJQgPgQQIinQcKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSPQoKY2x1c3Rlcl9pZBgDIAEoCUIp4EEC4EEF+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISJAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCBuBBAeBBBRIqChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUIG4EEB4EEFEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uEjEKC2hlbG1fdmFsdWVzGAcgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEID4EEBEk0KBnN0YXR1cxgIIAEoCzI4LnByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExLlRydXN0Wm9uZVNlcnZlci5TdGF0dXNCA+BBAxIzCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIzCgpkZWxldGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDElwKF2Nvbm5lY3RfazhzX3BzYXRfY29uZmlnGAwgASgLMjYucHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEuQ29ubmVjdEs4c1BzYXRDb25maWdCA+BBARqLAQoGU3RhdHVzEkcKBnN0YXR1cxgBIAEoDjI3LnByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExLlRydXN0Wm9uZVNlcnZlclN0YXR1cxI4ChRsYXN0X3RyYW5zaXRpb25fdGltZRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXA6SupBRwowcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEvVHJ1c3Rab25lU2VydmVyEhN7dHJ1c3Rfem9uZV9zZXJ2ZXJ9KsECChVUcnVzdFpvbmVTZXJ2ZXJTdGF0dXMSKAokVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX1VOU1BFQ0lGSUVEEAASKQolVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX1BST1ZJU0lPTklORxABEigKJFRSVVNUX1pPTkVfU0VSVkVSX1NUQVRVU19QUk9WSVNJT05FRBACEi8KK1RSVVNUX1pPTkVfU0VSVkVSX1NUQVRVU19QUk9WSVNJT05JTkdfRVJST1IQAxIlCiFUUlVTVF9aT05FX1NFUlZFUl9TVEFUVVNfREVMRVRJTkcQBBIkCiBUUlVTVF9aT05FX1NFUlZFUl9TVEFUVVNfREVMRVRFRBAFEisKJ1RSVVNUX1pPTkVfU0VSVkVSX1NUQVRVU19ERUxFVElOR19FUlJPUhAGQkpaSGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_api_resource, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+
+/**
+ * @generated from message proto.trust_zone_server.v1alpha1.ConnectK8sPsatConfig
+ */
+export type ConnectK8sPsatConfig = Message<"proto.trust_zone_server.v1alpha1.ConnectK8sPsatConfig"> & {
+  /**
+   * Audiences that can be presented by SPIRE agents in remote clusters to perform node attestation when this server
+   * is using the k8s psat plugin with the Connect datasource.
+   * At least 1 must be provided if there are remote clusters in the trust zone.
+   *
+   * @generated from field: repeated string audiences = 1;
+   */
+  audiences: string[];
+
+  /**
+   * Path to use for the SPIFFE ID in the JWT presented by the SPIRE server to the cluster's API server when this
+   * server is using the k8s psat plugin with the Connect datasource.
+   * This must be configured to be an allowed subject in the remote cluster's API server.
+   *
+   * @generated from field: string spire_server_spiffe_id_path = 2;
+   */
+  spireServerSpiffeIdPath: string;
+};
+
+/**
+ * Describes the message proto.trust_zone_server.v1alpha1.ConnectK8sPsatConfig.
+ * Use `create(ConnectK8sPsatConfigSchema)` to create a new message.
+ */
+export const ConnectK8sPsatConfigSchema: GenMessage<ConnectK8sPsatConfig> = /*@__PURE__*/
+  messageDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 0);
 
 /**
  * TrustZoneServer defines how the server managing a trust zone should be deployed.
@@ -103,6 +133,13 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
    * @generated from field: google.protobuf.Timestamp deleted_at = 11;
    */
   deletedAt?: Timestamp;
+
+  /**
+   * Configuration for the k8s psat node attestor plugin when using a Connect datasource with remote clusters.
+   *
+   * @generated from field: proto.trust_zone_server.v1alpha1.ConnectK8sPsatConfig connect_k8s_psat_config = 12;
+   */
+  connectK8sPsatConfig?: ConnectK8sPsatConfig;
 };
 
 /**
@@ -110,7 +147,7 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
  * Use `create(TrustZoneServerSchema)` to create a new message.
  */
 export const TrustZoneServerSchema: GenMessage<TrustZoneServer> = /*@__PURE__*/
-  messageDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 0);
+  messageDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 1);
 
 /**
  * @generated from message proto.trust_zone_server.v1alpha1.TrustZoneServer.Status
@@ -136,7 +173,7 @@ export type TrustZoneServer_Status = Message<"proto.trust_zone_server.v1alpha1.T
  * Use `create(TrustZoneServer_StatusSchema)` to create a new message.
  */
 export const TrustZoneServer_StatusSchema: GenMessage<TrustZoneServer_Status> = /*@__PURE__*/
-  messageDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 0, 0);
+  messageDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 1, 0);
 
 /**
  * Status of a trust zone server

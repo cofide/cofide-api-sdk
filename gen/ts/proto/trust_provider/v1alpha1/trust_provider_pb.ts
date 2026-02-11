@@ -7,13 +7,117 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/trust_provider/v1alpha1/trust_provider.proto.
  */
 export const file_proto_trust_provider_v1alpha1_trust_provider: GenFile = /*@__PURE__*/
-  fileDesc("CjJwcm90by90cnVzdF9wcm92aWRlci92MWFscGhhMS90cnVzdF9wcm92aWRlci5wcm90bxIdcHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEiKwoNVHJ1c3RQcm92aWRlchIRCgRraW5kGAEgASgJSACIAQFCBwoFX2tpbmQqXAoRVHJ1c3RQcm92aWRlcktpbmQSIwofVFJVU1RfUFJPVklERVJfS0lORF9VTlNQRUNJRklFRBAAEiIKHlRSVVNUX1BST1ZJREVSX0tJTkRfS1VCRVJORVRFUxABQkdaRWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by90cnVzdF9wcm92aWRlci92MWFscGhhMWIGcHJvdG8z");
+  fileDesc("CjJwcm90by90cnVzdF9wcm92aWRlci92MWFscGhhMS90cnVzdF9wcm92aWRlci5wcm90bxIdcHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEiwAMKDUs4c1BzYXRDb25maWcSDwoHZW5hYmxlZBgBIAEoCBJiChhhbGxvd2VkX3NlcnZpY2VfYWNjb3VudHMYAiADKAsyOy5wcm90by50cnVzdF9wcm92aWRlci52MWFscGhhMS5LOHNQc2F0Q29uZmlnLlNlcnZpY2VBY2NvdW50QgPgQQESJAoXYWxsb3dlZF9ub2RlX2xhYmVsX2tleXMYAyADKAlCA+BBARIjChZhbGxvd2VkX3BvZF9sYWJlbF9rZXlzGAQgAygJQgPgQQESHwoSYXBpX3NlcnZlcl9jYV9jZXJ0GAUgASgMQgPgQQESGwoOYXBpX3NlcnZlcl91cmwYBiABKAlCA+BBARInChphcGlfc2VydmVyX3Rsc19zZXJ2ZXJfbmFtZRgHIAEoCUID4EEBEiEKFGFwaV9zZXJ2ZXJfcHJveHlfdXJsGAggASgJQgPgQQESIgoVc3BpcmVfc2VydmVyX2F1ZGllbmNlGAkgASgJQgPgQQEaQQoOU2VydmljZUFjY291bnQSEQoJbmFtZXNwYWNlGAEgASgJEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJIncKDVRydXN0UHJvdmlkZXISEQoEa2luZBgBIAEoCUgAiAEBEkoKD2s4c19wc2F0X2NvbmZpZxgCIAEoCzIsLnByb3RvLnRydXN0X3Byb3ZpZGVyLnYxYWxwaGExLks4c1BzYXRDb25maWdCA+BBAUIHCgVfa2luZCpcChFUcnVzdFByb3ZpZGVyS2luZBIjCh9UUlVTVF9QUk9WSURFUl9LSU5EX1VOU1BFQ0lGSUVEEAASIgoeVFJVU1RfUFJPVklERVJfS0lORF9LVUJFUk5FVEVTEAFCR1pFZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3RydXN0X3Byb3ZpZGVyL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior]);
+
+/**
+ * @generated from message proto.trust_provider.v1alpha1.K8sPsatConfig
+ */
+export type K8sPsatConfig = Message<"proto.trust_provider.v1alpha1.K8sPsatConfig"> & {
+  /**
+   * Whether to enable the k8s psat node attestor plugin with a Connect datasource.
+   *
+   * @generated from field: bool enabled = 1;
+   */
+  enabled: boolean;
+
+  /**
+   * Namespace and name of service accounts agents can use tokens from to attest nodes in this cluster.
+   * At least 1 must be provided if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: repeated proto.trust_provider.v1alpha1.K8sPsatConfig.ServiceAccount allowed_service_accounts = 2;
+   */
+  allowedServiceAccounts: K8sPsatConfig_ServiceAccount[];
+
+  /**
+   * Node labels that can be used as selectors in this cluster.
+   *
+   * @generated from field: repeated string allowed_node_label_keys = 3;
+   */
+  allowedNodeLabelKeys: string[];
+
+  /**
+   * Pod labels that can be used as selectors in this cluster.
+   *
+   * @generated from field: repeated string allowed_pod_label_keys = 4;
+   */
+  allowedPodLabelKeys: string[];
+
+  /**
+   * CA certificate of the cluster's API server.
+   * Optional, but required if the SPIRE server is outside the cluster and the cluster's API server CA is not
+   * already trusted by the SPIRE server (very likely).
+   *
+   * @generated from field: bytes api_server_ca_cert = 5;
+   */
+  apiServerCaCert: Uint8Array;
+
+  /**
+   * Cluster's API server URL.
+   * Required if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: string api_server_url = 6;
+   */
+  apiServerUrl: string;
+
+  /**
+   * Alternative TLS server name to verify the presented certificate with if the hostname of the API server URL is
+   * not in the presented certificate.
+   *
+   * @generated from field: string api_server_tls_server_name = 7;
+   */
+  apiServerTlsServerName: string;
+
+  /**
+   * Proxy URL of the API server (if running behind a proxy).
+   *
+   * @generated from field: string api_server_proxy_url = 8;
+   */
+  apiServerProxyUrl: string;
+
+  /**
+   * Audience the SPIRE server should use in the JWT presented to the cluster's API server.
+   * Required if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: string spire_server_audience = 9;
+   */
+  spireServerAudience: string;
+};
+
+/**
+ * Describes the message proto.trust_provider.v1alpha1.K8sPsatConfig.
+ * Use `create(K8sPsatConfigSchema)` to create a new message.
+ */
+export const K8sPsatConfigSchema: GenMessage<K8sPsatConfig> = /*@__PURE__*/
+  messageDesc(file_proto_trust_provider_v1alpha1_trust_provider, 0);
+
+/**
+ * @generated from message proto.trust_provider.v1alpha1.K8sPsatConfig.ServiceAccount
+ */
+export type K8sPsatConfig_ServiceAccount = Message<"proto.trust_provider.v1alpha1.K8sPsatConfig.ServiceAccount"> & {
+  /**
+   * @generated from field: string namespace = 1;
+   */
+  namespace: string;
+
+  /**
+   * @generated from field: string service_account_name = 2;
+   */
+  serviceAccountName: string;
+};
+
+/**
+ * Describes the message proto.trust_provider.v1alpha1.K8sPsatConfig.ServiceAccount.
+ * Use `create(K8sPsatConfig_ServiceAccountSchema)` to create a new message.
+ */
+export const K8sPsatConfig_ServiceAccountSchema: GenMessage<K8sPsatConfig_ServiceAccount> = /*@__PURE__*/
+  messageDesc(file_proto_trust_provider_v1alpha1_trust_provider, 0, 0);
 
 /**
  * @generated from message proto.trust_provider.v1alpha1.TrustProvider
@@ -23,6 +127,16 @@ export type TrustProvider = Message<"proto.trust_provider.v1alpha1.TrustProvider
    * @generated from field: optional string kind = 1;
    */
   kind?: string;
+
+  /**
+   * Configuration for the k8s psat node attestor plugin when using a Connect datasource with remote clusters.
+   *
+   * Configuration for additional server plugins goes here. More than one may be enabled, to allow node attestation in
+   * a cluster to be done in multiple different ways.
+   *
+   * @generated from field: proto.trust_provider.v1alpha1.K8sPsatConfig k8s_psat_config = 2;
+   */
+  k8sPsatConfig?: K8sPsatConfig;
 };
 
 /**
@@ -30,7 +144,7 @@ export type TrustProvider = Message<"proto.trust_provider.v1alpha1.TrustProvider
  * Use `create(TrustProviderSchema)` to create a new message.
  */
 export const TrustProviderSchema: GenMessage<TrustProvider> = /*@__PURE__*/
-  messageDesc(file_proto_trust_provider_v1alpha1_trust_provider, 0);
+  messageDesc(file_proto_trust_provider_v1alpha1_trust_provider, 1);
 
 /**
  * @generated from enum proto.trust_provider.v1alpha1.TrustProviderKind
