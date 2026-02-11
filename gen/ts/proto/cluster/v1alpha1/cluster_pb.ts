@@ -7,6 +7,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
 import type { TrustProvider } from "../../trust_provider/v1alpha1/trust_provider_pb";
 import { file_proto_trust_provider_v1alpha1_trust_provider } from "../../trust_provider/v1alpha1/trust_provider_pb";
@@ -16,7 +17,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file proto/cluster/v1alpha1/cluster.proto.
  */
 export const file_proto_cluster_v1alpha1_cluster: GenFile = /*@__PURE__*/
-  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEiwgQKB0NsdXN0ZXISDwoCaWQYCCABKAlIAIgBARIRCgRuYW1lGAEgASgJSAGIAQESEwoGb3JnX2lkGAkgASgJSAKIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgDiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgEiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgFiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgGiAEBEhQKB3Byb2ZpbGUYBiABKAlIB4gBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICIgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICYgBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAqIAQFCBQoDX2lkQgcKBV9uYW1lQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCFQoTX2t1YmVybmV0ZXNfY29udGV4dEIRCg9fdHJ1c3RfcHJvdmlkZXJCFAoSX2V4dHJhX2hlbG1fdmFsdWVzQgoKCF9wcm9maWxlQhIKEF9leHRlcm5hbF9zZXJ2ZXJCEgoQX29pZGNfaXNzdWVyX3VybEIWChRfb2lkY19pc3N1ZXJfY2FfY2VydEoECAIQA1IKdHJ1c3Rfem9uZUJAWj5naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2x1c3Rlci92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_proto_trust_provider_v1alpha1_trust_provider]);
+  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEi4QgKB0NsdXN0ZXISDwoCaWQYCCABKAlIAIgBARIRCgRuYW1lGAEgASgJSAGIAQESEwoGb3JnX2lkGAkgASgJSAKIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgDiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgEiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgFiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgGiAEBEhQKB3Byb2ZpbGUYBiABKAlIB4gBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICIgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICYgBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAqIAQESSwoPazhzX3BzYXRfY29uZmlnGA0gASgLMi0ucHJvdG8uY2x1c3Rlci52MWFscGhhMS5DbHVzdGVyLks4c1BzYXRDb25maWdCA+BBARrPAwoNSzhzUHNhdENvbmZpZxJjChhhbGxvd2VkX3NlcnZpY2VfYWNjb3VudHMYASADKAsyPC5wcm90by5jbHVzdGVyLnYxYWxwaGExLkNsdXN0ZXIuSzhzUHNhdENvbmZpZy5TZXJ2aWNlQWNjb3VudEID4EEBEhYKCWF1ZGllbmNlcxgCIAMoCUID4EEBEiQKF2FsbG93ZWRfbm9kZV9sYWJlbF9rZXlzGAMgAygJQgPgQQESIwoWYWxsb3dlZF9wb2RfbGFiZWxfa2V5cxgEIAMoCUID4EEBEh8KEmFwaV9zZXJ2ZXJfY2FfY2VydBgFIAEoDEID4EEBEhsKDmFwaV9zZXJ2ZXJfdXJsGAYgASgJQgPgQQESHAoPdGxzX3NlcnZlcl9uYW1lGAcgASgJQgPgQQESFgoJcHJveHlfdXJsGAggASgJQgPgQQESGwoOc3BpZmZlX2lkX3BhdGgYCSABKAlCA+BBARIiChVzcGlyZV9zZXJ2ZXJfYXVkaWVuY2UYCiABKAlCA+BBARpBCg5TZXJ2aWNlQWNjb3VudBIRCgluYW1lc3BhY2UYASABKAkSHAoUc2VydmljZV9hY2NvdW50X25hbWUYAiABKAlCBQoDX2lkQgcKBV9uYW1lQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCFQoTX2t1YmVybmV0ZXNfY29udGV4dEIRCg9fdHJ1c3RfcHJvdmlkZXJCFAoSX2V4dHJhX2hlbG1fdmFsdWVzQgoKCF9wcm9maWxlQhIKEF9leHRlcm5hbF9zZXJ2ZXJCEgoQX29pZGNfaXNzdWVyX3VybEIWChRfb2lkY19pc3N1ZXJfY2FfY2VydEoECAIQA1IKdHJ1c3Rfem9uZUJAWj5naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2x1c3Rlci92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_struct, file_proto_trust_provider_v1alpha1_trust_provider]);
 
 /**
  * @generated from message proto.cluster.v1alpha1.Cluster
@@ -76,6 +77,15 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
    * @generated from field: optional bytes oidc_issuer_ca_cert = 12;
    */
   oidcIssuerCaCert?: Uint8Array;
+
+  /**
+   * Optional configuration for the Connect K8s PSAT SPIRE server plugin.
+   * Recommended way to support multiple clusters in a trust zone.
+   * Required for cluster's the SPIRE server is not present in when using Connect K8s PSAT SPIRE server plugin.
+   *
+   * @generated from field: proto.cluster.v1alpha1.Cluster.K8sPsatConfig k8s_psat_config = 13;
+   */
+  k8sPsatConfig?: Cluster_K8sPsatConfig;
 };
 
 /**
@@ -84,4 +94,117 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
  */
 export const ClusterSchema: GenMessage<Cluster> = /*@__PURE__*/
   messageDesc(file_proto_cluster_v1alpha1_cluster, 0);
+
+/**
+ * @generated from message proto.cluster.v1alpha1.Cluster.K8sPsatConfig
+ */
+export type Cluster_K8sPsatConfig = Message<"proto.cluster.v1alpha1.Cluster.K8sPsatConfig"> & {
+  /**
+   * Namespace and name of service accounts agents can use tokens from to attest nodes in this cluster.
+   * At least 1 must be provided if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: repeated proto.cluster.v1alpha1.Cluster.K8sPsatConfig.ServiceAccount allowed_service_accounts = 1;
+   */
+  allowedServiceAccounts: Cluster_K8sPsatConfig_ServiceAccount[];
+
+  /**
+   * Audiences SPIRE agents in this cluster can use in the tokens they present to the remote SPIRE server.
+   * At least 1 must be provided if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: repeated string audiences = 2;
+   */
+  audiences: string[];
+
+  /**
+   * Node labels that can be used as selectors in this cluster.
+   *
+   * @generated from field: repeated string allowed_node_label_keys = 3;
+   */
+  allowedNodeLabelKeys: string[];
+
+  /**
+   * Pod labels that can be used as selectors in this cluster.
+   *
+   * @generated from field: repeated string allowed_pod_label_keys = 4;
+   */
+  allowedPodLabelKeys: string[];
+
+  /**
+   * CA certificate of the cluster's API server.
+   * Optional, but required if the SPIRE server is outside the cluster and the cluster's API server CA is not in
+   * already trusted by the SPIRE server (very likely).
+   *
+   * @generated from field: bytes api_server_ca_cert = 5;
+   */
+  apiServerCaCert: Uint8Array;
+
+  /**
+   * Cluster's API server URL.
+   * Required if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: string api_server_url = 6;
+   */
+  apiServerUrl: string;
+
+  /**
+   * Alternative TLS server name to verify the presented certificate with if the hostname of the API server URL is
+   * not in the presented certificate.
+   *
+   * @generated from field: string tls_server_name = 7;
+   */
+  tlsServerName: string;
+
+  /**
+   * Proxy URL of the API server (if running behind a proxy).
+   *
+   * @generated from field: string proxy_url = 8;
+   */
+  proxyUrl: string;
+
+  /**
+   * Path to use for the SPIFFE ID in the JWT presented by the SPIRE server to the cluster's API server.
+   * This must be configured to be an allowed subject on the cluster's API server.
+   * Required if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: string spiffe_id_path = 9;
+   */
+  spiffeIdPath: string;
+
+  /**
+   * Audience the SPIRE server should use in the JWT presented to the cluster's API server.
+   * Required if the SPIRE server is outside the cluster.
+   *
+   * @generated from field: string spire_server_audience = 10;
+   */
+  spireServerAudience: string;
+};
+
+/**
+ * Describes the message proto.cluster.v1alpha1.Cluster.K8sPsatConfig.
+ * Use `create(Cluster_K8sPsatConfigSchema)` to create a new message.
+ */
+export const Cluster_K8sPsatConfigSchema: GenMessage<Cluster_K8sPsatConfig> = /*@__PURE__*/
+  messageDesc(file_proto_cluster_v1alpha1_cluster, 0, 0);
+
+/**
+ * @generated from message proto.cluster.v1alpha1.Cluster.K8sPsatConfig.ServiceAccount
+ */
+export type Cluster_K8sPsatConfig_ServiceAccount = Message<"proto.cluster.v1alpha1.Cluster.K8sPsatConfig.ServiceAccount"> & {
+  /**
+   * @generated from field: string namespace = 1;
+   */
+  namespace: string;
+
+  /**
+   * @generated from field: string service_account_name = 2;
+   */
+  serviceAccountName: string;
+};
+
+/**
+ * Describes the message proto.cluster.v1alpha1.Cluster.K8sPsatConfig.ServiceAccount.
+ * Use `create(Cluster_K8sPsatConfig_ServiceAccountSchema)` to create a new message.
+ */
+export const Cluster_K8sPsatConfig_ServiceAccountSchema: GenMessage<Cluster_K8sPsatConfig_ServiceAccount> = /*@__PURE__*/
+  messageDesc(file_proto_cluster_v1alpha1_cluster, 0, 0, 0);
 
