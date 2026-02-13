@@ -5,12 +5,48 @@ syntax = "proto3";
 
 package proto.cluster.v1alpha1;
 
+import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
 import "proto/trust_provider/v1alpha1/trust_provider.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1";
 
 message Cluster {
+  message K8sPsatConfig {
+    message ServiceAccount {
+      string namespace = 1;
+      string service_account_name = 2;
+    }
+    // Namespace and name of service accounts agents can use tokens from to attest nodes in this cluster.
+    // At least 1 must be provided if the SPIRE server is outside the cluster.
+    repeated ServiceAccount allowed_service_accounts = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Audiences SPIRE agents in this cluster can use in the tokens they present to the remote SPIRE server.
+    // At least 1 must be provided if the SPIRE server is outside the cluster.
+    repeated string audiences = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Node labels that can be used as selectors in this cluster.
+    repeated string allowed_node_label_keys = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Pod labels that can be used as selectors in this cluster.
+    repeated string allowed_pod_label_keys = 4 [(google.api.field_behavior) = OPTIONAL];
+    // CA certificate of the cluster's API server.
+    // Optional, but required if the SPIRE server is outside the cluster and the cluster's API server CA is not in
+    // already trusted by the SPIRE server (very likely).
+    bytes api_server_ca_cert = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Cluster's API server URL.
+    // Required if the SPIRE server is outside the cluster.
+    string api_server_url = 6 [(google.api.field_behavior) = OPTIONAL];
+    // Alternative TLS server name to verify the presented certificate with if the hostname of the API server URL is
+    // not in the presented certificate.
+    string tls_server_name = 7 [(google.api.field_behavior) = OPTIONAL];
+    // Proxy URL of the API server (if running behind a proxy).
+    string proxy_url = 8 [(google.api.field_behavior) = OPTIONAL];
+    // Path to use for the SPIFFE ID in the JWT presented by the SPIRE server to the cluster's API server.
+    // This must be configured to be an allowed subject on the cluster's API server.
+    // Required if the SPIRE server is outside the cluster.
+    string spiffe_id_path = 9 [(google.api.field_behavior) = OPTIONAL];
+    // Audience the SPIRE server should use in the JWT presented to the cluster's API server.
+    // Required if the SPIRE server is outside the cluster.
+    string spire_server_audience = 10 [(google.api.field_behavior) = OPTIONAL];
+  }
   reserved 2;
   reserved "trust_zone";
 
@@ -27,4 +63,9 @@ message Cluster {
 
   optional string oidc_issuer_url = 11;
   optional bytes oidc_issuer_ca_cert = 12;
+
+  // Optional configuration for the Connect K8s PSAT SPIRE server plugin.
+  // Recommended way to support multiple clusters in a trust zone.
+  // Required for cluster's the SPIRE server is not present in when using Connect K8s PSAT SPIRE server plugin.
+  Cluster.K8sPsatConfig k8s_psat_config = 13 [(google.api.field_behavior) = OPTIONAL];
 }
