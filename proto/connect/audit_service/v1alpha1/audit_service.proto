@@ -1,0 +1,37 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.audit_service.v1alpha1;
+
+import "proto/audit/v1alpha1/audit.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1";
+
+service AuditService {
+  rpc AddLog(AddLogRequest) returns (AddLogResponse) {}
+  rpc ListLogs(ListLogsRequest) returns (ListLogsResponse) {}
+}
+
+message AddLogRequest {
+  proto.audit.v1alpha1.Log log = 1;
+}
+
+message AddLogResponse {
+  proto.audit.v1alpha1.Log log = 1;
+}
+
+message ListLogsRequest {
+  message Filter {
+    string event_type = 1;
+    string entity_type = 2;
+    string entity_id = 3;
+    // TODO add time based filters
+  }
+  Filter filter = 1;
+}
+
+message ListLogsResponse {
+  repeated proto.audit.v1alpha1.Log logs = 1;
+}
