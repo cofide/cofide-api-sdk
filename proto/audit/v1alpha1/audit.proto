@@ -1,0 +1,23 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.audit.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1";
+
+message Event {
+  string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp occurred_at = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string type = 3 [(google.api.field_behavior) = REQUIRED];
+  string message = 4 [(google.api.field_behavior) = REQUIRED];
+  message EntityLink {
+    string type = 1;
+    string id = 2;
+  }
+  repeated EntityLink links = 5 [(google.api.field_behavior) = REQUIRED];
+}
