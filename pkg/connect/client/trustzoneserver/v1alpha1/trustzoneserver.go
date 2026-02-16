@@ -18,6 +18,7 @@ type TrustZoneServerClient interface {
 	GetTrustZoneServer(ctx context.Context, trustZoneServerID string) (*trustzoneserverpb.TrustZoneServer, error)
 	ListTrustZoneServers(ctx context.Context, filter *trustzoneserversvcpb.ListTrustZoneServersRequest_Filter) ([]*trustzoneserverpb.TrustZoneServer, error)
 	UpdateTrustZoneServer(ctx context.Context, trustZoneServer *trustzoneserverpb.TrustZoneServer, updateMask *trustzoneserversvcpb.UpdateTrustZoneServerRequest_UpdateMask) (*trustzoneserverpb.TrustZoneServer, error)
+	UpdateTrustZoneServerStatus(ctx context.Context, trustZoneServerID string, status trustzoneserverpb.TrustZoneServerStatus) error
 }
 
 type trustZoneServerClient struct {
@@ -85,4 +86,16 @@ func (c *trustZoneServerClient) UpdateTrustZoneServer(
 	}
 
 	return resp.TrustZoneServer, nil
+}
+
+func (c *trustZoneServerClient) UpdateTrustZoneServerStatus(
+	ctx context.Context,
+	trustZoneServerID string,
+	status trustzoneserverpb.TrustZoneServerStatus,
+) error {
+	_, err := c.trustZoneServerClient.UpdateTrustZoneServerStatus(ctx, &trustzoneserversvcpb.UpdateTrustZoneServerStatusRequest{
+		TrustZoneServerId: trustZoneServerID,
+		Status:            status,
+	})
+	return err
 }

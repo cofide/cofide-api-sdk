@@ -22,11 +22,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TrustZoneServerService_CreateTrustZoneServer_FullMethodName  = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/CreateTrustZoneServer"
-	TrustZoneServerService_DestroyTrustZoneServer_FullMethodName = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/DestroyTrustZoneServer"
-	TrustZoneServerService_GetTrustZoneServer_FullMethodName     = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/GetTrustZoneServer"
-	TrustZoneServerService_ListTrustZoneServers_FullMethodName   = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/ListTrustZoneServers"
-	TrustZoneServerService_UpdateTrustZoneServer_FullMethodName  = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServer"
+	TrustZoneServerService_CreateTrustZoneServer_FullMethodName       = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/CreateTrustZoneServer"
+	TrustZoneServerService_DestroyTrustZoneServer_FullMethodName      = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/DestroyTrustZoneServer"
+	TrustZoneServerService_GetTrustZoneServer_FullMethodName          = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/GetTrustZoneServer"
+	TrustZoneServerService_ListTrustZoneServers_FullMethodName        = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/ListTrustZoneServers"
+	TrustZoneServerService_UpdateTrustZoneServer_FullMethodName       = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServer"
+	TrustZoneServerService_UpdateTrustZoneServerStatus_FullMethodName = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServerStatus"
 )
 
 // TrustZoneServerServiceClient is the client API for TrustZoneServerService service.
@@ -48,6 +49,8 @@ type TrustZoneServerServiceClient interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(ctx context.Context, in *UpdateTrustZoneServerRequest, opts ...grpc.CallOption) (*UpdateTrustZoneServerResponse, error)
+	// Update the status of a trust zone server.
+	UpdateTrustZoneServerStatus(ctx context.Context, in *UpdateTrustZoneServerStatusRequest, opts ...grpc.CallOption) (*UpdateTrustZoneServerStatusResponse, error)
 }
 
 type trustZoneServerServiceClient struct {
@@ -108,6 +111,16 @@ func (c *trustZoneServerServiceClient) UpdateTrustZoneServer(ctx context.Context
 	return out, nil
 }
 
+func (c *trustZoneServerServiceClient) UpdateTrustZoneServerStatus(ctx context.Context, in *UpdateTrustZoneServerStatusRequest, opts ...grpc.CallOption) (*UpdateTrustZoneServerStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTrustZoneServerStatusResponse)
+	err := c.cc.Invoke(ctx, TrustZoneServerService_UpdateTrustZoneServerStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TrustZoneServerServiceServer is the server API for TrustZoneServerService service.
 // All implementations should embed UnimplementedTrustZoneServerServiceServer
 // for forward compatibility.
@@ -127,6 +140,8 @@ type TrustZoneServerServiceServer interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(context.Context, *UpdateTrustZoneServerRequest) (*UpdateTrustZoneServerResponse, error)
+	// Update the status of a trust zone server.
+	UpdateTrustZoneServerStatus(context.Context, *UpdateTrustZoneServerStatusRequest) (*UpdateTrustZoneServerStatusResponse, error)
 }
 
 // UnimplementedTrustZoneServerServiceServer should be embedded to have
@@ -150,6 +165,9 @@ func (UnimplementedTrustZoneServerServiceServer) ListTrustZoneServers(context.Co
 }
 func (UnimplementedTrustZoneServerServiceServer) UpdateTrustZoneServer(context.Context, *UpdateTrustZoneServerRequest) (*UpdateTrustZoneServerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneServer not implemented")
+}
+func (UnimplementedTrustZoneServerServiceServer) UpdateTrustZoneServerStatus(context.Context, *UpdateTrustZoneServerStatusRequest) (*UpdateTrustZoneServerStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTrustZoneServerStatus not implemented")
 }
 func (UnimplementedTrustZoneServerServiceServer) testEmbeddedByValue() {}
 
@@ -261,6 +279,24 @@ func _TrustZoneServerService_UpdateTrustZoneServer_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrustZoneServerService_UpdateTrustZoneServerStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTrustZoneServerStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrustZoneServerServiceServer).UpdateTrustZoneServerStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrustZoneServerService_UpdateTrustZoneServerStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrustZoneServerServiceServer).UpdateTrustZoneServerStatus(ctx, req.(*UpdateTrustZoneServerStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TrustZoneServerService_ServiceDesc is the grpc.ServiceDesc for TrustZoneServerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -287,6 +323,10 @@ var TrustZoneServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateTrustZoneServer",
 			Handler:    _TrustZoneServerService_UpdateTrustZoneServer_Handler,
+		},
+		{
+			MethodName: "UpdateTrustZoneServerStatus",
+			Handler:    _TrustZoneServerService_UpdateTrustZoneServerStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

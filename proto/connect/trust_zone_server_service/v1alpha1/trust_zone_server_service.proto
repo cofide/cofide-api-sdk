@@ -26,6 +26,8 @@ service TrustZoneServerService {
   // Update a TrustZoneServer.
   // Server implementations may prevent some fields from being updated.
   rpc UpdateTrustZoneServer(UpdateTrustZoneServerRequest) returns (UpdateTrustZoneServerResponse) {}
+  // Update the status of a trust zone server.
+  rpc UpdateTrustZoneServerStatus(UpdateTrustZoneServerStatusRequest) returns (UpdateTrustZoneServerStatusResponse) {}
 }
 
 message CreateTrustZoneServerRequest {
@@ -93,3 +95,13 @@ message UpdateTrustZoneServerRequest {
 message UpdateTrustZoneServerResponse {
   proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1;
 }
+
+message UpdateTrustZoneServerStatusRequest {
+  string trust_zone_server_id = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference).type = "proto.trust_zone_server.v1alpha1/TrustZoneServer"
+  ];
+  proto.trust_zone_server.v1alpha1.TrustZoneServerStatus status = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateTrustZoneServerStatusResponse {}

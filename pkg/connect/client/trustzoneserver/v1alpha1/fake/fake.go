@@ -15,6 +15,7 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/structpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type fakeTrustZoneServerClient struct {
@@ -34,6 +35,7 @@ func (c *fakeTrustZoneServerClient) CreateTrustZoneServer(ctx context.Context, t
 
 	trustZoneServer = clone(trustZoneServer)
 	trustZoneServer.Id = uuid.New().String()
+	trustZoneServer.CreatedAt = timestamppb.Now()
 	c.fake.TrustZoneServers[trustZoneServer.GetId()] = trustZoneServer
 	return clone(trustZoneServer), nil
 }
@@ -42,10 +44,11 @@ func (c *fakeTrustZoneServerClient) DestroyTrustZoneServer(ctx context.Context, 
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	if _, ok := c.fake.TrustZoneServers[trustZoneServerID]; !ok {
+	existing, ok := c.fake.TrustZoneServers[trustZoneServerID]
+	if !ok {
 		return status.Error(codes.NotFound, "trust zone server not found")
 	}
-	delete(c.fake.TrustZoneServers, trustZoneServerID)
+	existing.DeletedAt = timestamppb.Now()
 	return nil
 }
 
@@ -121,9 +124,32 @@ func (c *fakeTrustZoneServerClient) UpdateTrustZoneServer(ctx context.Context, t
 		// As update of other fields is supported, update the ones set in the update mask here
 	}
 
+	new.LastUpdatedAt = timestamppb.Now()
+
 	// Existing may have been partially updated or entirely replaced, so explicitly set it to cover both cases
 	c.fake.TrustZoneServers[trustZoneServer.GetId()] = new
 	return clone(new), nil
+}
+
+func (c *fakeTrustZoneServerClient) UpdateTrustZoneServerStatus(ctx context.Context, trustZoneServerID string, newStatus trustzoneserverpb.TrustZoneServerStatus) error {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	existing, ok := c.fake.TrustZoneServers[trustZoneServerID]
+	if !ok {
+		return status.Error(codes.NotFound, "trust zone server not found")
+	}
+
+	if newStatus == trustzoneserverpb.TrustZoneServerStatus_TRUST_ZONE_SERVER_STATUS_DELETED {
+		delete(c.fake.TrustZoneServers, trustZoneServerID)
+	} else {
+		existing.Status = &trustzoneserverpb.TrustZoneServer_Status{
+			Status:             newStatus,
+			LastTransitionTime: timestamppb.Now(),
+		}
+	}
+
+	return nil
 }
 
 func clone(trustZoneServer *trustzoneserverpb.TrustZoneServer) *trustzoneserverpb.TrustZoneServer {
