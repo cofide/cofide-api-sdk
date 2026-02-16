@@ -51,6 +51,9 @@ const (
 	// TrustZoneServerServiceUpdateTrustZoneServerProcedure is the fully-qualified name of the
 	// TrustZoneServerService's UpdateTrustZoneServer RPC.
 	TrustZoneServerServiceUpdateTrustZoneServerProcedure = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServer"
+	// TrustZoneServerServiceUpdateTrustZoneServerStatusProcedure is the fully-qualified name of the
+	// TrustZoneServerService's UpdateTrustZoneServerStatus RPC.
+	TrustZoneServerServiceUpdateTrustZoneServerStatusProcedure = "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/UpdateTrustZoneServerStatus"
 )
 
 // TrustZoneServerServiceClient is a client for the
@@ -69,6 +72,8 @@ type TrustZoneServerServiceClient interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerResponse], error)
+	// Update the status of a trust zone server.
+	UpdateTrustZoneServerStatus(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerStatusRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerStatusResponse], error)
 }
 
 // NewTrustZoneServerServiceClient constructs a client for the
@@ -113,16 +118,23 @@ func NewTrustZoneServerServiceClient(httpClient connect.HTTPClient, baseURL stri
 			connect.WithSchema(trustZoneServerServiceMethods.ByName("UpdateTrustZoneServer")),
 			connect.WithClientOptions(opts...),
 		),
+		updateTrustZoneServerStatus: connect.NewClient[v1alpha1.UpdateTrustZoneServerStatusRequest, v1alpha1.UpdateTrustZoneServerStatusResponse](
+			httpClient,
+			baseURL+TrustZoneServerServiceUpdateTrustZoneServerStatusProcedure,
+			connect.WithSchema(trustZoneServerServiceMethods.ByName("UpdateTrustZoneServerStatus")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // trustZoneServerServiceClient implements TrustZoneServerServiceClient.
 type trustZoneServerServiceClient struct {
-	createTrustZoneServer  *connect.Client[v1alpha1.CreateTrustZoneServerRequest, v1alpha1.CreateTrustZoneServerResponse]
-	destroyTrustZoneServer *connect.Client[v1alpha1.DestroyTrustZoneServerRequest, v1alpha1.DestroyTrustZoneServerResponse]
-	getTrustZoneServer     *connect.Client[v1alpha1.GetTrustZoneServerRequest, v1alpha1.GetTrustZoneServerResponse]
-	listTrustZoneServers   *connect.Client[v1alpha1.ListTrustZoneServersRequest, v1alpha1.ListTrustZoneServersResponse]
-	updateTrustZoneServer  *connect.Client[v1alpha1.UpdateTrustZoneServerRequest, v1alpha1.UpdateTrustZoneServerResponse]
+	createTrustZoneServer       *connect.Client[v1alpha1.CreateTrustZoneServerRequest, v1alpha1.CreateTrustZoneServerResponse]
+	destroyTrustZoneServer      *connect.Client[v1alpha1.DestroyTrustZoneServerRequest, v1alpha1.DestroyTrustZoneServerResponse]
+	getTrustZoneServer          *connect.Client[v1alpha1.GetTrustZoneServerRequest, v1alpha1.GetTrustZoneServerResponse]
+	listTrustZoneServers        *connect.Client[v1alpha1.ListTrustZoneServersRequest, v1alpha1.ListTrustZoneServersResponse]
+	updateTrustZoneServer       *connect.Client[v1alpha1.UpdateTrustZoneServerRequest, v1alpha1.UpdateTrustZoneServerResponse]
+	updateTrustZoneServerStatus *connect.Client[v1alpha1.UpdateTrustZoneServerStatusRequest, v1alpha1.UpdateTrustZoneServerStatusResponse]
 }
 
 // CreateTrustZoneServer calls
@@ -155,6 +167,12 @@ func (c *trustZoneServerServiceClient) UpdateTrustZoneServer(ctx context.Context
 	return c.updateTrustZoneServer.CallUnary(ctx, req)
 }
 
+// UpdateTrustZoneServerStatus calls
+// proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.UpdateTrustZoneServerStatus.
+func (c *trustZoneServerServiceClient) UpdateTrustZoneServerStatus(ctx context.Context, req *connect.Request[v1alpha1.UpdateTrustZoneServerStatusRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerStatusResponse], error) {
+	return c.updateTrustZoneServerStatus.CallUnary(ctx, req)
+}
+
 // TrustZoneServerServiceHandler is an implementation of the
 // proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService service.
 type TrustZoneServerServiceHandler interface {
@@ -171,6 +189,8 @@ type TrustZoneServerServiceHandler interface {
 	// Update a TrustZoneServer.
 	// Server implementations may prevent some fields from being updated.
 	UpdateTrustZoneServer(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerResponse], error)
+	// Update the status of a trust zone server.
+	UpdateTrustZoneServerStatus(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerStatusRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerStatusResponse], error)
 }
 
 // NewTrustZoneServerServiceHandler builds an HTTP handler from the service implementation. It
@@ -210,6 +230,12 @@ func NewTrustZoneServerServiceHandler(svc TrustZoneServerServiceHandler, opts ..
 		connect.WithSchema(trustZoneServerServiceMethods.ByName("UpdateTrustZoneServer")),
 		connect.WithHandlerOptions(opts...),
 	)
+	trustZoneServerServiceUpdateTrustZoneServerStatusHandler := connect.NewUnaryHandler(
+		TrustZoneServerServiceUpdateTrustZoneServerStatusProcedure,
+		svc.UpdateTrustZoneServerStatus,
+		connect.WithSchema(trustZoneServerServiceMethods.ByName("UpdateTrustZoneServerStatus")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case TrustZoneServerServiceCreateTrustZoneServerProcedure:
@@ -222,6 +248,8 @@ func NewTrustZoneServerServiceHandler(svc TrustZoneServerServiceHandler, opts ..
 			trustZoneServerServiceListTrustZoneServersHandler.ServeHTTP(w, r)
 		case TrustZoneServerServiceUpdateTrustZoneServerProcedure:
 			trustZoneServerServiceUpdateTrustZoneServerHandler.ServeHTTP(w, r)
+		case TrustZoneServerServiceUpdateTrustZoneServerStatusProcedure:
+			trustZoneServerServiceUpdateTrustZoneServerStatusHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -249,4 +277,8 @@ func (UnimplementedTrustZoneServerServiceHandler) ListTrustZoneServers(context.C
 
 func (UnimplementedTrustZoneServerServiceHandler) UpdateTrustZoneServer(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.UpdateTrustZoneServer is not implemented"))
+}
+
+func (UnimplementedTrustZoneServerServiceHandler) UpdateTrustZoneServerStatus(context.Context, *connect.Request[v1alpha1.UpdateTrustZoneServerStatusRequest]) (*connect.Response[v1alpha1.UpdateTrustZoneServerStatusResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.trust_zone_server_service.v1alpha1.TrustZoneServerService.UpdateTrustZoneServerStatus is not implemented"))
 }

@@ -8,11 +8,30 @@ package proto.trust_zone_server.v1alpha1;
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1";
 
+// Status of a trust zone server
+enum TrustZoneServerStatus {
+  TRUST_ZONE_SERVER_STATUS_UNSPECIFIED = 0;
+  // Provisioning / Deleting statuses are only applicable for managed trust zone servers
+  TRUST_ZONE_SERVER_STATUS_PROVISIONING = 1;
+  TRUST_ZONE_SERVER_STATUS_PROVISIONED = 2;
+  TRUST_ZONE_SERVER_STATUS_PROVISIONING_ERROR = 3;
+  TRUST_ZONE_SERVER_STATUS_DELETING = 4;
+  TRUST_ZONE_SERVER_STATUS_DELETED = 5;
+  TRUST_ZONE_SERVER_STATUS_DELETING_ERROR = 6;
+}
+
 // TrustZoneServer defines how the server managing a trust zone should be deployed.
 message TrustZoneServer {
+  message Status {
+    // Last reported status of the trust zone server.
+    TrustZoneServerStatus status = 1;
+    // When the status of the trust zone server last changed.
+    google.protobuf.Timestamp last_transition_time = 2;
+  }
   option (google.api.resource) = {
     type: "proto.trust_zone_server.v1alpha1/TrustZoneServer"
     pattern: "{trust_zone_server}"
@@ -51,4 +70,12 @@ message TrustZoneServer {
   ];
   // Helm values to configure the server install with.
   google.protobuf.Struct helm_values = 7 [(google.api.field_behavior) = OPTIONAL];
+  // Current status of the trust zone server
+  Status status = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of resource creation by user.
+  google.protobuf.Timestamp created_at = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Times of last resource update by user.
+  google.protobuf.Timestamp last_updated_at = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of resource deletion by user.
+  google.protobuf.Timestamp deleted_at = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

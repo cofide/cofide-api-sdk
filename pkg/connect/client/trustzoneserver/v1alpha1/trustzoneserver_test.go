@@ -81,6 +81,9 @@ func TestTrustZoneServerClient(t *testing.T) {
 	updatedTrustZoneServer, err := client.UpdateTrustZoneServer(t.Context(), trustZoneServer, nil)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, trustZoneServer, updatedTrustZoneServer)
+
+	err = client.UpdateTrustZoneServerStatus(t.Context(), trustZoneServer.Id, trustzoneserverpb.TrustZoneServerStatus_TRUST_ZONE_SERVER_STATUS_PROVISIONED)
+	require.NoError(t, err)
 }
 
 type fakeTrustZoneServerService struct {
@@ -111,6 +114,11 @@ func (f *fakeTrustZoneServerService) ListTrustZoneServers(ctx context.Context, r
 func (f *fakeTrustZoneServerService) UpdateTrustZoneServer(ctx context.Context, req *trustzoneserversvcpb.UpdateTrustZoneServerRequest) (*trustzoneserversvcpb.UpdateTrustZoneServerResponse, error) {
 	assert.EqualExportedValues(f.t, fakeTrustZoneServer(), req.TrustZoneServer)
 	return &trustzoneserversvcpb.UpdateTrustZoneServerResponse{TrustZoneServer: req.TrustZoneServer}, nil
+}
+
+func (f *fakeTrustZoneServerService) UpdateTrustZoneServerStatus(ctx context.Context, req *trustzoneserversvcpb.UpdateTrustZoneServerStatusRequest) (*trustzoneserversvcpb.UpdateTrustZoneServerStatusResponse, error) {
+	assert.EqualExportedValues(f.t, fakeTrustZoneServer().Id, req.TrustZoneServerId)
+	return &trustzoneserversvcpb.UpdateTrustZoneServerStatusResponse{}, nil
 }
 
 func fakeTrustZoneServer() *trustzoneserverpb.TrustZoneServer {

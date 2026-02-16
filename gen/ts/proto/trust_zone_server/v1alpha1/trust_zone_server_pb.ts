@@ -5,18 +5,19 @@
 // @generated from file proto/trust_zone_server/v1alpha1/trust_zone_server.proto (package proto.trust_zone_server.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import { file_google_api_resource } from "../../../google/api/resource_pb";
-import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/trust_zone_server/v1alpha1/trust_zone_server.proto.
  */
 export const file_proto_trust_zone_server_v1alpha1_trust_zone_server: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEivgMKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSPQoKY2x1c3Rlcl9pZBgDIAEoCUIp4EEC4EEF+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISJAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCBuBBAeBBBRIqChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUIG4EEB4EEFEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uEjEKC2hlbG1fdmFsdWVzGAcgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEID4EEBOkrqQUcKMHByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExL1RydXN0Wm9uZVNlcnZlchITe3RydXN0X3pvbmVfc2VydmVyfUJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vdHJ1c3Rfem9uZV9zZXJ2ZXIvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_api_resource, file_google_protobuf_struct]);
+  fileDesc("Cjhwcm90by90cnVzdF96b25lX3NlcnZlci92MWFscGhhMS90cnVzdF96b25lX3NlcnZlci5wcm90bxIgcHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEivwYKD1RydXN0Wm9uZVNlcnZlchIPCgJpZBgBIAEoCUID4EEIEkUKDXRydXN0X3pvbmVfaWQYAiABKAlCLuBBAuBBBfpBJQojcHJvdG8udHJ1c3Rfem9uZS52MWFscGhhMS9UcnVzdFpvbmUSPQoKY2x1c3Rlcl9pZBgDIAEoCUIp4EEC4EEF+kEgCh5wcm90by5jbHVzdGVyLnYxYWxwaGExL0NsdXN0ZXISJAoUa3ViZXJuZXRlc19uYW1lc3BhY2UYBCABKAlCBuBBAeBBBRIqChprdWJlcm5ldGVzX3NlcnZpY2VfYWNjb3VudBgFIAEoCUIG4EEB4EEFEkMKBm9yZ19pZBgGIAEoCUIz4EED4EEF+kEqCihwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEvT3JnYW5pemF0aW9uEjEKC2hlbG1fdmFsdWVzGAcgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEID4EEBEk0KBnN0YXR1cxgIIAEoCzI4LnByb3RvLnRydXN0X3pvbmVfc2VydmVyLnYxYWxwaGExLlRydXN0Wm9uZVNlcnZlci5TdGF0dXNCA+BBAxIzCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIzCgpkZWxldGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDGosBCgZTdGF0dXMSRwoGc3RhdHVzGAEgASgOMjcucHJvdG8udHJ1c3Rfem9uZV9zZXJ2ZXIudjFhbHBoYTEuVHJ1c3Rab25lU2VydmVyU3RhdHVzEjgKFGxhc3RfdHJhbnNpdGlvbl90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDpK6kFHCjBwcm90by50cnVzdF96b25lX3NlcnZlci52MWFscGhhMS9UcnVzdFpvbmVTZXJ2ZXISE3t0cnVzdF96b25lX3NlcnZlcn0qwQIKFVRydXN0Wm9uZVNlcnZlclN0YXR1cxIoCiRUUlVTVF9aT05FX1NFUlZFUl9TVEFUVVNfVU5TUEVDSUZJRUQQABIpCiVUUlVTVF9aT05FX1NFUlZFUl9TVEFUVVNfUFJPVklTSU9OSU5HEAESKAokVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX1BST1ZJU0lPTkVEEAISLworVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX1BST1ZJU0lPTklOR19FUlJPUhADEiUKIVRSVVNUX1pPTkVfU0VSVkVSX1NUQVRVU19ERUxFVElORxAEEiQKIFRSVVNUX1pPTkVfU0VSVkVSX1NUQVRVU19ERUxFVEVEEAUSKwonVFJVU1RfWk9ORV9TRVJWRVJfU1RBVFVTX0RFTEVUSU5HX0VSUk9SEAZCSlpIZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3RydXN0X3pvbmVfc2VydmVyL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_api_resource, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * TrustZoneServer defines how the server managing a trust zone should be deployed.
@@ -74,6 +75,34 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
    * @generated from field: google.protobuf.Struct helm_values = 7;
    */
   helmValues?: JsonObject;
+
+  /**
+   * Current status of the trust zone server
+   *
+   * @generated from field: proto.trust_zone_server.v1alpha1.TrustZoneServer.Status status = 8;
+   */
+  status?: TrustZoneServer_Status;
+
+  /**
+   * Time of resource creation by user.
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 9;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * Times of last resource update by user.
+   *
+   * @generated from field: google.protobuf.Timestamp last_updated_at = 10;
+   */
+  lastUpdatedAt?: Timestamp;
+
+  /**
+   * Time of resource deletion by user.
+   *
+   * @generated from field: google.protobuf.Timestamp deleted_at = 11;
+   */
+  deletedAt?: Timestamp;
 };
 
 /**
@@ -82,4 +111,80 @@ export type TrustZoneServer = Message<"proto.trust_zone_server.v1alpha1.TrustZon
  */
 export const TrustZoneServerSchema: GenMessage<TrustZoneServer> = /*@__PURE__*/
   messageDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 0);
+
+/**
+ * @generated from message proto.trust_zone_server.v1alpha1.TrustZoneServer.Status
+ */
+export type TrustZoneServer_Status = Message<"proto.trust_zone_server.v1alpha1.TrustZoneServer.Status"> & {
+  /**
+   * Last reported status of the trust zone server.
+   *
+   * @generated from field: proto.trust_zone_server.v1alpha1.TrustZoneServerStatus status = 1;
+   */
+  status: TrustZoneServerStatus;
+
+  /**
+   * When the status of the trust zone server last changed.
+   *
+   * @generated from field: google.protobuf.Timestamp last_transition_time = 2;
+   */
+  lastTransitionTime?: Timestamp;
+};
+
+/**
+ * Describes the message proto.trust_zone_server.v1alpha1.TrustZoneServer.Status.
+ * Use `create(TrustZoneServer_StatusSchema)` to create a new message.
+ */
+export const TrustZoneServer_StatusSchema: GenMessage<TrustZoneServer_Status> = /*@__PURE__*/
+  messageDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 0, 0);
+
+/**
+ * Status of a trust zone server
+ *
+ * @generated from enum proto.trust_zone_server.v1alpha1.TrustZoneServerStatus
+ */
+export enum TrustZoneServerStatus {
+  /**
+   * @generated from enum value: TRUST_ZONE_SERVER_STATUS_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Provisioning / Deleting statuses are only applicable for managed trust zone servers
+   *
+   * @generated from enum value: TRUST_ZONE_SERVER_STATUS_PROVISIONING = 1;
+   */
+  PROVISIONING = 1,
+
+  /**
+   * @generated from enum value: TRUST_ZONE_SERVER_STATUS_PROVISIONED = 2;
+   */
+  PROVISIONED = 2,
+
+  /**
+   * @generated from enum value: TRUST_ZONE_SERVER_STATUS_PROVISIONING_ERROR = 3;
+   */
+  PROVISIONING_ERROR = 3,
+
+  /**
+   * @generated from enum value: TRUST_ZONE_SERVER_STATUS_DELETING = 4;
+   */
+  DELETING = 4,
+
+  /**
+   * @generated from enum value: TRUST_ZONE_SERVER_STATUS_DELETED = 5;
+   */
+  DELETED = 5,
+
+  /**
+   * @generated from enum value: TRUST_ZONE_SERVER_STATUS_DELETING_ERROR = 6;
+   */
+  DELETING_ERROR = 6,
+}
+
+/**
+ * Describes the enum proto.trust_zone_server.v1alpha1.TrustZoneServerStatus.
+ */
+export const TrustZoneServerStatusSchema: GenEnum<TrustZoneServerStatus> = /*@__PURE__*/
+  enumDesc(file_proto_trust_zone_server_v1alpha1_trust_zone_server, 0);
 
