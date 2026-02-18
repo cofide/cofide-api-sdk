@@ -11,10 +11,10 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_provide
 
 message K8sPsatConfig {
   // Whether to enable the k8s psat node attestor plugin with a Connect datasource.
-  bool enabled = 1;
+  bool enabled = 1 [(google.api.field_behavior) = REQUIRED];
   message ServiceAccount {
-    string namespace = 1;
-    string service_account_name = 2;
+    string namespace = 1 [(google.api.field_behavior) = REQUIRED];
+    string service_account_name = 2 [(google.api.field_behavior) = REQUIRED];
   }
   // Namespace and name of service accounts agents can use tokens from to attest nodes in this cluster.
   // At least 1 must be provided if the SPIRE server is outside the cluster.
