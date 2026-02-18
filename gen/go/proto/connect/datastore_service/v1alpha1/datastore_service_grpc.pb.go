@@ -22,15 +22,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataStoreService_CountAttestedNodes_FullMethodName = "/proto.connect.datastore_service.v1alpha1.DataStoreService/CountAttestedNodes"
-	DataStoreService_CreateAttestedNode_FullMethodName = "/proto.connect.datastore_service.v1alpha1.DataStoreService/CreateAttestedNode"
-	DataStoreService_DeleteAttestedNode_FullMethodName = "/proto.connect.datastore_service.v1alpha1.DataStoreService/DeleteAttestedNode"
-	DataStoreService_FetchAttestedNode_FullMethodName  = "/proto.connect.datastore_service.v1alpha1.DataStoreService/FetchAttestedNode"
-	DataStoreService_UpdateAttestedNode_FullMethodName = "/proto.connect.datastore_service.v1alpha1.DataStoreService/UpdateAttestedNode"
-	DataStoreService_ListAttestedNodes_FullMethodName  = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListAttestedNodes"
-	DataStoreService_GetNodeSelectors_FullMethodName   = "/proto.connect.datastore_service.v1alpha1.DataStoreService/GetNodeSelectors"
-	DataStoreService_SetNodeSelectors_FullMethodName   = "/proto.connect.datastore_service.v1alpha1.DataStoreService/SetNodeSelectors"
-	DataStoreService_ListNodeSelectors_FullMethodName  = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListNodeSelectors"
+	DataStoreService_CountAttestedNodes_FullMethodName        = "/proto.connect.datastore_service.v1alpha1.DataStoreService/CountAttestedNodes"
+	DataStoreService_CreateAttestedNode_FullMethodName        = "/proto.connect.datastore_service.v1alpha1.DataStoreService/CreateAttestedNode"
+	DataStoreService_DeleteAttestedNode_FullMethodName        = "/proto.connect.datastore_service.v1alpha1.DataStoreService/DeleteAttestedNode"
+	DataStoreService_FetchAttestedNode_FullMethodName         = "/proto.connect.datastore_service.v1alpha1.DataStoreService/FetchAttestedNode"
+	DataStoreService_UpdateAttestedNode_FullMethodName        = "/proto.connect.datastore_service.v1alpha1.DataStoreService/UpdateAttestedNode"
+	DataStoreService_ListAttestedNodes_FullMethodName         = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListAttestedNodes"
+	DataStoreService_PruneAttestedExpiredNodes_FullMethodName = "/proto.connect.datastore_service.v1alpha1.DataStoreService/PruneAttestedExpiredNodes"
+	DataStoreService_GetNodeSelectors_FullMethodName          = "/proto.connect.datastore_service.v1alpha1.DataStoreService/GetNodeSelectors"
+	DataStoreService_SetNodeSelectors_FullMethodName          = "/proto.connect.datastore_service.v1alpha1.DataStoreService/SetNodeSelectors"
+	DataStoreService_ListNodeSelectors_FullMethodName         = "/proto.connect.datastore_service.v1alpha1.DataStoreService/ListNodeSelectors"
 )
 
 // DataStoreServiceClient is the client API for DataStoreService service.
@@ -46,6 +47,7 @@ type DataStoreServiceClient interface {
 	FetchAttestedNode(ctx context.Context, in *FetchAttestedNodeRequest, opts ...grpc.CallOption) (*FetchAttestedNodeResponse, error)
 	UpdateAttestedNode(ctx context.Context, in *UpdateAttestedNodeRequest, opts ...grpc.CallOption) (*UpdateAttestedNodeResponse, error)
 	ListAttestedNodes(ctx context.Context, in *ListAttestedNodesRequest, opts ...grpc.CallOption) (*ListAttestedNodesResponse, error)
+	PruneAttestedExpiredNodes(ctx context.Context, in *PruneAttestedExpiredNodesRequest, opts ...grpc.CallOption) (*PruneAttestedExpiredNodesResponse, error)
 	// Node Selector operations
 	GetNodeSelectors(ctx context.Context, in *GetNodeSelectorsRequest, opts ...grpc.CallOption) (*GetNodeSelectorsResponse, error)
 	SetNodeSelectors(ctx context.Context, in *SetNodeSelectorsRequest, opts ...grpc.CallOption) (*SetNodeSelectorsResponse, error)
@@ -120,6 +122,16 @@ func (c *dataStoreServiceClient) ListAttestedNodes(ctx context.Context, in *List
 	return out, nil
 }
 
+func (c *dataStoreServiceClient) PruneAttestedExpiredNodes(ctx context.Context, in *PruneAttestedExpiredNodesRequest, opts ...grpc.CallOption) (*PruneAttestedExpiredNodesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PruneAttestedExpiredNodesResponse)
+	err := c.cc.Invoke(ctx, DataStoreService_PruneAttestedExpiredNodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataStoreServiceClient) GetNodeSelectors(ctx context.Context, in *GetNodeSelectorsRequest, opts ...grpc.CallOption) (*GetNodeSelectorsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetNodeSelectorsResponse)
@@ -163,6 +175,7 @@ type DataStoreServiceServer interface {
 	FetchAttestedNode(context.Context, *FetchAttestedNodeRequest) (*FetchAttestedNodeResponse, error)
 	UpdateAttestedNode(context.Context, *UpdateAttestedNodeRequest) (*UpdateAttestedNodeResponse, error)
 	ListAttestedNodes(context.Context, *ListAttestedNodesRequest) (*ListAttestedNodesResponse, error)
+	PruneAttestedExpiredNodes(context.Context, *PruneAttestedExpiredNodesRequest) (*PruneAttestedExpiredNodesResponse, error)
 	// Node Selector operations
 	GetNodeSelectors(context.Context, *GetNodeSelectorsRequest) (*GetNodeSelectorsResponse, error)
 	SetNodeSelectors(context.Context, *SetNodeSelectorsRequest) (*SetNodeSelectorsResponse, error)
@@ -193,6 +206,9 @@ func (UnimplementedDataStoreServiceServer) UpdateAttestedNode(context.Context, *
 }
 func (UnimplementedDataStoreServiceServer) ListAttestedNodes(context.Context, *ListAttestedNodesRequest) (*ListAttestedNodesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAttestedNodes not implemented")
+}
+func (UnimplementedDataStoreServiceServer) PruneAttestedExpiredNodes(context.Context, *PruneAttestedExpiredNodesRequest) (*PruneAttestedExpiredNodesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PruneAttestedExpiredNodes not implemented")
 }
 func (UnimplementedDataStoreServiceServer) GetNodeSelectors(context.Context, *GetNodeSelectorsRequest) (*GetNodeSelectorsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNodeSelectors not implemented")
@@ -331,6 +347,24 @@ func _DataStoreService_ListAttestedNodes_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataStoreService_PruneAttestedExpiredNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PruneAttestedExpiredNodesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataStoreServiceServer).PruneAttestedExpiredNodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataStoreService_PruneAttestedExpiredNodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataStoreServiceServer).PruneAttestedExpiredNodes(ctx, req.(*PruneAttestedExpiredNodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataStoreService_GetNodeSelectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetNodeSelectorsRequest)
 	if err := dec(in); err != nil {
@@ -415,6 +449,10 @@ var DataStoreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAttestedNodes",
 			Handler:    _DataStoreService_ListAttestedNodes_Handler,
+		},
+		{
+			MethodName: "PruneAttestedExpiredNodes",
+			Handler:    _DataStoreService_PruneAttestedExpiredNodes_Handler,
 		},
 		{
 			MethodName: "GetNodeSelectors",
