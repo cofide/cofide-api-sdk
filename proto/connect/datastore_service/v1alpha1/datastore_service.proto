@@ -5,6 +5,7 @@ syntax = "proto3";
 
 package proto.connect.datastore_service.v1alpha1;
 
+import "google/protobuf/timestamp.proto";
 import "proto/connect/datastore_service/v1alpha1/datastore.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1";
@@ -18,6 +19,7 @@ service DataStoreService {
   rpc FetchAttestedNode(FetchAttestedNodeRequest) returns (FetchAttestedNodeResponse);
   rpc UpdateAttestedNode(UpdateAttestedNodeRequest) returns (UpdateAttestedNodeResponse);
   rpc ListAttestedNodes(ListAttestedNodesRequest) returns (ListAttestedNodesResponse);
+  rpc PruneAttestedExpiredNodes(PruneAttestedExpiredNodesRequest) returns (PruneAttestedExpiredNodesResponse);
   // Node Selector operations
   rpc GetNodeSelectors(GetNodeSelectorsRequest) returns (GetNodeSelectorsResponse);
   rpc SetNodeSelectors(SetNodeSelectorsRequest) returns (SetNodeSelectorsResponse);
@@ -108,6 +110,14 @@ message ListAttestedNodesRequest {
 message ListAttestedNodesResponse {
   repeated AttestedNode nodes = 1;
 }
+
+message PruneAttestedExpiredNodesRequest {
+  string trust_zone_id = 1;
+  google.protobuf.Timestamp expired_before = 2;
+  bool include_non_reattestable = 3;
+}
+
+message PruneAttestedExpiredNodesResponse {}
 
 // Node Selector operations request/response messages
 message GetNodeSelectorsRequest {
