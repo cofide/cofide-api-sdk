@@ -1,0 +1,19 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.audit.v1alpha1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1";
+
+message Log {
+  string id = 1;
+  google.protobuf.Timestamp occurred_at = 2;
+  string event_type = 3;
+  string entity_type = 4;
+  string entity_id = 5;
+  string message = 6;
+}
