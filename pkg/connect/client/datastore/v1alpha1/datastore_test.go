@@ -46,6 +46,9 @@ func TestDataStoreClient_Unimplemented(t *testing.T) {
 	_, err = client.UpdateAttestedNode(ctx, &datastorev1alpha1.UpdateAttestedNodeRequest{})
 	test.RequireUnimplemented(t, err)
 
+	_, err = client.PruneAttestedExpiredNodes(ctx, &datastorev1alpha1.PruneAttestedExpiredNodesRequest{})
+	test.RequireUnimplemented(t, err)
+
 	_, err = client.GetNodeSelectors(ctx, &datastorev1alpha1.GetNodeSelectorsRequest{})
 	test.RequireUnimplemented(t, err)
 
@@ -96,6 +99,11 @@ func TestDataStoreClient(t *testing.T) {
 	updateResp, err := client.UpdateAttestedNode(ctx, &datastorev1alpha1.UpdateAttestedNodeRequest{Node: node})
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, node, updateResp.Node)
+
+	// Test PruneAttestedExpiredNodes
+	pruneResp, err := client.PruneAttestedExpiredNodes(ctx, &datastorev1alpha1.PruneAttestedExpiredNodesRequest{})
+	require.NoError(t, err)
+	assert.NotNil(t, pruneResp)
 
 	// Test GetNodeSelectors
 	selectors := fakeNodeSelectors()
@@ -150,6 +158,11 @@ func (f *fakeDataStoreService) ListAttestedNodes(ctx context.Context, req *datas
 func (f *fakeDataStoreService) UpdateAttestedNode(ctx context.Context, req *datastorev1alpha1.UpdateAttestedNodeRequest) (*datastorev1alpha1.UpdateAttestedNodeResponse, error) {
 	assert.Equal(f.t, fakeAttestedNode(), req.Node)
 	return &datastorev1alpha1.UpdateAttestedNodeResponse{Node: req.Node}, nil
+}
+
+func (f *fakeDataStoreService) PruneAttestedExpiredNodes(ctx context.Context, req *datastorev1alpha1.PruneAttestedExpiredNodesRequest) (*datastorev1alpha1.PruneAttestedExpiredNodesResponse, error) {
+	// Nothing to assert here
+	return &datastorev1alpha1.PruneAttestedExpiredNodesResponse{}, nil
 }
 
 func (f *fakeDataStoreService) GetNodeSelectors(ctx context.Context, req *datastorev1alpha1.GetNodeSelectorsRequest) (*datastorev1alpha1.GetNodeSelectorsResponse, error) {

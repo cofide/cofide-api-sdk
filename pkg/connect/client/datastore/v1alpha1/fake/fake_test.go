@@ -5,11 +5,14 @@ package fake
 
 import (
 	"context"
+	"slices"
 	"strconv"
 	"testing"
+	"time"
 
 	client "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
+	"google.golang.org/protobuf/types/known/timestamppb"
 
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	"github.com/stretchr/testify/assert"
@@ -244,6 +247,86 @@ func TestListAttestedNodes(t *testing.T) {
 		}
 		assert.True(t, found, "Node not found in list response: %s", expectedNode.SpiffeId)
 	}
+}
+
+func TestPruneAttestedExpiredNodes(t *testing.T) {
+	fake, client := setupTest()
+
+	// Clear existing nodes
+	fake.AttestedNodes = make(map[string]*datastorev1alpha1.AttestedNode)
+
+	// Set up 5 nodes in different states
+	// 1. Expired, non-reattestable
+	n1 := &datastorev1alpha1.AttestedNode{
+		CertNotAfter: time.Now().Add(-time.Hour).Unix(),
+		SpiffeId:     "spiffe://example.org/n1",
+		TrustZoneId:  "trustZone1",
+	}
+	_, err := client.CreateAttestedNode(t.Context(), &datastorev1alpha1.CreateAttestedNodeRequest{Node: n1})
+	require.NoError(t, err)
+	// 2. Expired, reattestable
+	n2 := &datastorev1alpha1.AttestedNode{
+		CertNotAfter: time.Now().Add(-time.Hour).Unix(),
+		SpiffeId:     "spiffe://example.org/n2",
+		TrustZoneId:  "trustZone1",
+		CanReattest:  true,
+	}
+	_, err = client.CreateAttestedNode(t.Context(), &datastorev1alpha1.CreateAttestedNodeRequest{Node: n2})
+	require.NoError(t, err)
+	// 3. Not expired, non-reattestable
+	n3 := &datastorev1alpha1.AttestedNode{
+		CertNotAfter: time.Now().Add(time.Hour).Unix(),
+		SpiffeId:     "spiffe://example.org/n3",
+		TrustZoneId:  "trustZone1",
+	}
+	_, err = client.CreateAttestedNode(t.Context(), &datastorev1alpha1.CreateAttestedNodeRequest{Node: n3})
+	require.NoError(t, err)
+	// 4. Not expired, reattestable
+	n4 := &datastorev1alpha1.AttestedNode{
+		CertNotAfter: time.Now().Add(time.Hour).Unix(),
+		SpiffeId:     "spiffe://example.org/n4",
+		TrustZoneId:  "trustZone1",
+		CanReattest:  true,
+	}
+	_, err = client.CreateAttestedNode(t.Context(), &datastorev1alpha1.CreateAttestedNodeRequest{Node: n4})
+	require.NoError(t, err)
+	// 5. Expired, reattestable, different trust zone
+	n5 := &datastorev1alpha1.AttestedNode{
+		CertNotAfter: time.Now().Add(-time.Hour).Unix(),
+		SpiffeId:     "spiffe://example.org/n5",
+		TrustZoneId:  "trustZone2",
+		CanReattest:  true,
+	}
+	_, err = client.CreateAttestedNode(t.Context(), &datastorev1alpha1.CreateAttestedNodeRequest{Node: n5})
+	require.NoError(t, err)
+
+	// Prune expired nodes for trust zone 1 not including non-reattestable nodes
+	_, err = client.PruneAttestedExpiredNodes(t.Context(), &datastorev1alpha1.PruneAttestedExpiredNodesRequest{TrustZoneId: "trustZone1", ExpiredBefore: timestamppb.Now()})
+	require.NoError(t, err)
+	// Assert expected non-matching nodes are the ones remaining
+	listResp, err := client.ListAttestedNodes(t.Context(), &datastorev1alpha1.ListAttestedNodesRequest{})
+	require.NoError(t, err)
+	slices.SortStableFunc(listResp.GetNodes(), func(a, b *datastorev1alpha1.AttestedNode) int {
+		if a.GetSpiffeId() > b.GetSpiffeId() {
+			return 1
+		}
+		return -1
+	})
+	assert.EqualExportedValues(t, []*datastorev1alpha1.AttestedNode{n1, n3, n4, n5}, listResp.GetNodes())
+
+	// Prune expired nodes for trust zone 1 including non-reattestable nodes
+	_, err = client.PruneAttestedExpiredNodes(t.Context(), &datastorev1alpha1.PruneAttestedExpiredNodesRequest{TrustZoneId: "trustZone1", ExpiredBefore: timestamppb.Now(), IncludeNonReattestable: true})
+	require.NoError(t, err)
+	// Assert expected non-matching nodes are the ones remaining
+	listResp, err = client.ListAttestedNodes(t.Context(), &datastorev1alpha1.ListAttestedNodesRequest{})
+	require.NoError(t, err)
+	slices.SortStableFunc(listResp.GetNodes(), func(a, b *datastorev1alpha1.AttestedNode) int {
+		if a.GetSpiffeId() > b.GetSpiffeId() {
+			return 1
+		}
+		return -1
+	})
+	assert.EqualExportedValues(t, []*datastorev1alpha1.AttestedNode{n3, n4, n5}, listResp.GetNodes())
 }
 
 func TestListNodeSelectors(t *testing.T) {
