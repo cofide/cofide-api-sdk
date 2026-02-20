@@ -25,6 +25,10 @@ const (
 	fakeTrustDomain   = "fake.trust.domain"
 )
 
+func TestTrustZoneClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &trustZoneClient{}, trustzonesvcpb.TrustZoneService_ServiceDesc)
+}
+
 // TestTrustZoneClient_Unimplemented tests TrustZoneClient against an unimplemented server.
 // This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestTrustZoneClient_Unimplemented(t *testing.T) {

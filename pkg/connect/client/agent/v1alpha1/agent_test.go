@@ -24,6 +24,10 @@ const (
 	fakeFSName      = "fake-fs-name"
 )
 
+func TestAgentClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &agentClient{}, agentsvcpb.AgentService_ServiceDesc)
+}
+
 // TestAgentClient_Unimplemented tests AgentClient against an unimplemented server.
 // This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestAgentClient_Unimplemented(t *testing.T) {
