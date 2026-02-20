@@ -116,6 +116,20 @@ func (c *fakeDataStoreClient) UpdateAttestedNode(ctx context.Context, req *datas
 	return &datastorev1alpha1.UpdateAttestedNodeResponse{Node: proto.Clone(newNode).(*datastorev1alpha1.AttestedNode)}, nil
 }
 
+func (c *fakeDataStoreClient) PruneAttestedExpiredNodes(ctx context.Context, req *datastorev1alpha1.PruneAttestedExpiredNodesRequest) (*datastorev1alpha1.PruneAttestedExpiredNodesResponse, error) {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	for id, node := range c.fake.AttestedNodes {
+		if node.GetTrustZoneId() == req.GetTrustZoneId() && node.GetCertNotAfter() < req.GetExpiredBefore().GetSeconds() &&
+			(node.GetCanReattest() || req.GetIncludeNonReattestable()) {
+			delete(c.fake.AttestedNodes, id)
+		}
+	}
+
+	return &datastorev1alpha1.PruneAttestedExpiredNodesResponse{}, nil
+}
+
 func (c *fakeDataStoreClient) GetNodeSelectors(ctx context.Context, req *datastorev1alpha1.GetNodeSelectorsRequest) (*datastorev1alpha1.GetNodeSelectorsResponse, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()

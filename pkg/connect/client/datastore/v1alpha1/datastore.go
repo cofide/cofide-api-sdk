@@ -18,6 +18,7 @@ type DataStoreClient interface {
 	FetchAttestedNode(ctx context.Context, req *datastorev1alpha1.FetchAttestedNodeRequest) (*datastorev1alpha1.FetchAttestedNodeResponse, error)
 	ListAttestedNodes(ctx context.Context, req *datastorev1alpha1.ListAttestedNodesRequest) (*datastorev1alpha1.ListAttestedNodesResponse, error)
 	UpdateAttestedNode(ctx context.Context, req *datastorev1alpha1.UpdateAttestedNodeRequest) (*datastorev1alpha1.UpdateAttestedNodeResponse, error)
+	PruneAttestedExpiredNodes(ctx context.Context, req *datastorev1alpha1.PruneAttestedExpiredNodesRequest) (*datastorev1alpha1.PruneAttestedExpiredNodesResponse, error)
 	GetNodeSelectors(ctx context.Context, req *datastorev1alpha1.GetNodeSelectorsRequest) (*datastorev1alpha1.GetNodeSelectorsResponse, error)
 	ListNodeSelectors(ctx context.Context, req *datastorev1alpha1.ListNodeSelectorsRequest) (*datastorev1alpha1.ListNodeSelectorsResponse, error)
 	SetNodeSelectors(ctx context.Context, req *datastorev1alpha1.SetNodeSelectorsRequest) (*datastorev1alpha1.SetNodeSelectorsResponse, error)
@@ -56,6 +57,10 @@ func (c *datastoreClient) ListAttestedNodes(ctx context.Context, req *datastorev
 
 func (c *datastoreClient) UpdateAttestedNode(ctx context.Context, req *datastorev1alpha1.UpdateAttestedNodeRequest) (*datastorev1alpha1.UpdateAttestedNodeResponse, error) {
 	return c.client.UpdateAttestedNode(ctx, req)
+}
+
+func (c *datastoreClient) PruneAttestedExpiredNodes(ctx context.Context, req *datastorev1alpha1.PruneAttestedExpiredNodesRequest) (*datastorev1alpha1.PruneAttestedExpiredNodesResponse, error) {
+	return c.client.PruneAttestedExpiredNodes(ctx, req)
 }
 
 func (c *datastoreClient) GetNodeSelectors(ctx context.Context, req *datastorev1alpha1.GetNodeSelectorsRequest) (*datastorev1alpha1.GetNodeSelectorsResponse, error) {
