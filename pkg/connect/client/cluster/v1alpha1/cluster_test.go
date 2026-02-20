@@ -19,6 +19,10 @@ const (
 	fakeClusterName = "fake-cluster-name"
 )
 
+func TestClusterClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &clusterClient{}, clustersvcpb.ClusterService_ServiceDesc)
+}
+
 // TestClusterClient_Unimplemented tests ClusterClient against an unimplemented server.
 // This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestClusterClient_Unimplemented(t *testing.T) {

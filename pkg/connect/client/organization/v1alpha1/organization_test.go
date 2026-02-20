@@ -19,6 +19,10 @@ const (
 	fakeOrganizationName = "fake-organization-name"
 )
 
+func TestOrganizationClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &organizationClient{}, organizationsvcpb.OrganizationService_ServiceDesc)
+}
+
 // TestOrganizationClient_Unimplemented tests OrganizationClient against an unimplemented server.
 // This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestOrganizationClient_Unimplemented(t *testing.T) {

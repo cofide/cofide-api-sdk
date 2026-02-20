@@ -21,6 +21,10 @@ const (
 	fakeAttestationPolicyID = "fake-ap-id"
 )
 
+func TestAPBindingClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &apBindingClient{}, apbindingsvcpb.APBindingService_ServiceDesc)
+}
+
 // TestAPBindingClient_Unimplemented tests APBindingClient against an unimplemented server.
 // This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestAPBindingClient_Unimplemented(t *testing.T) {

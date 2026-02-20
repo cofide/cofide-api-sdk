@@ -22,6 +22,10 @@ const (
 	fakeResourceID    = "fake-apb-id"
 )
 
+func TestRoleBindingClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &roleBindingClient{}, rolebindingsvcpb.RoleBindingService_ServiceDesc)
+}
+
 // TestRoleBindingClient_Unimplemented tests RoleBindingClient against an unimplemented server.
 // This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestRoleBindingClient_Unimplemented(t *testing.T) {

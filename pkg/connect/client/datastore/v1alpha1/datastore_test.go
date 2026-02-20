@@ -19,6 +19,10 @@ const (
 	fakeSelectorVal  = "pod:default/example"
 )
 
+func TestDataStoreClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &datastoreClient{}, datastorev1alpha1.DataStoreService_ServiceDesc)
+}
+
 func TestDataStoreClient_Unimplemented(t *testing.T) {
 	server := test.NewTestServer(t)
 	datastorev1alpha1.RegisterDataStoreServiceServer(server.Server, &datastorev1alpha1.UnimplementedDataStoreServiceServer{})

@@ -19,6 +19,10 @@ const (
 	fakePolicyName = "fake-policy-name"
 )
 
+func TestAttestationPolicyClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &attestationPolicyClient{}, attestationpolicysvcpb.AttestationPolicyService_ServiceDesc)
+}
+
 // TestAttestationPolicyClient_Unimplemented tests AttestationPolicyClient against an unimplemented server.
 // This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestAttestationPolicyClient_Unimplemented(t *testing.T) {

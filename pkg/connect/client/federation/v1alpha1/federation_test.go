@@ -18,6 +18,12 @@ const (
 	fakeRemoteTrustZoneId = "fake-remote-trust-zone-id"
 )
 
+func TestFederationClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &federationClient{}, federationsvcpb.FederationService_ServiceDesc)
+}
+
+// TestFederationClient_Unimplemented tests FederationClient against an unimplemented server.
+// This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
 func TestFederationClient_Unimplemented(t *testing.T) {
 	server := test.NewTestServer(t)
 	federationsvcpb.RegisterFederationServiceServer(server.Server, &federationsvcpb.UnimplementedFederationServiceServer{})
