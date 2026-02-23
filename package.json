@@ -19,6 +19,6 @@
   "dependencies": {
     "@bufbuild/protobuf": "^2.2.5",
     "install": "^0.13.0",
-    "npm": "^11.8.0"
+    "npm": "^11.10.1"
   }
 }
