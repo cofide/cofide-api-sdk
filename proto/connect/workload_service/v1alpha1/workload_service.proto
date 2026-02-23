@@ -5,6 +5,7 @@ syntax = "proto3";
 
 package proto.connect.workload_service.v1alpha1;
 
+import "google/protobuf/duration.proto";
 import "proto/workload/v1alpha1/workload.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1";
@@ -19,6 +20,8 @@ message ListWorkloadsRequest {
     optional string org_id = 3;
     optional string trust_zone_id = 1;
     optional string cluster_id = 2;
+    // max_age filters workloads to those last observed within this duration.
+    optional google.protobuf.Duration max_age = 4;
   }
   optional Filter filter = 1;
 }
