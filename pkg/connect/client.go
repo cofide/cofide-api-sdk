@@ -23,10 +23,10 @@ const (
 	connectSPIFFEIDFormat    = "spiffe://%s/ns/connect/sa/cofide-connect-api"
 )
 
-// NewMTLSClient creates a ClientSet and underlying gRPC connection to the Cofide Connect API
+// NewSPIFFEMTLSClient creates a ClientSet and underlying gRPC connection to the Cofide Connect API
 // secured with SPIFFE mTLS. The caller is responsible for closing the returned *grpc.ClientConn.
 // Additional dial options can be supplied via extraOpts
-func NewMTLSClient(
+func NewSPIFFEMTLSClient(
 	config *Config,
 	x509Source *workloadapi.X509Source,
 	bundleSource *workloadapi.BundleSource,
