@@ -76,7 +76,7 @@ func TestNewMTLSClient(t *testing.T) {
 				require.NoError(t, err)
 				assert.NotNil(t, clientSet)
 				require.NotNil(t, conn)
-				conn.Close()
+				require.NoError(t, conn.Close())
 			}
 		})
 	}
