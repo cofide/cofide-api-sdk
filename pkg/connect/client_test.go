@@ -21,6 +21,11 @@ func TestNewMTLSClient(t *testing.T) {
 		wantErr   string
 	}{
 		{
+			name:    "nil config",
+			config:  nil,
+			wantErr: "config cannot be nil",
+		},
+		{
 			name: "invalid trust domain",
 			config: &Config{
 				ConnectURL:         "localhost:8080",

@@ -32,6 +32,10 @@ func NewMTLSClient(
 	bundleSource *workloadapi.BundleSource,
 	extraOpts ...grpc.DialOption,
 ) (sdkclient.ClientSet, *grpc.ClientConn, error) {
+	if config == nil {
+		return nil, nil, fmt.Errorf("config cannot be nil")
+	}
+
 	serverID, err := spiffeid.FromString(fmt.Sprintf(connectSPIFFEIDFormat, config.ConnectTrustDomain))
 	if err != nil {
 		return nil, nil, fmt.Errorf("invalid connect trust domain: %w", err)
