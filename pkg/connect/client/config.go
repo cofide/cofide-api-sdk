@@ -1,7 +1,7 @@
-// Copyright 2025 Cofide Limited.
+// Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
-package connect
+package client
 
 // Config holds the configuration needed to establish a connection to a Cofide Connect API
 type Config struct {

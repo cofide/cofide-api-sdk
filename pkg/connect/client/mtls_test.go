@@ -1,7 +1,7 @@
-// Copyright 2025 Cofide Limited.
+// Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
-package connect
+package client
 
 import (
 	"context"
@@ -13,10 +13,11 @@ import (
 	"google.golang.org/grpc/metadata"
 )
 
-func TestNewMTLSClient(t *testing.T) {
+func TestNewSPIFFEMTLSClient(t *testing.T) {
 	tests := []struct {
 		name      string
 		config    *Config
+		opts      []MTLSOption
 		extraOpts []grpc.DialOption
 		wantErr   string
 	}{
@@ -49,6 +50,17 @@ func TestNewMTLSClient(t *testing.T) {
 			},
 		},
 		{
+			name: "valid config with custom subdomains",
+			config: &Config{
+				ConnectURL:         "localhost:8080",
+				ConnectTrustDomain: "example.org",
+			},
+			opts: []MTLSOption{
+				WithServerSubdomain("custom-connect"),
+				WithAgentSubdomain("custom-connect-agent"),
+			},
+		},
+		{
 			name: "valid config with metadata interceptor",
 			config: &Config{
 				ConnectURL:         "localhost:8080",
@@ -66,7 +78,7 @@ func TestNewMTLSClient(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			clientSet, conn, err := NewMTLSClient(tt.config, nil, nil, tt.extraOpts...)
+			clientSet, conn, err := NewSPIFFEMTLSClient(tt.config, nil, nil, tt.opts, tt.extraOpts...)
 			if tt.wantErr != "" {
 				require.Error(t, err)
 				assert.ErrorContains(t, err, tt.wantErr)
