@@ -15,11 +15,10 @@ import (
 
 func TestNewSPIFFEMTLSClient(t *testing.T) {
 	tests := []struct {
-		name      string
-		config    *Config
-		opts      []MTLSOption
-		extraOpts []grpc.DialOption
-		wantErr   string
+		name    string
+		config  *Config
+		opts    []Option
+		wantErr string
 	}{
 		{
 			name:    "nil config",
@@ -55,7 +54,7 @@ func TestNewSPIFFEMTLSClient(t *testing.T) {
 				ConnectURL:         "localhost:8080",
 				ConnectTrustDomain: "example.org",
 			},
-			opts: []MTLSOption{
+			opts: []Option{
 				WithServerSubdomain("custom-connect"),
 				WithAgentSubdomain("custom-connect-agent"),
 			},
@@ -66,19 +65,19 @@ func TestNewSPIFFEMTLSClient(t *testing.T) {
 				ConnectURL:         "localhost:8080",
 				ConnectTrustDomain: "example.org",
 			},
-			extraOpts: []grpc.DialOption{
-				grpc.WithUnaryInterceptor(func(ctx context.Context, method string, req, reply any, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+			opts: []Option{
+				WithGRPCDialOptions(grpc.WithUnaryInterceptor(func(ctx context.Context, method string, req, reply any, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 					ctx = metadata.AppendToOutgoingContext(ctx, "agent-id", "test-agent-id")
 					ctx = metadata.AppendToOutgoingContext(ctx, "cluster-id", "test-cluster-id")
 					return invoker(ctx, method, req, reply, cc, opts...)
-				}),
+				})),
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			clientSet, conn, err := NewSPIFFEMTLSClient(tt.config, nil, nil, tt.opts, tt.extraOpts...)
+			clientSet, conn, err := NewSPIFFEMTLSClient(tt.config, nil, nil, tt.opts...)
 			if tt.wantErr != "" {
 				require.Error(t, err)
 				assert.ErrorContains(t, err, tt.wantErr)
