@@ -6,6 +6,7 @@ import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
+	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
@@ -34,6 +35,7 @@ type FakeConnect struct {
 	AgentStatus         map[string]*agentpb.AgentStatus
 	FederatedServices   map[string]*federatedservicepb.FederatedService
 	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
+	AuditEvents         map[string]*auditpb.Event
 	APBindings          map[string]*apbindingpb.APBinding
 	Federations         map[string]*federationpb.Federation
 	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
@@ -54,6 +56,7 @@ func New() *FakeConnect {
 		AgentStatus:         make(map[string]*agentpb.AgentStatus),
 		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
 		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
+		AuditEvents:         make(map[string]*auditpb.Event),
 		APBindings:          make(map[string]*apbindingpb.APBinding),
 		Federations:         make(map[string]*federationpb.Federation),
 		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
@@ -108,6 +111,13 @@ func (f *FakeConnect) ValidateFederatedService(federatedServiceID string) error 
 func (f *FakeConnect) ValidateAttestationPolicy(policyID string) error {
 	if _, ok := f.AttestationPolicies[policyID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid attestation policy")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateAuditLog(logID string) error {
+	if _, ok := f.AuditEvents[logID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid audit log")
 	}
 	return nil
 }

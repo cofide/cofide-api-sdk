@@ -1,0 +1,40 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.audit_service.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+import "proto/audit/v1alpha1/audit.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1";
+
+service AuditService {
+  rpc RecordEvent(RecordEventRequest) returns (RecordEventResponse) {}
+  rpc ListEvents(ListEventsRequest) returns (ListEventsResponse) {}
+}
+
+message RecordEventRequest {
+  proto.audit.v1alpha1.Event event = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message RecordEventResponse {
+  proto.audit.v1alpha1.Event event = 1;
+}
+
+message ListEventsRequest {
+  message Filter {
+    string event_type = 1 [(google.api.field_behavior) = OPTIONAL];
+    string entity_type = 2 [(google.api.field_behavior) = OPTIONAL];
+    string entity_id = 3 [(google.api.field_behavior) = OPTIONAL];
+    google.protobuf.Timestamp occurred_before = 4 [(google.api.field_behavior) = OPTIONAL];
+    google.protobuf.Timestamp occurred_after = 5 [(google.api.field_behavior) = OPTIONAL];
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListEventsResponse {
+  repeated proto.audit.v1alpha1.Event events = 1;
+}
