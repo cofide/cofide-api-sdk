@@ -1,0 +1,59 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.exchange_policy.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1";
+
+// ExchangePolicy defines a rule for permitting or denying Credex token exchanges
+// within a trust zone
+message ExchangePolicy {
+  optional string id = 1;
+  optional string org_id = 2;
+  string name = 3;
+  string trust_zone_id = 4;
+
+  // Action to take when all conditions match. Defaults to ALLOW when unset
+  optional ExchangePolicyAction action = 5;
+
+  // Match conditions on the inbound subject token
+  optional StringSet subject_identity = 6;
+  optional StringSet subject_issuer = 7;
+
+  // Match conditions on the optional inbound actor
+  optional StringSet actor_identity = 8;
+  optional StringSet actor_issuer = 9;
+
+  // Match condition on the requested target audience
+  optional StringSet target_audience = 10;
+
+  // Match condition on the OAuth client_id presenting the exchange request
+  optional StringSet client_id = 11;
+
+  // Outbound scopes to grant. Only relevant when action is ALLOW
+  repeated string outbound_scopes = 12;
+}
+
+enum ExchangePolicyAction {
+  EXCHANGE_POLICY_ACTION_UNSPECIFIED = 0; // treated as ALLOW
+  EXCHANGE_POLICY_ACTION_ALLOW = 1;
+  EXCHANGE_POLICY_ACTION_DENY = 2;
+}
+
+message StringMatcher {
+  oneof match {
+    // Exact string equality.
+    string exact = 1;
+    // Glob pattern (e.g. spiffe://trust.domain/ns/*/sa/*).
+    string glob = 2;
+    // The inbound value must satisfy at least one matcher in the set.
+    StringSet set = 3;
+  }
+}
+
+// StringSet holds a collection of StringMatchers evaluated with OR semantics.
+message StringSet {
+  repeated StringMatcher matchers = 1;
+}
