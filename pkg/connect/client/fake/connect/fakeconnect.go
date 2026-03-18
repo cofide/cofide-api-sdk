@@ -6,6 +6,7 @@ import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
+	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
@@ -35,6 +36,7 @@ type FakeConnect struct {
 	FederatedServices   map[string]*federatedservicepb.FederatedService
 	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
 	APBindings          map[string]*apbindingpb.APBinding
+	ExchangePolicies    map[string]*exchangepolicypb.ExchangePolicy
 	Federations         map[string]*federationpb.Federation
 	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
 	Workloads           map[string]*workloadpb.Workload
@@ -55,6 +57,7 @@ func New() *FakeConnect {
 		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
 		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
 		APBindings:          make(map[string]*apbindingpb.APBinding),
+		ExchangePolicies:    make(map[string]*exchangepolicypb.ExchangePolicy),
 		Federations:         make(map[string]*federationpb.Federation),
 		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
 		Workloads:           make(map[string]*workloadpb.Workload),
@@ -108,6 +111,13 @@ func (f *FakeConnect) ValidateFederatedService(federatedServiceID string) error 
 func (f *FakeConnect) ValidateAttestationPolicy(policyID string) error {
 	if _, ok := f.AttestationPolicies[policyID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid attestation policy")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateExchangePolicy(policyID string) error {
+	if _, ok := f.ExchangePolicies[policyID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid exchange policy")
 	}
 	return nil
 }
