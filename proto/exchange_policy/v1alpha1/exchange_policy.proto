@@ -31,7 +31,7 @@ message ExchangePolicy {
 
   // Match condition on the requested target audience
   optional StringSet target_audience = 11;
-  
+
   // Outbound scopes to grant. Only relevant when action is ALLOW
   repeated string outbound_scopes = 12;
 }
