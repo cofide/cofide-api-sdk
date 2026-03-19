@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/exchange_policy/v1alpha1/exchange_policy.proto.
  */
 export const file_proto_exchange_policy_v1alpha1_exchange_policy: GenFile = /*@__PURE__*/
-  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEi9gUKDkV4Y2hhbmdlUG9saWN5Eg8KAmlkGAEgASgJSACIAQESEwoGb3JnX2lkGAIgASgJSAGIAQESDAoEbmFtZRgDIAEoCRIVCg10cnVzdF96b25lX2lkGAQgASgJEkkKBmFjdGlvbhgFIAEoDjI0LnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeGNoYW5nZVBvbGljeUFjdGlvbkgCiAEBEkgKEHN1YmplY3RfaWRlbnRpdHkYBiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0SAOIAQESRgoOc3ViamVjdF9pc3N1ZXIYByABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0SASIAQESRgoOYWN0b3JfaWRlbnRpdHkYCCABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0SAWIAQESRAoMYWN0b3JfaXNzdWVyGAkgASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEgGiAEBEkcKD3RhcmdldF9hdWRpZW5jZRgKIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRIB4gBARJBCgljbGllbnRfaWQYCyABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0SAiIAQESFwoPb3V0Ym91bmRfc2NvcGVzGAwgAygJQgUKA19pZEIJCgdfb3JnX2lkQgkKB19hY3Rpb25CEwoRX3N1YmplY3RfaWRlbnRpdHlCEQoPX3N1YmplY3RfaXNzdWVyQhEKD19hY3Rvcl9pZGVudGl0eUIPCg1fYWN0b3JfaXNzdWVyQhIKEF90YXJnZXRfYXVkaWVuY2VCDAoKX2NsaWVudF9pZCI5Cg1TdHJpbmdNYXRjaGVyEg8KBWV4YWN0GAEgASgJSAASDgoEZ2xvYhgCIAEoCUgAQgcKBW1hdGNoIkwKCVN0cmluZ1NldBI/CghtYXRjaGVycxgBIAMoCzItLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdNYXRjaGVyKoEBChRFeGNoYW5nZVBvbGljeUFjdGlvbhImCiJFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX1VOU1BFQ0lGSUVEEAASIAocRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9BTExPVxABEh8KG0VYQ0hBTkdFX1BPTElDWV9BQ1RJT05fREVOWRACQkhaRmdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTFiBnByb3RvMw");
+  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEi2gUKDkV4Y2hhbmdlUG9saWN5EgoKAmlkGAEgASgJEg4KBm9yZ19pZBgCIAEoCRIMCgRuYW1lGAMgASgJEhUKDXRydXN0X3pvbmVfaWQYBCABKAkSSQoGYWN0aW9uGAUgASgOMjQucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4Y2hhbmdlUG9saWN5QWN0aW9uSACIAQESSAoQc3ViamVjdF9pZGVudGl0eRgGIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRIAYgBARJGCg5zdWJqZWN0X2lzc3VlchgHIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRIAogBARJGCg5hY3Rvcl9pZGVudGl0eRgIIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRIA4gBARJECgxhY3Rvcl9pc3N1ZXIYCSABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0SASIAQESQQoJY2xpZW50X2lkGAogASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEgFiAEBEkcKD3RhcmdldF9hdWRpZW5jZRgLIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRIBogBARIXCg9vdXRib3VuZF9zY29wZXMYDCADKAlCCQoHX2FjdGlvbkITChFfc3ViamVjdF9pZGVudGl0eUIRCg9fc3ViamVjdF9pc3N1ZXJCEQoPX2FjdG9yX2lkZW50aXR5Qg8KDV9hY3Rvcl9pc3N1ZXJCDAoKX2NsaWVudF9pZEISChBfdGFyZ2V0X2F1ZGllbmNlIjkKDVN0cmluZ01hdGNoZXISDwoFZXhhY3QYASABKAlIABIOCgRnbG9iGAIgASgJSABCBwoFbWF0Y2giTAoJU3RyaW5nU2V0Ej8KCG1hdGNoZXJzGAEgAygLMi0ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ01hdGNoZXIqgQEKFEV4Y2hhbmdlUG9saWN5QWN0aW9uEiYKIkVYQ0hBTkdFX1BPTElDWV9BQ1RJT05fVU5TUEVDSUZJRUQQABIgChxFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX0FMTE9XEAESHwobRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9ERU5ZEAJCSFpGZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2V4Y2hhbmdlX3BvbGljeS92MWFscGhhMWIGcHJvdG8z");
 
 /**
  * ExchangePolicy defines a rule for permitting or denying Credex token exchanges
@@ -23,14 +23,14 @@ export const file_proto_exchange_policy_v1alpha1_exchange_policy: GenFile = /*@_
  */
 export type ExchangePolicy = Message<"proto.exchange_policy.v1alpha1.ExchangePolicy"> & {
   /**
-   * @generated from field: optional string id = 1;
+   * @generated from field: string id = 1;
    */
-  id?: string;
+  id: string;
 
   /**
-   * @generated from field: optional string org_id = 2;
+   * @generated from field: string org_id = 2;
    */
-  orgId?: string;
+  orgId: string;
 
   /**
    * @generated from field: string name = 3;
@@ -74,18 +74,18 @@ export type ExchangePolicy = Message<"proto.exchange_policy.v1alpha1.ExchangePol
   actorIssuer?: StringSet;
 
   /**
-   * Match condition on the requested target audience
-   *
-   * @generated from field: optional proto.exchange_policy.v1alpha1.StringSet target_audience = 10;
-   */
-  targetAudience?: StringSet;
-
-  /**
    * Match condition on the OAuth client_id presenting the exchange request
    *
-   * @generated from field: optional proto.exchange_policy.v1alpha1.StringSet client_id = 11;
+   * @generated from field: optional proto.exchange_policy.v1alpha1.StringSet client_id = 10;
    */
   clientId?: StringSet;
+
+  /**
+   * Match condition on the requested target audience
+   *
+   * @generated from field: optional proto.exchange_policy.v1alpha1.StringSet target_audience = 11;
+   */
+  targetAudience?: StringSet;
 
   /**
    * Outbound scopes to grant. Only relevant when action is ALLOW

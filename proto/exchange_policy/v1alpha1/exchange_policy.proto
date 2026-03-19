@@ -10,8 +10,8 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_poli
 // ExchangePolicy defines a rule for permitting or denying Credex token exchanges
 // within a trust zone
 message ExchangePolicy {
-  optional string id = 1;
-  optional string org_id = 2;
+  string id = 1;
+  string org_id = 2;
   string name = 3;
   string trust_zone_id = 4;
 
@@ -26,12 +26,12 @@ message ExchangePolicy {
   optional StringSet actor_identity = 8;
   optional StringSet actor_issuer = 9;
 
-  // Match condition on the requested target audience
-  optional StringSet target_audience = 10;
-
   // Match condition on the OAuth client_id presenting the exchange request
-  optional StringSet client_id = 11;
+  optional StringSet client_id = 10;
 
+  // Match condition on the requested target audience
+  optional StringSet target_audience = 11;
+  
   // Outbound scopes to grant. Only relevant when action is ALLOW
   repeated string outbound_scopes = 12;
 }

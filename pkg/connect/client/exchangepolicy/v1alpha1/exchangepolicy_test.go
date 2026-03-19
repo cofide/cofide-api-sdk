@@ -7,8 +7,8 @@ import (
 	"context"
 	"testing"
 
-	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	exchangepolicysvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/exchange_policy_service/v1alpha1"
+	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -119,7 +119,7 @@ func (f *fakeExchangePolicyService) UpdateExchangePolicy(ctx context.Context, re
 
 func fakeExchangePolicy() *exchangepolicypb.ExchangePolicy {
 	return &exchangepolicypb.ExchangePolicy{
-		Id:          test.PtrOf(fakeExchangePolicyID),
+		Id:          fakeExchangePolicyID,
 		Name:        fakeExchangePolicyName,
 		TrustZoneId: fakeTrustZoneID,
 	}

@@ -6,8 +6,8 @@ package fake
 import (
 	"context"
 
-	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	exchangepolicysvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/exchange_policy_service/v1alpha1"
+	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/google/uuid"
@@ -34,7 +34,7 @@ func (c *fakeExchangePolicyClient) CreateExchangePolicy(ctx context.Context, pol
 	}
 	id := uuid.New().String()
 	policy = clone(policy)
-	policy.Id = &id
+	policy.Id = id
 	c.fake.ExchangePolicies[policy.GetId()] = policy
 	return clone(policy), nil
 }
