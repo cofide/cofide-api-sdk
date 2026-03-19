@@ -48,8 +48,6 @@ message StringMatcher {
     string exact = 1;
     // Glob pattern (e.g. spiffe://trust.domain/ns/*/sa/*).
     string glob = 2;
-    // The inbound value must satisfy at least one matcher in the set.
-    StringSet set = 3;
   }
 }
 
