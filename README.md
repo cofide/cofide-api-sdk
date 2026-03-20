@@ -6,6 +6,8 @@ This repository contains the service definitions and code generated stubs for [C
 Services and messages are defined using Protocol Buffers (protobuf).
 This repository also contains a Go client implementation for the Cofide Connect API.
 
+For more information about the Cofide Connect Workload Identity platform, take a look at our [blog post](https://www.cofide.io/resources/introducing-cofide-connect-the-control-plane-for-workload-identity-and-access-management-iam) or [public documentation](https://docs.cofide.dev). If you'd like to discuss how enterprise workload identity management could benefit you then [let us know](https://www.cofide.io/contact).
+
 ## Prerequisites
 
 This repository uses the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview) to help generate and manage Cofide's protobuf definitions and schemas.
