@@ -50,7 +50,7 @@ func TestExchangePolicyClient_Unimplemented(t *testing.T) {
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, policies)
 
-	policy, err = client.UpdateExchangePolicy(ctx, nil)
+	policy, err = client.UpdateExchangePolicy(ctx, nil, nil)
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, policy)
 }
@@ -77,12 +77,12 @@ func TestExchangePolicyClient(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, policy.GetId(), gotPolicy.GetId())
 
-	filter := &exchangepolicysvcpb.ListExchangePoliciesRequest_Filter{TrustZoneId: test.PtrOf(fakeTrustZoneID)}
+	filter := &exchangepolicysvcpb.ListExchangePoliciesRequest_Filter{TrustZoneId: fakeTrustZoneID}
 	policies, err := client.ListExchangePolicies(ctx, filter)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*exchangepolicypb.ExchangePolicy{fakeExchangePolicy()}, policies)
 
-	updatedPolicy, err := client.UpdateExchangePolicy(ctx, policy)
+	updatedPolicy, err := client.UpdateExchangePolicy(ctx, policy, nil)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, policy, updatedPolicy)
 }
