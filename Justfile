@@ -2,6 +2,7 @@ PROTOC_GEN_GO_VERSION := "v1.36.5"
 GOBIN := `go env GOPATH`+ "/bin"
 PROTOC_GEN_GO := GOBIN + "/protoc-gen-go"
 PROTOC_GEN_CONNECT_GO := GOBIN + "/protoc-gen-connect-go"
+PROTOC_GEN_DOC := GOBIN + "/protoc-gen-doc"
 
 [private]
 ensure-protoc-gen-go:
@@ -33,6 +34,21 @@ buf-lint:
 
 proto-gen: ensure-protoc-gen-go ensure-protoc-gen-connect-go
     buf generate --path ./proto
+
+[private]
+ensure-protoc-gen-doc:
+    #!/usr/bin/env bash
+    if [ ! -f "{{PROTOC_GEN_DOC}}" ]; then
+        echo "Please install protoc-gen-doc:"
+        echo
+        echo "  go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest"
+        echo
+        exit 1
+    fi
+
+proto-docs out="docs": ensure-protoc-gen-doc
+    mkdir -p {{out}}
+    buf generate --path ./proto --template buf.gen.docs.yaml --output {{out}}
 
 test *args:
     go run gotest.tools/gotestsum@latest --format github-actions ./... {{args}}

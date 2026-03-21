@@ -28,6 +28,7 @@ Some of the key commands include:
 - `just fmt` - Formats the protobuf definitions
 - `just lint` - Lints the protobuf definitions and Go source code in accordance with best practices
 - `just proto-gen` - Generates the code stubs from the protobuf definitions using the defined plugins (specified in *buf.gen.yaml*)
+- `just proto-docs [out=<dir>]` - Generates Markdown API documentation from the protobuf definitions (defaults to `./docs/`); requires `protoc-gen-doc` (`go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest`)
 - `just test` - Runs Go unit tests
 
 The `.proto` files are in the `proto` directory, and the generated stubs for Go are in the `gen/proto/go` directory.
