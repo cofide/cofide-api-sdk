@@ -5,6 +5,7 @@ syntax = "proto3";
 
 package proto.connect.exchange_policy_service.v1alpha1;
 
+import "google/api/field_behavior.proto";
 import "proto/exchange_policy/v1alpha1/exchange_policy.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/exchange_policy_service/v1alpha1";
@@ -18,21 +19,21 @@ service ExchangePolicyService {
 }
 
 message CreateExchangePolicyRequest {
-  optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+  proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message CreateExchangePolicyResponse {
-  optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+  proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
 }
 
 message DestroyExchangePolicyRequest {
-  optional string exchange_policy_id = 1;
+  string exchange_policy_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message DestroyExchangePolicyResponse {}
 
 message GetExchangePolicyRequest {
-  optional string exchange_policy_id = 1;
+  string exchange_policy_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetExchangePolicyResponse {
@@ -41,11 +42,11 @@ message GetExchangePolicyResponse {
 
 message ListExchangePoliciesRequest {
   message Filter {
-    optional string name = 1;
-    optional string org_id = 2;
-    optional string trust_zone_id = 3;
+    string name = 1 [(google.api.field_behavior) = OPTIONAL];
+    string org_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    string trust_zone_id = 3 [(google.api.field_behavior) = OPTIONAL];
   }
-  optional Filter filter = 1;
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message ListExchangePoliciesResponse {
@@ -53,9 +54,33 @@ message ListExchangePoliciesResponse {
 }
 
 message UpdateExchangePolicyRequest {
-  optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+  message UpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the action field.
+    bool action = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the subject_identity field.
+    bool subject_identity = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the subject_issuer field.
+    bool subject_issuer = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the actor_identity field.
+    bool actor_identity = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the actor_issuer field.
+    bool actor_issuer = 6 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the client_id field.
+    bool client_id = 7 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the target_audience field.
+    bool target_audience = 8 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the outbound_scopes field.
+    bool outbound_scopes = 9 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message UpdateExchangePolicyResponse {
-  optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+  proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
 }

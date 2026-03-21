@@ -7,6 +7,7 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../../google/api/field_behavior_pb";
 import type { ExchangePolicy } from "../../../exchange_policy/v1alpha1/exchange_policy_pb";
 import { file_proto_exchange_policy_v1alpha1_exchange_policy } from "../../../exchange_policy/v1alpha1/exchange_policy_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -15,14 +16,14 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/connect/exchange_policy_service/v1alpha1/exchange_policy_service.proto.
  */
 export const file_proto_connect_exchange_policy_service_v1alpha1_exchange_policy_service: GenFile = /*@__PURE__*/
-  fileDesc("Ckxwcm90by9jb25uZWN0L2V4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlL3YxYWxwaGExL2V4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnByb3RvEi5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExIn8KG0NyZWF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdBJMCg9leGNoYW5nZV9wb2xpY3kYASABKAsyLi5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lIAIgBAUISChBfZXhjaGFuZ2VfcG9saWN5IoABChxDcmVhdGVFeGNoYW5nZVBvbGljeVJlc3BvbnNlEkwKD2V4Y2hhbmdlX3BvbGljeRgBIAEoCzIuLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeGNoYW5nZVBvbGljeUgAiAEBQhIKEF9leGNoYW5nZV9wb2xpY3kiVgocRGVzdHJveUV4Y2hhbmdlUG9saWN5UmVxdWVzdBIfChJleGNoYW5nZV9wb2xpY3lfaWQYASABKAlIAIgBAUIVChNfZXhjaGFuZ2VfcG9saWN5X2lkIh8KHURlc3Ryb3lFeGNoYW5nZVBvbGljeVJlc3BvbnNlIlIKGEdldEV4Y2hhbmdlUG9saWN5UmVxdWVzdBIfChJleGNoYW5nZV9wb2xpY3lfaWQYASABKAlIAIgBAUIVChNfZXhjaGFuZ2VfcG9saWN5X2lkIn0KGUdldEV4Y2hhbmdlUG9saWN5UmVzcG9uc2USTAoPZXhjaGFuZ2VfcG9saWN5GAEgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4Y2hhbmdlUG9saWN5SACIAQFCEgoQX2V4Y2hhbmdlX3BvbGljeSKFAgobTGlzdEV4Y2hhbmdlUG9saWNpZXNSZXF1ZXN0EmcKBmZpbHRlchgBIAEoCzJSLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuTGlzdEV4Y2hhbmdlUG9saWNpZXNSZXF1ZXN0LkZpbHRlckgAiAEBGnIKBkZpbHRlchIRCgRuYW1lGAEgASgJSACIAQESEwoGb3JnX2lkGAIgASgJSAGIAQESGgoNdHJ1c3Rfem9uZV9pZBgDIAEoCUgCiAEBQgcKBV9uYW1lQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCCQoHX2ZpbHRlciJpChxMaXN0RXhjaGFuZ2VQb2xpY2llc1Jlc3BvbnNlEkkKEWV4Y2hhbmdlX3BvbGljaWVzGAEgAygLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4Y2hhbmdlUG9saWN5In8KG1VwZGF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdBJMCg9leGNoYW5nZV9wb2xpY3kYASABKAsyLi5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lIAIgBAUISChBfZXhjaGFuZ2VfcG9saWN5IoABChxVcGRhdGVFeGNoYW5nZVBvbGljeVJlc3BvbnNlEkwKD2V4Y2hhbmdlX3BvbGljeRgBIAEoCzIuLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeGNoYW5nZVBvbGljeUgAiAEBQhIKEF9leGNoYW5nZV9wb2xpY3kylQcKFUV4Y2hhbmdlUG9saWN5U2VydmljZRKxAQoUQ3JlYXRlRXhjaGFuZ2VQb2xpY3kSSy5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLkNyZWF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdBpMLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuQ3JlYXRlRXhjaGFuZ2VQb2xpY3lSZXNwb25zZRK0AQoVRGVzdHJveUV4Y2hhbmdlUG9saWN5EkwucHJvdG8uY29ubmVjdC5leGNoYW5nZV9wb2xpY3lfc2VydmljZS52MWFscGhhMS5EZXN0cm95RXhjaGFuZ2VQb2xpY3lSZXF1ZXN0Gk0ucHJvdG8uY29ubmVjdC5leGNoYW5nZV9wb2xpY3lfc2VydmljZS52MWFscGhhMS5EZXN0cm95RXhjaGFuZ2VQb2xpY3lSZXNwb25zZRKoAQoRR2V0RXhjaGFuZ2VQb2xpY3kSSC5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLkdldEV4Y2hhbmdlUG9saWN5UmVxdWVzdBpJLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuR2V0RXhjaGFuZ2VQb2xpY3lSZXNwb25zZRKxAQoUTGlzdEV4Y2hhbmdlUG9saWNpZXMSSy5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLkxpc3RFeGNoYW5nZVBvbGljaWVzUmVxdWVzdBpMLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuTGlzdEV4Y2hhbmdlUG9saWNpZXNSZXNwb25zZRKxAQoUVXBkYXRlRXhjaGFuZ2VQb2xpY3kSSy5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdBpMLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuVXBkYXRlRXhjaGFuZ2VQb2xpY3lSZXNwb25zZUJYWlZnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29ubmVjdC9leGNoYW5nZV9wb2xpY3lfc2VydmljZS92MWFscGhhMWIGcHJvdG8z", [file_proto_exchange_policy_v1alpha1_exchange_policy]);
+  fileDesc("Ckxwcm90by9jb25uZWN0L2V4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlL3YxYWxwaGExL2V4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnByb3RvEi5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExImsKG0NyZWF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdBJMCg9leGNoYW5nZV9wb2xpY3kYASABKAsyLi5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lCA+BBAiJnChxDcmVhdGVFeGNoYW5nZVBvbGljeVJlc3BvbnNlEkcKD2V4Y2hhbmdlX3BvbGljeRgBIAEoCzIuLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeGNoYW5nZVBvbGljeSI/ChxEZXN0cm95RXhjaGFuZ2VQb2xpY3lSZXF1ZXN0Eh8KEmV4Y2hhbmdlX3BvbGljeV9pZBgBIAEoCUID4EECIh8KHURlc3Ryb3lFeGNoYW5nZVBvbGljeVJlc3BvbnNlIjsKGEdldEV4Y2hhbmdlUG9saWN5UmVxdWVzdBIfChJleGNoYW5nZV9wb2xpY3lfaWQYASABKAlCA+BBAiJ9ChlHZXRFeGNoYW5nZVBvbGljeVJlc3BvbnNlEkwKD2V4Y2hhbmdlX3BvbGljeRgBIAEoCzIuLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeGNoYW5nZVBvbGljeUgAiAEBQhIKEF9leGNoYW5nZV9wb2xpY3ki1AEKG0xpc3RFeGNoYW5nZVBvbGljaWVzUmVxdWVzdBJnCgZmaWx0ZXIYASABKAsyUi5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLkxpc3RFeGNoYW5nZVBvbGljaWVzUmVxdWVzdC5GaWx0ZXJCA+BBARpMCgZGaWx0ZXISEQoEbmFtZRgBIAEoCUID4EEBEhMKBm9yZ19pZBgCIAEoCUID4EEBEhoKDXRydXN0X3pvbmVfaWQYAyABKAlCA+BBASJpChxMaXN0RXhjaGFuZ2VQb2xpY2llc1Jlc3BvbnNlEkkKEWV4Y2hhbmdlX3BvbGljaWVzGAEgAygLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4Y2hhbmdlUG9saWN5IvEDChtVcGRhdGVFeGNoYW5nZVBvbGljeVJlcXVlc3QSTAoPZXhjaGFuZ2VfcG9saWN5GAEgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4Y2hhbmdlUG9saWN5QgPgQQISdQoLdXBkYXRlX21hc2sYAiABKAsyVi5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdC5VcGRhdGVNYXNrQgPgQQFIAIgBARr8AQoKVXBkYXRlTWFzaxIRCgRuYW1lGAEgASgIQgPgQQESEwoGYWN0aW9uGAIgASgIQgPgQQESHQoQc3ViamVjdF9pZGVudGl0eRgDIAEoCEID4EEBEhsKDnN1YmplY3RfaXNzdWVyGAQgASgIQgPgQQESGwoOYWN0b3JfaWRlbnRpdHkYBSABKAhCA+BBARIZCgxhY3Rvcl9pc3N1ZXIYBiABKAhCA+BBARIWCgljbGllbnRfaWQYByABKAhCA+BBARIcCg90YXJnZXRfYXVkaWVuY2UYCCABKAhCA+BBARIcCg9vdXRib3VuZF9zY29wZXMYCSABKAhCA+BBAUIOCgxfdXBkYXRlX21hc2siZwocVXBkYXRlRXhjaGFuZ2VQb2xpY3lSZXNwb25zZRJHCg9leGNoYW5nZV9wb2xpY3kYASABKAsyLi5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3kylQcKFUV4Y2hhbmdlUG9saWN5U2VydmljZRKxAQoUQ3JlYXRlRXhjaGFuZ2VQb2xpY3kSSy5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLkNyZWF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdBpMLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuQ3JlYXRlRXhjaGFuZ2VQb2xpY3lSZXNwb25zZRK0AQoVRGVzdHJveUV4Y2hhbmdlUG9saWN5EkwucHJvdG8uY29ubmVjdC5leGNoYW5nZV9wb2xpY3lfc2VydmljZS52MWFscGhhMS5EZXN0cm95RXhjaGFuZ2VQb2xpY3lSZXF1ZXN0Gk0ucHJvdG8uY29ubmVjdC5leGNoYW5nZV9wb2xpY3lfc2VydmljZS52MWFscGhhMS5EZXN0cm95RXhjaGFuZ2VQb2xpY3lSZXNwb25zZRKoAQoRR2V0RXhjaGFuZ2VQb2xpY3kSSC5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLkdldEV4Y2hhbmdlUG9saWN5UmVxdWVzdBpJLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuR2V0RXhjaGFuZ2VQb2xpY3lSZXNwb25zZRKxAQoUTGlzdEV4Y2hhbmdlUG9saWNpZXMSSy5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLkxpc3RFeGNoYW5nZVBvbGljaWVzUmVxdWVzdBpMLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuTGlzdEV4Y2hhbmdlUG9saWNpZXNSZXNwb25zZRKxAQoUVXBkYXRlRXhjaGFuZ2VQb2xpY3kSSy5wcm90by5jb25uZWN0LmV4Y2hhbmdlX3BvbGljeV9zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZUV4Y2hhbmdlUG9saWN5UmVxdWVzdBpMLnByb3RvLmNvbm5lY3QuZXhjaGFuZ2VfcG9saWN5X3NlcnZpY2UudjFhbHBoYTEuVXBkYXRlRXhjaGFuZ2VQb2xpY3lSZXNwb25zZUJYWlZnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29ubmVjdC9leGNoYW5nZV9wb2xpY3lfc2VydmljZS92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_proto_exchange_policy_v1alpha1_exchange_policy]);
 
 /**
  * @generated from message proto.connect.exchange_policy_service.v1alpha1.CreateExchangePolicyRequest
  */
 export type CreateExchangePolicyRequest = Message<"proto.connect.exchange_policy_service.v1alpha1.CreateExchangePolicyRequest"> & {
   /**
-   * @generated from field: optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+   * @generated from field: proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
    */
   exchangePolicy?: ExchangePolicy;
 };
@@ -39,7 +40,7 @@ export const CreateExchangePolicyRequestSchema: GenMessage<CreateExchangePolicyR
  */
 export type CreateExchangePolicyResponse = Message<"proto.connect.exchange_policy_service.v1alpha1.CreateExchangePolicyResponse"> & {
   /**
-   * @generated from field: optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+   * @generated from field: proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
    */
   exchangePolicy?: ExchangePolicy;
 };
@@ -56,9 +57,9 @@ export const CreateExchangePolicyResponseSchema: GenMessage<CreateExchangePolicy
  */
 export type DestroyExchangePolicyRequest = Message<"proto.connect.exchange_policy_service.v1alpha1.DestroyExchangePolicyRequest"> & {
   /**
-   * @generated from field: optional string exchange_policy_id = 1;
+   * @generated from field: string exchange_policy_id = 1;
    */
-  exchangePolicyId?: string;
+  exchangePolicyId: string;
 };
 
 /**
@@ -86,9 +87,9 @@ export const DestroyExchangePolicyResponseSchema: GenMessage<DestroyExchangePoli
  */
 export type GetExchangePolicyRequest = Message<"proto.connect.exchange_policy_service.v1alpha1.GetExchangePolicyRequest"> & {
   /**
-   * @generated from field: optional string exchange_policy_id = 1;
+   * @generated from field: string exchange_policy_id = 1;
    */
-  exchangePolicyId?: string;
+  exchangePolicyId: string;
 };
 
 /**
@@ -120,7 +121,7 @@ export const GetExchangePolicyResponseSchema: GenMessage<GetExchangePolicyRespon
  */
 export type ListExchangePoliciesRequest = Message<"proto.connect.exchange_policy_service.v1alpha1.ListExchangePoliciesRequest"> & {
   /**
-   * @generated from field: optional proto.connect.exchange_policy_service.v1alpha1.ListExchangePoliciesRequest.Filter filter = 1;
+   * @generated from field: proto.connect.exchange_policy_service.v1alpha1.ListExchangePoliciesRequest.Filter filter = 1;
    */
   filter?: ListExchangePoliciesRequest_Filter;
 };
@@ -137,19 +138,19 @@ export const ListExchangePoliciesRequestSchema: GenMessage<ListExchangePoliciesR
  */
 export type ListExchangePoliciesRequest_Filter = Message<"proto.connect.exchange_policy_service.v1alpha1.ListExchangePoliciesRequest.Filter"> & {
   /**
-   * @generated from field: optional string name = 1;
+   * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
-   * @generated from field: optional string org_id = 2;
+   * @generated from field: string org_id = 2;
    */
-  orgId?: string;
+  orgId: string;
 
   /**
-   * @generated from field: optional string trust_zone_id = 3;
+   * @generated from field: string trust_zone_id = 3;
    */
-  trustZoneId?: string;
+  trustZoneId: string;
 };
 
 /**
@@ -181,9 +182,16 @@ export const ListExchangePoliciesResponseSchema: GenMessage<ListExchangePolicies
  */
 export type UpdateExchangePolicyRequest = Message<"proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyRequest"> & {
   /**
-   * @generated from field: optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+   * @generated from field: proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
    */
   exchangePolicy?: ExchangePolicy;
+
+  /**
+   * The list of fields to be updated. If not provided a full replacement will be made.
+   *
+   * @generated from field: optional proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyRequest.UpdateMask update_mask = 2;
+   */
+  updateMask?: UpdateExchangePolicyRequest_UpdateMask;
 };
 
 /**
@@ -194,11 +202,86 @@ export const UpdateExchangePolicyRequestSchema: GenMessage<UpdateExchangePolicyR
   messageDesc(file_proto_connect_exchange_policy_service_v1alpha1_exchange_policy_service, 8);
 
 /**
+ * @generated from message proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyRequest.UpdateMask
+ */
+export type UpdateExchangePolicyRequest_UpdateMask = Message<"proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyRequest.UpdateMask"> & {
+  /**
+   * Set to true to update the name field.
+   *
+   * @generated from field: bool name = 1;
+   */
+  name: boolean;
+
+  /**
+   * Set to true to update the action field.
+   *
+   * @generated from field: bool action = 2;
+   */
+  action: boolean;
+
+  /**
+   * Set to true to update the subject_identity field.
+   *
+   * @generated from field: bool subject_identity = 3;
+   */
+  subjectIdentity: boolean;
+
+  /**
+   * Set to true to update the subject_issuer field.
+   *
+   * @generated from field: bool subject_issuer = 4;
+   */
+  subjectIssuer: boolean;
+
+  /**
+   * Set to true to update the actor_identity field.
+   *
+   * @generated from field: bool actor_identity = 5;
+   */
+  actorIdentity: boolean;
+
+  /**
+   * Set to true to update the actor_issuer field.
+   *
+   * @generated from field: bool actor_issuer = 6;
+   */
+  actorIssuer: boolean;
+
+  /**
+   * Set to true to update the client_id field.
+   *
+   * @generated from field: bool client_id = 7;
+   */
+  clientId: boolean;
+
+  /**
+   * Set to true to update the target_audience field.
+   *
+   * @generated from field: bool target_audience = 8;
+   */
+  targetAudience: boolean;
+
+  /**
+   * Set to true to update the outbound_scopes field.
+   *
+   * @generated from field: bool outbound_scopes = 9;
+   */
+  outboundScopes: boolean;
+};
+
+/**
+ * Describes the message proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyRequest.UpdateMask.
+ * Use `create(UpdateExchangePolicyRequest_UpdateMaskSchema)` to create a new message.
+ */
+export const UpdateExchangePolicyRequest_UpdateMaskSchema: GenMessage<UpdateExchangePolicyRequest_UpdateMask> = /*@__PURE__*/
+  messageDesc(file_proto_connect_exchange_policy_service_v1alpha1_exchange_policy_service, 8, 0);
+
+/**
  * @generated from message proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyResponse
  */
 export type UpdateExchangePolicyResponse = Message<"proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyResponse"> & {
   /**
-   * @generated from field: optional proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
+   * @generated from field: proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1;
    */
   exchangePolicy?: ExchangePolicy;
 };
