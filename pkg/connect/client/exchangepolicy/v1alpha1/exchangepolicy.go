@@ -17,7 +17,7 @@ type ExchangePolicyClient interface {
 	DestroyExchangePolicy(ctx context.Context, policyID string) error
 	GetExchangePolicy(ctx context.Context, policyID string) (*exchangepolicypb.ExchangePolicy, error)
 	ListExchangePolicies(ctx context.Context, filter *exchangepolicysvcpb.ListExchangePoliciesRequest_Filter) ([]*exchangepolicypb.ExchangePolicy, error)
-	UpdateExchangePolicy(ctx context.Context, policy *exchangepolicypb.ExchangePolicy) (*exchangepolicypb.ExchangePolicy, error)
+	UpdateExchangePolicy(ctx context.Context, policy *exchangepolicypb.ExchangePolicy, updateMask *exchangepolicysvcpb.UpdateExchangePolicyRequest_UpdateMask) (*exchangepolicypb.ExchangePolicy, error)
 }
 
 type exchangePolicyClient struct {
@@ -43,14 +43,14 @@ func (c *exchangePolicyClient) CreateExchangePolicy(ctx context.Context, policy 
 
 func (c *exchangePolicyClient) DestroyExchangePolicy(ctx context.Context, policyID string) error {
 	_, err := c.client.DestroyExchangePolicy(ctx, &exchangepolicysvcpb.DestroyExchangePolicyRequest{
-		ExchangePolicyId: &policyID,
+		ExchangePolicyId: policyID,
 	})
 	return err
 }
 
 func (c *exchangePolicyClient) GetExchangePolicy(ctx context.Context, policyID string) (*exchangepolicypb.ExchangePolicy, error) {
 	resp, err := c.client.GetExchangePolicy(ctx, &exchangepolicysvcpb.GetExchangePolicyRequest{
-		ExchangePolicyId: &policyID,
+		ExchangePolicyId: policyID,
 	})
 	if err != nil {
 		return nil, err
@@ -68,9 +68,10 @@ func (c *exchangePolicyClient) ListExchangePolicies(ctx context.Context, filter 
 	return resp.ExchangePolicies, nil
 }
 
-func (c *exchangePolicyClient) UpdateExchangePolicy(ctx context.Context, policy *exchangepolicypb.ExchangePolicy) (*exchangepolicypb.ExchangePolicy, error) {
+func (c *exchangePolicyClient) UpdateExchangePolicy(ctx context.Context, policy *exchangepolicypb.ExchangePolicy, updateMask *exchangepolicysvcpb.UpdateExchangePolicyRequest_UpdateMask) (*exchangepolicypb.ExchangePolicy, error) {
 	resp, err := c.client.UpdateExchangePolicy(ctx, &exchangepolicysvcpb.UpdateExchangePolicyRequest{
 		ExchangePolicy: policy,
+		UpdateMask:     updateMask,
 	})
 	if err != nil {
 		return nil, err

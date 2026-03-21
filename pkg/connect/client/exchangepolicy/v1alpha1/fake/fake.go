@@ -75,19 +75,19 @@ func policyMatches(policy *exchangepolicypb.ExchangePolicy, filter *exchangepoli
 	if filter == nil {
 		return true
 	}
-	if filter.OrgId != nil && policy.GetOrgId() != *filter.OrgId {
+	if filter.OrgId != "" && policy.GetOrgId() != filter.OrgId {
 		return false
 	}
-	if filter.TrustZoneId != nil && policy.GetTrustZoneId() != *filter.TrustZoneId {
+	if filter.TrustZoneId != "" && policy.GetTrustZoneId() != filter.TrustZoneId {
 		return false
 	}
-	if filter.Name != nil && policy.GetName() != *filter.Name {
+	if filter.Name != "" && policy.GetName() != filter.Name {
 		return false
 	}
 	return true
 }
 
-func (c *fakeExchangePolicyClient) UpdateExchangePolicy(ctx context.Context, policy *exchangepolicypb.ExchangePolicy) (*exchangepolicypb.ExchangePolicy, error) {
+func (c *fakeExchangePolicyClient) UpdateExchangePolicy(ctx context.Context, policy *exchangepolicypb.ExchangePolicy, updateMask *exchangepolicysvcpb.UpdateExchangePolicyRequest_UpdateMask) (*exchangepolicypb.ExchangePolicy, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
