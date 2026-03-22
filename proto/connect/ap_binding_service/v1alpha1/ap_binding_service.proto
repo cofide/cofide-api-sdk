@@ -1,6 +1,10 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the APBindingService gRPC service for managing attestation
+// policy bindings in the Connect control plane. Bindings associate an
+// attestation policy with a trust zone, enabling SPIFFE identity issuance for
+// workloads matching the policy within that zone.
 syntax = "proto3";
 
 package proto.connect.ap_binding_service.v1alpha1;
@@ -9,11 +13,20 @@ import "proto/ap_binding/v1alpha1/ap_binding.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/ap_binding_service/v1alpha1";
 
+// APBindingService manages attestation policy bindings. Bindings associate an
+// attestation policy with a trust zone, enabling Connect to issue SPIFFE
+// identities to workloads that match the policy within that zone. Bindings can
+// also specify federated trust zones to extend the policy across zone boundaries.
 service APBindingService {
+  // CreateAPBinding creates a new attestation policy binding.
   rpc CreateAPBinding(CreateAPBindingRequest) returns (CreateAPBindingResponse);
+  // DestroyAPBinding deletes an attestation policy binding by ID.
   rpc DestroyAPBinding(DestroyAPBindingRequest) returns (DestroyAPBindingResponse);
+  // GetAPBinding retrieves an attestation policy binding by ID.
   rpc GetAPBinding(GetAPBindingRequest) returns (GetAPBindingResponse);
+  // ListAPBindings returns all attestation policy bindings matching the optional filter.
   rpc ListAPBindings(ListAPBindingsRequest) returns (ListAPBindingsResponse);
+  // UpdateAPBinding updates an existing attestation policy binding.
   rpc UpdateAPBinding(UpdateAPBindingRequest) returns (UpdateAPBindingResponse);
 }
 

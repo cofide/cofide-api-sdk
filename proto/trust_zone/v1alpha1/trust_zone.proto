@@ -1,6 +1,10 @@
 // Copyright 2024 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the TrustZone message and related types representing a
+// SPIFFE trust domain within the Connect control plane. A trust zone encompasses
+// one or more clusters and/or nodes within a single trust boundary and can
+// federate with other trust zones to enable secure cross-zone connectivity.
 syntax = "proto3";
 
 package proto.trust_zone.v1alpha1;
@@ -9,23 +13,39 @@ import "proto/spire/api/types/bundle.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1";
 
+// TrustZone represents one or more clusters and/or nodes within a
+// single trust boundary. Each trust zone is a SPIFFE trust domain: workload
+// identities (SVIDs) issued within the zone carry the trust domain as the root
+// of their SPIFFE ID. Federations can be created between trust zones to allow
+// selected workloads to establish secure connectivity across zone boundaries.
 message TrustZone {
   reserved 5, 6;
   reserved "federations", "attestation_policies";
 
   string name = 1;
+  // The SPIFFE trust domain for this zone, e.g. "example.com".
   string trust_domain = 2;
+  // URL of the SPIFFE bundle endpoint, used by remote trust zones to fetch this
+  // zone's trust bundle for federation.
   optional string bundle_endpoint_url = 3;
+  // The current SPIRE trust bundle for this zone, containing the root CA certificates.
   optional spire.api.types.Bundle bundle = 4;
+  // JWT issuer URL for SVIDs issued within this trust zone.
   optional string jwt_issuer = 7;
+  // The SPIFFE federation profile used to serve and consume trust bundles.
   optional BundleEndpointProfile bundle_endpoint_profile = 8;
   optional string id = 9;
+  // Whether this trust zone hosts the Connect management plane.
   bool is_management_zone = 10;
   optional string org_id = 11;
 }
 
+// BundleEndpointProfile specifies the SPIFFE federation profile used to serve
+// and consume trust bundles for a trust zone.
 enum BundleEndpointProfile {
   BUNDLE_ENDPOINT_PROFILE_UNSPECIFIED = 0;
+  // SPIFFE-authenticated bundle endpoint.
   BUNDLE_ENDPOINT_PROFILE_HTTPS_SPIFFE = 1;
+  // Web PKI-authenticated bundle endpoint.
   BUNDLE_ENDPOINT_PROFILE_HTTPS_WEB = 2;
 }

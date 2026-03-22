@@ -1,6 +1,10 @@
 // Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the AttestationPolicy message and related types used to
+// specify the criteria for issuing SPIFFE identities to workloads. Supported
+// policy types cover Kubernetes workload attestation (APKubernetes), static
+// attestation (APStatic), and TPM-based node attestation (APTPMNode).
 syntax = "proto3";
 
 package proto.attestation_policy.v1alpha1;
@@ -9,6 +13,10 @@ import "proto/spire/api/types/selector.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1";
 
+// AttestationPolicy defines criteria used to issue a SPIFFE identity to a
+// workload. Policies specify attributes of the workload that must be attested
+// before an identity (SVID) is issued. Policies are bound to trust zones via
+// APBindings and support Kubernetes, static, and TPM node attestation methods.
 message AttestationPolicy {
   optional string id = 4;
   string name = 1;
@@ -20,6 +28,9 @@ message AttestationPolicy {
   }
 }
 
+// APKubernetes represents a Kubernetes attestation policy.
+// Identities are managed dynamically in the control plane based on workload
+// observations.
 message APKubernetes {
   optional APLabelSelector namespace_selector = 1;
   optional APLabelSelector pod_selector = 2;
@@ -52,6 +63,8 @@ message APLabelSelector {
   repeated APMatchExpression match_expressions = 2;
 }
 
+// APMatchExpression represents a single label requirement using a key, operator,
+// and set of values. Follows the Kubernetes LabelSelectorRequirement semantics.
 message APMatchExpression {
   string key = 1;
   string operator = 2;
