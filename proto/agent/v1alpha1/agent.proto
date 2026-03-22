@@ -1,24 +1,32 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the Agent message and related types representing
+// Cofide Agents deployed in clusters registered with the Connect control plane.
 syntax = "proto3";
 
 package proto.agent.v1alpha1;
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1";
 
+// Agent represents a Cofide Agent deployed in a cluster. The agent facilitates
+// cluster registration with the Connect control plane and provides dynamic
+// control plane functionality including federated service management.
 message Agent {
   optional string id = 1;
   optional string cluster_id = 2;
   optional string trust_zone_id = 3;
 }
 
+// AgentStatus reports the current operational status of a Cofide Agent.
 message AgentStatus {
   optional AgentStatusCode status = 1;
   optional string status_message = 2;
+  // Unix timestamp (seconds) of the last status update.
   optional int64 last_updated = 3;
 }
 
+// AgentStatusCode enumerates the possible operational states of a Cofide Agent.
 enum AgentStatusCode {
   AGENT_STATUS_CODE_UNSPECIFIED = 0;
   AGENT_STATUS_CODE_RUNNING = 1;

@@ -1,6 +1,9 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the ClusterService gRPC service for managing clusters
+// registered with the Connect control plane. Each cluster belongs to a trust
+// zone.
 syntax = "proto3";
 
 package proto.connect.cluster_service.v1alpha1;
@@ -9,11 +12,18 @@ import "proto/cluster/v1alpha1/cluster.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/cluster_service/v1alpha1";
 
+// ClusterService manages clusters registered with the Connect control plane.
+// Each cluster belongs to a trust zone.
 service ClusterService {
+  // CreateCluster registers a new cluster with the Connect control plane.
   rpc CreateCluster(CreateClusterRequest) returns (CreateClusterResponse);
+  // DestroyCluster removes a cluster from the Connect control plane.
   rpc DestroyCluster(DestroyClusterRequest) returns (DestroyClusterResponse);
+  // GetCluster retrieves a cluster by ID.
   rpc GetCluster(GetClusterRequest) returns (GetClusterResponse);
+  // ListClusters returns all clusters matching the optional filter.
   rpc ListClusters(ListClustersRequest) returns (ListClustersResponse);
+  // UpdateCluster updates the configuration of an existing cluster.
   rpc UpdateCluster(UpdateClusterRequest) returns (UpdateClusterResponse);
 }
 

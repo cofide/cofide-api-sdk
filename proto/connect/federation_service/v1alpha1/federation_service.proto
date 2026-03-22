@@ -1,6 +1,11 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the FederationService gRPC service for managing federations
+// between trust zones in the Connect control plane. Federations establish trust
+// relationships that allow workloads in each zone to present their SPIFFE
+// identities to workloads in the other, enabling secure connectivity across
+// zone boundaries.
 syntax = "proto3";
 
 package proto.connect.federation_service.v1alpha1;
@@ -9,10 +14,19 @@ import "proto/federation/v1alpha1/federation.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/federation_service/v1alpha1";
 
+// FederationService manages federations between trust zones. A federation
+// establishes a trust relationship that allows workloads in each zone to present
+// their SPIFFE identities to workloads in the other, enabling secure
+// connectivity across zone boundaries. Attestation policy bindings control
+// which workloads can federate.
 service FederationService {
+  // CreateFederation creates a new federation between two trust zones.
   rpc CreateFederation(CreateFederationRequest) returns (CreateFederationResponse) {}
+  // DestroyFederation removes a federation by ID.
   rpc DestroyFederation(DestroyFederationRequest) returns (DestroyFederationResponse) {}
+  // ListFederations returns all federations matching the optional filter.
   rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse) {}
+  // GetFederation retrieves a federation by ID.
   rpc GetFederation(GetFederationRequest) returns (GetFederationResponse) {}
 }
 

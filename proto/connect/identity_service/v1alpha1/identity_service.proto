@@ -1,6 +1,10 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the IdentityService gRPC service, which provides read-only
+// access to SPIFFE identities (SVIDs) issued by Connect. Identities are derived
+// from attestation policy bindings and record the SPIFFE ID, attestation
+// selectors, and federation configuration for each attested workload.
 syntax = "proto3";
 
 package proto.connect.identity_service.v1alpha1;
@@ -9,8 +13,14 @@ import "proto/identity/v1alpha1/identity.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/identity_service/v1alpha1";
 
+// IdentityService provides read-only access to the SPIFFE identities (SVIDs)
+// issued by Connect to workloads on attested nodes. Identities are derived from
+// attestation policy bindings and carry the SPIFFE ID, selectors, and federation
+// configuration for each workload.
 service IdentityService {
+  // GetIdentity retrieves a SPIFFE identity by ID.
   rpc GetIdentity(GetIdentityRequest) returns (GetIdentityResponse);
+  // ListIdentities returns all identities matching the optional filter.
   rpc ListIdentities(ListIdentitiesRequest) returns (ListIdentitiesResponse);
 }
 

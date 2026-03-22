@@ -1,14 +1,25 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the RoleBinding message and related types used by
+// Connect's Role-Based Access Control (RBAC) system. Role bindings associate
+// a principal (user or group) with a predefined role on a specific resource,
+// with permissions inherited down the resource hierarchy. RBAC is enforced
+// server-side.
 syntax = "proto3";
 
 package proto.role_binding.v1alpha1;
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1";
 
+// RoleBinding associates a principal (user or group) with a role on a specific
+// resource. Permissions defined by the role are granted on the target resource
+// and inherited by all child resources in the resource hierarchy. Connect's
+// RBAC policies are enforced server-side.
 message RoleBinding {
   string id = 1;
+  // The role granted by this binding.  See the Connect access control
+  // documentation for the list of available roles.
   string role_id = 2;
   oneof principal {
     User user = 3;
@@ -17,16 +28,24 @@ message RoleBinding {
   Resource resource = 5;
 }
 
+// User identifies an individual principal by the "sub" (subject) claim of the
+// JWT presented by that user to the configured identity provider.
 message User {
   // This is matched against the "sub" claim of the JWT presented by a user.
   string subject = 1;
 }
 
+// Group identifies a set of principals by a group claim value in the JWT
+// presented by users. This allows role bindings to be applied to all members
+// of a group as managed by the configured identity provider.
 message Group {
   // For users this is matched against the list of values in the "groups" claim of the JWT presented by a user.
   string claim_value = 1;
 }
 
+// Resource identifies the target of a role binding. Role bindings can be
+// applied to System, Organisation, Trust Zone, or Cluster resources. Permissions
+// are inherited down the resource hierarchy from the bound resource.
 message Resource {
   /**
    * type can be one of the following:

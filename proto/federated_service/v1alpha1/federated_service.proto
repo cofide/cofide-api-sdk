@@ -1,26 +1,43 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the FederatedService message and related types used to
+// describe services that are exposed for secure cross-zone connectivity. A
+// federated service enables workloads in remote trust zones to discover and
+// connect to a service using mTLS.
 syntax = "proto3";
 
 package proto.federated_service.v1alpha1;
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1";
 
+// FederatedService simplifies secure connectivity between workloads in different
+// trust zones. Combined with a federation, the Cofide Agent facilitates
+// discovery of and mTLS connectivity to this service from remote trust zones.
+// Connectivity is available via xDS (Envoy) and the Cofide Go SDK.
+// FederatedServices are typically created from a Kubernetes Custom Resource
+// applied to the cluster in which the service runs.
 message FederatedService {
   string id = 1;
   string name = 2;
   string namespace = 3;
   string cluster_name = 4;
+  // The SPIFFE trust domain of the cluster in which this service runs.
   string trust_domain = 5;
+  // Kubernetes labels used to select the pods backing this service.
   map<string, string> workload_labels = 7;
+  // The remote trust domains to which this service is exported.
   repeated string exported_trust_domains = 8;
   uint32 port = 9;
+  // Gateway entries discovered automatically by the Cofide Agent.
   repeated GatewayEntry gateway_entries = 10;
+  // Gateway addresses manually specified in the FederatedService resource.
   repeated GatewaySpec gateway_specs = 11;
   TLSMode tls_mode = 12;
 }
 
+// GatewayEntry is a gateway address discovered automatically by the Cofide Agent
+// for routing traffic to a federated service.
 message GatewayEntry {
   string hostname = 1;
   string type = 2;
@@ -28,6 +45,8 @@ message GatewayEntry {
   int32 port = 4;
 }
 
+// GatewaySpec is a manually specified gateway address for a federated service,
+// provided when automatic gateway discovery is not available or sufficient.
 message GatewaySpec {
   string hostname = 1;
   string type = 2;
@@ -35,8 +54,11 @@ message GatewaySpec {
   int32 port = 4;
 }
 
+// TLSMode specifies the mutual TLS mode used for a federated service connection.
 enum TLSMode {
   TLS_MODE_UNSPECIFIED = 0;
+  // Standard SPIFFE mTLS using SPIRE-issued SVIDs.
   TLS_MODE_MTLS = 1;
+  // Istio-managed mTLS, for clusters using an Istio service mesh.
   TLS_MODE_ISTIO_MTLS = 2;
 }

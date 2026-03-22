@@ -1,6 +1,10 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the AttestationPolicyService gRPC service for managing
+// attestation policies in the Connect control plane. Attestation policies
+// specify the criteria used to issue SPIFFE identities to workloads and support
+// Kubernetes, static, and TPM node attestation types.
 syntax = "proto3";
 
 package proto.connect.attestation_policy_service.v1alpha1;
@@ -9,11 +13,20 @@ import "proto/attestation_policy/v1alpha1/attestation_policy.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/attestation_policy_service/v1alpha1";
 
+// AttestationPolicyService manages attestation policies. Attestation policies
+// define the criteria (namespace selectors, pod labels, TPM EK hashes, etc.)
+// used to issue SPIFFE identities to workloads. Policies are bound to trust
+// zones via the APBindingService.
 service AttestationPolicyService {
+  // CreateAttestationPolicy creates a new attestation policy.
   rpc CreateAttestationPolicy(CreateAttestationPolicyRequest) returns (CreateAttestationPolicyResponse);
+  // DestroyAttestationPolicy deletes an attestation policy by ID.
   rpc DestroyAttestationPolicy(DestroyAttestationPolicyRequest) returns (DestroyAttestationPolicyResponse);
+  // GetAttestationPolicy retrieves an attestation policy by ID.
   rpc GetAttestationPolicy(GetAttestationPolicyRequest) returns (GetAttestationPolicyResponse);
+  // ListAttestationPolicies returns all attestation policies matching the optional filter.
   rpc ListAttestationPolicies(ListAttestationPoliciesRequest) returns (ListAttestationPoliciesResponse);
+  // UpdateAttestationPolicy updates an existing attestation policy.
   rpc UpdateAttestationPolicy(UpdateAttestationPolicyRequest) returns (UpdateAttestationPolicyResponse);
 }
 
@@ -65,6 +78,8 @@ message UpdateAttestationPolicyResponse {
   optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
 }
 
+// AttestationPolicyKind enumerates the supported attestation policy types,
+// used to filter policies by their node attestation method.
 enum AttestationPolicyKind {
   ATTESTATION_POLICY_KIND_UNSPECIFIED = 0;
   ATTESTATION_POLICY_KIND_KUBERNETES = 1;

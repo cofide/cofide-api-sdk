@@ -1,12 +1,21 @@
 // Copyright 2024 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the APBinding message and related types representing
+// attestation policy bindings in the Connect control plane. An APBinding
+// associates an attestation policy with a trust zone, enabling identity
+// issuance for matching workloads within that zone.
 syntax = "proto3";
 
 package proto.ap_binding.v1alpha1;
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1";
 
+// APBinding binds an attestation policy to a trust zone, enabling Connect to
+// issue SPIFFE identities to workloads that match the policy within that zone.
+// Optionally, federations can be specified to restrict which federated trust
+// zones the bound policy applies to, allowing the same policy to be re-used
+// across multiple trust zones.
 message APBinding {
   reserved 1, 2, 3;
   reserved "trust_zone", "policy", "federates_with";
@@ -15,9 +24,12 @@ message APBinding {
   optional string org_id = 5;
   optional string trust_zone_id = 6;
   optional string policy_id = 7;
+  // The federated trust zones to which this binding also applies.
   repeated APBindingFederation federations = 8;
 }
 
+// APBindingFederation identifies a trust zone that is included in the federated
+// scope of an attestation policy binding.
 message APBindingFederation {
   optional string trust_zone_id = 1;
 }
