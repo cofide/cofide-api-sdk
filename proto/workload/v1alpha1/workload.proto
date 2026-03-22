@@ -1,6 +1,10 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the Workload message and related types representing
+// processes and containers observed by Cofide Observer on attested nodes.
+// Workload data is streamed to the Connect control plane and used to match
+// workloads against attestation policies for SPIFFE identity issuance.
 syntax = "proto3";
 
 package proto.workload.v1alpha1;
@@ -10,6 +14,10 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
 
+// Workload represents a process, container, or unit of software running on an
+// attested node. Workloads are observed by the Cofide Observer and reported to the
+// Connect control plane. A SPIFFE identity (SVID) can be issued to a workload
+// if it matches an active attestation policy binding within its trust zone.
 message Workload {
   string id = 1;
   string org_id = 4;
@@ -19,21 +27,29 @@ message Workload {
   oneof workload {
     KubernetesPod kubernetes_pod = 5;
   }
+  // Security posture observations.
   repeated Observation observations = 6;
+  // When this workload was last observed by the Cofide Observer.
   google.protobuf.Timestamp observed_timestamp = 7;
+  // Whether this workload has been deleted since it was last observed.
   bool deleted = 8;
 }
 
+// WorkloadType enumerates the supported workload runtime types.
 enum WorkloadType {
   WORKLOAD_TYPE_UNSPECIFIED = 0;
   WORKLOAD_TYPE_KUBERNETES_POD = 1;
 }
 
+// Observation is a structured data point describing the security posture of
+// the workload.
 message Observation {
   string type_url = 1;
   google.protobuf.Value value = 2;
 }
 
+// KubernetesPod contains the runtime details of a Kubernetes pod workload
+// as observed by the Cofide Observer via the kubelet API.
 message KubernetesPod {
   KubernetesMetadata metadata = 1;
   string service_account_name = 2;
@@ -43,6 +59,7 @@ message KubernetesPod {
   google.protobuf.Timestamp start_time = 5;
 }
 
+// KubernetesMetadata contains standard Kubernetes object metadata for a workload.
 message KubernetesMetadata {
   string uid = 1;
   string name = 2;
@@ -52,6 +69,7 @@ message KubernetesMetadata {
   google.protobuf.Timestamp creation_timestamp = 6;
 }
 
+// KubernetesContainer describes a single container within a Kubernetes pod workload.
 message KubernetesContainer {
   string name = 1;
   string image = 2;

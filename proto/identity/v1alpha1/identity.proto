@@ -1,6 +1,10 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the Identity message and related types representing SPIFFE
+// identities (SVIDs) issued by Connect to workloads on attested nodes. Each
+// identity records the SPIFFE ID, attestation selectors, and federation
+// configuration for a workload matched by an attestation policy.
 syntax = "proto3";
 
 package proto.identity.v1alpha1;
@@ -9,27 +13,47 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1";
 
+// Identity represents a SPIFFE identity (SVID) issued by Connect to a workload
+// on an attested node. Each identity is derived from a matching attestation
+// policy and carries the SPIFFE ID, attestation selectors, and optional
+// federation configuration for the workload.
 message Identity {
   string id = 1;
   string org_id = 2;
   string trust_zone_id = 3;
   string cluster_id = 4;
+  // The attestation policy that matched this workload.
   string attestation_policy_id = 5;
+  // The attestation policy binding through which this identity was issued.
   string ap_binding_id = 6;
+  // The workload to which this identity was issued.
   string workload_id = 7;
+  // The SPIFFE ID issued to the workload, e.g. spiffe://trust-domain/ns/foo/sa/bar.
   string spiffe_id = 8;
+  // The SPIFFE ID of the SPIRE agent node that attested this workload.
   string parent_id = 9;
+  // Attestation selectors produced by workload attestation plugins (e.g. k8s, unix).
   repeated Selector selectors = 10;
+  // DNS names to include as DNS Subject Alternative Names (SANs).
   repeated string dns_names = 13;
+  // Federated trust zones or trust domains with which this identity is shared.
   repeated IdentityFederation federations = 11;
   google.protobuf.Timestamp created_at = 12;
 }
 
+// Selector is an attestation selector produced by a workload attestation plugin
+// (e.g. k8s, unix, docker). Selectors are used to match a workload against
+// attestation policies to determine which SPIFFE ID to issue.
 message Selector {
+  // The attestation plugin type, e.g. "k8s", "unix", "docker".
   string type = 1;
+  // The selector value, e.g. "ns:foo", "user:1000".
   string value = 2;
 }
 
+// IdentityFederation specifies a federated trust zone or trust domain with
+// which an identity is shared, enabling the workload to present its SVID
+// to workloads in the remote zone.
 message IdentityFederation {
   oneof federation {
     string trust_zone_id = 1;

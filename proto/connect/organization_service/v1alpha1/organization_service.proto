@@ -1,6 +1,10 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the OrganizationService gRPC service, which provides
+// read-only access to organizations in the Connect control plane. Organizations
+// are the top-level grouping of resources: trust zones and attestation policies
+// are scoped to an organization.
 syntax = "proto3";
 
 package proto.connect.organization_service.v1alpha1;
@@ -9,8 +13,13 @@ import "proto/organization/v1alpha1/organization.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/organization_service/v1alpha1";
 
+// OrganizationService provides read-only access to organizations. Organizations
+// are the top-level grouping of Connect resources: trust zones and attestation
+// policies are scoped to an organization.
 service OrganizationService {
+  // GetOrganization retrieves an organization by ID.
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
+  // ListOrganizations returns all organizations matching the optional filter.
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 }
 

@@ -1,6 +1,11 @@
 // Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the ExchangePolicy message and related types used to
+// control Credex token exchanges within a trust zone. Exchange policies specify
+// match conditions on inbound tokens and determine whether the exchange is
+// permitted or denied.
+
 syntax = "proto3";
 
 package proto.exchange_policy.v1alpha1;
@@ -36,6 +41,8 @@ message ExchangePolicy {
   repeated string outbound_scopes = 12;
 }
 
+// ExchangePolicyAction determines whether a Credex token exchange is permitted
+// when all conditions of an ExchangePolicy match.
 enum ExchangePolicyAction {
   EXCHANGE_POLICY_ACTION_UNSPECIFIED = 0; // treated as ALLOW
   EXCHANGE_POLICY_ACTION_ALLOW = 1;

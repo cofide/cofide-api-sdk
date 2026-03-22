@@ -1,0 +1,7 @@
+version: v2
+plugins:
+  - local: protoc-gen-doc
+    out: .
+    opt:
+      - markdown,api.md
+    strategy: all
