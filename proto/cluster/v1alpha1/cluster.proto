@@ -1,6 +1,8 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the Cluster message representing a single environment
+// (e.g. a Kubernetes cluster) onboarded onto the Connect control plane.
 syntax = "proto3";
 
 package proto.cluster.v1alpha1;
@@ -10,6 +12,8 @@ import "proto/trust_provider/v1alpha1/trust_provider.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1";
 
+// Cluster represents a single environment (e.g. a Kubernetes cluster) onboarded
+// onto Connect. Each cluster belongs to a trust zone.
 message Cluster {
   reserved 2;
   reserved "trust_zone";
@@ -19,12 +23,19 @@ message Cluster {
   optional string org_id = 9;
 
   optional string trust_zone_id = 10;
+  // The kubeconfig context name used to interact with this cluster.
   optional string kubernetes_context = 3;
+  // The node attestation trust provider configuration for this cluster.
   optional proto.trust_provider.v1alpha1.TrustProvider trust_provider = 4;
+  // Additional Helm values to pass to the Cofide SPIRE chart deployment.
   optional google.protobuf.Struct extra_helm_values = 5;
   optional string profile = 6;
+  // Whether the SPIRE server for this cluster's trust zone is deployed externally
+  // (i.e. not within this cluster).
   optional bool external_server = 7;
 
+  // OIDC issuer URL for the Kubernetes API server, used for k8s_psat node attestation.
   optional string oidc_issuer_url = 11;
+  // PEM-encoded CA certificate for the OIDC issuer, if it uses a private CA.
   optional bytes oidc_issuer_ca_cert = 12;
 }

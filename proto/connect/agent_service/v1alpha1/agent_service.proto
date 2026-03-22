@@ -1,6 +1,9 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the AgentService gRPC service, which is used by Cofide
+// Agents to register with the Connect control plane and to manage the federated
+// services running in their cluster.
 syntax = "proto3";
 
 package proto.connect.agent_service.v1alpha1;
@@ -10,14 +13,26 @@ import "proto/federated_service/v1alpha1/federated_service.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/agent_service/v1alpha1";
 
+// AgentService is used by Cofide Agents to register with the Connect control
+// plane and to manage the federated services running in their cluster.
 service AgentService {
+  // CreateAgentJoinToken generates a one-time token that a Cofide Agent uses
+  // to join a specific trust zone and cluster.
   rpc CreateAgentJoinToken(CreateAgentJoinTokenRequest) returns (CreateAgentJoinTokenResponse) {}
+  // UpdateAgentStatus reports the current operational status of a Cofide Agent
+  // to the Connect control plane.
   rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse) {}
 
+  // RegisterFederatedService registers a federated service discovered by the
+  // agent, making it available for cross-zone connectivity.
   rpc RegisterFederatedService(RegisterFederatedServiceRequest) returns (RegisterFederatedServiceResponse) {}
+  // DeregisterFederatedService removes a previously registered federated service.
   rpc DeregisterFederatedService(DeregisterFederatedServiceRequest) returns (DeregisterFederatedServiceResponse) {}
+  // UpdateFederatedService updates the configuration of a registered federated service.
   rpc UpdateFederatedService(UpdateFederatedServiceRequest) returns (UpdateFederatedServiceResponse) {}
+  // GetFederatedService retrieves a federated service by ID.
   rpc GetFederatedService(GetFederatedServiceRequest) returns (GetFederatedServiceResponse) {}
+  // ListFederatedServices lists all federated services for an organization.
   rpc ListFederatedServices(ListFederatedServicesRequest) returns (ListFederatedServicesResponse) {}
 }
 

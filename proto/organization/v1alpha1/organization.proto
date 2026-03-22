@@ -1,12 +1,17 @@
 // Copyright 2025 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the Organization message representing the top-level
+// grouping of resources in the Connect control plane. Trust zones, attestation
+// policies, and role bindings are all scoped to an organization.
 syntax = "proto3";
 
 package proto.organization.v1alpha1;
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1";
 
+// Organization is the top-level grouping of Connect resources. Trust zones,
+// attestation policies, and role bindings are all scoped to an organization.
 message Organization {
   string id = 1;
   string name = 2;

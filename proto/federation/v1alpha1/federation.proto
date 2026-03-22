@@ -1,12 +1,20 @@
 // Copyright 2024 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
+// This file defines the Federation message representing a trust relationship
+// between two trust zones in the Connect control plane. Federations allow
+// workloads in each zone to present their SPIFFE identities to workloads in
+// the other, enabling secure communication across zone boundaries.
 syntax = "proto3";
 
 package proto.federation.v1alpha1;
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1";
 
+// Federation represents a trust relationship between two trust zones. It allows
+// workloads in each zone to establish secure connections with workloads in the
+// other, while keeping each zone's root of trust securely isolated. Attestation
+// policies on AP bindings determine which workloads are permitted to federate.
 message Federation {
   reserved 1, 2;
   reserved "from", "to";
@@ -14,6 +22,8 @@ message Federation {
   optional string id = 6;
   optional string org_id = 5;
 
+  // The local trust zone that initiates the federation.
   optional string trust_zone_id = 3;
+  // The remote trust zone that this federation points to.
   optional string remote_trust_zone_id = 4;
 }
