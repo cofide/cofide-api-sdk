@@ -26,7 +26,7 @@ message Identity {
   string attestation_policy_id = 5;
   // The attestation policy binding through which this identity was issued.
   string ap_binding_id = 6;
-  // The workload to which is identity was issued.
+  // The workload to which this identity was issued.
   string workload_id = 7;
   // The SPIFFE ID issued to the workload, e.g. spiffe://trust-domain/ns/foo/sa/bar.
   string spiffe_id = 8;
