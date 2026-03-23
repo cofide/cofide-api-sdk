@@ -78,8 +78,7 @@ message UpdateAttestationPolicyResponse {
   optional proto.attestation_policy.v1alpha1.AttestationPolicy policy = 1;
 }
 
-// AttestationPolicyKind enumerates the supported attestation policy types,
-// used to filter policies by their node attestation method.
+// AttestationPolicyKind enumerates the supported attestation policy types.
 enum AttestationPolicyKind {
   ATTESTATION_POLICY_KIND_UNSPECIFIED = 0;
   ATTESTATION_POLICY_KIND_KUBERNETES = 1;

@@ -14,8 +14,8 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1
 // APBinding binds an attestation policy to a trust zone, enabling Connect to
 // issue SPIFFE identities to workloads that match the policy within that zone.
 // Optionally, federations can be specified to restrict which federated trust
-// zones the bound policy applies to, allowing the same policy to be re-used
-// across multiple trust zones.
+// zones will be visible to matching workloads, allowing the same policy to be
+// re-used across multiple trust zones.
 message APBinding {
   reserved 1, 2, 3;
   reserved "trust_zone", "policy", "federates_with";
@@ -24,7 +24,8 @@ message APBinding {
   optional string org_id = 5;
   optional string trust_zone_id = 6;
   optional string policy_id = 7;
-  // The federated trust zones to which this binding also applies.
+  // The federated trust zones which will be visible to workloads matching the
+  // policy in this binding.
   repeated APBindingFederation federations = 8;
 }
 

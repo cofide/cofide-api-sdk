@@ -72,6 +72,7 @@ message APMatchExpression {
 }
 
 // APStatic represents a static attestation policy
+// No observations are required before identities can be issued to matching workloads.
 message APStatic {
   optional string spiffe_id = 1 [deprecated = true];
   optional string spiffe_id_path = 5;
