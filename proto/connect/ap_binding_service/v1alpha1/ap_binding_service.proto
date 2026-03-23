@@ -16,7 +16,8 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/ap_bi
 // APBindingService manages attestation policy bindings. Bindings associate an
 // attestation policy with a trust zone, enabling Connect to issue SPIFFE
 // identities to workloads that match the policy within that zone. Bindings can
-// also specify federated trust zones to extend the policy across zone boundaries.
+// also specify federated trust zones to provide the bundles of federated trust
+// zones to matching workloads.
 service APBindingService {
   // CreateAPBinding creates a new attestation policy binding.
   rpc CreateAPBinding(CreateAPBindingRequest) returns (CreateAPBindingResponse);
