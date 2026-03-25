@@ -95,4 +95,12 @@ message TrustZoneServer {
   google.protobuf.Timestamp deleted_at = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Configuration for the k8s psat node attestor plugin when using a Connect datasource with remote clusters.
   ConnectK8sPsatConfig connect_k8s_psat_config = 12 [(google.api.field_behavior) = OPTIONAL];
+  // Human-readable name for the trust zone server.
+  // Optional and immutable after creation.
+  // If not set, servers will default it to the name of the trust zone.
+  // If a server returns this field empty, clients should treat it as though it was set to the trust zone's name.
+  string name = 13 [
+    (google.api.field_behavior) = OPTIONAL,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
 }

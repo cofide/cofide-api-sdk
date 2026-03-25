@@ -44,7 +44,7 @@ type Identity struct {
 	AttestationPolicyId string `protobuf:"bytes,5,opt,name=attestation_policy_id,json=attestationPolicyId,proto3" json:"attestation_policy_id,omitempty"`
 	// The attestation policy binding through which this identity was issued.
 	ApBindingId string `protobuf:"bytes,6,opt,name=ap_binding_id,json=apBindingId,proto3" json:"ap_binding_id,omitempty"`
-	// The workload to which is identity was issued.
+	// The workload to which this identity was issued.
 	WorkloadId string `protobuf:"bytes,7,opt,name=workload_id,json=workloadId,proto3" json:"workload_id,omitempty"`
 	// The SPIFFE ID issued to the workload, e.g. spiffe://trust-domain/ns/foo/sa/bar.
 	SpiffeId string `protobuf:"bytes,8,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`

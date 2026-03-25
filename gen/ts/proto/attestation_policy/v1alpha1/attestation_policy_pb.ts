@@ -188,6 +188,7 @@ export const APMatchExpressionSchema: GenMessage<APMatchExpression> = /*@__PURE_
 
 /**
  * APStatic represents a static attestation policy
+ * No observations are required before identities can be issued to matching workloads.
  *
  * @generated from message proto.attestation_policy.v1alpha1.APStatic
  */
