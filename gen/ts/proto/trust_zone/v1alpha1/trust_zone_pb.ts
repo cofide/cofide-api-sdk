@@ -12,6 +12,9 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Bundle } from "../../spire/api/types/bundle_pb";
 import { file_proto_spire_api_types_bundle } from "../../spire/api/types/bundle_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -20,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/trust_zone/v1alpha1/trust_zone.proto.
  */
 export const file_proto_trust_zone_v1alpha1_trust_zone: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by90cnVzdF96b25lL3YxYWxwaGExL3RydXN0X3pvbmUucHJvdG8SGXByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEiwQMKCVRydXN0Wm9uZRIMCgRuYW1lGAEgASgJEhQKDHRydXN0X2RvbWFpbhgCIAEoCRIgChNidW5kbGVfZW5kcG9pbnRfdXJsGAMgASgJSACIAQESLAoGYnVuZGxlGAQgASgLMhcuc3BpcmUuYXBpLnR5cGVzLkJ1bmRsZUgBiAEBEhcKCmp3dF9pc3N1ZXIYByABKAlIAogBARJWChdidW5kbGVfZW5kcG9pbnRfcHJvZmlsZRgIIAEoDjIwLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuQnVuZGxlRW5kcG9pbnRQcm9maWxlSAOIAQESDwoCaWQYCSABKAlIBIgBARIaChJpc19tYW5hZ2VtZW50X3pvbmUYCiABKAgSEwoGb3JnX2lkGAsgASgJSAWIAQFCFgoUX2J1bmRsZV9lbmRwb2ludF91cmxCCQoHX2J1bmRsZUINCgtfand0X2lzc3VlckIaChhfYnVuZGxlX2VuZHBvaW50X3Byb2ZpbGVCBQoDX2lkQgkKB19vcmdfaWRKBAgFEAZKBAgGEAdSC2ZlZGVyYXRpb25zUhRhdHRlc3RhdGlvbl9wb2xpY2llcyqRAQoVQnVuZGxlRW5kcG9pbnRQcm9maWxlEicKI0JVTkRMRV9FTkRQT0lOVF9QUk9GSUxFX1VOU1BFQ0lGSUVEEAASKAokQlVORExFX0VORFBPSU5UX1BST0ZJTEVfSFRUUFNfU1BJRkZFEAESJQohQlVORExFX0VORFBPSU5UX1BST0ZJTEVfSFRUUFNfV0VCEAJCQ1pBZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3RydXN0X3pvbmUvdjFhbHBoYTFiBnByb3RvMw", [file_proto_spire_api_types_bundle]);
+  fileDesc("Cipwcm90by90cnVzdF96b25lL3YxYWxwaGExL3RydXN0X3pvbmUucHJvdG8SGXByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEisAQKCVRydXN0Wm9uZRIMCgRuYW1lGAEgASgJEhQKDHRydXN0X2RvbWFpbhgCIAEoCRIgChNidW5kbGVfZW5kcG9pbnRfdXJsGAMgASgJSACIAQESLAoGYnVuZGxlGAQgASgLMhcuc3BpcmUuYXBpLnR5cGVzLkJ1bmRsZUgBiAEBEhcKCmp3dF9pc3N1ZXIYByABKAlIAogBARJWChdidW5kbGVfZW5kcG9pbnRfcHJvZmlsZRgIIAEoDjIwLnByb3RvLnRydXN0X3pvbmUudjFhbHBoYTEuQnVuZGxlRW5kcG9pbnRQcm9maWxlSAOIAQESDwoCaWQYCSABKAlIBIgBARIaChJpc19tYW5hZ2VtZW50X3pvbmUYCiABKAgSEwoGb3JnX2lkGAsgASgJSAWIAQESMwoKY3JlYXRlZF9hdBgMIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCFgoUX2J1bmRsZV9lbmRwb2ludF91cmxCCQoHX2J1bmRsZUINCgtfand0X2lzc3VlckIaChhfYnVuZGxlX2VuZHBvaW50X3Byb2ZpbGVCBQoDX2lkQgkKB19vcmdfaWRKBAgFEAZKBAgGEAdSC2ZlZGVyYXRpb25zUhRhdHRlc3RhdGlvbl9wb2xpY2llcyqRAQoVQnVuZGxlRW5kcG9pbnRQcm9maWxlEicKI0JVTkRMRV9FTkRQT0lOVF9QUk9GSUxFX1VOU1BFQ0lGSUVEEAASKAokQlVORExFX0VORFBPSU5UX1BST0ZJTEVfSFRUUFNfU1BJRkZFEAESJQohQlVORExFX0VORFBPSU5UX1BST0ZJTEVfSFRUUFNfV0VCEAJCQ1pBZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3RydXN0X3pvbmUvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_spire_api_types_bundle]);
 
 /**
  * TrustZone represents one or more clusters and/or nodes within a
@@ -89,6 +92,20 @@ export type TrustZone = Message<"proto.trust_zone.v1alpha1.TrustZone"> & {
    * @generated from field: optional string org_id = 11;
    */
   orgId?: string;
+
+  /**
+   * Time of resource creation by user.
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 12;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * Time of last resource update by user.
+   *
+   * @generated from field: google.protobuf.Timestamp last_updated_at = 13;
+   */
+  lastUpdatedAt?: Timestamp;
 };
 
 /**
