@@ -219,7 +219,8 @@ export const UpdateAPBindingResponseSchema: GenMessage<UpdateAPBindingResponse> 
  * APBindingService manages attestation policy bindings. Bindings associate an
  * attestation policy with a trust zone, enabling Connect to issue SPIFFE
  * identities to workloads that match the policy within that zone. Bindings can
- * also specify federated trust zones to extend the policy across zone boundaries.
+ * also specify federated trust zones to provide the bundles of federated trust
+ * zones to matching workloads.
  *
  * @generated from service proto.connect.ap_binding_service.v1alpha1.APBindingService
  */

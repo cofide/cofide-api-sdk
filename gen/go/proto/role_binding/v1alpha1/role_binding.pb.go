@@ -238,7 +238,7 @@ func (x *Group) GetClaimValue() string {
 }
 
 // Resource identifies the target of a role binding. Role bindings can be
-// applied to System, Organisation, Trust Zone, or Cluster resources. Permissions
+// applied to System, Organization, Trust Zone, or Cluster resources. Permissions
 // are inherited down the resource hierarchy from the bound resource.
 type Resource struct {
 	state protoimpl.MessageState `protogen:"open.v1"`

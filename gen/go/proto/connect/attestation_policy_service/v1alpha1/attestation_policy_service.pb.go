@@ -30,8 +30,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// AttestationPolicyKind enumerates the supported attestation policy types,
-// used to filter policies by their node attestation method.
+// AttestationPolicyKind enumerates the supported attestation policy types.
 type AttestationPolicyKind int32
 
 const (

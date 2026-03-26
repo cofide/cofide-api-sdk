@@ -32,15 +32,16 @@ const (
 // APBinding binds an attestation policy to a trust zone, enabling Connect to
 // issue SPIFFE identities to workloads that match the policy within that zone.
 // Optionally, federations can be specified to restrict which federated trust
-// zones the bound policy applies to, allowing the same policy to be re-used
-// across multiple trust zones.
+// zones will be visible to matching workloads, allowing the same policy to be
+// re-used across multiple trust zones.
 type APBinding struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
 	Id          *string                `protobuf:"bytes,4,opt,name=id,proto3,oneof" json:"id,omitempty"`
 	OrgId       *string                `protobuf:"bytes,5,opt,name=org_id,json=orgId,proto3,oneof" json:"org_id,omitempty"`
 	TrustZoneId *string                `protobuf:"bytes,6,opt,name=trust_zone_id,json=trustZoneId,proto3,oneof" json:"trust_zone_id,omitempty"`
 	PolicyId    *string                `protobuf:"bytes,7,opt,name=policy_id,json=policyId,proto3,oneof" json:"policy_id,omitempty"`
-	// The federated trust zones to which this binding also applies.
+	// The federated trust zones which will be visible to workloads matching the
+	// policy in this binding.
 	Federations   []*APBindingFederation `protobuf:"bytes,8,rep,name=federations,proto3" json:"federations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

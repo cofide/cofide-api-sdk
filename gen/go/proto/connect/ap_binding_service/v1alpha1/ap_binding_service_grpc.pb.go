@@ -41,7 +41,8 @@ const (
 // APBindingService manages attestation policy bindings. Bindings associate an
 // attestation policy with a trust zone, enabling Connect to issue SPIFFE
 // identities to workloads that match the policy within that zone. Bindings can
-// also specify federated trust zones to extend the policy across zone boundaries.
+// also specify federated trust zones to provide the bundles of federated trust
+// zones to matching workloads.
 type APBindingServiceClient interface {
 	// CreateAPBinding creates a new attestation policy binding.
 	CreateAPBinding(ctx context.Context, in *CreateAPBindingRequest, opts ...grpc.CallOption) (*CreateAPBindingResponse, error)
@@ -120,7 +121,8 @@ func (c *aPBindingServiceClient) UpdateAPBinding(ctx context.Context, in *Update
 // APBindingService manages attestation policy bindings. Bindings associate an
 // attestation policy with a trust zone, enabling Connect to issue SPIFFE
 // identities to workloads that match the policy within that zone. Bindings can
-// also specify federated trust zones to extend the policy across zone boundaries.
+// also specify federated trust zones to provide the bundles of federated trust
+// zones to matching workloads.
 type APBindingServiceServer interface {
 	// CreateAPBinding creates a new attestation policy binding.
 	CreateAPBinding(context.Context, *CreateAPBindingRequest) (*CreateAPBindingResponse, error)

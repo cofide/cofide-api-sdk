@@ -24,8 +24,8 @@ export const file_proto_ap_binding_v1alpha1_ap_binding: GenFile = /*@__PURE__*/
  * APBinding binds an attestation policy to a trust zone, enabling Connect to
  * issue SPIFFE identities to workloads that match the policy within that zone.
  * Optionally, federations can be specified to restrict which federated trust
- * zones the bound policy applies to, allowing the same policy to be re-used
- * across multiple trust zones.
+ * zones will be visible to matching workloads, allowing the same policy to be
+ * re-used across multiple trust zones.
  *
  * @generated from message proto.ap_binding.v1alpha1.APBinding
  */
@@ -51,7 +51,8 @@ export type APBinding = Message<"proto.ap_binding.v1alpha1.APBinding"> & {
   policyId?: string;
 
   /**
-   * The federated trust zones to which this binding also applies.
+   * The federated trust zones which will be visible to workloads matching the
+   * policy in this binding.
    *
    * @generated from field: repeated proto.ap_binding.v1alpha1.APBindingFederation federations = 8;
    */

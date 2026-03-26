@@ -243,8 +243,7 @@ export const UpdateAttestationPolicyResponseSchema: GenMessage<UpdateAttestation
   messageDesc(file_proto_connect_attestation_policy_service_v1alpha1_attestation_policy_service, 9);
 
 /**
- * AttestationPolicyKind enumerates the supported attestation policy types,
- * used to filter policies by their node attestation method.
+ * AttestationPolicyKind enumerates the supported attestation policy types.
  *
  * @generated from enum proto.connect.attestation_policy_service.v1alpha1.AttestationPolicyKind
  */

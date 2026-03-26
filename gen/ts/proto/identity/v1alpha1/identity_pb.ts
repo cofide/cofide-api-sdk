@@ -66,7 +66,7 @@ export type Identity = Message<"proto.identity.v1alpha1.Identity"> & {
   apBindingId: string;
 
   /**
-   * The workload to which is identity was issued.
+   * The workload to which this identity was issued.
    *
    * @generated from field: string workload_id = 7;
    */
