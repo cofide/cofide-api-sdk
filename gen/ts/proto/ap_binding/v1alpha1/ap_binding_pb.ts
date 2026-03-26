@@ -12,13 +12,16 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/ap_binding/v1alpha1/ap_binding.proto.
  */
 export const file_proto_ap_binding_v1alpha1_ap_binding: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by9hcF9iaW5kaW5nL3YxYWxwaGExL2FwX2JpbmRpbmcucHJvdG8SGXByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEikgIKCUFQQmluZGluZxIPCgJpZBgEIAEoCUgAiAEBEhMKBm9yZ19pZBgFIAEoCUgBiAEBEhoKDXRydXN0X3pvbmVfaWQYBiABKAlIAogBARIWCglwb2xpY3lfaWQYByABKAlIA4gBARJDCgtmZWRlcmF0aW9ucxgIIAMoCzIuLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nRmVkZXJhdGlvbkIFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkSgQIARACSgQIAhADSgQIAxAEUgp0cnVzdF96b25lUgZwb2xpY3lSDmZlZGVyYXRlc193aXRoIkMKE0FQQmluZGluZ0ZlZGVyYXRpb24SGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9hcF9iaW5kaW5nL3YxYWxwaGExYgZwcm90bzM");
+  fileDesc("Cipwcm90by9hcF9iaW5kaW5nL3YxYWxwaGExL2FwX2JpbmRpbmcucHJvdG8SGXByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEigQMKCUFQQmluZGluZxIPCgJpZBgEIAEoCUgAiAEBEhMKBm9yZ19pZBgFIAEoCUgBiAEBEhoKDXRydXN0X3pvbmVfaWQYBiABKAlIAogBARIWCglwb2xpY3lfaWQYByABKAlIA4gBARJDCgtmZWRlcmF0aW9ucxgIIAMoCzIuLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nRmVkZXJhdGlvbhIzCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkSgQIARACSgQIAhADSgQIAxAEUgp0cnVzdF96b25lUgZwb2xpY3lSDmZlZGVyYXRlc193aXRoIkMKE0FQQmluZGluZ0ZlZGVyYXRpb24SGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9hcF9iaW5kaW5nL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * APBinding binds an attestation policy to a trust zone, enabling Connect to
@@ -57,6 +60,20 @@ export type APBinding = Message<"proto.ap_binding.v1alpha1.APBinding"> & {
    * @generated from field: repeated proto.ap_binding.v1alpha1.APBindingFederation federations = 8;
    */
   federations: APBindingFederation[];
+
+  /**
+   * Time of resource creation by user.
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 9;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * Time of last resource update by user.
+   *
+   * @generated from field: google.protobuf.Timestamp last_updated_at = 10;
+   */
+  lastUpdatedAt?: Timestamp;
 };
 
 /**
