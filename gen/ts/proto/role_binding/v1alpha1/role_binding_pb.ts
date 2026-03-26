@@ -120,7 +120,7 @@ export const GroupSchema: GenMessage<Group> = /*@__PURE__*/
 
 /**
  * Resource identifies the target of a role binding. Role bindings can be
- * applied to System, Organisation, Trust Zone, or Cluster resources. Permissions
+ * applied to System, Organization, Trust Zone, or Cluster resources. Permissions
  * are inherited down the resource hierarchy from the bound resource.
  *
  * @generated from message proto.role_binding.v1alpha1.Resource

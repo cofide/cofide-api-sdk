@@ -361,6 +361,7 @@ func (x *APMatchExpression) GetValues() []string {
 }
 
 // APStatic represents a static attestation policy
+// No observations are required before identities can be issued to matching workloads.
 type APStatic struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in proto/attestation_policy/v1alpha1/attestation_policy.proto.
