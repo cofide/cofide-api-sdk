@@ -9,6 +9,9 @@ syntax = "proto3";
 
 package proto.federated_service.v1alpha1;
 
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1";
 
 // FederatedService simplifies secure connectivity between workloads in different
@@ -34,6 +37,10 @@ message FederatedService {
   // Gateway addresses manually specified in the FederatedService resource.
   repeated GatewaySpec gateway_specs = 11;
   TLSMode tls_mode = 12;
+  // Time of resource creation by user.
+  google.protobuf.Timestamp created_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of last resource update by user.
+  google.protobuf.Timestamp last_updated_at = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // GatewayEntry is a gateway address discovered automatically by the Cofide Agent
