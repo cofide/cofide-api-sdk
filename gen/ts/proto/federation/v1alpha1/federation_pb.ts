@@ -12,13 +12,16 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/federation/v1alpha1/federation.proto.
  */
 export const file_proto_federation_v1alpha1_federation: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by9mZWRlcmF0aW9uL3YxYWxwaGExL2ZlZGVyYXRpb24ucHJvdG8SGXByb3RvLmZlZGVyYXRpb24udjFhbHBoYTEixAEKCkZlZGVyYXRpb24SDwoCaWQYBiABKAlIAIgBARITCgZvcmdfaWQYBSABKAlIAYgBARIaCg10cnVzdF96b25lX2lkGAMgASgJSAKIAQESIQoUcmVtb3RlX3RydXN0X3pvbmVfaWQYBCABKAlIA4gBAUIFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIXChVfcmVtb3RlX3RydXN0X3pvbmVfaWRKBAgBEAJKBAgCEANSBGZyb21SAnRvQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9mZWRlcmF0aW9uL3YxYWxwaGExYgZwcm90bzM");
+  fileDesc("Cipwcm90by9mZWRlcmF0aW9uL3YxYWxwaGExL2ZlZGVyYXRpb24ucHJvdG8SGXByb3RvLmZlZGVyYXRpb24udjFhbHBoYTEiswIKCkZlZGVyYXRpb24SDwoCaWQYBiABKAlIAIgBARITCgZvcmdfaWQYBSABKAlIAYgBARIaCg10cnVzdF96b25lX2lkGAMgASgJSAKIAQESIQoUcmVtb3RlX3RydXN0X3pvbmVfaWQYBCABKAlIA4gBARIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIXChVfcmVtb3RlX3RydXN0X3pvbmVfaWRKBAgBEAJKBAgCEANSBGZyb21SAnRvQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9mZWRlcmF0aW9uL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * Federation represents a trust relationship between two trust zones. It allows
@@ -52,6 +55,20 @@ export type Federation = Message<"proto.federation.v1alpha1.Federation"> & {
    * @generated from field: optional string remote_trust_zone_id = 4;
    */
   remoteTrustZoneId?: string;
+
+  /**
+   * Time of resource creation by user.
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 7;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * Time of last resource update by user.
+   *
+   * @generated from field: google.protobuf.Timestamp last_updated_at = 8;
+   */
+  lastUpdatedAt?: Timestamp;
 };
 
 /**
