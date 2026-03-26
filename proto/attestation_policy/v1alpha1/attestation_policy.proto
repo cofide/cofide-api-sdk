@@ -9,6 +9,8 @@ syntax = "proto3";
 
 package proto.attestation_policy.v1alpha1;
 
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 import "proto/spire/api/types/selector.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1";
@@ -26,6 +28,10 @@ message AttestationPolicy {
     APStatic static = 3;
     APTPMNode tpm_node = 6;
   }
+  // Time of resource creation by user.
+  google.protobuf.Timestamp created_at = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of last resource update by user.
+  google.protobuf.Timestamp last_updated_at = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // APKubernetes represents a Kubernetes attestation policy.
