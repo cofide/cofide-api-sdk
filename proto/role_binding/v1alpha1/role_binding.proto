@@ -10,6 +10,9 @@ syntax = "proto3";
 
 package proto.role_binding.v1alpha1;
 
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1";
 
 // RoleBinding associates a principal (user or group) with a role on a specific
@@ -26,6 +29,10 @@ message RoleBinding {
     Group group = 4;
   }
   Resource resource = 5;
+  // Time of resource creation by user.
+  google.protobuf.Timestamp created_at = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of last resource update by user.
+  google.protobuf.Timestamp last_updated_at = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // User identifies an individual principal by the "sub" (subject) claim of the

@@ -13,13 +13,16 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/role_binding/v1alpha1/role_binding.proto.
  */
 export const file_proto_role_binding_v1alpha1_role_binding: GenFile = /*@__PURE__*/
-  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEi2AEKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASMwoFZ3JvdXAYBCABKAsyIi5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuR3JvdXBIABI3CghyZXNvdXJjZRgFIAEoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5SZXNvdXJjZUILCglwcmluY2lwYWwiFwoEVXNlchIPCgdzdWJqZWN0GAEgASgJIhwKBUdyb3VwEhMKC2NsYWltX3ZhbHVlGAEgASgJIiQKCFJlc291cmNlEgwKBHR5cGUYASABKAkSCgoCaWQYAiABKAlCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3JvbGVfYmluZGluZy92MWFscGhhMWIGcHJvdG8z");
+  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEixwIKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASMwoFZ3JvdXAYBCABKAsyIi5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuR3JvdXBIABI3CghyZXNvdXJjZRgFIAEoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5SZXNvdXJjZRIzCgpjcmVhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0ILCglwcmluY2lwYWwiFwoEVXNlchIPCgdzdWJqZWN0GAEgASgJIhwKBUdyb3VwEhMKC2NsYWltX3ZhbHVlGAEgASgJIiQKCFJlc291cmNlEgwKBHR5cGUYASABKAkSCgoCaWQYAiABKAlCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3JvbGVfYmluZGluZy92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * RoleBinding associates a principal (user or group) with a role on a specific
@@ -64,6 +67,20 @@ export type RoleBinding = Message<"proto.role_binding.v1alpha1.RoleBinding"> & {
    * @generated from field: proto.role_binding.v1alpha1.Resource resource = 5;
    */
   resource?: Resource;
+
+  /**
+   * Time of resource creation by user.
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * Time of last resource update by user.
+   *
+   * @generated from field: google.protobuf.Timestamp last_updated_at = 7;
+   */
+  lastUpdatedAt?: Timestamp;
 };
 
 /**
