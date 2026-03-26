@@ -88,6 +88,8 @@ message UpdateTrustZoneServerRequest {
   message UpdateMask {
     // Set to true to update helm values of trust zone server to those provided.
     bool helm_values = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update configuration of the server k8s PSAT node attestor plugin to the value provided.
+    bool connect_k8s_psat_config = 2 [(google.api.field_behavior) = OPTIONAL];
   }
 
   proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1 [(google.api.field_behavior) = REQUIRED];
