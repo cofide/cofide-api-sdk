@@ -9,6 +9,9 @@ syntax = "proto3";
 
 package proto.federation.v1alpha1;
 
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1";
 
 // Federation represents a trust relationship between two trust zones. It allows
@@ -26,4 +29,8 @@ message Federation {
   optional string trust_zone_id = 3;
   // The remote trust zone that this federation points to.
   optional string remote_trust_zone_id = 4;
+  // Time of resource creation by user.
+  google.protobuf.Timestamp created_at = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of last resource update by user.
+  google.protobuf.Timestamp last_updated_at = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

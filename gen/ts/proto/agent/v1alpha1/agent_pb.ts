@@ -10,13 +10,16 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/agent/v1alpha1/agent.proto.
  */
 export const file_proto_agent_v1alpha1_agent: GenFile = /*@__PURE__*/
-  fileDesc("CiBwcm90by9hZ2VudC92MWFscGhhMS9hZ2VudC5wcm90bxIUcHJvdG8uYWdlbnQudjFhbHBoYTEidQoFQWdlbnQSDwoCaWQYASABKAlIAIgBARIXCgpjbHVzdGVyX2lkGAIgASgJSAGIAQESGgoNdHJ1c3Rfem9uZV9pZBgDIAEoCUgCiAEBQgUKA19pZEINCgtfY2x1c3Rlcl9pZEIQCg5fdHJ1c3Rfem9uZV9pZCKwAQoLQWdlbnRTdGF0dXMSOgoGc3RhdHVzGAEgASgOMiUucHJvdG8uYWdlbnQudjFhbHBoYTEuQWdlbnRTdGF0dXNDb2RlSACIAQESGwoOc3RhdHVzX21lc3NhZ2UYAiABKAlIAYgBARIZCgxsYXN0X3VwZGF0ZWQYAyABKANIAogBAUIJCgdfc3RhdHVzQhEKD19zdGF0dXNfbWVzc2FnZUIPCg1fbGFzdF91cGRhdGVkKq8BCg9BZ2VudFN0YXR1c0NvZGUSIQodQUdFTlRfU1RBVFVTX0NPREVfVU5TUEVDSUZJRUQQABIdChlBR0VOVF9TVEFUVVNfQ09ERV9SVU5OSU5HEAESHQoZQUdFTlRfU1RBVFVTX0NPREVfU1RPUFBFRBACEhsKF0FHRU5UX1NUQVRVU19DT0RFX0VSUk9SEAMSHgoaQUdFTlRfU1RBVFVTX0NPREVfU1RBUlRJTkcQBEI+WjxnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vYWdlbnQvdjFhbHBoYTFiBnByb3RvMw");
+  fileDesc("CiBwcm90by9hZ2VudC92MWFscGhhMS9hZ2VudC5wcm90bxIUcHJvdG8uYWdlbnQudjFhbHBoYTEi5AEKBUFnZW50Eg8KAmlkGAEgASgJSACIAQESFwoKY2x1c3Rlcl9pZBgCIAEoCUgBiAEBEhoKDXRydXN0X3pvbmVfaWQYAyABKAlIAogBARIzCgpjcmVhdGVkX2F0GAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IFCgNfaWRCDQoLX2NsdXN0ZXJfaWRCEAoOX3RydXN0X3pvbmVfaWQisAEKC0FnZW50U3RhdHVzEjoKBnN0YXR1cxgBIAEoDjIlLnByb3RvLmFnZW50LnYxYWxwaGExLkFnZW50U3RhdHVzQ29kZUgAiAEBEhsKDnN0YXR1c19tZXNzYWdlGAIgASgJSAGIAQESGQoMbGFzdF91cGRhdGVkGAMgASgDSAKIAQFCCQoHX3N0YXR1c0IRCg9fc3RhdHVzX21lc3NhZ2VCDwoNX2xhc3RfdXBkYXRlZCqvAQoPQWdlbnRTdGF0dXNDb2RlEiEKHUFHRU5UX1NUQVRVU19DT0RFX1VOU1BFQ0lGSUVEEAASHQoZQUdFTlRfU1RBVFVTX0NPREVfUlVOTklORxABEh0KGUFHRU5UX1NUQVRVU19DT0RFX1NUT1BQRUQQAhIbChdBR0VOVF9TVEFUVVNfQ09ERV9FUlJPUhADEh4KGkFHRU5UX1NUQVRVU19DT0RFX1NUQVJUSU5HEARCPlo8Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2FnZW50L3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * Agent represents a Cofide Agent deployed in a cluster. The agent facilitates
@@ -40,6 +43,20 @@ export type Agent = Message<"proto.agent.v1alpha1.Agent"> & {
    * @generated from field: optional string trust_zone_id = 3;
    */
   trustZoneId?: string;
+
+  /**
+   * Time of resource creation by user.
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 4;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * Time of last resource update by user.
+   *
+   * @generated from field: google.protobuf.Timestamp last_updated_at = 5;
+   */
+  lastUpdatedAt?: Timestamp;
 };
 
 /**

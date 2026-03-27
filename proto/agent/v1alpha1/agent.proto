@@ -7,6 +7,9 @@ syntax = "proto3";
 
 package proto.agent.v1alpha1;
 
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1";
 
 // Agent represents a Cofide Agent deployed in a cluster. The agent facilitates
@@ -16,6 +19,10 @@ message Agent {
   optional string id = 1;
   optional string cluster_id = 2;
   optional string trust_zone_id = 3;
+  // Time of resource creation by user.
+  google.protobuf.Timestamp created_at = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of last resource update by user.
+  google.protobuf.Timestamp last_updated_at = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // AgentStatus reports the current operational status of a Cofide Agent.

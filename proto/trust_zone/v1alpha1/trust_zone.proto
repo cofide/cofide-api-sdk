@@ -9,6 +9,8 @@ syntax = "proto3";
 
 package proto.trust_zone.v1alpha1;
 
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 import "proto/spire/api/types/bundle.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1";
@@ -38,6 +40,10 @@ message TrustZone {
   // Whether this trust zone hosts the Connect management plane.
   bool is_management_zone = 10;
   optional string org_id = 11;
+  // Time of resource creation by user.
+  google.protobuf.Timestamp created_at = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of last resource update by user.
+  google.protobuf.Timestamp last_updated_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // BundleEndpointProfile specifies the SPIFFE federation profile used to serve
