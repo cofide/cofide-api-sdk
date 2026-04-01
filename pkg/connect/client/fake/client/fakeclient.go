@@ -11,12 +11,14 @@ import (
 	fakeapbindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/apbinding/v1alpha1/fake"
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
 	fakeattestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1/fake"
-	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
-	fakeexchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1/fake"
+	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
+	fakeauditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1/fake"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	fakeclusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1/fake"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	fakedatastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1/fake"
+	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
+	fakeexchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1/fake"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
 	fakefederationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1/fake"
@@ -37,6 +39,7 @@ import (
 type fakeClientSet struct {
 	agentV1Alpha1             agentv1alpha1.AgentClient
 	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
+	auditV1Alpha1             auditv1alpha1.AuditClient
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
@@ -55,6 +58,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 	return &fakeClientSet{
 		agentV1Alpha1:             fakeagentv1alpha1.New(fake),
 		apBindingV1Alpha1:         fakeapbindingv1alpha1.New(fake),
+		auditV1Alpha1:             fakeauditv1alpha1.New(fake),
 		exchangePolicyV1Alpha1:    fakeexchangepolicyv1alpha1.New(fake),
 		attestationPolicyV1Alpha1: fakeattestationpolicyv1alpha1.New(fake),
 		clusterV1Alpha1:           fakeclusterv1alpha1.New(fake),
@@ -75,6 +79,10 @@ func (c *fakeClientSet) AgentV1Alpha1() agentv1alpha1.AgentClient {
 
 func (c *fakeClientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {
 	return c.apBindingV1Alpha1
+}
+
+func (c *fakeClientSet) AuditV1Alpha1() auditv1alpha1.AuditClient {
+	return c.auditV1Alpha1
 }
 
 func (c *fakeClientSet) ExchangePolicyV1Alpha1() exchangepolicyv1alpha1.ExchangePolicyClient {
