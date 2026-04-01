@@ -6,9 +6,10 @@ import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
-	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
+	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
+	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	federationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/federation/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
@@ -42,6 +43,7 @@ type FakeConnect struct {
 	Workloads           map[string]*workloadpb.Workload
 	Identities          map[string]*identitypb.Identity
 	RoleBindings        map[string]*rolebindingpb.RoleBinding
+	AuditEvents         map[string]*auditpb.Event
 }
 
 func New() *FakeConnect {
@@ -63,6 +65,7 @@ func New() *FakeConnect {
 		Workloads:           make(map[string]*workloadpb.Workload),
 		Identities:          make(map[string]*identitypb.Identity),
 		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
+		AuditEvents:         make(map[string]*auditpb.Event),
 	}
 }
 
@@ -153,6 +156,13 @@ func (f *FakeConnect) ValidateIdentity(identityID string) error {
 func (f *FakeConnect) ValidateRoleBinding(roleBindingID string) error {
 	if _, ok := f.RoleBindings[roleBindingID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid role binding")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateAuditEvent(auditEventID string) error {
+	if _, ok := f.AuditEvents[auditEventID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid audit event")
 	}
 	return nil
 }

@@ -7,9 +7,10 @@ import (
 	agentv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/agent/v1alpha1"
 	apbindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/apbinding/v1alpha1"
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
-	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
+	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
+	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
 	identityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1"
 	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
@@ -37,11 +38,13 @@ type ClientSet interface {
 	WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient
 	IdentityV1Alpha1() identityv1alpha1.IdentityClient
 	RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient
+	AuditV1Alpha1() auditv1alpha1.AuditClient
 }
 
 type clientSet struct {
 	agentV1Alpha1             agentv1alpha1.AgentClient
 	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
+	auditV1Alpha1             auditv1alpha1.AuditClient
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
@@ -60,6 +63,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 	return &clientSet{
 		agentV1Alpha1:             agentv1alpha1.New(conn),
 		apBindingV1Alpha1:         apbindingv1alpha1.New(conn),
+		auditV1Alpha1:             auditv1alpha1.New(conn),
 		exchangePolicyV1Alpha1:    exchangepolicyv1alpha1.New(conn),
 		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
 		clusterV1Alpha1:           clusterv1alpha1.New(conn),
@@ -80,6 +84,10 @@ func (c *clientSet) AgentV1Alpha1() agentv1alpha1.AgentClient {
 
 func (c *clientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {
 	return c.apBindingV1Alpha1
+}
+
+func (c *clientSet) AuditV1Alpha1() auditv1alpha1.AuditClient {
+	return c.auditV1Alpha1
 }
 
 func (c *clientSet) ExchangePolicyV1Alpha1() exchangepolicyv1alpha1.ExchangePolicyClient {

@@ -1,0 +1,123 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.audit.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1";
+
+// Auditable event types
+enum EventType {
+  EVENT_TYPE_UNSPECIFIED = 0;
+  // Attestation Policy
+  EVENT_TYPE_ATTESTATION_POLICY_CREATION = 1;
+  EVENT_TYPE_ATTESTATION_POLICY_UPDATE = 2;
+  EVENT_TYPE_ATTESTATION_POLICY_DELETION = 3;
+  // Attestation Policy Binding
+  EVENT_TYPE_ATTESTATION_POLICY_BINDING_CREATION = 4;
+  EVENT_TYPE_ATTESTATION_POLICY_BINDING_UPDATE = 5;
+  EVENT_TYPE_ATTESTATION_POLICY_BINDING_DELETION = 6;
+  // Cluster
+  EVENT_TYPE_CLUSTER_CREATION = 7;
+  EVENT_TYPE_CLUSTER_UPDATE = 8;
+  EVENT_TYPE_CLUSTER_DELETION = 9;
+  // Cofide Agent
+  EVENT_TYPE_COFIDE_AGENT_REGISTRATION = 10;
+  // Exchange Policy
+  EVENT_TYPE_EXCHANGE_POLICY_CREATION = 11;
+  EVENT_TYPE_EXCHANGE_POLICY_UPDATE = 12;
+  EVENT_TYPE_EXCHANGE_POLICY_DELETION = 13;
+  // Federated Service
+  EVENT_TYPE_FEDERATED_SERVICE_REGISTRATION = 14;
+  EVENT_TYPE_FEDERATED_SERVICE_UPDATE = 15;
+  EVENT_TYPE_FEDERATED_SERVICE_DEREGISTRATION = 16;
+  // Federation
+  EVENT_TYPE_FEDERATION_CREATION = 17;
+  EVENT_TYPE_FEDERATION_DELETION = 19;
+  // Node Attestation
+  EVENT_TYPE_NODE_ATTESTATION = 20;
+  EVENT_TYPE_NODE_DELETION = 21;
+  EVENT_TYPE_NODE_PRUNING = 22;
+  // Role Binding
+  EVENT_TYPE_ROLE_BINDING_CREATION = 23;
+  EVENT_TYPE_ROLE_BINDING_UPDATE = 24;
+  EVENT_TYPE_ROLE_BINDING_DELETION = 25;
+  // Trust Zone
+  EVENT_TYPE_TRUST_ZONE_CREATION = 26;
+  EVENT_TYPE_TRUST_ZONE_UPDATE = 27;
+  EVENT_TYPE_TRUST_ZONE_DELETION = 28;
+  // Trust Zone Server
+  EVENT_TYPE_TRUST_ZONE_SERVER_CREATION = 29;
+  EVENT_TYPE_TRUST_ZONE_SERVER_UPDATE = 30;
+  EVENT_TYPE_TRUST_ZONE_SERVER_DELETION = 31;
+  EVENT_TYPE_TRUST_ZONE_SERVER_STATUS_UPDATE = 32;
+  // Workload
+  EVENT_TYPE_WORKLOAD_OBSERVATION = 33;
+  EVENT_TYPE_WORKLOAD_DELETION_OBSERVATION = 34;
+}
+
+// Entity types audit events can be linked to
+enum EntityType {
+  ENTITY_TYPE_UNSPECIFIED = 0;
+  ENTITY_TYPE_ATTESTATION_POLICY = 1;
+  ENTITY_TYPE_ATTESTATION_POLICY_BINDING = 2;
+  ENTITY_TYPE_CLUSTER = 3;
+  ENTITY_TYPE_COFIDE_AGENT = 4;
+  ENTITY_TYPE_EXCHANGE_POLICY = 5;
+  ENTITY_TYPE_FEDERATED_SERVICE = 6;
+  ENTITY_TYPE_FEDERATION = 7;
+  ENTITY_TYPE_NODE = 8;
+  ENTITY_TYPE_ORGANIZATION = 9;
+  ENTITY_TYPE_ROLE_BINDING = 10;
+  ENTITY_TYPE_TRUST_ZONE = 11;
+  ENTITY_TYPE_TRUST_ZONE_SERVER = 12;
+  ENTITY_TYPE_WORKLOAD = 13;
+}
+
+// Outcome of the action that caused the event.
+enum Outcome {
+  OUTCOME_UNSPECIFIED = 0;
+  OUTCOME_SUCCESS = 1;
+  OUTCOME_DENIED = 2;
+}
+
+// A link to another entity.
+message EntityLink {
+  EntityType type = 1;
+  string id = 2;
+}
+
+// An auditable event that occurred within the system.
+message Event {
+  // Unique identifier for the event.
+  string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Timestamp of the event. This is when the event was recorded, clock drift or system delays may mean that
+  // this does not align precisely with timestamps on linked resources.
+  google.protobuf.Timestamp occurred_at = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Type of the event, so that events can be filtered on read.
+  EventType type = 3 [(google.api.field_behavior) = REQUIRED];
+  // Human friendly description of what occurred.
+  string message = 4 [(google.api.field_behavior) = REQUIRED];
+  // Linked entities. An event may be linked to many entities. These links will persist even if the entities themselves
+  // are removed so it is always possible to trace the events back through the system.
+  // At least one link is required.
+  repeated EntityLink links = 5 [(google.api.field_behavior) = OPTIONAL];
+  // JSON-serialised data specific to the event type, suitable for display and reconstructing a sequence of actions.
+  // The schema of this field is intentionally independent of the current proto definitions to ensure historical
+  // accuracy - the data represents the state of entities at the time of the event, not their current schema.
+  bytes data = 6 [(google.api.field_behavior) = REQUIRED];
+  // Identifier of the actor that caused the event. For users this is the JWT sub claim, for workloads this is their
+  // SPIFFE ID, and for internal events not triggered by an external actor this is "system".
+  string actor = 7 [(google.api.field_behavior) = REQUIRED];
+  // Source IP address of the request that caused the event, as observed by the Envoy sidecar proxy. Not present for
+  // internally-generated events (e.g. where actor is "system").
+  string source_ip = 8 [(google.api.field_behavior) = OPTIONAL];
+  // Outcome of the action that caused the event.
+  Outcome outcome = 9 [(google.api.field_behavior) = REQUIRED];
+  // Version of the Connect server software that generated this event (e.g. "1.2.3").
+  string server_version = 10 [(google.api.field_behavior) = REQUIRED];
+}
