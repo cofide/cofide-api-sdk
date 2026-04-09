@@ -99,6 +99,9 @@ const (
 	// DataSourcePluginServiceListAPBindingsProcedure is the fully-qualified name of the
 	// DataSourcePluginService's ListAPBindings RPC.
 	DataSourcePluginServiceListAPBindingsProcedure = "/proto.cofidectl.datasource_plugin.v1alpha2.DataSourcePluginService/ListAPBindings"
+	// DataSourcePluginServiceUpdateAPBindingProcedure is the fully-qualified name of the
+	// DataSourcePluginService's UpdateAPBinding RPC.
+	DataSourcePluginServiceUpdateAPBindingProcedure = "/proto.cofidectl.datasource_plugin.v1alpha2.DataSourcePluginService/UpdateAPBinding"
 	// DataSourcePluginServiceAddFederationProcedure is the fully-qualified name of the
 	// DataSourcePluginService's AddFederation RPC.
 	DataSourcePluginServiceAddFederationProcedure = "/proto.cofidectl.datasource_plugin.v1alpha2.DataSourcePluginService/AddFederation"
@@ -134,6 +137,7 @@ type DataSourcePluginServiceClient interface {
 	AddAPBinding(context.Context, *connect.Request[v1alpha2.AddAPBindingRequest]) (*connect.Response[v1alpha2.AddAPBindingResponse], error)
 	DestroyAPBinding(context.Context, *connect.Request[v1alpha2.DestroyAPBindingRequest]) (*connect.Response[v1alpha2.DestroyAPBindingResponse], error)
 	ListAPBindings(context.Context, *connect.Request[v1alpha2.ListAPBindingsRequest]) (*connect.Response[v1alpha2.ListAPBindingsResponse], error)
+	UpdateAPBinding(context.Context, *connect.Request[v1alpha2.UpdateAPBindingRequest]) (*connect.Response[v1alpha2.UpdateAPBindingResponse], error)
 	AddFederation(context.Context, *connect.Request[v1alpha2.AddFederationRequest]) (*connect.Response[v1alpha2.AddFederationResponse], error)
 	DestroyFederation(context.Context, *connect.Request[v1alpha2.DestroyFederationRequest]) (*connect.Response[v1alpha2.DestroyFederationResponse], error)
 	ListFederations(context.Context, *connect.Request[v1alpha2.ListFederationsRequest]) (*connect.Response[v1alpha2.ListFederationsResponse], error)
@@ -277,6 +281,12 @@ func NewDataSourcePluginServiceClient(httpClient connect.HTTPClient, baseURL str
 			connect.WithSchema(dataSourcePluginServiceMethods.ByName("ListAPBindings")),
 			connect.WithClientOptions(opts...),
 		),
+		updateAPBinding: connect.NewClient[v1alpha2.UpdateAPBindingRequest, v1alpha2.UpdateAPBindingResponse](
+			httpClient,
+			baseURL+DataSourcePluginServiceUpdateAPBindingProcedure,
+			connect.WithSchema(dataSourcePluginServiceMethods.ByName("UpdateAPBinding")),
+			connect.WithClientOptions(opts...),
+		),
 		addFederation: connect.NewClient[v1alpha2.AddFederationRequest, v1alpha2.AddFederationResponse](
 			httpClient,
 			baseURL+DataSourcePluginServiceAddFederationProcedure,
@@ -321,6 +331,7 @@ type dataSourcePluginServiceClient struct {
 	addAPBinding               *connect.Client[v1alpha2.AddAPBindingRequest, v1alpha2.AddAPBindingResponse]
 	destroyAPBinding           *connect.Client[v1alpha2.DestroyAPBindingRequest, v1alpha2.DestroyAPBindingResponse]
 	listAPBindings             *connect.Client[v1alpha2.ListAPBindingsRequest, v1alpha2.ListAPBindingsResponse]
+	updateAPBinding            *connect.Client[v1alpha2.UpdateAPBindingRequest, v1alpha2.UpdateAPBindingResponse]
 	addFederation              *connect.Client[v1alpha2.AddFederationRequest, v1alpha2.AddFederationResponse]
 	destroyFederation          *connect.Client[v1alpha2.DestroyFederationRequest, v1alpha2.DestroyFederationResponse]
 	listFederations            *connect.Client[v1alpha2.ListFederationsRequest, v1alpha2.ListFederationsResponse]
@@ -449,6 +460,12 @@ func (c *dataSourcePluginServiceClient) ListAPBindings(ctx context.Context, req 
 	return c.listAPBindings.CallUnary(ctx, req)
 }
 
+// UpdateAPBinding calls
+// proto.cofidectl.datasource_plugin.v1alpha2.DataSourcePluginService.UpdateAPBinding.
+func (c *dataSourcePluginServiceClient) UpdateAPBinding(ctx context.Context, req *connect.Request[v1alpha2.UpdateAPBindingRequest]) (*connect.Response[v1alpha2.UpdateAPBindingResponse], error) {
+	return c.updateAPBinding.CallUnary(ctx, req)
+}
+
 // AddFederation calls
 // proto.cofidectl.datasource_plugin.v1alpha2.DataSourcePluginService.AddFederation.
 func (c *dataSourcePluginServiceClient) AddFederation(ctx context.Context, req *connect.Request[v1alpha2.AddFederationRequest]) (*connect.Response[v1alpha2.AddFederationResponse], error) {
@@ -491,6 +508,7 @@ type DataSourcePluginServiceHandler interface {
 	AddAPBinding(context.Context, *connect.Request[v1alpha2.AddAPBindingRequest]) (*connect.Response[v1alpha2.AddAPBindingResponse], error)
 	DestroyAPBinding(context.Context, *connect.Request[v1alpha2.DestroyAPBindingRequest]) (*connect.Response[v1alpha2.DestroyAPBindingResponse], error)
 	ListAPBindings(context.Context, *connect.Request[v1alpha2.ListAPBindingsRequest]) (*connect.Response[v1alpha2.ListAPBindingsResponse], error)
+	UpdateAPBinding(context.Context, *connect.Request[v1alpha2.UpdateAPBindingRequest]) (*connect.Response[v1alpha2.UpdateAPBindingResponse], error)
 	AddFederation(context.Context, *connect.Request[v1alpha2.AddFederationRequest]) (*connect.Response[v1alpha2.AddFederationResponse], error)
 	DestroyFederation(context.Context, *connect.Request[v1alpha2.DestroyFederationRequest]) (*connect.Response[v1alpha2.DestroyFederationResponse], error)
 	ListFederations(context.Context, *connect.Request[v1alpha2.ListFederationsRequest]) (*connect.Response[v1alpha2.ListFederationsResponse], error)
@@ -629,6 +647,12 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 		connect.WithSchema(dataSourcePluginServiceMethods.ByName("ListAPBindings")),
 		connect.WithHandlerOptions(opts...),
 	)
+	dataSourcePluginServiceUpdateAPBindingHandler := connect.NewUnaryHandler(
+		DataSourcePluginServiceUpdateAPBindingProcedure,
+		svc.UpdateAPBinding,
+		connect.WithSchema(dataSourcePluginServiceMethods.ByName("UpdateAPBinding")),
+		connect.WithHandlerOptions(opts...),
+	)
 	dataSourcePluginServiceAddFederationHandler := connect.NewUnaryHandler(
 		DataSourcePluginServiceAddFederationProcedure,
 		svc.AddFederation,
@@ -691,6 +715,8 @@ func NewDataSourcePluginServiceHandler(svc DataSourcePluginServiceHandler, opts 
 			dataSourcePluginServiceDestroyAPBindingHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceListAPBindingsProcedure:
 			dataSourcePluginServiceListAPBindingsHandler.ServeHTTP(w, r)
+		case DataSourcePluginServiceUpdateAPBindingProcedure:
+			dataSourcePluginServiceUpdateAPBindingHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceAddFederationProcedure:
 			dataSourcePluginServiceAddFederationHandler.ServeHTTP(w, r)
 		case DataSourcePluginServiceDestroyFederationProcedure:
@@ -788,6 +814,10 @@ func (UnimplementedDataSourcePluginServiceHandler) DestroyAPBinding(context.Cont
 
 func (UnimplementedDataSourcePluginServiceHandler) ListAPBindings(context.Context, *connect.Request[v1alpha2.ListAPBindingsRequest]) (*connect.Response[v1alpha2.ListAPBindingsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl.datasource_plugin.v1alpha2.DataSourcePluginService.ListAPBindings is not implemented"))
+}
+
+func (UnimplementedDataSourcePluginServiceHandler) UpdateAPBinding(context.Context, *connect.Request[v1alpha2.UpdateAPBindingRequest]) (*connect.Response[v1alpha2.UpdateAPBindingResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cofidectl.datasource_plugin.v1alpha2.DataSourcePluginService.UpdateAPBinding is not implemented"))
 }
 
 func (UnimplementedDataSourcePluginServiceHandler) AddFederation(context.Context, *connect.Request[v1alpha2.AddFederationRequest]) (*connect.Response[v1alpha2.AddFederationResponse], error) {

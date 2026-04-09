@@ -39,6 +39,7 @@ service DataSourcePluginService {
   rpc AddAPBinding(AddAPBindingRequest) returns (AddAPBindingResponse);
   rpc DestroyAPBinding(DestroyAPBindingRequest) returns (DestroyAPBindingResponse);
   rpc ListAPBindings(ListAPBindingsRequest) returns (ListAPBindingsResponse);
+  rpc UpdateAPBinding(UpdateAPBindingRequest) returns (UpdateAPBindingResponse);
 
   rpc AddFederation(AddFederationRequest) returns (AddFederationResponse);
   rpc DestroyFederation(DestroyFederationRequest) returns (DestroyFederationResponse);
@@ -203,6 +204,14 @@ message ListAPBindingsRequest {
 
 message ListAPBindingsResponse {
   repeated proto.ap_binding.v1alpha1.APBinding bindings = 1;
+}
+
+message UpdateAPBindingRequest {
+  proto.ap_binding.v1alpha1.APBinding binding = 1;
+}
+
+message UpdateAPBindingResponse {
+  proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
 message AddFederationRequest {
