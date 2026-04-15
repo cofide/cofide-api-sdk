@@ -41,6 +41,8 @@ message FederatedService {
   google.protobuf.Timestamp created_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update by user.
   google.protobuf.Timestamp last_updated_at = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // SPIFFE identity of the application(s) referenced by this Federated Service
+  Identity identity = 15 [(google.api.field_behavior) = REQUIRED];
 }
 
 // GatewayEntry is a gateway address discovered automatically by the Cofide Agent
@@ -68,4 +70,21 @@ enum TLSMode {
   TLS_MODE_MTLS = 1;
   // Istio-managed mTLS, for clusters using an Istio service mesh.
   TLS_MODE_ISTIO_MTLS = 2;
+}
+
+// Identity is the SPIFFE ID consumers of a Federated Service should expect.
+// match_type can be used to allow matches beyond simple exact string matches.
+message Identity {
+  IdentityMatchType match_type = 1 [(google.api.field_behavior) = REQUIRED];
+  string value = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// IdentityMatchType specifies how consumers should validate the SPIFFE ID of
+// the server matches that the Federated Service is expected to present.
+enum IdentityMatchType {
+  IDENTITY_MATCH_TYPE_UNSPECIFIED = 0;
+  // Exact match - string equality on the entire SPIFFE ID.
+  IDENTITY_MATCH_TYPE_EXACT = 1;
+  // Prefix match - string equality on the SPIFFE ID's prefix.
+  IDENTITY_MATCH_TYPE_PREFIX = 2;
 }

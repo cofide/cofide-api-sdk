@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/federated_service/v1alpha1/federated_service.proto.
  */
 export const file_proto_federated_service_v1alpha1_federated_service: GenFile = /*@__PURE__*/
-  fileDesc("Cjhwcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMS9mZWRlcmF0ZWRfc2VydmljZS5wcm90bxIgcHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEi7AQKEEZlZGVyYXRlZFNlcnZpY2USCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSFAoMY2x1c3Rlcl9uYW1lGAQgASgJEhQKDHRydXN0X2RvbWFpbhgFIAEoCRJfCg93b3JrbG9hZF9sYWJlbHMYByADKAsyRi5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5GZWRlcmF0ZWRTZXJ2aWNlLldvcmtsb2FkTGFiZWxzRW50cnkSHgoWZXhwb3J0ZWRfdHJ1c3RfZG9tYWlucxgIIAMoCRIMCgRwb3J0GAkgASgNEkcKD2dhdGV3YXlfZW50cmllcxgKIAMoCzIuLnByb3RvLmZlZGVyYXRlZF9zZXJ2aWNlLnYxYWxwaGExLkdhdGV3YXlFbnRyeRJECg1nYXRld2F5X3NwZWNzGAsgAygLMi0ucHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEuR2F0ZXdheVNwZWMSOwoIdGxzX21vZGUYDCABKA4yKS5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5UTFNNb2RlEjMKCmNyZWF0ZWRfYXQYDSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GA4gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDGjUKE1dvcmtsb2FkTGFiZWxzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASJICgxHYXRld2F5RW50cnkSEAoIaG9zdG5hbWUYASABKAkSDAoEdHlwZRgCIAEoCRIKCgJpcBgDIAEoCRIMCgRwb3J0GAQgASgFIkcKC0dhdGV3YXlTcGVjEhAKCGhvc3RuYW1lGAEgASgJEgwKBHR5cGUYAiABKAkSCgoCaXAYAyABKAkSDAoEcG9ydBgEIAEoBSpPCgdUTFNNb2RlEhgKFFRMU19NT0RFX1VOU1BFQ0lGSUVEEAASEQoNVExTX01PREVfTVRMUxABEhcKE1RMU19NT0RFX0lTVElPX01UTFMQAkJKWkhnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vZmVkZXJhdGVkX3NlcnZpY2UvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("Cjhwcm90by9mZWRlcmF0ZWRfc2VydmljZS92MWFscGhhMS9mZWRlcmF0ZWRfc2VydmljZS5wcm90bxIgcHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEirwUKEEZlZGVyYXRlZFNlcnZpY2USCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSFAoMY2x1c3Rlcl9uYW1lGAQgASgJEhQKDHRydXN0X2RvbWFpbhgFIAEoCRJfCg93b3JrbG9hZF9sYWJlbHMYByADKAsyRi5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5GZWRlcmF0ZWRTZXJ2aWNlLldvcmtsb2FkTGFiZWxzRW50cnkSHgoWZXhwb3J0ZWRfdHJ1c3RfZG9tYWlucxgIIAMoCRIMCgRwb3J0GAkgASgNEkcKD2dhdGV3YXlfZW50cmllcxgKIAMoCzIuLnByb3RvLmZlZGVyYXRlZF9zZXJ2aWNlLnYxYWxwaGExLkdhdGV3YXlFbnRyeRJECg1nYXRld2F5X3NwZWNzGAsgAygLMi0ucHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEuR2F0ZXdheVNwZWMSOwoIdGxzX21vZGUYDCABKA4yKS5wcm90by5mZWRlcmF0ZWRfc2VydmljZS52MWFscGhhMS5UTFNNb2RlEjMKCmNyZWF0ZWRfYXQYDSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GA4gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEkEKCGlkZW50aXR5GA8gASgLMioucHJvdG8uZmVkZXJhdGVkX3NlcnZpY2UudjFhbHBoYTEuSWRlbnRpdHlCA+BBAho1ChNXb3JrbG9hZExhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiSAoMR2F0ZXdheUVudHJ5EhAKCGhvc3RuYW1lGAEgASgJEgwKBHR5cGUYAiABKAkSCgoCaXAYAyABKAkSDAoEcG9ydBgEIAEoBSJHCgtHYXRld2F5U3BlYxIQCghob3N0bmFtZRgBIAEoCRIMCgR0eXBlGAIgASgJEgoKAmlwGAMgASgJEgwKBHBvcnQYBCABKAUibAoISWRlbnRpdHkSTAoKbWF0Y2hfdHlwZRgBIAEoDjIzLnByb3RvLmZlZGVyYXRlZF9zZXJ2aWNlLnYxYWxwaGExLklkZW50aXR5TWF0Y2hUeXBlQgPgQQISEgoFdmFsdWUYAiABKAlCA+BBAipPCgdUTFNNb2RlEhgKFFRMU19NT0RFX1VOU1BFQ0lGSUVEEAASEQoNVExTX01PREVfTVRMUxABEhcKE1RMU19NT0RFX0lTVElPX01UTFMQAip3ChFJZGVudGl0eU1hdGNoVHlwZRIjCh9JREVOVElUWV9NQVRDSF9UWVBFX1VOU1BFQ0lGSUVEEAASHQoZSURFTlRJVFlfTUFUQ0hfVFlQRV9FWEFDVBABEh4KGklERU5USVRZX01BVENIX1RZUEVfUFJFRklYEAJCSlpIZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2ZlZGVyYXRlZF9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * FederatedService simplifies secure connectivity between workloads in different
@@ -112,6 +112,13 @@ export type FederatedService = Message<"proto.federated_service.v1alpha1.Federat
    * @generated from field: google.protobuf.Timestamp last_updated_at = 14;
    */
   lastUpdatedAt?: Timestamp;
+
+  /**
+   * SPIFFE identity of the application(s) referenced by this Federated Service
+   *
+   * @generated from field: proto.federated_service.v1alpha1.Identity identity = 15;
+   */
+  identity?: Identity;
 };
 
 /**
@@ -192,6 +199,31 @@ export const GatewaySpecSchema: GenMessage<GatewaySpec> = /*@__PURE__*/
   messageDesc(file_proto_federated_service_v1alpha1_federated_service, 2);
 
 /**
+ * Identity is the SPIFFE ID consumers of a Federated Service should expect.
+ * match_type can be used to allow matches beyond simple exact string matches.
+ *
+ * @generated from message proto.federated_service.v1alpha1.Identity
+ */
+export type Identity = Message<"proto.federated_service.v1alpha1.Identity"> & {
+  /**
+   * @generated from field: proto.federated_service.v1alpha1.IdentityMatchType match_type = 1;
+   */
+  matchType: IdentityMatchType;
+
+  /**
+   * @generated from field: string value = 2;
+   */
+  value: string;
+};
+
+/**
+ * Describes the message proto.federated_service.v1alpha1.Identity.
+ * Use `create(IdentitySchema)` to create a new message.
+ */
+export const IdentitySchema: GenMessage<Identity> = /*@__PURE__*/
+  messageDesc(file_proto_federated_service_v1alpha1_federated_service, 3);
+
+/**
  * TLSMode specifies the mutual TLS mode used for a federated service connection.
  *
  * @generated from enum proto.federated_service.v1alpha1.TLSMode
@@ -222,4 +254,37 @@ export enum TLSMode {
  */
 export const TLSModeSchema: GenEnum<TLSMode> = /*@__PURE__*/
   enumDesc(file_proto_federated_service_v1alpha1_federated_service, 0);
+
+/**
+ * IdentityMatchType specifies how consumers should validate the SPIFFE ID of
+ * the server matches that the Federated Service is expected to present.
+ *
+ * @generated from enum proto.federated_service.v1alpha1.IdentityMatchType
+ */
+export enum IdentityMatchType {
+  /**
+   * @generated from enum value: IDENTITY_MATCH_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Exact match - string equality on the entire SPIFFE ID.
+   *
+   * @generated from enum value: IDENTITY_MATCH_TYPE_EXACT = 1;
+   */
+  EXACT = 1,
+
+  /**
+   * Prefix match - string equality on the SPIFFE ID's prefix.
+   *
+   * @generated from enum value: IDENTITY_MATCH_TYPE_PREFIX = 2;
+   */
+  PREFIX = 2,
+}
+
+/**
+ * Describes the enum proto.federated_service.v1alpha1.IdentityMatchType.
+ */
+export const IdentityMatchTypeSchema: GenEnum<IdentityMatchType> = /*@__PURE__*/
+  enumDesc(file_proto_federated_service_v1alpha1_federated_service, 1);
 
