@@ -41,8 +41,8 @@ message FederatedService {
   google.protobuf.Timestamp created_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update by user.
   google.protobuf.Timestamp last_updated_at = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
-  // SPIFFE identity of the application(s) referenced by this Federated Service
-  string spiffe_id = 15 [(google.api.field_behavior) = REQUIRED];
+  // SPIFFE identities of the application(s) referenced by this Federated Service
+  repeated string spiffe_ids = 15 [(google.api.field_behavior) = REQUIRED];
 }
 
 // GatewayEntry is a gateway address discovered automatically by the Cofide Agent
