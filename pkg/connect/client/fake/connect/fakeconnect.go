@@ -40,6 +40,7 @@ type FakeConnect struct {
 	Federations         map[string]*federationpb.Federation
 	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
 	Workloads           map[string]*workloadpb.Workload
+	WorkloadEvents      []*workloadpb.WorkloadEvent
 	Identities          map[string]*identitypb.Identity
 	RoleBindings        map[string]*rolebindingpb.RoleBinding
 }
@@ -61,6 +62,7 @@ func New() *FakeConnect {
 		Federations:         make(map[string]*federationpb.Federation),
 		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
 		Workloads:           make(map[string]*workloadpb.Workload),
+		WorkloadEvents:      []*workloadpb.WorkloadEvent{},
 		Identities:          make(map[string]*identitypb.Identity),
 		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
 	}

@@ -16,13 +16,15 @@ import type { Duration } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Workload } from "../../../workload/v1alpha1/workload_pb";
 import { file_proto_workload_v1alpha1_workload } from "../../../workload/v1alpha1/workload_pb";
+import type { ListWorkloadEventsRequestSchema, ListWorkloadEventsResponseSchema, PublishWorkloadEventsRequestSchema, PublishWorkloadEventsResponseSchema } from "../../../workload/v1alpha1/workload_event_pb";
+import { file_proto_workload_v1alpha1_workload_event } from "../../../workload/v1alpha1/workload_event_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/connect/workload_service/v1alpha1/workload_service.proto.
  */
 export const file_proto_connect_workload_service_v1alpha1_workload_service: GenFile = /*@__PURE__*/
-  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIroCChRMaXN0V29ya2xvYWRzUmVxdWVzdBJZCgZmaWx0ZXIYASABKAsyRC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2Fkc1JlcXVlc3QuRmlsdGVySACIAQEauwEKBkZpbHRlchITCgZvcmdfaWQYAyABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAEgASgJSAGIAQESFwoKY2x1c3Rlcl9pZBgCIAEoCUgCiAEBEi8KB21heF9hZ2UYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IA4gBAUIJCgdfb3JnX2lkQhAKDl90cnVzdF96b25lX2lkQg0KC19jbHVzdGVyX2lkQgoKCF9tYXhfYWdlQgkKB19maWx0ZXIiTQoVTGlzdFdvcmtsb2Fkc1Jlc3BvbnNlEjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIk8KF1B1Ymxpc2hXb3JrbG9hZHNSZXF1ZXN0EjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIhoKGFB1Ymxpc2hXb3JrbG9hZHNSZXNwb25zZTK+AgoPV29ya2xvYWRTZXJ2aWNlEo4BCg1MaXN0V29ya2xvYWRzEj0ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXF1ZXN0Gj4ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXNwb25zZRKZAQoQUHVibGlzaFdvcmtsb2FkcxJALnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVxdWVzdBpBLnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVzcG9uc2UoAUJRWk9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29ubmVjdC93b3JrbG9hZF9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_duration, file_proto_workload_v1alpha1_workload]);
+  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIroCChRMaXN0V29ya2xvYWRzUmVxdWVzdBJZCgZmaWx0ZXIYASABKAsyRC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2Fkc1JlcXVlc3QuRmlsdGVySACIAQEauwEKBkZpbHRlchITCgZvcmdfaWQYAyABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAEgASgJSAGIAQESFwoKY2x1c3Rlcl9pZBgCIAEoCUgCiAEBEi8KB21heF9hZ2UYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IA4gBAUIJCgdfb3JnX2lkQhAKDl90cnVzdF96b25lX2lkQg0KC19jbHVzdGVyX2lkQgoKCF9tYXhfYWdlQgkKB19maWx0ZXIiTQoVTGlzdFdvcmtsb2Fkc1Jlc3BvbnNlEjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIk8KF1B1Ymxpc2hXb3JrbG9hZHNSZXF1ZXN0EjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIhoKGFB1Ymxpc2hXb3JrbG9hZHNSZXNwb25zZTLIBAoPV29ya2xvYWRTZXJ2aWNlEo4BCg1MaXN0V29ya2xvYWRzEj0ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXF1ZXN0Gj4ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXNwb25zZRKZAQoQUHVibGlzaFdvcmtsb2FkcxJALnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVxdWVzdBpBLnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVzcG9uc2UoARJ9ChJMaXN0V29ya2xvYWRFdmVudHMSMi5wcm90by53b3JrbG9hZC52MWFscGhhMS5MaXN0V29ya2xvYWRFdmVudHNSZXF1ZXN0GjMucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGlzdFdvcmtsb2FkRXZlbnRzUmVzcG9uc2USiAEKFVB1Ymxpc2hXb3JrbG9hZEV2ZW50cxI1LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLlB1Ymxpc2hXb3JrbG9hZEV2ZW50c1JlcXVlc3QaNi5wcm90by53b3JrbG9hZC52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRFdmVudHNSZXNwb25zZSgBQlFaT2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_duration, file_proto_workload_v1alpha1_workload, file_proto_workload_v1alpha1_workload_event]);
 
 /**
  * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadsRequest
@@ -151,6 +153,28 @@ export const WorkloadService: GenService<{
     methodKind: "client_streaming";
     input: typeof PublishWorkloadsRequestSchema;
     output: typeof PublishWorkloadsResponseSchema;
+  },
+  /**
+   * ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+   * matching the optional filter.
+   *
+   * @generated from rpc proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloadEvents
+   */
+  listWorkloadEvents: {
+    methodKind: "unary";
+    input: typeof ListWorkloadEventsRequestSchema;
+    output: typeof ListWorkloadEventsResponseSchema;
+  },
+  /**
+   * PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
+   * exporter to deliver WorkloadEvent records to the Connect control plane.
+   *
+   * @generated from rpc proto.connect.workload_service.v1alpha1.WorkloadService.PublishWorkloadEvents
+   */
+  publishWorkloadEvents: {
+    methodKind: "client_streaming";
+    input: typeof PublishWorkloadEventsRequestSchema;
+    output: typeof PublishWorkloadEventsResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 0);

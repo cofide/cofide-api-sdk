@@ -1,0 +1,103 @@
+// Copyright 2025 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines WorkloadEvent and related types representing runtime SVID
+// issuance events emitted by the SPIRE agent during FetchX509SVID. These events
+// are post-attestation records capturing attestation outcomes, selector observations,
+// and per-identity delivery for audit and UI consumption.
+syntax = "proto3";
+
+package proto.workload.v1alpha1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
+
+// Selector preserves the SPIRE type+value structure of *common.Selector.
+// Keeping type and value separate (rather than a single "type:value" string)
+// allows downstream consumers to filter on either dimension independently.
+message Selector {
+  string type  = 1;
+  string value = 2;
+}
+
+// WorkloadEvent is the top-level audit record emitted during FetchX509SVID.
+// Fields common to all events from a single workload connection — caller_pid,
+// selectors, selectors_incomplete — are carried at the wrapper level rather
+// than repeated on each sub-event.
+message WorkloadEvent {
+  string org_id        = 1;
+  string trust_zone_id = 2;
+  string cluster_id    = 3;
+
+  google.protobuf.Timestamp observed_timestamp = 4;
+
+  // caller_pid is the PID of the workload process that opened the Workload API
+  // stream. Absent when the runtime context does not expose the caller PID.
+  optional int32    caller_pid           = 5;
+  repeated Selector selectors            = 6;
+  // selectors_incomplete indicates that one or more attestor plugins failed
+  // during attestation, so the selector set may not be exhaustive.
+  bool              selectors_incomplete = 7;
+
+  oneof event {
+    AttestationEvent       attestation        = 10;
+    IdentityDeliveredEvent identity_delivered = 11;
+    NoIdentityEvent        no_identity        = 12;
+  }
+}
+
+// AttestationEvent is emitted once per FetchX509SVID call, immediately after
+// the agent's Attestor.Attest returns.
+message AttestationEvent {
+  enum Outcome {
+    OUTCOME_UNSPECIFIED = 0;
+    // Attest() returned nil — selectors were computed successfully.
+    OUTCOME_ATTESTED    = 1;
+    // Attest() returned a non-nil error (e.g. context cancelled).
+    OUTCOME_FAILED      = 2;
+  }
+
+  Outcome         outcome = 1;
+  optional string error   = 2;
+}
+
+// IdentityDeliveredEvent is emitted once per SVID after a successful
+// stream.Send(), capturing the certificate details of the delivered identity.
+message IdentityDeliveredEvent {
+  string                    entry_id      = 1;
+  string                    spiffe_id     = 2;
+  string                    serial_number = 3;
+  google.protobuf.Timestamp not_before    = 4;
+  google.protobuf.Timestamp not_after     = 5;
+}
+
+// NoIdentityEvent is emitted when a cache update is received but all
+// candidate identities are filtered out, leaving the workload with no SVIDs.
+message NoIdentityEvent {
+  string error = 1;
+}
+
+message PublishWorkloadEventsRequest {
+  repeated WorkloadEvent events = 1;
+}
+
+message PublishWorkloadEventsResponse {}
+
+message ListWorkloadEventsRequest {
+  message Filter {
+    string                            org_id        = 1;
+    string                            trust_zone_id = 2;
+    string                            cluster_id    = 3;
+    optional google.protobuf.Duration max_age       = 4;
+    optional string                   spiffe_id     = 5;
+    optional string                   entry_id      = 6;
+  }
+
+  optional Filter filter = 1;
+}
+
+message ListWorkloadEventsResponse {
+  repeated WorkloadEvent events = 1;
+}

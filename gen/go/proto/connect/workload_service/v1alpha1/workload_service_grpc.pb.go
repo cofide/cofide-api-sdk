@@ -16,6 +16,7 @@ package v1alpha1
 
 import (
 	context "context"
+	v1alpha1 "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -27,8 +28,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WorkloadService_ListWorkloads_FullMethodName    = "/proto.connect.workload_service.v1alpha1.WorkloadService/ListWorkloads"
-	WorkloadService_PublishWorkloads_FullMethodName = "/proto.connect.workload_service.v1alpha1.WorkloadService/PublishWorkloads"
+	WorkloadService_ListWorkloads_FullMethodName         = "/proto.connect.workload_service.v1alpha1.WorkloadService/ListWorkloads"
+	WorkloadService_PublishWorkloads_FullMethodName      = "/proto.connect.workload_service.v1alpha1.WorkloadService/PublishWorkloads"
+	WorkloadService_ListWorkloadEvents_FullMethodName    = "/proto.connect.workload_service.v1alpha1.WorkloadService/ListWorkloadEvents"
+	WorkloadService_PublishWorkloadEvents_FullMethodName = "/proto.connect.workload_service.v1alpha1.WorkloadService/PublishWorkloadEvents"
 )
 
 // WorkloadServiceClient is the client API for WorkloadService service.
@@ -45,6 +48,12 @@ type WorkloadServiceClient interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[PublishWorkloadsRequest, PublishWorkloadsResponse], error)
+	// ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+	// matching the optional filter.
+	ListWorkloadEvents(ctx context.Context, in *v1alpha1.ListWorkloadEventsRequest, opts ...grpc.CallOption) (*v1alpha1.ListWorkloadEventsResponse, error)
+	// PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
+	// exporter to deliver WorkloadEvent records to the Connect control plane.
+	PublishWorkloadEvents(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse], error)
 }
 
 type workloadServiceClient struct {
@@ -78,6 +87,29 @@ func (c *workloadServiceClient) PublishWorkloads(ctx context.Context, opts ...gr
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type WorkloadService_PublishWorkloadsClient = grpc.ClientStreamingClient[PublishWorkloadsRequest, PublishWorkloadsResponse]
 
+func (c *workloadServiceClient) ListWorkloadEvents(ctx context.Context, in *v1alpha1.ListWorkloadEventsRequest, opts ...grpc.CallOption) (*v1alpha1.ListWorkloadEventsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(v1alpha1.ListWorkloadEventsResponse)
+	err := c.cc.Invoke(ctx, WorkloadService_ListWorkloadEvents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workloadServiceClient) PublishWorkloadEvents(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &WorkloadService_ServiceDesc.Streams[1], WorkloadService_PublishWorkloadEvents_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type WorkloadService_PublishWorkloadEventsClient = grpc.ClientStreamingClient[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]
+
 // WorkloadServiceServer is the server API for WorkloadService service.
 // All implementations should embed UnimplementedWorkloadServiceServer
 // for forward compatibility.
@@ -92,6 +124,12 @@ type WorkloadServiceServer interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(grpc.ClientStreamingServer[PublishWorkloadsRequest, PublishWorkloadsResponse]) error
+	// ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+	// matching the optional filter.
+	ListWorkloadEvents(context.Context, *v1alpha1.ListWorkloadEventsRequest) (*v1alpha1.ListWorkloadEventsResponse, error)
+	// PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
+	// exporter to deliver WorkloadEvent records to the Connect control plane.
+	PublishWorkloadEvents(grpc.ClientStreamingServer[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]) error
 }
 
 // UnimplementedWorkloadServiceServer should be embedded to have
@@ -106,6 +144,12 @@ func (UnimplementedWorkloadServiceServer) ListWorkloads(context.Context, *ListWo
 }
 func (UnimplementedWorkloadServiceServer) PublishWorkloads(grpc.ClientStreamingServer[PublishWorkloadsRequest, PublishWorkloadsResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method PublishWorkloads not implemented")
+}
+func (UnimplementedWorkloadServiceServer) ListWorkloadEvents(context.Context, *v1alpha1.ListWorkloadEventsRequest) (*v1alpha1.ListWorkloadEventsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListWorkloadEvents not implemented")
+}
+func (UnimplementedWorkloadServiceServer) PublishWorkloadEvents(grpc.ClientStreamingServer[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method PublishWorkloadEvents not implemented")
 }
 func (UnimplementedWorkloadServiceServer) testEmbeddedByValue() {}
 
@@ -152,6 +196,31 @@ func _WorkloadService_PublishWorkloads_Handler(srv interface{}, stream grpc.Serv
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type WorkloadService_PublishWorkloadsServer = grpc.ClientStreamingServer[PublishWorkloadsRequest, PublishWorkloadsResponse]
 
+func _WorkloadService_ListWorkloadEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1alpha1.ListWorkloadEventsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkloadServiceServer).ListWorkloadEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkloadService_ListWorkloadEvents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkloadServiceServer).ListWorkloadEvents(ctx, req.(*v1alpha1.ListWorkloadEventsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WorkloadService_PublishWorkloadEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(WorkloadServiceServer).PublishWorkloadEvents(&grpc.GenericServerStream[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type WorkloadService_PublishWorkloadEventsServer = grpc.ClientStreamingServer[v1alpha1.PublishWorkloadEventsRequest, v1alpha1.PublishWorkloadEventsResponse]
+
 // WorkloadService_ServiceDesc is the grpc.ServiceDesc for WorkloadService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -163,11 +232,20 @@ var WorkloadService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ListWorkloads",
 			Handler:    _WorkloadService_ListWorkloads_Handler,
 		},
+		{
+			MethodName: "ListWorkloadEvents",
+			Handler:    _WorkloadService_ListWorkloadEvents_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "PublishWorkloads",
 			Handler:       _WorkloadService_PublishWorkloads_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "PublishWorkloadEvents",
+			Handler:       _WorkloadService_PublishWorkloadEvents_Handler,
 			ClientStreams: true,
 		},
 	},

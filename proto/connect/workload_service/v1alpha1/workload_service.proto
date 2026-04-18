@@ -11,6 +11,7 @@ package proto.connect.workload_service.v1alpha1;
 
 import "google/protobuf/duration.proto";
 import "proto/workload/v1alpha1/workload.proto";
+import "proto/workload/v1alpha1/workload_event.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1";
 
@@ -24,6 +25,12 @@ service WorkloadService {
   // PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
   // observed workloads to the Connect control plane.
   rpc PublishWorkloads(stream PublishWorkloadsRequest) returns (PublishWorkloadsResponse);
+  // ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+  // matching the optional filter.
+  rpc ListWorkloadEvents(proto.workload.v1alpha1.ListWorkloadEventsRequest) returns (proto.workload.v1alpha1.ListWorkloadEventsResponse);
+  // PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
+  // exporter to deliver WorkloadEvent records to the Connect control plane.
+  rpc PublishWorkloadEvents(stream proto.workload.v1alpha1.PublishWorkloadEventsRequest) returns (proto.workload.v1alpha1.PublishWorkloadEventsResponse);
 }
 
 message ListWorkloadsRequest {

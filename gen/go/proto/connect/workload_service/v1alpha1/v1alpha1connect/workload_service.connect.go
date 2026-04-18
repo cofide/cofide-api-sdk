@@ -17,6 +17,7 @@ import (
 	context "context"
 	errors "errors"
 	v1alpha1 "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
+	v1alpha11 "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	http "net/http"
 	strings "strings"
 )
@@ -47,6 +48,12 @@ const (
 	// WorkloadServicePublishWorkloadsProcedure is the fully-qualified name of the WorkloadService's
 	// PublishWorkloads RPC.
 	WorkloadServicePublishWorkloadsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/PublishWorkloads"
+	// WorkloadServiceListWorkloadEventsProcedure is the fully-qualified name of the WorkloadService's
+	// ListWorkloadEvents RPC.
+	WorkloadServiceListWorkloadEventsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/ListWorkloadEvents"
+	// WorkloadServicePublishWorkloadEventsProcedure is the fully-qualified name of the
+	// WorkloadService's PublishWorkloadEvents RPC.
+	WorkloadServicePublishWorkloadEventsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/PublishWorkloadEvents"
 )
 
 // WorkloadServiceClient is a client for the proto.connect.workload_service.v1alpha1.WorkloadService
@@ -57,6 +64,12 @@ type WorkloadServiceClient interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(context.Context) *connect.ClientStreamForClient[v1alpha1.PublishWorkloadsRequest, v1alpha1.PublishWorkloadsResponse]
+	// ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+	// matching the optional filter.
+	ListWorkloadEvents(context.Context, *connect.Request[v1alpha11.ListWorkloadEventsRequest]) (*connect.Response[v1alpha11.ListWorkloadEventsResponse], error)
+	// PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
+	// exporter to deliver WorkloadEvent records to the Connect control plane.
+	PublishWorkloadEvents(context.Context) *connect.ClientStreamForClient[v1alpha11.PublishWorkloadEventsRequest, v1alpha11.PublishWorkloadEventsResponse]
 }
 
 // NewWorkloadServiceClient constructs a client for the
@@ -83,13 +96,27 @@ func NewWorkloadServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(workloadServiceMethods.ByName("PublishWorkloads")),
 			connect.WithClientOptions(opts...),
 		),
+		listWorkloadEvents: connect.NewClient[v1alpha11.ListWorkloadEventsRequest, v1alpha11.ListWorkloadEventsResponse](
+			httpClient,
+			baseURL+WorkloadServiceListWorkloadEventsProcedure,
+			connect.WithSchema(workloadServiceMethods.ByName("ListWorkloadEvents")),
+			connect.WithClientOptions(opts...),
+		),
+		publishWorkloadEvents: connect.NewClient[v1alpha11.PublishWorkloadEventsRequest, v1alpha11.PublishWorkloadEventsResponse](
+			httpClient,
+			baseURL+WorkloadServicePublishWorkloadEventsProcedure,
+			connect.WithSchema(workloadServiceMethods.ByName("PublishWorkloadEvents")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // workloadServiceClient implements WorkloadServiceClient.
 type workloadServiceClient struct {
-	listWorkloads    *connect.Client[v1alpha1.ListWorkloadsRequest, v1alpha1.ListWorkloadsResponse]
-	publishWorkloads *connect.Client[v1alpha1.PublishWorkloadsRequest, v1alpha1.PublishWorkloadsResponse]
+	listWorkloads         *connect.Client[v1alpha1.ListWorkloadsRequest, v1alpha1.ListWorkloadsResponse]
+	publishWorkloads      *connect.Client[v1alpha1.PublishWorkloadsRequest, v1alpha1.PublishWorkloadsResponse]
+	listWorkloadEvents    *connect.Client[v1alpha11.ListWorkloadEventsRequest, v1alpha11.ListWorkloadEventsResponse]
+	publishWorkloadEvents *connect.Client[v1alpha11.PublishWorkloadEventsRequest, v1alpha11.PublishWorkloadEventsResponse]
 }
 
 // ListWorkloads calls proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloads.
@@ -102,6 +129,18 @@ func (c *workloadServiceClient) PublishWorkloads(ctx context.Context) *connect.C
 	return c.publishWorkloads.CallClientStream(ctx)
 }
 
+// ListWorkloadEvents calls
+// proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloadEvents.
+func (c *workloadServiceClient) ListWorkloadEvents(ctx context.Context, req *connect.Request[v1alpha11.ListWorkloadEventsRequest]) (*connect.Response[v1alpha11.ListWorkloadEventsResponse], error) {
+	return c.listWorkloadEvents.CallUnary(ctx, req)
+}
+
+// PublishWorkloadEvents calls
+// proto.connect.workload_service.v1alpha1.WorkloadService.PublishWorkloadEvents.
+func (c *workloadServiceClient) PublishWorkloadEvents(ctx context.Context) *connect.ClientStreamForClient[v1alpha11.PublishWorkloadEventsRequest, v1alpha11.PublishWorkloadEventsResponse] {
+	return c.publishWorkloadEvents.CallClientStream(ctx)
+}
+
 // WorkloadServiceHandler is an implementation of the
 // proto.connect.workload_service.v1alpha1.WorkloadService service.
 type WorkloadServiceHandler interface {
@@ -110,6 +149,12 @@ type WorkloadServiceHandler interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadsRequest]) (*connect.Response[v1alpha1.PublishWorkloadsResponse], error)
+	// ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+	// matching the optional filter.
+	ListWorkloadEvents(context.Context, *connect.Request[v1alpha11.ListWorkloadEventsRequest]) (*connect.Response[v1alpha11.ListWorkloadEventsResponse], error)
+	// PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
+	// exporter to deliver WorkloadEvent records to the Connect control plane.
+	PublishWorkloadEvents(context.Context, *connect.ClientStream[v1alpha11.PublishWorkloadEventsRequest]) (*connect.Response[v1alpha11.PublishWorkloadEventsResponse], error)
 }
 
 // NewWorkloadServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -131,12 +176,28 @@ func NewWorkloadServiceHandler(svc WorkloadServiceHandler, opts ...connect.Handl
 		connect.WithSchema(workloadServiceMethods.ByName("PublishWorkloads")),
 		connect.WithHandlerOptions(opts...),
 	)
+	workloadServiceListWorkloadEventsHandler := connect.NewUnaryHandler(
+		WorkloadServiceListWorkloadEventsProcedure,
+		svc.ListWorkloadEvents,
+		connect.WithSchema(workloadServiceMethods.ByName("ListWorkloadEvents")),
+		connect.WithHandlerOptions(opts...),
+	)
+	workloadServicePublishWorkloadEventsHandler := connect.NewClientStreamHandler(
+		WorkloadServicePublishWorkloadEventsProcedure,
+		svc.PublishWorkloadEvents,
+		connect.WithSchema(workloadServiceMethods.ByName("PublishWorkloadEvents")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.connect.workload_service.v1alpha1.WorkloadService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case WorkloadServiceListWorkloadsProcedure:
 			workloadServiceListWorkloadsHandler.ServeHTTP(w, r)
 		case WorkloadServicePublishWorkloadsProcedure:
 			workloadServicePublishWorkloadsHandler.ServeHTTP(w, r)
+		case WorkloadServiceListWorkloadEventsProcedure:
+			workloadServiceListWorkloadEventsHandler.ServeHTTP(w, r)
+		case WorkloadServicePublishWorkloadEventsProcedure:
+			workloadServicePublishWorkloadEventsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -152,4 +213,12 @@ func (UnimplementedWorkloadServiceHandler) ListWorkloads(context.Context, *conne
 
 func (UnimplementedWorkloadServiceHandler) PublishWorkloads(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadsRequest]) (*connect.Response[v1alpha1.PublishWorkloadsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.PublishWorkloads is not implemented"))
+}
+
+func (UnimplementedWorkloadServiceHandler) ListWorkloadEvents(context.Context, *connect.Request[v1alpha11.ListWorkloadEventsRequest]) (*connect.Response[v1alpha11.ListWorkloadEventsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloadEvents is not implemented"))
+}
+
+func (UnimplementedWorkloadServiceHandler) PublishWorkloadEvents(context.Context, *connect.ClientStream[v1alpha11.PublishWorkloadEventsRequest]) (*connect.Response[v1alpha11.PublishWorkloadEventsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.PublishWorkloadEvents is not implemented"))
 }
