@@ -9,6 +9,7 @@ import (
 
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
 	auditsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -24,7 +25,7 @@ func TestAuditClient_Unimplemented(t *testing.T) {
 	conn := server.CreateClientConn()
 	client := New(conn)
 
-	events, _, err := client.ListEvents(t.Context(), nil, 100, "")
+	events, _, err := client.ListEvents(t.Context(), nil, pagination.Pagination{PageSize: 100})
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, events)
 }
@@ -38,7 +39,7 @@ func TestAuditClient(t *testing.T) {
 	client := New(conn)
 
 	filter := &auditsvcpb.ListEventsRequest_Filter{Entities: []*auditsvcpb.ListEventsRequest_Filter_Entity{{Type: auditpb.EntityType_ENTITY_TYPE_ORGANIZATION}}}
-	events, _, err := client.ListEvents(t.Context(), filter, 100, "")
+	events, _, err := client.ListEvents(t.Context(), filter, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*auditpb.Event{{Id: "mock-id"}}, events)
 }

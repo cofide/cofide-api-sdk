@@ -11,6 +11,7 @@ import (
 	auditsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -25,7 +26,7 @@ func New(fake *fakeconnect.FakeConnect) auditv1alpha1.AuditClient {
 	}
 }
 
-func (c *fakeAuditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, pageSize int32, pageToken string) ([]*auditpb.Event, string, error) {
+func (c *fakeAuditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, requestPagination pagination.Pagination) ([]*auditpb.Event, pagination.Pagination, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
@@ -35,7 +36,7 @@ func (c *fakeAuditClient) ListEvents(ctx context.Context, filter *auditsvcpb.Lis
 			events = append(events, clone(event))
 		}
 	}
-	return events, "", nil
+	return events, pagination.Pagination{PageSize: requestPagination.PageSize}, nil
 }
 
 func (c *fakeAuditClient) eventMatches(event *auditpb.Event, filter *auditsvcpb.ListEventsRequest_Filter) bool {

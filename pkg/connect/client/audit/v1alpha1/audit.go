@@ -9,12 +9,13 @@ import (
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
 	auditsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1"
 	paginationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/pagination/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/grpc"
 )
 
 // AuditClient is an interface for a gRPC client for the v1alpha1 version of the Connect AuditService.
 type AuditClient interface {
-	ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, pageSize int32, pageToken string) ([]*auditpb.Event, string, error)
+	ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, requestPagination pagination.Pagination) ([]*auditpb.Event, pagination.Pagination, error)
 }
 
 type auditClient struct {
@@ -28,17 +29,17 @@ func New(conn grpc.ClientConnInterface) AuditClient {
 	}
 }
 
-func (c *auditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, pageSize int32, pageToken string) ([]*auditpb.Event, string, error) {
+func (c *auditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, requestPagination pagination.Pagination) ([]*auditpb.Event, pagination.Pagination, error) {
 	resp, err := c.auditClient.ListEvents(ctx, &auditsvcpb.ListEventsRequest{
 		Filter: filter,
 		Pagination: &paginationpb.PageRequest{
-			PageSize:  pageSize,
-			PageToken: pageToken,
+			PageSize:  requestPagination.PageSize,
+			PageToken: requestPagination.Token,
 		},
 	})
 	if err != nil {
-		return nil, "", err
+		return nil, pagination.Pagination{}, err
 	}
 
-	return resp.Events, resp.Pagination.GetNextPageToken(), nil
+	return resp.GetEvents(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
 }
