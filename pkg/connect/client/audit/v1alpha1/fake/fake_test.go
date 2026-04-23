@@ -13,6 +13,7 @@ import (
 	auditsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -22,7 +23,7 @@ func Test_fakeAuditClient_ListEvents(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)
 
-	events, _, err := client.ListEvents(t.Context(), nil, 100, "")
+	events, _, err := client.ListEvents(t.Context(), nil, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.Empty(t, events)
 
@@ -50,7 +51,7 @@ func Test_fakeAuditClient_ListEvents(t *testing.T) {
 		Outcome:  auditpb.Outcome_OUTCOME_SUCCESS,
 	}
 
-	events, _, err = client.ListEvents(t.Context(), nil, 100, "")
+	events, _, err = client.ListEvents(t.Context(), nil, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, slices.Collect(maps.Values(fake.AuditEvents)), events)
 }
@@ -63,7 +64,7 @@ func Test_fakeAuditClient_ListEvents_filterMatchLinkless(t *testing.T) {
 	fake.AuditEvents["event-2"] = &auditpb.Event{Id: "event-2"}
 
 	// match_linkless alone matches only linkless events
-	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{MatchLinkless: true}, 100, "")
+	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{MatchLinkless: true}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-2", events[0].GetId())
@@ -72,7 +73,7 @@ func Test_fakeAuditClient_ListEvents_filterMatchLinkless(t *testing.T) {
 	events, _, err = client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{
 		Entities:      []*auditsvcpb.ListEventsRequest_Filter_Entity{{Type: auditpb.EntityType_ENTITY_TYPE_ORGANIZATION}},
 		MatchLinkless: true,
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.Len(t, events, 2)
 }
@@ -84,12 +85,12 @@ func Test_fakeAuditClient_ListEvents_filterActors(t *testing.T) {
 	fake.AuditEvents["event-1"] = &auditpb.Event{Id: "event-1", Actor: "user-1"}
 	fake.AuditEvents["event-2"] = &auditpb.Event{Id: "event-2", Actor: "user-2"}
 
-	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Actors: []string{"user-1"}}, 100, "")
+	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Actors: []string{"user-1"}}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-1", events[0].GetId())
 
-	events, _, err = client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Actors: []string{"user-1", "user-2"}}, 100, "")
+	events, _, err = client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Actors: []string{"user-1", "user-2"}}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.Len(t, events, 2)
 }
@@ -101,12 +102,12 @@ func Test_fakeAuditClient_ListEvents_filterSourceIPs(t *testing.T) {
 	fake.AuditEvents["event-1"] = &auditpb.Event{Id: "event-1", SourceIp: "1.2.3.4"}
 	fake.AuditEvents["event-2"] = &auditpb.Event{Id: "event-2", SourceIp: "5.6.7.8"}
 
-	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{SourceIps: []string{"1.2.3.4"}}, 100, "")
+	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{SourceIps: []string{"1.2.3.4"}}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-1", events[0].GetId())
 
-	events, _, err = client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{SourceIps: []string{"1.2.3.4", "5.6.7.8"}}, 100, "")
+	events, _, err = client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{SourceIps: []string{"1.2.3.4", "5.6.7.8"}}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.Len(t, events, 2)
 }
@@ -118,12 +119,12 @@ func Test_fakeAuditClient_ListEvents_filterOutcomes(t *testing.T) {
 	fake.AuditEvents["event-1"] = &auditpb.Event{Id: "event-1", Outcome: auditpb.Outcome_OUTCOME_SUCCESS}
 	fake.AuditEvents["event-2"] = &auditpb.Event{Id: "event-2", Outcome: auditpb.Outcome_OUTCOME_DENIED}
 
-	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Outcomes: []auditpb.Outcome{auditpb.Outcome_OUTCOME_SUCCESS}}, 100, "")
+	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Outcomes: []auditpb.Outcome{auditpb.Outcome_OUTCOME_SUCCESS}}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-1", events[0].GetId())
 
-	events, _, err = client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Outcomes: []auditpb.Outcome{auditpb.Outcome_OUTCOME_SUCCESS, auditpb.Outcome_OUTCOME_DENIED}}, 100, "")
+	events, _, err = client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{Outcomes: []auditpb.Outcome{auditpb.Outcome_OUTCOME_SUCCESS, auditpb.Outcome_OUTCOME_DENIED}}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.Len(t, events, 2)
 }
@@ -139,7 +140,7 @@ func Test_fakeAuditClient_ListEvents_filterExcludeEventTypes(t *testing.T) {
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{
 			EventTypes: []auditpb.EventType{auditpb.EventType_EVENT_TYPE_WORKLOAD_OBSERVATION},
 		},
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-1", events[0].GetId())
@@ -157,7 +158,7 @@ func Test_fakeAuditClient_ListEvents_filterExcludeEntities(t *testing.T) {
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{
 			Entities: []*auditsvcpb.ListEventsRequest_Filter_Entity{{Id: "tz-1"}},
 		},
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-2", events[0].GetId())
@@ -167,7 +168,7 @@ func Test_fakeAuditClient_ListEvents_filterExcludeEntities(t *testing.T) {
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{
 			Entities: []*auditsvcpb.ListEventsRequest_Filter_Entity{{Type: auditpb.EntityType_ENTITY_TYPE_TRUST_ZONE}},
 		},
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	assert.Empty(t, events)
 }
@@ -181,7 +182,7 @@ func Test_fakeAuditClient_ListEvents_filterExcludeActors(t *testing.T) {
 
 	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{Actors: []string{"user-1"}},
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-2", events[0].GetId())
@@ -196,7 +197,7 @@ func Test_fakeAuditClient_ListEvents_filterExcludeSourceIPs(t *testing.T) {
 
 	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{SourceIps: []string{"1.2.3.4"}},
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-2", events[0].GetId())
@@ -211,7 +212,7 @@ func Test_fakeAuditClient_ListEvents_filterExcludeOutcomes(t *testing.T) {
 
 	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{Outcomes: []auditpb.Outcome{auditpb.Outcome_OUTCOME_DENIED}},
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-1", events[0].GetId())
@@ -243,7 +244,7 @@ func Test_fakeAuditClient_ListEvents_filterIncludeAndExclude(t *testing.T) {
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{
 			EventTypes: []auditpb.EventType{auditpb.EventType_EVENT_TYPE_WORKLOAD_OBSERVATION},
 		},
-	}, 100, "")
+	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 	require.Len(t, events, 1)
 	assert.Equal(t, "event-1", events[0].GetId())
