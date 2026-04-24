@@ -134,11 +134,11 @@ func Test_fakeAuditClient_ListEvents_filterExcludeEventTypes(t *testing.T) {
 	client := New(fake)
 
 	fake.AuditEvents["event-1"] = &auditpb.Event{Id: "event-1", Type: auditpb.EventType_EVENT_TYPE_TRUST_ZONE_CREATION}
-	fake.AuditEvents["event-2"] = &auditpb.Event{Id: "event-2", Type: auditpb.EventType_EVENT_TYPE_WORKLOAD_OBSERVATION}
+	fake.AuditEvents["event-2"] = &auditpb.Event{Id: "event-2", Type: auditpb.EventType_EVENT_TYPE_WORKLOAD_CREATION}
 
 	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{
-			EventTypes: []auditpb.EventType{auditpb.EventType_EVENT_TYPE_WORKLOAD_OBSERVATION},
+			EventTypes: []auditpb.EventType{auditpb.EventType_EVENT_TYPE_WORKLOAD_CREATION},
 		},
 	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
@@ -229,7 +229,7 @@ func Test_fakeAuditClient_ListEvents_filterIncludeAndExclude(t *testing.T) {
 	}
 	fake.AuditEvents["event-2"] = &auditpb.Event{
 		Id:    "event-2",
-		Type:  auditpb.EventType_EVENT_TYPE_WORKLOAD_OBSERVATION,
+		Type:  auditpb.EventType_EVENT_TYPE_WORKLOAD_CREATION,
 		Links: []*auditpb.EntityLink{{Id: "tz-1", Type: auditpb.EntityType_ENTITY_TYPE_TRUST_ZONE}},
 	}
 	fake.AuditEvents["event-3"] = &auditpb.Event{
@@ -242,7 +242,7 @@ func Test_fakeAuditClient_ListEvents_filterIncludeAndExclude(t *testing.T) {
 	events, _, err := client.ListEvents(t.Context(), &auditsvcpb.ListEventsRequest_Filter{
 		Entities: []*auditsvcpb.ListEventsRequest_Filter_Entity{{Id: "tz-1"}},
 		Exclude: &auditsvcpb.ListEventsRequest_Filter_Exclude{
-			EventTypes: []auditpb.EventType{auditpb.EventType_EVENT_TYPE_WORKLOAD_OBSERVATION},
+			EventTypes: []auditpb.EventType{auditpb.EventType_EVENT_TYPE_WORKLOAD_CREATION},
 		},
 	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
