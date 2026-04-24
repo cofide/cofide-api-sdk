@@ -5,7 +5,7 @@ go 1.25.9
 // NOTE: Take care to avoid forcing unnecessary upgrades on consumers when
 // updating dependencies.
 require (
-	connectrpc.com/connect v1.19.1
+	connectrpc.com/connect v1.19.2
 	github.com/google/uuid v1.6.0
 	github.com/spiffe/spire-api-sdk v1.12.4
 	github.com/stretchr/testify v1.10.0
