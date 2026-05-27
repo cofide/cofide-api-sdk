@@ -58,6 +58,8 @@ enum EventType {
   // Workload
   EVENT_TYPE_WORKLOAD_CREATION = 33;
   EVENT_TYPE_WORKLOAD_DELETION = 34;
+  // Token Exchange
+  EVENT_TYPE_TOKEN_EXCHANGE = 35;
 }
 
 // Entity types audit events can be linked to

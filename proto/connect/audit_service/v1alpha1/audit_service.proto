@@ -16,6 +16,9 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit
 service AuditService {
   // List the auditable events subject to the provided filter
   rpc ListEvents(ListEventsRequest) returns (ListEventsResponse) {}
+  // Record a token exchange audit event. Called by credex to persist exchange
+  // decisions into the Connect audit store.
+  rpc RecordExchange(RecordExchangeRequest) returns (RecordExchangeResponse) {}
 }
 
 message ListEventsRequest {
@@ -59,3 +62,38 @@ message ListEventsResponse {
   repeated proto.audit.v1alpha1.Event events = 1;
   proto.pagination.v1alpha1.PageResponse pagination = 2;
 }
+
+// ExchangeDenyReason distinguishes why a token exchange was denied.
+// Only relevant when outcome = OUTCOME_DENIED.
+enum ExchangeDenyReason {
+  EXCHANGE_DENY_REASON_UNSPECIFIED = 0;
+  // A deny-action policy matched the exchange request.
+  EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY = 1;
+  // An allow policy matched but the requested scopes exceeded the policy limits.
+  EXCHANGE_DENY_REASON_SCOPE_DENIED = 2;
+  // No policy matched the exchange request.
+  EXCHANGE_DENY_REASON_NO_MATCHING_POLICY = 3;
+}
+
+message RecordExchangeRequest {
+  // Exchange request details — populated for all outcomes.
+  string subject_identity = 1 [(google.api.field_behavior) = REQUIRED];
+  string subject_issuer = 2 [(google.api.field_behavior) = REQUIRED];
+  string actor_identity = 3 [(google.api.field_behavior) = OPTIONAL];
+  string actor_issuer = 4 [(google.api.field_behavior) = OPTIONAL];
+  string client_id = 5 [(google.api.field_behavior) = OPTIONAL];
+  repeated string target_audiences = 6 [(google.api.field_behavior) = OPTIONAL];
+  repeated string requested_scopes = 7 [(google.api.field_behavior) = OPTIONAL];
+  // Whether the exchange was allowed or denied.
+  proto.audit.v1alpha1.Outcome outcome = 8 [(google.api.field_behavior) = REQUIRED];
+  // Why it was denied. Only set when outcome = OUTCOME_DENIED.
+  ExchangeDenyReason deny_reason = 9 [(google.api.field_behavior) = OPTIONAL];
+  // ID of the exchange policy that matched the request. Set for OUTCOME_SUCCESS and for
+  // EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY.
+  // Absent for EXCHANGE_DENY_REASON_SCOPE_DENIED / EXCHANGE_DENY_REASON_NO_MATCHING_POLICY.
+  string matched_policy_id = 10 [(google.api.field_behavior) = OPTIONAL];
+  // Source IP of the exchange requester.
+  string source_ip = 11 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message RecordExchangeResponse {}

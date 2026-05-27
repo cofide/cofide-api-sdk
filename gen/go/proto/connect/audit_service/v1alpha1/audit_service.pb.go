@@ -28,6 +28,63 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// ExchangeDenyReason distinguishes why a token exchange was denied.
+// Only relevant when outcome = OUTCOME_DENIED.
+type ExchangeDenyReason int32
+
+const (
+	ExchangeDenyReason_EXCHANGE_DENY_REASON_UNSPECIFIED ExchangeDenyReason = 0
+	// A deny-action policy matched the exchange request.
+	ExchangeDenyReason_EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY ExchangeDenyReason = 1
+	// An allow policy matched but the requested scopes exceeded the policy limits.
+	ExchangeDenyReason_EXCHANGE_DENY_REASON_SCOPE_DENIED ExchangeDenyReason = 2
+	// No policy matched the exchange request.
+	ExchangeDenyReason_EXCHANGE_DENY_REASON_NO_MATCHING_POLICY ExchangeDenyReason = 3
+)
+
+// Enum value maps for ExchangeDenyReason.
+var (
+	ExchangeDenyReason_name = map[int32]string{
+		0: "EXCHANGE_DENY_REASON_UNSPECIFIED",
+		1: "EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY",
+		2: "EXCHANGE_DENY_REASON_SCOPE_DENIED",
+		3: "EXCHANGE_DENY_REASON_NO_MATCHING_POLICY",
+	}
+	ExchangeDenyReason_value = map[string]int32{
+		"EXCHANGE_DENY_REASON_UNSPECIFIED":        0,
+		"EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY":  1,
+		"EXCHANGE_DENY_REASON_SCOPE_DENIED":       2,
+		"EXCHANGE_DENY_REASON_NO_MATCHING_POLICY": 3,
+	}
+)
+
+func (x ExchangeDenyReason) Enum() *ExchangeDenyReason {
+	p := new(ExchangeDenyReason)
+	*p = x
+	return p
+}
+
+func (x ExchangeDenyReason) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ExchangeDenyReason) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_connect_audit_service_v1alpha1_audit_service_proto_enumTypes[0].Descriptor()
+}
+
+func (ExchangeDenyReason) Type() protoreflect.EnumType {
+	return &file_proto_connect_audit_service_v1alpha1_audit_service_proto_enumTypes[0]
+}
+
+func (x ExchangeDenyReason) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ExchangeDenyReason.Descriptor instead.
+func (ExchangeDenyReason) EnumDescriptor() ([]byte, []int) {
+	return file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDescGZIP(), []int{0}
+}
+
 type ListEventsRequest struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	Filter        *ListEventsRequest_Filter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
@@ -132,6 +189,173 @@ func (x *ListEventsResponse) GetPagination() *v1alpha1.PageResponse {
 	return nil
 }
 
+type RecordExchangeRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Exchange request details — populated for all outcomes.
+	SubjectIdentity string   `protobuf:"bytes,1,opt,name=subject_identity,json=subjectIdentity,proto3" json:"subject_identity,omitempty"`
+	SubjectIssuer   string   `protobuf:"bytes,2,opt,name=subject_issuer,json=subjectIssuer,proto3" json:"subject_issuer,omitempty"`
+	ActorIdentity   string   `protobuf:"bytes,3,opt,name=actor_identity,json=actorIdentity,proto3" json:"actor_identity,omitempty"`
+	ActorIssuer     string   `protobuf:"bytes,4,opt,name=actor_issuer,json=actorIssuer,proto3" json:"actor_issuer,omitempty"`
+	ClientId        string   `protobuf:"bytes,5,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	TargetAudiences []string `protobuf:"bytes,6,rep,name=target_audiences,json=targetAudiences,proto3" json:"target_audiences,omitempty"`
+	RequestedScopes []string `protobuf:"bytes,7,rep,name=requested_scopes,json=requestedScopes,proto3" json:"requested_scopes,omitempty"`
+	// Whether the exchange was allowed or denied.
+	Outcome v1alpha11.Outcome `protobuf:"varint,8,opt,name=outcome,proto3,enum=proto.audit.v1alpha1.Outcome" json:"outcome,omitempty"`
+	// Why it was denied. Only set when outcome = OUTCOME_DENIED.
+	DenyReason ExchangeDenyReason `protobuf:"varint,9,opt,name=deny_reason,json=denyReason,proto3,enum=proto.connect.audit_service.v1alpha1.ExchangeDenyReason" json:"deny_reason,omitempty"`
+	// ID of the exchange policy that matched the request. Set for OUTCOME_SUCCESS and for
+	// EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY.
+	// Absent for EXCHANGE_DENY_REASON_SCOPE_DENIED / EXCHANGE_DENY_REASON_NO_MATCHING_POLICY.
+	MatchedPolicyId string `protobuf:"bytes,10,opt,name=matched_policy_id,json=matchedPolicyId,proto3" json:"matched_policy_id,omitempty"`
+	// Source IP of the exchange requester.
+	SourceIp      string `protobuf:"bytes,11,opt,name=source_ip,json=sourceIp,proto3" json:"source_ip,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RecordExchangeRequest) Reset() {
+	*x = RecordExchangeRequest{}
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecordExchangeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecordExchangeRequest) ProtoMessage() {}
+
+func (x *RecordExchangeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecordExchangeRequest.ProtoReflect.Descriptor instead.
+func (*RecordExchangeRequest) Descriptor() ([]byte, []int) {
+	return file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *RecordExchangeRequest) GetSubjectIdentity() string {
+	if x != nil {
+		return x.SubjectIdentity
+	}
+	return ""
+}
+
+func (x *RecordExchangeRequest) GetSubjectIssuer() string {
+	if x != nil {
+		return x.SubjectIssuer
+	}
+	return ""
+}
+
+func (x *RecordExchangeRequest) GetActorIdentity() string {
+	if x != nil {
+		return x.ActorIdentity
+	}
+	return ""
+}
+
+func (x *RecordExchangeRequest) GetActorIssuer() string {
+	if x != nil {
+		return x.ActorIssuer
+	}
+	return ""
+}
+
+func (x *RecordExchangeRequest) GetClientId() string {
+	if x != nil {
+		return x.ClientId
+	}
+	return ""
+}
+
+func (x *RecordExchangeRequest) GetTargetAudiences() []string {
+	if x != nil {
+		return x.TargetAudiences
+	}
+	return nil
+}
+
+func (x *RecordExchangeRequest) GetRequestedScopes() []string {
+	if x != nil {
+		return x.RequestedScopes
+	}
+	return nil
+}
+
+func (x *RecordExchangeRequest) GetOutcome() v1alpha11.Outcome {
+	if x != nil {
+		return x.Outcome
+	}
+	return v1alpha11.Outcome(0)
+}
+
+func (x *RecordExchangeRequest) GetDenyReason() ExchangeDenyReason {
+	if x != nil {
+		return x.DenyReason
+	}
+	return ExchangeDenyReason_EXCHANGE_DENY_REASON_UNSPECIFIED
+}
+
+func (x *RecordExchangeRequest) GetMatchedPolicyId() string {
+	if x != nil {
+		return x.MatchedPolicyId
+	}
+	return ""
+}
+
+func (x *RecordExchangeRequest) GetSourceIp() string {
+	if x != nil {
+		return x.SourceIp
+	}
+	return ""
+}
+
+type RecordExchangeResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RecordExchangeResponse) Reset() {
+	*x = RecordExchangeResponse{}
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecordExchangeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecordExchangeResponse) ProtoMessage() {}
+
+func (x *RecordExchangeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecordExchangeResponse.ProtoReflect.Descriptor instead.
+func (*RecordExchangeResponse) Descriptor() ([]byte, []int) {
+	return file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDescGZIP(), []int{3}
+}
+
 // Filters are combined with AND, repeated fields are OR'd
 type ListEventsRequest_Filter struct {
 	state      protoimpl.MessageState             `protogen:"open.v1"`
@@ -154,7 +378,7 @@ type ListEventsRequest_Filter struct {
 
 func (x *ListEventsRequest_Filter) Reset() {
 	*x = ListEventsRequest_Filter{}
-	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[2]
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -166,7 +390,7 @@ func (x *ListEventsRequest_Filter) String() string {
 func (*ListEventsRequest_Filter) ProtoMessage() {}
 
 func (x *ListEventsRequest_Filter) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[2]
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -258,7 +482,7 @@ type ListEventsRequest_Filter_Entity struct {
 
 func (x *ListEventsRequest_Filter_Entity) Reset() {
 	*x = ListEventsRequest_Filter_Entity{}
-	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[3]
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -270,7 +494,7 @@ func (x *ListEventsRequest_Filter_Entity) String() string {
 func (*ListEventsRequest_Filter_Entity) ProtoMessage() {}
 
 func (x *ListEventsRequest_Filter_Entity) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[3]
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -315,7 +539,7 @@ type ListEventsRequest_Filter_Exclude struct {
 
 func (x *ListEventsRequest_Filter_Exclude) Reset() {
 	*x = ListEventsRequest_Filter_Exclude{}
-	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[4]
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -327,7 +551,7 @@ func (x *ListEventsRequest_Filter_Exclude) String() string {
 func (*ListEventsRequest_Filter_Exclude) ProtoMessage() {}
 
 func (x *ListEventsRequest_Filter_Exclude) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[4]
+	mi := &file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -480,22 +704,80 @@ var file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDesc = stri
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x70,
 	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
 	0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52,
-	0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0x92, 0x01, 0x0a, 0x0c,
-	0x41, 0x75, 0x64, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x81, 0x01, 0x0a,
-	0x0a, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x37, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69,
-	0x74, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x38, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x63, 0x6f, 0x6e,
+	0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xba, 0x04, 0x0a, 0x15,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x45, 0x78, 0x63, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x10, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x5f, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x03, 0xe0, 0x41, 0x02, 0x52, 0x0f, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x49, 0x64, 0x65,
+	0x6e, 0x74, 0x69, 0x74, 0x79, 0x12, 0x2a, 0x0a, 0x0e, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x5f, 0x69, 0x73, 0x73, 0x75, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
+	0x41, 0x02, 0x52, 0x0d, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x49, 0x73, 0x73, 0x75, 0x65,
+	0x72, 0x12, 0x2a, 0x0a, 0x0e, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x5f, 0x69, 0x64, 0x65, 0x6e, 0x74,
+	0x69, 0x74, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0d,
+	0x61, 0x63, 0x74, 0x6f, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x12, 0x26, 0x0a,
+	0x0c, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x5f, 0x69, 0x73, 0x73, 0x75, 0x65, 0x72, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0b, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x49,
+	0x73, 0x73, 0x75, 0x65, 0x72, 0x12, 0x20, 0x0a, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f,
+	0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x08, 0x63,
+	0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x2e, 0x0a, 0x10, 0x74, 0x61, 0x72, 0x67, 0x65,
+	0x74, 0x5f, 0x61, 0x75, 0x64, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x18, 0x06, 0x20, 0x03, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0f, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x41, 0x75,
+	0x64, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x2e, 0x0a, 0x10, 0x72, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x65, 0x64, 0x5f, 0x73, 0x63, 0x6f, 0x70, 0x65, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0f, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x65,
+	0x64, 0x53, 0x63, 0x6f, 0x70, 0x65, 0x73, 0x12, 0x3c, 0x0a, 0x07, 0x6f, 0x75, 0x74, 0x63, 0x6f,
+	0x6d, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2e, 0x61, 0x75, 0x64, 0x69, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e,
+	0x4f, 0x75, 0x74, 0x63, 0x6f, 0x6d, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x07, 0x6f, 0x75,
+	0x74, 0x63, 0x6f, 0x6d, 0x65, 0x12, 0x5e, 0x0a, 0x0b, 0x64, 0x65, 0x6e, 0x79, 0x5f, 0x72, 0x65,
+	0x61, 0x73, 0x6f, 0x6e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x38, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x74,
+	0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x31, 0x2e, 0x45, 0x78, 0x63, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x44, 0x65, 0x6e, 0x79, 0x52, 0x65,
+	0x61, 0x73, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0a, 0x64, 0x65, 0x6e, 0x79, 0x52,
+	0x65, 0x61, 0x73, 0x6f, 0x6e, 0x12, 0x2f, 0x0a, 0x11, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x65, 0x64,
+	0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09,
+	0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0f, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x65, 0x64, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x20, 0x0a, 0x09, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
+	0x5f, 0x69, 0x70, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x08,
+	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x70, 0x22, 0x18, 0x0a, 0x16, 0x52, 0x65, 0x63, 0x6f,
+	0x72, 0x64, 0x45, 0x78, 0x63, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x2a, 0xba, 0x01, 0x0a, 0x12, 0x45, 0x78, 0x63, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x44,
+	0x65, 0x6e, 0x79, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x12, 0x24, 0x0a, 0x20, 0x45, 0x58, 0x43,
+	0x48, 0x41, 0x4e, 0x47, 0x45, 0x5f, 0x44, 0x45, 0x4e, 0x59, 0x5f, 0x52, 0x45, 0x41, 0x53, 0x4f,
+	0x4e, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12,
+	0x2a, 0x0a, 0x26, 0x45, 0x58, 0x43, 0x48, 0x41, 0x4e, 0x47, 0x45, 0x5f, 0x44, 0x45, 0x4e, 0x59,
+	0x5f, 0x52, 0x45, 0x41, 0x53, 0x4f, 0x4e, 0x5f, 0x42, 0x4c, 0x4f, 0x43, 0x4b, 0x45, 0x44, 0x5f,
+	0x42, 0x59, 0x5f, 0x50, 0x4f, 0x4c, 0x49, 0x43, 0x59, 0x10, 0x01, 0x12, 0x25, 0x0a, 0x21, 0x45,
+	0x58, 0x43, 0x48, 0x41, 0x4e, 0x47, 0x45, 0x5f, 0x44, 0x45, 0x4e, 0x59, 0x5f, 0x52, 0x45, 0x41,
+	0x53, 0x4f, 0x4e, 0x5f, 0x53, 0x43, 0x4f, 0x50, 0x45, 0x5f, 0x44, 0x45, 0x4e, 0x49, 0x45, 0x44,
+	0x10, 0x02, 0x12, 0x2b, 0x0a, 0x27, 0x45, 0x58, 0x43, 0x48, 0x41, 0x4e, 0x47, 0x45, 0x5f, 0x44,
+	0x45, 0x4e, 0x59, 0x5f, 0x52, 0x45, 0x41, 0x53, 0x4f, 0x4e, 0x5f, 0x4e, 0x4f, 0x5f, 0x4d, 0x41,
+	0x54, 0x43, 0x48, 0x49, 0x4e, 0x47, 0x5f, 0x50, 0x4f, 0x4c, 0x49, 0x43, 0x59, 0x10, 0x03, 0x32,
+	0xa2, 0x02, 0x0a, 0x0c, 0x41, 0x75, 0x64, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x81, 0x01, 0x0a, 0x0a, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12,
+	0x37, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2e,
+	0x61, 0x75, 0x64, 0x69, 0x74, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31,
+	0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x76, 0x65, 0x6e, 0x74,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x38, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x74, 0x5f, 0x73,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x00, 0x12, 0x8d, 0x01, 0x0a, 0x0e, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x45,
+	0x78, 0x63, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x12, 0x3b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
+	0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x74, 0x5f, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x45, 0x78, 0x63, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x3c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x63, 0x6f, 0x6e,
 	0x6e, 0x65, 0x63, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x74, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74,
-	0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
-	0x42, 0x4e, 0x5a, 0x4c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63,
-	0x6f, 0x66, 0x69, 0x64, 0x65, 0x2f, 0x63, 0x6f, 0x66, 0x69, 0x64, 0x65, 0x2d, 0x61, 0x70, 0x69,
-	0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2f, 0x61, 0x75, 0x64, 0x69, 0x74, 0x5f,
-	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x63, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x52, 0x65, 0x63, 0x6f,
+	0x72, 0x64, 0x45, 0x78, 0x63, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x00, 0x42, 0x4e, 0x5a, 0x4c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x63, 0x6f, 0x66, 0x69, 0x64, 0x65, 0x2f, 0x63, 0x6f, 0x66, 0x69, 0x64, 0x65,
+	0x2d, 0x61, 0x70, 0x69, 0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2f, 0x61, 0x75,
+	0x64, 0x69, 0x74, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 })
 
 var (
@@ -510,43 +792,51 @@ func file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDescGZIP()
 	return file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDescData
 }
 
-var file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_proto_connect_audit_service_v1alpha1_audit_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_proto_connect_audit_service_v1alpha1_audit_service_proto_goTypes = []any{
-	(*ListEventsRequest)(nil),                // 0: proto.connect.audit_service.v1alpha1.ListEventsRequest
-	(*ListEventsResponse)(nil),               // 1: proto.connect.audit_service.v1alpha1.ListEventsResponse
-	(*ListEventsRequest_Filter)(nil),         // 2: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter
-	(*ListEventsRequest_Filter_Entity)(nil),  // 3: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity
-	(*ListEventsRequest_Filter_Exclude)(nil), // 4: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude
-	(*v1alpha1.PageRequest)(nil),             // 5: proto.pagination.v1alpha1.PageRequest
-	(*v1alpha11.Event)(nil),                  // 6: proto.audit.v1alpha1.Event
-	(*v1alpha1.PageResponse)(nil),            // 7: proto.pagination.v1alpha1.PageResponse
-	(v1alpha11.EventType)(0),                 // 8: proto.audit.v1alpha1.EventType
-	(*timestamppb.Timestamp)(nil),            // 9: google.protobuf.Timestamp
-	(v1alpha11.Outcome)(0),                   // 10: proto.audit.v1alpha1.Outcome
-	(v1alpha11.EntityType)(0),                // 11: proto.audit.v1alpha1.EntityType
+	(ExchangeDenyReason)(0),                  // 0: proto.connect.audit_service.v1alpha1.ExchangeDenyReason
+	(*ListEventsRequest)(nil),                // 1: proto.connect.audit_service.v1alpha1.ListEventsRequest
+	(*ListEventsResponse)(nil),               // 2: proto.connect.audit_service.v1alpha1.ListEventsResponse
+	(*RecordExchangeRequest)(nil),            // 3: proto.connect.audit_service.v1alpha1.RecordExchangeRequest
+	(*RecordExchangeResponse)(nil),           // 4: proto.connect.audit_service.v1alpha1.RecordExchangeResponse
+	(*ListEventsRequest_Filter)(nil),         // 5: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter
+	(*ListEventsRequest_Filter_Entity)(nil),  // 6: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity
+	(*ListEventsRequest_Filter_Exclude)(nil), // 7: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude
+	(*v1alpha1.PageRequest)(nil),             // 8: proto.pagination.v1alpha1.PageRequest
+	(*v1alpha11.Event)(nil),                  // 9: proto.audit.v1alpha1.Event
+	(*v1alpha1.PageResponse)(nil),            // 10: proto.pagination.v1alpha1.PageResponse
+	(v1alpha11.Outcome)(0),                   // 11: proto.audit.v1alpha1.Outcome
+	(v1alpha11.EventType)(0),                 // 12: proto.audit.v1alpha1.EventType
+	(*timestamppb.Timestamp)(nil),            // 13: google.protobuf.Timestamp
+	(v1alpha11.EntityType)(0),                // 14: proto.audit.v1alpha1.EntityType
 }
 var file_proto_connect_audit_service_v1alpha1_audit_service_proto_depIdxs = []int32{
-	2,  // 0: proto.connect.audit_service.v1alpha1.ListEventsRequest.filter:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter
-	5,  // 1: proto.connect.audit_service.v1alpha1.ListEventsRequest.pagination:type_name -> proto.pagination.v1alpha1.PageRequest
-	6,  // 2: proto.connect.audit_service.v1alpha1.ListEventsResponse.events:type_name -> proto.audit.v1alpha1.Event
-	7,  // 3: proto.connect.audit_service.v1alpha1.ListEventsResponse.pagination:type_name -> proto.pagination.v1alpha1.PageResponse
-	8,  // 4: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.event_types:type_name -> proto.audit.v1alpha1.EventType
-	3,  // 5: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.entities:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity
-	9,  // 6: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.occurred_before:type_name -> google.protobuf.Timestamp
-	9,  // 7: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.occurred_after:type_name -> google.protobuf.Timestamp
-	10, // 8: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.outcomes:type_name -> proto.audit.v1alpha1.Outcome
-	4,  // 9: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.exclude:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude
-	11, // 10: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity.type:type_name -> proto.audit.v1alpha1.EntityType
-	8,  // 11: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude.event_types:type_name -> proto.audit.v1alpha1.EventType
-	3,  // 12: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude.entities:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity
-	10, // 13: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude.outcomes:type_name -> proto.audit.v1alpha1.Outcome
-	0,  // 14: proto.connect.audit_service.v1alpha1.AuditService.ListEvents:input_type -> proto.connect.audit_service.v1alpha1.ListEventsRequest
-	1,  // 15: proto.connect.audit_service.v1alpha1.AuditService.ListEvents:output_type -> proto.connect.audit_service.v1alpha1.ListEventsResponse
-	15, // [15:16] is the sub-list for method output_type
-	14, // [14:15] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	5,  // 0: proto.connect.audit_service.v1alpha1.ListEventsRequest.filter:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter
+	8,  // 1: proto.connect.audit_service.v1alpha1.ListEventsRequest.pagination:type_name -> proto.pagination.v1alpha1.PageRequest
+	9,  // 2: proto.connect.audit_service.v1alpha1.ListEventsResponse.events:type_name -> proto.audit.v1alpha1.Event
+	10, // 3: proto.connect.audit_service.v1alpha1.ListEventsResponse.pagination:type_name -> proto.pagination.v1alpha1.PageResponse
+	11, // 4: proto.connect.audit_service.v1alpha1.RecordExchangeRequest.outcome:type_name -> proto.audit.v1alpha1.Outcome
+	0,  // 5: proto.connect.audit_service.v1alpha1.RecordExchangeRequest.deny_reason:type_name -> proto.connect.audit_service.v1alpha1.ExchangeDenyReason
+	12, // 6: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.event_types:type_name -> proto.audit.v1alpha1.EventType
+	6,  // 7: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.entities:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity
+	13, // 8: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.occurred_before:type_name -> google.protobuf.Timestamp
+	13, // 9: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.occurred_after:type_name -> google.protobuf.Timestamp
+	11, // 10: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.outcomes:type_name -> proto.audit.v1alpha1.Outcome
+	7,  // 11: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.exclude:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude
+	14, // 12: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity.type:type_name -> proto.audit.v1alpha1.EntityType
+	12, // 13: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude.event_types:type_name -> proto.audit.v1alpha1.EventType
+	6,  // 14: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude.entities:type_name -> proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Entity
+	11, // 15: proto.connect.audit_service.v1alpha1.ListEventsRequest.Filter.Exclude.outcomes:type_name -> proto.audit.v1alpha1.Outcome
+	1,  // 16: proto.connect.audit_service.v1alpha1.AuditService.ListEvents:input_type -> proto.connect.audit_service.v1alpha1.ListEventsRequest
+	3,  // 17: proto.connect.audit_service.v1alpha1.AuditService.RecordExchange:input_type -> proto.connect.audit_service.v1alpha1.RecordExchangeRequest
+	2,  // 18: proto.connect.audit_service.v1alpha1.AuditService.ListEvents:output_type -> proto.connect.audit_service.v1alpha1.ListEventsResponse
+	4,  // 19: proto.connect.audit_service.v1alpha1.AuditService.RecordExchange:output_type -> proto.connect.audit_service.v1alpha1.RecordExchangeResponse
+	18, // [18:20] is the sub-list for method output_type
+	16, // [16:18] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_proto_connect_audit_service_v1alpha1_audit_service_proto_init() }
@@ -559,13 +849,14 @@ func file_proto_connect_audit_service_v1alpha1_audit_service_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDesc), len(file_proto_connect_audit_service_v1alpha1_audit_service_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   5,
+			NumEnums:      1,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_proto_connect_audit_service_v1alpha1_audit_service_proto_goTypes,
 		DependencyIndexes: file_proto_connect_audit_service_v1alpha1_audit_service_proto_depIdxs,
+		EnumInfos:         file_proto_connect_audit_service_v1alpha1_audit_service_proto_enumTypes,
 		MessageInfos:      file_proto_connect_audit_service_v1alpha1_audit_service_proto_msgTypes,
 	}.Build()
 	File_proto_connect_audit_service_v1alpha1_audit_service_proto = out.File

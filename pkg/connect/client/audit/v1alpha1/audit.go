@@ -16,6 +16,7 @@ import (
 // AuditClient is an interface for a gRPC client for the v1alpha1 version of the Connect AuditService.
 type AuditClient interface {
 	ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, requestPagination pagination.Pagination) ([]*auditpb.Event, pagination.Pagination, error)
+	RecordExchange(ctx context.Context, req *auditsvcpb.RecordExchangeRequest) error
 }
 
 type auditClient struct {
@@ -27,6 +28,11 @@ func New(conn grpc.ClientConnInterface) AuditClient {
 	return &auditClient{
 		auditClient: auditsvcpb.NewAuditServiceClient(conn),
 	}
+}
+
+func (c *auditClient) RecordExchange(ctx context.Context, req *auditsvcpb.RecordExchangeRequest) error {
+	_, err := c.auditClient.RecordExchange(ctx, req)
+	return err
 }
 
 func (c *auditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, requestPagination pagination.Pagination) ([]*auditpb.Event, pagination.Pagination, error) {
