@@ -24,9 +24,10 @@ message AttestationPolicy {
   string name = 1;
   optional string org_id = 5;
   oneof policy {
-    APKubernetes kubernetes = 2;
-    APStatic static = 3;
-    APTPMNode tpm_node = 6;
+    APKubernetes    kubernetes  = 2;
+    APStatic        static      = 3;
+    APTPMNode       tpm_node    = 6;
+    APAwsAgentCore  aws_agentcore = 9;
   }
   // Time of resource creation by user.
   google.protobuf.Timestamp created_at = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
@@ -100,4 +101,24 @@ message APTPMNode {
 message TPMAttestation {
   // ek_hash is the SHA256 hash of the TPM's Endorsement Key (EK).
   optional string ek_hash = 1;
+}
+
+// APAwsAgentCore represents an attestation policy for AWS Bedrock AgentCore agents.
+// Agents present an AWS OIDC token; Connect verifies the token claims against
+// the fields specified here before issuing a SPIFFE identity.
+message APAwsAgentCore {
+  // Match on AWS account ID. If absent, any account discovered via an
+  // associated AwsEnvironment is accepted.
+  optional string account_id = 1;
+  // Match on AWS region.
+  optional string region = 2;
+  // Match on the IAM execution role ARN of the agent (exact match).
+  optional string iam_role_arn = 3;
+  // Match on AgentCore agent ID. Supports glob patterns (e.g. "PROD-*").
+  optional string agent_id_pattern = 4;
+  // Custom SPIFFE ID path template for identity issuance, using agent
+  // attributes as template variables. For example:
+  // aws/{{ .AccountId }}/agentcore/{{ .AgentId }}
+  // => spiffe://<trust_domain>/aws/.../agentcore/...
+  optional string spiffe_id_path_template = 5;
 }

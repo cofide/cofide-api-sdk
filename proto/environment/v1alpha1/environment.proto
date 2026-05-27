@@ -1,0 +1,102 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the Environment message and related types representing
+// a runtime context in which workloads execute. An Environment belongs to a
+// trust zone and combines a cloud provider context (e.g. an AWS account and
+// region) with a runtime type (e.g. Kubernetes, AgentCore). This abstraction
+// allows Connect to discover and onboard workloads across Kubernetes clusters,
+// managed agent runtimes, and other execution environments.
+syntax = "proto3";
+
+package proto.environment.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "proto/trust_provider/v1alpha1/trust_provider.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/environment/v1alpha1";
+
+// Environment represents a runtime context in which workloads execute.
+// It belongs to a trust zone and combines an optional cloud provider context
+// with a runtime-specific configuration. Examples:
+//   - On-premises Kubernetes: no provider context, KubernetesRuntime.
+//   - EKS: AwsProviderContext + KubernetesRuntime.
+//   - AWS Bedrock AgentCore: AwsProviderContext + AgentCoreRuntime.
+message Environment {
+  optional string id            = 1;
+  optional string name          = 2;
+  optional string org_id        = 3;
+  optional string trust_zone_id = 4;
+
+  // Cloud provider context. Present when the environment is hosted in a public
+  // cloud; absent for on-premises deployments.
+  optional AwsProviderContext aws = 5;
+
+  // Runtime-specific discovery and installation configuration.
+  oneof runtime {
+    KubernetesRuntime kubernetes = 10;
+    AgentCoreRuntime  agentcore  = 11;
+  }
+
+  // Time of resource creation.
+  google.protobuf.Timestamp created_at      = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Time of last resource update.
+  google.protobuf.Timestamp last_updated_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// AwsProviderContext holds the AWS hosting context for an environment.
+// Connect authenticates to AWS via SPIFFE OIDC federation, exchanging its SVID
+// for temporary credentials by assuming the given IAM role. This role requires
+// read-only permissions appropriate for the environment's runtime type
+// (e.g. bedrock-agentcore:ListAgents for AgentCoreRuntime).
+message AwsProviderContext {
+  // AWS account ID hosting this environment.
+  string account_id = 1;
+  // AWS region hosting this environment.
+  string region = 2;
+  // ARN of the IAM role Connect assumes via SPIFFE OIDC federation to discover
+  // workloads. The role trust policy must permit Connect's SPIFFE ID as the
+  // federated principal.
+  string discovery_role_arn = 3;
+  // How frequently Connect polls for workload changes. Defaults to server config.
+  optional google.protobuf.Duration sync_interval = 4;
+  // Timestamp of the last successful workload sync.
+  google.protobuf.Timestamp last_synced_at  = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Error message from the most recent sync attempt, if any.
+  optional string           last_sync_error = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// KubernetesRuntime configures a Kubernetes environment for workload discovery
+// and SPIRE installation. This is the runtime used by both on-premises clusters
+// and managed Kubernetes services such as EKS or GKE.
+//
+// Deprecated: prefer Environment over the Cluster resource, which is an alias
+// for Environment with a KubernetesRuntime and will be removed in a future API version.
+message KubernetesRuntime {
+  // The kubeconfig context name used to interact with this cluster.
+  optional string kubernetes_context = 1;
+  // Node attestation trust provider configuration.
+  optional proto.trust_provider.v1alpha1.TrustProvider trust_provider = 2;
+  // Additional Helm values to pass to the Cofide SPIRE chart deployment.
+  optional google.protobuf.Struct extra_helm_values = 3;
+  optional string profile       = 4;
+  // Whether the SPIRE server for this trust zone is deployed externally
+  // (i.e. not within this cluster).
+  optional bool external_server = 5;
+  // OIDC issuer URL for the Kubernetes API server, used for k8s_psat node attestation.
+  optional string oidc_issuer_url     = 6;
+  // PEM-encoded CA certificate for the OIDC issuer, if it uses a private CA.
+  optional bytes  oidc_issuer_ca_cert = 7;
+}
+
+// AgentCoreRuntime configures discovery of AWS Bedrock AgentCore agents.
+// Workload discovery is driven entirely by the enclosing AwsProviderContext;
+// this message carries optional filters to narrow the set of agents synced.
+message AgentCoreRuntime {
+  // Restrict discovery to agents with these IDs. Empty means discover all
+  // agents in the account and region provided by the AwsProviderContext.
+  repeated string agent_id_filter = 1;
+}

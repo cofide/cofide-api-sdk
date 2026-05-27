@@ -1,0 +1,71 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the EnvironmentService gRPC service for managing
+// environments registered with the Connect control plane. An environment
+// represents a runtime context (e.g. a Kubernetes cluster or an AWS Bedrock
+// AgentCore deployment) within a trust zone.
+syntax = "proto3";
+
+package proto.connect.environment_service.v1alpha1;
+
+import "proto/environment/v1alpha1/environment.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/environment_service/v1alpha1";
+
+// EnvironmentService manages environments registered with the Connect control plane.
+service EnvironmentService {
+  // CreateEnvironment registers a new environment with the Connect control plane.
+  rpc CreateEnvironment(CreateEnvironmentRequest) returns (CreateEnvironmentResponse);
+  // DestroyEnvironment removes an environment from the Connect control plane.
+  rpc DestroyEnvironment(DestroyEnvironmentRequest) returns (DestroyEnvironmentResponse);
+  // GetEnvironment retrieves an environment by ID.
+  rpc GetEnvironment(GetEnvironmentRequest) returns (GetEnvironmentResponse);
+  // ListEnvironments returns all environments matching the optional filter.
+  rpc ListEnvironments(ListEnvironmentsRequest) returns (ListEnvironmentsResponse);
+  // UpdateEnvironment updates the configuration of an existing environment.
+  rpc UpdateEnvironment(UpdateEnvironmentRequest) returns (UpdateEnvironmentResponse);
+}
+
+message CreateEnvironmentRequest {
+  optional proto.environment.v1alpha1.Environment environment = 1;
+}
+
+message CreateEnvironmentResponse {
+  optional proto.environment.v1alpha1.Environment environment = 1;
+}
+
+message DestroyEnvironmentRequest {
+  optional string environment_id = 1;
+}
+
+message DestroyEnvironmentResponse {}
+
+message GetEnvironmentRequest {
+  optional string environment_id = 1;
+}
+
+message GetEnvironmentResponse {
+  optional proto.environment.v1alpha1.Environment environment = 1;
+}
+
+message ListEnvironmentsRequest {
+  message Filter {
+    optional string name          = 1;
+    optional string org_id        = 2;
+    optional string trust_zone_id = 3;
+  }
+  optional Filter filter = 1;
+}
+
+message ListEnvironmentsResponse {
+  repeated proto.environment.v1alpha1.Environment environments = 1;
+}
+
+message UpdateEnvironmentRequest {
+  optional proto.environment.v1alpha1.Environment environment = 1;
+}
+
+message UpdateEnvironmentResponse {
+  optional proto.environment.v1alpha1.Environment environment = 1;
+}

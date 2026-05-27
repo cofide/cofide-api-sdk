@@ -3,6 +3,10 @@
 
 // This file defines the Cluster message representing a single environment
 // (e.g. a Kubernetes cluster) onboarded onto the Connect control plane.
+//
+// Deprecated: Cluster is an alias for Environment{runtime: KubernetesRuntime}
+// and will be removed in a future API version. Use the EnvironmentService and
+// Environment message instead.
 syntax = "proto3";
 
 package proto.cluster.v1alpha1;

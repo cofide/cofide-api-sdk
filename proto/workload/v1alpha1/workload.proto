@@ -25,7 +25,8 @@ message Workload {
   string cluster_id = 3;
   WorkloadType type = 9;
   oneof workload {
-    KubernetesPod kubernetes_pod = 5;
+    KubernetesPod      kubernetes_pod      = 5;
+    AwsAgentCoreAgent  aws_agentcore_agent = 10;
   }
   // Security posture observations.
   repeated Observation observations = 6;
@@ -33,12 +34,15 @@ message Workload {
   google.protobuf.Timestamp observed_timestamp = 7;
   // Whether this workload has been deleted since it was last observed.
   bool deleted = 8;
+  // The environment this workload belongs to. Supersedes cluster_id.
+  optional string environment_id = 11;
 }
 
 // WorkloadType enumerates the supported workload runtime types.
 enum WorkloadType {
   WORKLOAD_TYPE_UNSPECIFIED = 0;
   WORKLOAD_TYPE_KUBERNETES_POD = 1;
+  WORKLOAD_TYPE_AWS_AGENTCORE_AGENT = 2;
 }
 
 // Observation is a structured data point describing the security posture of
@@ -73,4 +77,21 @@ message KubernetesMetadata {
 message KubernetesContainer {
   string name = 1;
   string image = 2;
+}
+
+// AwsAgentCoreAgent contains the runtime details of an AWS Bedrock AgentCore
+// agent workload as discovered by Connect via the AWS Bedrock AgentCore API.
+message AwsAgentCoreAgent {
+  // AgentCore agent ID (e.g. "ABCD1234EF").
+  string agent_id  = 1;
+  // Full ARN of the agent (e.g. "arn:aws:bedrock:us-east-1:123456789012:agent/ABCD1234EF").
+  string agent_arn = 2;
+  string agent_name  = 3;
+  string account_id  = 4;
+  string region      = 5;
+  // ARN of the IAM execution role associated with the agent.
+  string iam_role_arn = 6;
+  // AWS resource tags applied to the agent.
+  map<string, string> tags = 7;
+  google.protobuf.Timestamp created_at = 8;
 }
