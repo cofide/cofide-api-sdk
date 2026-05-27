@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/attestation_policy/v1alpha1/attestation_policy.proto.
  */
 export const file_proto_attestation_policy_v1alpha1_attestation_policy: GenFile = /*@__PURE__*/
-  fileDesc("Cjpwcm90by9hdHRlc3RhdGlvbl9wb2xpY3kvdjFhbHBoYTEvYXR0ZXN0YXRpb25fcG9saWN5LnByb3RvEiFwcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEimgMKEUF0dGVzdGF0aW9uUG9saWN5Eg8KAmlkGAQgASgJSAGIAQESDAoEbmFtZRgBIAEoCRITCgZvcmdfaWQYBSABKAlIAogBARJFCgprdWJlcm5ldGVzGAIgASgLMi8ucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQS3ViZXJuZXRlc0gAEj0KBnN0YXRpYxgDIAEoCzIrLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUFN0YXRpY0gAEkAKCHRwbV9ub2RlGAYgASgLMiwucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQVFBNTm9kZUgAEjMKCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQggKBnBvbGljeUIFCgNfaWRCCQoHX29yZ19pZCK4AgoMQVBLdWJlcm5ldGVzElMKEm5hbWVzcGFjZV9zZWxlY3RvchgBIAEoCzIyLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUExhYmVsU2VsZWN0b3JIAIgBARJNCgxwb2Rfc2VsZWN0b3IYAiABKAsyMi5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9ySAGIAQESGgoSZG5zX25hbWVfdGVtcGxhdGVzGAMgAygJEiQKF3NwaWZmZV9pZF9wYXRoX3RlbXBsYXRlGAQgASgJSAKIAQFCFQoTX25hbWVzcGFjZV9zZWxlY3RvckIPCg1fcG9kX3NlbGVjdG9yQhoKGF9zcGlmZmVfaWRfcGF0aF90ZW1wbGF0ZSLxAQoPQVBMYWJlbFNlbGVjdG9yElkKDG1hdGNoX2xhYmVscxgBIAMoCzJDLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUExhYmVsU2VsZWN0b3IuTWF0Y2hMYWJlbHNFbnRyeRJPChFtYXRjaF9leHByZXNzaW9ucxgCIAMoCzI0LnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUE1hdGNoRXhwcmVzc2lvbhoyChBNYXRjaExhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiQgoRQVBNYXRjaEV4cHJlc3Npb24SCwoDa2V5GAEgASgJEhAKCG9wZXJhdG9yGAIgASgJEg4KBnZhbHVlcxgDIAMoCSLVAQoIQVBTdGF0aWMSGgoJc3BpZmZlX2lkGAEgASgJQgIYAUgAiAEBEhsKDnNwaWZmZV9pZF9wYXRoGAUgASgJSAGIAQESGwoOcGFyZW50X2lkX3BhdGgYAyABKAlIAogBARIsCglzZWxlY3RvcnMYAiADKAsyGS5zcGlyZS5hcGkudHlwZXMuU2VsZWN0b3ISEQoJZG5zX25hbWVzGAQgAygJQgwKCl9zcGlmZmVfaWRCEQoPX3NwaWZmZV9pZF9wYXRoQhEKD19wYXJlbnRfaWRfcGF0aCJsCglBUFRQTU5vZGUSRgoLYXR0ZXN0YXRpb24YASABKAsyMS5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuVFBNQXR0ZXN0YXRpb24SFwoPc2VsZWN0b3JfdmFsdWVzGAIgAygJIjIKDlRQTUF0dGVzdGF0aW9uEhQKB2VrX2hhc2gYASABKAlIAIgBAUIKCghfZWtfaGFzaEJLWklnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vYXR0ZXN0YXRpb25fcG9saWN5L3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_spire_api_types_selector]);
+  fileDesc("Cjpwcm90by9hdHRlc3RhdGlvbl9wb2xpY3kvdjFhbHBoYTEvYXR0ZXN0YXRpb25fcG9saWN5LnByb3RvEiFwcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEi5gMKEUF0dGVzdGF0aW9uUG9saWN5Eg8KAmlkGAQgASgJSAGIAQESDAoEbmFtZRgBIAEoCRITCgZvcmdfaWQYBSABKAlIAogBARJFCgprdWJlcm5ldGVzGAIgASgLMi8ucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQS3ViZXJuZXRlc0gAEj0KBnN0YXRpYxgDIAEoCzIrLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUFN0YXRpY0gAEkAKCHRwbV9ub2RlGAYgASgLMiwucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQVFBNTm9kZUgAEkoKDWF3c19hZ2VudGNvcmUYCSABKAsyMS5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBBd3NBZ2VudENvcmVIABIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IICgZwb2xpY3lCBQoDX2lkQgkKB19vcmdfaWQiuAIKDEFQS3ViZXJuZXRlcxJTChJuYW1lc3BhY2Vfc2VsZWN0b3IYASABKAsyMi5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9ySACIAQESTQoMcG9kX3NlbGVjdG9yGAIgASgLMjIucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQTGFiZWxTZWxlY3RvckgBiAEBEhoKEmRuc19uYW1lX3RlbXBsYXRlcxgDIAMoCRIkChdzcGlmZmVfaWRfcGF0aF90ZW1wbGF0ZRgEIAEoCUgCiAEBQhUKE19uYW1lc3BhY2Vfc2VsZWN0b3JCDwoNX3BvZF9zZWxlY3RvckIaChhfc3BpZmZlX2lkX3BhdGhfdGVtcGxhdGUi8QEKD0FQTGFiZWxTZWxlY3RvchJZCgxtYXRjaF9sYWJlbHMYASADKAsyQy5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9yLk1hdGNoTGFiZWxzRW50cnkSTwoRbWF0Y2hfZXhwcmVzc2lvbnMYAiADKAsyNC5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBNYXRjaEV4cHJlc3Npb24aMgoQTWF0Y2hMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIkIKEUFQTWF0Y2hFeHByZXNzaW9uEgsKA2tleRgBIAEoCRIQCghvcGVyYXRvchgCIAEoCRIOCgZ2YWx1ZXMYAyADKAki1QEKCEFQU3RhdGljEhoKCXNwaWZmZV9pZBgBIAEoCUICGAFIAIgBARIbCg5zcGlmZmVfaWRfcGF0aBgFIAEoCUgBiAEBEhsKDnBhcmVudF9pZF9wYXRoGAMgASgJSAKIAQESLAoJc2VsZWN0b3JzGAIgAygLMhkuc3BpcmUuYXBpLnR5cGVzLlNlbGVjdG9yEhEKCWRuc19uYW1lcxgEIAMoCUIMCgpfc3BpZmZlX2lkQhEKD19zcGlmZmVfaWRfcGF0aEIRCg9fcGFyZW50X2lkX3BhdGgibAoJQVBUUE1Ob2RlEkYKC2F0dGVzdGF0aW9uGAEgASgLMjEucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLlRQTUF0dGVzdGF0aW9uEhcKD3NlbGVjdG9yX3ZhbHVlcxgCIAMoCSIyCg5UUE1BdHRlc3RhdGlvbhIUCgdla19oYXNoGAEgASgJSACIAQFCCgoIX2VrX2hhc2gi+gEKDkFQQXdzQWdlbnRDb3JlEhcKCmFjY291bnRfaWQYASABKAlIAIgBARITCgZyZWdpb24YAiABKAlIAYgBARIZCgxpYW1fcm9sZV9hcm4YAyABKAlIAogBARIdChBhZ2VudF9pZF9wYXR0ZXJuGAQgASgJSAOIAQESJAoXc3BpZmZlX2lkX3BhdGhfdGVtcGxhdGUYBSABKAlIBIgBAUINCgtfYWNjb3VudF9pZEIJCgdfcmVnaW9uQg8KDV9pYW1fcm9sZV9hcm5CEwoRX2FnZW50X2lkX3BhdHRlcm5CGgoYX3NwaWZmZV9pZF9wYXRoX3RlbXBsYXRlQktaSWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9hdHRlc3RhdGlvbl9wb2xpY3kvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_spire_api_types_selector]);
 
 /**
  * AttestationPolicy defines criteria used to issue a SPIFFE identity to a
@@ -70,6 +70,12 @@ export type AttestationPolicy = Message<"proto.attestation_policy.v1alpha1.Attes
      */
     value: APTPMNode;
     case: "tpmNode";
+  } | {
+    /**
+     * @generated from field: proto.attestation_policy.v1alpha1.APAwsAgentCore aws_agentcore = 9;
+     */
+    value: APAwsAgentCore;
+    case: "awsAgentcore";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -292,4 +298,59 @@ export type TPMAttestation = Message<"proto.attestation_policy.v1alpha1.TPMAttes
  */
 export const TPMAttestationSchema: GenMessage<TPMAttestation> = /*@__PURE__*/
   messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 6);
+
+/**
+ * APAwsAgentCore represents an attestation policy for AWS Bedrock AgentCore agents.
+ * Agents present an AWS OIDC token; Connect verifies the token claims against
+ * the fields specified here before issuing a SPIFFE identity.
+ *
+ * @generated from message proto.attestation_policy.v1alpha1.APAwsAgentCore
+ */
+export type APAwsAgentCore = Message<"proto.attestation_policy.v1alpha1.APAwsAgentCore"> & {
+  /**
+   * Match on AWS account ID. If absent, any account discovered via an
+   * associated AwsEnvironment is accepted.
+   *
+   * @generated from field: optional string account_id = 1;
+   */
+  accountId?: string;
+
+  /**
+   * Match on AWS region.
+   *
+   * @generated from field: optional string region = 2;
+   */
+  region?: string;
+
+  /**
+   * Match on the IAM execution role ARN of the agent (exact match).
+   *
+   * @generated from field: optional string iam_role_arn = 3;
+   */
+  iamRoleArn?: string;
+
+  /**
+   * Match on AgentCore agent ID. Supports glob patterns (e.g. "PROD-*").
+   *
+   * @generated from field: optional string agent_id_pattern = 4;
+   */
+  agentIdPattern?: string;
+
+  /**
+   * Custom SPIFFE ID path template for identity issuance, using agent
+   * attributes as template variables. For example:
+   * aws/{{ .AccountId }}/agentcore/{{ .AgentId }}
+   * => spiffe://<trust_domain>/aws/.../agentcore/...
+   *
+   * @generated from field: optional string spiffe_id_path_template = 5;
+   */
+  spiffeIdPathTemplate?: string;
+};
+
+/**
+ * Describes the message proto.attestation_policy.v1alpha1.APAwsAgentCore.
+ * Use `create(APAwsAgentCoreSchema)` to create a new message.
+ */
+export const APAwsAgentCoreSchema: GenMessage<APAwsAgentCore> = /*@__PURE__*/
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 7);
 
