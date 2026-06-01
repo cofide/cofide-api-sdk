@@ -18,6 +18,15 @@ import "proto/trust_provider/v1alpha1/trust_provider.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1";
 
+// ClusterRole identifies the operational role of a cluster within the trust zone.
+enum ClusterRole {
+  CLUSTER_ROLE_UNSPECIFIED = 0;
+  // A workload cluster hosting regular workloads.
+  CLUSTER_ROLE_WORKLOAD = 1;
+  // A management cluster hosting Cofide control-plane components (e.g. Credex).
+  CLUSTER_ROLE_MANAGEMENT = 2;
+}
+
 // Cluster represents a single environment (e.g. a Kubernetes cluster) onboarded
 // onto Connect. Each cluster belongs to a trust zone.
 message Cluster {
@@ -48,4 +57,6 @@ message Cluster {
   google.protobuf.Timestamp created_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update by user.
   google.protobuf.Timestamp last_updated_at = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The operational role of this cluster within the trust zone.
+  optional ClusterRole role = 15;
 }

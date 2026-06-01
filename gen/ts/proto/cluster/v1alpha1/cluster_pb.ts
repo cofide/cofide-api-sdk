@@ -12,8 +12,8 @@
 // @generated from file proto/cluster/v1alpha1/cluster.proto (package proto.cluster.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
@@ -25,7 +25,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file proto/cluster/v1alpha1/cluster.proto.
  */
 export const file_proto_cluster_v1alpha1_cluster: GenFile = /*@__PURE__*/
-  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEisQUKB0NsdXN0ZXISDwoCaWQYCCABKAlIAIgBARIRCgRuYW1lGAEgASgJSAGIAQESEwoGb3JnX2lkGAkgASgJSAKIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgDiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgEiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgFiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgGiAEBEhQKB3Byb2ZpbGUYBiABKAlIB4gBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICIgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICYgBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAqIAQESMwoKY3JlYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCBQoDX2lkQgcKBV9uYW1lQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCFQoTX2t1YmVybmV0ZXNfY29udGV4dEIRCg9fdHJ1c3RfcHJvdmlkZXJCFAoSX2V4dHJhX2hlbG1fdmFsdWVzQgoKCF9wcm9maWxlQhIKEF9leHRlcm5hbF9zZXJ2ZXJCEgoQX29pZGNfaXNzdWVyX3VybEIWChRfb2lkY19pc3N1ZXJfY2FfY2VydEoECAIQA1IKdHJ1c3Rfem9uZUJAWj5naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2x1c3Rlci92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_trust_provider_v1alpha1_trust_provider]);
+  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEi8gUKB0NsdXN0ZXISDwoCaWQYCCABKAlIAIgBARIRCgRuYW1lGAEgASgJSAGIAQESEwoGb3JnX2lkGAkgASgJSAKIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgDiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgEiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgFiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgGiAEBEhQKB3Byb2ZpbGUYBiABKAlIB4gBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICIgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICYgBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAqIAQESMwoKY3JlYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSNgoEcm9sZRgPIAEoDjIjLnByb3RvLmNsdXN0ZXIudjFhbHBoYTEuQ2x1c3RlclJvbGVIC4gBAUIFCgNfaWRCBwoFX25hbWVCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIVChNfa3ViZXJuZXRlc19jb250ZXh0QhEKD190cnVzdF9wcm92aWRlckIUChJfZXh0cmFfaGVsbV92YWx1ZXNCCgoIX3Byb2ZpbGVCEgoQX2V4dGVybmFsX3NlcnZlckISChBfb2lkY19pc3N1ZXJfdXJsQhYKFF9vaWRjX2lzc3Vlcl9jYV9jZXJ0QgcKBV9yb2xlSgQIAhADUgp0cnVzdF96b25lKmMKC0NsdXN0ZXJSb2xlEhwKGENMVVNURVJfUk9MRV9VTlNQRUNJRklFRBAAEhkKFUNMVVNURVJfUk9MRV9XT1JLTE9BRBABEhsKF0NMVVNURVJfUk9MRV9NQU5BR0VNRU5UEAJCQFo+Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2NsdXN0ZXIvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_trust_provider_v1alpha1_trust_provider]);
 
 /**
  * Cluster represents a single environment (e.g. a Kubernetes cluster) onboarded
@@ -115,6 +115,13 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
    * @generated from field: google.protobuf.Timestamp last_updated_at = 14;
    */
   lastUpdatedAt?: Timestamp;
+
+  /**
+   * The operational role of this cluster within the trust zone.
+   *
+   * @generated from field: optional proto.cluster.v1alpha1.ClusterRole role = 15;
+   */
+  role?: ClusterRole;
 };
 
 /**
@@ -123,4 +130,36 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
  */
 export const ClusterSchema: GenMessage<Cluster> = /*@__PURE__*/
   messageDesc(file_proto_cluster_v1alpha1_cluster, 0);
+
+/**
+ * ClusterRole identifies the operational role of a cluster within the trust zone.
+ *
+ * @generated from enum proto.cluster.v1alpha1.ClusterRole
+ */
+export enum ClusterRole {
+  /**
+   * @generated from enum value: CLUSTER_ROLE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * A workload cluster hosting regular workloads.
+   *
+   * @generated from enum value: CLUSTER_ROLE_WORKLOAD = 1;
+   */
+  WORKLOAD = 1,
+
+  /**
+   * A management cluster hosting Cofide control-plane components (e.g. Credex).
+   *
+   * @generated from enum value: CLUSTER_ROLE_MANAGEMENT = 2;
+   */
+  MANAGEMENT = 2,
+}
+
+/**
+ * Describes the enum proto.cluster.v1alpha1.ClusterRole.
+ */
+export const ClusterRoleSchema: GenEnum<ClusterRole> = /*@__PURE__*/
+  enumDesc(file_proto_cluster_v1alpha1_cluster, 0);
 
