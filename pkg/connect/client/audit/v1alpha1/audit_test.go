@@ -28,6 +28,9 @@ func TestAuditClient_Unimplemented(t *testing.T) {
 	events, _, err := client.ListEvents(t.Context(), nil, pagination.Pagination{PageSize: 100})
 	test.RequireUnimplemented(t, err)
 	assert.Nil(t, events)
+
+	err = client.RecordExchange(t.Context(), &auditsvcpb.RecordExchangeRequest{})
+	test.RequireUnimplemented(t, err)
 }
 
 func TestAuditClient(t *testing.T) {
@@ -44,7 +47,27 @@ func TestAuditClient(t *testing.T) {
 	assert.EqualExportedValues(t, []*auditpb.Event{{Id: "mock-id"}}, events)
 }
 
+func TestAuditClient_RecordExchange(t *testing.T) {
+	server := test.NewTestServer(t)
+	auditsvcpb.RegisterAuditServiceServer(server.Server, &fakeAuditService{t: t})
+	server.Serve()
+
+	conn := server.CreateClientConn()
+	client := New(conn)
+
+	req := &auditsvcpb.RecordExchangeRequest{
+		SubjectIdentity: "spiffe://example.com/subject",
+		SubjectIssuer:   "https://issuer.example.com",
+		ClientId:        "spiffe://example.com/client",
+		TargetAudiences: []string{"https://audience.example.com"},
+		Outcome:         auditpb.Outcome_OUTCOME_SUCCESS,
+	}
+	err := client.RecordExchange(t.Context(), req)
+	require.NoError(t, err)
+}
+
 type fakeAuditService struct {
+	auditsvcpb.UnimplementedAuditServiceServer
 	t *testing.T
 }
 
@@ -52,4 +75,8 @@ func (f *fakeAuditService) ListEvents(ctx context.Context, req *auditsvcpb.ListE
 	assert.Equal(f.t, auditpb.EntityType_ENTITY_TYPE_ORGANIZATION, req.Filter.GetEntities()[0].GetType())
 	events := []*auditpb.Event{{Id: "mock-id"}}
 	return &auditsvcpb.ListEventsResponse{Events: events}, nil
+}
+
+func (f *fakeAuditService) RecordExchange(ctx context.Context, req *auditsvcpb.RecordExchangeRequest) (*auditsvcpb.RecordExchangeResponse, error) {
+	return &auditsvcpb.RecordExchangeResponse{}, nil
 }

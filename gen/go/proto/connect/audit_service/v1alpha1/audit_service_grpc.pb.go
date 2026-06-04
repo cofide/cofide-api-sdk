@@ -22,7 +22,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuditService_ListEvents_FullMethodName = "/proto.connect.audit_service.v1alpha1.AuditService/ListEvents"
+	AuditService_ListEvents_FullMethodName     = "/proto.connect.audit_service.v1alpha1.AuditService/ListEvents"
+	AuditService_RecordExchange_FullMethodName = "/proto.connect.audit_service.v1alpha1.AuditService/RecordExchange"
 )
 
 // AuditServiceClient is the client API for AuditService service.
@@ -33,6 +34,9 @@ const (
 type AuditServiceClient interface {
 	// List the auditable events subject to the provided filter
 	ListEvents(ctx context.Context, in *ListEventsRequest, opts ...grpc.CallOption) (*ListEventsResponse, error)
+	// Record a token exchange audit event. Called by credex to persist exchange
+	// decisions into the Connect audit store.
+	RecordExchange(ctx context.Context, in *RecordExchangeRequest, opts ...grpc.CallOption) (*RecordExchangeResponse, error)
 }
 
 type auditServiceClient struct {
@@ -53,6 +57,16 @@ func (c *auditServiceClient) ListEvents(ctx context.Context, in *ListEventsReque
 	return out, nil
 }
 
+func (c *auditServiceClient) RecordExchange(ctx context.Context, in *RecordExchangeRequest, opts ...grpc.CallOption) (*RecordExchangeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecordExchangeResponse)
+	err := c.cc.Invoke(ctx, AuditService_RecordExchange_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuditServiceServer is the server API for AuditService service.
 // All implementations should embed UnimplementedAuditServiceServer
 // for forward compatibility.
@@ -61,6 +75,9 @@ func (c *auditServiceClient) ListEvents(ctx context.Context, in *ListEventsReque
 type AuditServiceServer interface {
 	// List the auditable events subject to the provided filter
 	ListEvents(context.Context, *ListEventsRequest) (*ListEventsResponse, error)
+	// Record a token exchange audit event. Called by credex to persist exchange
+	// decisions into the Connect audit store.
+	RecordExchange(context.Context, *RecordExchangeRequest) (*RecordExchangeResponse, error)
 }
 
 // UnimplementedAuditServiceServer should be embedded to have
@@ -72,6 +89,9 @@ type UnimplementedAuditServiceServer struct{}
 
 func (UnimplementedAuditServiceServer) ListEvents(context.Context, *ListEventsRequest) (*ListEventsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEvents not implemented")
+}
+func (UnimplementedAuditServiceServer) RecordExchange(context.Context, *RecordExchangeRequest) (*RecordExchangeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecordExchange not implemented")
 }
 func (UnimplementedAuditServiceServer) testEmbeddedByValue() {}
 
@@ -111,6 +131,24 @@ func _AuditService_ListEvents_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuditService_RecordExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecordExchangeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuditServiceServer).RecordExchange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuditService_RecordExchange_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuditServiceServer).RecordExchange(ctx, req.(*RecordExchangeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuditService_ServiceDesc is the grpc.ServiceDesc for AuditService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -121,6 +159,10 @@ var AuditService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListEvents",
 			Handler:    _AuditService_ListEvents_Handler,
+		},
+		{
+			MethodName: "RecordExchange",
+			Handler:    _AuditService_RecordExchange_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

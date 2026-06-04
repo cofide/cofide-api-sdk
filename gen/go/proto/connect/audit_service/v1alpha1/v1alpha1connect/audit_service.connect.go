@@ -38,12 +38,18 @@ const (
 const (
 	// AuditServiceListEventsProcedure is the fully-qualified name of the AuditService's ListEvents RPC.
 	AuditServiceListEventsProcedure = "/proto.connect.audit_service.v1alpha1.AuditService/ListEvents"
+	// AuditServiceRecordExchangeProcedure is the fully-qualified name of the AuditService's
+	// RecordExchange RPC.
+	AuditServiceRecordExchangeProcedure = "/proto.connect.audit_service.v1alpha1.AuditService/RecordExchange"
 )
 
 // AuditServiceClient is a client for the proto.connect.audit_service.v1alpha1.AuditService service.
 type AuditServiceClient interface {
 	// List the auditable events subject to the provided filter
 	ListEvents(context.Context, *connect.Request[v1alpha1.ListEventsRequest]) (*connect.Response[v1alpha1.ListEventsResponse], error)
+	// Record a token exchange audit event. Called by credex to persist exchange
+	// decisions into the Connect audit store.
+	RecordExchange(context.Context, *connect.Request[v1alpha1.RecordExchangeRequest]) (*connect.Response[v1alpha1.RecordExchangeResponse], error)
 }
 
 // NewAuditServiceClient constructs a client for the
@@ -64,12 +70,19 @@ func NewAuditServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(auditServiceMethods.ByName("ListEvents")),
 			connect.WithClientOptions(opts...),
 		),
+		recordExchange: connect.NewClient[v1alpha1.RecordExchangeRequest, v1alpha1.RecordExchangeResponse](
+			httpClient,
+			baseURL+AuditServiceRecordExchangeProcedure,
+			connect.WithSchema(auditServiceMethods.ByName("RecordExchange")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // auditServiceClient implements AuditServiceClient.
 type auditServiceClient struct {
-	listEvents *connect.Client[v1alpha1.ListEventsRequest, v1alpha1.ListEventsResponse]
+	listEvents     *connect.Client[v1alpha1.ListEventsRequest, v1alpha1.ListEventsResponse]
+	recordExchange *connect.Client[v1alpha1.RecordExchangeRequest, v1alpha1.RecordExchangeResponse]
 }
 
 // ListEvents calls proto.connect.audit_service.v1alpha1.AuditService.ListEvents.
@@ -77,11 +90,19 @@ func (c *auditServiceClient) ListEvents(ctx context.Context, req *connect.Reques
 	return c.listEvents.CallUnary(ctx, req)
 }
 
+// RecordExchange calls proto.connect.audit_service.v1alpha1.AuditService.RecordExchange.
+func (c *auditServiceClient) RecordExchange(ctx context.Context, req *connect.Request[v1alpha1.RecordExchangeRequest]) (*connect.Response[v1alpha1.RecordExchangeResponse], error) {
+	return c.recordExchange.CallUnary(ctx, req)
+}
+
 // AuditServiceHandler is an implementation of the proto.connect.audit_service.v1alpha1.AuditService
 // service.
 type AuditServiceHandler interface {
 	// List the auditable events subject to the provided filter
 	ListEvents(context.Context, *connect.Request[v1alpha1.ListEventsRequest]) (*connect.Response[v1alpha1.ListEventsResponse], error)
+	// Record a token exchange audit event. Called by credex to persist exchange
+	// decisions into the Connect audit store.
+	RecordExchange(context.Context, *connect.Request[v1alpha1.RecordExchangeRequest]) (*connect.Response[v1alpha1.RecordExchangeResponse], error)
 }
 
 // NewAuditServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -97,10 +118,18 @@ func NewAuditServiceHandler(svc AuditServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(auditServiceMethods.ByName("ListEvents")),
 		connect.WithHandlerOptions(opts...),
 	)
+	auditServiceRecordExchangeHandler := connect.NewUnaryHandler(
+		AuditServiceRecordExchangeProcedure,
+		svc.RecordExchange,
+		connect.WithSchema(auditServiceMethods.ByName("RecordExchange")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.connect.audit_service.v1alpha1.AuditService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case AuditServiceListEventsProcedure:
 			auditServiceListEventsHandler.ServeHTTP(w, r)
+		case AuditServiceRecordExchangeProcedure:
+			auditServiceRecordExchangeHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -112,4 +141,8 @@ type UnimplementedAuditServiceHandler struct{}
 
 func (UnimplementedAuditServiceHandler) ListEvents(context.Context, *connect.Request[v1alpha1.ListEventsRequest]) (*connect.Response[v1alpha1.ListEventsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.audit_service.v1alpha1.AuditService.ListEvents is not implemented"))
+}
+
+func (UnimplementedAuditServiceHandler) RecordExchange(context.Context, *connect.Request[v1alpha1.RecordExchangeRequest]) (*connect.Response[v1alpha1.RecordExchangeResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.audit_service.v1alpha1.AuditService.RecordExchange is not implemented"))
 }

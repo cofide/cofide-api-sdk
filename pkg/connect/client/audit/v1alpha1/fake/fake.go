@@ -5,7 +5,9 @@ package fake
 
 import (
 	"context"
+	"fmt"
 	"slices"
+	"time"
 
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
 	auditsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1"
@@ -13,6 +15,7 @@ import (
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type fakeAuditClient struct {
@@ -24,6 +27,23 @@ func New(fake *fakeconnect.FakeConnect) auditv1alpha1.AuditClient {
 	return &fakeAuditClient{
 		fake: fake,
 	}
+}
+
+func (c *fakeAuditClient) RecordExchange(ctx context.Context, req *auditsvcpb.RecordExchangeRequest) error {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	id := fmt.Sprintf("token-exchange-%d", time.Now().UnixNano())
+	event := &auditpb.Event{
+		Id:         id,
+		OccurredAt: timestamppb.Now(),
+		Type:       auditpb.EventType_EVENT_TYPE_TOKEN_EXCHANGE,
+		Actor:      req.GetSubjectIdentity(),
+		SourceIp:   req.GetSourceIp(),
+		Outcome:    req.GetOutcome(),
+	}
+	c.fake.AuditEvents[id] = event
+	return nil
 }
 
 func (c *fakeAuditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, requestPagination pagination.Pagination) ([]*auditpb.Event, pagination.Pagination, error) {
