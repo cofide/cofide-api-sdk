@@ -121,4 +121,7 @@ message APAwsAgentCore {
   // aws/{{ .AccountId }}/agentcore/{{ .AgentId }}
   // => spiffe://<trust_domain>/aws/.../agentcore/...
   optional string spiffe_id_path_template = 5;
+  // The OIDC issuer name as configured in Credex's TrustedIssuers. Used to
+  // generate the credex:oidc:issuer selector on the SPIRE registration entry.
+  optional string oidc_issuer = 6;
 }
