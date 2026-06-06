@@ -1,0 +1,99 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.connect.audit_service.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+import "proto/audit/v1alpha1/event.proto";
+import "proto/pagination/v1alpha1/pagination.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/audit_service/v1alpha1";
+
+// AuditService provides visibility into auditable events.
+service AuditService {
+  // List the auditable events subject to the provided filter
+  rpc ListEvents(ListEventsRequest) returns (ListEventsResponse) {}
+  // Record a token exchange audit event. Called by credex to persist exchange
+  // decisions into the Connect audit store.
+  rpc RecordExchange(RecordExchangeRequest) returns (RecordExchangeResponse) {}
+}
+
+message ListEventsRequest {
+  // Filters are combined with AND, repeated fields are OR'd
+  message Filter {
+    repeated proto.audit.v1alpha1.EventType event_types = 1 [(google.api.field_behavior) = OPTIONAL];
+    message Entity {
+      // At least one of type or id must be provided.
+      // Providing only type matches all events linked to any entity of that type.
+      // Providing only id matches all events linked to the entity with that id, regardless of type.
+      proto.audit.v1alpha1.EntityType type = 1 [(google.api.field_behavior) = OPTIONAL];
+      string id = 2 [(google.api.field_behavior) = OPTIONAL];
+    }
+    repeated Entity entities = 2 [(google.api.field_behavior) = OPTIONAL];
+    // If true, also matches events with no entity links. Combined with entities, matches events linked to any of
+    // the specified entities OR events with no links.
+    bool match_linkless = 8 [(google.api.field_behavior) = OPTIONAL];
+    google.protobuf.Timestamp occurred_before = 3 [(google.api.field_behavior) = OPTIONAL];
+    google.protobuf.Timestamp occurred_after = 4 [(google.api.field_behavior) = OPTIONAL];
+    // To match internal events, include "system" in this list.
+    repeated string actors = 5 [(google.api.field_behavior) = OPTIONAL];
+    // To match events with no source IP (i.e. internal events), include "" in this list.
+    repeated string source_ips = 6 [(google.api.field_behavior) = OPTIONAL];
+    repeated proto.audit.v1alpha1.Outcome outcomes = 7 [(google.api.field_behavior) = OPTIONAL];
+    // Exclude specifies values to exclude from results. Exclusions are applied after inclusions.
+    // All fields are combined with AND; repeated fields are OR'd (i.e. exclude if any value matches).
+    message Exclude {
+      repeated proto.audit.v1alpha1.EventType event_types = 1 [(google.api.field_behavior) = OPTIONAL];
+      repeated Entity entities = 2 [(google.api.field_behavior) = OPTIONAL];
+      repeated string actors = 3 [(google.api.field_behavior) = OPTIONAL];
+      repeated string source_ips = 4 [(google.api.field_behavior) = OPTIONAL];
+      repeated proto.audit.v1alpha1.Outcome outcomes = 5 [(google.api.field_behavior) = OPTIONAL];
+    }
+    Exclude exclude = 9 [(google.api.field_behavior) = OPTIONAL];
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  proto.pagination.v1alpha1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListEventsResponse {
+  repeated proto.audit.v1alpha1.Event events = 1;
+  proto.pagination.v1alpha1.PageResponse pagination = 2;
+}
+
+// ExchangeDenyReason distinguishes why a token exchange was denied.
+// Only relevant when outcome = OUTCOME_DENIED.
+enum ExchangeDenyReason {
+  EXCHANGE_DENY_REASON_UNSPECIFIED = 0;
+  // A deny-action policy matched the exchange request.
+  EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY = 1;
+  // An allow policy matched but the requested scopes exceeded the policy limits.
+  EXCHANGE_DENY_REASON_SCOPE_DENIED = 2;
+  // No policy matched the exchange request.
+  EXCHANGE_DENY_REASON_NO_MATCHING_POLICY = 3;
+}
+
+message RecordExchangeRequest {
+  // Exchange request details — populated for all outcomes.
+  string subject_identity = 1 [(google.api.field_behavior) = REQUIRED];
+  string subject_issuer = 2 [(google.api.field_behavior) = REQUIRED];
+  string actor_identity = 3 [(google.api.field_behavior) = OPTIONAL];
+  string actor_issuer = 4 [(google.api.field_behavior) = OPTIONAL];
+  string client_id = 5 [(google.api.field_behavior) = OPTIONAL];
+  repeated string target_audiences = 6 [(google.api.field_behavior) = OPTIONAL];
+  repeated string requested_scopes = 7 [(google.api.field_behavior) = OPTIONAL];
+  // Whether the exchange was allowed or denied.
+  proto.audit.v1alpha1.Outcome outcome = 8 [(google.api.field_behavior) = REQUIRED];
+  // Why it was denied. Only set when outcome = OUTCOME_DENIED.
+  ExchangeDenyReason deny_reason = 9 [(google.api.field_behavior) = OPTIONAL];
+  // ID of the exchange policy that matched the request. Set for OUTCOME_SUCCESS and for
+  // EXCHANGE_DENY_REASON_BLOCKED_BY_POLICY.
+  // Absent for EXCHANGE_DENY_REASON_SCOPE_DENIED / EXCHANGE_DENY_REASON_NO_MATCHING_POLICY.
+  string matched_policy_id = 10 [(google.api.field_behavior) = OPTIONAL];
+  // Source IP of the exchange requester.
+  string source_ip = 11 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message RecordExchangeResponse {}

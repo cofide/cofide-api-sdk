@@ -1,0 +1,35 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package proto.pagination.v1alpha1;
+
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/pagination/v1alpha1";
+
+// PageRequest holds pagination parameters for List RPCs, following AIP-132
+// https://google.aip.dev/132
+message PageRequest {
+  // The maximum number of items to return. The service may return fewer than
+  // this value.
+  // If unspecified, at most 100 items will be returned unless the List RPC
+  // documents otherwise (supporting clients that existed pre-pagination).
+  // The maximum value is 1000; values above 1000 will be coerced to 1000.
+  int32 page_size = 1 [(google.api.field_behavior) = OPTIONAL];
+  // A page token, received from a previous List call.
+  // Provide this to retrieve the subsequent page.
+  //
+  // When paginating, all other parameters provided to the List RPC must match
+  // the call that provided the page token.
+  string page_token = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// PageResponse holds pagination fields for List RPC responses, following
+// AIP-132 https://google.aip.dev/132
+message PageResponse {
+  // A token, which can be sent as `page_token` to retrieve the next page.
+  // If this field is omitted/empty, there are no subsequent pages.
+  string next_page_token = 1;
+}
