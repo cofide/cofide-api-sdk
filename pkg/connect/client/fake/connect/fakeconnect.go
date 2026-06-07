@@ -7,6 +7,9 @@ import (
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	cloudorgpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_organization/v1alpha1"
+	cloudresourcepb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_resource/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
@@ -44,6 +47,9 @@ type FakeConnect struct {
 	Identities          map[string]*identitypb.Identity
 	RoleBindings        map[string]*rolebindingpb.RoleBinding
 	AuditEvents         map[string]*auditpb.Event
+	CloudOrganizations  map[string]*cloudorgpb.CloudOrganization
+	CloudAccounts       map[string]*cloudaccountpb.CloudAccount
+	CloudResources      map[string]*cloudresourcepb.CloudResource
 }
 
 func New() *FakeConnect {
@@ -66,6 +72,9 @@ func New() *FakeConnect {
 		Identities:          make(map[string]*identitypb.Identity),
 		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
 		AuditEvents:         make(map[string]*auditpb.Event),
+		CloudOrganizations:  make(map[string]*cloudorgpb.CloudOrganization),
+		CloudAccounts:       make(map[string]*cloudaccountpb.CloudAccount),
+		CloudResources:      make(map[string]*cloudresourcepb.CloudResource),
 	}
 }
 
@@ -163,6 +172,27 @@ func (f *FakeConnect) ValidateRoleBinding(roleBindingID string) error {
 func (f *FakeConnect) ValidateAuditEvent(auditEventID string) error {
 	if _, ok := f.AuditEvents[auditEventID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid audit event")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateCloudOrganization(cloudOrgID string) error {
+	if _, ok := f.CloudOrganizations[cloudOrgID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud organization")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateCloudAccount(cloudAccountID string) error {
+	if _, ok := f.CloudAccounts[cloudAccountID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud account")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateCloudResource(cloudResourceID string) error {
+	if _, ok := f.CloudResources[cloudResourceID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud resource")
 	}
 	return nil
 }

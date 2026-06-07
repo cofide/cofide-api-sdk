@@ -1,0 +1,86 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the CloudOrganizationService gRPC service for managing
+// cloud organizations in the Connect control plane. Cloud organizations
+// represent cloud provider organizations linked to a Cofide organization and
+// act as the root for cloud account and resource discovery.
+
+syntax = "proto3";
+
+package proto.connect.cloud_organization_service.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "proto/cloud_organization/v1alpha1/cloud_organization.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/cloud_organization_service/v1alpha1";
+
+// CloudOrganizationService manages cloud organizations in the Connect control plane.
+service CloudOrganizationService {
+  // CreateCloudOrganization creates a new cloud organization.
+  rpc CreateCloudOrganization(CreateCloudOrganizationRequest) returns (CreateCloudOrganizationResponse);
+  // GetCloudOrganization retrieves a cloud organization by ID.
+  rpc GetCloudOrganization(GetCloudOrganizationRequest) returns (GetCloudOrganizationResponse);
+  // ListCloudOrganizations returns all cloud organizations matching the optional filter.
+  rpc ListCloudOrganizations(ListCloudOrganizationsRequest) returns (ListCloudOrganizationsResponse);
+  // UpdateCloudOrganization updates an existing cloud organization.
+  rpc UpdateCloudOrganization(UpdateCloudOrganizationRequest) returns (UpdateCloudOrganizationResponse);
+  // DestroyCloudOrganization deletes a cloud organization by ID.
+  rpc DestroyCloudOrganization(DestroyCloudOrganizationRequest) returns (DestroyCloudOrganizationResponse);
+}
+
+message CreateCloudOrganizationRequest {
+  proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateCloudOrganizationResponse {
+  proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1;
+}
+
+message GetCloudOrganizationRequest {
+  string cloud_organization_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetCloudOrganizationResponse {
+  optional proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1;
+}
+
+message ListCloudOrganizationsRequest {
+  message Filter {
+    string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListCloudOrganizationsResponse {
+  repeated proto.cloud_organization.v1alpha1.CloudOrganization cloud_organizations = 1;
+}
+
+message UpdateCloudOrganizationRequest {
+  message UpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws.iam_role_arn field.
+    bool aws_iam_role_arn = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws.audience field.
+    bool aws_audience = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws.external_id field.
+    bool aws_external_id = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the discovery_enabled field.
+    bool discovery_enabled = 5 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateCloudOrganizationResponse {
+  proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1;
+}
+
+message DestroyCloudOrganizationRequest {
+  string cloud_organization_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DestroyCloudOrganizationResponse {}

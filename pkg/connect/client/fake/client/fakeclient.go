@@ -13,6 +13,12 @@ import (
 	fakeattestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1/fake"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
 	fakeauditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1/fake"
+	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
+	fakecloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1/fake"
+	cloudorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudorganization/v1alpha1"
+	fakecloudorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudorganization/v1alpha1/fake"
+	cloudresourcev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresource/v1alpha1"
+	fakecloudresourcev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresource/v1alpha1/fake"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	fakeclusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1/fake"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
@@ -40,6 +46,9 @@ type fakeClientSet struct {
 	agentV1Alpha1             agentv1alpha1.AgentClient
 	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
 	auditV1Alpha1             auditv1alpha1.AuditClient
+	cloudAccountV1Alpha1      cloudaccountv1alpha1.CloudAccountClient
+	cloudOrganizationV1Alpha1 cloudorganizationv1alpha1.CloudOrganizationClient
+	cloudResourceV1Alpha1     cloudresourcev1alpha1.CloudResourceClient
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
@@ -59,6 +68,9 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		agentV1Alpha1:             fakeagentv1alpha1.New(fake),
 		apBindingV1Alpha1:         fakeapbindingv1alpha1.New(fake),
 		auditV1Alpha1:             fakeauditv1alpha1.New(fake),
+		cloudAccountV1Alpha1:      fakecloudaccountv1alpha1.New(fake),
+		cloudOrganizationV1Alpha1: fakecloudorganizationv1alpha1.New(fake),
+		cloudResourceV1Alpha1:     fakecloudresourcev1alpha1.New(fake),
 		exchangePolicyV1Alpha1:    fakeexchangepolicyv1alpha1.New(fake),
 		attestationPolicyV1Alpha1: fakeattestationpolicyv1alpha1.New(fake),
 		clusterV1Alpha1:           fakeclusterv1alpha1.New(fake),
@@ -75,6 +87,18 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 
 func (c *fakeClientSet) AgentV1Alpha1() agentv1alpha1.AgentClient {
 	return c.agentV1Alpha1
+}
+
+func (c *fakeClientSet) CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient {
+	return c.cloudAccountV1Alpha1
+}
+
+func (c *fakeClientSet) CloudOrganizationV1Alpha1() cloudorganizationv1alpha1.CloudOrganizationClient {
+	return c.cloudOrganizationV1Alpha1
+}
+
+func (c *fakeClientSet) CloudResourceV1Alpha1() cloudresourcev1alpha1.CloudResourceClient {
+	return c.cloudResourceV1Alpha1
 }
 
 func (c *fakeClientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {

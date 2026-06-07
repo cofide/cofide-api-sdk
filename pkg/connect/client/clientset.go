@@ -8,6 +8,9 @@ import (
 	apbindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/apbinding/v1alpha1"
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
+	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
+	cloudorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudorganization/v1alpha1"
+	cloudresourcev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresource/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
@@ -39,12 +42,18 @@ type ClientSet interface {
 	IdentityV1Alpha1() identityv1alpha1.IdentityClient
 	RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient
 	AuditV1Alpha1() auditv1alpha1.AuditClient
+	CloudOrganizationV1Alpha1() cloudorganizationv1alpha1.CloudOrganizationClient
+	CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient
+	CloudResourceV1Alpha1() cloudresourcev1alpha1.CloudResourceClient
 }
 
 type clientSet struct {
 	agentV1Alpha1             agentv1alpha1.AgentClient
 	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
 	auditV1Alpha1             auditv1alpha1.AuditClient
+	cloudAccountV1Alpha1      cloudaccountv1alpha1.CloudAccountClient
+	cloudOrganizationV1Alpha1 cloudorganizationv1alpha1.CloudOrganizationClient
+	cloudResourceV1Alpha1     cloudresourcev1alpha1.CloudResourceClient
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
@@ -64,6 +73,9 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		agentV1Alpha1:             agentv1alpha1.New(conn),
 		apBindingV1Alpha1:         apbindingv1alpha1.New(conn),
 		auditV1Alpha1:             auditv1alpha1.New(conn),
+		cloudAccountV1Alpha1:      cloudaccountv1alpha1.New(conn),
+		cloudOrganizationV1Alpha1: cloudorganizationv1alpha1.New(conn),
+		cloudResourceV1Alpha1:     cloudresourcev1alpha1.New(conn),
 		exchangePolicyV1Alpha1:    exchangepolicyv1alpha1.New(conn),
 		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
 		clusterV1Alpha1:           clusterv1alpha1.New(conn),
@@ -132,4 +144,16 @@ func (c *clientSet) TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneS
 
 func (c *clientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 	return c.workloadV1Alpha1
+}
+
+func (c *clientSet) CloudOrganizationV1Alpha1() cloudorganizationv1alpha1.CloudOrganizationClient {
+	return c.cloudOrganizationV1Alpha1
+}
+
+func (c *clientSet) CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient {
+	return c.cloudAccountV1Alpha1
+}
+
+func (c *clientSet) CloudResourceV1Alpha1() cloudresourcev1alpha1.CloudResourceClient {
+	return c.cloudResourceV1Alpha1
 }

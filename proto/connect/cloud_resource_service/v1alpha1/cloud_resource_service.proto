@@ -1,0 +1,44 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the CloudResourceService gRPC service for read-only access
+// to discovered cloud resources in the Connect control plane. Cloud resources
+// are populated by the discovery process and cannot be created or modified
+// directly via the API.
+
+syntax = "proto3";
+
+package proto.connect.cloud_resource_service.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "proto/cloud_resource/v1alpha1/cloud_resource.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/cloud_resource_service/v1alpha1";
+
+// CloudResourceService provides read-only access to discovered cloud resources.
+service CloudResourceService {
+  // GetCloudResource retrieves a cloud resource by ID.
+  rpc GetCloudResource(GetCloudResourceRequest) returns (GetCloudResourceResponse);
+  // ListCloudResources returns all cloud resources matching the optional filter.
+  rpc ListCloudResources(ListCloudResourcesRequest) returns (ListCloudResourcesResponse);
+}
+
+message GetCloudResourceRequest {
+  string cloud_resource_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetCloudResourceResponse {
+  optional proto.cloud_resource.v1alpha1.CloudResource cloud_resource = 1;
+}
+
+message ListCloudResourcesRequest {
+  message Filter {
+    string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
+    string cloud_account_id = 2 [(google.api.field_behavior) = OPTIONAL];
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListCloudResourcesResponse {
+  repeated proto.cloud_resource.v1alpha1.CloudResource cloud_resources = 1;
+}
