@@ -20,7 +20,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/identity/v1alpha1/identity.proto.
  */
 export const file_proto_identity_v1alpha1_identity: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by9pZGVudGl0eS92MWFscGhhMS9pZGVudGl0eS5wcm90bxIXcHJvdG8uaWRlbnRpdHkudjFhbHBoYTEi/QIKCElkZW50aXR5EgoKAmlkGAEgASgJEg4KBm9yZ19pZBgCIAEoCRIVCg10cnVzdF96b25lX2lkGAMgASgJEhIKCmNsdXN0ZXJfaWQYBCABKAkSHQoVYXR0ZXN0YXRpb25fcG9saWN5X2lkGAUgASgJEhUKDWFwX2JpbmRpbmdfaWQYBiABKAkSEwoLd29ya2xvYWRfaWQYByABKAkSEQoJc3BpZmZlX2lkGAggASgJEhEKCXBhcmVudF9pZBgJIAEoCRI0CglzZWxlY3RvcnMYCiADKAsyIS5wcm90by5pZGVudGl0eS52MWFscGhhMS5TZWxlY3RvchIRCglkbnNfbmFtZXMYDSADKAkSQAoLZmVkZXJhdGlvbnMYCyADKAsyKy5wcm90by5pZGVudGl0eS52MWFscGhhMS5JZGVudGl0eUZlZGVyYXRpb24SLgoKY3JlYXRlZF9hdBgMIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiJwoIU2VsZWN0b3ISDAoEdHlwZRgBIAEoCRINCgV2YWx1ZRgCIAEoCSJTChJJZGVudGl0eUZlZGVyYXRpb24SFwoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAEhYKDHRydXN0X2RvbWFpbhgCIAEoCUgAQgwKCmZlZGVyYXRpb25CQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2lkZW50aXR5L3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by9pZGVudGl0eS92MWFscGhhMS9pZGVudGl0eS5wcm90bxIXcHJvdG8uaWRlbnRpdHkudjFhbHBoYTEikQMKCElkZW50aXR5EgoKAmlkGAEgASgJEg4KBm9yZ19pZBgCIAEoCRIVCg10cnVzdF96b25lX2lkGAMgASgJEhIKCmNsdXN0ZXJfaWQYBCABKAkSHQoVYXR0ZXN0YXRpb25fcG9saWN5X2lkGAUgASgJEhUKDWFwX2JpbmRpbmdfaWQYBiABKAkSEwoLd29ya2xvYWRfaWQYByABKAkSEQoJc3BpZmZlX2lkGAggASgJEhEKCXBhcmVudF9pZBgJIAEoCRI0CglzZWxlY3RvcnMYCiADKAsyIS5wcm90by5pZGVudGl0eS52MWFscGhhMS5TZWxlY3RvchIRCglkbnNfbmFtZXMYDSADKAkSQAoLZmVkZXJhdGlvbnMYCyADKAsyKy5wcm90by5pZGVudGl0eS52MWFscGhhMS5JZGVudGl0eUZlZGVyYXRpb24SEgoKc3RvcmVfc3ZpZBgOIAEoCBIuCgpjcmVhdGVkX2F0GAwgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCInCghTZWxlY3RvchIMCgR0eXBlGAEgASgJEg0KBXZhbHVlGAIgASgJIlMKEklkZW50aXR5RmVkZXJhdGlvbhIXCg10cnVzdF96b25lX2lkGAEgASgJSAASFgoMdHJ1c3RfZG9tYWluGAIgASgJSABCDAoKZmVkZXJhdGlvbkJBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vaWRlbnRpdHkvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * Identity represents a SPIFFE identity (SVID) issued by Connect to a workload
@@ -106,6 +106,14 @@ export type Identity = Message<"proto.identity.v1alpha1.Identity"> & {
    * @generated from field: repeated proto.identity.v1alpha1.IdentityFederation federations = 11;
    */
   federations: IdentityFederation[];
+
+  /**
+   * When true, indicates to SPIRE agents that the x509 SVID should be stored in the svidstore
+   * (if the svidstore agent plugin is enabled).
+   *
+   * @generated from field: bool store_svid = 14;
+   */
+  storeSvid: boolean;
 
   /**
    * @generated from field: google.protobuf.Timestamp created_at = 12;
