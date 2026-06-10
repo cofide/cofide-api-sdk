@@ -78,6 +78,8 @@ message UpdateExchangePolicyRequest {
     bool subject_identity = 3 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the subject_issuer field.
     bool subject_issuer = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the subject_audience field.
+    bool subject_audience = 10 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the actor_identity field.
     bool actor_identity = 5 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the actor_issuer field.
