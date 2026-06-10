@@ -38,6 +38,9 @@ message ExchangePolicy {
   // Match conditions on the inbound subject token
   StringSet subject_identity = 6 [(google.api.field_behavior) = OPTIONAL];
   StringSet subject_issuer = 7 [(google.api.field_behavior) = OPTIONAL];
+  // Match condition on the audience of the inbound subject token.
+  // Useful for OIDC ID tokens which use the IdP's ID for the client.
+  StringSet subject_audience = 15 [(google.api.field_behavior) = OPTIONAL];
 
   // Match conditions on the optional inbound actor
   StringSet actor_identity = 8 [(google.api.field_behavior) = OPTIONAL];
