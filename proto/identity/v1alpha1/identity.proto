@@ -38,6 +38,9 @@ message Identity {
   repeated string dns_names = 13;
   // Federated trust zones or trust domains with which this identity is shared.
   repeated IdentityFederation federations = 11;
+  // When true, indicates to SPIRE agents that the x509 SVID should be stored in the svidstore
+  // (if the svidstore agent plugin is enabled).
+  bool store_svid = 14;
   google.protobuf.Timestamp created_at = 12;
 }
 
