@@ -94,6 +94,10 @@ message RecordExchangeRequest {
   string matched_policy_id = 10 [(google.api.field_behavior) = OPTIONAL];
   // Source IP of the exchange requester.
   string source_ip = 11 [(google.api.field_behavior) = OPTIONAL];
+  // Outbound identity set on the exchanged token. Only set when outcome = OUTCOME_SUCCESS.
+  string outbound_identity = 12 [(google.api.field_behavior) = OPTIONAL];
+  // Outbound scopes granted on the exchanged token. Only set when outcome = OUTCOME_SUCCESS.
+  repeated string outbound_scopes = 13 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message RecordExchangeResponse {}
