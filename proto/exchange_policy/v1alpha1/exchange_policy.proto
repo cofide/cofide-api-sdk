@@ -52,6 +52,8 @@ message ExchangePolicy {
   // Match condition on the requested target audience
   StringSet target_audience = 11 [(google.api.field_behavior) = OPTIONAL];
 
+  // Outbound identity to set on the exchanged token. Only relevant when action is ALLOW.
+  string outbound_identity = 16 [(google.api.field_behavior) = OPTIONAL];
   // Outbound scopes to grant. Only relevant when action is ALLOW.
   repeated string outbound_scopes = 12 [(google.api.field_behavior) = OPTIONAL];
   // Time of resource creation by user.

@@ -88,6 +88,8 @@ message UpdateExchangePolicyRequest {
     bool client_id = 7 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the target_audience field.
     bool target_audience = 8 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the outbound_identity field.
+    bool outbound_identity = 11 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the outbound_scopes field.
     bool outbound_scopes = 9 [(google.api.field_behavior) = OPTIONAL];
   }
