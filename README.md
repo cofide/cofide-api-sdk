@@ -2,7 +2,7 @@
 
 [![Buf CI](https://github.com/cofide/cofide-api-sdk/workflows/buf-ci/badge.svg)](https://github.com/cofide/cofide-api-sdk/actions?query=workflow%3Abuf-ci+branch%3Amain)
 
-This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs, used for open source projects (e.g. [`cofidectl`](https://github.com/cofide/cofidectl)) and the Cofide Connect product.
+This repository contains the service definitions and code generated stubs for [Cofide's](https://www.cofide.io/) APIs, used for open source projects and the Cofide Connect product.
 Services and messages are defined using Protocol Buffers (protobuf).
 This repository also contains a Go client implementation for the Cofide Connect API.
 
@@ -13,7 +13,7 @@ For more information about the Cofide Connect Workload Identity platform, take a
 This repository uses the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview) to help generate and manage Cofide's protobuf definitions and schemas.
 The following tools must be available in order to generate code stubs.
 
-- [Go 1.22.6 toolchain](https://golang.org/doc/install)
+- [Go 1.25.11 toolchain](https://golang.org/doc/install)
 - [protobuf version 3 compiler](https://grpc.io/docs/protoc-installation/)
 - [Go gRPC and protobuf](https://grpc.io/docs/languages/go/quickstart/#prerequisites) build tools.
 - [Connect RPC tools](https://connectrpc.com/docs/go/getting-started#prerequisites)
