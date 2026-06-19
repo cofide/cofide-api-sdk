@@ -11,6 +11,7 @@ syntax = "proto3";
 package proto.exchange_policy.v1alpha1;
 
 import "google/api/field_behavior.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1";
@@ -60,6 +61,9 @@ message ExchangePolicy {
   google.protobuf.Timestamp created_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update by user.
   google.protobuf.Timestamp last_updated_at = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Post-matching hooks that transform outbound token claims before Credex mints them.
+  repeated ExternalHook external_hooks = 17 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // ExchangePolicyAction determines whether a Credex token exchange is permitted
@@ -82,4 +86,37 @@ message StringMatcher {
 // StringSet holds a collection of StringMatchers evaluated with OR semantics.
 message StringSet {
   repeated StringMatcher matchers = 1;
+}
+
+// ExternalHook defines an HTTP endpoint that Credex calls after an exchange policy
+// matches, allowing the hook to inspect and modify the outbound token claims before
+// the token is minted. Hooks are invoked in the order they appear in the policy.
+// If any hook returns an error or times out, the exchange is denied.
+message ExternalHook {
+  // Unique name for this hook within the policy. Used to identify the hook in logs.
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  // Human-readable description of the hook's purpose.
+  string description = 2 [(google.api.field_behavior) = OPTIONAL];
+  // The HTTPS URL of the external hook service. Credex will POST the inbound
+  // subject/actor claims and the outbound token claims to this URL and expect a
+  // JSON patch to apply to the outbound claims in return.
+  // TODO: link to API definition of request/response format.
+  string url = 3 [(google.api.field_behavior) = REQUIRED];
+  // Authentication method used when calling the hook endpoint.
+  oneof auth {
+    // Authenticate to the hook using SPIFFE mTLS. Credex will present its SVID
+    // and verify the hook's certificate against the specified SPIFFE ID.
+    SpiffeMtlsAuth spiffe_mtls = 4 [(google.api.field_behavior) = REQUIRED];
+  }
+  // Maximum time to wait for the hook to respond. Defaults to a server-defined
+  // value when unset. If the hook does not respond within this duration, the
+  // exchange is denied.
+  google.protobuf.Duration timeout = 5 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// SpiffeMtlsAuth configures SPIFFE mTLS authentication for an ExternalHook.
+message SpiffeMtlsAuth {
+  // The SPIFFE ID of the hook service. Credex verifies that the hook's TLS
+  // certificate encodes this SPIFFE ID before sending any data.
+  string spiffe_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
