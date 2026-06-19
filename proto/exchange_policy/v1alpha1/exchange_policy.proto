@@ -100,6 +100,7 @@ message ExternalHook {
   // The HTTPS URL of the external hook service. Credex will POST the inbound
   // subject/actor claims and the outbound token claims to this URL and expect a
   // JSON patch to apply to the outbound claims in return.
+  // TODO: link to API definition of request/response format.
   string url = 3 [(google.api.field_behavior) = REQUIRED];
   // Authentication method used when calling the hook endpoint.
   oneof auth {

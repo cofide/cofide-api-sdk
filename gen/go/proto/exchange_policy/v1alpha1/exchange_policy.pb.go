@@ -414,6 +414,7 @@ type ExternalHook struct {
 	// The HTTPS URL of the external hook service. Credex will POST the inbound
 	// subject/actor claims and the outbound token claims to this URL and expect a
 	// JSON patch to apply to the outbound claims in return.
+	// TODO: link to API definition of request/response format.
 	Url string `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
 	// Authentication method used when calling the hook endpoint.
 	//

@@ -231,6 +231,7 @@ export type ExternalHook = Message<"proto.exchange_policy.v1alpha1.ExternalHook"
    * The HTTPS URL of the external hook service. Credex will POST the inbound
    * subject/actor claims and the outbound token claims to this URL and expect a
    * JSON patch to apply to the outbound claims in return.
+   * TODO: link to API definition of request/response format.
    *
    * @generated from field: string url = 3;
    */
