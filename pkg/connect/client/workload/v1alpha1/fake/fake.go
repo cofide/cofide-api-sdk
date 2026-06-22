@@ -65,6 +65,9 @@ func (s *fakeWorkloadEventsStream) Send(events []*workloadpb.WorkloadEvent) erro
 	defer s.fake.Mu.Unlock()
 
 	for _, event := range events {
+		if event == nil {
+			continue
+		}
 		s.fake.WorkloadEvents = append(s.fake.WorkloadEvents, proto.Clone(event).(*workloadpb.WorkloadEvent))
 	}
 	return nil

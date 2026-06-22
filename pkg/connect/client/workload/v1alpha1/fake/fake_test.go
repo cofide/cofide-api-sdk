@@ -59,3 +59,17 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterMaxAge(t *testing.T) {
 
 	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{recent}, events)
 }
+
+func Test_fakeWorkloadEventsStream_Send_skipsNilEvents(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	stream, err := client.PublishWorkloadEvents(ctx)
+	require.NoError(t, err)
+
+	event := &workloadpb.WorkloadEvent{OrgId: "org-1"}
+	require.NoError(t, stream.Send([]*workloadpb.WorkloadEvent{event, nil}))
+
+	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{event}, fake.WorkloadEvents)
+}
