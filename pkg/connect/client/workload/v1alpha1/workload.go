@@ -7,7 +7,9 @@ import (
 	"context"
 
 	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
+	paginationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/pagination/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/grpc"
 )
 
@@ -21,7 +23,7 @@ type WorkloadEventsStream interface {
 // WorkloadClient is an interface for a client for the v1alpha1 version of the Connect WorkloadService.
 type WorkloadClient interface {
 	ListWorkloads(ctx context.Context, filter *workloadsvcpb.ListWorkloadsRequest_Filter) ([]*workloadpb.Workload, error)
-	ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter) ([]*workloadpb.WorkloadEvent, error)
+	ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error)
 	PublishWorkloadEvents(ctx context.Context) (WorkloadEventsStream, error)
 }
 
@@ -44,12 +46,18 @@ func (c *workloadClient) ListWorkloads(ctx context.Context, filter *workloadsvcp
 	return resp.Workloads, nil
 }
 
-func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter) ([]*workloadpb.WorkloadEvent, error) {
-	resp, err := c.workloadClient.ListWorkloadEvents(ctx, &workloadpb.ListWorkloadEventsRequest{Filter: filter})
+func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
+	resp, err := c.workloadClient.ListWorkloadEvents(ctx, &workloadpb.ListWorkloadEventsRequest{
+		Filter: filter,
+		Pagination: &paginationpb.PageRequest{
+			PageSize:  requestPagination.PageSize,
+			PageToken: requestPagination.Token,
+		},
+	})
 	if err != nil {
-		return nil, err
+		return nil, pagination.Pagination{}, err
 	}
-	return resp.Events, nil
+	return resp.GetEvents(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
 }
 
 func (c *workloadClient) PublishWorkloadEvents(ctx context.Context) (WorkloadEventsStream, error) {

@@ -9,6 +9,7 @@ import (
 	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
 	"google.golang.org/protobuf/proto"
 )
@@ -37,7 +38,7 @@ func (c *fakeWorkloadClient) ListWorkloads(ctx context.Context, filter *workload
 	return workloads, nil
 }
 
-func (c *fakeWorkloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter) ([]*workloadpb.WorkloadEvent, error) {
+func (c *fakeWorkloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
@@ -47,7 +48,7 @@ func (c *fakeWorkloadClient) ListWorkloadEvents(ctx context.Context, filter *wor
 			events = append(events, proto.Clone(event).(*workloadpb.WorkloadEvent))
 		}
 	}
-	return events, nil
+	return events, pagination.Pagination{PageSize: requestPagination.PageSize}, nil
 }
 
 func (c *fakeWorkloadClient) PublishWorkloadEvents(ctx context.Context) (workloadv1alpha1.WorkloadEventsStream, error) {

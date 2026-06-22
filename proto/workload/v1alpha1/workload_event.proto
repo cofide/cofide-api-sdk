@@ -11,6 +11,7 @@ package proto.workload.v1alpha1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
+import "proto/pagination/v1alpha1/pagination.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
 
@@ -96,8 +97,10 @@ message ListWorkloadEventsRequest {
   }
 
   optional Filter filter = 1;
+  proto.pagination.v1alpha1.PageRequest pagination = 2;
 }
 
 message ListWorkloadEventsResponse {
   repeated WorkloadEvent events = 1;
+  proto.pagination.v1alpha1.PageResponse pagination = 2;
 }
