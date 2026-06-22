@@ -13,15 +13,15 @@
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
-import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { Duration, Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_duration, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/exchange_policy/v1alpha1/exchange_policy.proto.
  */
 export const file_proto_exchange_policy_v1alpha1_exchange_policy: GenFile = /*@__PURE__*/
-  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEi6QYKDkV4Y2hhbmdlUG9saWN5Eg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQPgQQUSEQoEbmFtZRgDIAEoCUID4EECEh0KDXRydXN0X3pvbmVfaWQYBCABKAlCBuBBAuBBBRJOCgZhY3Rpb24YBSABKA4yNC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lBY3Rpb25CA+BBAUgAiAEBEkgKEHN1YmplY3RfaWRlbnRpdHkYBiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRgoOc3ViamVjdF9pc3N1ZXIYByABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESSAoQc3ViamVjdF9hdWRpZW5jZRgPIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJGCg5hY3Rvcl9pZGVudGl0eRgIIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJECgxhY3Rvcl9pc3N1ZXIYCSABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESQQoJY2xpZW50X2lkGAogASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkcKD3RhcmdldF9hdWRpZW5jZRgLIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARIeChFvdXRib3VuZF9pZGVudGl0eRgQIAEoCUID4EEBEhwKD291dGJvdW5kX3Njb3BlcxgMIAMoCUID4EEBEjMKCmNyZWF0ZWRfYXQYDSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GA4gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQgkKB19hY3Rpb24iOQoNU3RyaW5nTWF0Y2hlchIPCgVleGFjdBgBIAEoCUgAEg4KBGdsb2IYAiABKAlIAEIHCgVtYXRjaCJMCglTdHJpbmdTZXQSPwoIbWF0Y2hlcnMYASADKAsyLS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nTWF0Y2hlciqBAQoURXhjaGFuZ2VQb2xpY3lBY3Rpb24SJgoiRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9VTlNQRUNJRklFRBAAEiAKHEVYQ0hBTkdFX1BPTElDWV9BQ1RJT05fQUxMT1cQARIfChtFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX0RFTlkQAkJIWkZnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vZXhjaGFuZ2VfcG9saWN5L3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEitAcKDkV4Y2hhbmdlUG9saWN5Eg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQPgQQUSEQoEbmFtZRgDIAEoCUID4EECEh0KDXRydXN0X3pvbmVfaWQYBCABKAlCBuBBAuBBBRJOCgZhY3Rpb24YBSABKA4yNC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lBY3Rpb25CA+BBAUgAiAEBEkgKEHN1YmplY3RfaWRlbnRpdHkYBiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRgoOc3ViamVjdF9pc3N1ZXIYByABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESSAoQc3ViamVjdF9hdWRpZW5jZRgPIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJGCg5hY3Rvcl9pZGVudGl0eRgIIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJECgxhY3Rvcl9pc3N1ZXIYCSABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESQQoJY2xpZW50X2lkGAogASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkcKD3RhcmdldF9hdWRpZW5jZRgLIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARIeChFvdXRib3VuZF9pZGVudGl0eRgQIAEoCUID4EEBEhwKD291dGJvdW5kX3Njb3BlcxgMIAMoCUID4EEBEjMKCmNyZWF0ZWRfYXQYDSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GA4gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEkkKDmV4dGVybmFsX2hvb2tzGBEgAygLMiwucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4dGVybmFsSG9va0ID4EEBQgkKB19hY3Rpb24iOQoNU3RyaW5nTWF0Y2hlchIPCgVleGFjdBgBIAEoCUgAEg4KBGdsb2IYAiABKAlIAEIHCgVtYXRjaCJMCglTdHJpbmdTZXQSPwoIbWF0Y2hlcnMYASADKAsyLS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nTWF0Y2hlciLSAQoMRXh0ZXJuYWxIb29rEhEKBG5hbWUYASABKAlCA+BBAhIYCgtkZXNjcmlwdGlvbhgCIAEoCUID4EEBEhAKA3VybBgDIAEoCUID4EECEkoKC3NwaWZmZV9tdGxzGAQgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlNwaWZmZU10bHNBdXRoQgPgQQJIABIvCgd0aW1lb3V0GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQFCBgoEYXV0aCIoCg5TcGlmZmVNdGxzQXV0aBIWCglzcGlmZmVfaWQYASABKAlCA+BBAiqBAQoURXhjaGFuZ2VQb2xpY3lBY3Rpb24SJgoiRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9VTlNQRUNJRklFRBAAEiAKHEVYQ0hBTkdFX1BPTElDWV9BQ1RJT05fQUxMT1cQARIfChtFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX0RFTlkQAkJIWkZnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vZXhjaGFuZ2VfcG9saWN5L3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp]);
 
 /**
  * ExchangePolicy defines a rule for permitting or denying Credex token exchanges
@@ -136,6 +136,13 @@ export type ExchangePolicy = Message<"proto.exchange_policy.v1alpha1.ExchangePol
    * @generated from field: google.protobuf.Timestamp last_updated_at = 14;
    */
   lastUpdatedAt?: Timestamp;
+
+  /**
+   * Post-matching hooks that transform outbound token claims before Credex mints them.
+   *
+   * @generated from field: repeated proto.exchange_policy.v1alpha1.ExternalHook external_hooks = 17;
+   */
+  externalHooks: ExternalHook[];
 };
 
 /**
@@ -196,6 +203,94 @@ export type StringSet = Message<"proto.exchange_policy.v1alpha1.StringSet"> & {
  */
 export const StringSetSchema: GenMessage<StringSet> = /*@__PURE__*/
   messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 2);
+
+/**
+ * ExternalHook defines an HTTP endpoint that Credex calls after an exchange policy
+ * matches, allowing the hook to inspect and modify the outbound token claims before
+ * the token is minted. Hooks are invoked in the order they appear in the policy.
+ * If any hook returns an error or times out, the exchange is denied.
+ *
+ * @generated from message proto.exchange_policy.v1alpha1.ExternalHook
+ */
+export type ExternalHook = Message<"proto.exchange_policy.v1alpha1.ExternalHook"> & {
+  /**
+   * Unique name for this hook within the policy. Used to identify the hook in logs.
+   *
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * Human-readable description of the hook's purpose.
+   *
+   * @generated from field: string description = 2;
+   */
+  description: string;
+
+  /**
+   * The HTTPS URL of the external hook service. Credex will POST the inbound
+   * subject/actor claims and the outbound token claims to this URL and expect a
+   * JSON patch to apply to the outbound claims in return.
+   * TODO: link to API definition of request/response format.
+   *
+   * @generated from field: string url = 3;
+   */
+  url: string;
+
+  /**
+   * Authentication method used when calling the hook endpoint.
+   *
+   * @generated from oneof proto.exchange_policy.v1alpha1.ExternalHook.auth
+   */
+  auth: {
+    /**
+     * Authenticate to the hook using SPIFFE mTLS. Credex will present its SVID
+     * and verify the hook's certificate against the specified SPIFFE ID.
+     *
+     * @generated from field: proto.exchange_policy.v1alpha1.SpiffeMtlsAuth spiffe_mtls = 4;
+     */
+    value: SpiffeMtlsAuth;
+    case: "spiffeMtls";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * Maximum time to wait for the hook to respond. Defaults to a server-defined
+   * value when unset. If the hook does not respond within this duration, the
+   * exchange is denied.
+   *
+   * @generated from field: google.protobuf.Duration timeout = 5;
+   */
+  timeout?: Duration;
+};
+
+/**
+ * Describes the message proto.exchange_policy.v1alpha1.ExternalHook.
+ * Use `create(ExternalHookSchema)` to create a new message.
+ */
+export const ExternalHookSchema: GenMessage<ExternalHook> = /*@__PURE__*/
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 3);
+
+/**
+ * SpiffeMtlsAuth configures SPIFFE mTLS authentication for an ExternalHook.
+ *
+ * @generated from message proto.exchange_policy.v1alpha1.SpiffeMtlsAuth
+ */
+export type SpiffeMtlsAuth = Message<"proto.exchange_policy.v1alpha1.SpiffeMtlsAuth"> & {
+  /**
+   * The SPIFFE ID of the hook service. Credex verifies that the hook's TLS
+   * certificate encodes this SPIFFE ID before sending any data.
+   *
+   * @generated from field: string spiffe_id = 1;
+   */
+  spiffeId: string;
+};
+
+/**
+ * Describes the message proto.exchange_policy.v1alpha1.SpiffeMtlsAuth.
+ * Use `create(SpiffeMtlsAuthSchema)` to create a new message.
+ */
+export const SpiffeMtlsAuthSchema: GenMessage<SpiffeMtlsAuth> = /*@__PURE__*/
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 4);
 
 /**
  * ExchangePolicyAction determines whether a Credex token exchange is permitted

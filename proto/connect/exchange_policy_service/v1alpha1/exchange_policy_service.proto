@@ -92,6 +92,8 @@ message UpdateExchangePolicyRequest {
     bool outbound_identity = 11 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the outbound_scopes field.
     bool outbound_scopes = 9 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the external hooks field.
+    bool external_hooks = 12 [(google.api.field_behavior) = OPTIONAL];
   }
 
   proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1 [(google.api.field_behavior) = REQUIRED];
