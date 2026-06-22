@@ -121,13 +121,13 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadpb.Li
 			return false
 		}
 	}
-	if filter.SpiffeId != nil {
-		if delivered := event.GetIdentityDelivered(); delivered == nil || delivered.SpiffeId != *filter.SpiffeId {
+	if filter.GetSpiffeId() != "" {
+		if delivered := event.GetIdentityDelivered(); delivered == nil || delivered.GetSpiffeId() != filter.GetSpiffeId() {
 			return false
 		}
 	}
-	if filter.EntryId != nil {
-		if delivered := event.GetIdentityDelivered(); delivered == nil || delivered.EntryId != *filter.EntryId {
+	if filter.GetEntryId() != "" {
+		if delivered := event.GetIdentityDelivered(); delivered == nil || delivered.GetEntryId() != filter.GetEntryId() {
 			return false
 		}
 	}

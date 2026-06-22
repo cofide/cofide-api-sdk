@@ -92,8 +92,8 @@ message ListWorkloadEventsRequest {
     string cluster_id = 3;
     google.protobuf.Timestamp observed_before = 4;
     google.protobuf.Timestamp observed_after = 5;
-    optional string spiffe_id = 6;
-    optional string entry_id = 7;
+    string spiffe_id = 6;
+    string entry_id = 7;
   }
 
   optional Filter filter = 1;
