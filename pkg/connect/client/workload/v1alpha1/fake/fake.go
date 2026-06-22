@@ -5,6 +5,7 @@ package fake
 
 import (
 	"context"
+	"time"
 
 	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
@@ -101,6 +102,12 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadpb.Li
 	}
 	if filter.ClusterId != "" && event.GetClusterId() != filter.ClusterId {
 		return false
+	}
+	if filter.MaxAge != nil {
+		observed := event.GetObservedTimestamp()
+		if observed == nil || !observed.IsValid() || observed.AsTime().Before(time.Now().Add(-filter.GetMaxAge().AsDuration())) {
+			return false
+		}
 	}
 	if filter.SpiffeId != nil {
 		if delivered := event.GetIdentityDelivered(); delivered == nil || delivered.SpiffeId != *filter.SpiffeId {
