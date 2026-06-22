@@ -96,7 +96,7 @@ message ListWorkloadEventsRequest {
     string entry_id = 7;
   }
 
-  optional Filter filter = 1;
+  Filter filter = 1;
   proto.pagination.v1alpha1.PageRequest pagination = 2;
 }
 
