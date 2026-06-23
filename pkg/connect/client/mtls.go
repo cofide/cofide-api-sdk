@@ -6,39 +6,24 @@ package client
 import (
 	"fmt"
 
+	"github.com/spiffe/go-spiffe/v2/bundle/x509bundle"
 	"github.com/spiffe/go-spiffe/v2/spiffeid"
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
-	"github.com/spiffe/go-spiffe/v2/workloadapi"
+	"github.com/spiffe/go-spiffe/v2/svid/x509svid"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
 
-const (
-	defaultServerSubdomain = "connect"
-	defaultAgentSubdomain  = "connect-agent"
-	connectSPIFFEIDFormat  = "spiffe://%s/ns/connect/sa/cofide-connect-api"
-)
+type X509Source interface {
+	x509svid.Source
+	x509bundle.Source
+}
 
 type Option func(*options)
 
 type options struct {
-	serverSubdomain string
-	agentSubdomain  string
 	grpcDialOptions []grpc.DialOption
-}
-
-// WithServerSubdomain overrides the subdomain used for the Connect server URI (default: "connect")
-func WithServerSubdomain(subdomain string) Option {
-	return func(o *options) {
-		o.serverSubdomain = subdomain
-	}
-}
-
-// WithAgentSubdomain overrides the subdomain used for the gRPC authority header (default: "connect-agent")
-func WithAgentSubdomain(subdomain string) Option {
-	return func(o *options) {
-		o.agentSubdomain = subdomain
-	}
+	authority       string
 }
 
 // WithGRPCDialOptions appends additional gRPC dial options (e.g. interceptors).
@@ -48,44 +33,51 @@ func WithGRPCDialOptions(dialOpts ...grpc.DialOption) Option {
 	}
 }
 
+// WithAuthority overrides the authority sent (the TLS SNI) to select the mTLS authentication path.
+// If not set no explicit authority will be set.
+func WithAuthority(authority string) Option {
+	return func(o *options) {
+		o.authority = authority
+	}
+}
+
 // NewSPIFFEMTLSClient creates a ClientSet and underlying gRPC connection to the Cofide Connect API
 // secured with SPIFFE mTLS. The caller is responsible for closing the returned *grpc.ClientConn.
+//
+// connectTarget is the host[:port] or full gRPC URI (e.g. dns:///host:port) to dial.
+// connectSpiffeId is the SPIFFE ID of the Connect server.
+// The expected server SPIFFE ID path defaults to /ns/connect/sa/cofide-connect-api; use WithServerSPIFFEIDPath to override.
 func NewSPIFFEMTLSClient(
-	config *Config,
-	x509Source *workloadapi.X509Source,
-	bundleSource *workloadapi.BundleSource,
+	connectTarget string,
+	connectSpiffeId spiffeid.ID,
+	x509Source X509Source,
 	opts ...Option,
 ) (ClientSet, *grpc.ClientConn, error) {
-	if config == nil {
-		return nil, nil, fmt.Errorf("config cannot be nil")
+	if connectTarget == "" {
+		return nil, nil, fmt.Errorf("connectTarget cannot be empty")
 	}
 
-	o := &options{
-		serverSubdomain: defaultServerSubdomain,
-		agentSubdomain:  defaultAgentSubdomain,
-	}
+	o := &options{}
 	for _, opt := range opts {
 		opt(o)
 	}
 
-	serverID, err := spiffeid.FromString(fmt.Sprintf(connectSPIFFEIDFormat, config.ConnectTrustDomain))
-	if err != nil {
-		return nil, nil, fmt.Errorf("invalid connect trust domain: %w", err)
-	}
-
-	connectURI := fmt.Sprintf("dns:///%s.%s", o.serverSubdomain, config.ConnectURL)
-	authority := fmt.Sprintf("%s.%s", o.agentSubdomain, config.ConnectURL)
-
 	grpcOpts := append([]grpc.DialOption{
-		grpc.WithAuthority(authority),
 		grpc.WithTransportCredentials(
 			credentials.NewTLS(
-				tlsconfig.MTLSClientConfig(x509Source, bundleSource, tlsconfig.AuthorizeID(serverID)),
+				tlsconfig.MTLSClientConfig(x509Source, x509Source, tlsconfig.AuthorizeID(connectSpiffeId)),
 			),
 		),
 	}, o.grpcDialOptions...)
 
-	conn, err := grpc.NewClient(connectURI, grpcOpts...)
+	if o.authority != "" {
+		grpcOpts = append(
+			grpcOpts,
+			grpc.WithAuthority(o.authority),
+		)
+	}
+
+	conn, err := grpc.NewClient(connectTarget, grpcOpts...)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed creating mTLS gRPC client for Connect API: %w", err)
 	}
