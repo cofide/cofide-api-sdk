@@ -49,6 +49,8 @@ message ListCloudAccountsRequest {
   message Filter {
     string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
     string cloud_organization_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    // When true, suppressed accounts are included in the response. Defaults to false.
+    bool include_suppressed = 3 [(google.api.field_behavior) = OPTIONAL];
   }
   Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
 }
@@ -63,6 +65,8 @@ message UpdateCloudAccountRequest {
     bool name = 1 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the discovery_configs field.
     bool discovery_configs = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the suppressed field.
+    bool suppressed = 3 [(google.api.field_behavior) = OPTIONAL];
   }
 
   proto.cloud_account.v1alpha1.CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];

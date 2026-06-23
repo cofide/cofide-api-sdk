@@ -70,6 +70,9 @@ func cloudAccountMatches(cloudAccount *cloudaccountpb.CloudAccount, filter *clou
 	if filter.CloudOrganizationId != "" && cloudAccount.GetCloudOrganizationId() != filter.CloudOrganizationId {
 		return false
 	}
+	if !filter.IncludeSuppressed && cloudAccount.GetSuppressed() {
+		return false
+	}
 	return true
 }
 

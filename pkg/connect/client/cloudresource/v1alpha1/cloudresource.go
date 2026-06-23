@@ -15,6 +15,7 @@ import (
 type CloudResourceClient interface {
 	GetCloudResource(ctx context.Context, cloudResourceID string) (*cloudresourcepb.CloudResource, error)
 	ListCloudResources(ctx context.Context, filter *cloudresourcesvcpb.ListCloudResourcesRequest_Filter) ([]*cloudresourcepb.CloudResource, error)
+	UpdateCloudResource(ctx context.Context, cloudResource *cloudresourcepb.CloudResource, updateMask *cloudresourcesvcpb.UpdateCloudResourceRequest_UpdateMask) (*cloudresourcepb.CloudResource, error)
 }
 
 type cloudResourceClient struct {
@@ -46,4 +47,15 @@ func (c *cloudResourceClient) ListCloudResources(ctx context.Context, filter *cl
 		return nil, err
 	}
 	return resp.CloudResources, nil
+}
+
+func (c *cloudResourceClient) UpdateCloudResource(ctx context.Context, cloudResource *cloudresourcepb.CloudResource, updateMask *cloudresourcesvcpb.UpdateCloudResourceRequest_UpdateMask) (*cloudresourcepb.CloudResource, error) {
+	resp, err := c.client.UpdateCloudResource(ctx, &cloudresourcesvcpb.UpdateCloudResourceRequest{
+		CloudResource: cloudResource,
+		UpdateMask:    updateMask,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return resp.CloudResource, nil
 }

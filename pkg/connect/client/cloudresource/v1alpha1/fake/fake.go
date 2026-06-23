@@ -48,6 +48,22 @@ func (c *fakeCloudResourceClient) ListCloudResources(ctx context.Context, filter
 	return cloudResources, nil
 }
 
+func (c *fakeCloudResourceClient) UpdateCloudResource(ctx context.Context, cloudResource *cloudresourcepb.CloudResource, updateMask *cloudresourcesvcpb.UpdateCloudResourceRequest_UpdateMask) (*cloudresourcepb.CloudResource, error) {
+	c.fake.Mu.Lock()
+	defer c.fake.Mu.Unlock()
+
+	existing, ok := c.fake.CloudResources[cloudResource.GetId()]
+	if !ok {
+		return nil, status.Error(codes.NotFound, "cloud resource not found")
+	}
+	updated := clone(existing)
+	if updateMask == nil || updateMask.Suppressed {
+		updated.Suppressed = cloudResource.GetSuppressed()
+	}
+	c.fake.CloudResources[cloudResource.GetId()] = updated
+	return clone(updated), nil
+}
+
 func cloudResourceMatches(cloudResource *cloudresourcepb.CloudResource, filter *cloudresourcesvcpb.ListCloudResourcesRequest_Filter) bool {
 	if filter == nil {
 		return true
@@ -56,6 +72,9 @@ func cloudResourceMatches(cloudResource *cloudresourcepb.CloudResource, filter *
 		return false
 	}
 	if filter.CloudAccountId != "" && cloudResource.GetCloudAccountId() != filter.CloudAccountId {
+		return false
+	}
+	if !filter.IncludeSuppressed && cloudResource.GetSuppressed() {
 		return false
 	}
 	return true

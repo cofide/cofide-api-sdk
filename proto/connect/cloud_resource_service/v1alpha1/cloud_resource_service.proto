@@ -1,10 +1,10 @@
 // Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
-// This file defines the CloudResourceService gRPC service for read-only access
-// to discovered cloud resources in the Connect control plane. Cloud resources
-// are populated by the discovery process and cannot be created or modified
-// directly via the API.
+// This file defines the CloudResourceService gRPC service for accessing
+// discovered cloud resources in the Connect control plane. Cloud resources
+// are populated by the discovery process; the only user-writable field is
+// suppressed.
 
 syntax = "proto3";
 
@@ -15,12 +15,14 @@ import "proto/cloud_resource/v1alpha1/cloud_resource.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/cloud_resource_service/v1alpha1";
 
-// CloudResourceService provides read-only access to discovered cloud resources.
+// CloudResourceService provides access to discovered cloud resources.
 service CloudResourceService {
   // GetCloudResource retrieves a cloud resource by ID.
   rpc GetCloudResource(GetCloudResourceRequest) returns (GetCloudResourceResponse);
   // ListCloudResources returns all cloud resources matching the optional filter.
   rpc ListCloudResources(ListCloudResourcesRequest) returns (ListCloudResourcesResponse);
+  // UpdateCloudResource updates a cloud resource. Only the suppressed field may be updated.
+  rpc UpdateCloudResource(UpdateCloudResourceRequest) returns (UpdateCloudResourceResponse);
 }
 
 message GetCloudResourceRequest {
@@ -35,10 +37,27 @@ message ListCloudResourcesRequest {
   message Filter {
     string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
     string cloud_account_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    // When true, suppressed resources are included in the response. Defaults to false.
+    bool include_suppressed = 3 [(google.api.field_behavior) = OPTIONAL];
   }
   Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message ListCloudResourcesResponse {
   repeated proto.cloud_resource.v1alpha1.CloudResource cloud_resources = 1;
+}
+
+message UpdateCloudResourceRequest {
+  message UpdateMask {
+    // Set to true to update the suppressed field.
+    bool suppressed = 1 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  proto.cloud_resource.v1alpha1.CloudResource cloud_resource = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateCloudResourceResponse {
+  proto.cloud_resource.v1alpha1.CloudResource cloud_resource = 1;
 }
