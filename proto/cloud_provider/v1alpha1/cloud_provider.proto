@@ -1,0 +1,22 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines shared types for cloud provider integrations.
+
+syntax = "proto3";
+
+package proto.cloud_provider.v1alpha1;
+
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_provider/v1alpha1";
+
+// AssumeRoleConfig configures a single step in an IAM role chain.
+// The first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity); subsequent steps
+// use plain AssumeRole with the credentials from the prior step.
+message AssumeRoleConfig {
+  // ARN of the IAM role to assume.
+  string iam_role_arn = 1 [(google.api.field_behavior) = REQUIRED];
+  // Optional external ID for confused-deputy protection.
+  optional string external_id = 2 [(google.api.field_behavior) = OPTIONAL];
+}

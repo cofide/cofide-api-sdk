@@ -11,6 +11,7 @@ package proto.cloud_account.v1alpha1;
 import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 import "proto/cloud_organization/v1alpha1/cloud_organization.proto";
+import "proto/cloud_provider/v1alpha1/cloud_provider.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1";
 
@@ -27,12 +28,10 @@ message LambdaDiscoveryConfig {
 
 // DiscoveryConfig contains configuration for discovering a specific type of cloud resource.
 message DiscoveryConfig {
-  // ARN of the IAM role used for cross-account access.
-  string iam_role_arn = 1 [(google.api.field_behavior) = REQUIRED];
-  // Audience value for the assume role call.
+  reserved 1, 3;
+  reserved "iam_role_arn", "external_id";
+  // Audience value for the initial SPIFFE JWT-based assume role call.
   string audience = 2 [(google.api.field_behavior) = REQUIRED];
-  // Optional external ID for the assume role call.
-  optional string external_id = 3 [(google.api.field_behavior) = OPTIONAL];
   // AWS regions to discover resources in.
   repeated string regions = 4 [(google.api.field_behavior) = OPTIONAL];
   // Whether discovery is enabled for this config.
@@ -47,6 +46,10 @@ message DiscoveryConfig {
   oneof resource_type {
     LambdaDiscoveryConfig lambda = 9;
   }
+  // Ordered chain of IAM roles to assume. The first role is assumed via
+  // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
+  // assumed using the credentials from the prior step.
+  repeated proto.cloud_provider.v1alpha1.AssumeRoleConfig role_chain = 10 [(google.api.field_behavior) = REQUIRED];
 }
 
 // CloudAccount represents a cloud provider account linked to a Cofide organization.

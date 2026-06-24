@@ -13,13 +13,15 @@ import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { AssumeRoleConfig } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
+import { file_proto_cloud_provider_v1alpha1_cloud_provider } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/cloud_organization/v1alpha1/cloud_organization.proto.
  */
 export const file_proto_cloud_organization_v1alpha1_cloud_organization: GenFile = /*@__PURE__*/
-  fileDesc("Cjpwcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTEvY2xvdWRfb3JnYW5pemF0aW9uLnByb3RvEiFwcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEiiwEKD0FXU09yZ2FuaXphdGlvbhIXCgphd3Nfb3JnX2lkGAEgASgJQgPgQQISGQoMaWFtX3JvbGVfYXJuGAIgASgJQgPgQQISFQoIYXVkaWVuY2UYAyABKAlCA+BBAhIdCgtleHRlcm5hbF9pZBgEIAEoCUID4EEBSACIAQFCDgoMX2V4dGVybmFsX2lkIs8DChFDbG91ZE9yZ2FuaXphdGlvbhIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEhEKBG5hbWUYAyABKAlCA+BBAhJBCgNhd3MYBCABKAsyMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuQVdTT3JnYW5pemF0aW9uSAASHgoRZGlzY292ZXJ5X2VuYWJsZWQYBSABKAhCA+BBARJHCgZzdGF0dXMYBiABKA4yMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuRGlzY292ZXJ5U3RhdHVzQgPgQQMSQAoSbGFzdF9kaXNjb3ZlcmVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDSAGIAQESMwoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCCgoIcHJvdmlkZXJCFQoTX2xhc3RfZGlzY292ZXJlZF9hdCpxCg9EaXNjb3ZlcnlTdGF0dXMSIAocRElTQ09WRVJZX1NUQVRVU19VTlNQRUNJRklFRBAAEiAKHERJU0NPVkVSWV9TVEFUVVNfRElTQ09WRVJJTkcQARIaChZESVNDT1ZFUllfU1RBVFVTX0VSUk9SEAJCS1pJZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX29yZ2FuaXphdGlvbi92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("Cjpwcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTEvY2xvdWRfb3JnYW5pemF0aW9uLnByb3RvEiFwcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEisgEKD0FXU09yZ2FuaXphdGlvbhIXCgphd3Nfb3JnX2lkGAEgASgJQgPgQQISFQoIYXVkaWVuY2UYAyABKAlCA+BBAhJICgpyb2xlX2NoYWluGAUgAygLMi8ucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuQXNzdW1lUm9sZUNvbmZpZ0ID4EECSgQIAhADSgQIBBAFUgxpYW1fcm9sZV9hcm5SC2V4dGVybmFsX2lkIs8DChFDbG91ZE9yZ2FuaXphdGlvbhIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEhEKBG5hbWUYAyABKAlCA+BBAhJBCgNhd3MYBCABKAsyMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuQVdTT3JnYW5pemF0aW9uSAASHgoRZGlzY292ZXJ5X2VuYWJsZWQYBSABKAhCA+BBARJHCgZzdGF0dXMYBiABKA4yMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuRGlzY292ZXJ5U3RhdHVzQgPgQQMSQAoSbGFzdF9kaXNjb3ZlcmVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDSAGIAQESMwoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCCgoIcHJvdmlkZXJCFQoTX2xhc3RfZGlzY292ZXJlZF9hdCpxCg9EaXNjb3ZlcnlTdGF0dXMSIAocRElTQ09WRVJZX1NUQVRVU19VTlNQRUNJRklFRBAAEiAKHERJU0NPVkVSWV9TVEFUVVNfRElTQ09WRVJJTkcQARIaChZESVNDT1ZFUllfU1RBVFVTX0VSUk9SEAJCS1pJZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX29yZ2FuaXphdGlvbi92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_provider_v1alpha1_cloud_provider]);
 
 /**
  * AWSOrganization contains AWS-specific configuration for a cloud organization.
@@ -35,25 +37,20 @@ export type AWSOrganization = Message<"proto.cloud_organization.v1alpha1.AWSOrga
   awsOrgId: string;
 
   /**
-   * ARN of the IAM role used for cross-account access.
-   *
-   * @generated from field: string iam_role_arn = 2;
-   */
-  iamRoleArn: string;
-
-  /**
-   * Audience value for the assume role call.
+   * Audience value for the initial SPIFFE JWT-based assume role call.
    *
    * @generated from field: string audience = 3;
    */
   audience: string;
 
   /**
-   * Optional external ID for the assume role call.
+   * Ordered chain of IAM roles to assume. The first role is assumed via
+   * AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
+   * assumed using the credentials from the prior step.
    *
-   * @generated from field: optional string external_id = 4;
+   * @generated from field: repeated proto.cloud_provider.v1alpha1.AssumeRoleConfig role_chain = 5;
    */
-  externalId?: string;
+  roleChain: AssumeRoleConfig[];
 };
 
 /**

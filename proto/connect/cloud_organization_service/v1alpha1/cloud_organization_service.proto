@@ -60,14 +60,14 @@ message UpdateCloudOrganizationRequest {
   message UpdateMask {
     // Set to true to update the name field.
     bool name = 1 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the aws.iam_role_arn field.
-    bool aws_iam_role_arn = 2 [(google.api.field_behavior) = OPTIONAL];
+    reserved 2, 4;
+    reserved "aws_iam_role_arn", "aws_external_id";
     // Set to true to update the aws.audience field.
     bool aws_audience = 3 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the aws.external_id field.
-    bool aws_external_id = 4 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the discovery_enabled field.
     bool discovery_enabled = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws.role_chain field.
+    bool aws_role_chain = 6 [(google.api.field_behavior) = OPTIONAL];
   }
 
   proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1 [(google.api.field_behavior) = REQUIRED];
