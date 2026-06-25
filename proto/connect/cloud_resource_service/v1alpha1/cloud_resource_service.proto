@@ -39,6 +39,8 @@ message ListCloudResourcesRequest {
     string cloud_account_id = 2 [(google.api.field_behavior) = OPTIONAL];
     // When true, suppressed resources are included in the response. Defaults to false.
     bool include_suppressed = 3 [(google.api.field_behavior) = OPTIONAL];
+    // When set, only resources of this type are returned.
+    optional proto.cloud_resource.v1alpha1.CloudResourceType resource_type = 4 [(google.api.field_behavior) = OPTIONAL];
   }
   Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
 }

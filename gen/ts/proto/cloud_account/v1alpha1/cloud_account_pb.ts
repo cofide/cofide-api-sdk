@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_account/v1alpha1/cloud_account.proto.
  */
 export const file_proto_cloud_account_v1alpha1_cloud_account: GenFile = /*@__PURE__*/
-  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiJQoKQVdTQWNjb3VudBIXCgphY2NvdW50X2lkGAEgASgJQgPgQQIiFwoVTGFtYmRhRGlzY292ZXJ5Q29uZmlnIqoECg9EaXNjb3ZlcnlDb25maWcSFQoIYXVkaWVuY2UYAiABKAlCA+BBAhIUCgdyZWdpb25zGAQgAygJQgPgQQESHgoRZGlzY292ZXJ5X2VuYWJsZWQYBSABKAhCA+BBARJHCgZzdGF0dXMYBiABKA4yMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuRGlzY292ZXJ5U3RhdHVzQgPgQQMSQAoSbGFzdF9kaXNjb3ZlcmVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDSAGIAQESRAoWc3RhdHVzX2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0gCiAEBEkUKBmxhbWJkYRgJIAEoCzIzLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuTGFtYmRhRGlzY292ZXJ5Q29uZmlnSAASSAoKcm9sZV9jaGFpbhgKIAMoCzIvLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkFzc3VtZVJvbGVDb25maWdCA+BBAkIPCg1yZXNvdXJjZV90eXBlQhUKE19sYXN0X2Rpc2NvdmVyZWRfYXRCGQoXX3N0YXR1c19sYXN0X3VwZGF0ZWRfYXRKBAgBEAJKBAgDEARSDGlhbV9yb2xlX2FyblILZXh0ZXJuYWxfaWQiqQMKDENsb3VkQWNjb3VudBIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEicKFWNsb3VkX29yZ2FuaXphdGlvbl9pZBgDIAEoCUID4EEBSAGIAQESEQoEbmFtZRgEIAEoCUID4EECEjcKA2F3cxgFIAEoCzIoLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQVdTQWNjb3VudEgAEk0KEWRpc2NvdmVyeV9jb25maWdzGAYgAygLMi0ucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EaXNjb3ZlcnlDb25maWdCA+BBARIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIXCgpzdXBwcmVzc2VkGAkgASgIQgPgQQFCCgoIcHJvdmlkZXJCGAoWX2Nsb3VkX29yZ2FuaXphdGlvbl9pZEJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_organization_v1alpha1_cloud_organization, file_proto_cloud_provider_v1alpha1_cloud_provider]);
+  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiJQoKQVdTQWNjb3VudBIXCgphY2NvdW50X2lkGAEgASgJQgPgQQIiFwoVTGFtYmRhRGlzY292ZXJ5Q29uZmlnIhQKEkVLU0Rpc2NvdmVyeUNvbmZpZyLrBAoPRGlzY292ZXJ5Q29uZmlnEhUKCGF1ZGllbmNlGAIgASgJQgPgQQISFAoHcmVnaW9ucxgEIAMoCUID4EEBEh4KEWRpc2NvdmVyeV9lbmFibGVkGAUgASgIQgPgQQESRwoGc3RhdHVzGAYgASgOMjIucHJvdG8uY2xvdWRfb3JnYW5pemF0aW9uLnYxYWxwaGExLkRpc2NvdmVyeVN0YXR1c0ID4EEDEkAKEmxhc3RfZGlzY292ZXJlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0gBiAEBEkQKFnN0YXR1c19sYXN0X3VwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNIAogBARJFCgZsYW1iZGEYCSABKAsyMy5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxhbWJkYURpc2NvdmVyeUNvbmZpZ0gAEj8KA2VrcxgLIAEoCzIwLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuRUtTRGlzY292ZXJ5Q29uZmlnSAASSAoKcm9sZV9jaGFpbhgKIAMoCzIvLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkFzc3VtZVJvbGVDb25maWdCA+BBAkIPCg1yZXNvdXJjZV90eXBlQhUKE19sYXN0X2Rpc2NvdmVyZWRfYXRCGQoXX3N0YXR1c19sYXN0X3VwZGF0ZWRfYXRKBAgBEAJKBAgDEARSDGlhbV9yb2xlX2FyblILZXh0ZXJuYWxfaWQiqQMKDENsb3VkQWNjb3VudBIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEicKFWNsb3VkX29yZ2FuaXphdGlvbl9pZBgDIAEoCUID4EEBSAGIAQESEQoEbmFtZRgEIAEoCUID4EECEjcKA2F3cxgFIAEoCzIoLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQVdTQWNjb3VudEgAEk0KEWRpc2NvdmVyeV9jb25maWdzGAYgAygLMi0ucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EaXNjb3ZlcnlDb25maWdCA+BBARIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIXCgpzdXBwcmVzc2VkGAkgASgIQgPgQQFCCgoIcHJvdmlkZXJCGAoWX2Nsb3VkX29yZ2FuaXphdGlvbl9pZEJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_organization_v1alpha1_cloud_organization, file_proto_cloud_provider_v1alpha1_cloud_provider]);
 
 /**
  * AWSAccount contains AWS-specific configuration for a cloud account.
@@ -62,6 +62,23 @@ export type LambdaDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.Lambda
  */
 export const LambdaDiscoveryConfigSchema: GenMessage<LambdaDiscoveryConfig> = /*@__PURE__*/
   messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 1);
+
+/**
+ * EKSDiscoveryConfig contains configuration for EKS cluster discovery.
+ *
+ * Placeholder for future tag filter and cluster name pattern fields.
+ *
+ * @generated from message proto.cloud_account.v1alpha1.EKSDiscoveryConfig
+ */
+export type EKSDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.EKSDiscoveryConfig"> & {
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.EKSDiscoveryConfig.
+ * Use `create(EKSDiscoveryConfigSchema)` to create a new message.
+ */
+export const EKSDiscoveryConfigSchema: GenMessage<EKSDiscoveryConfig> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 2);
 
 /**
  * DiscoveryConfig contains configuration for discovering a specific type of cloud resource.
@@ -122,6 +139,12 @@ export type DiscoveryConfig = Message<"proto.cloud_account.v1alpha1.DiscoveryCon
      */
     value: LambdaDiscoveryConfig;
     case: "lambda";
+  } | {
+    /**
+     * @generated from field: proto.cloud_account.v1alpha1.EKSDiscoveryConfig eks = 11;
+     */
+    value: EKSDiscoveryConfig;
+    case: "eks";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -139,7 +162,7 @@ export type DiscoveryConfig = Message<"proto.cloud_account.v1alpha1.DiscoveryCon
  * Use `create(DiscoveryConfigSchema)` to create a new message.
  */
 export const DiscoveryConfigSchema: GenMessage<DiscoveryConfig> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 2);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 3);
 
 /**
  * CloudAccount represents a cloud provider account linked to a Cofide organization.
@@ -222,5 +245,5 @@ export type CloudAccount = Message<"proto.cloud_account.v1alpha1.CloudAccount"> 
  * Use `create(CloudAccountSchema)` to create a new message.
  */
 export const CloudAccountSchema: GenMessage<CloudAccount> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 3);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 4);
 

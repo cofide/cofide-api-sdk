@@ -26,6 +26,11 @@ message LambdaDiscoveryConfig {
   // Placeholder for future tag filter fields.
 }
 
+// EKSDiscoveryConfig contains configuration for EKS cluster discovery.
+message EKSDiscoveryConfig {
+  // Placeholder for future tag filter and cluster name pattern fields.
+}
+
 // DiscoveryConfig contains configuration for discovering a specific type of cloud resource.
 message DiscoveryConfig {
   reserved 1, 3;
@@ -45,6 +50,7 @@ message DiscoveryConfig {
   // Resource type-specific configuration.
   oneof resource_type {
     LambdaDiscoveryConfig lambda = 9;
+    EKSDiscoveryConfig eks = 11;
   }
   // Ordered chain of IAM roles to assume. The first role is assumed via
   // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
