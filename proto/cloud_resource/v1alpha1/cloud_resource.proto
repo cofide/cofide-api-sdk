@@ -45,11 +45,32 @@ message EKSCluster {
   string oidc_provider_url = 5 [(google.api.field_behavior) = OPTIONAL];
 }
 
+// AgentcoreWorkload contains details of an Amazon Bedrock AgentCore Runtime.
+message AgentcoreWorkload {
+  // Name of the AgentCore Runtime.
+  string agent_runtime_name = 1 [(google.api.field_behavior) = REQUIRED];
+  // ARN of the AgentCore Runtime.
+  string agent_runtime_arn = 2 [(google.api.field_behavior) = REQUIRED];
+  // Unique identifier of the AgentCore Runtime.
+  string agent_runtime_id = 3 [(google.api.field_behavior) = REQUIRED];
+  // AWS region where the runtime is deployed.
+  string region = 4 [(google.api.field_behavior) = REQUIRED];
+  // ARN of the IAM role used by the runtime at execution time.
+  string role_arn = 5 [(google.api.field_behavior) = OPTIONAL];
+  // Timestamp of the last update to the runtime.
+  google.protobuf.Timestamp last_updated_at = 6 [(google.api.field_behavior) = OPTIONAL];
+  // Optional description of the runtime.
+  optional string description = 7 [(google.api.field_behavior) = OPTIONAL];
+  // Current status of the runtime (e.g. READY, CREATING, UPDATING).
+  optional string status = 8 [(google.api.field_behavior) = OPTIONAL];
+}
+
 // CloudResourceType identifies the type of a discovered cloud resource.
 enum CloudResourceType {
   CLOUD_RESOURCE_TYPE_UNSPECIFIED = 0;
   CLOUD_RESOURCE_TYPE_LAMBDA_FUNCTION = 1;
   CLOUD_RESOURCE_TYPE_EKS_CLUSTER = 2;
+  CLOUD_RESOURCE_TYPE_AGENTCORE_WORKLOAD = 3;
 }
 
 // CloudResource represents a discovered cloud provider resource.
@@ -70,6 +91,7 @@ message CloudResource {
   oneof resource {
     LambdaFunction lambda_function = 4;
     EKSCluster eks_cluster = 8;
+    AgentcoreWorkload agentcore_workload = 9;
   }
   // Time of resource creation.
   google.protobuf.Timestamp created_at = 5 [(google.api.field_behavior) = OUTPUT_ONLY];

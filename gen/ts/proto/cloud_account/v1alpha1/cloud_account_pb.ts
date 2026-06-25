@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_account/v1alpha1/cloud_account.proto.
  */
 export const file_proto_cloud_account_v1alpha1_cloud_account: GenFile = /*@__PURE__*/
-  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiJQoKQVdTQWNjb3VudBIXCgphY2NvdW50X2lkGAEgASgJQgPgQQIiFwoVTGFtYmRhRGlzY292ZXJ5Q29uZmlnIhQKEkVLU0Rpc2NvdmVyeUNvbmZpZyLrBAoPRGlzY292ZXJ5Q29uZmlnEhUKCGF1ZGllbmNlGAIgASgJQgPgQQISFAoHcmVnaW9ucxgEIAMoCUID4EEBEh4KEWRpc2NvdmVyeV9lbmFibGVkGAUgASgIQgPgQQESRwoGc3RhdHVzGAYgASgOMjIucHJvdG8uY2xvdWRfb3JnYW5pemF0aW9uLnYxYWxwaGExLkRpc2NvdmVyeVN0YXR1c0ID4EEDEkAKEmxhc3RfZGlzY292ZXJlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0gBiAEBEkQKFnN0YXR1c19sYXN0X3VwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNIAogBARJFCgZsYW1iZGEYCSABKAsyMy5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxhbWJkYURpc2NvdmVyeUNvbmZpZ0gAEj8KA2VrcxgLIAEoCzIwLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuRUtTRGlzY292ZXJ5Q29uZmlnSAASSAoKcm9sZV9jaGFpbhgKIAMoCzIvLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkFzc3VtZVJvbGVDb25maWdCA+BBAkIPCg1yZXNvdXJjZV90eXBlQhUKE19sYXN0X2Rpc2NvdmVyZWRfYXRCGQoXX3N0YXR1c19sYXN0X3VwZGF0ZWRfYXRKBAgBEAJKBAgDEARSDGlhbV9yb2xlX2FyblILZXh0ZXJuYWxfaWQiqQMKDENsb3VkQWNjb3VudBIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEicKFWNsb3VkX29yZ2FuaXphdGlvbl9pZBgDIAEoCUID4EEBSAGIAQESEQoEbmFtZRgEIAEoCUID4EECEjcKA2F3cxgFIAEoCzIoLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQVdTQWNjb3VudEgAEk0KEWRpc2NvdmVyeV9jb25maWdzGAYgAygLMi0ucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EaXNjb3ZlcnlDb25maWdCA+BBARIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIXCgpzdXBwcmVzc2VkGAkgASgIQgPgQQFCCgoIcHJvdmlkZXJCGAoWX2Nsb3VkX29yZ2FuaXphdGlvbl9pZEJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_organization_v1alpha1_cloud_organization, file_proto_cloud_provider_v1alpha1_cloud_provider]);
+  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiJQoKQVdTQWNjb3VudBIXCgphY2NvdW50X2lkGAEgASgJQgPgQQIiFwoVTGFtYmRhRGlzY292ZXJ5Q29uZmlnIhQKEkVLU0Rpc2NvdmVyeUNvbmZpZyIaChhBZ2VudGNvcmVEaXNjb3ZlcnlDb25maWciuAUKD0Rpc2NvdmVyeUNvbmZpZxIVCghhdWRpZW5jZRgCIAEoCUID4EECEhQKB3JlZ2lvbnMYBCADKAlCA+BBARIeChFkaXNjb3ZlcnlfZW5hYmxlZBgFIAEoCEID4EEBEkcKBnN0YXR1cxgGIAEoDjIyLnByb3RvLmNsb3VkX29yZ2FuaXphdGlvbi52MWFscGhhMS5EaXNjb3ZlcnlTdGF0dXNCA+BBAxJAChJsYXN0X2Rpc2NvdmVyZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNIAYgBARJEChZzdGF0dXNfbGFzdF91cGRhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDSAKIAQESRQoGbGFtYmRhGAkgASgLMjMucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5MYW1iZGFEaXNjb3ZlcnlDb25maWdIABI/CgNla3MYCyABKAsyMC5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkVLU0Rpc2NvdmVyeUNvbmZpZ0gAEksKCWFnZW50Y29yZRgMIAEoCzI2LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQWdlbnRjb3JlRGlzY292ZXJ5Q29uZmlnSAASSAoKcm9sZV9jaGFpbhgKIAMoCzIvLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkFzc3VtZVJvbGVDb25maWdCA+BBAkIPCg1yZXNvdXJjZV90eXBlQhUKE19sYXN0X2Rpc2NvdmVyZWRfYXRCGQoXX3N0YXR1c19sYXN0X3VwZGF0ZWRfYXRKBAgBEAJKBAgDEARSDGlhbV9yb2xlX2FyblILZXh0ZXJuYWxfaWQiqQMKDENsb3VkQWNjb3VudBIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEicKFWNsb3VkX29yZ2FuaXphdGlvbl9pZBgDIAEoCUID4EEBSAGIAQESEQoEbmFtZRgEIAEoCUID4EECEjcKA2F3cxgFIAEoCzIoLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQVdTQWNjb3VudEgAEk0KEWRpc2NvdmVyeV9jb25maWdzGAYgAygLMi0ucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EaXNjb3ZlcnlDb25maWdCA+BBARIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIXCgpzdXBwcmVzc2VkGAkgASgIQgPgQQFCCgoIcHJvdmlkZXJCGAoWX2Nsb3VkX29yZ2FuaXphdGlvbl9pZEJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_organization_v1alpha1_cloud_organization, file_proto_cloud_provider_v1alpha1_cloud_provider]);
 
 /**
  * AWSAccount contains AWS-specific configuration for a cloud account.
@@ -79,6 +79,23 @@ export type EKSDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.EKSDiscov
  */
 export const EKSDiscoveryConfigSchema: GenMessage<EKSDiscoveryConfig> = /*@__PURE__*/
   messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 2);
+
+/**
+ * AgentcoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
+ *
+ * Placeholder for future filter fields.
+ *
+ * @generated from message proto.cloud_account.v1alpha1.AgentcoreDiscoveryConfig
+ */
+export type AgentcoreDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.AgentcoreDiscoveryConfig"> & {
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.AgentcoreDiscoveryConfig.
+ * Use `create(AgentcoreDiscoveryConfigSchema)` to create a new message.
+ */
+export const AgentcoreDiscoveryConfigSchema: GenMessage<AgentcoreDiscoveryConfig> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 3);
 
 /**
  * DiscoveryConfig contains configuration for discovering a specific type of cloud resource.
@@ -145,6 +162,12 @@ export type DiscoveryConfig = Message<"proto.cloud_account.v1alpha1.DiscoveryCon
      */
     value: EKSDiscoveryConfig;
     case: "eks";
+  } | {
+    /**
+     * @generated from field: proto.cloud_account.v1alpha1.AgentcoreDiscoveryConfig agentcore = 12;
+     */
+    value: AgentcoreDiscoveryConfig;
+    case: "agentcore";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -162,7 +185,7 @@ export type DiscoveryConfig = Message<"proto.cloud_account.v1alpha1.DiscoveryCon
  * Use `create(DiscoveryConfigSchema)` to create a new message.
  */
 export const DiscoveryConfigSchema: GenMessage<DiscoveryConfig> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 3);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 4);
 
 /**
  * CloudAccount represents a cloud provider account linked to a Cofide organization.
@@ -245,5 +268,5 @@ export type CloudAccount = Message<"proto.cloud_account.v1alpha1.CloudAccount"> 
  * Use `create(CloudAccountSchema)` to create a new message.
  */
 export const CloudAccountSchema: GenMessage<CloudAccount> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 4);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 5);
 

@@ -19,7 +19,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_resource/v1alpha1/cloud_resource.proto.
  */
 export const file_proto_cloud_resource_v1alpha1_cloud_resource: GenFile = /*@__PURE__*/
-  fileDesc("CjJwcm90by9jbG91ZF9yZXNvdXJjZS92MWFscGhhMS9jbG91ZF9yZXNvdXJjZS5wcm90bxIdcHJvdG8uY2xvdWRfcmVzb3VyY2UudjFhbHBoYTEi9AEKDkxhbWJkYUZ1bmN0aW9uEhoKDWZ1bmN0aW9uX25hbWUYASABKAlCA+BBAhIZCgxmdW5jdGlvbl9hcm4YAiABKAlCA+BBAhITCgZyZWdpb24YAyABKAlCA+BBAhIUCgdydW50aW1lGAQgASgJQgPgQQESGQoMaWFtX3JvbGVfYXJuGAUgASgJQgPgQQESNgoNbGFzdF9tb2RpZmllZBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBARIdCgtkZXNjcmlwdGlvbhgHIAEoCUID4EEBSACIAQFCDgoMX2Rlc2NyaXB0aW9uIpcBCgpFS1NDbHVzdGVyEhkKDGNsdXN0ZXJfbmFtZRgBIAEoCUID4EECEhgKC2NsdXN0ZXJfYXJuGAIgASgJQgPgQQISEwoGcmVnaW9uGAMgASgJQgPgQQISHwoSa3ViZXJuZXRlc192ZXJzaW9uGAQgASgJQgPgQQESHgoRb2lkY19wcm92aWRlcl91cmwYBSABKAlCA+BBASL6AgoNQ2xvdWRSZXNvdXJjZRIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEiAKEGNsb3VkX2FjY291bnRfaWQYAyABKAlCBuBBAuBBBRJICg9sYW1iZGFfZnVuY3Rpb24YBCABKAsyLS5wcm90by5jbG91ZF9yZXNvdXJjZS52MWFscGhhMS5MYW1iZGFGdW5jdGlvbkgAEkAKC2Vrc19jbHVzdGVyGAggASgLMikucHJvdG8uY2xvdWRfcmVzb3VyY2UudjFhbHBoYTEuRUtTQ2x1c3RlckgAEjMKCmNyZWF0ZWRfYXQYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEhcKCnN1cHByZXNzZWQYByABKAhCA+BBAUIKCghyZXNvdXJjZSqGAQoRQ2xvdWRSZXNvdXJjZVR5cGUSIwofQ0xPVURfUkVTT1VSQ0VfVFlQRV9VTlNQRUNJRklFRBAAEicKI0NMT1VEX1JFU09VUkNFX1RZUEVfTEFNQkRBX0ZVTkNUSU9OEAESIwofQ0xPVURfUkVTT1VSQ0VfVFlQRV9FS1NfQ0xVU1RFUhACQkdaRWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbG91ZF9yZXNvdXJjZS92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("CjJwcm90by9jbG91ZF9yZXNvdXJjZS92MWFscGhhMS9jbG91ZF9yZXNvdXJjZS5wcm90bxIdcHJvdG8uY2xvdWRfcmVzb3VyY2UudjFhbHBoYTEi9AEKDkxhbWJkYUZ1bmN0aW9uEhoKDWZ1bmN0aW9uX25hbWUYASABKAlCA+BBAhIZCgxmdW5jdGlvbl9hcm4YAiABKAlCA+BBAhITCgZyZWdpb24YAyABKAlCA+BBAhIUCgdydW50aW1lGAQgASgJQgPgQQESGQoMaWFtX3JvbGVfYXJuGAUgASgJQgPgQQESNgoNbGFzdF9tb2RpZmllZBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBARIdCgtkZXNjcmlwdGlvbhgHIAEoCUID4EEBSACIAQFCDgoMX2Rlc2NyaXB0aW9uIpcBCgpFS1NDbHVzdGVyEhkKDGNsdXN0ZXJfbmFtZRgBIAEoCUID4EECEhgKC2NsdXN0ZXJfYXJuGAIgASgJQgPgQQISEwoGcmVnaW9uGAMgASgJQgPgQQISHwoSa3ViZXJuZXRlc192ZXJzaW9uGAQgASgJQgPgQQESHgoRb2lkY19wcm92aWRlcl91cmwYBSABKAlCA+BBASKtAgoRQWdlbnRjb3JlV29ya2xvYWQSHwoSYWdlbnRfcnVudGltZV9uYW1lGAEgASgJQgPgQQISHgoRYWdlbnRfcnVudGltZV9hcm4YAiABKAlCA+BBAhIdChBhZ2VudF9ydW50aW1lX2lkGAMgASgJQgPgQQISEwoGcmVnaW9uGAQgASgJQgPgQQISFQoIcm9sZV9hcm4YBSABKAlCA+BBARI4Cg9sYXN0X3VwZGF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQESHQoLZGVzY3JpcHRpb24YByABKAlCA+BBAUgAiAEBEhgKBnN0YXR1cxgIIAEoCUID4EEBSAGIAQFCDgoMX2Rlc2NyaXB0aW9uQgkKB19zdGF0dXMiygMKDUNsb3VkUmVzb3VyY2USDwoCaWQYASABKAlCA+BBCBIWCgZvcmdfaWQYAiABKAlCBuBBAuBBBRIgChBjbG91ZF9hY2NvdW50X2lkGAMgASgJQgbgQQLgQQUSSAoPbGFtYmRhX2Z1bmN0aW9uGAQgASgLMi0ucHJvdG8uY2xvdWRfcmVzb3VyY2UudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25IABJACgtla3NfY2x1c3RlchgIIAEoCzIpLnByb3RvLmNsb3VkX3Jlc291cmNlLnYxYWxwaGExLkVLU0NsdXN0ZXJIABJOChJhZ2VudGNvcmVfd29ya2xvYWQYCSABKAsyMC5wcm90by5jbG91ZF9yZXNvdXJjZS52MWFscGhhMS5BZ2VudGNvcmVXb3JrbG9hZEgAEjMKCmNyZWF0ZWRfYXQYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEhcKCnN1cHByZXNzZWQYByABKAhCA+BBAUIKCghyZXNvdXJjZSqyAQoRQ2xvdWRSZXNvdXJjZVR5cGUSIwofQ0xPVURfUkVTT1VSQ0VfVFlQRV9VTlNQRUNJRklFRBAAEicKI0NMT1VEX1JFU09VUkNFX1RZUEVfTEFNQkRBX0ZVTkNUSU9OEAESIwofQ0xPVURfUkVTT1VSQ0VfVFlQRV9FS1NfQ0xVU1RFUhACEioKJkNMT1VEX1JFU09VUkNFX1RZUEVfQUdFTlRDT1JFX1dPUktMT0FEEANCR1pFZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX3Jlc291cmNlL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * LambdaFunction contains details of an AWS Lambda function.
@@ -134,6 +134,76 @@ export const EKSClusterSchema: GenMessage<EKSCluster> = /*@__PURE__*/
   messageDesc(file_proto_cloud_resource_v1alpha1_cloud_resource, 1);
 
 /**
+ * AgentcoreWorkload contains details of an Amazon Bedrock AgentCore Runtime.
+ *
+ * @generated from message proto.cloud_resource.v1alpha1.AgentcoreWorkload
+ */
+export type AgentcoreWorkload = Message<"proto.cloud_resource.v1alpha1.AgentcoreWorkload"> & {
+  /**
+   * Name of the AgentCore Runtime.
+   *
+   * @generated from field: string agent_runtime_name = 1;
+   */
+  agentRuntimeName: string;
+
+  /**
+   * ARN of the AgentCore Runtime.
+   *
+   * @generated from field: string agent_runtime_arn = 2;
+   */
+  agentRuntimeArn: string;
+
+  /**
+   * Unique identifier of the AgentCore Runtime.
+   *
+   * @generated from field: string agent_runtime_id = 3;
+   */
+  agentRuntimeId: string;
+
+  /**
+   * AWS region where the runtime is deployed.
+   *
+   * @generated from field: string region = 4;
+   */
+  region: string;
+
+  /**
+   * ARN of the IAM role used by the runtime at execution time.
+   *
+   * @generated from field: string role_arn = 5;
+   */
+  roleArn: string;
+
+  /**
+   * Timestamp of the last update to the runtime.
+   *
+   * @generated from field: google.protobuf.Timestamp last_updated_at = 6;
+   */
+  lastUpdatedAt?: Timestamp;
+
+  /**
+   * Optional description of the runtime.
+   *
+   * @generated from field: optional string description = 7;
+   */
+  description?: string;
+
+  /**
+   * Current status of the runtime (e.g. READY, CREATING, UPDATING).
+   *
+   * @generated from field: optional string status = 8;
+   */
+  status?: string;
+};
+
+/**
+ * Describes the message proto.cloud_resource.v1alpha1.AgentcoreWorkload.
+ * Use `create(AgentcoreWorkloadSchema)` to create a new message.
+ */
+export const AgentcoreWorkloadSchema: GenMessage<AgentcoreWorkload> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_resource_v1alpha1_cloud_resource, 2);
+
+/**
  * CloudResource represents a discovered cloud provider resource.
  *
  * @generated from message proto.cloud_resource.v1alpha1.CloudResource
@@ -177,6 +247,12 @@ export type CloudResource = Message<"proto.cloud_resource.v1alpha1.CloudResource
      */
     value: EKSCluster;
     case: "eksCluster";
+  } | {
+    /**
+     * @generated from field: proto.cloud_resource.v1alpha1.AgentcoreWorkload agentcore_workload = 9;
+     */
+    value: AgentcoreWorkload;
+    case: "agentcoreWorkload";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -206,7 +282,7 @@ export type CloudResource = Message<"proto.cloud_resource.v1alpha1.CloudResource
  * Use `create(CloudResourceSchema)` to create a new message.
  */
 export const CloudResourceSchema: GenMessage<CloudResource> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_resource_v1alpha1_cloud_resource, 2);
+  messageDesc(file_proto_cloud_resource_v1alpha1_cloud_resource, 3);
 
 /**
  * CloudResourceType identifies the type of a discovered cloud resource.
@@ -228,6 +304,11 @@ export enum CloudResourceType {
    * @generated from enum value: CLOUD_RESOURCE_TYPE_EKS_CLUSTER = 2;
    */
   EKS_CLUSTER = 2,
+
+  /**
+   * @generated from enum value: CLOUD_RESOURCE_TYPE_AGENTCORE_WORKLOAD = 3;
+   */
+  AGENTCORE_WORKLOAD = 3,
 }
 
 /**
