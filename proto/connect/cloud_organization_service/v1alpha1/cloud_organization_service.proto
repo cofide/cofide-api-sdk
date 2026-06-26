@@ -68,6 +68,12 @@ message UpdateCloudOrganizationRequest {
     bool discovery_enabled = 5 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the aws.role_chain field.
     bool aws_role_chain = 6 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the gcp.audience field.
+    bool gcp_audience = 7 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the gcp.wif_provider field.
+    bool gcp_wif_provider = 8 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the gcp.service_account_chain field.
+    bool gcp_service_account_chain = 9 [(google.api.field_behavior) = OPTIONAL];
   }
 
   proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1 [(google.api.field_behavior) = REQUIRED];

@@ -13,7 +13,7 @@ import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { AssumeRoleConfig } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
+import type { AssumeRoleConfig, ImpersonateServiceAccountConfig } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
 import { file_proto_cloud_provider_v1alpha1_cloud_provider } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -21,7 +21,51 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_organization/v1alpha1/cloud_organization.proto.
  */
 export const file_proto_cloud_organization_v1alpha1_cloud_organization: GenFile = /*@__PURE__*/
-  fileDesc("Cjpwcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTEvY2xvdWRfb3JnYW5pemF0aW9uLnByb3RvEiFwcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEisgEKD0FXU09yZ2FuaXphdGlvbhIXCgphd3Nfb3JnX2lkGAEgASgJQgPgQQISFQoIYXVkaWVuY2UYAyABKAlCA+BBAhJICgpyb2xlX2NoYWluGAUgAygLMi8ucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuQXNzdW1lUm9sZUNvbmZpZ0ID4EECSgQIAhADSgQIBBAFUgxpYW1fcm9sZV9hcm5SC2V4dGVybmFsX2lkIs8DChFDbG91ZE9yZ2FuaXphdGlvbhIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEhEKBG5hbWUYAyABKAlCA+BBAhJBCgNhd3MYBCABKAsyMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuQVdTT3JnYW5pemF0aW9uSAASHgoRZGlzY292ZXJ5X2VuYWJsZWQYBSABKAhCA+BBARJHCgZzdGF0dXMYBiABKA4yMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuRGlzY292ZXJ5U3RhdHVzQgPgQQMSQAoSbGFzdF9kaXNjb3ZlcmVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDSAGIAQESMwoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCCgoIcHJvdmlkZXJCFQoTX2xhc3RfZGlzY292ZXJlZF9hdCpxCg9EaXNjb3ZlcnlTdGF0dXMSIAocRElTQ09WRVJZX1NUQVRVU19VTlNQRUNJRklFRBAAEiAKHERJU0NPVkVSWV9TVEFUVVNfRElTQ09WRVJJTkcQARIaChZESVNDT1ZFUllfU1RBVFVTX0VSUk9SEAJCS1pJZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX29yZ2FuaXphdGlvbi92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_provider_v1alpha1_cloud_provider]);
+  fileDesc("Cjpwcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTEvY2xvdWRfb3JnYW5pemF0aW9uLnByb3RvEiFwcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEiwwEKD0dDUE9yZ2FuaXphdGlvbhIaCgpnY3Bfb3JnX2lkGAEgASgJQgbgQQLgQQUSFQoIYXVkaWVuY2UYAiABKAlCA+BBAhIZCgx3aWZfcHJvdmlkZXIYAyABKAlCA+BBAhJiChVzZXJ2aWNlX2FjY291bnRfY2hhaW4YBCADKAsyPi5wcm90by5jbG91ZF9wcm92aWRlci52MWFscGhhMS5JbXBlcnNvbmF0ZVNlcnZpY2VBY2NvdW50Q29uZmlnQgPgQQIisgEKD0FXU09yZ2FuaXphdGlvbhIXCgphd3Nfb3JnX2lkGAEgASgJQgPgQQISFQoIYXVkaWVuY2UYAyABKAlCA+BBAhJICgpyb2xlX2NoYWluGAUgAygLMi8ucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuQXNzdW1lUm9sZUNvbmZpZ0ID4EECSgQIAhADSgQIBBAFUgxpYW1fcm9sZV9hcm5SC2V4dGVybmFsX2lkIpIEChFDbG91ZE9yZ2FuaXphdGlvbhIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEhEKBG5hbWUYAyABKAlCA+BBAhJBCgNhd3MYBCABKAsyMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuQVdTT3JnYW5pemF0aW9uSAASQQoDZ2NwGAogASgLMjIucHJvdG8uY2xvdWRfb3JnYW5pemF0aW9uLnYxYWxwaGExLkdDUE9yZ2FuaXphdGlvbkgAEh4KEWRpc2NvdmVyeV9lbmFibGVkGAUgASgIQgPgQQESRwoGc3RhdHVzGAYgASgOMjIucHJvdG8uY2xvdWRfb3JnYW5pemF0aW9uLnYxYWxwaGExLkRpc2NvdmVyeVN0YXR1c0ID4EEDEkAKEmxhc3RfZGlzY292ZXJlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0gBiAEBEjMKCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQgoKCHByb3ZpZGVyQhUKE19sYXN0X2Rpc2NvdmVyZWRfYXQqcQoPRGlzY292ZXJ5U3RhdHVzEiAKHERJU0NPVkVSWV9TVEFUVVNfVU5TUEVDSUZJRUQQABIgChxESVNDT1ZFUllfU1RBVFVTX0RJU0NPVkVSSU5HEAESGgoWRElTQ09WRVJZX1NUQVRVU19FUlJPUhACQktaSWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_provider_v1alpha1_cloud_provider]);
+
+/**
+ * GCPOrganization contains GCP-specific configuration for a cloud organization.
+ *
+ * @generated from message proto.cloud_organization.v1alpha1.GCPOrganization
+ */
+export type GCPOrganization = Message<"proto.cloud_organization.v1alpha1.GCPOrganization"> & {
+  /**
+   * Numeric GCP organization ID (e.g., "123456789").
+   *
+   * @generated from field: string gcp_org_id = 1;
+   */
+  gcpOrgId: string;
+
+  /**
+   * Audience value for the SPIFFE JWT used in the initial WIF token exchange.
+   *
+   * @generated from field: string audience = 2;
+   */
+  audience: string;
+
+  /**
+   * Full resource name of the WIF provider used to exchange the SPIFFE JWT for a
+   * Google access token (e.g., //iam.googleapis.com/projects/.../providers/...).
+   *
+   * @generated from field: string wif_provider = 3;
+   */
+  wifProvider: string;
+
+  /**
+   * Ordered chain of service accounts to impersonate. The first is impersonated using
+   * the WIF-exchanged credential; each subsequent step uses the prior step's SA credentials.
+   *
+   * @generated from field: repeated proto.cloud_provider.v1alpha1.ImpersonateServiceAccountConfig service_account_chain = 4;
+   */
+  serviceAccountChain: ImpersonateServiceAccountConfig[];
+};
+
+/**
+ * Describes the message proto.cloud_organization.v1alpha1.GCPOrganization.
+ * Use `create(GCPOrganizationSchema)` to create a new message.
+ */
+export const GCPOrganizationSchema: GenMessage<GCPOrganization> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_organization_v1alpha1_cloud_organization, 0);
 
 /**
  * AWSOrganization contains AWS-specific configuration for a cloud organization.
@@ -58,7 +102,7 @@ export type AWSOrganization = Message<"proto.cloud_organization.v1alpha1.AWSOrga
  * Use `create(AWSOrganizationSchema)` to create a new message.
  */
 export const AWSOrganizationSchema: GenMessage<AWSOrganization> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_organization_v1alpha1_cloud_organization, 0);
+  messageDesc(file_proto_cloud_organization_v1alpha1_cloud_organization, 1);
 
 /**
  * CloudOrganization represents a cloud provider organization linked to a Cofide organization.
@@ -98,6 +142,12 @@ export type CloudOrganization = Message<"proto.cloud_organization.v1alpha1.Cloud
      */
     value: AWSOrganization;
     case: "aws";
+  } | {
+    /**
+     * @generated from field: proto.cloud_organization.v1alpha1.GCPOrganization gcp = 10;
+     */
+    value: GCPOrganization;
+    case: "gcp";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -141,7 +191,7 @@ export type CloudOrganization = Message<"proto.cloud_organization.v1alpha1.Cloud
  * Use `create(CloudOrganizationSchema)` to create a new message.
  */
 export const CloudOrganizationSchema: GenMessage<CloudOrganization> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_organization_v1alpha1_cloud_organization, 1);
+  messageDesc(file_proto_cloud_organization_v1alpha1_cloud_organization, 2);
 
 /**
  * DiscoveryStatus represents the current status of cloud resource discovery.

@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_provider/v1alpha1/cloud_provider.proto.
  */
 export const file_proto_cloud_provider_v1alpha1_cloud_provider: GenFile = /*@__PURE__*/
-  fileDesc("CjJwcm90by9jbG91ZF9wcm92aWRlci92MWFscGhhMS9jbG91ZF9wcm92aWRlci5wcm90bxIdcHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEiXAoQQXNzdW1lUm9sZUNvbmZpZxIZCgxpYW1fcm9sZV9hcm4YASABKAlCA+BBAhIdCgtleHRlcm5hbF9pZBgCIAEoCUID4EEBSACIAQFCDgoMX2V4dGVybmFsX2lkQkdaRWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbG91ZF9wcm92aWRlci92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior]);
+  fileDesc("CjJwcm90by9jbG91ZF9wcm92aWRlci92MWFscGhhMS9jbG91ZF9wcm92aWRlci5wcm90bxIdcHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEiXAoQQXNzdW1lUm9sZUNvbmZpZxIZCgxpYW1fcm9sZV9hcm4YASABKAlCA+BBAhIdCgtleHRlcm5hbF9pZBgCIAEoCUID4EEBSACIAQFCDgoMX2V4dGVybmFsX2lkIkUKH0ltcGVyc29uYXRlU2VydmljZUFjY291bnRDb25maWcSIgoVc2VydmljZV9hY2NvdW50X2VtYWlsGAEgASgJQgPgQQJCR1pFZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX3Byb3ZpZGVyL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior]);
 
 /**
  * AssumeRoleConfig configures a single step in an IAM role chain.
@@ -47,4 +47,27 @@ export type AssumeRoleConfig = Message<"proto.cloud_provider.v1alpha1.AssumeRole
  */
 export const AssumeRoleConfigSchema: GenMessage<AssumeRoleConfig> = /*@__PURE__*/
   messageDesc(file_proto_cloud_provider_v1alpha1_cloud_provider, 0);
+
+/**
+ * ImpersonateServiceAccountConfig configures a single step in a GCP service account
+ * impersonation chain. The WIF token exchange is performed first; each subsequent
+ * step impersonates the next service account using credentials from the prior step.
+ *
+ * @generated from message proto.cloud_provider.v1alpha1.ImpersonateServiceAccountConfig
+ */
+export type ImpersonateServiceAccountConfig = Message<"proto.cloud_provider.v1alpha1.ImpersonateServiceAccountConfig"> & {
+  /**
+   * Email of the service account to impersonate.
+   *
+   * @generated from field: string service_account_email = 1;
+   */
+  serviceAccountEmail: string;
+};
+
+/**
+ * Describes the message proto.cloud_provider.v1alpha1.ImpersonateServiceAccountConfig.
+ * Use `create(ImpersonateServiceAccountConfigSchema)` to create a new message.
+ */
+export const ImpersonateServiceAccountConfigSchema: GenMessage<ImpersonateServiceAccountConfig> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_provider_v1alpha1_cloud_provider, 1);
 

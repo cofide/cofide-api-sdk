@@ -15,7 +15,7 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { DiscoveryStatus } from "../../cloud_organization/v1alpha1/cloud_organization_pb";
 import { file_proto_cloud_organization_v1alpha1_cloud_organization } from "../../cloud_organization/v1alpha1/cloud_organization_pb";
-import type { AssumeRoleConfig } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
+import type { AssumeRoleConfig, ImpersonateServiceAccountConfig } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
 import { file_proto_cloud_provider_v1alpha1_cloud_provider } from "../../cloud_provider/v1alpha1/cloud_provider_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_account/v1alpha1/cloud_account.proto.
  */
 export const file_proto_cloud_account_v1alpha1_cloud_account: GenFile = /*@__PURE__*/
-  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiJQoKQVdTQWNjb3VudBIXCgphY2NvdW50X2lkGAEgASgJQgPgQQIiFwoVTGFtYmRhRGlzY292ZXJ5Q29uZmlnIhQKEkVLU0Rpc2NvdmVyeUNvbmZpZyIaChhBZ2VudGNvcmVEaXNjb3ZlcnlDb25maWciuAUKD0Rpc2NvdmVyeUNvbmZpZxIVCghhdWRpZW5jZRgCIAEoCUID4EECEhQKB3JlZ2lvbnMYBCADKAlCA+BBARIeChFkaXNjb3ZlcnlfZW5hYmxlZBgFIAEoCEID4EEBEkcKBnN0YXR1cxgGIAEoDjIyLnByb3RvLmNsb3VkX29yZ2FuaXphdGlvbi52MWFscGhhMS5EaXNjb3ZlcnlTdGF0dXNCA+BBAxJAChJsYXN0X2Rpc2NvdmVyZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNIAYgBARJEChZzdGF0dXNfbGFzdF91cGRhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDSAKIAQESRQoGbGFtYmRhGAkgASgLMjMucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5MYW1iZGFEaXNjb3ZlcnlDb25maWdIABI/CgNla3MYCyABKAsyMC5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkVLU0Rpc2NvdmVyeUNvbmZpZ0gAEksKCWFnZW50Y29yZRgMIAEoCzI2LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQWdlbnRjb3JlRGlzY292ZXJ5Q29uZmlnSAASSAoKcm9sZV9jaGFpbhgKIAMoCzIvLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkFzc3VtZVJvbGVDb25maWdCA+BBAkIPCg1yZXNvdXJjZV90eXBlQhUKE19sYXN0X2Rpc2NvdmVyZWRfYXRCGQoXX3N0YXR1c19sYXN0X3VwZGF0ZWRfYXRKBAgBEAJKBAgDEARSDGlhbV9yb2xlX2FyblILZXh0ZXJuYWxfaWQiqQMKDENsb3VkQWNjb3VudBIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEicKFWNsb3VkX29yZ2FuaXphdGlvbl9pZBgDIAEoCUID4EEBSAGIAQESEQoEbmFtZRgEIAEoCUID4EECEjcKA2F3cxgFIAEoCzIoLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQVdTQWNjb3VudEgAEk0KEWRpc2NvdmVyeV9jb25maWdzGAYgAygLMi0ucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EaXNjb3ZlcnlDb25maWdCA+BBARIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIXCgpzdXBwcmVzc2VkGAkgASgIQgPgQQFCCgoIcHJvdmlkZXJCGAoWX2Nsb3VkX29yZ2FuaXphdGlvbl9pZEJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_organization_v1alpha1_cloud_organization, file_proto_cloud_provider_v1alpha1_cloud_provider]);
+  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiJQoKQVdTQWNjb3VudBIXCgphY2NvdW50X2lkGAEgASgJQgPgQQIiJQoKR0NQUHJvamVjdBIXCgpwcm9qZWN0X2lkGAEgASgJQgPgQQIiFwoVTGFtYmRhRGlzY292ZXJ5Q29uZmlnIhQKEkVLU0Rpc2NvdmVyeUNvbmZpZyIaChhBZ2VudGNvcmVEaXNjb3ZlcnlDb25maWciHgocQ2xvdWRGdW5jdGlvbkRpc2NvdmVyeUNvbmZpZyKnBwoPRGlzY292ZXJ5Q29uZmlnEhUKCGF1ZGllbmNlGAIgASgJQgPgQQISFAoHcmVnaW9ucxgEIAMoCUID4EEBEh4KEWRpc2NvdmVyeV9lbmFibGVkGAUgASgIQgPgQQESRwoGc3RhdHVzGAYgASgOMjIucHJvdG8uY2xvdWRfb3JnYW5pemF0aW9uLnYxYWxwaGExLkRpc2NvdmVyeVN0YXR1c0ID4EEDEkAKEmxhc3RfZGlzY292ZXJlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0gBiAEBEkQKFnN0YXR1c19sYXN0X3VwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNIAogBARJFCgZsYW1iZGEYCSABKAsyMy5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxhbWJkYURpc2NvdmVyeUNvbmZpZ0gAEj8KA2VrcxgLIAEoCzIwLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuRUtTRGlzY292ZXJ5Q29uZmlnSAASSwoJYWdlbnRjb3JlGAwgASgLMjYucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5BZ2VudGNvcmVEaXNjb3ZlcnlDb25maWdIABJUCg5jbG91ZF9mdW5jdGlvbhgNIAEoCzI6LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRGdW5jdGlvbkRpc2NvdmVyeUNvbmZpZ0gAEkgKCnJvbGVfY2hhaW4YCiADKAsyLy5wcm90by5jbG91ZF9wcm92aWRlci52MWFscGhhMS5Bc3N1bWVSb2xlQ29uZmlnQgPgQQISGQoMd2lmX3Byb3ZpZGVyGA4gASgJQgPgQQESYgoVc2VydmljZV9hY2NvdW50X2NoYWluGA8gAygLMj4ucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuSW1wZXJzb25hdGVTZXJ2aWNlQWNjb3VudENvbmZpZ0ID4EEBEhgKC2FsbF9yZWdpb25zGBAgASgIQgPgQQFCDwoNcmVzb3VyY2VfdHlwZUIVChNfbGFzdF9kaXNjb3ZlcmVkX2F0QhkKF19zdGF0dXNfbGFzdF91cGRhdGVkX2F0SgQIARACSgQIAxAEUgxpYW1fcm9sZV9hcm5SC2V4dGVybmFsX2lkIuIDCgxDbG91ZEFjY291bnQSDwoCaWQYASABKAlCA+BBCBIWCgZvcmdfaWQYAiABKAlCBuBBAuBBBRInChVjbG91ZF9vcmdhbml6YXRpb25faWQYAyABKAlCA+BBAUgBiAEBEhEKBG5hbWUYBCABKAlCA+BBAhI3CgNhd3MYBSABKAsyKC5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkFXU0FjY291bnRIABI3CgNnY3AYCiABKAsyKC5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkdDUFByb2plY3RIABJNChFkaXNjb3ZlcnlfY29uZmlncxgGIAMoCzItLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuRGlzY292ZXJ5Q29uZmlnQgPgQQESMwoKY3JlYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSFwoKc3VwcHJlc3NlZBgJIAEoCEID4EEBQgoKCHByb3ZpZGVyQhgKFl9jbG91ZF9vcmdhbml6YXRpb25faWRCRlpEZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX2FjY291bnQvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_cloud_organization_v1alpha1_cloud_organization, file_proto_cloud_provider_v1alpha1_cloud_provider]);
 
 /**
  * AWSAccount contains AWS-specific configuration for a cloud account.
@@ -47,6 +47,27 @@ export const AWSAccountSchema: GenMessage<AWSAccount> = /*@__PURE__*/
   messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 0);
 
 /**
+ * GCPProject contains GCP-specific configuration for a cloud account.
+ *
+ * @generated from message proto.cloud_account.v1alpha1.GCPProject
+ */
+export type GCPProject = Message<"proto.cloud_account.v1alpha1.GCPProject"> & {
+  /**
+   * GCP project ID (human-readable, e.g., "my-project").
+   *
+   * @generated from field: string project_id = 1;
+   */
+  projectId: string;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.GCPProject.
+ * Use `create(GCPProjectSchema)` to create a new message.
+ */
+export const GCPProjectSchema: GenMessage<GCPProject> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 1);
+
+/**
  * LambdaDiscoveryConfig contains configuration for Lambda function discovery.
  *
  * Placeholder for future tag filter fields.
@@ -61,7 +82,7 @@ export type LambdaDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.Lambda
  * Use `create(LambdaDiscoveryConfigSchema)` to create a new message.
  */
 export const LambdaDiscoveryConfigSchema: GenMessage<LambdaDiscoveryConfig> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 1);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 2);
 
 /**
  * EKSDiscoveryConfig contains configuration for EKS cluster discovery.
@@ -78,7 +99,7 @@ export type EKSDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.EKSDiscov
  * Use `create(EKSDiscoveryConfigSchema)` to create a new message.
  */
 export const EKSDiscoveryConfigSchema: GenMessage<EKSDiscoveryConfig> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 2);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 3);
 
 /**
  * AgentcoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
@@ -95,7 +116,24 @@ export type AgentcoreDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.Age
  * Use `create(AgentcoreDiscoveryConfigSchema)` to create a new message.
  */
 export const AgentcoreDiscoveryConfigSchema: GenMessage<AgentcoreDiscoveryConfig> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 3);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 4);
+
+/**
+ * CloudFunctionDiscoveryConfig contains configuration for GCP Cloud Function discovery.
+ *
+ * Placeholder for future filter fields (e.g., label selectors, name patterns).
+ *
+ * @generated from message proto.cloud_account.v1alpha1.CloudFunctionDiscoveryConfig
+ */
+export type CloudFunctionDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.CloudFunctionDiscoveryConfig"> & {
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.CloudFunctionDiscoveryConfig.
+ * Use `create(CloudFunctionDiscoveryConfigSchema)` to create a new message.
+ */
+export const CloudFunctionDiscoveryConfigSchema: GenMessage<CloudFunctionDiscoveryConfig> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 5);
 
 /**
  * DiscoveryConfig contains configuration for discovering a specific type of cloud resource.
@@ -168,16 +206,43 @@ export type DiscoveryConfig = Message<"proto.cloud_account.v1alpha1.DiscoveryCon
      */
     value: AgentcoreDiscoveryConfig;
     case: "agentcore";
+  } | {
+    /**
+     * @generated from field: proto.cloud_account.v1alpha1.CloudFunctionDiscoveryConfig cloud_function = 13;
+     */
+    value: CloudFunctionDiscoveryConfig;
+    case: "cloudFunction";
   } | { case: undefined; value?: undefined };
 
   /**
    * Ordered chain of IAM roles to assume. The first role is assumed via
    * AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-   * assumed using the credentials from the prior step.
+   * assumed using the credentials from the prior step. AWS-specific; leave empty for GCP.
    *
    * @generated from field: repeated proto.cloud_provider.v1alpha1.AssumeRoleConfig role_chain = 10;
    */
   roleChain: AssumeRoleConfig[];
+
+  /**
+   * Full resource name of the WIF provider for the initial SPIFFE JWT exchange (GCP-specific).
+   *
+   * @generated from field: string wif_provider = 14;
+   */
+  wifProvider: string;
+
+  /**
+   * Ordered chain of GCP service accounts to impersonate (GCP-specific).
+   *
+   * @generated from field: repeated proto.cloud_provider.v1alpha1.ImpersonateServiceAccountConfig service_account_chain = 15;
+   */
+  serviceAccountChain: ImpersonateServiceAccountConfig[];
+
+  /**
+   * When true, discover resources across all GCP regions. Ignored when regions is non-empty.
+   *
+   * @generated from field: bool all_regions = 16;
+   */
+  allRegions: boolean;
 };
 
 /**
@@ -185,7 +250,7 @@ export type DiscoveryConfig = Message<"proto.cloud_account.v1alpha1.DiscoveryCon
  * Use `create(DiscoveryConfigSchema)` to create a new message.
  */
 export const DiscoveryConfigSchema: GenMessage<DiscoveryConfig> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 4);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 6);
 
 /**
  * CloudAccount represents a cloud provider account linked to a Cofide organization.
@@ -232,6 +297,12 @@ export type CloudAccount = Message<"proto.cloud_account.v1alpha1.CloudAccount"> 
      */
     value: AWSAccount;
     case: "aws";
+  } | {
+    /**
+     * @generated from field: proto.cloud_account.v1alpha1.GCPProject gcp = 10;
+     */
+    value: GCPProject;
+    case: "gcp";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -268,5 +339,5 @@ export type CloudAccount = Message<"proto.cloud_account.v1alpha1.CloudAccount"> 
  * Use `create(CloudAccountSchema)` to create a new message.
  */
 export const CloudAccountSchema: GenMessage<CloudAccount> = /*@__PURE__*/
-  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 5);
+  messageDesc(file_proto_cloud_account_v1alpha1_cloud_account, 7);
 

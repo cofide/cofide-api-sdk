@@ -21,6 +21,12 @@ message AWSAccount {
   string account_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
+// GCPProject contains GCP-specific configuration for a cloud account.
+message GCPProject {
+  // GCP project ID (human-readable, e.g., "my-project").
+  string project_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
 // LambdaDiscoveryConfig contains configuration for Lambda function discovery.
 message LambdaDiscoveryConfig {
   // Placeholder for future tag filter fields.
@@ -34,6 +40,11 @@ message EKSDiscoveryConfig {
 // AgentcoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
 message AgentcoreDiscoveryConfig {
   // Placeholder for future filter fields.
+}
+
+// CloudFunctionDiscoveryConfig contains configuration for GCP Cloud Function discovery.
+message CloudFunctionDiscoveryConfig {
+  // Placeholder for future filter fields (e.g., label selectors, name patterns).
 }
 
 // DiscoveryConfig contains configuration for discovering a specific type of cloud resource.
@@ -57,11 +68,18 @@ message DiscoveryConfig {
     LambdaDiscoveryConfig lambda = 9;
     EKSDiscoveryConfig eks = 11;
     AgentcoreDiscoveryConfig agentcore = 12;
+    CloudFunctionDiscoveryConfig cloud_function = 13;
   }
   // Ordered chain of IAM roles to assume. The first role is assumed via
   // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-  // assumed using the credentials from the prior step.
+  // assumed using the credentials from the prior step. AWS-specific; leave empty for GCP.
   repeated proto.cloud_provider.v1alpha1.AssumeRoleConfig role_chain = 10 [(google.api.field_behavior) = REQUIRED];
+  // Full resource name of the WIF provider for the initial SPIFFE JWT exchange (GCP-specific).
+  string wif_provider = 14 [(google.api.field_behavior) = OPTIONAL];
+  // Ordered chain of GCP service accounts to impersonate (GCP-specific).
+  repeated proto.cloud_provider.v1alpha1.ImpersonateServiceAccountConfig service_account_chain = 15 [(google.api.field_behavior) = OPTIONAL];
+  // When true, discover resources across all GCP regions. Ignored when regions is non-empty.
+  bool all_regions = 16 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // CloudAccount represents a cloud provider account linked to a Cofide organization.
@@ -80,6 +98,7 @@ message CloudAccount {
   // Cloud provider-specific configuration.
   oneof provider {
     AWSAccount aws = 5;
+    GCPProject gcp = 10;
   }
   // Discovery configurations for different resource types.
   repeated DiscoveryConfig discovery_configs = 6 [(google.api.field_behavior) = OPTIONAL];

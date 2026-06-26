@@ -20,3 +20,11 @@ message AssumeRoleConfig {
   // Optional external ID for confused-deputy protection.
   optional string external_id = 2 [(google.api.field_behavior) = OPTIONAL];
 }
+
+// ImpersonateServiceAccountConfig configures a single step in a GCP service account
+// impersonation chain. The WIF token exchange is performed first; each subsequent
+// step impersonates the next service account using credentials from the prior step.
+message ImpersonateServiceAccountConfig {
+  // Email of the service account to impersonate.
+  string service_account_email = 1 [(google.api.field_behavior) = REQUIRED];
+}

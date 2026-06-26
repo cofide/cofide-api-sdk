@@ -21,6 +21,23 @@ enum DiscoveryStatus {
   DISCOVERY_STATUS_ERROR = 2;
 }
 
+// GCPOrganization contains GCP-specific configuration for a cloud organization.
+message GCPOrganization {
+  // Numeric GCP organization ID (e.g., "123456789").
+  string gcp_org_id = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
+  // Audience value for the SPIFFE JWT used in the initial WIF token exchange.
+  string audience = 2 [(google.api.field_behavior) = REQUIRED];
+  // Full resource name of the WIF provider used to exchange the SPIFFE JWT for a
+  // Google access token (e.g., //iam.googleapis.com/projects/.../providers/...).
+  string wif_provider = 3 [(google.api.field_behavior) = REQUIRED];
+  // Ordered chain of service accounts to impersonate. The first is impersonated using
+  // the WIF-exchanged credential; each subsequent step uses the prior step's SA credentials.
+  repeated proto.cloud_provider.v1alpha1.ImpersonateServiceAccountConfig service_account_chain = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
 // AWSOrganization contains AWS-specific configuration for a cloud organization.
 message AWSOrganization {
   // AWS Organization ID (e.g., o-xxxxxxxxxx).
@@ -49,6 +66,7 @@ message CloudOrganization {
   // Cloud provider-specific configuration.
   oneof provider {
     AWSOrganization aws = 4;
+    GCPOrganization gcp = 10;
   }
   // Whether discovery is enabled for this cloud organization.
   bool discovery_enabled = 5 [(google.api.field_behavior) = OPTIONAL];

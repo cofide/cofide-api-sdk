@@ -65,12 +65,31 @@ message AgentcoreWorkload {
   optional string status = 8 [(google.api.field_behavior) = OPTIONAL];
 }
 
+// CloudFunction contains details of a GCP Cloud Function (Gen 1 or Gen 2).
+message CloudFunction {
+  // Name of the Cloud Function.
+  string function_name = 1 [(google.api.field_behavior) = REQUIRED];
+  // Full GCP resource name (e.g., projects/{project}/locations/{location}/functions/{function}).
+  string function_resource_name = 2 [(google.api.field_behavior) = REQUIRED];
+  // GCP region where the function is deployed.
+  string region = 3 [(google.api.field_behavior) = REQUIRED];
+  // Service account email the function runs as (its workload identity).
+  string service_account_email = 4 [(google.api.field_behavior) = REQUIRED];
+  // Runtime environment (e.g., "nodejs20", "python312").
+  optional string runtime = 5 [(google.api.field_behavior) = OPTIONAL];
+  // Timestamp of the last update to the function.
+  google.protobuf.Timestamp last_updated_at = 6 [(google.api.field_behavior) = OPTIONAL];
+  // Optional description of the function.
+  optional string description = 7 [(google.api.field_behavior) = OPTIONAL];
+}
+
 // CloudResourceType identifies the type of a discovered cloud resource.
 enum CloudResourceType {
   CLOUD_RESOURCE_TYPE_UNSPECIFIED = 0;
   CLOUD_RESOURCE_TYPE_LAMBDA_FUNCTION = 1;
   CLOUD_RESOURCE_TYPE_EKS_CLUSTER = 2;
   CLOUD_RESOURCE_TYPE_AGENTCORE_WORKLOAD = 3;
+  CLOUD_RESOURCE_TYPE_CLOUD_FUNCTION = 4;
 }
 
 // CloudResource represents a discovered cloud provider resource.
@@ -92,6 +111,7 @@ message CloudResource {
     LambdaFunction lambda_function = 4;
     EKSCluster eks_cluster = 8;
     AgentcoreWorkload agentcore_workload = 9;
+    CloudFunction cloud_function = 10;
   }
   // Time of resource creation.
   google.protobuf.Timestamp created_at = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
