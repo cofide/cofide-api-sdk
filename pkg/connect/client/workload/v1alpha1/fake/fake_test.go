@@ -8,6 +8,7 @@ import (
 	"testing"
 	"time"
 
+	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
@@ -51,7 +52,7 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterObservedTimeRange(t *testi
 	}
 	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{recent, stale}
 
-	events, _, err := client.ListWorkloadEvents(ctx, &workloadpb.ListWorkloadEventsRequest_Filter{
+	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
 		OrgId:          "org-1",
 		ObservedAfter:  timestamppb.New(now.Add(-time.Hour)),
 		ObservedBefore: timestamppb.New(now),

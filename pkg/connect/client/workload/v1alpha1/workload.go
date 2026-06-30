@@ -23,7 +23,7 @@ type WorkloadEventsStream interface {
 // WorkloadClient is an interface for a client for the v1alpha1 version of the Connect WorkloadService.
 type WorkloadClient interface {
 	ListWorkloads(ctx context.Context, filter *workloadsvcpb.ListWorkloadsRequest_Filter) ([]*workloadpb.Workload, error)
-	ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error)
+	ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error)
 	PublishWorkloadEvents(ctx context.Context) (WorkloadEventsStream, error)
 }
 
@@ -46,8 +46,8 @@ func (c *workloadClient) ListWorkloads(ctx context.Context, filter *workloadsvcp
 	return resp.Workloads, nil
 }
 
-func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
-	resp, err := c.workloadClient.ListWorkloadEvents(ctx, &workloadpb.ListWorkloadEventsRequest{
+func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
+	resp, err := c.workloadClient.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest{
 		Filter: filter,
 		Pagination: &paginationpb.PageRequest{
 			PageSize:  requestPagination.PageSize,
@@ -69,11 +69,11 @@ func (c *workloadClient) PublishWorkloadEvents(ctx context.Context) (WorkloadEve
 }
 
 type workloadEventsStream struct {
-	stream grpc.ClientStreamingClient[workloadpb.PublishWorkloadEventsRequest, workloadpb.PublishWorkloadEventsResponse]
+	stream grpc.ClientStreamingClient[workloadsvcpb.PublishWorkloadEventsRequest, workloadsvcpb.PublishWorkloadEventsResponse]
 }
 
 func (s *workloadEventsStream) Send(events []*workloadpb.WorkloadEvent) error {
-	return s.stream.Send(&workloadpb.PublishWorkloadEventsRequest{Events: events})
+	return s.stream.Send(&workloadsvcpb.PublishWorkloadEventsRequest{Events: events})
 }
 
 func (s *workloadEventsStream) Close() error {

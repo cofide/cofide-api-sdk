@@ -38,7 +38,7 @@ func (c *fakeWorkloadClient) ListWorkloads(ctx context.Context, filter *workload
 	return workloads, nil
 }
 
-func (c *fakeWorkloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
+func (c *fakeWorkloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
@@ -92,7 +92,7 @@ func workloadMatches(workload *workloadpb.Workload, filter *workloadsvcpb.ListWo
 	return true
 }
 
-func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadpb.ListWorkloadEventsRequest_Filter) bool {
+func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter) bool {
 	if filter == nil {
 		return true
 	}

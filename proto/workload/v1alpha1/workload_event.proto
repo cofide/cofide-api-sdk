@@ -11,7 +11,6 @@ package proto.workload.v1alpha1;
 
 import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
-import "proto/pagination/v1alpha1/pagination.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
 
@@ -78,30 +77,4 @@ message IdentityDeliveredEvent {
 // candidate identities are filtered out, leaving the workload with no SVIDs.
 message NoIdentityEvent {
   string error = 1 [(google.api.field_behavior) = REQUIRED];
-}
-
-message PublishWorkloadEventsRequest {
-  repeated WorkloadEvent events = 1 [(google.api.field_behavior) = REQUIRED];
-}
-
-message PublishWorkloadEventsResponse {}
-
-message ListWorkloadEventsRequest {
-  message Filter {
-    string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
-    string trust_zone_id = 2 [(google.api.field_behavior) = OPTIONAL];
-    string cluster_id = 3 [(google.api.field_behavior) = OPTIONAL];
-    google.protobuf.Timestamp observed_before = 4 [(google.api.field_behavior) = OPTIONAL];
-    google.protobuf.Timestamp observed_after = 5 [(google.api.field_behavior) = OPTIONAL];
-    string spiffe_id = 6 [(google.api.field_behavior) = OPTIONAL];
-    string entry_id = 7 [(google.api.field_behavior) = OPTIONAL];
-  }
-
-  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
-  proto.pagination.v1alpha1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
-}
-
-message ListWorkloadEventsResponse {
-  repeated WorkloadEvent events = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-  proto.pagination.v1alpha1.PageResponse pagination = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
