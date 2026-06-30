@@ -15,15 +15,13 @@ import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { PageRequest, PageResponse } from "../../pagination/v1alpha1/pagination_pb";
-import { file_proto_pagination_v1alpha1_pagination } from "../../pagination/v1alpha1/pagination_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/workload/v1alpha1/workload_event.proto.
  */
 export const file_proto_workload_v1alpha1_workload_event: GenFile = /*@__PURE__*/
-  fileDesc("Cixwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZF9ldmVudC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiMQoIU2VsZWN0b3ISEQoEdHlwZRgBIAEoCUID4EECEhIKBXZhbHVlGAIgASgJQgPgQQIiiwQKDVdvcmtsb2FkRXZlbnQSEwoGb3JnX2lkGAEgASgJQgPgQQMSGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUID4EEDEhcKCmNsdXN0ZXJfaWQYAyABKAlCA+BBAhI7ChJvYnNlcnZlZF90aW1lc3RhbXAYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISHAoKY2FsbGVyX3BpZBgFIAEoBUID4EEBSAGIAQESOQoJc2VsZWN0b3JzGAYgAygLMiEucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuU2VsZWN0b3JCA+BBARIhChRzZWxlY3RvcnNfaW5jb21wbGV0ZRgHIAEoCEID4EEBEkUKC2F0dGVzdGF0aW9uGAogASgLMikucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuQXR0ZXN0YXRpb25FdmVudEID4EECSAASUgoSaWRlbnRpdHlfZGVsaXZlcmVkGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuSWRlbnRpdHlEZWxpdmVyZWRFdmVudEID4EECSAASRAoLbm9faWRlbnRpdHkYDCABKAsyKC5wcm90by53b3JrbG9hZC52MWFscGhhMS5Ob0lkZW50aXR5RXZlbnRCA+BBAkgAQgcKBWV2ZW50Qg0KC19jYWxsZXJfcGlkIr0BChBBdHRlc3RhdGlvbkV2ZW50EkcKB291dGNvbWUYASABKA4yMS5wcm90by53b3JrbG9hZC52MWFscGhhMS5BdHRlc3RhdGlvbkV2ZW50Lk91dGNvbWVCA+BBAhISCgVlcnJvchgCIAEoCUID4EEBIkwKB091dGNvbWUSFwoTT1VUQ09NRV9VTlNQRUNJRklFRBAAEhQKEE9VVENPTUVfQVRURVNURUQQARISCg5PVVRDT01FX0ZBSUxFRBACIswBChZJZGVudGl0eURlbGl2ZXJlZEV2ZW50EhUKCGVudHJ5X2lkGAEgASgJQgPgQQISFgoJc3BpZmZlX2lkGAIgASgJQgPgQQISGgoNc2VyaWFsX251bWJlchgDIAEoCUID4EECEjMKCm5vdF9iZWZvcmUYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISMgoJbm90X2FmdGVyGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECIiUKD05vSWRlbnRpdHlFdmVudBISCgVlcnJvchgBIAEoCUID4EECIlsKHFB1Ymxpc2hXb3JrbG9hZEV2ZW50c1JlcXVlc3QSOwoGZXZlbnRzGAEgAygLMiYucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuV29ya2xvYWRFdmVudEID4EECIh8KHVB1Ymxpc2hXb3JrbG9hZEV2ZW50c1Jlc3BvbnNlIqMDChlMaXN0V29ya2xvYWRFdmVudHNSZXF1ZXN0Ek4KBmZpbHRlchgBIAEoCzI5LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkxpc3RXb3JrbG9hZEV2ZW50c1JlcXVlc3QuRmlsdGVyQgPgQQESPwoKcGFnaW5hdGlvbhgCIAEoCzImLnByb3RvLnBhZ2luYXRpb24udjFhbHBoYTEuUGFnZVJlcXVlc3RCA+BBARr0AQoGRmlsdGVyEhMKBm9yZ19pZBgBIAEoCUID4EEBEhoKDXRydXN0X3pvbmVfaWQYAiABKAlCA+BBARIXCgpjbHVzdGVyX2lkGAMgASgJQgPgQQESOAoPb2JzZXJ2ZWRfYmVmb3JlGAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEBEjcKDm9ic2VydmVkX2FmdGVyGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEBEhYKCXNwaWZmZV9pZBgGIAEoCUID4EEBEhUKCGVudHJ5X2lkGAcgASgJQgPgQQEimwEKGkxpc3RXb3JrbG9hZEV2ZW50c1Jlc3BvbnNlEjsKBmV2ZW50cxgBIAMoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkRXZlbnRCA+BBAxJACgpwYWdpbmF0aW9uGAIgASgLMicucHJvdG8ucGFnaW5hdGlvbi52MWFscGhhMS5QYWdlUmVzcG9uc2VCA+BBA0JBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_pagination_v1alpha1_pagination]);
+  fileDesc("Cixwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZF9ldmVudC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiMQoIU2VsZWN0b3ISEQoEdHlwZRgBIAEoCUID4EECEhIKBXZhbHVlGAIgASgJQgPgQQIiiwQKDVdvcmtsb2FkRXZlbnQSEwoGb3JnX2lkGAEgASgJQgPgQQMSGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUID4EEDEhcKCmNsdXN0ZXJfaWQYAyABKAlCA+BBAhI7ChJvYnNlcnZlZF90aW1lc3RhbXAYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISHAoKY2FsbGVyX3BpZBgFIAEoBUID4EEBSAGIAQESOQoJc2VsZWN0b3JzGAYgAygLMiEucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuU2VsZWN0b3JCA+BBARIhChRzZWxlY3RvcnNfaW5jb21wbGV0ZRgHIAEoCEID4EEBEkUKC2F0dGVzdGF0aW9uGAogASgLMikucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuQXR0ZXN0YXRpb25FdmVudEID4EECSAASUgoSaWRlbnRpdHlfZGVsaXZlcmVkGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuSWRlbnRpdHlEZWxpdmVyZWRFdmVudEID4EECSAASRAoLbm9faWRlbnRpdHkYDCABKAsyKC5wcm90by53b3JrbG9hZC52MWFscGhhMS5Ob0lkZW50aXR5RXZlbnRCA+BBAkgAQgcKBWV2ZW50Qg0KC19jYWxsZXJfcGlkIr0BChBBdHRlc3RhdGlvbkV2ZW50EkcKB291dGNvbWUYASABKA4yMS5wcm90by53b3JrbG9hZC52MWFscGhhMS5BdHRlc3RhdGlvbkV2ZW50Lk91dGNvbWVCA+BBAhISCgVlcnJvchgCIAEoCUID4EEBIkwKB091dGNvbWUSFwoTT1VUQ09NRV9VTlNQRUNJRklFRBAAEhQKEE9VVENPTUVfQVRURVNURUQQARISCg5PVVRDT01FX0ZBSUxFRBACIswBChZJZGVudGl0eURlbGl2ZXJlZEV2ZW50EhUKCGVudHJ5X2lkGAEgASgJQgPgQQISFgoJc3BpZmZlX2lkGAIgASgJQgPgQQISGgoNc2VyaWFsX251bWJlchgDIAEoCUID4EECEjMKCm5vdF9iZWZvcmUYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISMgoJbm90X2FmdGVyGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECIiUKD05vSWRlbnRpdHlFdmVudBISCgVlcnJvchgBIAEoCUID4EECQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * Selector preserves the SPIRE type+value structure of *common.Selector.
@@ -246,125 +244,4 @@ export type NoIdentityEvent = Message<"proto.workload.v1alpha1.NoIdentityEvent">
  */
 export const NoIdentityEventSchema: GenMessage<NoIdentityEvent> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload_event, 4);
-
-/**
- * @generated from message proto.workload.v1alpha1.PublishWorkloadEventsRequest
- */
-export type PublishWorkloadEventsRequest = Message<"proto.workload.v1alpha1.PublishWorkloadEventsRequest"> & {
-  /**
-   * @generated from field: repeated proto.workload.v1alpha1.WorkloadEvent events = 1;
-   */
-  events: WorkloadEvent[];
-};
-
-/**
- * Describes the message proto.workload.v1alpha1.PublishWorkloadEventsRequest.
- * Use `create(PublishWorkloadEventsRequestSchema)` to create a new message.
- */
-export const PublishWorkloadEventsRequestSchema: GenMessage<PublishWorkloadEventsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 5);
-
-/**
- * @generated from message proto.workload.v1alpha1.PublishWorkloadEventsResponse
- */
-export type PublishWorkloadEventsResponse = Message<"proto.workload.v1alpha1.PublishWorkloadEventsResponse"> & {
-};
-
-/**
- * Describes the message proto.workload.v1alpha1.PublishWorkloadEventsResponse.
- * Use `create(PublishWorkloadEventsResponseSchema)` to create a new message.
- */
-export const PublishWorkloadEventsResponseSchema: GenMessage<PublishWorkloadEventsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 6);
-
-/**
- * @generated from message proto.workload.v1alpha1.ListWorkloadEventsRequest
- */
-export type ListWorkloadEventsRequest = Message<"proto.workload.v1alpha1.ListWorkloadEventsRequest"> & {
-  /**
-   * @generated from field: proto.workload.v1alpha1.ListWorkloadEventsRequest.Filter filter = 1;
-   */
-  filter?: ListWorkloadEventsRequest_Filter;
-
-  /**
-   * @generated from field: proto.pagination.v1alpha1.PageRequest pagination = 2;
-   */
-  pagination?: PageRequest;
-};
-
-/**
- * Describes the message proto.workload.v1alpha1.ListWorkloadEventsRequest.
- * Use `create(ListWorkloadEventsRequestSchema)` to create a new message.
- */
-export const ListWorkloadEventsRequestSchema: GenMessage<ListWorkloadEventsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 7);
-
-/**
- * @generated from message proto.workload.v1alpha1.ListWorkloadEventsRequest.Filter
- */
-export type ListWorkloadEventsRequest_Filter = Message<"proto.workload.v1alpha1.ListWorkloadEventsRequest.Filter"> & {
-  /**
-   * @generated from field: string org_id = 1;
-   */
-  orgId: string;
-
-  /**
-   * @generated from field: string trust_zone_id = 2;
-   */
-  trustZoneId: string;
-
-  /**
-   * @generated from field: string cluster_id = 3;
-   */
-  clusterId: string;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp observed_before = 4;
-   */
-  observedBefore?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp observed_after = 5;
-   */
-  observedAfter?: Timestamp;
-
-  /**
-   * @generated from field: string spiffe_id = 6;
-   */
-  spiffeId: string;
-
-  /**
-   * @generated from field: string entry_id = 7;
-   */
-  entryId: string;
-};
-
-/**
- * Describes the message proto.workload.v1alpha1.ListWorkloadEventsRequest.Filter.
- * Use `create(ListWorkloadEventsRequest_FilterSchema)` to create a new message.
- */
-export const ListWorkloadEventsRequest_FilterSchema: GenMessage<ListWorkloadEventsRequest_Filter> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 7, 0);
-
-/**
- * @generated from message proto.workload.v1alpha1.ListWorkloadEventsResponse
- */
-export type ListWorkloadEventsResponse = Message<"proto.workload.v1alpha1.ListWorkloadEventsResponse"> & {
-  /**
-   * @generated from field: repeated proto.workload.v1alpha1.WorkloadEvent events = 1;
-   */
-  events: WorkloadEvent[];
-
-  /**
-   * @generated from field: proto.pagination.v1alpha1.PageResponse pagination = 2;
-   */
-  pagination?: PageResponse;
-};
-
-/**
- * Describes the message proto.workload.v1alpha1.ListWorkloadEventsResponse.
- * Use `create(ListWorkloadEventsResponseSchema)` to create a new message.
- */
-export const ListWorkloadEventsResponseSchema: GenMessage<ListWorkloadEventsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 8);
 
