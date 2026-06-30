@@ -1,4 +1,4 @@
-// Copyright 2025 Cofide Limited.
+// Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
 // This file defines WorkloadEvent and related types representing runtime SVID
