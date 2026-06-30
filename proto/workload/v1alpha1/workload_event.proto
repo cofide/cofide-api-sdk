@@ -35,9 +35,11 @@ enum WorkloadEventType {
 // selectors, selectors_incomplete — are carried at the wrapper level rather
 // than repeated on each sub-event.
 message WorkloadEvent {
+  // Connect populates scope fields from the authenticated SPIRE agent and
+  // server-side mapping. Publishers should not send these as authoritative input.
   string org_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
   string trust_zone_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-  string cluster_id = 3 [(google.api.field_behavior) = REQUIRED];
+  string cluster_id = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   google.protobuf.Timestamp observed_timestamp = 4 [(google.api.field_behavior) = REQUIRED];
 
@@ -50,10 +52,11 @@ message WorkloadEvent {
   bool selectors_incomplete = 7 [(google.api.field_behavior) = OPTIONAL];
   string agent_spiffe_id = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
 
+  // Exactly one event must be set.
   oneof event {
-    AttestationEvent attestation = 10 [(google.api.field_behavior) = REQUIRED];
-    IdentityDeliveredEvent identity_delivered = 11 [(google.api.field_behavior) = REQUIRED];
-    NoIdentityEvent no_identity = 12 [(google.api.field_behavior) = REQUIRED];
+    AttestationEvent attestation = 10;
+    IdentityDeliveredEvent identity_delivered = 11;
+    NoIdentityEvent no_identity = 12;
   }
 }
 
@@ -78,9 +81,10 @@ message IdentityDeliveredEvent {
   string entry_id = 1 [(google.api.field_behavior) = REQUIRED];
   string spiffe_id = 2 [(google.api.field_behavior) = REQUIRED];
 
+  // Exactly one SVID details message must be set.
   oneof svid {
-    X509SVIDDetails x509_svid = 10 [(google.api.field_behavior) = REQUIRED];
-    JWTSVIDDetails jwt_svid = 11 [(google.api.field_behavior) = REQUIRED];
+    X509SVIDDetails x509_svid = 10;
+    JWTSVIDDetails jwt_svid = 11;
   }
 }
 
