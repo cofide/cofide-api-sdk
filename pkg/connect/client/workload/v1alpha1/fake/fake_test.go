@@ -62,6 +62,65 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterObservedTimeRange(t *testi
 	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{recent}, events)
 }
 
+func Test_fakeWorkloadClient_ListWorkloadEvents_filterAgentSpiffeID(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	matching := &workloadpb.WorkloadEvent{
+		AgentSpiffeId: "spiffe://example.org/agent/matching",
+	}
+	other := &workloadpb.WorkloadEvent{
+		AgentSpiffeId: "spiffe://example.org/agent/other",
+	}
+	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{matching, other}
+
+	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
+		AgentSpiffeId: "spiffe://example.org/agent/matching",
+	}, pagination.Pagination{PageSize: 100})
+	require.NoError(t, err)
+
+	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{matching}, events)
+}
+
+func Test_fakeWorkloadClient_ListWorkloadEvents_filterEventTypes(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	attestation := &workloadpb.WorkloadEvent{
+		Event: &workloadpb.WorkloadEvent_Attestation{
+			Attestation: &workloadpb.AttestationEvent{
+				Outcome: workloadpb.AttestationEvent_OUTCOME_ATTESTED,
+			},
+		},
+	}
+	identityDelivered := &workloadpb.WorkloadEvent{
+		Event: &workloadpb.WorkloadEvent_IdentityDelivered{
+			IdentityDelivered: &workloadpb.IdentityDeliveredEvent{
+				EntryId:  "entry-1",
+				SpiffeId: "spiffe://example.org/workload",
+			},
+		},
+	}
+	noIdentity := &workloadpb.WorkloadEvent{
+		Event: &workloadpb.WorkloadEvent_NoIdentity{
+			NoIdentity: &workloadpb.NoIdentityEvent{Error: "no matching entries"},
+		},
+	}
+	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{attestation, identityDelivered, noIdentity}
+
+	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
+		EventTypes: []workloadpb.WorkloadEventType{
+			workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED,
+			workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_NO_IDENTITY,
+		},
+	}, pagination.Pagination{PageSize: 100})
+	require.NoError(t, err)
+
+	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{identityDelivered, noIdentity}, events)
+}
+
 func Test_fakeWorkloadEventsStream_Send_skipsNilEvents(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)

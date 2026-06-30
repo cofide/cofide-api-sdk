@@ -47,7 +47,7 @@ type WorkloadServiceClient interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[PublishWorkloadsRequest, PublishWorkloadsResponse], error)
-	// ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+	// ListWorkloadEvents returns workload events capturing SVID issuance outcomes,
 	// matching the optional filter.
 	ListWorkloadEvents(ctx context.Context, in *ListWorkloadEventsRequest, opts ...grpc.CallOption) (*ListWorkloadEventsResponse, error)
 	// PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
@@ -123,7 +123,7 @@ type WorkloadServiceServer interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(grpc.ClientStreamingServer[PublishWorkloadsRequest, PublishWorkloadsResponse]) error
-	// ListWorkloadEvents returns audit events capturing SVID issuance outcomes,
+	// ListWorkloadEvents returns workload events capturing SVID issuance outcomes,
 	// matching the optional filter.
 	ListWorkloadEvents(context.Context, *ListWorkloadEventsRequest) (*ListWorkloadEventsResponse, error)
 	// PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent

@@ -105,6 +105,12 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadsvcpb
 	if filter.ClusterId != "" && event.GetClusterId() != filter.ClusterId {
 		return false
 	}
+	if filter.AgentSpiffeId != "" && event.GetAgentSpiffeId() != filter.AgentSpiffeId {
+		return false
+	}
+	if len(filter.GetEventTypes()) > 0 && !workloadEventTypeMatches(event, filter.GetEventTypes()) {
+		return false
+	}
 	observedBefore := filter.GetObservedBefore()
 	observedAfter := filter.GetObservedAfter()
 	hasObservedBefore := observedBefore != nil && observedBefore.IsValid()
@@ -132,4 +138,27 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadsvcpb
 		}
 	}
 	return true
+}
+
+func workloadEventTypeMatches(event *workloadpb.WorkloadEvent, eventTypes []workloadpb.WorkloadEventType) bool {
+	actual := workloadEventType(event)
+	for _, eventType := range eventTypes {
+		if eventType == actual {
+			return true
+		}
+	}
+	return false
+}
+
+func workloadEventType(event *workloadpb.WorkloadEvent) workloadpb.WorkloadEventType {
+	switch event.GetEvent().(type) {
+	case *workloadpb.WorkloadEvent_Attestation:
+		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_ATTESTATION
+	case *workloadpb.WorkloadEvent_IdentityDelivered:
+		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED
+	case *workloadpb.WorkloadEvent_NoIdentity:
+		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_NO_IDENTITY
+	default:
+		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_UNSPECIFIED
+	}
 }
