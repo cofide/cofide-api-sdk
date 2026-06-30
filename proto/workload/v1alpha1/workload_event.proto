@@ -9,6 +9,7 @@ syntax = "proto3";
 
 package proto.workload.v1alpha1;
 
+import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 import "proto/pagination/v1alpha1/pagination.proto";
 
@@ -18,8 +19,8 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1al
 // Keeping type and value separate (rather than a single "type:value" string)
 // allows downstream consumers to filter on either dimension independently.
 message Selector {
-  string type = 1;
-  string value = 2;
+  string type = 1 [(google.api.field_behavior) = REQUIRED];
+  string value = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // WorkloadEvent is the top-level audit record emitted during FetchX509SVID.
@@ -27,24 +28,24 @@ message Selector {
 // selectors, selectors_incomplete — are carried at the wrapper level rather
 // than repeated on each sub-event.
 message WorkloadEvent {
-  string org_id = 1;
-  string trust_zone_id = 2;
-  string cluster_id = 3;
+  string org_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string trust_zone_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string cluster_id = 3 [(google.api.field_behavior) = REQUIRED];
 
-  google.protobuf.Timestamp observed_timestamp = 4;
+  google.protobuf.Timestamp observed_timestamp = 4 [(google.api.field_behavior) = REQUIRED];
 
   // caller_pid is the PID of the workload process that opened the Workload API
   // stream. Absent when the runtime context does not expose the caller PID.
-  optional int32 caller_pid = 5;
-  repeated Selector selectors = 6;
+  optional int32 caller_pid = 5 [(google.api.field_behavior) = OPTIONAL];
+  repeated Selector selectors = 6 [(google.api.field_behavior) = OPTIONAL];
   // selectors_incomplete indicates that one or more attestor plugins failed
   // during attestation, so the selector set may not be exhaustive.
-  bool selectors_incomplete = 7;
+  bool selectors_incomplete = 7 [(google.api.field_behavior) = OPTIONAL];
 
   oneof event {
-    AttestationEvent attestation = 10;
-    IdentityDeliveredEvent identity_delivered = 11;
-    NoIdentityEvent no_identity = 12;
+    AttestationEvent attestation = 10 [(google.api.field_behavior) = REQUIRED];
+    IdentityDeliveredEvent identity_delivered = 11 [(google.api.field_behavior) = REQUIRED];
+    NoIdentityEvent no_identity = 12 [(google.api.field_behavior) = REQUIRED];
   }
 }
 
@@ -59,48 +60,48 @@ message AttestationEvent {
     OUTCOME_FAILED = 2;
   }
 
-  Outcome outcome = 1;
-  optional string error = 2;
+  Outcome outcome = 1 [(google.api.field_behavior) = REQUIRED];
+  string error = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // IdentityDeliveredEvent is emitted once per SVID after a successful
 // stream.Send(), capturing the certificate details of the delivered identity.
 message IdentityDeliveredEvent {
-  string entry_id = 1;
-  string spiffe_id = 2;
-  string serial_number = 3;
-  google.protobuf.Timestamp not_before = 4;
-  google.protobuf.Timestamp not_after = 5;
+  string entry_id = 1 [(google.api.field_behavior) = REQUIRED];
+  string spiffe_id = 2 [(google.api.field_behavior) = REQUIRED];
+  string serial_number = 3 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp not_before = 4 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp not_after = 5 [(google.api.field_behavior) = REQUIRED];
 }
 
 // NoIdentityEvent is emitted when a cache update is received but all
 // candidate identities are filtered out, leaving the workload with no SVIDs.
 message NoIdentityEvent {
-  string error = 1;
+  string error = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message PublishWorkloadEventsRequest {
-  repeated WorkloadEvent events = 1;
+  repeated WorkloadEvent events = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message PublishWorkloadEventsResponse {}
 
 message ListWorkloadEventsRequest {
   message Filter {
-    string org_id = 1;
-    string trust_zone_id = 2;
-    string cluster_id = 3;
-    google.protobuf.Timestamp observed_before = 4;
-    google.protobuf.Timestamp observed_after = 5;
-    string spiffe_id = 6;
-    string entry_id = 7;
+    string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
+    string trust_zone_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    string cluster_id = 3 [(google.api.field_behavior) = OPTIONAL];
+    google.protobuf.Timestamp observed_before = 4 [(google.api.field_behavior) = OPTIONAL];
+    google.protobuf.Timestamp observed_after = 5 [(google.api.field_behavior) = OPTIONAL];
+    string spiffe_id = 6 [(google.api.field_behavior) = OPTIONAL];
+    string entry_id = 7 [(google.api.field_behavior) = OPTIONAL];
   }
 
-  Filter filter = 1;
-  proto.pagination.v1alpha1.PageRequest pagination = 2;
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  proto.pagination.v1alpha1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message ListWorkloadEventsResponse {
-  repeated WorkloadEvent events = 1;
-  proto.pagination.v1alpha1.PageResponse pagination = 2;
+  repeated WorkloadEvent events = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  proto.pagination.v1alpha1.PageResponse pagination = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
