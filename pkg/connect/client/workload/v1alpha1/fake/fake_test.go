@@ -88,10 +88,15 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterEventTypes(t *testing.T) {
 	client := New(fake)
 	ctx := context.Background()
 
-	attestation := &workloadpb.WorkloadEvent{
-		Event: &workloadpb.WorkloadEvent_Attestation{
-			Attestation: &workloadpb.AttestationEvent{
-				Outcome: workloadpb.AttestationEvent_OUTCOME_ATTESTED,
+	workloadAttested := &workloadpb.WorkloadEvent{
+		Event: &workloadpb.WorkloadEvent_WorkloadAttested{
+			WorkloadAttested: &workloadpb.WorkloadAttestedEvent{},
+		},
+	}
+	workloadAttestationFailed := &workloadpb.WorkloadEvent{
+		Event: &workloadpb.WorkloadEvent_WorkloadAttestationFailed{
+			WorkloadAttestationFailed: &workloadpb.WorkloadAttestationFailedEvent{
+				Error: "context cancelled",
 			},
 		},
 	}
@@ -108,17 +113,18 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterEventTypes(t *testing.T) {
 			NoIdentity: &workloadpb.NoIdentityEvent{Error: "no matching entries"},
 		},
 	}
-	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{attestation, identityDelivered, noIdentity}
+	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{workloadAttested, workloadAttestationFailed, identityDelivered, noIdentity}
 
 	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
 		EventTypes: []workloadpb.WorkloadEventType{
+			workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTATION_FAILED,
 			workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED,
 			workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_NO_IDENTITY,
 		},
 	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 
-	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{identityDelivered, noIdentity}, events)
+	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{workloadAttestationFailed, identityDelivered, noIdentity}, events)
 }
 
 func Test_fakeWorkloadEventsStream_Send_skipsNilEvents(t *testing.T) {

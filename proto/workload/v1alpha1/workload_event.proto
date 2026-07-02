@@ -24,9 +24,10 @@ message Selector {
 
 enum WorkloadEventType {
   WORKLOAD_EVENT_TYPE_UNSPECIFIED = 0;
-  WORKLOAD_EVENT_TYPE_ATTESTATION = 1;
-  WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED = 2;
-  WORKLOAD_EVENT_TYPE_NO_IDENTITY = 3;
+  WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTED = 1;
+  WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTATION_FAILED = 2;
+  WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED = 3;
+  WORKLOAD_EVENT_TYPE_NO_IDENTITY = 4;
 }
 
 // WorkloadEvent is the top-level record emitted during Workload API identity
@@ -54,25 +55,20 @@ message WorkloadEvent {
 
   // Exactly one event must be set.
   oneof event {
-    AttestationEvent attestation = 10;
-    IdentityDeliveredEvent identity_delivered = 11;
-    NoIdentityEvent no_identity = 12;
+    WorkloadAttestedEvent workload_attested = 10;
+    WorkloadAttestationFailedEvent workload_attestation_failed = 11;
+    IdentityDeliveredEvent identity_delivered = 12;
+    NoIdentityEvent no_identity = 13;
   }
 }
 
-// AttestationEvent is emitted once per Workload API call, immediately after
-// the agent's Attestor.Attest returns.
-message AttestationEvent {
-  enum Outcome {
-    OUTCOME_UNSPECIFIED = 0;
-    // Attest() returned nil — selectors were computed successfully.
-    OUTCOME_ATTESTED = 1;
-    // Attest() returned a non-nil error (e.g. context cancelled).
-    OUTCOME_FAILED = 2;
-  }
+// WorkloadAttestedEvent is emitted when workload attestation succeeds and
+// selectors were computed successfully.
+message WorkloadAttestedEvent {}
 
-  Outcome outcome = 1 [(google.api.field_behavior) = REQUIRED];
-  string error = 2 [(google.api.field_behavior) = OPTIONAL];
+// WorkloadAttestationFailedEvent is emitted when workload attestation fails.
+message WorkloadAttestationFailedEvent {
+  string error = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // IdentityDeliveredEvent is emitted once per SVID delivered to a workload by

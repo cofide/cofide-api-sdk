@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload_event.proto.
  */
 export const file_proto_workload_v1alpha1_workload_event: GenFile = /*@__PURE__*/
-  fileDesc("Cixwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZF9ldmVudC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiMQoIU2VsZWN0b3ISEQoEdHlwZRgBIAEoCUID4EECEhIKBXZhbHVlGAIgASgJQgPgQQIimgQKDVdvcmtsb2FkRXZlbnQSEwoGb3JnX2lkGAEgASgJQgPgQQMSGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUID4EEDEhcKCmNsdXN0ZXJfaWQYAyABKAlCA+BBAxI7ChJvYnNlcnZlZF90aW1lc3RhbXAYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISHAoKY2FsbGVyX3BpZBgFIAEoBUID4EEBSAGIAQESOQoJc2VsZWN0b3JzGAYgAygLMiEucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuU2VsZWN0b3JCA+BBARIhChRzZWxlY3RvcnNfaW5jb21wbGV0ZRgHIAEoCEID4EEBEhwKD2FnZW50X3NwaWZmZV9pZBgIIAEoCUID4EEDEkAKC2F0dGVzdGF0aW9uGAogASgLMikucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuQXR0ZXN0YXRpb25FdmVudEgAEk0KEmlkZW50aXR5X2RlbGl2ZXJlZBgLIAEoCzIvLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLklkZW50aXR5RGVsaXZlcmVkRXZlbnRIABI/Cgtub19pZGVudGl0eRgMIAEoCzIoLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLk5vSWRlbnRpdHlFdmVudEgAQgcKBWV2ZW50Qg0KC19jYWxsZXJfcGlkIr0BChBBdHRlc3RhdGlvbkV2ZW50EkcKB291dGNvbWUYASABKA4yMS5wcm90by53b3JrbG9hZC52MWFscGhhMS5BdHRlc3RhdGlvbkV2ZW50Lk91dGNvbWVCA+BBAhISCgVlcnJvchgCIAEoCUID4EEBIkwKB091dGNvbWUSFwoTT1VUQ09NRV9VTlNQRUNJRklFRBAAEhQKEE9VVENPTUVfQVRURVNURUQQARISCg5PVVRDT01FX0ZBSUxFRBACIssBChZJZGVudGl0eURlbGl2ZXJlZEV2ZW50EhUKCGVudHJ5X2lkGAEgASgJQgPgQQISFgoJc3BpZmZlX2lkGAIgASgJQgPgQQISPQoJeDUwOV9zdmlkGAogASgLMigucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuWDUwOVNWSUREZXRhaWxzSAASOwoIand0X3N2aWQYCyABKAsyJy5wcm90by53b3JrbG9hZC52MWFscGhhMS5KV1RTVklERGV0YWlsc0gAQgYKBHN2aWQilgEKD1g1MDlTVklERGV0YWlscxIaCg1zZXJpYWxfbnVtYmVyGAEgASgJQgPgQQISMwoKbm90X2JlZm9yZRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAhIyCglub3RfYWZ0ZXIYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQIikAEKDkpXVFNWSUREZXRhaWxzEhUKCGF1ZGllbmNlGAEgAygJQgPgQQISMgoJaXNzdWVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECEjMKCmV4cGlyZXNfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQIiJQoPTm9JZGVudGl0eUV2ZW50EhIKBWVycm9yGAEgASgJQgPgQQIqrgEKEVdvcmtsb2FkRXZlbnRUeXBlEiMKH1dPUktMT0FEX0VWRU5UX1RZUEVfVU5TUEVDSUZJRUQQABIjCh9XT1JLTE9BRF9FVkVOVF9UWVBFX0FUVEVTVEFUSU9OEAESKgomV09SS0xPQURfRVZFTlRfVFlQRV9JREVOVElUWV9ERUxJVkVSRUQQAhIjCh9XT1JLTE9BRF9FVkVOVF9UWVBFX05PX0lERU5USVRZEANCQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("Cixwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZF9ldmVudC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiMQoIU2VsZWN0b3ISEQoEdHlwZRgBIAEoCUID4EECEhIKBXZhbHVlGAIgASgJQgPgQQIihQUKDVdvcmtsb2FkRXZlbnQSEwoGb3JnX2lkGAEgASgJQgPgQQMSGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUID4EEDEhcKCmNsdXN0ZXJfaWQYAyABKAlCA+BBAxI7ChJvYnNlcnZlZF90aW1lc3RhbXAYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISHAoKY2FsbGVyX3BpZBgFIAEoBUID4EEBSAGIAQESOQoJc2VsZWN0b3JzGAYgAygLMiEucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuU2VsZWN0b3JCA+BBARIhChRzZWxlY3RvcnNfaW5jb21wbGV0ZRgHIAEoCEID4EEBEhwKD2FnZW50X3NwaWZmZV9pZBgIIAEoCUID4EEDEksKEXdvcmtsb2FkX2F0dGVzdGVkGAogASgLMi4ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuV29ya2xvYWRBdHRlc3RlZEV2ZW50SAASXgobd29ya2xvYWRfYXR0ZXN0YXRpb25fZmFpbGVkGAsgASgLMjcucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuV29ya2xvYWRBdHRlc3RhdGlvbkZhaWxlZEV2ZW50SAASTQoSaWRlbnRpdHlfZGVsaXZlcmVkGAwgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuSWRlbnRpdHlEZWxpdmVyZWRFdmVudEgAEj8KC25vX2lkZW50aXR5GA0gASgLMigucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTm9JZGVudGl0eUV2ZW50SABCBwoFZXZlbnRCDQoLX2NhbGxlcl9waWQiFwoVV29ya2xvYWRBdHRlc3RlZEV2ZW50IjQKHldvcmtsb2FkQXR0ZXN0YXRpb25GYWlsZWRFdmVudBISCgVlcnJvchgBIAEoCUID4EECIssBChZJZGVudGl0eURlbGl2ZXJlZEV2ZW50EhUKCGVudHJ5X2lkGAEgASgJQgPgQQISFgoJc3BpZmZlX2lkGAIgASgJQgPgQQISPQoJeDUwOV9zdmlkGAogASgLMigucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuWDUwOVNWSUREZXRhaWxzSAASOwoIand0X3N2aWQYCyABKAsyJy5wcm90by53b3JrbG9hZC52MWFscGhhMS5KV1RTVklERGV0YWlsc0gAQgYKBHN2aWQilgEKD1g1MDlTVklERGV0YWlscxIaCg1zZXJpYWxfbnVtYmVyGAEgASgJQgPgQQISMwoKbm90X2JlZm9yZRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAhIyCglub3RfYWZ0ZXIYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQIikAEKDkpXVFNWSUREZXRhaWxzEhUKCGF1ZGllbmNlGAEgAygJQgPgQQISMgoJaXNzdWVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECEjMKCmV4cGlyZXNfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQIiJQoPTm9JZGVudGl0eUV2ZW50EhIKBWVycm9yGAEgASgJQgPgQQIq6QEKEVdvcmtsb2FkRXZlbnRUeXBlEiMKH1dPUktMT0FEX0VWRU5UX1RZUEVfVU5TUEVDSUZJRUQQABIpCiVXT1JLTE9BRF9FVkVOVF9UWVBFX1dPUktMT0FEX0FUVEVTVEVEEAESMwovV09SS0xPQURfRVZFTlRfVFlQRV9XT1JLTE9BRF9BVFRFU1RBVElPTl9GQUlMRUQQAhIqCiZXT1JLTE9BRF9FVkVOVF9UWVBFX0lERU5USVRZX0RFTElWRVJFRBADEiMKH1dPUktMT0FEX0VWRU5UX1RZUEVfTk9fSURFTlRJVFkQBEJBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * Selector preserves the SPIRE type+value structure of *common.Selector.
@@ -115,19 +115,25 @@ export type WorkloadEvent = Message<"proto.workload.v1alpha1.WorkloadEvent"> & {
    */
   event: {
     /**
-     * @generated from field: proto.workload.v1alpha1.AttestationEvent attestation = 10;
+     * @generated from field: proto.workload.v1alpha1.WorkloadAttestedEvent workload_attested = 10;
      */
-    value: AttestationEvent;
-    case: "attestation";
+    value: WorkloadAttestedEvent;
+    case: "workloadAttested";
   } | {
     /**
-     * @generated from field: proto.workload.v1alpha1.IdentityDeliveredEvent identity_delivered = 11;
+     * @generated from field: proto.workload.v1alpha1.WorkloadAttestationFailedEvent workload_attestation_failed = 11;
+     */
+    value: WorkloadAttestationFailedEvent;
+    case: "workloadAttestationFailed";
+  } | {
+    /**
+     * @generated from field: proto.workload.v1alpha1.IdentityDeliveredEvent identity_delivered = 12;
      */
     value: IdentityDeliveredEvent;
     case: "identityDelivered";
   } | {
     /**
-     * @generated from field: proto.workload.v1alpha1.NoIdentityEvent no_identity = 12;
+     * @generated from field: proto.workload.v1alpha1.NoIdentityEvent no_identity = 13;
      */
     value: NoIdentityEvent;
     case: "noIdentity";
@@ -142,59 +148,39 @@ export const WorkloadEventSchema: GenMessage<WorkloadEvent> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload_event, 1);
 
 /**
- * AttestationEvent is emitted once per Workload API call, immediately after
- * the agent's Attestor.Attest returns.
+ * WorkloadAttestedEvent is emitted when workload attestation succeeds and
+ * selectors were computed successfully.
  *
- * @generated from message proto.workload.v1alpha1.AttestationEvent
+ * @generated from message proto.workload.v1alpha1.WorkloadAttestedEvent
  */
-export type AttestationEvent = Message<"proto.workload.v1alpha1.AttestationEvent"> & {
-  /**
-   * @generated from field: proto.workload.v1alpha1.AttestationEvent.Outcome outcome = 1;
-   */
-  outcome: AttestationEvent_Outcome;
+export type WorkloadAttestedEvent = Message<"proto.workload.v1alpha1.WorkloadAttestedEvent"> & {
+};
 
+/**
+ * Describes the message proto.workload.v1alpha1.WorkloadAttestedEvent.
+ * Use `create(WorkloadAttestedEventSchema)` to create a new message.
+ */
+export const WorkloadAttestedEventSchema: GenMessage<WorkloadAttestedEvent> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload_event, 2);
+
+/**
+ * WorkloadAttestationFailedEvent is emitted when workload attestation fails.
+ *
+ * @generated from message proto.workload.v1alpha1.WorkloadAttestationFailedEvent
+ */
+export type WorkloadAttestationFailedEvent = Message<"proto.workload.v1alpha1.WorkloadAttestationFailedEvent"> & {
   /**
-   * @generated from field: string error = 2;
+   * @generated from field: string error = 1;
    */
   error: string;
 };
 
 /**
- * Describes the message proto.workload.v1alpha1.AttestationEvent.
- * Use `create(AttestationEventSchema)` to create a new message.
+ * Describes the message proto.workload.v1alpha1.WorkloadAttestationFailedEvent.
+ * Use `create(WorkloadAttestationFailedEventSchema)` to create a new message.
  */
-export const AttestationEventSchema: GenMessage<AttestationEvent> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 2);
-
-/**
- * @generated from enum proto.workload.v1alpha1.AttestationEvent.Outcome
- */
-export enum AttestationEvent_Outcome {
-  /**
-   * @generated from enum value: OUTCOME_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * Attest() returned nil — selectors were computed successfully.
-   *
-   * @generated from enum value: OUTCOME_ATTESTED = 1;
-   */
-  ATTESTED = 1,
-
-  /**
-   * Attest() returned a non-nil error (e.g. context cancelled).
-   *
-   * @generated from enum value: OUTCOME_FAILED = 2;
-   */
-  FAILED = 2,
-}
-
-/**
- * Describes the enum proto.workload.v1alpha1.AttestationEvent.Outcome.
- */
-export const AttestationEvent_OutcomeSchema: GenEnum<AttestationEvent_Outcome> = /*@__PURE__*/
-  enumDesc(file_proto_workload_v1alpha1_workload_event, 2, 0);
+export const WorkloadAttestationFailedEventSchema: GenMessage<WorkloadAttestationFailedEvent> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload_event, 3);
 
 /**
  * IdentityDeliveredEvent is emitted once per SVID delivered to a workload by
@@ -238,7 +224,7 @@ export type IdentityDeliveredEvent = Message<"proto.workload.v1alpha1.IdentityDe
  * Use `create(IdentityDeliveredEventSchema)` to create a new message.
  */
 export const IdentityDeliveredEventSchema: GenMessage<IdentityDeliveredEvent> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 3);
+  messageDesc(file_proto_workload_v1alpha1_workload_event, 4);
 
 /**
  * @generated from message proto.workload.v1alpha1.X509SVIDDetails
@@ -265,7 +251,7 @@ export type X509SVIDDetails = Message<"proto.workload.v1alpha1.X509SVIDDetails">
  * Use `create(X509SVIDDetailsSchema)` to create a new message.
  */
 export const X509SVIDDetailsSchema: GenMessage<X509SVIDDetails> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 4);
+  messageDesc(file_proto_workload_v1alpha1_workload_event, 5);
 
 /**
  * @generated from message proto.workload.v1alpha1.JWTSVIDDetails
@@ -292,7 +278,7 @@ export type JWTSVIDDetails = Message<"proto.workload.v1alpha1.JWTSVIDDetails"> &
  * Use `create(JWTSVIDDetailsSchema)` to create a new message.
  */
 export const JWTSVIDDetailsSchema: GenMessage<JWTSVIDDetails> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 5);
+  messageDesc(file_proto_workload_v1alpha1_workload_event, 6);
 
 /**
  * NoIdentityEvent is emitted when a workload attests successfully but no SVID
@@ -313,7 +299,7 @@ export type NoIdentityEvent = Message<"proto.workload.v1alpha1.NoIdentityEvent">
  * Use `create(NoIdentityEventSchema)` to create a new message.
  */
 export const NoIdentityEventSchema: GenMessage<NoIdentityEvent> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload_event, 6);
+  messageDesc(file_proto_workload_v1alpha1_workload_event, 7);
 
 /**
  * @generated from enum proto.workload.v1alpha1.WorkloadEventType
@@ -325,19 +311,24 @@ export enum WorkloadEventType {
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: WORKLOAD_EVENT_TYPE_ATTESTATION = 1;
+   * @generated from enum value: WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTED = 1;
    */
-  ATTESTATION = 1,
+  WORKLOAD_ATTESTED = 1,
 
   /**
-   * @generated from enum value: WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED = 2;
+   * @generated from enum value: WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTATION_FAILED = 2;
    */
-  IDENTITY_DELIVERED = 2,
+  WORKLOAD_ATTESTATION_FAILED = 2,
 
   /**
-   * @generated from enum value: WORKLOAD_EVENT_TYPE_NO_IDENTITY = 3;
+   * @generated from enum value: WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED = 3;
    */
-  NO_IDENTITY = 3,
+  IDENTITY_DELIVERED = 3,
+
+  /**
+   * @generated from enum value: WORKLOAD_EVENT_TYPE_NO_IDENTITY = 4;
+   */
+  NO_IDENTITY = 4,
 }
 
 /**

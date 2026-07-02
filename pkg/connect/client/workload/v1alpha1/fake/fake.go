@@ -152,8 +152,10 @@ func workloadEventTypeMatches(event *workloadpb.WorkloadEvent, eventTypes []work
 
 func workloadEventType(event *workloadpb.WorkloadEvent) workloadpb.WorkloadEventType {
 	switch event.GetEvent().(type) {
-	case *workloadpb.WorkloadEvent_Attestation:
-		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_ATTESTATION
+	case *workloadpb.WorkloadEvent_WorkloadAttested:
+		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTED
+	case *workloadpb.WorkloadEvent_WorkloadAttestationFailed:
+		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTATION_FAILED
 	case *workloadpb.WorkloadEvent_IdentityDelivered:
 		return workloadpb.WorkloadEventType_WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED
 	case *workloadpb.WorkloadEvent_NoIdentity:
