@@ -92,6 +92,8 @@ message UpdateExchangePolicyRequest {
     bool outbound_identity = 11 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the outbound_scopes field.
     bool outbound_scopes = 9 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the outbound_oauth_as field.
+    bool outbound_oauth_as = 13 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the external hooks field.
     bool external_hooks = 12 [(google.api.field_behavior) = OPTIONAL];
   }
