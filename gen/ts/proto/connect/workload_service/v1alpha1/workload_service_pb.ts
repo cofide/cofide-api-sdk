@@ -12,17 +12,22 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Duration } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
+import { file_google_api_field_behavior } from "../../../../google/api/field_behavior_pb";
+import type { Duration, Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_duration, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { PageRequest, PageResponse } from "../../../pagination/v1alpha1/pagination_pb";
+import { file_proto_pagination_v1alpha1_pagination } from "../../../pagination/v1alpha1/pagination_pb";
 import type { Workload } from "../../../workload/v1alpha1/workload_pb";
 import { file_proto_workload_v1alpha1_workload } from "../../../workload/v1alpha1/workload_pb";
+import type { WorkloadEvent, WorkloadEventType } from "../../../workload/v1alpha1/workload_event_pb";
+import { file_proto_workload_v1alpha1_workload_event } from "../../../workload/v1alpha1/workload_event_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/connect/workload_service/v1alpha1/workload_service.proto.
  */
 export const file_proto_connect_workload_service_v1alpha1_workload_service: GenFile = /*@__PURE__*/
-  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIroCChRMaXN0V29ya2xvYWRzUmVxdWVzdBJZCgZmaWx0ZXIYASABKAsyRC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2Fkc1JlcXVlc3QuRmlsdGVySACIAQEauwEKBkZpbHRlchITCgZvcmdfaWQYAyABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAEgASgJSAGIAQESFwoKY2x1c3Rlcl9pZBgCIAEoCUgCiAEBEi8KB21heF9hZ2UYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IA4gBAUIJCgdfb3JnX2lkQhAKDl90cnVzdF96b25lX2lkQg0KC19jbHVzdGVyX2lkQgoKCF9tYXhfYWdlQgkKB19maWx0ZXIiTQoVTGlzdFdvcmtsb2Fkc1Jlc3BvbnNlEjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIk8KF1B1Ymxpc2hXb3JrbG9hZHNSZXF1ZXN0EjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIhoKGFB1Ymxpc2hXb3JrbG9hZHNSZXNwb25zZTK+AgoPV29ya2xvYWRTZXJ2aWNlEo4BCg1MaXN0V29ya2xvYWRzEj0ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXF1ZXN0Gj4ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXNwb25zZRKZAQoQUHVibGlzaFdvcmtsb2FkcxJALnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVxdWVzdBpBLnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVzcG9uc2UoAUJRWk9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29ubmVjdC93b3JrbG9hZF9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_duration, file_proto_workload_v1alpha1_workload]);
+  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIroCChRMaXN0V29ya2xvYWRzUmVxdWVzdBJZCgZmaWx0ZXIYASABKAsyRC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2Fkc1JlcXVlc3QuRmlsdGVySACIAQEauwEKBkZpbHRlchITCgZvcmdfaWQYAyABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAEgASgJSAGIAQESFwoKY2x1c3Rlcl9pZBgCIAEoCUgCiAEBEi8KB21heF9hZ2UYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IA4gBAUIJCgdfb3JnX2lkQhAKDl90cnVzdF96b25lX2lkQg0KC19jbHVzdGVyX2lkQgoKCF9tYXhfYWdlQgkKB19maWx0ZXIiTQoVTGlzdFdvcmtsb2Fkc1Jlc3BvbnNlEjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIk8KF1B1Ymxpc2hXb3JrbG9hZHNSZXF1ZXN0EjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIhoKGFB1Ymxpc2hXb3JrbG9hZHNSZXNwb25zZSJbChxQdWJsaXNoV29ya2xvYWRFdmVudHNSZXF1ZXN0EjsKBmV2ZW50cxgBIAMoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkRXZlbnRCA+BBAiIfCh1QdWJsaXNoV29ya2xvYWRFdmVudHNSZXNwb25zZSKXBAoZTGlzdFdvcmtsb2FkRXZlbnRzUmVxdWVzdBJeCgZmaWx0ZXIYASABKAsySS5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2FkRXZlbnRzUmVxdWVzdC5GaWx0ZXJCA+BBARI/CgpwYWdpbmF0aW9uGAIgASgLMiYucHJvdG8ucGFnaW5hdGlvbi52MWFscGhhMS5QYWdlUmVxdWVzdEID4EEBGtgCCgZGaWx0ZXISEwoGb3JnX2lkGAEgASgJQgPgQQESGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUID4EEBEhcKCmNsdXN0ZXJfaWQYAyABKAlCA+BBARI4Cg9vYnNlcnZlZF9iZWZvcmUYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQESNwoOb2JzZXJ2ZWRfYWZ0ZXIYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQESFgoJc3BpZmZlX2lkGAYgASgJQgPgQQESFQoIZW50cnlfaWQYByABKAlCA+BBARIcCg9hZ2VudF9zcGlmZmVfaWQYCCABKAlCA+BBARJECgtldmVudF90eXBlcxgJIAMoDjIqLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkRXZlbnRUeXBlQgPgQQEimwEKGkxpc3RXb3JrbG9hZEV2ZW50c1Jlc3BvbnNlEjsKBmV2ZW50cxgBIAMoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkRXZlbnRCA+BBAxJACgpwYWdpbmF0aW9uGAIgASgLMicucHJvdG8ucGFnaW5hdGlvbi52MWFscGhhMS5QYWdlUmVzcG9uc2VCA+BBAzKJBQoPV29ya2xvYWRTZXJ2aWNlEo4BCg1MaXN0V29ya2xvYWRzEj0ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXF1ZXN0Gj4ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXNwb25zZRKZAQoQUHVibGlzaFdvcmtsb2FkcxJALnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVxdWVzdBpBLnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVzcG9uc2UoARKdAQoSTGlzdFdvcmtsb2FkRXZlbnRzEkIucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZEV2ZW50c1JlcXVlc3QaQy5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2FkRXZlbnRzUmVzcG9uc2USqAEKFVB1Ymxpc2hXb3JrbG9hZEV2ZW50cxJFLnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRFdmVudHNSZXF1ZXN0GkYucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLlB1Ymxpc2hXb3JrbG9hZEV2ZW50c1Jlc3BvbnNlKAFCUVpPZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nvbm5lY3Qvd29ya2xvYWRfc2VydmljZS92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp, file_proto_pagination_v1alpha1_pagination, file_proto_workload_v1alpha1_workload, file_proto_workload_v1alpha1_workload_event]);
 
 /**
  * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadsRequest
@@ -123,6 +128,137 @@ export const PublishWorkloadsResponseSchema: GenMessage<PublishWorkloadsResponse
   messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 3);
 
 /**
+ * @generated from message proto.connect.workload_service.v1alpha1.PublishWorkloadEventsRequest
+ */
+export type PublishWorkloadEventsRequest = Message<"proto.connect.workload_service.v1alpha1.PublishWorkloadEventsRequest"> & {
+  /**
+   * @generated from field: repeated proto.workload.v1alpha1.WorkloadEvent events = 1;
+   */
+  events: WorkloadEvent[];
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.PublishWorkloadEventsRequest.
+ * Use `create(PublishWorkloadEventsRequestSchema)` to create a new message.
+ */
+export const PublishWorkloadEventsRequestSchema: GenMessage<PublishWorkloadEventsRequest> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 4);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.PublishWorkloadEventsResponse
+ */
+export type PublishWorkloadEventsResponse = Message<"proto.connect.workload_service.v1alpha1.PublishWorkloadEventsResponse"> & {
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.PublishWorkloadEventsResponse.
+ * Use `create(PublishWorkloadEventsResponseSchema)` to create a new message.
+ */
+export const PublishWorkloadEventsResponseSchema: GenMessage<PublishWorkloadEventsResponse> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 5);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadEventsRequest
+ */
+export type ListWorkloadEventsRequest = Message<"proto.connect.workload_service.v1alpha1.ListWorkloadEventsRequest"> & {
+  /**
+   * @generated from field: proto.connect.workload_service.v1alpha1.ListWorkloadEventsRequest.Filter filter = 1;
+   */
+  filter?: ListWorkloadEventsRequest_Filter;
+
+  /**
+   * @generated from field: proto.pagination.v1alpha1.PageRequest pagination = 2;
+   */
+  pagination?: PageRequest;
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.ListWorkloadEventsRequest.
+ * Use `create(ListWorkloadEventsRequestSchema)` to create a new message.
+ */
+export const ListWorkloadEventsRequestSchema: GenMessage<ListWorkloadEventsRequest> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 6);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadEventsRequest.Filter
+ */
+export type ListWorkloadEventsRequest_Filter = Message<"proto.connect.workload_service.v1alpha1.ListWorkloadEventsRequest.Filter"> & {
+  /**
+   * @generated from field: string org_id = 1;
+   */
+  orgId: string;
+
+  /**
+   * @generated from field: string trust_zone_id = 2;
+   */
+  trustZoneId: string;
+
+  /**
+   * @generated from field: string cluster_id = 3;
+   */
+  clusterId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp observed_before = 4;
+   */
+  observedBefore?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp observed_after = 5;
+   */
+  observedAfter?: Timestamp;
+
+  /**
+   * @generated from field: string spiffe_id = 6;
+   */
+  spiffeId: string;
+
+  /**
+   * @generated from field: string entry_id = 7;
+   */
+  entryId: string;
+
+  /**
+   * @generated from field: string agent_spiffe_id = 8;
+   */
+  agentSpiffeId: string;
+
+  /**
+   * @generated from field: repeated proto.workload.v1alpha1.WorkloadEventType event_types = 9;
+   */
+  eventTypes: WorkloadEventType[];
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.ListWorkloadEventsRequest.Filter.
+ * Use `create(ListWorkloadEventsRequest_FilterSchema)` to create a new message.
+ */
+export const ListWorkloadEventsRequest_FilterSchema: GenMessage<ListWorkloadEventsRequest_Filter> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 6, 0);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadEventsResponse
+ */
+export type ListWorkloadEventsResponse = Message<"proto.connect.workload_service.v1alpha1.ListWorkloadEventsResponse"> & {
+  /**
+   * @generated from field: repeated proto.workload.v1alpha1.WorkloadEvent events = 1;
+   */
+  events: WorkloadEvent[];
+
+  /**
+   * @generated from field: proto.pagination.v1alpha1.PageResponse pagination = 2;
+   */
+  pagination?: PageResponse;
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.ListWorkloadEventsResponse.
+ * Use `create(ListWorkloadEventsResponseSchema)` to create a new message.
+ */
+export const ListWorkloadEventsResponseSchema: GenMessage<ListWorkloadEventsResponse> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 7);
+
+/**
  * WorkloadService provides access to workloads observed by Cofide Observers.
  * Observers stream workload observations from the kubelet to the Connect control
  * plane, where they are stored and made available for query. Workloads can be
@@ -151,6 +287,28 @@ export const WorkloadService: GenService<{
     methodKind: "client_streaming";
     input: typeof PublishWorkloadsRequestSchema;
     output: typeof PublishWorkloadsResponseSchema;
+  },
+  /**
+   * ListWorkloadEvents returns workload events capturing SVID issuance outcomes,
+   * matching the optional filter.
+   *
+   * @generated from rpc proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloadEvents
+   */
+  listWorkloadEvents: {
+    methodKind: "unary";
+    input: typeof ListWorkloadEventsRequestSchema;
+    output: typeof ListWorkloadEventsResponseSchema;
+  },
+  /**
+   * PublishWorkloadEvents is a client-streaming RPC used by the SPIRE agent
+   * exporter to deliver WorkloadEvent records to the Connect control plane.
+   *
+   * @generated from rpc proto.connect.workload_service.v1alpha1.WorkloadService.PublishWorkloadEvents
+   */
+  publishWorkloadEvents: {
+    methodKind: "client_streaming";
+    input: typeof PublishWorkloadEventsRequestSchema;
+    output: typeof PublishWorkloadEventsResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 0);

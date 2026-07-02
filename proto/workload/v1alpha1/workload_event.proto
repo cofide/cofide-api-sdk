@@ -1,0 +1,104 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines WorkloadEvent and related types representing runtime SVID
+// issuance events emitted by the SPIRE agent during Workload API calls. These
+// events are post-attestation records capturing attestation outcomes, selector
+// observations, and per-identity delivery for UI and operational history.
+syntax = "proto3";
+
+package proto.workload.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
+
+// Selector preserves the SPIRE type+value structure of *common.Selector.
+// Keeping type and value separate (rather than a single "type:value" string)
+// allows downstream consumers to filter on either dimension independently.
+message Selector {
+  string type = 1 [(google.api.field_behavior) = REQUIRED];
+  string value = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+enum WorkloadEventType {
+  WORKLOAD_EVENT_TYPE_UNSPECIFIED = 0;
+  WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTED = 1;
+  WORKLOAD_EVENT_TYPE_WORKLOAD_ATTESTATION_FAILED = 2;
+  WORKLOAD_EVENT_TYPE_IDENTITY_DELIVERED = 3;
+  WORKLOAD_EVENT_TYPE_NO_IDENTITY = 4;
+}
+
+// WorkloadEvent is the top-level record emitted during Workload API identity
+// issuance.
+// Fields common to all events from a single workload connection — caller_pid,
+// selectors, selectors_incomplete — are carried at the wrapper level rather
+// than repeated on each sub-event.
+message WorkloadEvent {
+  // Connect populates scope fields from the authenticated SPIRE agent and
+  // server-side mapping. Publishers should not send these as authoritative input.
+  string org_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string trust_zone_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string cluster_id = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  google.protobuf.Timestamp observed_timestamp = 4 [(google.api.field_behavior) = REQUIRED];
+
+  // caller_pid is the PID of the workload process that opened the Workload API
+  // stream. Absent when the runtime context does not expose the caller PID.
+  optional int32 caller_pid = 5 [(google.api.field_behavior) = OPTIONAL];
+  repeated Selector selectors = 6 [(google.api.field_behavior) = OPTIONAL];
+  // selectors_incomplete indicates that one or more attestor plugins failed
+  // during attestation, so the selector set may not be exhaustive.
+  bool selectors_incomplete = 7 [(google.api.field_behavior) = OPTIONAL];
+  string agent_spiffe_id = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Exactly one event must be set.
+  oneof event {
+    WorkloadAttestedEvent workload_attested = 10;
+    WorkloadAttestationFailedEvent workload_attestation_failed = 11;
+    IdentityDeliveredEvent identity_delivered = 12;
+    NoIdentityEvent no_identity = 13;
+  }
+}
+
+// WorkloadAttestedEvent is emitted when workload attestation succeeds and
+// selectors were computed successfully.
+message WorkloadAttestedEvent {}
+
+// WorkloadAttestationFailedEvent is emitted when workload attestation fails.
+message WorkloadAttestationFailedEvent {
+  string error = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// IdentityDeliveredEvent is emitted once per SVID delivered to a workload by
+// the Workload API, capturing the identity and SVID-specific details.
+message IdentityDeliveredEvent {
+  string entry_id = 1 [(google.api.field_behavior) = REQUIRED];
+  string spiffe_id = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // Exactly one SVID details message must be set.
+  oneof svid {
+    X509SVIDDetails x509_svid = 10;
+    JWTSVIDDetails jwt_svid = 11;
+  }
+}
+
+message X509SVIDDetails {
+  string serial_number = 1 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp not_before = 2 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp not_after = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message JWTSVIDDetails {
+  repeated string audience = 1 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp issued_at = 2 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp expires_at = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+// NoIdentityEvent is emitted when a workload attests successfully but no SVID
+// is delivered, either because no registration entries matched or all candidate
+// identities were filtered out.
+message NoIdentityEvent {
+  string error = 1 [(google.api.field_behavior) = REQUIRED];
+}
