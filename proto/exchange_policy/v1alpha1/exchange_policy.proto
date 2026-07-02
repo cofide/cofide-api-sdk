@@ -57,6 +57,13 @@ message ExchangePolicy {
   string outbound_identity = 16 [(google.api.field_behavior) = OPTIONAL];
   // Outbound scopes to grant. Only relevant when action is ALLOW.
   repeated string outbound_scopes = 12 [(google.api.field_behavior) = OPTIONAL];
+  // Outbound OAuth Authorization Server (AS) to use. Only relevant when action
+  // is ALLOW.
+  // If set, requests matching this policy will cause Credex to perform an
+  // OAuth flow against the specified AS and return the resulting token, rather
+  // than minting one locally.
+  OutboundOAuthAS outbound_oauth_as = 18 [(google.api.field_behavior) = OPTIONAL];
+
   // Time of resource creation by user.
   google.protobuf.Timestamp created_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update by user.
@@ -86,6 +93,22 @@ message StringMatcher {
 // StringSet holds a collection of StringMatchers evaluated with OR semantics.
 message StringSet {
   repeated StringMatcher matchers = 1;
+}
+
+// Outbound OAuth Authorization Server (AS) definition.
+message OutboundOAuthAS {
+  // OAuth grant type to use. Currently "client_credentials" is supported.
+  string grant_type = 1 [(google.api.field_behavior) = REQUIRED];
+  // Issuer URL for the AS. At least one of issuer_url and token_url must be
+  // specified.
+  string issuer_url = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Token URL for the AS. At least one of issuer_url and token_url must be
+  // specified. If token_url is not specified, Credex will use RFC 8414 OAuth
+  // AS metadata or OIDC Discovery to determine the token URL.
+  string token_url = 3 [(google.api.field_behavior) = OPTIONAL];
+  // Audiences to use in the request. If absent, the token URL will be used as
+  // the audience.
+  repeated string audiences = 4 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // ExternalHook defines an HTTP endpoint that Credex calls after an exchange policy
