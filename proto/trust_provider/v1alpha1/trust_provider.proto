@@ -23,21 +23,119 @@ message K8sPsatConfig {
   repeated string allowed_node_label_keys = 3 [(google.api.field_behavior) = OPTIONAL];
   // Pod labels that can be used as selectors in this cluster.
   repeated string allowed_pod_label_keys = 4 [(google.api.field_behavior) = OPTIONAL];
+  // Audiences this cluster's agents present when attesting, validated by the server's k8s psat plugin.
+  repeated string audiences = 5 [(google.api.field_behavior) = OPTIONAL];
   // CA certificate of the cluster's API server.
   // Optional, but required if the SPIRE server is outside the cluster and the cluster's API server CA is not
   // already trusted by the SPIRE server (very likely).
-  bytes api_server_ca_cert = 5 [(google.api.field_behavior) = OPTIONAL];
+  bytes api_server_ca_cert = 6 [(google.api.field_behavior) = OPTIONAL];
   // Cluster's API server URL.
   // Required if the SPIRE server is outside the cluster.
-  string api_server_url = 6 [(google.api.field_behavior) = OPTIONAL];
+  string api_server_url = 7 [(google.api.field_behavior) = OPTIONAL];
   // Alternative TLS server name to verify the presented certificate with if the hostname of the API server URL is
   // not in the presented certificate.
-  string api_server_tls_server_name = 7 [(google.api.field_behavior) = OPTIONAL];
+  string api_server_tls_server_name = 8 [(google.api.field_behavior) = OPTIONAL];
   // Proxy URL of the API server (if running behind a proxy).
-  string api_server_proxy_url = 8 [(google.api.field_behavior) = OPTIONAL];
-  // Audience the SPIRE server should use in the JWT presented to the cluster's API server.
+  string api_server_proxy_url = 9 [(google.api.field_behavior) = OPTIONAL];
+  // How the SPIRE server authenticates itself to the cluster's API server.
   // Required if the SPIRE server is outside the cluster.
-  string spire_server_audience = 9 [(google.api.field_behavior) = OPTIONAL];
+  RemoteClusterAuth remote_cluster_auth = 10 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// RemoteClusterAuth describes how the SPIRE server proves its identity to a remote cluster's
+// API server, independently of how that API server is reached (see K8sPsatConfig's
+// api_server_* fields).
+message RemoteClusterAuth {
+  oneof method {
+    BearerTokenAuth bearer_token = 1;
+    AwsCredentialExchange aws = 2;
+    GcpCredentialExchange gcp = 3;
+    AzureCredentialExchange azure = 4;
+  }
+}
+
+// BearerTokenAuth has the SPIRE server present a JWT-SVID directly as a bearer token to the
+// cluster's API server. Trust must be established out-of-band on the cluster side, e.g. via
+// Kubernetes structured authentication configuration, EKS's associate-identity-provider-config,
+// GKE Identity Service, or AKS's JWT authenticator.
+message BearerTokenAuth {
+  // Audience the SPIRE server uses in the JWT presented to the cluster's API server.
+  string audience = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// AwsCredentialExchange has the SPIRE server exchange its own SPIFFE identity for temporary
+// AWS credentials, then uses those to authenticate to an EKS cluster's API server.
+message AwsCredentialExchange {
+  // AWS region of the EKS cluster.
+  string region = 1 [(google.api.field_behavior) = REQUIRED];
+  // Name of the EKS cluster. Signed into the resulting bearer token, which AWS's IAM
+  // authenticator scopes to one cluster this way.
+  string eks_cluster_name = 2 [(google.api.field_behavior) = REQUIRED];
+
+  message AssumeRoleWithWebIdentity {
+    // ARN of the IAM role to assume using a JWT-SVID via sts:AssumeRoleWithWebIdentity.
+    string role_arn = 1 [(google.api.field_behavior) = REQUIRED];
+    // Audience the SPIRE server uses in the JWT presented to AWS STS.
+    string audience = 2 [(google.api.field_behavior) = REQUIRED];
+    // External ID required by the role's trust policy, if any.
+    optional string external_id = 3 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  message RolesAnywhere {
+    // ARN of the IAM Roles Anywhere trust anchor validating the SPIRE server's X.509-SVID.
+    string trust_anchor_arn = 1 [(google.api.field_behavior) = REQUIRED];
+    // ARN of the IAM Roles Anywhere profile to request a session against.
+    string profile_arn = 2 [(google.api.field_behavior) = REQUIRED];
+    // ARN of the IAM role to assume.
+    string role_arn = 3 [(google.api.field_behavior) = REQUIRED];
+  }
+
+  oneof method {
+    AssumeRoleWithWebIdentity web_identity = 3;
+    RolesAnywhere roles_anywhere = 4;
+  }
+}
+
+// GcpCredentialExchange has the SPIRE server exchange its own SPIFFE identity for a temporary
+// GCP access token via Workload Identity Federation, then uses that token to authenticate to
+// a GKE cluster's API server.
+message GcpCredentialExchange {
+  // Email of the GCP service account to impersonate after the Workload Identity Federation
+  // exchange.
+  string service_account_email = 1 [(google.api.field_behavior) = REQUIRED];
+
+  message OidcProvider {
+    // Full resource name of the Workload Identity Pool OIDC provider validating the SPIRE
+    // server's JWT-SVID.
+    string workload_identity_provider = 1 [(google.api.field_behavior) = REQUIRED];
+    // Audience the SPIRE server uses in the JWT presented to the provider.
+    string audience = 2 [(google.api.field_behavior) = REQUIRED];
+  }
+
+  message X509Provider {
+    // Full resource name of the Workload Identity Pool X.509 provider validating the SPIRE
+    // server's X.509-SVID against its uploaded trust store.
+    string workload_identity_provider = 1 [(google.api.field_behavior) = REQUIRED];
+  }
+
+  oneof method {
+    OidcProvider oidc = 2;
+    X509Provider x509 = 3;
+  }
+}
+
+// AzureCredentialExchange has the SPIRE server exchange its own SPIFFE identity for a
+// temporary Entra ID access token via a federated identity credential, then uses that token
+// to authenticate to an AKS cluster's API server.
+message AzureCredentialExchange {
+  // Entra ID tenant ID.
+  string tenant_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // Client ID of the app registration or managed identity with the federated credential
+  // configured to trust the SPIRE server's JWT-SVID.
+  string client_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // Audience the SPIRE server uses in the JWT presented to Entra ID. Conventionally
+  // "api://AzureADTokenExchange".
+  string audience = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 message TrustProvider {
