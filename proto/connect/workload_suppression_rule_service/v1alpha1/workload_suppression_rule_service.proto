@@ -1,0 +1,95 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the WorkloadSuppressionRuleService gRPC service for
+// managing rules that suppress discovered workloads from the Connect
+// findings view.
+
+syntax = "proto3";
+
+package proto.connect.workload_suppression_rule_service.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "proto/workload_suppression_rule/v1alpha1/workload_suppression_rule.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_suppression_rule_service/v1alpha1";
+
+// WorkloadSuppressionRuleService manages workload suppression rules in the
+// Connect control plane. Rules are evaluated dynamically by
+// WorkloadService.ListWorkloads to filter suppressed workloads out of the
+// findings view by default.
+service WorkloadSuppressionRuleService {
+  // CreateWorkloadSuppressionRule creates a new workload suppression rule.
+  rpc CreateWorkloadSuppressionRule(CreateWorkloadSuppressionRuleRequest) returns (CreateWorkloadSuppressionRuleResponse);
+  // GetWorkloadSuppressionRule retrieves a workload suppression rule by ID.
+  rpc GetWorkloadSuppressionRule(GetWorkloadSuppressionRuleRequest) returns (GetWorkloadSuppressionRuleResponse);
+  // ListWorkloadSuppressionRules returns all workload suppression rules matching the optional filter.
+  rpc ListWorkloadSuppressionRules(ListWorkloadSuppressionRulesRequest) returns (ListWorkloadSuppressionRulesResponse);
+  // UpdateWorkloadSuppressionRule updates an existing workload suppression rule.
+  rpc UpdateWorkloadSuppressionRule(UpdateWorkloadSuppressionRuleRequest) returns (UpdateWorkloadSuppressionRuleResponse);
+  // DestroyWorkloadSuppressionRule deletes a workload suppression rule by ID.
+  rpc DestroyWorkloadSuppressionRule(DestroyWorkloadSuppressionRuleRequest) returns (DestroyWorkloadSuppressionRuleResponse);
+}
+
+message CreateWorkloadSuppressionRuleRequest {
+  proto.workload_suppression_rule.v1alpha1.WorkloadSuppressionRule workload_suppression_rule = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateWorkloadSuppressionRuleResponse {
+  proto.workload_suppression_rule.v1alpha1.WorkloadSuppressionRule workload_suppression_rule = 1;
+}
+
+message GetWorkloadSuppressionRuleRequest {
+  string workload_suppression_rule_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetWorkloadSuppressionRuleResponse {
+  optional proto.workload_suppression_rule.v1alpha1.WorkloadSuppressionRule workload_suppression_rule = 1;
+}
+
+message ListWorkloadSuppressionRulesRequest {
+  message Filter {
+    optional string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
+    optional string trust_zone_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    optional string cluster_id = 3 [(google.api.field_behavior) = OPTIONAL];
+    // When set, only rules with this enabled state are returned. Unset returns
+    // rules regardless of enabled state.
+    optional bool enabled = 4 [(google.api.field_behavior) = OPTIONAL];
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListWorkloadSuppressionRulesResponse {
+  repeated proto.workload_suppression_rule.v1alpha1.WorkloadSuppressionRule workload_suppression_rules = 1;
+}
+
+message UpdateWorkloadSuppressionRuleRequest {
+  message UpdateMask {
+    // Set to true to update the trust_zone_id field.
+    bool trust_zone_id = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the cluster_id field.
+    bool cluster_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the name field.
+    bool name = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the description field.
+    bool description = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the enabled field.
+    bool enabled = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the workload_type/matcher fields.
+    bool matcher = 6 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  proto.workload_suppression_rule.v1alpha1.WorkloadSuppressionRule workload_suppression_rule = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateWorkloadSuppressionRuleResponse {
+  proto.workload_suppression_rule.v1alpha1.WorkloadSuppressionRule workload_suppression_rule = 1;
+}
+
+message DestroyWorkloadSuppressionRuleRequest {
+  string workload_suppression_rule_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DestroyWorkloadSuppressionRuleResponse {}

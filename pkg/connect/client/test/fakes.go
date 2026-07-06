@@ -8,6 +8,7 @@ import (
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
+	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
@@ -15,6 +16,7 @@ import (
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
+	workloadsuppressionrulepb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload_suppression_rule/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 )
 
@@ -61,6 +63,9 @@ const (
 	FakeUserSubject   = "fake-user-subject"
 	FakeResourceID    = FakeAPBindingID
 	FakeResourceType  = "AttestationPolicyBinding"
+
+	FakeWorkloadSuppressionRuleID   = "fake-wsr-id"
+	FakeWorkloadSuppressionRuleName = "fake-wsr-name"
 )
 
 func FakeOrganization() *organizationpb.Organization {
@@ -169,6 +174,25 @@ func FakeIdentity() *identitypb.Identity {
 			{
 				Federation: &identitypb.IdentityFederation_TrustZoneId{
 					TrustZoneId: FakeTrustZoneID,
+				},
+			},
+		},
+	}
+}
+
+func FakeWorkloadSuppressionRule() *workloadsuppressionrulepb.WorkloadSuppressionRule {
+	return &workloadsuppressionrulepb.WorkloadSuppressionRule{
+		Id:           FakeWorkloadSuppressionRuleID,
+		OrgId:        FakeOrganizationID,
+		Name:         FakeWorkloadSuppressionRuleName,
+		Enabled:      true,
+		WorkloadType: workloadpb.WorkloadType_WORKLOAD_TYPE_KUBERNETES_POD,
+		Matcher: &workloadsuppressionrulepb.WorkloadSuppressionRule_KubernetesPod{
+			KubernetesPod: &workloadsuppressionrulepb.KubernetesPodMatcher{
+				Namespace: &exchangepolicypb.StringSet{
+					Matchers: []*exchangepolicypb.StringMatcher{
+						{Match: &exchangepolicypb.StringMatcher_Exact{Exact: FakeK8sPodNamespace}},
+					},
 				},
 			},
 		},
