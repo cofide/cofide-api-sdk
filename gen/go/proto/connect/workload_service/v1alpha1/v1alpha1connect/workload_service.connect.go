@@ -47,9 +47,6 @@ const (
 	// WorkloadServicePublishWorkloadsProcedure is the fully-qualified name of the WorkloadService's
 	// PublishWorkloads RPC.
 	WorkloadServicePublishWorkloadsProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/PublishWorkloads"
-	// WorkloadServiceAssignWorkloadProcedure is the fully-qualified name of the WorkloadService's
-	// AssignWorkload RPC.
-	WorkloadServiceAssignWorkloadProcedure = "/proto.connect.workload_service.v1alpha1.WorkloadService/AssignWorkload"
 )
 
 // WorkloadServiceClient is a client for the proto.connect.workload_service.v1alpha1.WorkloadService
@@ -60,10 +57,6 @@ type WorkloadServiceClient interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(context.Context) *connect.ClientStreamForClient[v1alpha1.PublishWorkloadsRequest, v1alpha1.PublishWorkloadsResponse]
-	// AssignWorkload assigns a discovered, unscoped workload (trust_zone_id
-	// empty) to a trust zone as part of enrollment. This is a one-way
-	// transition: it fails if the workload has already been assigned.
-	AssignWorkload(context.Context, *connect.Request[v1alpha1.AssignWorkloadRequest]) (*connect.Response[v1alpha1.AssignWorkloadResponse], error)
 }
 
 // NewWorkloadServiceClient constructs a client for the
@@ -90,12 +83,6 @@ func NewWorkloadServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(workloadServiceMethods.ByName("PublishWorkloads")),
 			connect.WithClientOptions(opts...),
 		),
-		assignWorkload: connect.NewClient[v1alpha1.AssignWorkloadRequest, v1alpha1.AssignWorkloadResponse](
-			httpClient,
-			baseURL+WorkloadServiceAssignWorkloadProcedure,
-			connect.WithSchema(workloadServiceMethods.ByName("AssignWorkload")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
@@ -103,7 +90,6 @@ func NewWorkloadServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 type workloadServiceClient struct {
 	listWorkloads    *connect.Client[v1alpha1.ListWorkloadsRequest, v1alpha1.ListWorkloadsResponse]
 	publishWorkloads *connect.Client[v1alpha1.PublishWorkloadsRequest, v1alpha1.PublishWorkloadsResponse]
-	assignWorkload   *connect.Client[v1alpha1.AssignWorkloadRequest, v1alpha1.AssignWorkloadResponse]
 }
 
 // ListWorkloads calls proto.connect.workload_service.v1alpha1.WorkloadService.ListWorkloads.
@@ -116,11 +102,6 @@ func (c *workloadServiceClient) PublishWorkloads(ctx context.Context) *connect.C
 	return c.publishWorkloads.CallClientStream(ctx)
 }
 
-// AssignWorkload calls proto.connect.workload_service.v1alpha1.WorkloadService.AssignWorkload.
-func (c *workloadServiceClient) AssignWorkload(ctx context.Context, req *connect.Request[v1alpha1.AssignWorkloadRequest]) (*connect.Response[v1alpha1.AssignWorkloadResponse], error) {
-	return c.assignWorkload.CallUnary(ctx, req)
-}
-
 // WorkloadServiceHandler is an implementation of the
 // proto.connect.workload_service.v1alpha1.WorkloadService service.
 type WorkloadServiceHandler interface {
@@ -129,10 +110,6 @@ type WorkloadServiceHandler interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadsRequest]) (*connect.Response[v1alpha1.PublishWorkloadsResponse], error)
-	// AssignWorkload assigns a discovered, unscoped workload (trust_zone_id
-	// empty) to a trust zone as part of enrollment. This is a one-way
-	// transition: it fails if the workload has already been assigned.
-	AssignWorkload(context.Context, *connect.Request[v1alpha1.AssignWorkloadRequest]) (*connect.Response[v1alpha1.AssignWorkloadResponse], error)
 }
 
 // NewWorkloadServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -154,20 +131,12 @@ func NewWorkloadServiceHandler(svc WorkloadServiceHandler, opts ...connect.Handl
 		connect.WithSchema(workloadServiceMethods.ByName("PublishWorkloads")),
 		connect.WithHandlerOptions(opts...),
 	)
-	workloadServiceAssignWorkloadHandler := connect.NewUnaryHandler(
-		WorkloadServiceAssignWorkloadProcedure,
-		svc.AssignWorkload,
-		connect.WithSchema(workloadServiceMethods.ByName("AssignWorkload")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/proto.connect.workload_service.v1alpha1.WorkloadService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case WorkloadServiceListWorkloadsProcedure:
 			workloadServiceListWorkloadsHandler.ServeHTTP(w, r)
 		case WorkloadServicePublishWorkloadsProcedure:
 			workloadServicePublishWorkloadsHandler.ServeHTTP(w, r)
-		case WorkloadServiceAssignWorkloadProcedure:
-			workloadServiceAssignWorkloadHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -183,8 +152,4 @@ func (UnimplementedWorkloadServiceHandler) ListWorkloads(context.Context, *conne
 
 func (UnimplementedWorkloadServiceHandler) PublishWorkloads(context.Context, *connect.ClientStream[v1alpha1.PublishWorkloadsRequest]) (*connect.Response[v1alpha1.PublishWorkloadsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.PublishWorkloads is not implemented"))
-}
-
-func (UnimplementedWorkloadServiceHandler) AssignWorkload(context.Context, *connect.Request[v1alpha1.AssignWorkloadRequest]) (*connect.Response[v1alpha1.AssignWorkloadResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.connect.workload_service.v1alpha1.WorkloadService.AssignWorkload is not implemented"))
 }

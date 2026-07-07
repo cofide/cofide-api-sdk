@@ -22,10 +22,11 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1al
 message Workload {
   string id = 1;
   string org_id = 4;
-  // The trust zone this workload has been assigned to. Empty if the workload
-  // has been discovered but not yet assigned to a trust zone (e.g. a
-  // newly-discovered Lambda function, prior to enrollment).
-  string trust_zone_id = 2;
+  // Deprecated: use trust_zone_ids to determine trust zone membership. For a Kubernetes pod
+  // workload this remains the cluster's trust zone (mirrored into trust_zone_ids); for other
+  // workload types (e.g. a Lambda function) this is always empty — membership is derived from
+  // attestation policy bindings instead.
+  string trust_zone_id = 2 [deprecated = true];
   // The cluster this workload runs in. Empty for workload types that are not
   // bound to a specific cluster (e.g. a Lambda function), and for workloads
   // not yet assigned to a trust zone.
@@ -47,6 +48,14 @@ message Workload {
   // the observation. Only populated in ListWorkloads responses; workloads
   // reported via PublishWorkloads should leave it unset.
   bool suppressed = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The trust zones this workload currently has (or could obtain) a SPIFFE identity in. For a
+  // Kubernetes pod this mirrors trust_zone_id. For a Lambda function this is computed dynamically
+  // at query time by matching the function's IAM role ARN against static AttestationPolicy
+  // selectors and following their APBindings — a single function can match policies bound to
+  // multiple trust zones, since Credex can exchange the same token for a JWT SVID in any trust
+  // zone with a matching binding. Only populated in ListWorkloads responses; workloads reported
+  // via PublishWorkloads should leave it unset.
+  repeated string trust_zone_ids = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // WorkloadType enumerates the supported workload runtime types.

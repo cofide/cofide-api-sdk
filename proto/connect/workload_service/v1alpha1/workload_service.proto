@@ -24,15 +24,15 @@ service WorkloadService {
   // PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
   // observed workloads to the Connect control plane.
   rpc PublishWorkloads(stream PublishWorkloadsRequest) returns (PublishWorkloadsResponse);
-  // AssignWorkload assigns a discovered, unscoped workload (trust_zone_id
-  // empty) to a trust zone as part of enrollment. This is a one-way
-  // transition: it fails if the workload has already been assigned.
-  rpc AssignWorkload(AssignWorkloadRequest) returns (AssignWorkloadResponse);
 }
 
 message ListWorkloadsRequest {
   message Filter {
     optional string org_id = 3;
+    // Filters by the stored, singular trust zone (see Workload.trust_zone_id). Known
+    // limitation: this does not match a workload whose trust_zone_ids came from computed
+    // membership (e.g. a Lambda function's attestation policy bindings) rather than the stored
+    // field.
     optional string trust_zone_id = 1;
     optional string cluster_id = 2;
     // max_age filters workloads to those last observed within this duration.
@@ -50,12 +50,3 @@ message PublishWorkloadsRequest {
 }
 
 message PublishWorkloadsResponse {}
-
-message AssignWorkloadRequest {
-  string workload_id = 1;
-  string trust_zone_id = 2;
-}
-
-message AssignWorkloadResponse {
-  proto.workload.v1alpha1.Workload workload = 1;
-}

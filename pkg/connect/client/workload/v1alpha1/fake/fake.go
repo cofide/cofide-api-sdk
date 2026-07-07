@@ -44,6 +44,8 @@ func workloadMatches(workload *workloadpb.Workload, filter *workloadsvcpb.ListWo
 	if filter.OrgId != nil && workload.GetOrgId() != *filter.OrgId {
 		return false
 	}
+	//nolint:staticcheck // filter.TrustZoneId intentionally still filters against the deprecated,
+	// stored singular field to mirror the real server's documented behavior/limitation.
 	if filter.TrustZoneId != nil && workload.GetTrustZoneId() != *filter.TrustZoneId {
 		return false
 	}
