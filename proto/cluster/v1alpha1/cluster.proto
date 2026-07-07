@@ -44,4 +44,24 @@ message Cluster {
   google.protobuf.Timestamp created_at = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update by user.
   google.protobuf.Timestamp last_updated_at = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // external_provider carries provider-specific metadata for a cluster that
+  // was discovered outside a trust zone (e.g. an AWS EKS cluster found by
+  // cloud resource discovery), rather than created directly by a user. Unset
+  // for clusters created through the normal onboarding flow. Presence of an
+  // external_provider is the signal that trust_zone_id may legitimately be
+  // empty (discovered, not yet enrolled).
+  oneof external_provider {
+    AWSEKSProvider aws_eks = 15;
+  }
+}
+
+// AWSEKSProvider carries the AWS-specific metadata for a cluster discovered
+// via AWS EKS cloud resource discovery.
+message AWSEKSProvider {
+  string cluster_arn = 1;
+  string kubernetes_version = 2;
+  // The cloud account this cluster was discovered in, for traceability back
+  // to the discovery source.
+  string cloud_account_id = 3;
 }

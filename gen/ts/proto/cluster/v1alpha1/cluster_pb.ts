@@ -21,7 +21,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file proto/cluster/v1alpha1/cluster.proto.
  */
 export const file_proto_cluster_v1alpha1_cluster: GenFile = /*@__PURE__*/
-  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEisQUKB0NsdXN0ZXISDwoCaWQYCCABKAlIAIgBARIRCgRuYW1lGAEgASgJSAGIAQESEwoGb3JnX2lkGAkgASgJSAKIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgDiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgEiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgFiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgGiAEBEhQKB3Byb2ZpbGUYBiABKAlIB4gBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICIgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICYgBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAqIAQESMwoKY3JlYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCBQoDX2lkQgcKBV9uYW1lQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCFQoTX2t1YmVybmV0ZXNfY29udGV4dEIRCg9fdHJ1c3RfcHJvdmlkZXJCFAoSX2V4dHJhX2hlbG1fdmFsdWVzQgoKCF9wcm9maWxlQhIKEF9leHRlcm5hbF9zZXJ2ZXJCEgoQX29pZGNfaXNzdWVyX3VybEIWChRfb2lkY19pc3N1ZXJfY2FfY2VydEoECAIQA1IKdHJ1c3Rfem9uZUJAWj5naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2x1c3Rlci92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_trust_provider_v1alpha1_trust_provider]);
+  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEigQYKB0NsdXN0ZXISDwoCaWQYCCABKAlIAYgBARIRCgRuYW1lGAEgASgJSAKIAQESEwoGb3JnX2lkGAkgASgJSAOIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgEiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgFiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgGiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgHiAEBEhQKB3Byb2ZpbGUYBiABKAlICIgBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICYgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICogBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAuIAQESMwoKY3JlYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOQoHYXdzX2VrcxgPIAEoCzImLnByb3RvLmNsdXN0ZXIudjFhbHBoYTEuQVdTRUtTUHJvdmlkZXJIAEITChFleHRlcm5hbF9wcm92aWRlckIFCgNfaWRCBwoFX25hbWVCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIVChNfa3ViZXJuZXRlc19jb250ZXh0QhEKD190cnVzdF9wcm92aWRlckIUChJfZXh0cmFfaGVsbV92YWx1ZXNCCgoIX3Byb2ZpbGVCEgoQX2V4dGVybmFsX3NlcnZlckISChBfb2lkY19pc3N1ZXJfdXJsQhYKFF9vaWRjX2lzc3Vlcl9jYV9jZXJ0SgQIAhADUgp0cnVzdF96b25lIlsKDkFXU0VLU1Byb3ZpZGVyEhMKC2NsdXN0ZXJfYXJuGAEgASgJEhoKEmt1YmVybmV0ZXNfdmVyc2lvbhgCIAEoCRIYChBjbG91ZF9hY2NvdW50X2lkGAMgASgJQkBaPmdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbHVzdGVyL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_trust_provider_v1alpha1_trust_provider]);
 
 /**
  * Cluster represents a single environment (e.g. a Kubernetes cluster) onboarded
@@ -111,6 +111,24 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
    * @generated from field: google.protobuf.Timestamp last_updated_at = 14;
    */
   lastUpdatedAt?: Timestamp;
+
+  /**
+   * external_provider carries provider-specific metadata for a cluster that
+   * was discovered outside a trust zone (e.g. an AWS EKS cluster found by
+   * cloud resource discovery), rather than created directly by a user. Unset
+   * for clusters created through the normal onboarding flow. Presence of an
+   * external_provider is the signal that trust_zone_id may legitimately be
+   * empty (discovered, not yet enrolled).
+   *
+   * @generated from oneof proto.cluster.v1alpha1.Cluster.external_provider
+   */
+  externalProvider: {
+    /**
+     * @generated from field: proto.cluster.v1alpha1.AWSEKSProvider aws_eks = 15;
+     */
+    value: AWSEKSProvider;
+    case: "awsEks";
+  } | { case: undefined; value?: undefined };
 };
 
 /**
@@ -119,4 +137,37 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
  */
 export const ClusterSchema: GenMessage<Cluster> = /*@__PURE__*/
   messageDesc(file_proto_cluster_v1alpha1_cluster, 0);
+
+/**
+ * AWSEKSProvider carries the AWS-specific metadata for a cluster discovered
+ * via AWS EKS cloud resource discovery.
+ *
+ * @generated from message proto.cluster.v1alpha1.AWSEKSProvider
+ */
+export type AWSEKSProvider = Message<"proto.cluster.v1alpha1.AWSEKSProvider"> & {
+  /**
+   * @generated from field: string cluster_arn = 1;
+   */
+  clusterArn: string;
+
+  /**
+   * @generated from field: string kubernetes_version = 2;
+   */
+  kubernetesVersion: string;
+
+  /**
+   * The cloud account this cluster was discovered in, for traceability back
+   * to the discovery source.
+   *
+   * @generated from field: string cloud_account_id = 3;
+   */
+  cloudAccountId: string;
+};
+
+/**
+ * Describes the message proto.cluster.v1alpha1.AWSEKSProvider.
+ * Use `create(AWSEKSProviderSchema)` to create a new message.
+ */
+export const AWSEKSProviderSchema: GenMessage<AWSEKSProvider> = /*@__PURE__*/
+  messageDesc(file_proto_cluster_v1alpha1_cluster, 1);
 

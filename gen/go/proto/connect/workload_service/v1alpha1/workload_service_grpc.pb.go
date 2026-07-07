@@ -29,6 +29,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	WorkloadService_ListWorkloads_FullMethodName    = "/proto.connect.workload_service.v1alpha1.WorkloadService/ListWorkloads"
 	WorkloadService_PublishWorkloads_FullMethodName = "/proto.connect.workload_service.v1alpha1.WorkloadService/PublishWorkloads"
+	WorkloadService_AssignWorkload_FullMethodName   = "/proto.connect.workload_service.v1alpha1.WorkloadService/AssignWorkload"
 )
 
 // WorkloadServiceClient is the client API for WorkloadService service.
@@ -45,6 +46,10 @@ type WorkloadServiceClient interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[PublishWorkloadsRequest, PublishWorkloadsResponse], error)
+	// AssignWorkload assigns a discovered, unscoped workload (trust_zone_id
+	// empty) to a trust zone as part of enrollment. This is a one-way
+	// transition: it fails if the workload has already been assigned.
+	AssignWorkload(ctx context.Context, in *AssignWorkloadRequest, opts ...grpc.CallOption) (*AssignWorkloadResponse, error)
 }
 
 type workloadServiceClient struct {
@@ -78,6 +83,16 @@ func (c *workloadServiceClient) PublishWorkloads(ctx context.Context, opts ...gr
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type WorkloadService_PublishWorkloadsClient = grpc.ClientStreamingClient[PublishWorkloadsRequest, PublishWorkloadsResponse]
 
+func (c *workloadServiceClient) AssignWorkload(ctx context.Context, in *AssignWorkloadRequest, opts ...grpc.CallOption) (*AssignWorkloadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AssignWorkloadResponse)
+	err := c.cc.Invoke(ctx, WorkloadService_AssignWorkload_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WorkloadServiceServer is the server API for WorkloadService service.
 // All implementations should embed UnimplementedWorkloadServiceServer
 // for forward compatibility.
@@ -92,6 +107,10 @@ type WorkloadServiceServer interface {
 	// PublishWorkloads is a client-streaming RPC used by Cofide Observers to report
 	// observed workloads to the Connect control plane.
 	PublishWorkloads(grpc.ClientStreamingServer[PublishWorkloadsRequest, PublishWorkloadsResponse]) error
+	// AssignWorkload assigns a discovered, unscoped workload (trust_zone_id
+	// empty) to a trust zone as part of enrollment. This is a one-way
+	// transition: it fails if the workload has already been assigned.
+	AssignWorkload(context.Context, *AssignWorkloadRequest) (*AssignWorkloadResponse, error)
 }
 
 // UnimplementedWorkloadServiceServer should be embedded to have
@@ -106,6 +125,9 @@ func (UnimplementedWorkloadServiceServer) ListWorkloads(context.Context, *ListWo
 }
 func (UnimplementedWorkloadServiceServer) PublishWorkloads(grpc.ClientStreamingServer[PublishWorkloadsRequest, PublishWorkloadsResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method PublishWorkloads not implemented")
+}
+func (UnimplementedWorkloadServiceServer) AssignWorkload(context.Context, *AssignWorkloadRequest) (*AssignWorkloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AssignWorkload not implemented")
 }
 func (UnimplementedWorkloadServiceServer) testEmbeddedByValue() {}
 
@@ -152,6 +174,24 @@ func _WorkloadService_PublishWorkloads_Handler(srv interface{}, stream grpc.Serv
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type WorkloadService_PublishWorkloadsServer = grpc.ClientStreamingServer[PublishWorkloadsRequest, PublishWorkloadsResponse]
 
+func _WorkloadService_AssignWorkload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssignWorkloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkloadServiceServer).AssignWorkload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkloadService_AssignWorkload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkloadServiceServer).AssignWorkload(ctx, req.(*AssignWorkloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WorkloadService_ServiceDesc is the grpc.ServiceDesc for WorkloadService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -162,6 +202,10 @@ var WorkloadService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListWorkloads",
 			Handler:    _WorkloadService_ListWorkloads_Handler,
+		},
+		{
+			MethodName: "AssignWorkload",
+			Handler:    _WorkloadService_AssignWorkload_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/connect/workload_service/v1alpha1/workload_service.proto.
  */
 export const file_proto_connect_workload_service_v1alpha1_workload_service: GenFile = /*@__PURE__*/
-  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIroCChRMaXN0V29ya2xvYWRzUmVxdWVzdBJZCgZmaWx0ZXIYASABKAsyRC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2Fkc1JlcXVlc3QuRmlsdGVySACIAQEauwEKBkZpbHRlchITCgZvcmdfaWQYAyABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAEgASgJSAGIAQESFwoKY2x1c3Rlcl9pZBgCIAEoCUgCiAEBEi8KB21heF9hZ2UYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IA4gBAUIJCgdfb3JnX2lkQhAKDl90cnVzdF96b25lX2lkQg0KC19jbHVzdGVyX2lkQgoKCF9tYXhfYWdlQgkKB19maWx0ZXIiTQoVTGlzdFdvcmtsb2Fkc1Jlc3BvbnNlEjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIk8KF1B1Ymxpc2hXb3JrbG9hZHNSZXF1ZXN0EjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIhoKGFB1Ymxpc2hXb3JrbG9hZHNSZXNwb25zZTK+AgoPV29ya2xvYWRTZXJ2aWNlEo4BCg1MaXN0V29ya2xvYWRzEj0ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXF1ZXN0Gj4ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkxpc3RXb3JrbG9hZHNSZXNwb25zZRKZAQoQUHVibGlzaFdvcmtsb2FkcxJALnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVxdWVzdBpBLnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5QdWJsaXNoV29ya2xvYWRzUmVzcG9uc2UoAUJRWk9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY29ubmVjdC93b3JrbG9hZF9zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_duration, file_proto_workload_v1alpha1_workload]);
+  fileDesc("Cj5wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTEvd29ya2xvYWRfc2VydmljZS5wcm90bxIncHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExIroCChRMaXN0V29ya2xvYWRzUmVxdWVzdBJZCgZmaWx0ZXIYASABKAsyRC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuTGlzdFdvcmtsb2Fkc1JlcXVlc3QuRmlsdGVySACIAQEauwEKBkZpbHRlchITCgZvcmdfaWQYAyABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAEgASgJSAGIAQESFwoKY2x1c3Rlcl9pZBgCIAEoCUgCiAEBEi8KB21heF9hZ2UYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25IA4gBAUIJCgdfb3JnX2lkQhAKDl90cnVzdF96b25lX2lkQg0KC19jbHVzdGVyX2lkQgoKCF9tYXhfYWdlQgkKB19maWx0ZXIiTQoVTGlzdFdvcmtsb2Fkc1Jlc3BvbnNlEjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIk8KF1B1Ymxpc2hXb3JrbG9hZHNSZXF1ZXN0EjQKCXdvcmtsb2FkcxgBIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkIhoKGFB1Ymxpc2hXb3JrbG9hZHNSZXNwb25zZSJDChVBc3NpZ25Xb3JrbG9hZFJlcXVlc3QSEwoLd29ya2xvYWRfaWQYASABKAkSFQoNdHJ1c3Rfem9uZV9pZBgCIAEoCSJNChZBc3NpZ25Xb3JrbG9hZFJlc3BvbnNlEjMKCHdvcmtsb2FkGAEgASgLMiEucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuV29ya2xvYWQy0gMKD1dvcmtsb2FkU2VydmljZRKOAQoNTGlzdFdvcmtsb2FkcxI9LnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5MaXN0V29ya2xvYWRzUmVxdWVzdBo+LnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5MaXN0V29ya2xvYWRzUmVzcG9uc2USmQEKEFB1Ymxpc2hXb3JrbG9hZHMSQC5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuUHVibGlzaFdvcmtsb2Fkc1JlcXVlc3QaQS5wcm90by5jb25uZWN0Lndvcmtsb2FkX3NlcnZpY2UudjFhbHBoYTEuUHVibGlzaFdvcmtsb2Fkc1Jlc3BvbnNlKAESkQEKDkFzc2lnbldvcmtsb2FkEj4ucHJvdG8uY29ubmVjdC53b3JrbG9hZF9zZXJ2aWNlLnYxYWxwaGExLkFzc2lnbldvcmtsb2FkUmVxdWVzdBo/LnByb3RvLmNvbm5lY3Qud29ya2xvYWRfc2VydmljZS52MWFscGhhMS5Bc3NpZ25Xb3JrbG9hZFJlc3BvbnNlQlFaT2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jb25uZWN0L3dvcmtsb2FkX3NlcnZpY2UvdjFhbHBoYTFiBnByb3RvMw", [file_google_protobuf_duration, file_proto_workload_v1alpha1_workload]);
 
 /**
  * @generated from message proto.connect.workload_service.v1alpha1.ListWorkloadsRequest
@@ -123,6 +123,45 @@ export const PublishWorkloadsResponseSchema: GenMessage<PublishWorkloadsResponse
   messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 3);
 
 /**
+ * @generated from message proto.connect.workload_service.v1alpha1.AssignWorkloadRequest
+ */
+export type AssignWorkloadRequest = Message<"proto.connect.workload_service.v1alpha1.AssignWorkloadRequest"> & {
+  /**
+   * @generated from field: string workload_id = 1;
+   */
+  workloadId: string;
+
+  /**
+   * @generated from field: string trust_zone_id = 2;
+   */
+  trustZoneId: string;
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.AssignWorkloadRequest.
+ * Use `create(AssignWorkloadRequestSchema)` to create a new message.
+ */
+export const AssignWorkloadRequestSchema: GenMessage<AssignWorkloadRequest> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 4);
+
+/**
+ * @generated from message proto.connect.workload_service.v1alpha1.AssignWorkloadResponse
+ */
+export type AssignWorkloadResponse = Message<"proto.connect.workload_service.v1alpha1.AssignWorkloadResponse"> & {
+  /**
+   * @generated from field: proto.workload.v1alpha1.Workload workload = 1;
+   */
+  workload?: Workload;
+};
+
+/**
+ * Describes the message proto.connect.workload_service.v1alpha1.AssignWorkloadResponse.
+ * Use `create(AssignWorkloadResponseSchema)` to create a new message.
+ */
+export const AssignWorkloadResponseSchema: GenMessage<AssignWorkloadResponse> = /*@__PURE__*/
+  messageDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 5);
+
+/**
  * WorkloadService provides access to workloads observed by Cofide Observers.
  * Observers stream workload observations from the kubelet to the Connect control
  * plane, where they are stored and made available for query. Workloads can be
@@ -151,6 +190,18 @@ export const WorkloadService: GenService<{
     methodKind: "client_streaming";
     input: typeof PublishWorkloadsRequestSchema;
     output: typeof PublishWorkloadsResponseSchema;
+  },
+  /**
+   * AssignWorkload assigns a discovered, unscoped workload (trust_zone_id
+   * empty) to a trust zone as part of enrollment. This is a one-way
+   * transition: it fails if the workload has already been assigned.
+   *
+   * @generated from rpc proto.connect.workload_service.v1alpha1.WorkloadService.AssignWorkload
+   */
+  assignWorkload: {
+    methodKind: "unary";
+    input: typeof AssignWorkloadRequestSchema;
+    output: typeof AssignWorkloadResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_connect_workload_service_v1alpha1_workload_service, 0);
