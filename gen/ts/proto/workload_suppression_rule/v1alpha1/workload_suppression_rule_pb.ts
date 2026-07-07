@@ -29,7 +29,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload_suppression_rule/v1alpha1/workload_suppression_rule.proto.
  */
 export const file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule: GenFile = /*@__PURE__*/
-  fileDesc("Ckhwcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUucHJvdG8SKHByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEikQQKF1dvcmtsb2FkU3VwcHJlc3Npb25SdWxlEg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSHwoNdHJ1c3Rfem9uZV9pZBgDIAEoCUID4EEBSAGIAQESHAoKY2x1c3Rlcl9pZBgEIAEoCUID4EEBSAKIAQESEQoEbmFtZRgFIAEoCUID4EECEh0KC2Rlc2NyaXB0aW9uGAYgASgJQgPgQQFIA4gBARIUCgdlbmFibGVkGAcgASgIQgPgQQESQQoNd29ya2xvYWRfdHlwZRgIIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZUID4EECElgKDmt1YmVybmV0ZXNfcG9kGAkgASgLMj4ucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5LdWJlcm5ldGVzUG9kTWF0Y2hlckgAEjMKCmNyZWF0ZWRfYXQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQgkKB21hdGNoZXJCEAoOX3RydXN0X3pvbmVfaWRCDQoLX2NsdXN0ZXJfaWRCDgoMX2Rlc2NyaXB0aW9uIqIBChRLdWJlcm5ldGVzUG9kTWF0Y2hlchJBCgluYW1lc3BhY2UYASABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRwoGbGFiZWxzGAIgASgLMjIucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQTGFiZWxTZWxlY3RvckID4EEBQlJaUGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_exchange_policy_v1alpha1_exchange_policy, file_proto_workload_v1alpha1_workload]);
+  fileDesc("Ckhwcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUucHJvdG8SKHByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEi7QQKF1dvcmtsb2FkU3VwcHJlc3Npb25SdWxlEg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSHwoNdHJ1c3Rfem9uZV9pZBgDIAEoCUID4EEBSAGIAQESHAoKY2x1c3Rlcl9pZBgEIAEoCUID4EEBSAKIAQESEQoEbmFtZRgFIAEoCUID4EECEh0KC2Rlc2NyaXB0aW9uGAYgASgJQgPgQQFIA4gBARIUCgdlbmFibGVkGAcgASgIQgPgQQESQQoNd29ya2xvYWRfdHlwZRgIIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZUID4EECElgKDmt1YmVybmV0ZXNfcG9kGAkgASgLMj4ucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5LdWJlcm5ldGVzUG9kTWF0Y2hlckgAEloKD2xhbWJkYV9mdW5jdGlvbhgMIAEoCzI/LnByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25NYXRjaGVySAASMwoKY3JlYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYCyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCCQoHbWF0Y2hlckIQCg5fdHJ1c3Rfem9uZV9pZEINCgtfY2x1c3Rlcl9pZEIOCgxfZGVzY3JpcHRpb24iogEKFEt1YmVybmV0ZXNQb2RNYXRjaGVyEkEKCW5hbWVzcGFjZRgBIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJHCgZsYWJlbHMYAiABKAsyMi5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9yQgPgQQEi6AEKFUxhbWJkYUZ1bmN0aW9uTWF0Y2hlchI+CgZyZWdpb24YASABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRQoNZnVuY3Rpb25fbmFtZRgCIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJIChBjbG91ZF9hY2NvdW50X2lkGAMgASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBQlJaUGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_exchange_policy_v1alpha1_exchange_policy, file_proto_workload_v1alpha1_workload]);
 
 /**
  * WorkloadSuppressionRule defines a rule that hides matching workloads from
@@ -114,6 +114,12 @@ export type WorkloadSuppressionRule = Message<"proto.workload_suppression_rule.v
      */
     value: KubernetesPodMatcher;
     case: "kubernetesPod";
+  } | {
+    /**
+     * @generated from field: proto.workload_suppression_rule.v1alpha1.LambdaFunctionMatcher lambda_function = 12;
+     */
+    value: LambdaFunctionMatcher;
+    case: "lambdaFunction";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -173,4 +179,49 @@ export type KubernetesPodMatcher = Message<"proto.workload_suppression_rule.v1al
  */
 export const KubernetesPodMatcherSchema: GenMessage<KubernetesPodMatcher> = /*@__PURE__*/
   messageDesc(file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule, 1);
+
+/**
+ * LambdaFunctionMatcher matches AWS Lambda function workloads
+ * (proto.workload.v1alpha1.LambdaFunctionWorkload) by region, function name,
+ * and/or the AWS account the function was discovered in. When multiple
+ * fields are set, a workload must satisfy ALL of them to match (AND
+ * semantics). An unset/empty field matches anything.
+ *
+ * @generated from message proto.workload_suppression_rule.v1alpha1.LambdaFunctionMatcher
+ */
+export type LambdaFunctionMatcher = Message<"proto.workload_suppression_rule.v1alpha1.LambdaFunctionMatcher"> & {
+  /**
+   * Matches proto.workload.v1alpha1.LambdaFunctionWorkload.region. Matchers
+   * within the set are evaluated with OR semantics. Unset/empty matches any
+   * region.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.StringSet region = 1;
+   */
+  region?: StringSet;
+
+  /**
+   * Matches proto.workload.v1alpha1.LambdaFunctionWorkload.function_name.
+   * Matchers within the set are evaluated with OR semantics. Unset/empty
+   * matches any function name.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.StringSet function_name = 2;
+   */
+  functionName?: StringSet;
+
+  /**
+   * Matches proto.workload.v1alpha1.LambdaFunctionWorkload.cloud_account_id.
+   * Matchers within the set are evaluated with OR semantics. Unset/empty
+   * matches any cloud account.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.StringSet cloud_account_id = 3;
+   */
+  cloudAccountId?: StringSet;
+};
+
+/**
+ * Describes the message proto.workload_suppression_rule.v1alpha1.LambdaFunctionMatcher.
+ * Use `create(LambdaFunctionMatcherSchema)` to create a new message.
+ */
+export const LambdaFunctionMatcherSchema: GenMessage<LambdaFunctionMatcher> = /*@__PURE__*/
+  messageDesc(file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule, 2);
 

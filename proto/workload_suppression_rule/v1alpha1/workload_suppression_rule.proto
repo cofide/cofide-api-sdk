@@ -53,6 +53,7 @@ message WorkloadSuppressionRule {
   // Match criteria, specific to workload_type.
   oneof matcher {
     KubernetesPodMatcher kubernetes_pod = 9;
+    LambdaFunctionMatcher lambda_function = 12;
   }
   // Time of resource creation.
   google.protobuf.Timestamp created_at = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
@@ -74,4 +75,24 @@ message KubernetesPodMatcher {
   // pod's OWN labels, not the labels of the namespace object it runs in.
   // Unset/empty matches any labels.
   proto.attestation_policy.v1alpha1.APLabelSelector labels = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// LambdaFunctionMatcher matches AWS Lambda function workloads
+// (proto.workload.v1alpha1.LambdaFunctionWorkload) by region, function name,
+// and/or the AWS account the function was discovered in. When multiple
+// fields are set, a workload must satisfy ALL of them to match (AND
+// semantics). An unset/empty field matches anything.
+message LambdaFunctionMatcher {
+  // Matches proto.workload.v1alpha1.LambdaFunctionWorkload.region. Matchers
+  // within the set are evaluated with OR semantics. Unset/empty matches any
+  // region.
+  proto.exchange_policy.v1alpha1.StringSet region = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.LambdaFunctionWorkload.function_name.
+  // Matchers within the set are evaluated with OR semantics. Unset/empty
+  // matches any function name.
+  proto.exchange_policy.v1alpha1.StringSet function_name = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.LambdaFunctionWorkload.cloud_account_id.
+  // Matchers within the set are evaluated with OR semantics. Unset/empty
+  // matches any cloud account.
+  proto.exchange_policy.v1alpha1.StringSet cloud_account_id = 3 [(google.api.field_behavior) = OPTIONAL];
 }
