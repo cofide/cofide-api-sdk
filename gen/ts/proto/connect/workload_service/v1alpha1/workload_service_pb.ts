@@ -68,8 +68,10 @@ export type ListWorkloadsRequest_Filter = Message<"proto.connect.workload_servic
   maxAge?: Duration;
 
   /**
-   * When true, workloads matching an enabled WorkloadSuppressionRule are
-   * included in the response. Defaults to false.
+   * When false (the default), workloads matching an enabled
+   * WorkloadSuppressionRule are excluded from the response entirely. When
+   * true, they are included with proto.workload.v1alpha1.Workload.suppressed
+   * set to true so callers can distinguish them.
    *
    * @generated from field: bool include_suppressed = 5;
    */

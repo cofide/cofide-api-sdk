@@ -206,8 +206,10 @@ type ListWorkloadsRequest_Filter struct {
 	ClusterId   *string                `protobuf:"bytes,2,opt,name=cluster_id,json=clusterId,proto3,oneof" json:"cluster_id,omitempty"`
 	// max_age filters workloads to those last observed within this duration.
 	MaxAge *durationpb.Duration `protobuf:"bytes,4,opt,name=max_age,json=maxAge,proto3,oneof" json:"max_age,omitempty"`
-	// When true, workloads matching an enabled WorkloadSuppressionRule are
-	// included in the response. Defaults to false.
+	// When false (the default), workloads matching an enabled
+	// WorkloadSuppressionRule are excluded from the response entirely. When
+	// true, they are included with proto.workload.v1alpha1.Workload.suppressed
+	// set to true so callers can distinguish them.
 	IncludeSuppressed bool `protobuf:"varint,5,opt,name=include_suppressed,json=includeSuppressed,proto3" json:"include_suppressed,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache

@@ -33,8 +33,10 @@ message ListWorkloadsRequest {
     optional string cluster_id = 2;
     // max_age filters workloads to those last observed within this duration.
     optional google.protobuf.Duration max_age = 4;
-    // When true, workloads matching an enabled WorkloadSuppressionRule are
-    // included in the response. Defaults to false.
+    // When false (the default), workloads matching an enabled
+    // WorkloadSuppressionRule are excluded from the response entirely. When
+    // true, they are included with proto.workload.v1alpha1.Workload.suppressed
+    // set to true so callers can distinguish them.
     bool include_suppressed = 5;
   }
   optional Filter filter = 1;
