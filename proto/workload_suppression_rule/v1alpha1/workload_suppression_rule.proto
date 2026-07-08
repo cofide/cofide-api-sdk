@@ -95,4 +95,7 @@ message LambdaFunctionMatcher {
   // Matchers within the set are evaluated with OR semantics. Unset/empty
   // matches any cloud account.
   proto.exchange_policy.v1alpha1.StringSet cloud_account_id = 3 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.LambdaFunctionWorkload.tags. Unset/empty
+  // matches any tags.
+  proto.attestation_policy.v1alpha1.APLabelSelector tags = 4 [(google.api.field_behavior) = OPTIONAL];
 }

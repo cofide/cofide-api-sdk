@@ -8,6 +8,7 @@ import (
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
+	clustersuppressionrulepb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster_suppression_rule/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
@@ -66,6 +67,9 @@ const (
 
 	FakeWorkloadSuppressionRuleID   = "fake-wsr-id"
 	FakeWorkloadSuppressionRuleName = "fake-wsr-name"
+
+	FakeClusterSuppressionRuleID   = "fake-csr-id"
+	FakeClusterSuppressionRuleName = "fake-csr-name"
 )
 
 func FakeOrganization() *organizationpb.Organization {
@@ -192,6 +196,24 @@ func FakeWorkloadSuppressionRule() *workloadsuppressionrulepb.WorkloadSuppressio
 				Namespace: &exchangepolicypb.StringSet{
 					Matchers: []*exchangepolicypb.StringMatcher{
 						{Match: &exchangepolicypb.StringMatcher_Exact{Exact: FakeK8sPodNamespace}},
+					},
+				},
+			},
+		},
+	}
+}
+
+func FakeClusterSuppressionRule() *clustersuppressionrulepb.ClusterSuppressionRule {
+	return &clustersuppressionrulepb.ClusterSuppressionRule{
+		Id:      FakeClusterSuppressionRuleID,
+		OrgId:   FakeOrganizationID,
+		Name:    FakeClusterSuppressionRuleName,
+		Enabled: true,
+		Matcher: &clustersuppressionrulepb.ClusterSuppressionRule_AwsEks{
+			AwsEks: &clustersuppressionrulepb.AWSEKSClusterMatcher{
+				ClusterName: &exchangepolicypb.StringSet{
+					Matchers: []*exchangepolicypb.StringMatcher{
+						{Match: &exchangepolicypb.StringMatcher_Exact{Exact: FakeClusterName}},
 					},
 				},
 			},

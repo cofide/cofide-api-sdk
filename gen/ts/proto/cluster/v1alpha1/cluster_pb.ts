@@ -21,7 +21,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file proto/cluster/v1alpha1/cluster.proto.
  */
 export const file_proto_cluster_v1alpha1_cluster: GenFile = /*@__PURE__*/
-  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEigQYKB0NsdXN0ZXISDwoCaWQYCCABKAlIAYgBARIRCgRuYW1lGAEgASgJSAKIAQESEwoGb3JnX2lkGAkgASgJSAOIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgEiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgFiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgGiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgHiAEBEhQKB3Byb2ZpbGUYBiABKAlICIgBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICYgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICogBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAuIAQESMwoKY3JlYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOQoHYXdzX2VrcxgPIAEoCzImLnByb3RvLmNsdXN0ZXIudjFhbHBoYTEuQVdTRUtTUHJvdmlkZXJIAEITChFleHRlcm5hbF9wcm92aWRlckIFCgNfaWRCBwoFX25hbWVCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIVChNfa3ViZXJuZXRlc19jb250ZXh0QhEKD190cnVzdF9wcm92aWRlckIUChJfZXh0cmFfaGVsbV92YWx1ZXNCCgoIX3Byb2ZpbGVCEgoQX2V4dGVybmFsX3NlcnZlckISChBfb2lkY19pc3N1ZXJfdXJsQhYKFF9vaWRjX2lzc3Vlcl9jYV9jZXJ0SgQIAhADUgp0cnVzdF96b25lIlsKDkFXU0VLU1Byb3ZpZGVyEhMKC2NsdXN0ZXJfYXJuGAEgASgJEhoKEmt1YmVybmV0ZXNfdmVyc2lvbhgCIAEoCRIYChBjbG91ZF9hY2NvdW50X2lkGAMgASgJQkBaPmdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbHVzdGVyL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_trust_provider_v1alpha1_trust_provider]);
+  fileDesc("CiRwcm90by9jbHVzdGVyL3YxYWxwaGExL2NsdXN0ZXIucHJvdG8SFnByb3RvLmNsdXN0ZXIudjFhbHBoYTEimgYKB0NsdXN0ZXISDwoCaWQYCCABKAlIAYgBARIRCgRuYW1lGAEgASgJSAKIAQESEwoGb3JnX2lkGAkgASgJSAOIAQESGgoNdHJ1c3Rfem9uZV9pZBgKIAEoCUgEiAEBEh8KEmt1YmVybmV0ZXNfY29udGV4dBgDIAEoCUgFiAEBEkkKDnRydXN0X3Byb3ZpZGVyGAQgASgLMiwucHJvdG8udHJ1c3RfcHJvdmlkZXIudjFhbHBoYTEuVHJ1c3RQcm92aWRlckgGiAEBEjcKEWV4dHJhX2hlbG1fdmFsdWVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgHiAEBEhQKB3Byb2ZpbGUYBiABKAlICIgBARIcCg9leHRlcm5hbF9zZXJ2ZXIYByABKAhICYgBARIcCg9vaWRjX2lzc3Vlcl91cmwYCyABKAlICogBARIgChNvaWRjX2lzc3Vlcl9jYV9jZXJ0GAwgASgMSAuIAQESMwoKY3JlYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOQoHYXdzX2VrcxgPIAEoCzImLnByb3RvLmNsdXN0ZXIudjFhbHBoYTEuQVdTRUtTUHJvdmlkZXJIABIXCgpzdXBwcmVzc2VkGBAgASgIQgPgQQNCEwoRZXh0ZXJuYWxfcHJvdmlkZXJCBQoDX2lkQgcKBV9uYW1lQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCFQoTX2t1YmVybmV0ZXNfY29udGV4dEIRCg9fdHJ1c3RfcHJvdmlkZXJCFAoSX2V4dHJhX2hlbG1fdmFsdWVzQgoKCF9wcm9maWxlQhIKEF9leHRlcm5hbF9zZXJ2ZXJCEgoQX29pZGNfaXNzdWVyX3VybEIWChRfb2lkY19pc3N1ZXJfY2FfY2VydEoECAIQA1IKdHJ1c3Rfem9uZSLYAQoOQVdTRUtTUHJvdmlkZXISEwoLY2x1c3Rlcl9hcm4YASABKAkSGgoSa3ViZXJuZXRlc192ZXJzaW9uGAIgASgJEhgKEGNsb3VkX2FjY291bnRfaWQYAyABKAkSDgoGcmVnaW9uGAQgASgJEj4KBHRhZ3MYBSADKAsyMC5wcm90by5jbHVzdGVyLnYxYWxwaGExLkFXU0VLU1Byb3ZpZGVyLlRhZ3NFbnRyeRorCglUYWdzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4AUJAWj5naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2x1c3Rlci92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_trust_provider_v1alpha1_trust_provider]);
 
 /**
  * Cluster represents a single environment (e.g. a Kubernetes cluster) onboarded
@@ -129,6 +129,16 @@ export type Cluster = Message<"proto.cluster.v1alpha1.Cluster"> & {
     value: AWSEKSProvider;
     case: "awsEks";
   } | { case: undefined; value?: undefined };
+
+  /**
+   * Whether this cluster currently matches an enabled ClusterSuppressionRule scoped to it.
+   * Computed dynamically against the current rule set at query time rather than stored,
+   * mirroring proto.workload.v1alpha1.Workload.suppressed. Only populated in ListClusters
+   * responses.
+   *
+   * @generated from field: bool suppressed = 16;
+   */
+  suppressed: boolean;
 };
 
 /**
@@ -162,6 +172,21 @@ export type AWSEKSProvider = Message<"proto.cluster.v1alpha1.AWSEKSProvider"> & 
    * @generated from field: string cloud_account_id = 3;
    */
   cloudAccountId: string;
+
+  /**
+   * AWS region the cluster was discovered in.
+   *
+   * @generated from field: string region = 4;
+   */
+  region: string;
+
+  /**
+   * AWS resource tags on this EKS cluster, as returned by eks:DescribeCluster. Used as
+   * suppression-rule selectors via AWSEKSClusterMatcher.tags.
+   *
+   * @generated from field: map<string, string> tags = 5;
+   */
+  tags: { [key: string]: string };
 };
 
 /**

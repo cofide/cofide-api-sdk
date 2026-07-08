@@ -54,6 +54,12 @@ message Cluster {
   oneof external_provider {
     AWSEKSProvider aws_eks = 15;
   }
+
+  // Whether this cluster currently matches an enabled ClusterSuppressionRule scoped to it.
+  // Computed dynamically against the current rule set at query time rather than stored,
+  // mirroring proto.workload.v1alpha1.Workload.suppressed. Only populated in ListClusters
+  // responses.
+  bool suppressed = 16 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // AWSEKSProvider carries the AWS-specific metadata for a cluster discovered
@@ -64,4 +70,9 @@ message AWSEKSProvider {
   // The cloud account this cluster was discovered in, for traceability back
   // to the discovery source.
   string cloud_account_id = 3;
+  // AWS region the cluster was discovered in.
+  string region = 4;
+  // AWS resource tags on this EKS cluster, as returned by eks:DescribeCluster. Used as
+  // suppression-rule selectors via AWSEKSClusterMatcher.tags.
+  map<string, string> tags = 5;
 }

@@ -1,0 +1,95 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the ClusterSuppressionRuleService gRPC service for
+// managing rules that suppress discovered clusters from the Connect clusters
+// view.
+
+syntax = "proto3";
+
+package proto.connect.cluster_suppression_rule_service.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "proto/cluster_suppression_rule/v1alpha1/cluster_suppression_rule.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/cluster_suppression_rule_service/v1alpha1";
+
+// ClusterSuppressionRuleService manages cluster suppression rules in the
+// Connect control plane. Rules are evaluated dynamically by
+// ClusterService.ListClusters to filter suppressed clusters out of the
+// clusters view by default.
+service ClusterSuppressionRuleService {
+  // CreateClusterSuppressionRule creates a new cluster suppression rule.
+  rpc CreateClusterSuppressionRule(CreateClusterSuppressionRuleRequest) returns (CreateClusterSuppressionRuleResponse);
+  // GetClusterSuppressionRule retrieves a cluster suppression rule by ID.
+  rpc GetClusterSuppressionRule(GetClusterSuppressionRuleRequest) returns (GetClusterSuppressionRuleResponse);
+  // ListClusterSuppressionRules returns all cluster suppression rules matching the optional filter.
+  rpc ListClusterSuppressionRules(ListClusterSuppressionRulesRequest) returns (ListClusterSuppressionRulesResponse);
+  // UpdateClusterSuppressionRule updates an existing cluster suppression rule.
+  rpc UpdateClusterSuppressionRule(UpdateClusterSuppressionRuleRequest) returns (UpdateClusterSuppressionRuleResponse);
+  // DestroyClusterSuppressionRule deletes a cluster suppression rule by ID.
+  rpc DestroyClusterSuppressionRule(DestroyClusterSuppressionRuleRequest) returns (DestroyClusterSuppressionRuleResponse);
+}
+
+message CreateClusterSuppressionRuleRequest {
+  proto.cluster_suppression_rule.v1alpha1.ClusterSuppressionRule cluster_suppression_rule = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateClusterSuppressionRuleResponse {
+  proto.cluster_suppression_rule.v1alpha1.ClusterSuppressionRule cluster_suppression_rule = 1;
+}
+
+message GetClusterSuppressionRuleRequest {
+  string cluster_suppression_rule_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetClusterSuppressionRuleResponse {
+  optional proto.cluster_suppression_rule.v1alpha1.ClusterSuppressionRule cluster_suppression_rule = 1;
+}
+
+message ListClusterSuppressionRulesRequest {
+  message Filter {
+    optional string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
+    optional string trust_zone_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    optional string cluster_id = 3 [(google.api.field_behavior) = OPTIONAL];
+    // When set, only rules with this enabled state are returned. Unset returns
+    // rules regardless of enabled state.
+    optional bool enabled = 4 [(google.api.field_behavior) = OPTIONAL];
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListClusterSuppressionRulesResponse {
+  repeated proto.cluster_suppression_rule.v1alpha1.ClusterSuppressionRule cluster_suppression_rules = 1;
+}
+
+message UpdateClusterSuppressionRuleRequest {
+  message UpdateMask {
+    // Set to true to update the trust_zone_id field.
+    bool trust_zone_id = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the cluster_id field.
+    bool cluster_id = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the name field.
+    bool name = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the description field.
+    bool description = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the enabled field.
+    bool enabled = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the matcher field.
+    bool matcher = 6 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  proto.cluster_suppression_rule.v1alpha1.ClusterSuppressionRule cluster_suppression_rule = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateClusterSuppressionRuleResponse {
+  proto.cluster_suppression_rule.v1alpha1.ClusterSuppressionRule cluster_suppression_rule = 1;
+}
+
+message DestroyClusterSuppressionRuleRequest {
+  string cluster_suppression_rule_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DestroyClusterSuppressionRuleResponse {}

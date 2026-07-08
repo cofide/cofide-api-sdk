@@ -12,6 +12,7 @@ import (
 	cloudorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudorganization/v1alpha1"
 	cloudresourcev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresource/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
+	clustersuppressionrulev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clustersuppressionrule/v1alpha1"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
@@ -47,6 +48,7 @@ type ClientSet interface {
 	CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient
 	CloudResourceV1Alpha1() cloudresourcev1alpha1.CloudResourceClient
 	WorkloadSuppressionRuleV1Alpha1() workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient
+	ClusterSuppressionRuleV1Alpha1() clustersuppressionrulev1alpha1.ClusterSuppressionRuleClient
 }
 
 type clientSet struct {
@@ -68,6 +70,7 @@ type clientSet struct {
 	trustZoneServerV1Alpha1         trustzoneserverv1alpha1.TrustZoneServerClient
 	workloadV1Alpha1                workloadv1alpha1.WorkloadClient
 	workloadSuppressionRuleV1Alpha1 workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient
+	clusterSuppressionRuleV1Alpha1  clustersuppressionrulev1alpha1.ClusterSuppressionRuleClient
 }
 
 // New instantiates a new ClientSet for communication with a Connect API.
@@ -91,6 +94,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		trustZoneServerV1Alpha1:         trustzoneserverv1alpha1.New(conn),
 		workloadV1Alpha1:                workloadv1alpha1.New(conn),
 		workloadSuppressionRuleV1Alpha1: workloadsuppressionrulev1alpha1.New(conn),
+		clusterSuppressionRuleV1Alpha1:  clustersuppressionrulev1alpha1.New(conn),
 	}
 }
 
@@ -164,4 +168,8 @@ func (c *clientSet) CloudResourceV1Alpha1() cloudresourcev1alpha1.CloudResourceC
 
 func (c *clientSet) WorkloadSuppressionRuleV1Alpha1() workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient {
 	return c.workloadSuppressionRuleV1Alpha1
+}
+
+func (c *clientSet) ClusterSuppressionRuleV1Alpha1() clustersuppressionrulev1alpha1.ClusterSuppressionRuleClient {
+	return c.clusterSuppressionRuleV1Alpha1
 }

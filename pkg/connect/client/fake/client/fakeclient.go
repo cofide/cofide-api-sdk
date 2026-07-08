@@ -21,6 +21,8 @@ import (
 	fakecloudresourcev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresource/v1alpha1/fake"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	fakeclusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1/fake"
+	clustersuppressionrulev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clustersuppressionrule/v1alpha1"
+	fakeclustersuppressionrulev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clustersuppressionrule/v1alpha1/fake"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	fakedatastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1/fake"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
@@ -63,6 +65,7 @@ type fakeClientSet struct {
 	trustZoneServerV1Alpha1         trustzoneserverv1alpha1.TrustZoneServerClient
 	workloadV1Alpha1                workloadv1alpha1.WorkloadClient
 	workloadSuppressionRuleV1Alpha1 workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient
+	clusterSuppressionRuleV1Alpha1  clustersuppressionrulev1alpha1.ClusterSuppressionRuleClient
 }
 
 // New instantiates a new ClientSet that fakes communication with a Connect API.
@@ -86,6 +89,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		trustZoneServerV1Alpha1:         faketrustzoneserverv1alpha1.New(fake),
 		workloadV1Alpha1:                fakeworkloadv1alpha1.New(fake),
 		workloadSuppressionRuleV1Alpha1: fakeworkloadsuppressionrulev1alpha1.New(fake),
+		clusterSuppressionRuleV1Alpha1:  fakeclustersuppressionrulev1alpha1.New(fake),
 	}
 }
 
@@ -159,4 +163,8 @@ func (c *fakeClientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 
 func (c *fakeClientSet) WorkloadSuppressionRuleV1Alpha1() workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient {
 	return c.workloadSuppressionRuleV1Alpha1
+}
+
+func (c *fakeClientSet) ClusterSuppressionRuleV1Alpha1() clustersuppressionrulev1alpha1.ClusterSuppressionRuleClient {
+	return c.clusterSuppressionRuleV1Alpha1
 }

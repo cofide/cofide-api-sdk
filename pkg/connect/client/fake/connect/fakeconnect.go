@@ -11,6 +11,7 @@ import (
 	cloudorgpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_organization/v1alpha1"
 	cloudresourcepb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_resource/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
+	clustersuppressionrulepb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster_suppression_rule/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
@@ -52,6 +53,7 @@ type FakeConnect struct {
 	CloudAccounts            map[string]*cloudaccountpb.CloudAccount
 	CloudResources           map[string]*cloudresourcepb.CloudResource
 	WorkloadSuppressionRules map[string]*workloadsuppressionrulepb.WorkloadSuppressionRule
+	ClusterSuppressionRules  map[string]*clustersuppressionrulepb.ClusterSuppressionRule
 }
 
 func New() *FakeConnect {
@@ -78,6 +80,7 @@ func New() *FakeConnect {
 		CloudAccounts:            make(map[string]*cloudaccountpb.CloudAccount),
 		CloudResources:           make(map[string]*cloudresourcepb.CloudResource),
 		WorkloadSuppressionRules: make(map[string]*workloadsuppressionrulepb.WorkloadSuppressionRule),
+		ClusterSuppressionRules:  make(map[string]*clustersuppressionrulepb.ClusterSuppressionRule),
 	}
 }
 
@@ -203,6 +206,13 @@ func (f *FakeConnect) ValidateCloudResource(cloudResourceID string) error {
 func (f *FakeConnect) ValidateWorkloadSuppressionRule(workloadSuppressionRuleID string) error {
 	if _, ok := f.WorkloadSuppressionRules[workloadSuppressionRuleID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid workload suppression rule")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateClusterSuppressionRule(clusterSuppressionRuleID string) error {
+	if _, ok := f.ClusterSuppressionRules[clusterSuppressionRuleID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cluster suppression rule")
 	}
 	return nil
 }

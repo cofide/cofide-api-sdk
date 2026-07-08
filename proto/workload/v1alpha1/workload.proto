@@ -109,4 +109,7 @@ message LambdaFunctionWorkload {
   // The cloud account this function was discovered in, for traceability back
   // to the discovery source.
   string cloud_account_id = 5;
+  // AWS resource tags on this Lambda function, as returned by lambda:ListTags. Used as
+  // suppression-rule selectors via LambdaFunctionMatcher.tags.
+  map<string, string> tags = 6;
 }
