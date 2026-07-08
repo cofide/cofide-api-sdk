@@ -36,6 +36,7 @@ message Workload {
   oneof workload {
     KubernetesPod kubernetes_pod = 5;
     LambdaFunctionWorkload lambda_function = 11;
+    AgentcoreWorkloadWorkload agentcore_workload = 15;
   }
   // Security posture observations.
   repeated Observation observations = 6;
@@ -50,12 +51,12 @@ message Workload {
   // reported via PublishWorkloads should leave it unset.
   bool suppressed = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
   // The trust zones this workload currently has (or could obtain) a SPIFFE identity in. For a
-  // Kubernetes pod this mirrors trust_zone_id. For a Lambda function this is computed dynamically
-  // at query time by matching the function's IAM role ARN against static AttestationPolicy
-  // selectors and following their APBindings — a single function can match policies bound to
-  // multiple trust zones, since Credex can exchange the same token for a JWT SVID in any trust
-  // zone with a matching binding. Only populated in ListWorkloads responses; workloads reported
-  // via PublishWorkloads should leave it unset.
+  // Kubernetes pod this mirrors trust_zone_id. For a Lambda function or AgentCore Runtime workload
+  // this is computed dynamically at query time by matching the workload's IAM role ARN against
+  // static AttestationPolicy selectors and following their APBindings — a single workload can
+  // match policies bound to multiple trust zones, since Credex can exchange the same token for a
+  // JWT SVID in any trust zone with a matching binding. Only populated in ListWorkloads responses;
+  // workloads reported via PublishWorkloads should leave it unset.
   repeated string trust_zone_ids = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Deprecated: use identities instead, which carries the actual granted SPIFFE ID rather than
   // just the policy ID.
@@ -64,15 +65,16 @@ message Workload {
     (google.api.field_behavior) = OUTPUT_ONLY
   ];
   // The identities this workload has (Kubernetes pod, exact match) or could obtain (Lambda
-  // function, via Credex) from a matched, trust-zone-bound AttestationPolicy. For a Kubernetes
-  // pod, only identities derived from policies bound to the pod's own cluster's trust zone are
-  // considered (kubernetes-kind, matched via namespace/pod label selectors; or static-kind,
-  // matched via k8s:* selectors per the SPIRE k8s workload attestor plugin — ns, sa, pod-uid,
-  // pod-name, node-name, pod-label, container-name, container-image; other k8s:* selector kinds
-  // cannot be verified from discovered data and are treated as non-matching). For a Lambda
-  // function, every static-kind policy bound to any trust zone is considered, matched via a
-  // credex selector on the function's IAM role ARN. Only populated in ListWorkloads responses;
-  // workloads reported via PublishWorkloads should leave it unset.
+  // function or AgentCore Runtime workload, via Credex) from a matched, trust-zone-bound
+  // AttestationPolicy. For a Kubernetes pod, only identities derived from policies bound to the
+  // pod's own cluster's trust zone are considered (kubernetes-kind, matched via namespace/pod
+  // label selectors; or static-kind, matched via k8s:* selectors per the SPIRE k8s workload
+  // attestor plugin — ns, sa, pod-uid, pod-name, node-name, pod-label, container-name,
+  // container-image; other k8s:* selector kinds cannot be verified from discovered data and are
+  // treated as non-matching). For a Lambda function or AgentCore Runtime workload, every
+  // static-kind policy bound to any trust zone is considered, matched via a credex selector on the
+  // workload's IAM role ARN. Only populated in ListWorkloads responses; workloads reported via
+  // PublishWorkloads should leave it unset.
   repeated proto.identity.v1alpha1.Identity identities = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
@@ -81,6 +83,7 @@ enum WorkloadType {
   WORKLOAD_TYPE_UNSPECIFIED = 0;
   WORKLOAD_TYPE_KUBERNETES_POD = 1;
   WORKLOAD_TYPE_LAMBDA_FUNCTION = 2;
+  WORKLOAD_TYPE_AGENTCORE_WORKLOAD = 3;
 }
 
 // Observation is a structured data point describing the security posture of
@@ -130,4 +133,22 @@ message LambdaFunctionWorkload {
   // AWS resource tags on this Lambda function, as returned by lambda:ListTags. Used as
   // suppression-rule selectors via LambdaFunctionMatcher.tags.
   map<string, string> tags = 6;
+}
+
+// AgentcoreWorkloadWorkload contains the runtime details of an AWS Bedrock AgentCore Runtime
+// workload as discovered by Connect's cloud resource discovery.
+message AgentcoreWorkloadWorkload {
+  string agent_runtime_name = 1;
+  string agent_runtime_arn = 2;
+  string region = 3;
+  // The IAM role ARN used for Credex/OIDC attestation-policy matching, mirroring
+  // LambdaFunctionWorkload.iam_role_arn. See workload_identity_arn for the alternative AWS
+  // exposes for this purpose — matching uses this field until verified otherwise.
+  string role_arn = 4;
+  // AWS's dedicated workload-identity ARN for this runtime. Captured but not currently used for
+  // matching; see role_arn.
+  string workload_identity_arn = 5;
+  // The cloud account this runtime was discovered in, for traceability back to the discovery
+  // source.
+  string cloud_account_id = 6;
 }

@@ -54,6 +54,7 @@ message WorkloadSuppressionRule {
   oneof matcher {
     KubernetesPodMatcher kubernetes_pod = 9;
     LambdaFunctionMatcher lambda_function = 12;
+    AgentcoreWorkloadMatcher agentcore_workload = 13;
   }
   // Time of resource creation.
   google.protobuf.Timestamp created_at = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
@@ -98,4 +99,19 @@ message LambdaFunctionMatcher {
   // Matches proto.workload.v1alpha1.LambdaFunctionWorkload.tags. Unset/empty
   // matches any tags.
   proto.attestation_policy.v1alpha1.APLabelSelector tags = 4 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// AgentcoreWorkloadMatcher matches AWS Bedrock AgentCore Runtime workloads
+// (proto.workload.v1alpha1.AgentcoreWorkloadWorkload) by region, runtime name, and/or the AWS
+// account it was discovered in. AND semantics across set fields, as with LambdaFunctionMatcher.
+message AgentcoreWorkloadMatcher {
+  // Matches proto.workload.v1alpha1.AgentcoreWorkloadWorkload.region. Matchers within the set are
+  // evaluated with OR semantics. Unset/empty matches any region.
+  proto.exchange_policy.v1alpha1.StringSet region = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.AgentcoreWorkloadWorkload.agent_runtime_name. Matchers within
+  // the set are evaluated with OR semantics. Unset/empty matches any runtime name.
+  proto.exchange_policy.v1alpha1.StringSet agent_runtime_name = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.AgentcoreWorkloadWorkload.cloud_account_id. Matchers within
+  // the set are evaluated with OR semantics. Unset/empty matches any cloud account.
+  proto.exchange_policy.v1alpha1.StringSet cloud_account_id = 3 [(google.api.field_behavior) = OPTIONAL];
 }

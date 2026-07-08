@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiywQKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIZCg10cnVzdF96b25lX2lkGAIgASgJQgIYARISCgpjbHVzdGVyX2lkGAMgASgJEjMKBHR5cGUYCSABKA4yJS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZFR5cGUSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASSgoPbGFtYmRhX2Z1bmN0aW9uGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZEgAEjoKDG9ic2VydmF0aW9ucxgGIAMoCzIkLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLk9ic2VydmF0aW9uEjYKEm9ic2VydmVkX3RpbWVzdGFtcBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDwoHZGVsZXRlZBgIIAEoCBIXCgpzdXBwcmVzc2VkGAogASgIQgPgQQMSGwoOdHJ1c3Rfem9uZV9pZHMYDCADKAlCA+BBAxIuCh9tYXRjaGluZ19hdHRlc3RhdGlvbl9wb2xpY3lfaWRzGA0gAygJQgUYAeBBAxI6CgppZGVudGl0aWVzGA4gAygLMiEucHJvdG8uaWRlbnRpdHkudjFhbHBoYTEuSWRlbnRpdHlCA+BBA0IKCgh3b3JrbG9hZCJGCgtPYnNlcnZhdGlvbhIQCgh0eXBlX3VybBgBIAEoCRIlCgV2YWx1ZRgCIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZSKDAgoNS3ViZXJuZXRlc1BvZBI9CghtZXRhZGF0YRgBIAEoCzIrLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YRIcChRzZXJ2aWNlX2FjY291bnRfbmFtZRgCIAEoCRIRCglub2RlX25hbWUYAyABKAkSEAoIbm9kZV91aWQYBiABKAkSQAoKY29udGFpbmVycxgEIAMoCzIsLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNDb250YWluZXISLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAi+QIKEkt1YmVybmV0ZXNNZXRhZGF0YRILCgN1aWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSRwoGbGFiZWxzGAQgAygLMjcucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhLkxhYmVsc0VudHJ5ElEKC2Fubm90YXRpb25zGAUgAygLMjwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhLkFubm90YXRpb25zRW50cnkSNgoSY3JlYXRpb25fdGltZXN0YW1wGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBGjIKEEFubm90YXRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASIyChNLdWJlcm5ldGVzQ29udGFpbmVyEgwKBG5hbWUYASABKAkSDQoFaW1hZ2UYAiABKAki+wEKFkxhbWJkYUZ1bmN0aW9uV29ya2xvYWQSFQoNZnVuY3Rpb25fbmFtZRgBIAEoCRIUCgxmdW5jdGlvbl9hcm4YAiABKAkSDgoGcmVnaW9uGAMgASgJEhQKDGlhbV9yb2xlX2FybhgEIAEoCRIYChBjbG91ZF9hY2NvdW50X2lkGAUgASgJEkcKBHRhZ3MYBiADKAsyOS5wcm90by53b3JrbG9hZC52MWFscGhhMS5MYW1iZGFGdW5jdGlvbldvcmtsb2FkLlRhZ3NFbnRyeRorCglUYWdzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASpyCgxXb3JrbG9hZFR5cGUSHQoZV09SS0xPQURfVFlQRV9VTlNQRUNJRklFRBAAEiAKHFdPUktMT0FEX1RZUEVfS1VCRVJORVRFU19QT0QQARIhCh1XT1JLTE9BRF9UWVBFX0xBTUJEQV9GVU5DVElPThACQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_identity_v1alpha1_identity]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEinQUKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIZCg10cnVzdF96b25lX2lkGAIgASgJQgIYARISCgpjbHVzdGVyX2lkGAMgASgJEjMKBHR5cGUYCSABKA4yJS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZFR5cGUSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASSgoPbGFtYmRhX2Z1bmN0aW9uGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZEgAElAKEmFnZW50Y29yZV93b3JrbG9hZBgPIAEoCzIyLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFnZW50Y29yZVdvcmtsb2FkV29ya2xvYWRIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAgSFwoKc3VwcHJlc3NlZBgKIAEoCEID4EEDEhsKDnRydXN0X3pvbmVfaWRzGAwgAygJQgPgQQMSLgofbWF0Y2hpbmdfYXR0ZXN0YXRpb25fcG9saWN5X2lkcxgNIAMoCUIFGAHgQQMSOgoKaWRlbnRpdGllcxgOIAMoCzIhLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5QgPgQQNCCgoId29ya2xvYWQiRgoLT2JzZXJ2YXRpb24SEAoIdHlwZV91cmwYASABKAkSJQoFdmFsdWUYAiABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUigwIKDUt1YmVybmV0ZXNQb2QSPQoIbWV0YWRhdGEYASABKAsyKy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGESHAoUc2VydmljZV9hY2NvdW50X25hbWUYAiABKAkSEQoJbm9kZV9uYW1lGAMgASgJEhAKCG5vZGVfdWlkGAYgASgJEkAKCmNvbnRhaW5lcnMYBCADKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzQ29udGFpbmVyEi4KCnN0YXJ0X3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIvkCChJLdWJlcm5ldGVzTWV0YWRhdGESCwoDdWlkGAEgASgJEgwKBG5hbWUYAiABKAkSEQoJbmFtZXNwYWNlGAMgASgJEkcKBmxhYmVscxgEIAMoCzI3LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5MYWJlbHNFbnRyeRJRCgthbm5vdGF0aW9ucxgFIAMoCzI8LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5Bbm5vdGF0aW9uc0VudHJ5EjYKEmNyZWF0aW9uX3RpbWVzdGFtcBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLQoLTGFiZWxzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARoyChBBbm5vdGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiMgoTS3ViZXJuZXRlc0NvbnRhaW5lchIMCgRuYW1lGAEgASgJEg0KBWltYWdlGAIgASgJIvsBChZMYW1iZGFGdW5jdGlvbldvcmtsb2FkEhUKDWZ1bmN0aW9uX25hbWUYASABKAkSFAoMZnVuY3Rpb25fYXJuGAIgASgJEg4KBnJlZ2lvbhgDIAEoCRIUCgxpYW1fcm9sZV9hcm4YBCABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgFIAEoCRJHCgR0YWdzGAYgAygLMjkucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZC5UYWdzRW50cnkaKwoJVGFnc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEirQEKGUFnZW50Y29yZVdvcmtsb2FkV29ya2xvYWQSGgoSYWdlbnRfcnVudGltZV9uYW1lGAEgASgJEhkKEWFnZW50X3J1bnRpbWVfYXJuGAIgASgJEg4KBnJlZ2lvbhgDIAEoCRIQCghyb2xlX2FybhgEIAEoCRIdChV3b3JrbG9hZF9pZGVudGl0eV9hcm4YBSABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgGIAEoCSqYAQoMV29ya2xvYWRUeXBlEh0KGVdPUktMT0FEX1RZUEVfVU5TUEVDSUZJRUQQABIgChxXT1JLTE9BRF9UWVBFX0tVQkVSTkVURVNfUE9EEAESIQodV09SS0xPQURfVFlQRV9MQU1CREFfRlVOQ1RJT04QAhIkCiBXT1JLTE9BRF9UWVBFX0FHRU5UQ09SRV9XT1JLTE9BRBADQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_identity_v1alpha1_identity]);
 
 /**
  * Workload represents a process, container, or unit of software running on an
@@ -84,6 +84,12 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
      */
     value: LambdaFunctionWorkload;
     case: "lambdaFunction";
+  } | {
+    /**
+     * @generated from field: proto.workload.v1alpha1.AgentcoreWorkloadWorkload agentcore_workload = 15;
+     */
+    value: AgentcoreWorkloadWorkload;
+    case: "agentcoreWorkload";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -120,12 +126,12 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
 
   /**
    * The trust zones this workload currently has (or could obtain) a SPIFFE identity in. For a
-   * Kubernetes pod this mirrors trust_zone_id. For a Lambda function this is computed dynamically
-   * at query time by matching the function's IAM role ARN against static AttestationPolicy
-   * selectors and following their APBindings — a single function can match policies bound to
-   * multiple trust zones, since Credex can exchange the same token for a JWT SVID in any trust
-   * zone with a matching binding. Only populated in ListWorkloads responses; workloads reported
-   * via PublishWorkloads should leave it unset.
+   * Kubernetes pod this mirrors trust_zone_id. For a Lambda function or AgentCore Runtime workload
+   * this is computed dynamically at query time by matching the workload's IAM role ARN against
+   * static AttestationPolicy selectors and following their APBindings — a single workload can
+   * match policies bound to multiple trust zones, since Credex can exchange the same token for a
+   * JWT SVID in any trust zone with a matching binding. Only populated in ListWorkloads responses;
+   * workloads reported via PublishWorkloads should leave it unset.
    *
    * @generated from field: repeated string trust_zone_ids = 12;
    */
@@ -142,15 +148,16 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
 
   /**
    * The identities this workload has (Kubernetes pod, exact match) or could obtain (Lambda
-   * function, via Credex) from a matched, trust-zone-bound AttestationPolicy. For a Kubernetes
-   * pod, only identities derived from policies bound to the pod's own cluster's trust zone are
-   * considered (kubernetes-kind, matched via namespace/pod label selectors; or static-kind,
-   * matched via k8s:* selectors per the SPIRE k8s workload attestor plugin — ns, sa, pod-uid,
-   * pod-name, node-name, pod-label, container-name, container-image; other k8s:* selector kinds
-   * cannot be verified from discovered data and are treated as non-matching). For a Lambda
-   * function, every static-kind policy bound to any trust zone is considered, matched via a
-   * credex selector on the function's IAM role ARN. Only populated in ListWorkloads responses;
-   * workloads reported via PublishWorkloads should leave it unset.
+   * function or AgentCore Runtime workload, via Credex) from a matched, trust-zone-bound
+   * AttestationPolicy. For a Kubernetes pod, only identities derived from policies bound to the
+   * pod's own cluster's trust zone are considered (kubernetes-kind, matched via namespace/pod
+   * label selectors; or static-kind, matched via k8s:* selectors per the SPIRE k8s workload
+   * attestor plugin — ns, sa, pod-uid, pod-name, node-name, pod-label, container-name,
+   * container-image; other k8s:* selector kinds cannot be verified from discovered data and are
+   * treated as non-matching). For a Lambda function or AgentCore Runtime workload, every
+   * static-kind policy bound to any trust zone is considered, matched via a credex selector on the
+   * workload's IAM role ARN. Only populated in ListWorkloads responses; workloads reported via
+   * PublishWorkloads should leave it unset.
    *
    * @generated from field: repeated proto.identity.v1alpha1.Identity identities = 14;
    */
@@ -354,6 +361,61 @@ export const LambdaFunctionWorkloadSchema: GenMessage<LambdaFunctionWorkload> = 
   messageDesc(file_proto_workload_v1alpha1_workload, 5);
 
 /**
+ * AgentcoreWorkloadWorkload contains the runtime details of an AWS Bedrock AgentCore Runtime
+ * workload as discovered by Connect's cloud resource discovery.
+ *
+ * @generated from message proto.workload.v1alpha1.AgentcoreWorkloadWorkload
+ */
+export type AgentcoreWorkloadWorkload = Message<"proto.workload.v1alpha1.AgentcoreWorkloadWorkload"> & {
+  /**
+   * @generated from field: string agent_runtime_name = 1;
+   */
+  agentRuntimeName: string;
+
+  /**
+   * @generated from field: string agent_runtime_arn = 2;
+   */
+  agentRuntimeArn: string;
+
+  /**
+   * @generated from field: string region = 3;
+   */
+  region: string;
+
+  /**
+   * The IAM role ARN used for Credex/OIDC attestation-policy matching, mirroring
+   * LambdaFunctionWorkload.iam_role_arn. See workload_identity_arn for the alternative AWS
+   * exposes for this purpose — matching uses this field until verified otherwise.
+   *
+   * @generated from field: string role_arn = 4;
+   */
+  roleArn: string;
+
+  /**
+   * AWS's dedicated workload-identity ARN for this runtime. Captured but not currently used for
+   * matching; see role_arn.
+   *
+   * @generated from field: string workload_identity_arn = 5;
+   */
+  workloadIdentityArn: string;
+
+  /**
+   * The cloud account this runtime was discovered in, for traceability back to the discovery
+   * source.
+   *
+   * @generated from field: string cloud_account_id = 6;
+   */
+  cloudAccountId: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.AgentcoreWorkloadWorkload.
+ * Use `create(AgentcoreWorkloadWorkloadSchema)` to create a new message.
+ */
+export const AgentcoreWorkloadWorkloadSchema: GenMessage<AgentcoreWorkloadWorkload> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 6);
+
+/**
  * WorkloadType enumerates the supported workload runtime types.
  *
  * @generated from enum proto.workload.v1alpha1.WorkloadType
@@ -373,6 +435,11 @@ export enum WorkloadType {
    * @generated from enum value: WORKLOAD_TYPE_LAMBDA_FUNCTION = 2;
    */
   LAMBDA_FUNCTION = 2,
+
+  /**
+   * @generated from enum value: WORKLOAD_TYPE_AGENTCORE_WORKLOAD = 3;
+   */
+  AGENTCORE_WORKLOAD = 3,
 }
 
 /**

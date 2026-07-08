@@ -63,6 +63,10 @@ message AgentcoreWorkload {
   optional string description = 7 [(google.api.field_behavior) = OPTIONAL];
   // Current status of the runtime (e.g. READY, CREATING, UPDATING).
   optional string status = 8 [(google.api.field_behavior) = OPTIONAL];
+  // ARN of the workload identity AWS associates with the runtime, distinct from role_arn —
+  // possibly what actually appears in the runtime's OIDC token sub claim (unconfirmed; role_arn
+  // is used for attestation-policy matching today, see workload.proto AgentcoreWorkloadWorkload).
+  string workload_identity_arn = 9 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // CloudFunction contains details of a GCP Cloud Function (Gen 1 or Gen 2).

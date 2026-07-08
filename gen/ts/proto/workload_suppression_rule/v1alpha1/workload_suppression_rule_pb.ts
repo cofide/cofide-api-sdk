@@ -29,7 +29,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload_suppression_rule/v1alpha1/workload_suppression_rule.proto.
  */
 export const file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule: GenFile = /*@__PURE__*/
-  fileDesc("Ckhwcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUucHJvdG8SKHByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEi7QQKF1dvcmtsb2FkU3VwcHJlc3Npb25SdWxlEg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSHwoNdHJ1c3Rfem9uZV9pZBgDIAEoCUID4EEBSAGIAQESHAoKY2x1c3Rlcl9pZBgEIAEoCUID4EEBSAKIAQESEQoEbmFtZRgFIAEoCUID4EECEh0KC2Rlc2NyaXB0aW9uGAYgASgJQgPgQQFIA4gBARIUCgdlbmFibGVkGAcgASgIQgPgQQESQQoNd29ya2xvYWRfdHlwZRgIIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZUID4EECElgKDmt1YmVybmV0ZXNfcG9kGAkgASgLMj4ucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5LdWJlcm5ldGVzUG9kTWF0Y2hlckgAEloKD2xhbWJkYV9mdW5jdGlvbhgMIAEoCzI/LnByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25NYXRjaGVySAASMwoKY3JlYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYCyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQNCCQoHbWF0Y2hlckIQCg5fdHJ1c3Rfem9uZV9pZEINCgtfY2x1c3Rlcl9pZEIOCgxfZGVzY3JpcHRpb24iogEKFEt1YmVybmV0ZXNQb2RNYXRjaGVyEkEKCW5hbWVzcGFjZRgBIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJHCgZsYWJlbHMYAiABKAsyMi5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9yQgPgQQEirwIKFUxhbWJkYUZ1bmN0aW9uTWF0Y2hlchI+CgZyZWdpb24YASABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRQoNZnVuY3Rpb25fbmFtZRgCIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJIChBjbG91ZF9hY2NvdW50X2lkGAMgASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkUKBHRhZ3MYBCABKAsyMi5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9yQgPgQQFCUlpQZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_exchange_policy_v1alpha1_exchange_policy, file_proto_workload_v1alpha1_workload]);
+  fileDesc("Ckhwcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUucHJvdG8SKHByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEizwUKF1dvcmtsb2FkU3VwcHJlc3Npb25SdWxlEg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSHwoNdHJ1c3Rfem9uZV9pZBgDIAEoCUID4EEBSAGIAQESHAoKY2x1c3Rlcl9pZBgEIAEoCUID4EEBSAKIAQESEQoEbmFtZRgFIAEoCUID4EECEh0KC2Rlc2NyaXB0aW9uGAYgASgJQgPgQQFIA4gBARIUCgdlbmFibGVkGAcgASgIQgPgQQESQQoNd29ya2xvYWRfdHlwZRgIIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZUID4EECElgKDmt1YmVybmV0ZXNfcG9kGAkgASgLMj4ucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5LdWJlcm5ldGVzUG9kTWF0Y2hlckgAEloKD2xhbWJkYV9mdW5jdGlvbhgMIAEoCzI/LnByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25NYXRjaGVySAASYAoSYWdlbnRjb3JlX3dvcmtsb2FkGA0gASgLMkIucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5BZ2VudGNvcmVXb3JrbG9hZE1hdGNoZXJIABIzCgpjcmVhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgLIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IJCgdtYXRjaGVyQhAKDl90cnVzdF96b25lX2lkQg0KC19jbHVzdGVyX2lkQg4KDF9kZXNjcmlwdGlvbiKiAQoUS3ViZXJuZXRlc1BvZE1hdGNoZXISQQoJbmFtZXNwYWNlGAEgASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkcKBmxhYmVscxgCIAEoCzIyLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUExhYmVsU2VsZWN0b3JCA+BBASKvAgoVTGFtYmRhRnVuY3Rpb25NYXRjaGVyEj4KBnJlZ2lvbhgBIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJFCg1mdW5jdGlvbl9uYW1lGAIgASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkgKEGNsb3VkX2FjY291bnRfaWQYAyABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRQoEdGFncxgEIAEoCzIyLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUExhYmVsU2VsZWN0b3JCA+BBASLwAQoYQWdlbnRjb3JlV29ya2xvYWRNYXRjaGVyEj4KBnJlZ2lvbhgBIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJKChJhZ2VudF9ydW50aW1lX25hbWUYAiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESSAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBAUJSWlBnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_attestation_policy_v1alpha1_attestation_policy, file_proto_exchange_policy_v1alpha1_exchange_policy, file_proto_workload_v1alpha1_workload]);
 
 /**
  * WorkloadSuppressionRule defines a rule that hides matching workloads from
@@ -120,6 +120,12 @@ export type WorkloadSuppressionRule = Message<"proto.workload_suppression_rule.v
      */
     value: LambdaFunctionMatcher;
     case: "lambdaFunction";
+  } | {
+    /**
+     * @generated from field: proto.workload_suppression_rule.v1alpha1.AgentcoreWorkloadMatcher agentcore_workload = 13;
+     */
+    value: AgentcoreWorkloadMatcher;
+    case: "agentcoreWorkload";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -232,4 +238,44 @@ export type LambdaFunctionMatcher = Message<"proto.workload_suppression_rule.v1a
  */
 export const LambdaFunctionMatcherSchema: GenMessage<LambdaFunctionMatcher> = /*@__PURE__*/
   messageDesc(file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule, 2);
+
+/**
+ * AgentcoreWorkloadMatcher matches AWS Bedrock AgentCore Runtime workloads
+ * (proto.workload.v1alpha1.AgentcoreWorkloadWorkload) by region, runtime name, and/or the AWS
+ * account it was discovered in. AND semantics across set fields, as with LambdaFunctionMatcher.
+ *
+ * @generated from message proto.workload_suppression_rule.v1alpha1.AgentcoreWorkloadMatcher
+ */
+export type AgentcoreWorkloadMatcher = Message<"proto.workload_suppression_rule.v1alpha1.AgentcoreWorkloadMatcher"> & {
+  /**
+   * Matches proto.workload.v1alpha1.AgentcoreWorkloadWorkload.region. Matchers within the set are
+   * evaluated with OR semantics. Unset/empty matches any region.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.StringSet region = 1;
+   */
+  region?: StringSet;
+
+  /**
+   * Matches proto.workload.v1alpha1.AgentcoreWorkloadWorkload.agent_runtime_name. Matchers within
+   * the set are evaluated with OR semantics. Unset/empty matches any runtime name.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.StringSet agent_runtime_name = 2;
+   */
+  agentRuntimeName?: StringSet;
+
+  /**
+   * Matches proto.workload.v1alpha1.AgentcoreWorkloadWorkload.cloud_account_id. Matchers within
+   * the set are evaluated with OR semantics. Unset/empty matches any cloud account.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.StringSet cloud_account_id = 3;
+   */
+  cloudAccountId?: StringSet;
+};
+
+/**
+ * Describes the message proto.workload_suppression_rule.v1alpha1.AgentcoreWorkloadMatcher.
+ * Use `create(AgentcoreWorkloadMatcherSchema)` to create a new message.
+ */
+export const AgentcoreWorkloadMatcherSchema: GenMessage<AgentcoreWorkloadMatcher> = /*@__PURE__*/
+  messageDesc(file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule, 3);
 
