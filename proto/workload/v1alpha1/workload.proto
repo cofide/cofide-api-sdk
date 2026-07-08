@@ -56,6 +56,18 @@ message Workload {
   // zone with a matching binding. Only populated in ListWorkloads responses; workloads reported
   // via PublishWorkloads should leave it unset.
   repeated string trust_zone_ids = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The IDs of AttestationPolicy objects that currently match this workload's discovered
+  // attributes AND are bound to a trust zone (i.e. would actually grant it a SPIFFE identity) —
+  // this is "why" the workload shows up in trust_zone_ids. For a Kubernetes pod, only policies
+  // bound to the pod's own cluster's trust zone are considered (kubernetes-kind, matched via
+  // namespace/pod label selectors; or static-kind, matched via k8s:* selectors per the SPIRE k8s
+  // workload attestor plugin — ns, sa, pod-uid, pod-name, node-name, pod-label, container-name,
+  // container-image; other k8s:* selector kinds cannot be verified from discovered data and are
+  // treated as non-matching). For a Lambda function, every static-kind policy bound to any trust
+  // zone is considered, matched via a credex selector on the function's IAM role ARN. Only
+  // populated in ListWorkloads responses; workloads reported via PublishWorkloads should leave it
+  // unset.
+  repeated string matching_attestation_policy_ids = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // WorkloadType enumerates the supported workload runtime types.
