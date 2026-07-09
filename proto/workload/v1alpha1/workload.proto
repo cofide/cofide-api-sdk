@@ -98,6 +98,23 @@ message ExchangePolicyEligibility {
   proto.exchange_policy.v1alpha1.ExchangePolicyAction action = 4;
   // The identity Credex would mint on a successful exchange. Only set when action is ALLOW.
   string outbound_identity = 5;
+  // Whether this workload's identity matched as the exchange's subject (the token being
+  // exchanged) or as its actor (the delegating/on-behalf-of party) — these are materially
+  // different capabilities and are surfaced separately.
+  ExchangePolicyEligibilityRole role = 6;
+  // The identity that satisfied this match: either the workload's native cloud-issued IAM role
+  // ARN (e.g. "arn:aws:iam::...:role/..."), or a SPIFFE ID from one of the workload's granted
+  // identities (see Workload.identities). The two are visually distinguishable by format.
+  string matched_identity = 7;
+}
+
+// ExchangePolicyEligibilityRole distinguishes which side of an RFC 8693 token exchange a
+// workload's identity matched: the subject (the token being exchanged) or the actor (the
+// delegating/on-behalf-of party asserting the exchange on the subject's behalf).
+enum ExchangePolicyEligibilityRole {
+  EXCHANGE_POLICY_ELIGIBILITY_ROLE_UNSPECIFIED = 0;
+  EXCHANGE_POLICY_ELIGIBILITY_ROLE_SUBJECT = 1;
+  EXCHANGE_POLICY_ELIGIBILITY_ROLE_ACTOR = 2;
 }
 
 // WorkloadType enumerates the supported workload runtime types.
