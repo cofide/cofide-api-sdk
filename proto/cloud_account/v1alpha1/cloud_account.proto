@@ -108,4 +108,12 @@ message CloudAccount {
   google.protobuf.Timestamp last_updated_at = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
   // When true, discovery is suspended for this account and its resources are hidden from findings.
   bool suppressed = 9 [(google.api.field_behavior) = OPTIONAL];
+  // Issuer URL for this AWS account's outbound web identity federation feature (from IAM's
+  // GetOutboundWebIdentityFederationInfo), used to match Lambda/AgentCore Runtime workloads'
+  // native OIDC tokens against ExchangePolicy subject_issuer conditions. Populated
+  // opportunistically during Lambda/AgentCore discovery; empty if not yet discovered. AWS-only.
+  string outbound_web_identity_issuer = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Whether AWS outbound web identity federation is currently enabled for this account, per the
+  // last successful discovery check. AWS-only.
+  bool outbound_web_identity_enabled = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

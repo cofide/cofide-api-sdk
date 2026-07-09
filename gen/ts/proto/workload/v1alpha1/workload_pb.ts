@@ -15,6 +15,8 @@ import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Timestamp, Value } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { ExchangePolicyAction } from "../../exchange_policy/v1alpha1/exchange_policy_pb";
+import { file_proto_exchange_policy_v1alpha1_exchange_policy } from "../../exchange_policy/v1alpha1/exchange_policy_pb";
 import type { Identity } from "../../identity/v1alpha1/identity_pb";
 import { file_proto_identity_v1alpha1_identity } from "../../identity/v1alpha1/identity_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -23,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEinQUKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIZCg10cnVzdF96b25lX2lkGAIgASgJQgIYARISCgpjbHVzdGVyX2lkGAMgASgJEjMKBHR5cGUYCSABKA4yJS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZFR5cGUSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASSgoPbGFtYmRhX2Z1bmN0aW9uGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZEgAElAKEmFnZW50Y29yZV93b3JrbG9hZBgPIAEoCzIyLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFnZW50Y29yZVdvcmtsb2FkV29ya2xvYWRIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAgSFwoKc3VwcHJlc3NlZBgKIAEoCEID4EEDEhsKDnRydXN0X3pvbmVfaWRzGAwgAygJQgPgQQMSLgofbWF0Y2hpbmdfYXR0ZXN0YXRpb25fcG9saWN5X2lkcxgNIAMoCUIFGAHgQQMSOgoKaWRlbnRpdGllcxgOIAMoCzIhLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5QgPgQQNCCgoId29ya2xvYWQiRgoLT2JzZXJ2YXRpb24SEAoIdHlwZV91cmwYASABKAkSJQoFdmFsdWUYAiABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUigwIKDUt1YmVybmV0ZXNQb2QSPQoIbWV0YWRhdGEYASABKAsyKy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGESHAoUc2VydmljZV9hY2NvdW50X25hbWUYAiABKAkSEQoJbm9kZV9uYW1lGAMgASgJEhAKCG5vZGVfdWlkGAYgASgJEkAKCmNvbnRhaW5lcnMYBCADKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzQ29udGFpbmVyEi4KCnN0YXJ0X3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIvkCChJLdWJlcm5ldGVzTWV0YWRhdGESCwoDdWlkGAEgASgJEgwKBG5hbWUYAiABKAkSEQoJbmFtZXNwYWNlGAMgASgJEkcKBmxhYmVscxgEIAMoCzI3LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5MYWJlbHNFbnRyeRJRCgthbm5vdGF0aW9ucxgFIAMoCzI8LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5Bbm5vdGF0aW9uc0VudHJ5EjYKEmNyZWF0aW9uX3RpbWVzdGFtcBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLQoLTGFiZWxzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARoyChBBbm5vdGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiMgoTS3ViZXJuZXRlc0NvbnRhaW5lchIMCgRuYW1lGAEgASgJEg0KBWltYWdlGAIgASgJIvsBChZMYW1iZGFGdW5jdGlvbldvcmtsb2FkEhUKDWZ1bmN0aW9uX25hbWUYASABKAkSFAoMZnVuY3Rpb25fYXJuGAIgASgJEg4KBnJlZ2lvbhgDIAEoCRIUCgxpYW1fcm9sZV9hcm4YBCABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgFIAEoCRJHCgR0YWdzGAYgAygLMjkucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZC5UYWdzRW50cnkaKwoJVGFnc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEirQEKGUFnZW50Y29yZVdvcmtsb2FkV29ya2xvYWQSGgoSYWdlbnRfcnVudGltZV9uYW1lGAEgASgJEhkKEWFnZW50X3J1bnRpbWVfYXJuGAIgASgJEg4KBnJlZ2lvbhgDIAEoCRIQCghyb2xlX2FybhgEIAEoCRIdChV3b3JrbG9hZF9pZGVudGl0eV9hcm4YBSABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgGIAEoCSqYAQoMV29ya2xvYWRUeXBlEh0KGVdPUktMT0FEX1RZUEVfVU5TUEVDSUZJRUQQABIgChxXT1JLTE9BRF9UWVBFX0tVQkVSTkVURVNfUE9EEAESIQodV09SS0xPQURfVFlQRV9MQU1CREFfRlVOQ1RJT04QAhIkCiBXT1JLTE9BRF9UWVBFX0FHRU5UQ09SRV9XT1JLTE9BRBADQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_identity_v1alpha1_identity]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi/QUKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIZCg10cnVzdF96b25lX2lkGAIgASgJQgIYARISCgpjbHVzdGVyX2lkGAMgASgJEjMKBHR5cGUYCSABKA4yJS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZFR5cGUSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASSgoPbGFtYmRhX2Z1bmN0aW9uGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZEgAElAKEmFnZW50Y29yZV93b3JrbG9hZBgPIAEoCzIyLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFnZW50Y29yZVdvcmtsb2FkV29ya2xvYWRIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAgSFwoKc3VwcHJlc3NlZBgKIAEoCEID4EEDEhsKDnRydXN0X3pvbmVfaWRzGAwgAygJQgPgQQMSLgofbWF0Y2hpbmdfYXR0ZXN0YXRpb25fcG9saWN5X2lkcxgNIAMoCUIFGAHgQQMSOgoKaWRlbnRpdGllcxgOIAMoCzIhLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5QgPgQQMSXgodZXhjaGFuZ2VfcG9saWN5X2VsaWdpYmlsaXRpZXMYECADKAsyMi5wcm90by53b3JrbG9hZC52MWFscGhhMS5FeGNoYW5nZVBvbGljeUVsaWdpYmlsaXR5QgPgQQNCCgoId29ya2xvYWQizQEKGUV4Y2hhbmdlUG9saWN5RWxpZ2liaWxpdHkSGgoSZXhjaGFuZ2VfcG9saWN5X2lkGAEgASgJEhwKFGV4Y2hhbmdlX3BvbGljeV9uYW1lGAIgASgJEhUKDXRydXN0X3pvbmVfaWQYAyABKAkSRAoGYWN0aW9uGAQgASgOMjQucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4Y2hhbmdlUG9saWN5QWN0aW9uEhkKEW91dGJvdW5kX2lkZW50aXR5GAUgASgJIkYKC09ic2VydmF0aW9uEhAKCHR5cGVfdXJsGAEgASgJEiUKBXZhbHVlGAIgASgLMhYuZ29vZ2xlLnByb3RvYnVmLlZhbHVlIoMCCg1LdWJlcm5ldGVzUG9kEj0KCG1ldGFkYXRhGAEgASgLMisucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJEhEKCW5vZGVfbmFtZRgDIAEoCRIQCghub2RlX3VpZBgGIAEoCRJACgpjb250YWluZXJzGAQgAygLMiwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc0NvbnRhaW5lchIuCgpzdGFydF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCL5AgoSS3ViZXJuZXRlc01ldGFkYXRhEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRJHCgZsYWJlbHMYBCADKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuTGFiZWxzRW50cnkSUQoLYW5ub3RhdGlvbnMYBSADKAsyPC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuQW5ub3RhdGlvbnNFbnRyeRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIjIKE0t1YmVybmV0ZXNDb250YWluZXISDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSL7AQoWTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZBIVCg1mdW5jdGlvbl9uYW1lGAEgASgJEhQKDGZ1bmN0aW9uX2FybhgCIAEoCRIOCgZyZWdpb24YAyABKAkSFAoMaWFtX3JvbGVfYXJuGAQgASgJEhgKEGNsb3VkX2FjY291bnRfaWQYBSABKAkSRwoEdGFncxgGIAMoCzI5LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkxhbWJkYUZ1bmN0aW9uV29ya2xvYWQuVGFnc0VudHJ5GisKCVRhZ3NFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq0BChlBZ2VudGNvcmVXb3JrbG9hZFdvcmtsb2FkEhoKEmFnZW50X3J1bnRpbWVfbmFtZRgBIAEoCRIZChFhZ2VudF9ydW50aW1lX2FybhgCIAEoCRIOCgZyZWdpb24YAyABKAkSEAoIcm9sZV9hcm4YBCABKAkSHQoVd29ya2xvYWRfaWRlbnRpdHlfYXJuGAUgASgJEhgKEGNsb3VkX2FjY291bnRfaWQYBiABKAkqmAEKDFdvcmtsb2FkVHlwZRIdChlXT1JLTE9BRF9UWVBFX1VOU1BFQ0lGSUVEEAASIAocV09SS0xPQURfVFlQRV9LVUJFUk5FVEVTX1BPRBABEiEKHVdPUktMT0FEX1RZUEVfTEFNQkRBX0ZVTkNUSU9OEAISJAogV09SS0xPQURfVFlQRV9BR0VOVENPUkVfV09SS0xPQUQQA0JBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_exchange_policy_v1alpha1_exchange_policy, file_proto_identity_v1alpha1_identity]);
 
 /**
  * Workload represents a process, container, or unit of software running on an
@@ -162,6 +164,19 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
    * @generated from field: repeated proto.identity.v1alpha1.Identity identities = 14;
    */
   identities: Identity[];
+
+  /**
+   * ExchangePolicy records matching this workload's native cloud-issued identity token
+   * (independently of any SPIFFE identity granted via AttestationPolicy/Credex JWT-SVID
+   * delegation — see identities), computed dynamically at query time by matching the workload's
+   * IAM role ARN and its cloud account's outbound web identity federation issuer against each
+   * policy's subject_identity/subject_issuer. Only populated in ListWorkloads responses for
+   * Lambda function and AgentCore Runtime workloads; workloads reported via PublishWorkloads
+   * should leave it unset.
+   *
+   * @generated from field: repeated proto.workload.v1alpha1.ExchangePolicyEligibility exchange_policy_eligibilities = 16;
+   */
+  exchangePolicyEligibilities: ExchangePolicyEligibility[];
 };
 
 /**
@@ -170,6 +185,50 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
  */
 export const WorkloadSchema: GenMessage<Workload> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload, 0);
+
+/**
+ * ExchangePolicyEligibility describes an ExchangePolicy that matches a Lambda function's or
+ * AgentCore Runtime workload's native cloud-issued identity token via Credex's RFC 8693 OAuth
+ * token exchange. This is a separate mechanism from SPIFFE identity issuance: a successful
+ * exchange yields an OAuth access token (outbound_identity), not a SPIFFE SVID.
+ *
+ * @generated from message proto.workload.v1alpha1.ExchangePolicyEligibility
+ */
+export type ExchangePolicyEligibility = Message<"proto.workload.v1alpha1.ExchangePolicyEligibility"> & {
+  /**
+   * @generated from field: string exchange_policy_id = 1;
+   */
+  exchangePolicyId: string;
+
+  /**
+   * @generated from field: string exchange_policy_name = 2;
+   */
+  exchangePolicyName: string;
+
+  /**
+   * @generated from field: string trust_zone_id = 3;
+   */
+  trustZoneId: string;
+
+  /**
+   * @generated from field: proto.exchange_policy.v1alpha1.ExchangePolicyAction action = 4;
+   */
+  action: ExchangePolicyAction;
+
+  /**
+   * The identity Credex would mint on a successful exchange. Only set when action is ALLOW.
+   *
+   * @generated from field: string outbound_identity = 5;
+   */
+  outboundIdentity: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.ExchangePolicyEligibility.
+ * Use `create(ExchangePolicyEligibilitySchema)` to create a new message.
+ */
+export const ExchangePolicyEligibilitySchema: GenMessage<ExchangePolicyEligibility> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 1);
 
 /**
  * Observation is a structured data point describing the security posture of
@@ -194,7 +253,7 @@ export type Observation = Message<"proto.workload.v1alpha1.Observation"> & {
  * Use `create(ObservationSchema)` to create a new message.
  */
 export const ObservationSchema: GenMessage<Observation> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 1);
+  messageDesc(file_proto_workload_v1alpha1_workload, 2);
 
 /**
  * KubernetesPod contains the runtime details of a Kubernetes pod workload
@@ -239,7 +298,7 @@ export type KubernetesPod = Message<"proto.workload.v1alpha1.KubernetesPod"> & {
  * Use `create(KubernetesPodSchema)` to create a new message.
  */
 export const KubernetesPodSchema: GenMessage<KubernetesPod> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 2);
+  messageDesc(file_proto_workload_v1alpha1_workload, 3);
 
 /**
  * KubernetesMetadata contains standard Kubernetes object metadata for a workload.
@@ -283,7 +342,7 @@ export type KubernetesMetadata = Message<"proto.workload.v1alpha1.KubernetesMeta
  * Use `create(KubernetesMetadataSchema)` to create a new message.
  */
 export const KubernetesMetadataSchema: GenMessage<KubernetesMetadata> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 3);
+  messageDesc(file_proto_workload_v1alpha1_workload, 4);
 
 /**
  * KubernetesContainer describes a single container within a Kubernetes pod workload.
@@ -307,7 +366,7 @@ export type KubernetesContainer = Message<"proto.workload.v1alpha1.KubernetesCon
  * Use `create(KubernetesContainerSchema)` to create a new message.
  */
 export const KubernetesContainerSchema: GenMessage<KubernetesContainer> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 4);
+  messageDesc(file_proto_workload_v1alpha1_workload, 5);
 
 /**
  * LambdaFunctionWorkload contains the runtime details of an AWS Lambda function
@@ -358,7 +417,7 @@ export type LambdaFunctionWorkload = Message<"proto.workload.v1alpha1.LambdaFunc
  * Use `create(LambdaFunctionWorkloadSchema)` to create a new message.
  */
 export const LambdaFunctionWorkloadSchema: GenMessage<LambdaFunctionWorkload> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 5);
+  messageDesc(file_proto_workload_v1alpha1_workload, 6);
 
 /**
  * AgentcoreWorkloadWorkload contains the runtime details of an AWS Bedrock AgentCore Runtime
@@ -413,7 +472,7 @@ export type AgentcoreWorkloadWorkload = Message<"proto.workload.v1alpha1.Agentco
  * Use `create(AgentcoreWorkloadWorkloadSchema)` to create a new message.
  */
 export const AgentcoreWorkloadWorkloadSchema: GenMessage<AgentcoreWorkloadWorkload> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 6);
+  messageDesc(file_proto_workload_v1alpha1_workload, 7);
 
 /**
  * WorkloadType enumerates the supported workload runtime types.

@@ -12,6 +12,7 @@ package proto.workload.v1alpha1;
 import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "proto/exchange_policy/v1alpha1/exchange_policy.proto";
 import "proto/identity/v1alpha1/identity.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1";
@@ -76,6 +77,27 @@ message Workload {
   // workload's IAM role ARN. Only populated in ListWorkloads responses; workloads reported via
   // PublishWorkloads should leave it unset.
   repeated proto.identity.v1alpha1.Identity identities = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // ExchangePolicy records matching this workload's native cloud-issued identity token
+  // (independently of any SPIFFE identity granted via AttestationPolicy/Credex JWT-SVID
+  // delegation — see identities), computed dynamically at query time by matching the workload's
+  // IAM role ARN and its cloud account's outbound web identity federation issuer against each
+  // policy's subject_identity/subject_issuer. Only populated in ListWorkloads responses for
+  // Lambda function and AgentCore Runtime workloads; workloads reported via PublishWorkloads
+  // should leave it unset.
+  repeated ExchangePolicyEligibility exchange_policy_eligibilities = 16 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// ExchangePolicyEligibility describes an ExchangePolicy that matches a Lambda function's or
+// AgentCore Runtime workload's native cloud-issued identity token via Credex's RFC 8693 OAuth
+// token exchange. This is a separate mechanism from SPIFFE identity issuance: a successful
+// exchange yields an OAuth access token (outbound_identity), not a SPIFFE SVID.
+message ExchangePolicyEligibility {
+  string exchange_policy_id = 1;
+  string exchange_policy_name = 2;
+  string trust_zone_id = 3;
+  proto.exchange_policy.v1alpha1.ExchangePolicyAction action = 4;
+  // The identity Credex would mint on a successful exchange. Only set when action is ALLOW.
+  string outbound_identity = 5;
 }
 
 // WorkloadType enumerates the supported workload runtime types.
