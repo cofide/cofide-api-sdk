@@ -38,6 +38,8 @@ message Workload {
     KubernetesPod kubernetes_pod = 5;
     LambdaFunctionWorkload lambda_function = 11;
     AgentcoreWorkloadWorkload agentcore_workload = 15;
+    DockerContainerWorkload docker_container = 17;
+    SystemdServiceWorkload systemd_service = 18;
   }
   // Security posture observations.
   repeated Observation observations = 6;
@@ -123,6 +125,8 @@ enum WorkloadType {
   WORKLOAD_TYPE_KUBERNETES_POD = 1;
   WORKLOAD_TYPE_LAMBDA_FUNCTION = 2;
   WORKLOAD_TYPE_AGENTCORE_WORKLOAD = 3;
+  WORKLOAD_TYPE_DOCKER_CONTAINER = 4;
+  WORKLOAD_TYPE_SYSTEMD_SERVICE = 5;
 }
 
 // Observation is a structured data point describing the security posture of
@@ -190,4 +194,39 @@ message AgentcoreWorkloadWorkload {
   // The cloud account this runtime was discovered in, for traceability back to the discovery
   // source.
   string cloud_account_id = 6;
+}
+
+// VMHost identifies the VM or bare-metal host a Docker container or systemd service workload
+// runs on, mirroring KubernetesPod's node_name/node_uid and Lambda/AgentCore's cloud_account_id.
+message VMHost {
+  string hostname = 1;
+  // The AWS EC2 instance ID, obtained via IMDSv2. Empty for non-EC2 hosts or if unreachable.
+  string ec2_instance_id = 2;
+  // The SPIFFE ID of the SPIRE agent running on this host, for traceability back to the
+  // attesting node.
+  string spire_agent_id = 3;
+}
+
+// DockerContainerWorkload contains the runtime details of a Docker container workload as
+// discovered by a Cofide node observer running alongside the SPIRE agent on the host.
+message DockerContainerWorkload {
+  VMHost host = 1;
+  // The full 64-character container ID.
+  string container_id = 2;
+  string name = 3;
+  string image = 4;
+  string image_digest = 5;
+  map<string, string> labels = 6;
+  google.protobuf.Timestamp created_timestamp = 7;
+  string state = 8;
+}
+
+// SystemdServiceWorkload contains the runtime details of a systemd service workload as
+// discovered by a Cofide node observer running alongside the SPIRE agent on the host.
+message SystemdServiceWorkload {
+  VMHost host = 1;
+  string unit_name = 2;
+  string active_state = 3;
+  uint32 main_pid = 4;
+  string fragment_path = 5;
 }

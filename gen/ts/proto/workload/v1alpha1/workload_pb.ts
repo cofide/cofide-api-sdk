@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi/QUKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIZCg10cnVzdF96b25lX2lkGAIgASgJQgIYARISCgpjbHVzdGVyX2lkGAMgASgJEjMKBHR5cGUYCSABKA4yJS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZFR5cGUSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASSgoPbGFtYmRhX2Z1bmN0aW9uGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZEgAElAKEmFnZW50Y29yZV93b3JrbG9hZBgPIAEoCzIyLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFnZW50Y29yZVdvcmtsb2FkV29ya2xvYWRIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAgSFwoKc3VwcHJlc3NlZBgKIAEoCEID4EEDEhsKDnRydXN0X3pvbmVfaWRzGAwgAygJQgPgQQMSLgofbWF0Y2hpbmdfYXR0ZXN0YXRpb25fcG9saWN5X2lkcxgNIAMoCUIFGAHgQQMSOgoKaWRlbnRpdGllcxgOIAMoCzIhLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5QgPgQQMSXgodZXhjaGFuZ2VfcG9saWN5X2VsaWdpYmlsaXRpZXMYECADKAsyMi5wcm90by53b3JrbG9hZC52MWFscGhhMS5FeGNoYW5nZVBvbGljeUVsaWdpYmlsaXR5QgPgQQNCCgoId29ya2xvYWQirQIKGUV4Y2hhbmdlUG9saWN5RWxpZ2liaWxpdHkSGgoSZXhjaGFuZ2VfcG9saWN5X2lkGAEgASgJEhwKFGV4Y2hhbmdlX3BvbGljeV9uYW1lGAIgASgJEhUKDXRydXN0X3pvbmVfaWQYAyABKAkSRAoGYWN0aW9uGAQgASgOMjQucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLkV4Y2hhbmdlUG9saWN5QWN0aW9uEhkKEW91dGJvdW5kX2lkZW50aXR5GAUgASgJEkQKBHJvbGUYBiABKA4yNi5wcm90by53b3JrbG9hZC52MWFscGhhMS5FeGNoYW5nZVBvbGljeUVsaWdpYmlsaXR5Um9sZRIYChBtYXRjaGVkX2lkZW50aXR5GAcgASgJIkYKC09ic2VydmF0aW9uEhAKCHR5cGVfdXJsGAEgASgJEiUKBXZhbHVlGAIgASgLMhYuZ29vZ2xlLnByb3RvYnVmLlZhbHVlIoMCCg1LdWJlcm5ldGVzUG9kEj0KCG1ldGFkYXRhGAEgASgLMisucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJEhEKCW5vZGVfbmFtZRgDIAEoCRIQCghub2RlX3VpZBgGIAEoCRJACgpjb250YWluZXJzGAQgAygLMiwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc0NvbnRhaW5lchIuCgpzdGFydF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCL5AgoSS3ViZXJuZXRlc01ldGFkYXRhEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRJHCgZsYWJlbHMYBCADKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuTGFiZWxzRW50cnkSUQoLYW5ub3RhdGlvbnMYBSADKAsyPC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuQW5ub3RhdGlvbnNFbnRyeRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIjIKE0t1YmVybmV0ZXNDb250YWluZXISDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSL7AQoWTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZBIVCg1mdW5jdGlvbl9uYW1lGAEgASgJEhQKDGZ1bmN0aW9uX2FybhgCIAEoCRIOCgZyZWdpb24YAyABKAkSFAoMaWFtX3JvbGVfYXJuGAQgASgJEhgKEGNsb3VkX2FjY291bnRfaWQYBSABKAkSRwoEdGFncxgGIAMoCzI5LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkxhbWJkYUZ1bmN0aW9uV29ya2xvYWQuVGFnc0VudHJ5GisKCVRhZ3NFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq0BChlBZ2VudGNvcmVXb3JrbG9hZFdvcmtsb2FkEhoKEmFnZW50X3J1bnRpbWVfbmFtZRgBIAEoCRIZChFhZ2VudF9ydW50aW1lX2FybhgCIAEoCRIOCgZyZWdpb24YAyABKAkSEAoIcm9sZV9hcm4YBCABKAkSHQoVd29ya2xvYWRfaWRlbnRpdHlfYXJuGAUgASgJEhgKEGNsb3VkX2FjY291bnRfaWQYBiABKAkqqwEKHUV4Y2hhbmdlUG9saWN5RWxpZ2liaWxpdHlSb2xlEjAKLEVYQ0hBTkdFX1BPTElDWV9FTElHSUJJTElUWV9ST0xFX1VOU1BFQ0lGSUVEEAASLAooRVhDSEFOR0VfUE9MSUNZX0VMSUdJQklMSVRZX1JPTEVfU1VCSkVDVBABEioKJkVYQ0hBTkdFX1BPTElDWV9FTElHSUJJTElUWV9ST0xFX0FDVE9SEAIqmAEKDFdvcmtsb2FkVHlwZRIdChlXT1JLTE9BRF9UWVBFX1VOU1BFQ0lGSUVEEAASIAocV09SS0xPQURfVFlQRV9LVUJFUk5FVEVTX1BPRBABEiEKHVdPUktMT0FEX1RZUEVfTEFNQkRBX0ZVTkNUSU9OEAISJAogV09SS0xPQURfVFlQRV9BR0VOVENPUkVfV09SS0xPQUQQA0JBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_exchange_policy_v1alpha1_exchange_policy, file_proto_identity_v1alpha1_identity]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEilwcKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIZCg10cnVzdF96b25lX2lkGAIgASgJQgIYARISCgpjbHVzdGVyX2lkGAMgASgJEjMKBHR5cGUYCSABKA4yJS5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZFR5cGUSQAoOa3ViZXJuZXRlc19wb2QYBSABKAsyJi5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzUG9kSAASSgoPbGFtYmRhX2Z1bmN0aW9uGAsgASgLMi8ucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuTGFtYmRhRnVuY3Rpb25Xb3JrbG9hZEgAElAKEmFnZW50Y29yZV93b3JrbG9hZBgPIAEoCzIyLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFnZW50Y29yZVdvcmtsb2FkV29ya2xvYWRIABJMChBkb2NrZXJfY29udGFpbmVyGBEgASgLMjAucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuRG9ja2VyQ29udGFpbmVyV29ya2xvYWRIABJKCg9zeXN0ZW1kX3NlcnZpY2UYEiABKAsyLy5wcm90by53b3JrbG9hZC52MWFscGhhMS5TeXN0ZW1kU2VydmljZVdvcmtsb2FkSAASOgoMb2JzZXJ2YXRpb25zGAYgAygLMiQucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuT2JzZXJ2YXRpb24SNgoSb2JzZXJ2ZWRfdGltZXN0YW1wGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIPCgdkZWxldGVkGAggASgIEhcKCnN1cHByZXNzZWQYCiABKAhCA+BBAxIbCg50cnVzdF96b25lX2lkcxgMIAMoCUID4EEDEi4KH21hdGNoaW5nX2F0dGVzdGF0aW9uX3BvbGljeV9pZHMYDSADKAlCBRgB4EEDEjoKCmlkZW50aXRpZXMYDiADKAsyIS5wcm90by5pZGVudGl0eS52MWFscGhhMS5JZGVudGl0eUID4EEDEl4KHWV4Y2hhbmdlX3BvbGljeV9lbGlnaWJpbGl0aWVzGBAgAygLMjIucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lFbGlnaWJpbGl0eUID4EEDQgoKCHdvcmtsb2FkIq0CChlFeGNoYW5nZVBvbGljeUVsaWdpYmlsaXR5EhoKEmV4Y2hhbmdlX3BvbGljeV9pZBgBIAEoCRIcChRleGNoYW5nZV9wb2xpY3lfbmFtZRgCIAEoCRIVCg10cnVzdF96b25lX2lkGAMgASgJEkQKBmFjdGlvbhgEIAEoDjI0LnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeGNoYW5nZVBvbGljeUFjdGlvbhIZChFvdXRib3VuZF9pZGVudGl0eRgFIAEoCRJECgRyb2xlGAYgASgOMjYucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lFbGlnaWJpbGl0eVJvbGUSGAoQbWF0Y2hlZF9pZGVudGl0eRgHIAEoCSJGCgtPYnNlcnZhdGlvbhIQCgh0eXBlX3VybBgBIAEoCRIlCgV2YWx1ZRgCIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZSKDAgoNS3ViZXJuZXRlc1BvZBI9CghtZXRhZGF0YRgBIAEoCzIrLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YRIcChRzZXJ2aWNlX2FjY291bnRfbmFtZRgCIAEoCRIRCglub2RlX25hbWUYAyABKAkSEAoIbm9kZV91aWQYBiABKAkSQAoKY29udGFpbmVycxgEIAMoCzIsLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNDb250YWluZXISLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAi+QIKEkt1YmVybmV0ZXNNZXRhZGF0YRILCgN1aWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSRwoGbGFiZWxzGAQgAygLMjcucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhLkxhYmVsc0VudHJ5ElEKC2Fubm90YXRpb25zGAUgAygLMjwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhLkFubm90YXRpb25zRW50cnkSNgoSY3JlYXRpb25fdGltZXN0YW1wGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBGjIKEEFubm90YXRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASIyChNLdWJlcm5ldGVzQ29udGFpbmVyEgwKBG5hbWUYASABKAkSDQoFaW1hZ2UYAiABKAki+wEKFkxhbWJkYUZ1bmN0aW9uV29ya2xvYWQSFQoNZnVuY3Rpb25fbmFtZRgBIAEoCRIUCgxmdW5jdGlvbl9hcm4YAiABKAkSDgoGcmVnaW9uGAMgASgJEhQKDGlhbV9yb2xlX2FybhgEIAEoCRIYChBjbG91ZF9hY2NvdW50X2lkGAUgASgJEkcKBHRhZ3MYBiADKAsyOS5wcm90by53b3JrbG9hZC52MWFscGhhMS5MYW1iZGFGdW5jdGlvbldvcmtsb2FkLlRhZ3NFbnRyeRorCglUYWdzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASKtAQoZQWdlbnRjb3JlV29ya2xvYWRXb3JrbG9hZBIaChJhZ2VudF9ydW50aW1lX25hbWUYASABKAkSGQoRYWdlbnRfcnVudGltZV9hcm4YAiABKAkSDgoGcmVnaW9uGAMgASgJEhAKCHJvbGVfYXJuGAQgASgJEh0KFXdvcmtsb2FkX2lkZW50aXR5X2FybhgFIAEoCRIYChBjbG91ZF9hY2NvdW50X2lkGAYgASgJIksKBlZNSG9zdBIQCghob3N0bmFtZRgBIAEoCRIXCg9lYzJfaW5zdGFuY2VfaWQYAiABKAkSFgoOc3BpcmVfYWdlbnRfaWQYAyABKAki1AIKF0RvY2tlckNvbnRhaW5lcldvcmtsb2FkEi0KBGhvc3QYASABKAsyHy5wcm90by53b3JrbG9hZC52MWFscGhhMS5WTUhvc3QSFAoMY29udGFpbmVyX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSDQoFaW1hZ2UYBCABKAkSFAoMaW1hZ2VfZGlnZXN0GAUgASgJEkwKBmxhYmVscxgGIAMoCzI8LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkRvY2tlckNvbnRhaW5lcldvcmtsb2FkLkxhYmVsc0VudHJ5EjUKEWNyZWF0ZWRfdGltZXN0YW1wGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgVzdGF0ZRgIIAEoCRotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIpkBChZTeXN0ZW1kU2VydmljZVdvcmtsb2FkEi0KBGhvc3QYASABKAsyHy5wcm90by53b3JrbG9hZC52MWFscGhhMS5WTUhvc3QSEQoJdW5pdF9uYW1lGAIgASgJEhQKDGFjdGl2ZV9zdGF0ZRgDIAEoCRIQCghtYWluX3BpZBgEIAEoDRIVCg1mcmFnbWVudF9wYXRoGAUgASgJKqsBCh1FeGNoYW5nZVBvbGljeUVsaWdpYmlsaXR5Um9sZRIwCixFWENIQU5HRV9QT0xJQ1lfRUxJR0lCSUxJVFlfUk9MRV9VTlNQRUNJRklFRBAAEiwKKEVYQ0hBTkdFX1BPTElDWV9FTElHSUJJTElUWV9ST0xFX1NVQkpFQ1QQARIqCiZFWENIQU5HRV9QT0xJQ1lfRUxJR0lCSUxJVFlfUk9MRV9BQ1RPUhACKt8BCgxXb3JrbG9hZFR5cGUSHQoZV09SS0xPQURfVFlQRV9VTlNQRUNJRklFRBAAEiAKHFdPUktMT0FEX1RZUEVfS1VCRVJORVRFU19QT0QQARIhCh1XT1JLTE9BRF9UWVBFX0xBTUJEQV9GVU5DVElPThACEiQKIFdPUktMT0FEX1RZUEVfQUdFTlRDT1JFX1dPUktMT0FEEAMSIgoeV09SS0xPQURfVFlQRV9ET0NLRVJfQ09OVEFJTkVSEAQSIQodV09SS0xPQURfVFlQRV9TWVNURU1EX1NFUlZJQ0UQBUJBWj9naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vd29ya2xvYWQvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp, file_proto_exchange_policy_v1alpha1_exchange_policy, file_proto_identity_v1alpha1_identity]);
 
 /**
  * Workload represents a process, container, or unit of software running on an
@@ -92,6 +92,18 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
      */
     value: AgentcoreWorkloadWorkload;
     case: "agentcoreWorkload";
+  } | {
+    /**
+     * @generated from field: proto.workload.v1alpha1.DockerContainerWorkload docker_container = 17;
+     */
+    value: DockerContainerWorkload;
+    case: "dockerContainer";
+  } | {
+    /**
+     * @generated from field: proto.workload.v1alpha1.SystemdServiceWorkload systemd_service = 18;
+     */
+    value: SystemdServiceWorkload;
+    case: "systemdService";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -493,6 +505,138 @@ export const AgentcoreWorkloadWorkloadSchema: GenMessage<AgentcoreWorkloadWorklo
   messageDesc(file_proto_workload_v1alpha1_workload, 7);
 
 /**
+ * VMHost identifies the VM or bare-metal host a Docker container or systemd service workload
+ * runs on, mirroring KubernetesPod's node_name/node_uid and Lambda/AgentCore's cloud_account_id.
+ *
+ * @generated from message proto.workload.v1alpha1.VMHost
+ */
+export type VMHost = Message<"proto.workload.v1alpha1.VMHost"> & {
+  /**
+   * @generated from field: string hostname = 1;
+   */
+  hostname: string;
+
+  /**
+   * The AWS EC2 instance ID, obtained via IMDSv2. Empty for non-EC2 hosts or if unreachable.
+   *
+   * @generated from field: string ec2_instance_id = 2;
+   */
+  ec2InstanceId: string;
+
+  /**
+   * The SPIFFE ID of the SPIRE agent running on this host, for traceability back to the
+   * attesting node.
+   *
+   * @generated from field: string spire_agent_id = 3;
+   */
+  spireAgentId: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.VMHost.
+ * Use `create(VMHostSchema)` to create a new message.
+ */
+export const VMHostSchema: GenMessage<VMHost> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 8);
+
+/**
+ * DockerContainerWorkload contains the runtime details of a Docker container workload as
+ * discovered by a Cofide node observer running alongside the SPIRE agent on the host.
+ *
+ * @generated from message proto.workload.v1alpha1.DockerContainerWorkload
+ */
+export type DockerContainerWorkload = Message<"proto.workload.v1alpha1.DockerContainerWorkload"> & {
+  /**
+   * @generated from field: proto.workload.v1alpha1.VMHost host = 1;
+   */
+  host?: VMHost;
+
+  /**
+   * The full 64-character container ID.
+   *
+   * @generated from field: string container_id = 2;
+   */
+  containerId: string;
+
+  /**
+   * @generated from field: string name = 3;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string image = 4;
+   */
+  image: string;
+
+  /**
+   * @generated from field: string image_digest = 5;
+   */
+  imageDigest: string;
+
+  /**
+   * @generated from field: map<string, string> labels = 6;
+   */
+  labels: { [key: string]: string };
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_timestamp = 7;
+   */
+  createdTimestamp?: Timestamp;
+
+  /**
+   * @generated from field: string state = 8;
+   */
+  state: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.DockerContainerWorkload.
+ * Use `create(DockerContainerWorkloadSchema)` to create a new message.
+ */
+export const DockerContainerWorkloadSchema: GenMessage<DockerContainerWorkload> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 9);
+
+/**
+ * SystemdServiceWorkload contains the runtime details of a systemd service workload as
+ * discovered by a Cofide node observer running alongside the SPIRE agent on the host.
+ *
+ * @generated from message proto.workload.v1alpha1.SystemdServiceWorkload
+ */
+export type SystemdServiceWorkload = Message<"proto.workload.v1alpha1.SystemdServiceWorkload"> & {
+  /**
+   * @generated from field: proto.workload.v1alpha1.VMHost host = 1;
+   */
+  host?: VMHost;
+
+  /**
+   * @generated from field: string unit_name = 2;
+   */
+  unitName: string;
+
+  /**
+   * @generated from field: string active_state = 3;
+   */
+  activeState: string;
+
+  /**
+   * @generated from field: uint32 main_pid = 4;
+   */
+  mainPid: number;
+
+  /**
+   * @generated from field: string fragment_path = 5;
+   */
+  fragmentPath: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.SystemdServiceWorkload.
+ * Use `create(SystemdServiceWorkloadSchema)` to create a new message.
+ */
+export const SystemdServiceWorkloadSchema: GenMessage<SystemdServiceWorkload> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 10);
+
+/**
  * ExchangePolicyEligibilityRole distinguishes which side of an RFC 8693 token exchange a
  * workload's identity matched: the subject (the token being exchanged) or the actor (the
  * delegating/on-behalf-of party asserting the exchange on the subject's behalf).
@@ -547,6 +691,16 @@ export enum WorkloadType {
    * @generated from enum value: WORKLOAD_TYPE_AGENTCORE_WORKLOAD = 3;
    */
   AGENTCORE_WORKLOAD = 3,
+
+  /**
+   * @generated from enum value: WORKLOAD_TYPE_DOCKER_CONTAINER = 4;
+   */
+  DOCKER_CONTAINER = 4,
+
+  /**
+   * @generated from enum value: WORKLOAD_TYPE_SYSTEMD_SERVICE = 5;
+   */
+  SYSTEMD_SERVICE = 5,
 }
 
 /**
