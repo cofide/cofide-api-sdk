@@ -108,6 +108,9 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadsvcpb
 	if filter.AgentSpiffeId != "" && event.GetAgentSpiffeId() != filter.AgentSpiffeId {
 		return false
 	}
+	if filter.WorkloadId != "" && event.GetWorkloadId() != filter.WorkloadId {
+		return false
+	}
 	if len(filter.GetEventTypes()) > 0 && !workloadEventTypeMatches(event, filter.GetEventTypes()) {
 		return false
 	}

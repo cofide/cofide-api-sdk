@@ -83,6 +83,27 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterAgentSpiffeID(t *testing.T
 	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{matching}, events)
 }
 
+func Test_fakeWorkloadClient_ListWorkloadEvents_filterWorkloadID(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	matching := &workloadpb.WorkloadEvent{
+		WorkloadId: "workload-matching",
+	}
+	other := &workloadpb.WorkloadEvent{
+		WorkloadId: "workload-other",
+	}
+	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{matching, other}
+
+	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
+		WorkloadId: "workload-matching",
+	}, pagination.Pagination{PageSize: 100})
+	require.NoError(t, err)
+
+	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{matching}, events)
+}
+
 func Test_fakeWorkloadClient_ListWorkloadEvents_filterEventTypes(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)

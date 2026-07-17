@@ -74,6 +74,7 @@ message ListWorkloadEventsRequest {
     string entry_id = 7 [(google.api.field_behavior) = OPTIONAL];
     string agent_spiffe_id = 8 [(google.api.field_behavior) = OPTIONAL];
     repeated proto.workload.v1alpha1.WorkloadEventType event_types = 9 [(google.api.field_behavior) = OPTIONAL];
+    string workload_id = 10 [(google.api.field_behavior) = OPTIONAL];
   }
 
   Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];

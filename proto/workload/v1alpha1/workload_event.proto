@@ -52,6 +52,9 @@ message WorkloadEvent {
   // during attestation, so the selector set may not be exhaustive.
   bool selectors_incomplete = 7 [(google.api.field_behavior) = OPTIONAL];
   string agent_spiffe_id = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Connect resolves workload_id when the event can be associated with an
+  // observed workload.
+  string workload_id = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Exactly one event must be set.
   oneof event {
