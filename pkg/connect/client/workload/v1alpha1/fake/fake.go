@@ -5,6 +5,7 @@ package fake
 
 import (
 	"context"
+	"slices"
 
 	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
@@ -96,19 +97,19 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadsvcpb
 	if filter == nil {
 		return true
 	}
-	if filter.OrgId != "" && event.GetOrgId() != filter.OrgId {
+	if len(filter.GetOrgIds()) > 0 && !slices.Contains(filter.GetOrgIds(), event.GetOrgId()) {
 		return false
 	}
-	if filter.TrustZoneId != "" && event.GetTrustZoneId() != filter.TrustZoneId {
+	if len(filter.GetTrustZoneIds()) > 0 && !slices.Contains(filter.GetTrustZoneIds(), event.GetTrustZoneId()) {
 		return false
 	}
-	if filter.ClusterId != "" && event.GetClusterId() != filter.ClusterId {
+	if len(filter.GetClusterIds()) > 0 && !slices.Contains(filter.GetClusterIds(), event.GetClusterId()) {
 		return false
 	}
-	if filter.AgentSpiffeId != "" && event.GetAgentSpiffeId() != filter.AgentSpiffeId {
+	if len(filter.GetAgentSpiffeIds()) > 0 && !slices.Contains(filter.GetAgentSpiffeIds(), event.GetAgentSpiffeId()) {
 		return false
 	}
-	if filter.WorkloadId != "" && event.GetWorkloadId() != filter.WorkloadId {
+	if len(filter.GetWorkloadIds()) > 0 && !slices.Contains(filter.GetWorkloadIds(), event.GetWorkloadId()) {
 		return false
 	}
 	if len(filter.GetEventTypes()) > 0 && !workloadEventTypeMatches(event, filter.GetEventTypes()) {
@@ -116,11 +117,11 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadsvcpb
 	}
 	observedBefore := filter.GetObservedBefore()
 	observedAfter := filter.GetObservedAfter()
-	hasObservedBefore := observedBefore != nil && observedBefore.IsValid()
-	hasObservedAfter := observedAfter != nil && observedAfter.IsValid()
+	hasObservedBefore := observedBefore.IsValid()
+	hasObservedAfter := observedAfter.IsValid()
 	if hasObservedBefore || hasObservedAfter {
 		observed := event.GetObservedTimestamp()
-		if observed == nil || !observed.IsValid() {
+		if !observed.IsValid() {
 			return false
 		}
 		if hasObservedBefore && observed.AsTime().After(observedBefore.AsTime()) {
@@ -130,13 +131,13 @@ func workloadEventMatches(event *workloadpb.WorkloadEvent, filter *workloadsvcpb
 			return false
 		}
 	}
-	if filter.GetSpiffeId() != "" {
-		if delivered := event.GetIdentityDelivered(); delivered == nil || delivered.GetSpiffeId() != filter.GetSpiffeId() {
+	if len(filter.GetSpiffeIds()) > 0 {
+		if delivered := event.GetIdentityDelivered(); delivered == nil || !slices.Contains(filter.GetSpiffeIds(), delivered.GetSpiffeId()) {
 			return false
 		}
 	}
-	if filter.GetEntryId() != "" {
-		if delivered := event.GetIdentityDelivered(); delivered == nil || delivered.GetEntryId() != filter.GetEntryId() {
+	if len(filter.GetEntryIds()) > 0 {
+		if delivered := event.GetIdentityDelivered(); delivered == nil || !slices.Contains(filter.GetEntryIds(), delivered.GetEntryId()) {
 			return false
 		}
 	}

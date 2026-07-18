@@ -53,7 +53,7 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterObservedTimeRange(t *testi
 	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{recent, stale}
 
 	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
-		OrgId:          "org-1",
+		OrgIds:         []string{"org-1"},
 		ObservedAfter:  timestamppb.New(now.Add(-time.Hour)),
 		ObservedBefore: timestamppb.New(now),
 	}, pagination.Pagination{PageSize: 100})
@@ -76,7 +76,7 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterAgentSpiffeID(t *testing.T
 	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{matching, other}
 
 	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
-		AgentSpiffeId: "spiffe://example.org/agent/matching",
+		AgentSpiffeIds: []string{"spiffe://example.org/agent/matching"},
 	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 
@@ -97,7 +97,7 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterWorkloadID(t *testing.T) {
 	fake.WorkloadEvents = []*workloadpb.WorkloadEvent{matching, other}
 
 	events, _, err := client.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest_Filter{
-		WorkloadId: "workload-matching",
+		WorkloadIds: []string{"workload-matching"},
 	}, pagination.Pagination{PageSize: 100})
 	require.NoError(t, err)
 
