@@ -65,16 +65,16 @@ message PublishWorkloadEventsResponse {}
 
 message ListWorkloadEventsRequest {
   message Filter {
-    string org_id = 1 [(google.api.field_behavior) = OPTIONAL];
-    string trust_zone_id = 2 [(google.api.field_behavior) = OPTIONAL];
-    string cluster_id = 3 [(google.api.field_behavior) = OPTIONAL];
+    repeated string org_ids = 1 [(google.api.field_behavior) = OPTIONAL];
+    repeated string trust_zone_ids = 2 [(google.api.field_behavior) = OPTIONAL];
+    repeated string cluster_ids = 3 [(google.api.field_behavior) = OPTIONAL];
     google.protobuf.Timestamp observed_before = 4 [(google.api.field_behavior) = OPTIONAL];
     google.protobuf.Timestamp observed_after = 5 [(google.api.field_behavior) = OPTIONAL];
-    string spiffe_id = 6 [(google.api.field_behavior) = OPTIONAL];
-    string entry_id = 7 [(google.api.field_behavior) = OPTIONAL];
-    string agent_spiffe_id = 8 [(google.api.field_behavior) = OPTIONAL];
+    repeated string spiffe_ids = 6 [(google.api.field_behavior) = OPTIONAL];
+    repeated string entry_ids = 7 [(google.api.field_behavior) = OPTIONAL];
+    repeated string agent_spiffe_ids = 8 [(google.api.field_behavior) = OPTIONAL];
     repeated proto.workload.v1alpha1.WorkloadEventType event_types = 9 [(google.api.field_behavior) = OPTIONAL];
-    string workload_id = 10 [(google.api.field_behavior) = OPTIONAL];
+    repeated string workload_ids = 10 [(google.api.field_behavior) = OPTIONAL];
   }
 
   Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
