@@ -64,6 +64,8 @@ message ExchangePolicy {
   oneof outbound_issuer {
     // An OAuth Authorization Server (AS).
     OutboundOAuthAS oauth_as = 18 [(google.api.field_behavior) = OPTIONAL];
+    // A SPIFFE identity issuer
+    OutboundSPIFFE spiffe = 19 [(google.api.field_behavior) = OPTIONAL];
   }
 
   // Time of resource creation by user.
@@ -116,6 +118,13 @@ message OutboundOAuthAS {
   // exchange is denied.
   google.protobuf.Duration timeout = 5 [(google.api.field_behavior) = OPTIONAL];
 }
+
+// Marker denoting an OIDC to SPIFFE exchange policy. An empty struct is used to
+// allow new fields in the future if required. For now, the SPIFFE ID for the
+// issued SVID is derived from the OutboundIdentity policy field and the
+// JWT-SVID audience is taken from the requested audiences parameter in the
+// exchange request.
+message OutboundSPIFFE {}
 
 // ExternalHook defines an HTTP endpoint that Credex calls after an exchange policy
 // matches, allowing the hook to inspect and modify the outbound token claims before
