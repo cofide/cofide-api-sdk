@@ -46,7 +46,6 @@ func WithAuthority(authority string) Option {
 //
 // connectTarget is the host[:port] or full gRPC URI (e.g. dns:///host:port) to dial.
 // connectSpiffeId is the SPIFFE ID of the Connect server.
-// The expected server SPIFFE ID path defaults to /ns/connect/sa/cofide-connect-api; use WithServerSPIFFEIDPath to override.
 func NewSPIFFEMTLSClient(
 	connectTarget string,
 	connectSpiffeId spiffeid.ID,
