@@ -9,6 +9,7 @@ syntax = "proto3";
 package proto.cloud_organization.v1alpha1;
 
 import "google/api/field_behavior.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "proto/cloud_provider/v1alpha1/cloud_provider.proto";
 
@@ -51,4 +52,6 @@ message CloudOrganization {
   google.protobuf.Timestamp created_at = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update.
   google.protobuf.Timestamp last_updated_at = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // How frequently discovery runs for this cloud organization (e.g. every minute).
+  google.protobuf.Duration discovery_interval = 10 [(google.api.field_behavior) = OPTIONAL];
 }

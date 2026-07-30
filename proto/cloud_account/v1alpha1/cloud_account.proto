@@ -9,6 +9,7 @@ syntax = "proto3";
 package proto.cloud_account.v1alpha1;
 
 import "google/api/field_behavior.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "proto/cloud_provider/v1alpha1/cloud_provider.proto";
 
@@ -40,6 +41,8 @@ message AWSLambdaDiscoveryConfig {
   // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
   // assumed using the credentials from the prior step.
   repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 7 [(google.api.field_behavior) = REQUIRED];
+  // How frequently discovery runs for this config (e.g. every minute).
+  google.protobuf.Duration discovery_interval = 8 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // AWSAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
@@ -60,6 +63,8 @@ message AWSAgentCoreDiscoveryConfig {
   // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
   // assumed using the credentials from the prior step.
   repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 7 [(google.api.field_behavior) = REQUIRED];
+  // How frequently discovery runs for this config (e.g. every minute).
+  google.protobuf.Duration discovery_interval = 8 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // CloudAccount represents a cloud provider account linked to a Cofide organization.
