@@ -26,6 +26,7 @@ message AWSAccount {
 // AWSLambdaDiscoveryConfig contains configuration for Lambda function discovery.
 message AWSLambdaDiscoveryConfig {
   // Audience value for the initial SPIFFE JWT-based assume role call.
+  // Only used when assume_through_oidc is true.
   string audience = 1 [(google.api.field_behavior) = REQUIRED];
   // AWS regions to discover resources in.
   repeated string regions = 2 [(google.api.field_behavior) = OPTIONAL];
@@ -37,17 +38,24 @@ message AWSLambdaDiscoveryConfig {
   google.protobuf.Timestamp last_successful_discovery = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Timestamp of the last status update.
   google.protobuf.Timestamp status_last_updated_at = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
-  // Ordered chain of IAM roles to assume. The first role is assumed via
-  // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-  // assumed using the credentials from the prior step.
+  // Ordered chain of IAM roles to assume. When assume_through_oidc is true, the
+  // first role is assumed via AssumeRoleWithWebIdentity using the SPIFFE JWT;
+  // when false, the first role is assumed via plain AssumeRole using ambient
+  // credentials (e.g. EKS Pod Identity). Each subsequent role is always assumed
+  // using the credentials from the prior step.
   repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 7 [(google.api.field_behavior) = REQUIRED];
   // How frequently discovery runs for this config (e.g. every minute).
   google.protobuf.Duration discovery_interval = 8 [(google.api.field_behavior) = OPTIONAL];
+  // Whether the first role in role_chain is assumed via SPIFFE JWT-based
+  // AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
+  // such as EKS Pod Identity (false).
+  bool assume_through_oidc = 9 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // AWSAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
 message AWSAgentCoreDiscoveryConfig {
   // Audience value for the initial SPIFFE JWT-based assume role call.
+  // Only used when assume_through_oidc is true.
   string audience = 1 [(google.api.field_behavior) = REQUIRED];
   // AWS regions to discover resources in.
   repeated string regions = 2 [(google.api.field_behavior) = OPTIONAL];
@@ -59,12 +67,18 @@ message AWSAgentCoreDiscoveryConfig {
   google.protobuf.Timestamp last_successful_discovery = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Timestamp of the last status update.
   google.protobuf.Timestamp status_last_updated_at = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
-  // Ordered chain of IAM roles to assume. The first role is assumed via
-  // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-  // assumed using the credentials from the prior step.
+  // Ordered chain of IAM roles to assume. When assume_through_oidc is true, the
+  // first role is assumed via AssumeRoleWithWebIdentity using the SPIFFE JWT;
+  // when false, the first role is assumed via plain AssumeRole using ambient
+  // credentials (e.g. EKS Pod Identity). Each subsequent role is always assumed
+  // using the credentials from the prior step.
   repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 7 [(google.api.field_behavior) = REQUIRED];
   // How frequently discovery runs for this config (e.g. every minute).
   google.protobuf.Duration discovery_interval = 8 [(google.api.field_behavior) = OPTIONAL];
+  // Whether the first role in role_chain is assumed via SPIFFE JWT-based
+  // AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
+  // such as EKS Pod Identity (false).
+  bool assume_through_oidc = 9 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // CloudAccount represents a cloud provider account linked to a Cofide organization.

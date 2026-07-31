@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_organization/v1alpha1/cloud_organization.proto.
  */
 export const file_proto_cloud_organization_v1alpha1_cloud_organization: GenFile = /*@__PURE__*/
-  fileDesc("Cjpwcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTEvY2xvdWRfb3JnYW5pemF0aW9uLnByb3RvEiFwcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEijgEKD0FXU09yZ2FuaXphdGlvbhIXCgphd3Nfb3JnX2lkGAEgASgJQgPgQQISFQoIYXVkaWVuY2UYAiABKAlCA+BBAhJLCgpyb2xlX2NoYWluGAMgAygLMjIucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZ0ID4EECIusDChFDbG91ZE9yZ2FuaXphdGlvbhIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEhEKBG5hbWUYAyABKAlCA+BBAhJBCgNhd3MYBCABKAsyMi5wcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEuQVdTT3JnYW5pemF0aW9uSAASHgoRZGlzY292ZXJ5X2VuYWJsZWQYBSABKAhCA+BBARJDCgZzdGF0dXMYBiABKA4yLi5wcm90by5jbG91ZF9wcm92aWRlci52MWFscGhhMS5EaXNjb3ZlcnlTdGF0dXNCA+BBAxI7ChJsYXN0X2Rpc2NvdmVyZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSMwoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOgoSZGlzY292ZXJ5X2ludGVydmFsGAogASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQFCCgoIcHJvdmlkZXJCS1pJZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX29yZ2FuaXphdGlvbi92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp, file_proto_cloud_provider_v1alpha1_cloud_provider]);
+  fileDesc("Cjpwcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTEvY2xvdWRfb3JnYW5pemF0aW9uLnByb3RvEiFwcm90by5jbG91ZF9vcmdhbml6YXRpb24udjFhbHBoYTEisAEKD0FXU09yZ2FuaXphdGlvbhIXCgphd3Nfb3JnX2lkGAEgASgJQgPgQQISFQoIYXVkaWVuY2UYAiABKAlCA+BBAhJLCgpyb2xlX2NoYWluGAMgAygLMjIucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZ0ID4EECEiAKE2Fzc3VtZV90aHJvdWdoX29pZGMYBCABKAhCA+BBASLrAwoRQ2xvdWRPcmdhbml6YXRpb24SDwoCaWQYASABKAlCA+BBCBIWCgZvcmdfaWQYAiABKAlCBuBBAuBBBRIRCgRuYW1lGAMgASgJQgPgQQISQQoDYXdzGAQgASgLMjIucHJvdG8uY2xvdWRfb3JnYW5pemF0aW9uLnYxYWxwaGExLkFXU09yZ2FuaXphdGlvbkgAEh4KEWRpc2NvdmVyeV9lbmFibGVkGAUgASgIQgPgQQESQwoGc3RhdHVzGAYgASgOMi4ucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuRGlzY292ZXJ5U3RhdHVzQgPgQQMSOwoSbGFzdF9kaXNjb3ZlcmVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjMKCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjoKEmRpc2NvdmVyeV9pbnRlcnZhbBgKIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkID4EEBQgoKCHByb3ZpZGVyQktaSWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbG91ZF9vcmdhbml6YXRpb24vdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp, file_proto_cloud_provider_v1alpha1_cloud_provider]);
 
 /**
  * AWSOrganization contains AWS-specific configuration for a cloud organization.
@@ -38,19 +38,31 @@ export type AWSOrganization = Message<"proto.cloud_organization.v1alpha1.AWSOrga
 
   /**
    * Audience value for the initial SPIFFE JWT-based assume role call.
+   * Only used when assume_through_oidc is true.
    *
    * @generated from field: string audience = 2;
    */
   audience: string;
 
   /**
-   * Ordered chain of IAM roles to assume. The first role is assumed via
-   * AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-   * assumed using the credentials from the prior step.
+   * Ordered chain of IAM roles to assume. When assume_through_oidc is true, the
+   * first role is assumed via AssumeRoleWithWebIdentity using the SPIFFE JWT;
+   * when false, the first role is assumed via plain AssumeRole using ambient
+   * credentials (e.g. EKS Pod Identity). Each subsequent role is always assumed
+   * using the credentials from the prior step.
    *
    * @generated from field: repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 3;
    */
   roleChain: AWSAssumeRoleConfig[];
+
+  /**
+   * Whether the first role in role_chain is assumed via SPIFFE JWT-based
+   * AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
+   * such as EKS Pod Identity (false).
+   *
+   * @generated from field: bool assume_through_oidc = 4;
+   */
+  assumeThroughOidc: boolean;
 };
 
 /**

@@ -20,11 +20,18 @@ message AWSOrganization {
   // AWS Organization ID (e.g., o-xxxxxxxxxx).
   string aws_org_id = 1 [(google.api.field_behavior) = REQUIRED];
   // Audience value for the initial SPIFFE JWT-based assume role call.
+  // Only used when assume_through_oidc is true.
   string audience = 2 [(google.api.field_behavior) = REQUIRED];
-  // Ordered chain of IAM roles to assume. The first role is assumed via
-  // AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-  // assumed using the credentials from the prior step.
+  // Ordered chain of IAM roles to assume. When assume_through_oidc is true, the
+  // first role is assumed via AssumeRoleWithWebIdentity using the SPIFFE JWT;
+  // when false, the first role is assumed via plain AssumeRole using ambient
+  // credentials (e.g. EKS Pod Identity). Each subsequent role is always assumed
+  // using the credentials from the prior step.
   repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 3 [(google.api.field_behavior) = REQUIRED];
+  // Whether the first role in role_chain is assumed via SPIFFE JWT-based
+  // AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
+  // such as EKS Pod Identity (false).
+  bool assume_through_oidc = 4 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // CloudOrganization represents a cloud provider organization linked to a Cofide organization.
