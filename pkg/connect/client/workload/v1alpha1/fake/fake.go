@@ -6,8 +6,10 @@ package fake
 import (
 	"context"
 	"slices"
+	"sort"
 
 	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
+	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
@@ -32,11 +34,38 @@ func (c *fakeWorkloadClient) ListWorkloads(ctx context.Context, filter *workload
 
 	workloads := []*workloadpb.Workload{}
 	for _, workload := range c.fake.Workloads {
-		if workloadMatches(workload, filter) {
-			workloads = append(workloads, proto.Clone(workload).(*workloadpb.Workload))
+		if !workloadMatches(workload, filter) {
+			continue
 		}
+		cloned := proto.Clone(workload).(*workloadpb.Workload)
+		cloned.GrantedIdentities = grantedIdentitiesFor(c.fake.Identities, workload.GetId())
+		workloads = append(workloads, cloned)
 	}
 	return workloads, nil
+}
+
+// grantedIdentitiesFor returns, for workloadID, the {attestation_policy_id, spiffe_id}
+// pair for every identity issued to that workload, sorted by attestation policy ID
+// (then SPIFFE ID) for deterministic output — the identities map has random
+// iteration order.
+func grantedIdentitiesFor(identities map[string]*identitypb.Identity, workloadID string) []*workloadpb.GrantedIdentity {
+	var granted []*workloadpb.GrantedIdentity
+	for _, identity := range identities {
+		if identity.GetWorkloadId() != workloadID {
+			continue
+		}
+		granted = append(granted, &workloadpb.GrantedIdentity{
+			AttestationPolicyId: identity.GetAttestationPolicyId(),
+			SpiffeId:            identity.GetSpiffeId(),
+		})
+	}
+	sort.Slice(granted, func(i, j int) bool {
+		if granted[i].GetAttestationPolicyId() != granted[j].GetAttestationPolicyId() {
+			return granted[i].GetAttestationPolicyId() < granted[j].GetAttestationPolicyId()
+		}
+		return granted[i].GetSpiffeId() < granted[j].GetSpiffeId()
+	})
+	return granted
 }
 
 func (c *fakeWorkloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
