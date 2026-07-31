@@ -24,26 +24,36 @@ func newFake(t *testing.T) *fakeconnect.FakeConnect {
 	f.Organizations[test.FakeOrganizationID] = test.FakeOrganization()
 	f.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
 	f.Clusters[test.FakeClusterID] = test.FakeCluster()
+	f.CloudAccounts[test.FakeCloudAccountID] = test.FakeCloudAccount()
 	return f
 }
 
 func Test_fakeWorkloadSuppressionRuleClient_CreateWorkloadSuppressionRule(t *testing.T) {
-	f := newFake(t)
-	client := New(f)
+	fixtures := map[string]func() *workloadsuppressionrulepb.WorkloadSuppressionRule{
+		"kubernetes_pod":        test.FakeWorkloadSuppressionRule,
+		"aws_lambda_function":   test.FakeWorkloadSuppressionRuleLambda,
+		"aws_agentcore_runtime": test.FakeWorkloadSuppressionRuleAgentCore,
+	}
+	for name, fixture := range fixtures {
+		t.Run(name, func(t *testing.T) {
+			f := newFake(t)
+			client := New(f)
 
-	rule := test.FakeWorkloadSuppressionRule()
-	rule.Id = ""
+			rule := fixture()
+			rule.Id = ""
 
-	now := time.Now()
-	createdRule, err := client.CreateWorkloadSuppressionRule(t.Context(), rule)
-	require.NoError(t, err)
-	assert.NotEmpty(t, createdRule.GetId())
-	assert.GreaterOrEqual(t, createdRule.GetCreatedAt().AsTime(), now)
-	assert.Nil(t, createdRule.GetLastUpdatedAt())
-	rule.Id = createdRule.GetId()
-	rule.CreatedAt = createdRule.CreatedAt
-	assert.EqualExportedValues(t, rule, createdRule)
-	assert.EqualExportedValues(t, rule, f.WorkloadSuppressionRules[createdRule.GetId()])
+			now := time.Now()
+			createdRule, err := client.CreateWorkloadSuppressionRule(t.Context(), rule)
+			require.NoError(t, err)
+			assert.NotEmpty(t, createdRule.GetId())
+			assert.GreaterOrEqual(t, createdRule.GetCreatedAt().AsTime(), now)
+			assert.Nil(t, createdRule.GetLastUpdatedAt())
+			rule.Id = createdRule.GetId()
+			rule.CreatedAt = createdRule.CreatedAt
+			assert.EqualExportedValues(t, rule, createdRule)
+			assert.EqualExportedValues(t, rule, f.WorkloadSuppressionRules[createdRule.GetId()])
+		})
+	}
 }
 
 func Test_fakeWorkloadSuppressionRuleClient_CreateWorkloadSuppressionRule_InvalidRefs(t *testing.T) {
@@ -63,6 +73,16 @@ func Test_fakeWorkloadSuppressionRuleClient_CreateWorkloadSuppressionRule_Invali
 	invalidCluster := proto.Clone(test.FakeWorkloadSuppressionRule()).(*workloadsuppressionrulepb.WorkloadSuppressionRule)
 	invalidCluster.GetKubernetesPod().ClusterIds = []string{"does-not-exist"}
 	_, err = client.CreateWorkloadSuppressionRule(t.Context(), invalidCluster)
+	require.Error(t, err)
+
+	invalidLambdaCloudAccount := proto.Clone(test.FakeWorkloadSuppressionRuleLambda()).(*workloadsuppressionrulepb.WorkloadSuppressionRule)
+	invalidLambdaCloudAccount.GetAwsLambdaFunction().CloudAccountIds = []string{"does-not-exist"}
+	_, err = client.CreateWorkloadSuppressionRule(t.Context(), invalidLambdaCloudAccount)
+	require.Error(t, err)
+
+	invalidAgentCoreCloudAccount := proto.Clone(test.FakeWorkloadSuppressionRuleAgentCore()).(*workloadsuppressionrulepb.WorkloadSuppressionRule)
+	invalidAgentCoreCloudAccount.GetAwsAgentcoreRuntime().CloudAccountIds = []string{"does-not-exist"}
+	_, err = client.CreateWorkloadSuppressionRule(t.Context(), invalidAgentCoreCloudAccount)
 	require.Error(t, err)
 }
 

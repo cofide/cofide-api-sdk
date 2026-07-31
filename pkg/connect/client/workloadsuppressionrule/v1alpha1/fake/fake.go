@@ -133,18 +133,30 @@ func (c *fakeWorkloadSuppressionRuleClient) UpdateWorkloadSuppressionRule(ctx co
 }
 
 func (c *fakeWorkloadSuppressionRuleClient) validateMatcher(rule *workloadsuppressionrulepb.WorkloadSuppressionRule) error {
-	pod := rule.GetKubernetesPod()
-	if pod == nil {
-		return nil
-	}
-	for _, trustZoneID := range pod.GetTrustZoneIds() {
-		if err := c.fake.ValidateTrustZone(trustZoneID); err != nil {
-			return err
+	if pod := rule.GetKubernetesPod(); pod != nil {
+		for _, trustZoneID := range pod.GetTrustZoneIds() {
+			if err := c.fake.ValidateTrustZone(trustZoneID); err != nil {
+				return err
+			}
+		}
+		for _, clusterID := range pod.GetClusterIds() {
+			if err := c.fake.ValidateCluster(clusterID); err != nil {
+				return err
+			}
 		}
 	}
-	for _, clusterID := range pod.GetClusterIds() {
-		if err := c.fake.ValidateCluster(clusterID); err != nil {
-			return err
+	if lambda := rule.GetAwsLambdaFunction(); lambda != nil {
+		for _, cloudAccountID := range lambda.GetCloudAccountIds() {
+			if err := c.fake.ValidateCloudAccount(cloudAccountID); err != nil {
+				return err
+			}
+		}
+	}
+	if agentCore := rule.GetAwsAgentcoreRuntime(); agentCore != nil {
+		for _, cloudAccountID := range agentCore.GetCloudAccountIds() {
+			if err := c.fake.ValidateCloudAccount(cloudAccountID); err != nil {
+				return err
+			}
 		}
 	}
 	return nil

@@ -108,6 +108,13 @@ func (f *FakeConnect) ValidateCloudOrganization(cloudOrganizationID string) erro
 	return nil
 }
 
+func (f *FakeConnect) ValidateCloudAccount(cloudAccountID string) error {
+	if _, ok := f.CloudAccounts[cloudAccountID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud account")
+	}
+	return nil
+}
+
 func (f *FakeConnect) ValidateCluster(clusterID string) error {
 	if _, ok := f.Clusters[clusterID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid cluster")

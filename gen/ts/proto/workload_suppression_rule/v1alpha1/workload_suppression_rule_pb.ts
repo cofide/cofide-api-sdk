@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload_suppression_rule/v1alpha1/workload_suppression_rule.proto.
  */
 export const file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule: GenFile = /*@__PURE__*/
-  fileDesc("Ckhwcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUucHJvdG8SKHByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEi2QIKF1dvcmtsb2FkU3VwcHJlc3Npb25SdWxlEg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSEQoEbmFtZRgDIAEoCUID4EECEhgKC2Rlc2NyaXB0aW9uGAQgASgJQgPgQQESFAoHZW5hYmxlZBgFIAEoCEID4EEBElgKDmt1YmVybmV0ZXNfcG9kGAYgASgLMj4ucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5LdWJlcm5ldGVzUG9kTWF0Y2hlckgAEjMKCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQgkKB21hdGNoZXIi9gEKFEt1YmVybmV0ZXNQb2RNYXRjaGVyEhsKDnRydXN0X3pvbmVfaWRzGAEgAygJQgPgQQESGAoLY2x1c3Rlcl9pZHMYAiADKAlCA+BBARIXCgpuYW1lc3BhY2VzGAMgAygJQgPgQQESXwoGbGFiZWxzGAQgAygLMkoucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5LdWJlcm5ldGVzUG9kTWF0Y2hlci5MYWJlbHNFbnRyeUID4EEBGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAFCUlpQZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("Ckhwcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExL3dvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUucHJvdG8SKHByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEiowQKF1dvcmtsb2FkU3VwcHJlc3Npb25SdWxlEg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSEQoEbmFtZRgDIAEoCUID4EECEhgKC2Rlc2NyaXB0aW9uGAQgASgJQgPgQQESFAoHZW5hYmxlZBgFIAEoCEID4EEBElgKDmt1YmVybmV0ZXNfcG9kGAYgASgLMj4ucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5LdWJlcm5ldGVzUG9kTWF0Y2hlckgAEmEKE2F3c19sYW1iZGFfZnVuY3Rpb24YCSABKAsyQi5wcm90by53b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlLnYxYWxwaGExLkFXU0xhbWJkYUZ1bmN0aW9uTWF0Y2hlckgAEmUKFWF3c19hZ2VudGNvcmVfcnVudGltZRgKIAEoCzJELnByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEuQVdTQWdlbnRDb3JlUnVudGltZU1hdGNoZXJIABIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IJCgdtYXRjaGVyIvYBChRLdWJlcm5ldGVzUG9kTWF0Y2hlchIbCg50cnVzdF96b25lX2lkcxgBIAMoCUID4EEBEhgKC2NsdXN0ZXJfaWRzGAIgAygJQgPgQQESFwoKbmFtZXNwYWNlcxgDIAMoCUID4EEBEl8KBmxhYmVscxgEIAMoCzJKLnByb3RvLndvcmtsb2FkX3N1cHByZXNzaW9uX3J1bGUudjFhbHBoYTEuS3ViZXJuZXRlc1BvZE1hdGNoZXIuTGFiZWxzRW50cnlCA+BBARotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIvsBChhBV1NMYW1iZGFGdW5jdGlvbk1hdGNoZXISHgoRY2xvdWRfYWNjb3VudF9pZHMYASADKAlCA+BBARIUCgdyZWdpb25zGAIgAygJQgPgQQESGwoOZnVuY3Rpb25fbmFtZXMYAyADKAlCA+BBARJfCgR0YWdzGAQgAygLMkwucHJvdG8ud29ya2xvYWRfc3VwcHJlc3Npb25fcnVsZS52MWFscGhhMS5BV1NMYW1iZGFGdW5jdGlvbk1hdGNoZXIuVGFnc0VudHJ5QgPgQQEaKwoJVGFnc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEidAoaQVdTQWdlbnRDb3JlUnVudGltZU1hdGNoZXISHgoRY2xvdWRfYWNjb3VudF9pZHMYASADKAlCA+BBARIUCgdyZWdpb25zGAIgAygJQgPgQQESIAoTYWdlbnRfcnVudGltZV9uYW1lcxgDIAMoCUID4EEBQlJaUGdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZF9zdXBwcmVzc2lvbl9ydWxlL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * WorkloadSuppressionRule defines a rule that hides matching workloads from
@@ -78,6 +78,18 @@ export type WorkloadSuppressionRule = Message<"proto.workload_suppression_rule.v
      */
     value: KubernetesPodMatcher;
     case: "kubernetesPod";
+  } | {
+    /**
+     * @generated from field: proto.workload_suppression_rule.v1alpha1.AWSLambdaFunctionMatcher aws_lambda_function = 9;
+     */
+    value: AWSLambdaFunctionMatcher;
+    case: "awsLambdaFunction";
+  } | {
+    /**
+     * @generated from field: proto.workload_suppression_rule.v1alpha1.AWSAgentCoreRuntimeMatcher aws_agentcore_runtime = 10;
+     */
+    value: AWSAgentCoreRuntimeMatcher;
+    case: "awsAgentcoreRuntime";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -143,4 +155,81 @@ export type KubernetesPodMatcher = Message<"proto.workload_suppression_rule.v1al
  */
 export const KubernetesPodMatcherSchema: GenMessage<KubernetesPodMatcher> = /*@__PURE__*/
   messageDesc(file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule, 1);
+
+/**
+ * AWSLambdaFunctionMatcher matches AWS Lambda function workloads.
+ *
+ * @generated from message proto.workload_suppression_rule.v1alpha1.AWSLambdaFunctionMatcher
+ */
+export type AWSLambdaFunctionMatcher = Message<"proto.workload_suppression_rule.v1alpha1.AWSLambdaFunctionMatcher"> & {
+  /**
+   * Matches only functions discovered within these cloud accounts.
+   *
+   * @generated from field: repeated string cloud_account_ids = 1;
+   */
+  cloudAccountIds: string[];
+
+  /**
+   * Matches proto.workload.v1alpha1.AWSLambdaFunction.region.
+   *
+   * @generated from field: repeated string regions = 2;
+   */
+  regions: string[];
+
+  /**
+   * Matches proto.workload.v1alpha1.AWSLambdaFunction.function_name.
+   *
+   * @generated from field: repeated string function_names = 3;
+   */
+  functionNames: string[];
+
+  /**
+   * Matches proto.workload.v1alpha1.AWSLambdaFunction.tags.
+   *
+   * @generated from field: map<string, string> tags = 4;
+   */
+  tags: { [key: string]: string };
+};
+
+/**
+ * Describes the message proto.workload_suppression_rule.v1alpha1.AWSLambdaFunctionMatcher.
+ * Use `create(AWSLambdaFunctionMatcherSchema)` to create a new message.
+ */
+export const AWSLambdaFunctionMatcherSchema: GenMessage<AWSLambdaFunctionMatcher> = /*@__PURE__*/
+  messageDesc(file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule, 2);
+
+/**
+ * AWSAgentCoreRuntimeMatcher matches AWS Bedrock AgentCore Runtime workloads.
+ *
+ * @generated from message proto.workload_suppression_rule.v1alpha1.AWSAgentCoreRuntimeMatcher
+ */
+export type AWSAgentCoreRuntimeMatcher = Message<"proto.workload_suppression_rule.v1alpha1.AWSAgentCoreRuntimeMatcher"> & {
+  /**
+   * Matches only runtimes discovered within these cloud accounts.
+   *
+   * @generated from field: repeated string cloud_account_ids = 1;
+   */
+  cloudAccountIds: string[];
+
+  /**
+   * Matches proto.workload.v1alpha1.AWSAgentCoreRuntime.region.
+   *
+   * @generated from field: repeated string regions = 2;
+   */
+  regions: string[];
+
+  /**
+   * Matches proto.workload.v1alpha1.AWSAgentCoreRuntime.agent_runtime_name.
+   *
+   * @generated from field: repeated string agent_runtime_names = 3;
+   */
+  agentRuntimeNames: string[];
+};
+
+/**
+ * Describes the message proto.workload_suppression_rule.v1alpha1.AWSAgentCoreRuntimeMatcher.
+ * Use `create(AWSAgentCoreRuntimeMatcherSchema)` to create a new message.
+ */
+export const AWSAgentCoreRuntimeMatcherSchema: GenMessage<AWSAgentCoreRuntimeMatcher> = /*@__PURE__*/
+  messageDesc(file_proto_workload_suppression_rule_v1alpha1_workload_suppression_rule, 3);
 

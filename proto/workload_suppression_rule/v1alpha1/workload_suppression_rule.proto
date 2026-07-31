@@ -35,6 +35,8 @@ message WorkloadSuppressionRule {
   // Match criteria.
   oneof matcher {
     KubernetesPodMatcher kubernetes_pod = 6;
+    AWSLambdaFunctionMatcher aws_lambda_function = 9;
+    AWSAgentCoreRuntimeMatcher aws_agentcore_runtime = 10;
   }
   // Time of resource creation.
   google.protobuf.Timestamp created_at = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
@@ -52,4 +54,26 @@ message KubernetesPodMatcher {
   repeated string namespaces = 3 [(google.api.field_behavior) = OPTIONAL];
   // Matches proto.workload.v1alpha1.KubernetesMetadata.labels.
   map<string, string> labels = 4 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// AWSLambdaFunctionMatcher matches AWS Lambda function workloads.
+message AWSLambdaFunctionMatcher {
+  // Matches only functions discovered within these cloud accounts.
+  repeated string cloud_account_ids = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.AWSLambdaFunction.region.
+  repeated string regions = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.AWSLambdaFunction.function_name.
+  repeated string function_names = 3 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.AWSLambdaFunction.tags.
+  map<string, string> tags = 4 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// AWSAgentCoreRuntimeMatcher matches AWS Bedrock AgentCore Runtime workloads.
+message AWSAgentCoreRuntimeMatcher {
+  // Matches only runtimes discovered within these cloud accounts.
+  repeated string cloud_account_ids = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.AWSAgentCoreRuntime.region.
+  repeated string regions = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Matches proto.workload.v1alpha1.AWSAgentCoreRuntime.agent_runtime_name.
+  repeated string agent_runtime_names = 3 [(google.api.field_behavior) = OPTIONAL];
 }

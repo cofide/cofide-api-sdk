@@ -240,6 +240,36 @@ func FakeWorkloadSuppressionRule() *workloadsuppressionrulepb.WorkloadSuppressio
 	}
 }
 
+func FakeWorkloadSuppressionRuleLambda() *workloadsuppressionrulepb.WorkloadSuppressionRule {
+	return &workloadsuppressionrulepb.WorkloadSuppressionRule{
+		Id:          FakeWorkloadSuppressionRuleID,
+		OrgId:       FakeOrganizationID,
+		Name:        FakeWorkloadSuppressionRuleName,
+		Description: FakeWorkloadSuppressionRuleDescription,
+		Enabled:     true,
+		Matcher: &workloadsuppressionrulepb.WorkloadSuppressionRule_AwsLambdaFunction{
+			AwsLambdaFunction: &workloadsuppressionrulepb.AWSLambdaFunctionMatcher{
+				CloudAccountIds: []string{FakeCloudAccountID},
+			},
+		},
+	}
+}
+
+func FakeWorkloadSuppressionRuleAgentCore() *workloadsuppressionrulepb.WorkloadSuppressionRule {
+	return &workloadsuppressionrulepb.WorkloadSuppressionRule{
+		Id:          FakeWorkloadSuppressionRuleID,
+		OrgId:       FakeOrganizationID,
+		Name:        FakeWorkloadSuppressionRuleName,
+		Description: FakeWorkloadSuppressionRuleDescription,
+		Enabled:     true,
+		Matcher: &workloadsuppressionrulepb.WorkloadSuppressionRule_AwsAgentcoreRuntime{
+			AwsAgentcoreRuntime: &workloadsuppressionrulepb.AWSAgentCoreRuntimeMatcher{
+				CloudAccountIds: []string{FakeCloudAccountID},
+			},
+		},
+	}
+}
+
 func FakeRoleBinding() *rolebindingpb.RoleBinding {
 	return &rolebindingpb.RoleBinding{
 		Id:     FakeRoleBindingID,
