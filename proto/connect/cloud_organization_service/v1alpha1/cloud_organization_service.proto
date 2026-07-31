@@ -68,6 +68,8 @@ message UpdateCloudOrganizationRequest {
     bool aws_role_chain = 4 [(google.api.field_behavior) = OPTIONAL];
     // Set to true to update the discovery_interval field.
     bool discovery_interval = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws.assume_through_oidc field.
+    bool aws_assume_through_oidc = 6 [(google.api.field_behavior) = OPTIONAL];
   }
 
   proto.cloud_organization.v1alpha1.CloudOrganization cloud_organization = 1 [(google.api.field_behavior) = REQUIRED];

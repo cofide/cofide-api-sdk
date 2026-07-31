@@ -12,8 +12,10 @@ import "google/api/field_behavior.proto";
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_provider/v1alpha1";
 
 // AWSAssumeRoleConfig configures a single step in an IAM role chain.
-// The first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity); subsequent steps
-// use plain AssumeRole with the credentials from the prior step.
+// Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
+// ambient credentials (e.g. EKS Pod Identity) is controlled by the
+// assume_through_oidc field on the owning config; subsequent steps always use
+// plain AssumeRole with the credentials from the prior step.
 message AWSAssumeRoleConfig {
   // ARN of the IAM role to assume.
   string iam_role_arn = 1 [(google.api.field_behavior) = REQUIRED];

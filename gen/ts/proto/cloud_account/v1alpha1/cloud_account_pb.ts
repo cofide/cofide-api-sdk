@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_account/v1alpha1/cloud_account.proto.
  */
 export const file_proto_cloud_account_v1alpha1_cloud_account: GenFile = /*@__PURE__*/
-  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEi6AEKCkFXU0FjY291bnQSFwoKYWNjb3VudF9pZBgBIAEoCUID4EECElwKF2xhbWJkYV9kaXNjb3ZlcnlfY29uZmlnGAIgASgLMjYucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5BV1NMYW1iZGFEaXNjb3ZlcnlDb25maWdCA+BBARJjChthZ2VudF9jb3JlX2Rpc2NvdmVyeV9jb25maWcYAyABKAsyOS5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkFXU0FnZW50Q29yZURpc2NvdmVyeUNvbmZpZ0ID4EEBIroDChhBV1NMYW1iZGFEaXNjb3ZlcnlDb25maWcSFQoIYXVkaWVuY2UYASABKAlCA+BBAhIUCgdyZWdpb25zGAIgAygJQgPgQQESHgoRZGlzY292ZXJ5X2VuYWJsZWQYAyABKAhCA+BBARJDCgZzdGF0dXMYBCABKA4yLi5wcm90by5jbG91ZF9wcm92aWRlci52MWFscGhhMS5EaXNjb3ZlcnlTdGF0dXNCA+BBAxJCChlsYXN0X3N1Y2Nlc3NmdWxfZGlzY292ZXJ5GAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEj8KFnN0YXR1c19sYXN0X3VwZGF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSSwoKcm9sZV9jaGFpbhgHIAMoCzIyLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkFXU0Fzc3VtZVJvbGVDb25maWdCA+BBAhI6ChJkaXNjb3ZlcnlfaW50ZXJ2YWwYCCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CA+BBASK9AwobQVdTQWdlbnRDb3JlRGlzY292ZXJ5Q29uZmlnEhUKCGF1ZGllbmNlGAEgASgJQgPgQQISFAoHcmVnaW9ucxgCIAMoCUID4EEBEh4KEWRpc2NvdmVyeV9lbmFibGVkGAMgASgIQgPgQQESQwoGc3RhdHVzGAQgASgOMi4ucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuRGlzY292ZXJ5U3RhdHVzQgPgQQMSQgoZbGFzdF9zdWNjZXNzZnVsX2Rpc2NvdmVyeRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI/ChZzdGF0dXNfbGFzdF91cGRhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEksKCnJvbGVfY2hhaW4YByADKAsyMi5wcm90by5jbG91ZF9wcm92aWRlci52MWFscGhhMS5BV1NBc3N1bWVSb2xlQ29uZmlnQgPgQQISOgoSZGlzY292ZXJ5X2ludGVydmFsGAggASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQEi/QIKDENsb3VkQWNjb3VudBIPCgJpZBgBIAEoCUID4EEIEhYKBm9yZ19pZBgCIAEoCUIG4EEC4EEFEicKFWNsb3VkX29yZ2FuaXphdGlvbl9pZBgDIAEoCUID4EEBSAGIAQESEQoEbmFtZRgEIAEoCUID4EECEjcKA2F3cxgFIAEoCzIoLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQVdTQWNjb3VudEgAEjMKCmNyZWF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEhcKCnN1cHByZXNzZWQYCCABKAhCA+BBARIhChRtYW5hZ2VkX2J5X2Rpc2NvdmVyeRgJIAEoCEID4EEBQgoKCHByb3ZpZGVyQhgKFl9jbG91ZF9vcmdhbml6YXRpb25faWRCRlpEZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nsb3VkX2FjY291bnQvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp, file_proto_cloud_provider_v1alpha1_cloud_provider]);
+  fileDesc("CjBwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL2Nsb3VkX2FjY291bnQucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEi6AEKCkFXU0FjY291bnQSFwoKYWNjb3VudF9pZBgBIAEoCUID4EECElwKF2xhbWJkYV9kaXNjb3ZlcnlfY29uZmlnGAIgASgLMjYucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5BV1NMYW1iZGFEaXNjb3ZlcnlDb25maWdCA+BBARJjChthZ2VudF9jb3JlX2Rpc2NvdmVyeV9jb25maWcYAyABKAsyOS5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkFXU0FnZW50Q29yZURpc2NvdmVyeUNvbmZpZ0ID4EEBItwDChhBV1NMYW1iZGFEaXNjb3ZlcnlDb25maWcSFQoIYXVkaWVuY2UYASABKAlCA+BBAhIUCgdyZWdpb25zGAIgAygJQgPgQQESHgoRZGlzY292ZXJ5X2VuYWJsZWQYAyABKAhCA+BBARJDCgZzdGF0dXMYBCABKA4yLi5wcm90by5jbG91ZF9wcm92aWRlci52MWFscGhhMS5EaXNjb3ZlcnlTdGF0dXNCA+BBAxJCChlsYXN0X3N1Y2Nlc3NmdWxfZGlzY292ZXJ5GAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEj8KFnN0YXR1c19sYXN0X3VwZGF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSSwoKcm9sZV9jaGFpbhgHIAMoCzIyLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkFXU0Fzc3VtZVJvbGVDb25maWdCA+BBAhI6ChJkaXNjb3ZlcnlfaW50ZXJ2YWwYCCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CA+BBARIgChNhc3N1bWVfdGhyb3VnaF9vaWRjGAkgASgIQgPgQQEi3wMKG0FXU0FnZW50Q29yZURpc2NvdmVyeUNvbmZpZxIVCghhdWRpZW5jZRgBIAEoCUID4EECEhQKB3JlZ2lvbnMYAiADKAlCA+BBARIeChFkaXNjb3ZlcnlfZW5hYmxlZBgDIAEoCEID4EEBEkMKBnN0YXR1cxgEIAEoDjIuLnByb3RvLmNsb3VkX3Byb3ZpZGVyLnYxYWxwaGExLkRpc2NvdmVyeVN0YXR1c0ID4EEDEkIKGWxhc3Rfc3VjY2Vzc2Z1bF9kaXNjb3ZlcnkYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSPwoWc3RhdHVzX2xhc3RfdXBkYXRlZF9hdBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxJLCgpyb2xlX2NoYWluGAcgAygLMjIucHJvdG8uY2xvdWRfcHJvdmlkZXIudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZ0ID4EECEjoKEmRpc2NvdmVyeV9pbnRlcnZhbBgIIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkID4EEBEiAKE2Fzc3VtZV90aHJvdWdoX29pZGMYCSABKAhCA+BBASL9AgoMQ2xvdWRBY2NvdW50Eg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSJwoVY2xvdWRfb3JnYW5pemF0aW9uX2lkGAMgASgJQgPgQQFIAYgBARIRCgRuYW1lGAQgASgJQgPgQQISNwoDYXdzGAUgASgLMigucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5BV1NBY2NvdW50SAASMwoKY3JlYXRlZF9hdBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSFwoKc3VwcHJlc3NlZBgIIAEoCEID4EEBEiEKFG1hbmFnZWRfYnlfZGlzY292ZXJ5GAkgASgIQgPgQQFCCgoIcHJvdmlkZXJCGAoWX2Nsb3VkX29yZ2FuaXphdGlvbl9pZEJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp, file_proto_cloud_provider_v1alpha1_cloud_provider]);
 
 /**
  * AWSAccount contains AWS-specific configuration for a cloud account.
@@ -62,6 +62,7 @@ export const AWSAccountSchema: GenMessage<AWSAccount> = /*@__PURE__*/
 export type AWSLambdaDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.AWSLambdaDiscoveryConfig"> & {
   /**
    * Audience value for the initial SPIFFE JWT-based assume role call.
+   * Only used when assume_through_oidc is true.
    *
    * @generated from field: string audience = 1;
    */
@@ -103,9 +104,11 @@ export type AWSLambdaDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.AWS
   statusLastUpdatedAt?: Timestamp;
 
   /**
-   * Ordered chain of IAM roles to assume. The first role is assumed via
-   * AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-   * assumed using the credentials from the prior step.
+   * Ordered chain of IAM roles to assume. When assume_through_oidc is true, the
+   * first role is assumed via AssumeRoleWithWebIdentity using the SPIFFE JWT;
+   * when false, the first role is assumed via plain AssumeRole using ambient
+   * credentials (e.g. EKS Pod Identity). Each subsequent role is always assumed
+   * using the credentials from the prior step.
    *
    * @generated from field: repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 7;
    */
@@ -117,6 +120,15 @@ export type AWSLambdaDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.AWS
    * @generated from field: google.protobuf.Duration discovery_interval = 8;
    */
   discoveryInterval?: Duration;
+
+  /**
+   * Whether the first role in role_chain is assumed via SPIFFE JWT-based
+   * AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
+   * such as EKS Pod Identity (false).
+   *
+   * @generated from field: bool assume_through_oidc = 9;
+   */
+  assumeThroughOidc: boolean;
 };
 
 /**
@@ -134,6 +146,7 @@ export const AWSLambdaDiscoveryConfigSchema: GenMessage<AWSLambdaDiscoveryConfig
 export type AWSAgentCoreDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.AWSAgentCoreDiscoveryConfig"> & {
   /**
    * Audience value for the initial SPIFFE JWT-based assume role call.
+   * Only used when assume_through_oidc is true.
    *
    * @generated from field: string audience = 1;
    */
@@ -175,9 +188,11 @@ export type AWSAgentCoreDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.
   statusLastUpdatedAt?: Timestamp;
 
   /**
-   * Ordered chain of IAM roles to assume. The first role is assumed via
-   * AssumeRoleWithWebIdentity using the SPIFFE JWT; each subsequent role is
-   * assumed using the credentials from the prior step.
+   * Ordered chain of IAM roles to assume. When assume_through_oidc is true, the
+   * first role is assumed via AssumeRoleWithWebIdentity using the SPIFFE JWT;
+   * when false, the first role is assumed via plain AssumeRole using ambient
+   * credentials (e.g. EKS Pod Identity). Each subsequent role is always assumed
+   * using the credentials from the prior step.
    *
    * @generated from field: repeated proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig role_chain = 7;
    */
@@ -189,6 +204,15 @@ export type AWSAgentCoreDiscoveryConfig = Message<"proto.cloud_account.v1alpha1.
    * @generated from field: google.protobuf.Duration discovery_interval = 8;
    */
   discoveryInterval?: Duration;
+
+  /**
+   * Whether the first role in role_chain is assumed via SPIFFE JWT-based
+   * AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
+   * such as EKS Pod Identity (false).
+   *
+   * @generated from field: bool assume_through_oidc = 9;
+   */
+  assumeThroughOidc: boolean;
 };
 
 /**

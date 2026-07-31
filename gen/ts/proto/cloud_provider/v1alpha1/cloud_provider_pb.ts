@@ -20,8 +20,10 @@ export const file_proto_cloud_provider_v1alpha1_cloud_provider: GenFile = /*@__P
 
 /**
  * AWSAssumeRoleConfig configures a single step in an IAM role chain.
- * The first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity); subsequent steps
- * use plain AssumeRole with the credentials from the prior step.
+ * Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
+ * ambient credentials (e.g. EKS Pod Identity) is controlled by the
+ * assume_through_oidc field on the owning config; subsequent steps always use
+ * plain AssumeRole with the credentials from the prior step.
  *
  * @generated from message proto.cloud_provider.v1alpha1.AWSAssumeRoleConfig
  */

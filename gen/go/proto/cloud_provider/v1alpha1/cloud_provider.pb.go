@@ -78,8 +78,10 @@ func (DiscoveryStatus) EnumDescriptor() ([]byte, []int) {
 }
 
 // AWSAssumeRoleConfig configures a single step in an IAM role chain.
-// The first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity); subsequent steps
-// use plain AssumeRole with the credentials from the prior step.
+// Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
+// ambient credentials (e.g. EKS Pod Identity) is controlled by the
+// assume_through_oidc field on the owning config; subsequent steps always use
+// plain AssumeRole with the credentials from the prior step.
 type AWSAssumeRoleConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// ARN of the IAM role to assume.
