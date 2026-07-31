@@ -36,11 +36,17 @@ enum WorkloadEventType {
 // selectors, selectors_incomplete — are carried at the wrapper level rather
 // than repeated on each sub-event.
 message WorkloadEvent {
+  // Unique identifier for the workload event.
+  string id = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Connect populates scope fields from the authenticated SPIRE agent and
   // server-side mapping. Publishers should not send these as authoritative input.
   string org_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
   string trust_zone_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
   string cluster_id = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string agent_spiffe_id = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Connect resolves workload_id when the event can be associated with an
+  // observed workload.
+  string workload_id = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   google.protobuf.Timestamp observed_timestamp = 4 [(google.api.field_behavior) = REQUIRED];
 
@@ -51,10 +57,6 @@ message WorkloadEvent {
   // selectors_incomplete indicates that one or more attestor plugins failed
   // during attestation, so the selector set may not be exhaustive.
   bool selectors_incomplete = 7 [(google.api.field_behavior) = OPTIONAL];
-  string agent_spiffe_id = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
-  // Connect resolves workload_id when the event can be associated with an
-  // observed workload.
-  string workload_id = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Exactly one event must be set.
   oneof event {
