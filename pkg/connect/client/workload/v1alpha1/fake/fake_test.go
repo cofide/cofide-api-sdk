@@ -9,6 +9,7 @@ import (
 	"time"
 
 	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
+	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
@@ -34,6 +35,32 @@ func Test_fakeWorkloadClient_ListWorkloads(t *testing.T) {
 	workloads, err = client.ListWorkloads(ctx, nil)
 	require.NoError(t, err)
 	assert.EqualExportedValues(t, []*workloadpb.Workload{workload}, workloads)
+	assert.Empty(t, workloads[0].GetGrantedIdentities())
+}
+
+func Test_fakeWorkloadClient_ListWorkloads_grantedIdentities(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+	ctx := context.Background()
+
+	fake.Workloads[test.FakeWorkloadID] = test.FakeK8sPodWorkload()
+	fake.Identities[test.FakeIdentityID] = test.FakeIdentity()
+	fake.Identities["other-identity-id"] = &identitypb.Identity{
+		WorkloadId:          "other-workload-id",
+		AttestationPolicyId: "other-ap-id",
+		SpiffeId:            "spiffe://fake.trust.domain/other",
+	}
+
+	workloads, err := client.ListWorkloads(ctx, nil)
+	require.NoError(t, err)
+	require.Len(t, workloads, 1)
+
+	assert.EqualExportedValues(t, []*workloadpb.GrantedIdentity{
+		{
+			AttestationPolicyId: test.FakeAttestationPolicyID,
+			SpiffeId:            test.FakeSPIFFEID,
+		},
+	}, workloads[0].GetGrantedIdentities())
 }
 
 func Test_fakeWorkloadClient_ListWorkloadEvents_filterObservedTimeRange(t *testing.T) {

@@ -198,12 +198,13 @@ func FakeK8sPodWorkload() *workloadpb.Workload {
 
 func FakeIdentity() *identitypb.Identity {
 	return &identitypb.Identity{
-		Id:          FakeIdentityID,
-		TrustZoneId: FakeTrustZoneID,
-		ClusterId:   FakeClusterID,
-		WorkloadId:  FakeWorkloadID,
-		SpiffeId:    FakeSPIFFEID,
-		ParentId:    FakeParentID,
+		Id:                  FakeIdentityID,
+		TrustZoneId:         FakeTrustZoneID,
+		ClusterId:           FakeClusterID,
+		WorkloadId:          FakeWorkloadID,
+		AttestationPolicyId: FakeAttestationPolicyID,
+		SpiffeId:            FakeSPIFFEID,
+		ParentId:            FakeParentID,
 		Selectors: []*identitypb.Selector{
 			{
 				Type:  FakeSelectorType,

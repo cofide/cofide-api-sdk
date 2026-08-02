@@ -42,6 +42,8 @@ message Workload {
   // the observation. Only populated in ListWorkloads responses; workloads
   // reported via PublishWorkloads should leave it unset.
   bool suppressed = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Attestation policies currently matching this workload and the SPIFFE ID each grants.
+  repeated GrantedIdentity granted_identities = 13;
 }
 
 // WorkloadType enumerates the supported workload runtime types.
@@ -50,6 +52,15 @@ enum WorkloadType {
   WORKLOAD_TYPE_KUBERNETES_POD = 1;
   WORKLOAD_TYPE_AWS_LAMBDA_FUNCTION = 2;
   WORKLOAD_TYPE_AWS_AGENTCORE_RUNTIME = 3;
+}
+
+// GrantedIdentity is a lean reference pairing an attestation policy that
+// currently matches a workload with the SPIFFE ID it grants.
+message GrantedIdentity {
+  // The attestation policy that matched this workload.
+  string attestation_policy_id = 1;
+  // The SPIFFE ID granted to the workload by the matching policy.
+  string spiffe_id = 2;
 }
 
 // Observation is a structured data point describing the security posture of

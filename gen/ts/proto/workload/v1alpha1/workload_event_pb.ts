@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload_event.proto.
  */
 export const file_proto_workload_v1alpha1_workload_event: GenFile = /*@__PURE__*/
-  fileDesc("Cixwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZF9ldmVudC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiMQoIU2VsZWN0b3ISEQoEdHlwZRgBIAEoCUID4EECEhIKBXZhbHVlGAIgASgJQgPgQQIinwUKDVdvcmtsb2FkRXZlbnQSEwoGb3JnX2lkGAEgASgJQgPgQQMSGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUID4EEDEhcKCmNsdXN0ZXJfaWQYAyABKAlCA+BBAxI7ChJvYnNlcnZlZF90aW1lc3RhbXAYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISHAoKY2FsbGVyX3BpZBgFIAEoBUID4EEBSAGIAQESOQoJc2VsZWN0b3JzGAYgAygLMiEucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuU2VsZWN0b3JCA+BBARIhChRzZWxlY3RvcnNfaW5jb21wbGV0ZRgHIAEoCEID4EEBEhwKD2FnZW50X3NwaWZmZV9pZBgIIAEoCUID4EEDEhgKC3dvcmtsb2FkX2lkGAkgASgJQgPgQQMSSwoRd29ya2xvYWRfYXR0ZXN0ZWQYCiABKAsyLi5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZEF0dGVzdGVkRXZlbnRIABJeCht3b3JrbG9hZF9hdHRlc3RhdGlvbl9mYWlsZWQYCyABKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5Xb3JrbG9hZEF0dGVzdGF0aW9uRmFpbGVkRXZlbnRIABJNChJpZGVudGl0eV9kZWxpdmVyZWQYDCABKAsyLy5wcm90by53b3JrbG9hZC52MWFscGhhMS5JZGVudGl0eURlbGl2ZXJlZEV2ZW50SAASPwoLbm9faWRlbnRpdHkYDSABKAsyKC5wcm90by53b3JrbG9hZC52MWFscGhhMS5Ob0lkZW50aXR5RXZlbnRIAEIHCgVldmVudEINCgtfY2FsbGVyX3BpZCIXChVXb3JrbG9hZEF0dGVzdGVkRXZlbnQiNAoeV29ya2xvYWRBdHRlc3RhdGlvbkZhaWxlZEV2ZW50EhIKBWVycm9yGAEgASgJQgPgQQIiywEKFklkZW50aXR5RGVsaXZlcmVkRXZlbnQSFQoIZW50cnlfaWQYASABKAlCA+BBAhIWCglzcGlmZmVfaWQYAiABKAlCA+BBAhI9Cgl4NTA5X3N2aWQYCiABKAsyKC5wcm90by53b3JrbG9hZC52MWFscGhhMS5YNTA5U1ZJRERldGFpbHNIABI7Cghqd3Rfc3ZpZBgLIAEoCzInLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkpXVFNWSUREZXRhaWxzSABCBgoEc3ZpZCKWAQoPWDUwOVNWSUREZXRhaWxzEhoKDXNlcmlhbF9udW1iZXIYASABKAlCA+BBAhIzCgpub3RfYmVmb3JlGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECEjIKCW5vdF9hZnRlchgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAiKQAQoOSldUU1ZJRERldGFpbHMSFQoIYXVkaWVuY2UYASADKAlCA+BBAhIyCglpc3N1ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISMwoKZXhwaXJlc19hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAiIlCg9Ob0lkZW50aXR5RXZlbnQSEgoFZXJyb3IYASABKAlCA+BBAirpAQoRV29ya2xvYWRFdmVudFR5cGUSIwofV09SS0xPQURfRVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEikKJVdPUktMT0FEX0VWRU5UX1RZUEVfV09SS0xPQURfQVRURVNURUQQARIzCi9XT1JLTE9BRF9FVkVOVF9UWVBFX1dPUktMT0FEX0FUVEVTVEFUSU9OX0ZBSUxFRBACEioKJldPUktMT0FEX0VWRU5UX1RZUEVfSURFTlRJVFlfREVMSVZFUkVEEAMSIwofV09SS0xPQURfRVZFTlRfVFlQRV9OT19JREVOVElUWRAEQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("Cixwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZF9ldmVudC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEiMQoIU2VsZWN0b3ISEQoEdHlwZRgBIAEoCUID4EECEhIKBXZhbHVlGAIgASgJQgPgQQIisAUKDVdvcmtsb2FkRXZlbnQSDwoCaWQYDiABKAlCA+BBAxITCgZvcmdfaWQYASABKAlCA+BBAxIaCg10cnVzdF96b25lX2lkGAIgASgJQgPgQQMSFwoKY2x1c3Rlcl9pZBgDIAEoCUID4EEDEhwKD2FnZW50X3NwaWZmZV9pZBgIIAEoCUID4EEDEhgKC3dvcmtsb2FkX2lkGAkgASgJQgPgQQMSOwoSb2JzZXJ2ZWRfdGltZXN0YW1wGAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECEhwKCmNhbGxlcl9waWQYBSABKAVCA+BBAUgBiAEBEjkKCXNlbGVjdG9ycxgGIAMoCzIhLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLlNlbGVjdG9yQgPgQQESIQoUc2VsZWN0b3JzX2luY29tcGxldGUYByABKAhCA+BBARJLChF3b3JrbG9hZF9hdHRlc3RlZBgKIAEoCzIuLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkQXR0ZXN0ZWRFdmVudEgAEl4KG3dvcmtsb2FkX2F0dGVzdGF0aW9uX2ZhaWxlZBgLIAEoCzI3LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkQXR0ZXN0YXRpb25GYWlsZWRFdmVudEgAEk0KEmlkZW50aXR5X2RlbGl2ZXJlZBgMIAEoCzIvLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLklkZW50aXR5RGVsaXZlcmVkRXZlbnRIABI/Cgtub19pZGVudGl0eRgNIAEoCzIoLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLk5vSWRlbnRpdHlFdmVudEgAQgcKBWV2ZW50Qg0KC19jYWxsZXJfcGlkIhcKFVdvcmtsb2FkQXR0ZXN0ZWRFdmVudCI0Ch5Xb3JrbG9hZEF0dGVzdGF0aW9uRmFpbGVkRXZlbnQSEgoFZXJyb3IYASABKAlCA+BBAiLLAQoWSWRlbnRpdHlEZWxpdmVyZWRFdmVudBIVCghlbnRyeV9pZBgBIAEoCUID4EECEhYKCXNwaWZmZV9pZBgCIAEoCUID4EECEj0KCXg1MDlfc3ZpZBgKIAEoCzIoLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLlg1MDlTVklERGV0YWlsc0gAEjsKCGp3dF9zdmlkGAsgASgLMicucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuSldUU1ZJRERldGFpbHNIAEIGCgRzdmlkIpYBCg9YNTA5U1ZJRERldGFpbHMSGgoNc2VyaWFsX251bWJlchgBIAEoCUID4EECEjMKCm5vdF9iZWZvcmUYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQISMgoJbm90X2FmdGVyGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECIpABCg5KV1RTVklERGV0YWlscxIVCghhdWRpZW5jZRgBIAMoCUID4EECEjIKCWlzc3VlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAhIzCgpleHBpcmVzX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EECIiUKD05vSWRlbnRpdHlFdmVudBISCgVlcnJvchgBIAEoCUID4EECKukBChFXb3JrbG9hZEV2ZW50VHlwZRIjCh9XT1JLTE9BRF9FVkVOVF9UWVBFX1VOU1BFQ0lGSUVEEAASKQolV09SS0xPQURfRVZFTlRfVFlQRV9XT1JLTE9BRF9BVFRFU1RFRBABEjMKL1dPUktMT0FEX0VWRU5UX1RZUEVfV09SS0xPQURfQVRURVNUQVRJT05fRkFJTEVEEAISKgomV09SS0xPQURfRVZFTlRfVFlQRV9JREVOVElUWV9ERUxJVkVSRUQQAxIjCh9XT1JLTE9BRF9FVkVOVF9UWVBFX05PX0lERU5USVRZEARCQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * Selector preserves the SPIRE type+value structure of *common.Selector.
@@ -60,6 +60,13 @@ export const SelectorSchema: GenMessage<Selector> = /*@__PURE__*/
  */
 export type WorkloadEvent = Message<"proto.workload.v1alpha1.WorkloadEvent"> & {
   /**
+   * Unique identifier for the workload event.
+   *
+   * @generated from field: string id = 14;
+   */
+  id: string;
+
+  /**
    * Connect populates scope fields from the authenticated SPIRE agent and
    * server-side mapping. Publishers should not send these as authoritative input.
    *
@@ -76,6 +83,19 @@ export type WorkloadEvent = Message<"proto.workload.v1alpha1.WorkloadEvent"> & {
    * @generated from field: string cluster_id = 3;
    */
   clusterId: string;
+
+  /**
+   * @generated from field: string agent_spiffe_id = 8;
+   */
+  agentSpiffeId: string;
+
+  /**
+   * Connect resolves workload_id when the event can be associated with an
+   * observed workload.
+   *
+   * @generated from field: string workload_id = 9;
+   */
+  workloadId: string;
 
   /**
    * @generated from field: google.protobuf.Timestamp observed_timestamp = 4;
@@ -102,19 +122,6 @@ export type WorkloadEvent = Message<"proto.workload.v1alpha1.WorkloadEvent"> & {
    * @generated from field: bool selectors_incomplete = 7;
    */
   selectorsIncomplete: boolean;
-
-  /**
-   * @generated from field: string agent_spiffe_id = 8;
-   */
-  agentSpiffeId: string;
-
-  /**
-   * Connect resolves workload_id when the event can be associated with an
-   * observed workload.
-   *
-   * @generated from field: string workload_id = 9;
-   */
-  workloadId: string;
 
   /**
    * Exactly one event must be set.
