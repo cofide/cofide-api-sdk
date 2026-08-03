@@ -44,6 +44,10 @@ message Workload {
   bool suppressed = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Attestation policies currently matching this workload and the SPIFFE ID each grants.
   repeated GrantedIdentity granted_identities = 13;
+  // Exchange policies whose subject match rule is satisfied by one of this workload's identities.
+  repeated string matching_subject_exchange_policy_ids = 14;
+  // Exchange policies whose actor match rule is satisfied by one of this workload's identities.
+  repeated string matching_actor_exchange_policy_ids = 15;
 }
 
 // WorkloadType enumerates the supported workload runtime types.

@@ -62,6 +62,15 @@ const (
 	FakeK8sPodName      = "fake-k8s-pod-name"
 	FakeK8sPodNamespace = "fake-k8s-pod-namespace"
 
+	FakeLambdaWorkloadID   = "fake-lambda-workload-id"
+	FakeLambdaFunctionName = "fake-lambda-function-name"
+	FakeLambdaIAMRoleARN   = "arn:aws:iam::123456789012:role/fake-lambda-role"
+
+	FakeAgentCoreWorkloadID          = "fake-agentcore-workload-id"
+	FakeAgentCoreRuntimeName         = "fake-agentcore-runtime-name"
+	FakeAgentCoreRoleARN             = "arn:aws:iam::123456789012:role/fake-agentcore-role"
+	FakeAgentCoreWorkloadIdentityARN = "arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/fake-agentcore-runtime"
+
 	FakeIdentityID    = "fake-identity-id"
 	FakeSPIFFEID      = "spiffe://fake.trust.domain/ns/fake-k8s-pod-namespace/sa/fake-k8s-pod-service-account"
 	FakeParentID      = "spiffe://fake.trust.domain/spire/agent/k8s_psat/fake-cluster-name/fake-spire-agent"
@@ -191,6 +200,39 @@ func FakeK8sPodWorkload() *workloadpb.Workload {
 					Name:      FakeK8sPodName,
 					Namespace: FakeK8sPodNamespace,
 				},
+			},
+		},
+	}
+}
+
+func FakeLambdaWorkload() *workloadpb.Workload {
+	return &workloadpb.Workload{
+		Id:          FakeLambdaWorkloadID,
+		TrustZoneId: FakeTrustZoneID,
+		ClusterId:   FakeClusterID,
+		Type:        workloadpb.WorkloadType_WORKLOAD_TYPE_AWS_LAMBDA_FUNCTION,
+		Workload: &workloadpb.Workload_LambdaFunction{
+			LambdaFunction: &workloadpb.AWSLambdaFunction{
+				FunctionName:   FakeLambdaFunctionName,
+				IamRoleArn:     FakeLambdaIAMRoleARN,
+				CloudAccountId: FakeCloudAccountID,
+			},
+		},
+	}
+}
+
+func FakeAgentCoreWorkload() *workloadpb.Workload {
+	return &workloadpb.Workload{
+		Id:          FakeAgentCoreWorkloadID,
+		TrustZoneId: FakeTrustZoneID,
+		ClusterId:   FakeClusterID,
+		Type:        workloadpb.WorkloadType_WORKLOAD_TYPE_AWS_AGENTCORE_RUNTIME,
+		Workload: &workloadpb.Workload_AgentcoreWorkload{
+			AgentcoreWorkload: &workloadpb.AWSAgentCoreRuntime{
+				AgentRuntimeName:    FakeAgentCoreRuntimeName,
+				RoleArn:             FakeAgentCoreRoleARN,
+				WorkloadIdentityArn: FakeAgentCoreWorkloadIdentityARN,
+				CloudAccountId:      FakeCloudAccountID,
 			},
 		},
 	}
