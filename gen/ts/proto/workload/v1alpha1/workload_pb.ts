@@ -12,6 +12,7 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Timestamp, Value } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
@@ -20,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi2QIKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSMwoEdHlwZRgJIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZRJACg5rdWJlcm5ldGVzX3BvZBgFIAEoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNQb2RIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAhCCgoId29ya2xvYWQiRgoLT2JzZXJ2YXRpb24SEAoIdHlwZV91cmwYASABKAkSJQoFdmFsdWUYAiABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUigwIKDUt1YmVybmV0ZXNQb2QSPQoIbWV0YWRhdGEYASABKAsyKy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGESHAoUc2VydmljZV9hY2NvdW50X25hbWUYAiABKAkSEQoJbm9kZV9uYW1lGAMgASgJEhAKCG5vZGVfdWlkGAYgASgJEkAKCmNvbnRhaW5lcnMYBCADKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzQ29udGFpbmVyEi4KCnN0YXJ0X3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIvkCChJLdWJlcm5ldGVzTWV0YWRhdGESCwoDdWlkGAEgASgJEgwKBG5hbWUYAiABKAkSEQoJbmFtZXNwYWNlGAMgASgJEkcKBmxhYmVscxgEIAMoCzI3LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5MYWJlbHNFbnRyeRJRCgthbm5vdGF0aW9ucxgFIAMoCzI8LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5Bbm5vdGF0aW9uc0VudHJ5EjYKEmNyZWF0aW9uX3RpbWVzdGFtcBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLQoLTGFiZWxzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARoyChBBbm5vdGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiMgoTS3ViZXJuZXRlc0NvbnRhaW5lchIMCgRuYW1lGAEgASgJEg0KBWltYWdlGAIgASgJKk8KDFdvcmtsb2FkVHlwZRIdChlXT1JLTE9BRF9UWVBFX1VOU1BFQ0lGSUVEEAASIAocV09SS0xPQURfVFlQRV9LVUJFUk5FVEVTX1BPRBABQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEipQUKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSMwoEdHlwZRgJIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZRJACg5rdWJlcm5ldGVzX3BvZBgFIAEoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNQb2RIABJFCg9sYW1iZGFfZnVuY3Rpb24YCyABKAsyKi5wcm90by53b3JrbG9hZC52MWFscGhhMS5BV1NMYW1iZGFGdW5jdGlvbkgAEkoKEmFnZW50Y29yZV93b3JrbG9hZBgMIAEoCzIsLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFXU0FnZW50Q29yZVJ1bnRpbWVIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAgSFwoKc3VwcHJlc3NlZBgKIAEoCEID4EEDEkQKEmdyYW50ZWRfaWRlbnRpdGllcxgNIAMoCzIoLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkdyYW50ZWRJZGVudGl0eRIsCiRtYXRjaGluZ19zdWJqZWN0X2V4Y2hhbmdlX3BvbGljeV9pZHMYDiADKAkSKgoibWF0Y2hpbmdfYWN0b3JfZXhjaGFuZ2VfcG9saWN5X2lkcxgPIAMoCUIKCgh3b3JrbG9hZCJDCg9HcmFudGVkSWRlbnRpdHkSHQoVYXR0ZXN0YXRpb25fcG9saWN5X2lkGAEgASgJEhEKCXNwaWZmZV9pZBgCIAEoCSJGCgtPYnNlcnZhdGlvbhIQCgh0eXBlX3VybBgBIAEoCRIlCgV2YWx1ZRgCIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZSKDAgoNS3ViZXJuZXRlc1BvZBI9CghtZXRhZGF0YRgBIAEoCzIrLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YRIcChRzZXJ2aWNlX2FjY291bnRfbmFtZRgCIAEoCRIRCglub2RlX25hbWUYAyABKAkSEAoIbm9kZV91aWQYBiABKAkSQAoKY29udGFpbmVycxgEIAMoCzIsLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNDb250YWluZXISLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAi+QIKEkt1YmVybmV0ZXNNZXRhZGF0YRILCgN1aWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgluYW1lc3BhY2UYAyABKAkSRwoGbGFiZWxzGAQgAygLMjcucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhLkxhYmVsc0VudHJ5ElEKC2Fubm90YXRpb25zGAUgAygLMjwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhLkFubm90YXRpb25zRW50cnkSNgoSY3JlYXRpb25fdGltZXN0YW1wGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBGjIKEEFubm90YXRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASIyChNLdWJlcm5ldGVzQ29udGFpbmVyEgwKBG5hbWUYASABKAkSDQoFaW1hZ2UYAiABKAki8QEKEUFXU0xhbWJkYUZ1bmN0aW9uEhUKDWZ1bmN0aW9uX25hbWUYASABKAkSFAoMZnVuY3Rpb25fYXJuGAIgASgJEg4KBnJlZ2lvbhgDIAEoCRIUCgxpYW1fcm9sZV9hcm4YBCABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgFIAEoCRJCCgR0YWdzGAYgAygLMjQucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuQVdTTGFtYmRhRnVuY3Rpb24uVGFnc0VudHJ5GisKCVRhZ3NFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIqcBChNBV1NBZ2VudENvcmVSdW50aW1lEhoKEmFnZW50X3J1bnRpbWVfbmFtZRgBIAEoCRIZChFhZ2VudF9ydW50aW1lX2FybhgCIAEoCRIOCgZyZWdpb24YAyABKAkSEAoIcm9sZV9hcm4YBCABKAkSHQoVd29ya2xvYWRfaWRlbnRpdHlfYXJuGAUgASgJEhgKEGNsb3VkX2FjY291bnRfaWQYBiABKAkqnwEKDFdvcmtsb2FkVHlwZRIdChlXT1JLTE9BRF9UWVBFX1VOU1BFQ0lGSUVEEAASIAocV09SS0xPQURfVFlQRV9LVUJFUk5FVEVTX1BPRBABEiUKIVdPUktMT0FEX1RZUEVfQVdTX0xBTUJEQV9GVU5DVElPThACEicKI1dPUktMT0FEX1RZUEVfQVdTX0FHRU5UQ09SRV9SVU5USU1FEANCQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3dvcmtsb2FkL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Workload represents a process, container, or unit of software running on an
@@ -65,6 +66,18 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
      */
     value: KubernetesPod;
     case: "kubernetesPod";
+  } | {
+    /**
+     * @generated from field: proto.workload.v1alpha1.AWSLambdaFunction lambda_function = 11;
+     */
+    value: AWSLambdaFunction;
+    case: "lambdaFunction";
+  } | {
+    /**
+     * @generated from field: proto.workload.v1alpha1.AWSAgentCoreRuntime agentcore_workload = 12;
+     */
+    value: AWSAgentCoreRuntime;
+    case: "agentcoreWorkload";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -87,6 +100,38 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
    * @generated from field: bool deleted = 8;
    */
   deleted: boolean;
+
+  /**
+   * Whether this workload currently matches an enabled WorkloadSuppressionRule
+   * scoped to it. Computed dynamically against the current rule set at query
+   * time rather than stored, so it reflects rule state as of the request, not
+   * the observation. Only populated in ListWorkloads responses; workloads
+   * reported via PublishWorkloads should leave it unset.
+   *
+   * @generated from field: bool suppressed = 10;
+   */
+  suppressed: boolean;
+
+  /**
+   * Attestation policies currently matching this workload and the SPIFFE ID each grants.
+   *
+   * @generated from field: repeated proto.workload.v1alpha1.GrantedIdentity granted_identities = 13;
+   */
+  grantedIdentities: GrantedIdentity[];
+
+  /**
+   * Exchange policies whose subject match rule is satisfied by one of this workload's identities.
+   *
+   * @generated from field: repeated string matching_subject_exchange_policy_ids = 14;
+   */
+  matchingSubjectExchangePolicyIds: string[];
+
+  /**
+   * Exchange policies whose actor match rule is satisfied by one of this workload's identities.
+   *
+   * @generated from field: repeated string matching_actor_exchange_policy_ids = 15;
+   */
+  matchingActorExchangePolicyIds: string[];
 };
 
 /**
@@ -95,6 +140,35 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
  */
 export const WorkloadSchema: GenMessage<Workload> = /*@__PURE__*/
   messageDesc(file_proto_workload_v1alpha1_workload, 0);
+
+/**
+ * GrantedIdentity is a lean reference pairing an attestation policy that
+ * currently matches a workload with the SPIFFE ID it grants.
+ *
+ * @generated from message proto.workload.v1alpha1.GrantedIdentity
+ */
+export type GrantedIdentity = Message<"proto.workload.v1alpha1.GrantedIdentity"> & {
+  /**
+   * The attestation policy that matched this workload.
+   *
+   * @generated from field: string attestation_policy_id = 1;
+   */
+  attestationPolicyId: string;
+
+  /**
+   * The SPIFFE ID granted to the workload by the matching policy.
+   *
+   * @generated from field: string spiffe_id = 2;
+   */
+  spiffeId: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.GrantedIdentity.
+ * Use `create(GrantedIdentitySchema)` to create a new message.
+ */
+export const GrantedIdentitySchema: GenMessage<GrantedIdentity> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 1);
 
 /**
  * Observation is a structured data point describing the security posture of
@@ -119,7 +193,7 @@ export type Observation = Message<"proto.workload.v1alpha1.Observation"> & {
  * Use `create(ObservationSchema)` to create a new message.
  */
 export const ObservationSchema: GenMessage<Observation> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 1);
+  messageDesc(file_proto_workload_v1alpha1_workload, 2);
 
 /**
  * KubernetesPod contains the runtime details of a Kubernetes pod workload
@@ -164,7 +238,7 @@ export type KubernetesPod = Message<"proto.workload.v1alpha1.KubernetesPod"> & {
  * Use `create(KubernetesPodSchema)` to create a new message.
  */
 export const KubernetesPodSchema: GenMessage<KubernetesPod> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 2);
+  messageDesc(file_proto_workload_v1alpha1_workload, 3);
 
 /**
  * KubernetesMetadata contains standard Kubernetes object metadata for a workload.
@@ -208,7 +282,7 @@ export type KubernetesMetadata = Message<"proto.workload.v1alpha1.KubernetesMeta
  * Use `create(KubernetesMetadataSchema)` to create a new message.
  */
 export const KubernetesMetadataSchema: GenMessage<KubernetesMetadata> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 3);
+  messageDesc(file_proto_workload_v1alpha1_workload, 4);
 
 /**
  * KubernetesContainer describes a single container within a Kubernetes pod workload.
@@ -232,7 +306,109 @@ export type KubernetesContainer = Message<"proto.workload.v1alpha1.KubernetesCon
  * Use `create(KubernetesContainerSchema)` to create a new message.
  */
 export const KubernetesContainerSchema: GenMessage<KubernetesContainer> = /*@__PURE__*/
-  messageDesc(file_proto_workload_v1alpha1_workload, 4);
+  messageDesc(file_proto_workload_v1alpha1_workload, 5);
+
+/**
+ * AWSLambdaFunction contains the runtime details of an AWS Lambda function
+ * workload as discovered by Connect's cloud resource discovery.
+ *
+ * @generated from message proto.workload.v1alpha1.AWSLambdaFunction
+ */
+export type AWSLambdaFunction = Message<"proto.workload.v1alpha1.AWSLambdaFunction"> & {
+  /**
+   * @generated from field: string function_name = 1;
+   */
+  functionName: string;
+
+  /**
+   * @generated from field: string function_arn = 2;
+   */
+  functionArn: string;
+
+  /**
+   * @generated from field: string region = 3;
+   */
+  region: string;
+
+  /**
+   * @generated from field: string iam_role_arn = 4;
+   */
+  iamRoleArn: string;
+
+  /**
+   * The cloud account this function was discovered in, for traceability back
+   * to the discovery source.
+   *
+   * @generated from field: string cloud_account_id = 5;
+   */
+  cloudAccountId: string;
+
+  /**
+   * AWS resource tags on this Lambda function, as returned by lambda:ListTags.
+   *
+   * @generated from field: map<string, string> tags = 6;
+   */
+  tags: { [key: string]: string };
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.AWSLambdaFunction.
+ * Use `create(AWSLambdaFunctionSchema)` to create a new message.
+ */
+export const AWSLambdaFunctionSchema: GenMessage<AWSLambdaFunction> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 6);
+
+/**
+ * AWSAgentCoreRuntime contains the runtime details of an AWS Bedrock AgentCore Runtime
+ * workload as discovered by Connect's cloud resource discovery.
+ *
+ * @generated from message proto.workload.v1alpha1.AWSAgentCoreRuntime
+ */
+export type AWSAgentCoreRuntime = Message<"proto.workload.v1alpha1.AWSAgentCoreRuntime"> & {
+  /**
+   * @generated from field: string agent_runtime_name = 1;
+   */
+  agentRuntimeName: string;
+
+  /**
+   * @generated from field: string agent_runtime_arn = 2;
+   */
+  agentRuntimeArn: string;
+
+  /**
+   * @generated from field: string region = 3;
+   */
+  region: string;
+
+  /**
+   * The IAM role ARN used at execution time.
+   *
+   * @generated from field: string role_arn = 4;
+   */
+  roleArn: string;
+
+  /**
+   * AWS's dedicated workload-identity ARN for this runtime.
+   *
+   * @generated from field: string workload_identity_arn = 5;
+   */
+  workloadIdentityArn: string;
+
+  /**
+   * The cloud account this runtime was discovered in, for traceability back to the discovery
+   * source.
+   *
+   * @generated from field: string cloud_account_id = 6;
+   */
+  cloudAccountId: string;
+};
+
+/**
+ * Describes the message proto.workload.v1alpha1.AWSAgentCoreRuntime.
+ * Use `create(AWSAgentCoreRuntimeSchema)` to create a new message.
+ */
+export const AWSAgentCoreRuntimeSchema: GenMessage<AWSAgentCoreRuntime> = /*@__PURE__*/
+  messageDesc(file_proto_workload_v1alpha1_workload, 7);
 
 /**
  * WorkloadType enumerates the supported workload runtime types.
@@ -249,6 +425,16 @@ export enum WorkloadType {
    * @generated from enum value: WORKLOAD_TYPE_KUBERNETES_POD = 1;
    */
   KUBERNETES_POD = 1,
+
+  /**
+   * @generated from enum value: WORKLOAD_TYPE_AWS_LAMBDA_FUNCTION = 2;
+   */
+  AWS_LAMBDA_FUNCTION = 2,
+
+  /**
+   * @generated from enum value: WORKLOAD_TYPE_AWS_AGENTCORE_RUNTIME = 3;
+   */
+  AWS_AGENTCORE_RUNTIME = 3,
 }
 
 /**

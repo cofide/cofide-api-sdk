@@ -13,6 +13,10 @@ import (
 	fakeattestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1/fake"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
 	fakeauditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1/fake"
+	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
+	fakecloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1/fake"
+	cloudorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudorganization/v1alpha1"
+	fakecloudorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudorganization/v1alpha1/fake"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	fakeclusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1/fake"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
@@ -34,42 +38,50 @@ import (
 	faketrustzoneserverv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzoneserver/v1alpha1/fake"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
 	fakeworkloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1/fake"
+	workloadsuppressionrulev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workloadsuppressionrule/v1alpha1"
+	fakeworkloadsuppressionrulev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workloadsuppressionrule/v1alpha1/fake"
 )
 
 type fakeClientSet struct {
-	agentV1Alpha1             agentv1alpha1.AgentClient
-	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
-	auditV1Alpha1             auditv1alpha1.AuditClient
-	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
-	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
-	clusterV1Alpha1           clusterv1alpha1.ClusterClient
-	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
-	federationV1Alpha1        federationV1Alpha1.FederationClient
-	identityV1Alpha1          identityv1alpha1.IdentityClient
-	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
-	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
-	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
-	trustZoneServerV1Alpha1   trustzoneserverv1alpha1.TrustZoneServerClient
-	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
+	agentV1Alpha1                   agentv1alpha1.AgentClient
+	apBindingV1Alpha1               apbindingv1alpha1.APBindingClient
+	auditV1Alpha1                   auditv1alpha1.AuditClient
+	exchangePolicyV1Alpha1          exchangepolicyv1alpha1.ExchangePolicyClient
+	attestationPolicyV1Alpha1       attestationpolicyv1alpha1.AttestationPolicyClient
+	clusterV1Alpha1                 clusterv1alpha1.ClusterClient
+	cloudOrganizationV1Alpha1       cloudorganizationv1alpha1.CloudOrganizationClient
+	cloudAccountV1Alpha1            cloudaccountv1alpha1.CloudAccountClient
+	datastoreV1Alpha1               datastorev1alpha1.DataStoreClient
+	federationV1Alpha1              federationV1Alpha1.FederationClient
+	identityV1Alpha1                identityv1alpha1.IdentityClient
+	organizationV1Alpha1            organizationv1alpha1.OrganizationClient
+	roleBindingV1Alpha1             rolebindingv1alpha1.RoleBindingClient
+	trustZoneV1Alpha1               trustzonev1alpha1.TrustZoneClient
+	trustZoneServerV1Alpha1         trustzoneserverv1alpha1.TrustZoneServerClient
+	workloadV1Alpha1                workloadv1alpha1.WorkloadClient
+	workloadSuppressionRuleV1Alpha1 workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient
 }
 
 // New instantiates a new ClientSet that fakes communication with a Connect API.
 func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 	return &fakeClientSet{
-		agentV1Alpha1:             fakeagentv1alpha1.New(fake),
-		apBindingV1Alpha1:         fakeapbindingv1alpha1.New(fake),
-		auditV1Alpha1:             fakeauditv1alpha1.New(fake),
-		exchangePolicyV1Alpha1:    fakeexchangepolicyv1alpha1.New(fake),
-		attestationPolicyV1Alpha1: fakeattestationpolicyv1alpha1.New(fake),
-		clusterV1Alpha1:           fakeclusterv1alpha1.New(fake),
-		datastoreV1Alpha1:         fakedatastorev1alpha1.New(fake),
-		federationV1Alpha1:        fakefederationV1Alpha1.New(fake),
-		identityV1Alpha1:          fakeidentityv1alpha1.New(fake),
-		organizationV1Alpha1:      fakeorganizationv1alpha1.New(fake),
-		roleBindingV1Alpha1:       fakerolebindingv1alpha1.New(fake),
-		trustZoneV1Alpha1:         faketrustzonev1alpha1.New(fake),
-		trustZoneServerV1Alpha1:   faketrustzoneserverv1alpha1.New(fake),
-		workloadV1Alpha1:          fakeworkloadv1alpha1.New(fake),
+		agentV1Alpha1:                   fakeagentv1alpha1.New(fake),
+		apBindingV1Alpha1:               fakeapbindingv1alpha1.New(fake),
+		auditV1Alpha1:                   fakeauditv1alpha1.New(fake),
+		exchangePolicyV1Alpha1:          fakeexchangepolicyv1alpha1.New(fake),
+		attestationPolicyV1Alpha1:       fakeattestationpolicyv1alpha1.New(fake),
+		clusterV1Alpha1:                 fakeclusterv1alpha1.New(fake),
+		cloudOrganizationV1Alpha1:       fakecloudorganizationv1alpha1.New(fake),
+		cloudAccountV1Alpha1:            fakecloudaccountv1alpha1.New(fake),
+		datastoreV1Alpha1:               fakedatastorev1alpha1.New(fake),
+		federationV1Alpha1:              fakefederationV1Alpha1.New(fake),
+		identityV1Alpha1:                fakeidentityv1alpha1.New(fake),
+		organizationV1Alpha1:            fakeorganizationv1alpha1.New(fake),
+		roleBindingV1Alpha1:             fakerolebindingv1alpha1.New(fake),
+		trustZoneV1Alpha1:               faketrustzonev1alpha1.New(fake),
+		trustZoneServerV1Alpha1:         faketrustzoneserverv1alpha1.New(fake),
+		workloadV1Alpha1:                fakeworkloadv1alpha1.New(fake),
+		workloadSuppressionRuleV1Alpha1: fakeworkloadsuppressionrulev1alpha1.New(fake),
 	}
 }
 
@@ -95,6 +107,14 @@ func (c *fakeClientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.At
 
 func (c *fakeClientSet) ClusterV1Alpha1() clusterv1alpha1.ClusterClient {
 	return c.clusterV1Alpha1
+}
+
+func (c *fakeClientSet) CloudOrganizationV1Alpha1() cloudorganizationv1alpha1.CloudOrganizationClient {
+	return c.cloudOrganizationV1Alpha1
+}
+
+func (c *fakeClientSet) CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient {
+	return c.cloudAccountV1Alpha1
 }
 
 func (c *fakeClientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
@@ -127,4 +147,8 @@ func (c *fakeClientSet) TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZ
 
 func (c *fakeClientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 	return c.workloadV1Alpha1
+}
+
+func (c *fakeClientSet) WorkloadSuppressionRuleV1Alpha1() workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient {
+	return c.workloadSuppressionRuleV1Alpha1
 }

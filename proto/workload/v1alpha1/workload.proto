@@ -9,6 +9,7 @@ syntax = "proto3";
 
 package proto.workload.v1alpha1;
 
+import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -26,6 +27,8 @@ message Workload {
   WorkloadType type = 9;
   oneof workload {
     KubernetesPod kubernetes_pod = 5;
+    AWSLambdaFunction lambda_function = 11;
+    AWSAgentCoreRuntime agentcore_workload = 12;
   }
   // Security posture observations.
   repeated Observation observations = 6;
@@ -33,12 +36,35 @@ message Workload {
   google.protobuf.Timestamp observed_timestamp = 7;
   // Whether this workload has been deleted since it was last observed.
   bool deleted = 8;
+  // Whether this workload currently matches an enabled WorkloadSuppressionRule
+  // scoped to it. Computed dynamically against the current rule set at query
+  // time rather than stored, so it reflects rule state as of the request, not
+  // the observation. Only populated in ListWorkloads responses; workloads
+  // reported via PublishWorkloads should leave it unset.
+  bool suppressed = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Attestation policies currently matching this workload and the SPIFFE ID each grants.
+  repeated GrantedIdentity granted_identities = 13;
+  // Exchange policies whose subject match rule is satisfied by one of this workload's identities.
+  repeated string matching_subject_exchange_policy_ids = 14;
+  // Exchange policies whose actor match rule is satisfied by one of this workload's identities.
+  repeated string matching_actor_exchange_policy_ids = 15;
 }
 
 // WorkloadType enumerates the supported workload runtime types.
 enum WorkloadType {
   WORKLOAD_TYPE_UNSPECIFIED = 0;
   WORKLOAD_TYPE_KUBERNETES_POD = 1;
+  WORKLOAD_TYPE_AWS_LAMBDA_FUNCTION = 2;
+  WORKLOAD_TYPE_AWS_AGENTCORE_RUNTIME = 3;
+}
+
+// GrantedIdentity is a lean reference pairing an attestation policy that
+// currently matches a workload with the SPIFFE ID it grants.
+message GrantedIdentity {
+  // The attestation policy that matched this workload.
+  string attestation_policy_id = 1;
+  // The SPIFFE ID granted to the workload by the matching policy.
+  string spiffe_id = 2;
 }
 
 // Observation is a structured data point describing the security posture of
@@ -73,4 +99,33 @@ message KubernetesMetadata {
 message KubernetesContainer {
   string name = 1;
   string image = 2;
+}
+
+// AWSLambdaFunction contains the runtime details of an AWS Lambda function
+// workload as discovered by Connect's cloud resource discovery.
+message AWSLambdaFunction {
+  string function_name = 1;
+  string function_arn = 2;
+  string region = 3;
+  string iam_role_arn = 4;
+  // The cloud account this function was discovered in, for traceability back
+  // to the discovery source.
+  string cloud_account_id = 5;
+  // AWS resource tags on this Lambda function, as returned by lambda:ListTags.
+  map<string, string> tags = 6;
+}
+
+// AWSAgentCoreRuntime contains the runtime details of an AWS Bedrock AgentCore Runtime
+// workload as discovered by Connect's cloud resource discovery.
+message AWSAgentCoreRuntime {
+  string agent_runtime_name = 1;
+  string agent_runtime_arn = 2;
+  string region = 3;
+  // The IAM role ARN used at execution time.
+  string role_arn = 4;
+  // AWS's dedicated workload-identity ARN for this runtime.
+  string workload_identity_arn = 5;
+  // The cloud account this runtime was discovered in, for traceability back to the discovery
+  // source.
+  string cloud_account_id = 6;
 }

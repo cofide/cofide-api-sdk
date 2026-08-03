@@ -7,6 +7,8 @@ import (
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	cloudorganizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_organization/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
@@ -18,6 +20,7 @@ import (
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
+	workloadsuppressionrulepb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload_suppression_rule/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -25,49 +28,55 @@ import (
 
 // FakeConnect implements the state for a fake Connect service.
 type FakeConnect struct {
-	Mu                  sync.Mutex
-	Organizations       map[string]*organizationpb.Organization
-	TrustZones          map[string]*trustzonepb.TrustZone
-	TrustZoneBundles    map[string]*types.Bundle
-	TrustZoneServers    map[string]*trustzoneserverpb.TrustZoneServer
-	Clusters            map[string]*clusterpb.Cluster
-	Agents              map[string]*agentpb.Agent
-	AgentJoinTokens     map[string]map[string]string
-	AgentStatus         map[string]*agentpb.AgentStatus
-	FederatedServices   map[string]*federatedservicepb.FederatedService
-	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
-	APBindings          map[string]*apbindingpb.APBinding
-	ExchangePolicies    map[string]*exchangepolicypb.ExchangePolicy
-	Federations         map[string]*federationpb.Federation
-	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
-	Workloads           map[string]*workloadpb.Workload
-	WorkloadEvents      []*workloadpb.WorkloadEvent
-	Identities          map[string]*identitypb.Identity
-	RoleBindings        map[string]*rolebindingpb.RoleBinding
-	AuditEvents         map[string]*auditpb.Event
+	Mu                       sync.Mutex
+	Organizations            map[string]*organizationpb.Organization
+	TrustZones               map[string]*trustzonepb.TrustZone
+	TrustZoneBundles         map[string]*types.Bundle
+	TrustZoneServers         map[string]*trustzoneserverpb.TrustZoneServer
+	CloudOrganizations       map[string]*cloudorganizationpb.CloudOrganization
+	CloudAccounts            map[string]*cloudaccountpb.CloudAccount
+	Clusters                 map[string]*clusterpb.Cluster
+	Agents                   map[string]*agentpb.Agent
+	AgentJoinTokens          map[string]map[string]string
+	AgentStatus              map[string]*agentpb.AgentStatus
+	FederatedServices        map[string]*federatedservicepb.FederatedService
+	AttestationPolicies      map[string]*attestationpolicypb.AttestationPolicy
+	APBindings               map[string]*apbindingpb.APBinding
+	ExchangePolicies         map[string]*exchangepolicypb.ExchangePolicy
+	Federations              map[string]*federationpb.Federation
+	AttestedNodes            map[string]*datastoresvcpb.AttestedNode
+	Workloads                map[string]*workloadpb.Workload
+	WorkloadEvents           []*workloadpb.WorkloadEvent
+	Identities               map[string]*identitypb.Identity
+	RoleBindings             map[string]*rolebindingpb.RoleBinding
+	AuditEvents              map[string]*auditpb.Event
+	WorkloadSuppressionRules map[string]*workloadsuppressionrulepb.WorkloadSuppressionRule
 }
 
 func New() *FakeConnect {
 	return &FakeConnect{
-		Organizations:       make(map[string]*organizationpb.Organization),
-		TrustZones:          make(map[string]*trustzonepb.TrustZone),
-		TrustZoneBundles:    make(map[string]*types.Bundle),
-		TrustZoneServers:    make(map[string]*trustzoneserverpb.TrustZoneServer),
-		Clusters:            make(map[string]*clusterpb.Cluster),
-		Agents:              make(map[string]*agentpb.Agent),
-		AgentJoinTokens:     make(map[string]map[string]string),
-		AgentStatus:         make(map[string]*agentpb.AgentStatus),
-		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
-		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
-		APBindings:          make(map[string]*apbindingpb.APBinding),
-		ExchangePolicies:    make(map[string]*exchangepolicypb.ExchangePolicy),
-		Federations:         make(map[string]*federationpb.Federation),
-		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
-		Workloads:           make(map[string]*workloadpb.Workload),
-		WorkloadEvents:      []*workloadpb.WorkloadEvent{},
-		Identities:          make(map[string]*identitypb.Identity),
-		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
-		AuditEvents:         make(map[string]*auditpb.Event),
+		Organizations:            make(map[string]*organizationpb.Organization),
+		TrustZones:               make(map[string]*trustzonepb.TrustZone),
+		TrustZoneBundles:         make(map[string]*types.Bundle),
+		TrustZoneServers:         make(map[string]*trustzoneserverpb.TrustZoneServer),
+		CloudOrganizations:       make(map[string]*cloudorganizationpb.CloudOrganization),
+		CloudAccounts:            make(map[string]*cloudaccountpb.CloudAccount),
+		Clusters:                 make(map[string]*clusterpb.Cluster),
+		Agents:                   make(map[string]*agentpb.Agent),
+		AgentJoinTokens:          make(map[string]map[string]string),
+		AgentStatus:              make(map[string]*agentpb.AgentStatus),
+		FederatedServices:        make(map[string]*federatedservicepb.FederatedService),
+		AttestationPolicies:      make(map[string]*attestationpolicypb.AttestationPolicy),
+		APBindings:               make(map[string]*apbindingpb.APBinding),
+		ExchangePolicies:         make(map[string]*exchangepolicypb.ExchangePolicy),
+		Federations:              make(map[string]*federationpb.Federation),
+		AttestedNodes:            make(map[string]*datastoresvcpb.AttestedNode),
+		Workloads:                make(map[string]*workloadpb.Workload),
+		WorkloadEvents:           []*workloadpb.WorkloadEvent{},
+		Identities:               make(map[string]*identitypb.Identity),
+		RoleBindings:             make(map[string]*rolebindingpb.RoleBinding),
+		AuditEvents:              make(map[string]*auditpb.Event),
+		WorkloadSuppressionRules: make(map[string]*workloadsuppressionrulepb.WorkloadSuppressionRule),
 	}
 }
 
@@ -88,6 +97,20 @@ func (f *FakeConnect) ValidateTrustZone(trustZoneID string) error {
 func (f *FakeConnect) ValidateTrustZoneServer(trustZoneServerID string) error {
 	if _, ok := f.TrustZoneServers[trustZoneServerID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid trust zone server")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateCloudOrganization(cloudOrganizationID string) error {
+	if _, ok := f.CloudOrganizations[cloudOrganizationID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud organization")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateCloudAccount(cloudAccountID string) error {
+	if _, ok := f.CloudAccounts[cloudAccountID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud account")
 	}
 	return nil
 }
@@ -165,6 +188,13 @@ func (f *FakeConnect) ValidateRoleBinding(roleBindingID string) error {
 func (f *FakeConnect) ValidateAuditEvent(auditEventID string) error {
 	if _, ok := f.AuditEvents[auditEventID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid audit event")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateWorkloadSuppressionRule(ruleID string) error {
+	if _, ok := f.WorkloadSuppressionRules[ruleID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid workload suppression rule")
 	}
 	return nil
 }
