@@ -30,11 +30,6 @@ func New(conn grpc.ClientConnInterface) AuditClient {
 	}
 }
 
-func (c *auditClient) RecordExchange(ctx context.Context, req *auditsvcpb.RecordExchangeRequest) error {
-	_, err := c.auditClient.RecordExchange(ctx, req)
-	return err
-}
-
 func (c *auditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEventsRequest_Filter, requestPagination pagination.Pagination) ([]*auditpb.Event, pagination.Pagination, error) {
 	resp, err := c.auditClient.ListEvents(ctx, &auditsvcpb.ListEventsRequest{
 		Filter: filter,
@@ -48,4 +43,9 @@ func (c *auditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEve
 	}
 
 	return resp.GetEvents(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
+}
+
+func (c *auditClient) RecordExchange(ctx context.Context, req *auditsvcpb.RecordExchangeRequest) error {
+	_, err := c.auditClient.RecordExchange(ctx, req)
+	return err
 }
