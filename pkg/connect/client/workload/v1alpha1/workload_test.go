@@ -75,10 +75,38 @@ func TestWorkloadClient_PublishWorkloads(t *testing.T) {
 	assert.Equal(t, "workload-3", fakeService.received[2].GetId())
 }
 
+func TestWorkloadClient_PublishWorkloadEvents(t *testing.T) {
+	fakeService := &fakeWorkloadService{}
+	server := test.NewTestServer(t)
+	workloadsvcpb.RegisterWorkloadServiceServer(server.Server, fakeService)
+	server.Serve()
+
+	conn := server.CreateClientConn()
+	client := New(conn)
+	ctx := context.Background()
+
+	stream, err := client.PublishWorkloadEvents(ctx)
+	require.NoError(t, err)
+
+	events := []*workloadpb.WorkloadEvent{
+		{Id: "event-1", OrgId: "org-1"},
+		{Id: "event-2", OrgId: "org-1"},
+	}
+	require.NoError(t, stream.Send(events))
+	require.NoError(t, stream.Send([]*workloadpb.WorkloadEvent{{Id: "event-3", OrgId: "org-1"}}))
+	require.NoError(t, stream.Close())
+
+	assert.Len(t, fakeService.receivedEvents, 3)
+	assert.Equal(t, "event-1", fakeService.receivedEvents[0].GetId())
+	assert.Equal(t, "event-2", fakeService.receivedEvents[1].GetId())
+	assert.Equal(t, "event-3", fakeService.receivedEvents[2].GetId())
+}
+
 type fakeWorkloadService struct {
 	workloadsvcpb.UnimplementedWorkloadServiceServer
 
-	received []*workloadpb.Workload
+	received       []*workloadpb.Workload
+	receivedEvents []*workloadpb.WorkloadEvent
 }
 
 func (f *fakeWorkloadService) PublishWorkloads(stream grpc.ClientStreamingServer[workloadsvcpb.PublishWorkloadsRequest, workloadsvcpb.PublishWorkloadsResponse]) error {
@@ -91,5 +119,18 @@ func (f *fakeWorkloadService) PublishWorkloads(stream grpc.ClientStreamingServer
 			return err
 		}
 		f.received = append(f.received, req.GetWorkloads()...)
+	}
+}
+
+func (f *fakeWorkloadService) PublishWorkloadEvents(stream grpc.ClientStreamingServer[workloadsvcpb.PublishWorkloadEventsRequest, workloadsvcpb.PublishWorkloadEventsResponse]) error {
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&workloadsvcpb.PublishWorkloadEventsResponse{})
+		}
+		if err != nil {
+			return err
+		}
+		f.receivedEvents = append(f.receivedEvents, req.GetEvents()...)
 	}
 }
