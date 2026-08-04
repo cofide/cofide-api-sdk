@@ -14,6 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/proto"
 )
 
 func TestWorkloadClient_implementsMethods(t *testing.T) {
@@ -46,6 +47,30 @@ func TestWorkloadClient_Unimplemented(t *testing.T) {
 	require.NoError(t, err)
 	_ = eventsStream.Send([]*workloadpb.WorkloadEvent{{OrgId: "org-1"}})
 	test.RequireUnimplemented(t, eventsStream.Close())
+}
+
+func TestWorkloadClient_ListWorkloads(t *testing.T) {
+	fakeService := &fakeWorkloadService{
+		workloads: []*workloadpb.Workload{
+			{Id: "workload-1", OrgId: "org-1"},
+			{Id: "workload-2", OrgId: "org-1"},
+		},
+	}
+	server := test.NewTestServer(t)
+	workloadsvcpb.RegisterWorkloadServiceServer(server.Server, fakeService)
+	server.Serve()
+
+	conn := server.CreateClientConn()
+	client := New(conn)
+
+	filter := &workloadsvcpb.ListWorkloadsRequest_Filter{OrgId: proto.String("org-1")}
+	workloads, err := client.ListWorkloads(t.Context(), filter)
+	require.NoError(t, err)
+
+	require.Len(t, workloads, 2)
+	assert.Equal(t, "workload-1", workloads[0].GetId())
+	assert.Equal(t, "workload-2", workloads[1].GetId())
+	assert.Equal(t, "org-1", fakeService.receivedFilter.GetOrgId())
 }
 
 func TestWorkloadClient_PublishWorkloads(t *testing.T) {
@@ -105,8 +130,16 @@ func TestWorkloadClient_PublishWorkloadEvents(t *testing.T) {
 type fakeWorkloadService struct {
 	workloadsvcpb.UnimplementedWorkloadServiceServer
 
+	workloads      []*workloadpb.Workload
+	receivedFilter *workloadsvcpb.ListWorkloadsRequest_Filter
+
 	received       []*workloadpb.Workload
 	receivedEvents []*workloadpb.WorkloadEvent
+}
+
+func (f *fakeWorkloadService) ListWorkloads(ctx context.Context, req *workloadsvcpb.ListWorkloadsRequest) (*workloadsvcpb.ListWorkloadsResponse, error) {
+	f.receivedFilter = req.GetFilter()
+	return &workloadsvcpb.ListWorkloadsResponse{Workloads: f.workloads}, nil
 }
 
 func (f *fakeWorkloadService) PublishWorkloads(stream grpc.ClientStreamingServer[workloadsvcpb.PublishWorkloadsRequest, workloadsvcpb.PublishWorkloadsResponse]) error {
