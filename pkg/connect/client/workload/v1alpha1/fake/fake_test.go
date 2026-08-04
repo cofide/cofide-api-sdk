@@ -36,6 +36,39 @@ func Test_fakeWorkloadClient_ListWorkloads(t *testing.T) {
 	assert.EqualExportedValues(t, []*workloadpb.Workload{workload}, workloads)
 }
 
+func Test_fakeWorkloadsStream_Send_upsertsByID(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+
+	stream, err := client.PublishWorkloads(t.Context())
+	require.NoError(t, err)
+
+	workload := &workloadpb.Workload{Id: "workload-1", OrgId: "org-1"}
+	require.NoError(t, stream.Send([]*workloadpb.Workload{workload}))
+
+	assert.EqualExportedValues(t, workload, fake.Workloads["workload-1"])
+
+	updated := &workloadpb.Workload{Id: "workload-1", OrgId: "org-1", Deleted: true}
+	require.NoError(t, stream.Send([]*workloadpb.Workload{updated}))
+
+	assert.Len(t, fake.Workloads, 1)
+	assert.EqualExportedValues(t, updated, fake.Workloads["workload-1"])
+}
+
+func Test_fakeWorkloadsStream_Send_skipsNilWorkloads(t *testing.T) {
+	fake := fakeconnect.New()
+	client := New(fake)
+
+	stream, err := client.PublishWorkloads(t.Context())
+	require.NoError(t, err)
+
+	workload := &workloadpb.Workload{Id: "workload-1"}
+	require.NoError(t, stream.Send([]*workloadpb.Workload{workload, nil}))
+
+	assert.Len(t, fake.Workloads, 1)
+	assert.EqualExportedValues(t, workload, fake.Workloads["workload-1"])
+}
+
 func Test_fakeWorkloadClient_ListWorkloadEvents_filterObservedTimeRange(t *testing.T) {
 	fake := fakeconnect.New()
 	client := New(fake)
@@ -146,39 +179,6 @@ func Test_fakeWorkloadClient_ListWorkloadEvents_filterEventTypes(t *testing.T) {
 	require.NoError(t, err)
 
 	assert.EqualExportedValues(t, []*workloadpb.WorkloadEvent{workloadAttestationFailed, identityDelivered, noIdentity}, events)
-}
-
-func Test_fakeWorkloadsStream_Send_upsertsByID(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
-
-	stream, err := client.PublishWorkloads(t.Context())
-	require.NoError(t, err)
-
-	workload := &workloadpb.Workload{Id: "workload-1", OrgId: "org-1"}
-	require.NoError(t, stream.Send([]*workloadpb.Workload{workload}))
-
-	assert.EqualExportedValues(t, workload, fake.Workloads["workload-1"])
-
-	updated := &workloadpb.Workload{Id: "workload-1", OrgId: "org-1", Deleted: true}
-	require.NoError(t, stream.Send([]*workloadpb.Workload{updated}))
-
-	assert.Len(t, fake.Workloads, 1)
-	assert.EqualExportedValues(t, updated, fake.Workloads["workload-1"])
-}
-
-func Test_fakeWorkloadsStream_Send_skipsNilWorkloads(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
-
-	stream, err := client.PublishWorkloads(t.Context())
-	require.NoError(t, err)
-
-	workload := &workloadpb.Workload{Id: "workload-1"}
-	require.NoError(t, stream.Send([]*workloadpb.Workload{workload, nil}))
-
-	assert.Len(t, fake.Workloads, 1)
-	assert.EqualExportedValues(t, workload, fake.Workloads["workload-1"])
 }
 
 func Test_fakeWorkloadEventsStream_Send_skipsNilEvents(t *testing.T) {
