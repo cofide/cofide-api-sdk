@@ -54,6 +54,14 @@ func (c *workloadClient) ListWorkloads(ctx context.Context, filter *workloadsvcp
 	return resp.Workloads, nil
 }
 
+func (c *workloadClient) PublishWorkloads(ctx context.Context) (WorkloadsStream, error) {
+	stream, err := c.workloadClient.PublishWorkloads(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &workloadsStream{stream: stream}, nil
+}
+
 func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
 	resp, err := c.workloadClient.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest{
 		Filter: filter,
@@ -68,12 +76,12 @@ func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloa
 	return resp.GetEvents(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
 }
 
-func (c *workloadClient) PublishWorkloads(ctx context.Context) (WorkloadsStream, error) {
-	stream, err := c.workloadClient.PublishWorkloads(ctx)
+func (c *workloadClient) PublishWorkloadEvents(ctx context.Context) (WorkloadEventsStream, error) {
+	stream, err := c.workloadClient.PublishWorkloadEvents(ctx)
 	if err != nil {
 		return nil, err
 	}
-	return &workloadsStream{stream: stream}, nil
+	return &workloadEventsStream{stream: stream}, nil
 }
 
 type workloadsStream struct {
@@ -87,14 +95,6 @@ func (s *workloadsStream) Send(workloads []*workloadpb.Workload) error {
 func (s *workloadsStream) Close() error {
 	_, err := s.stream.CloseAndRecv()
 	return err
-}
-
-func (c *workloadClient) PublishWorkloadEvents(ctx context.Context) (WorkloadEventsStream, error) {
-	stream, err := c.workloadClient.PublishWorkloadEvents(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &workloadEventsStream{stream: stream}, nil
 }
 
 type workloadEventsStream struct {
