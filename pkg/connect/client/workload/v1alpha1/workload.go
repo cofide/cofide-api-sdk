@@ -13,6 +13,13 @@ import (
 	"google.golang.org/grpc"
 )
 
+// WorkloadsStream is the write end of a PublishWorkloads client stream.
+// The caller is responsible for batching, reconnection, and calling Close when done.
+type WorkloadsStream interface {
+	Send(workloads []*workloadpb.Workload) error
+	Close() error
+}
+
 // WorkloadEventsStream is the write end of a PublishWorkloadEvents client stream.
 // The caller is responsible for batching, reconnection, and calling Close when done.
 type WorkloadEventsStream interface {
@@ -23,6 +30,7 @@ type WorkloadEventsStream interface {
 // WorkloadClient is an interface for a client for the v1alpha1 version of the Connect WorkloadService.
 type WorkloadClient interface {
 	ListWorkloads(ctx context.Context, filter *workloadsvcpb.ListWorkloadsRequest_Filter) ([]*workloadpb.Workload, error)
+	PublishWorkloads(ctx context.Context) (WorkloadsStream, error)
 	ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error)
 	PublishWorkloadEvents(ctx context.Context) (WorkloadEventsStream, error)
 }
@@ -46,6 +54,14 @@ func (c *workloadClient) ListWorkloads(ctx context.Context, filter *workloadsvcp
 	return resp.Workloads, nil
 }
 
+func (c *workloadClient) PublishWorkloads(ctx context.Context) (WorkloadsStream, error) {
+	stream, err := c.workloadClient.PublishWorkloads(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &workloadsStream{stream: stream}, nil
+}
+
 func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
 	resp, err := c.workloadClient.ListWorkloadEvents(ctx, &workloadsvcpb.ListWorkloadEventsRequest{
 		Filter: filter,
@@ -66,6 +82,19 @@ func (c *workloadClient) PublishWorkloadEvents(ctx context.Context) (WorkloadEve
 		return nil, err
 	}
 	return &workloadEventsStream{stream: stream}, nil
+}
+
+type workloadsStream struct {
+	stream grpc.ClientStreamingClient[workloadsvcpb.PublishWorkloadsRequest, workloadsvcpb.PublishWorkloadsResponse]
+}
+
+func (s *workloadsStream) Send(workloads []*workloadpb.Workload) error {
+	return s.stream.Send(&workloadsvcpb.PublishWorkloadsRequest{Workloads: workloads})
+}
+
+func (s *workloadsStream) Close() error {
+	_, err := s.stream.CloseAndRecv()
+	return err
 }
 
 type workloadEventsStream struct {

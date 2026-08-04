@@ -39,6 +39,31 @@ func (c *fakeWorkloadClient) ListWorkloads(ctx context.Context, filter *workload
 	return workloads, nil
 }
 
+func (c *fakeWorkloadClient) PublishWorkloads(ctx context.Context) (workloadv1alpha1.WorkloadsStream, error) {
+	return &fakeWorkloadsStream{fake: c.fake}, nil
+}
+
+type fakeWorkloadsStream struct {
+	fake *fakeconnect.FakeConnect
+}
+
+func (s *fakeWorkloadsStream) Send(workloads []*workloadpb.Workload) error {
+	s.fake.Mu.Lock()
+	defer s.fake.Mu.Unlock()
+
+	for _, workload := range workloads {
+		if workload == nil {
+			continue
+		}
+		s.fake.Workloads[workload.GetId()] = proto.Clone(workload).(*workloadpb.Workload)
+	}
+	return nil
+}
+
+func (s *fakeWorkloadsStream) Close() error {
+	return nil
+}
+
 func (c *fakeWorkloadClient) ListWorkloadEvents(ctx context.Context, filter *workloadsvcpb.ListWorkloadEventsRequest_Filter, requestPagination pagination.Pagination) ([]*workloadpb.WorkloadEvent, pagination.Pagination, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
