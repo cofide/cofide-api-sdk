@@ -9,7 +9,9 @@ import (
 	"testing"
 
 	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
+	paginationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/pagination/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -100,6 +102,36 @@ func TestWorkloadClient_PublishWorkloads(t *testing.T) {
 	assert.Equal(t, "workload-3", fakeService.received[2].GetId())
 }
 
+func TestWorkloadClient_ListWorkloadEvents(t *testing.T) {
+	fakeService := &fakeWorkloadService{
+		events: []*workloadpb.WorkloadEvent{
+			{Id: "event-1", OrgId: "org-1"},
+			{Id: "event-2", OrgId: "org-1"},
+		},
+		nextPageToken: "next-token",
+	}
+	server := test.NewTestServer(t)
+	workloadsvcpb.RegisterWorkloadServiceServer(server.Server, fakeService)
+	server.Serve()
+
+	conn := server.CreateClientConn()
+	client := New(conn)
+
+	filter := &workloadsvcpb.ListWorkloadEventsRequest_Filter{OrgIds: []string{"org-1"}}
+	requestPagination := pagination.Pagination{PageSize: 10, Token: "current-token"}
+	events, responsePagination, err := client.ListWorkloadEvents(t.Context(), filter, requestPagination)
+	require.NoError(t, err)
+
+	require.Len(t, events, 2)
+	assert.Equal(t, "event-1", events[0].GetId())
+	assert.Equal(t, "event-2", events[1].GetId())
+	assert.Equal(t, pagination.Pagination{PageSize: 10, Token: "next-token"}, responsePagination)
+
+	assert.Equal(t, []string{"org-1"}, fakeService.receivedEventsFilter.GetOrgIds())
+	assert.Equal(t, int32(10), fakeService.receivedEventsPagination.GetPageSize())
+	assert.Equal(t, "current-token", fakeService.receivedEventsPagination.GetPageToken())
+}
+
 func TestWorkloadClient_PublishWorkloadEvents(t *testing.T) {
 	fakeService := &fakeWorkloadService{}
 	server := test.NewTestServer(t)
@@ -133,6 +165,11 @@ type fakeWorkloadService struct {
 	workloads      []*workloadpb.Workload
 	receivedFilter *workloadsvcpb.ListWorkloadsRequest_Filter
 
+	events                   []*workloadpb.WorkloadEvent
+	nextPageToken            string
+	receivedEventsFilter     *workloadsvcpb.ListWorkloadEventsRequest_Filter
+	receivedEventsPagination *paginationpb.PageRequest
+
 	received       []*workloadpb.Workload
 	receivedEvents []*workloadpb.WorkloadEvent
 }
@@ -140,6 +177,15 @@ type fakeWorkloadService struct {
 func (f *fakeWorkloadService) ListWorkloads(ctx context.Context, req *workloadsvcpb.ListWorkloadsRequest) (*workloadsvcpb.ListWorkloadsResponse, error) {
 	f.receivedFilter = req.GetFilter()
 	return &workloadsvcpb.ListWorkloadsResponse{Workloads: f.workloads}, nil
+}
+
+func (f *fakeWorkloadService) ListWorkloadEvents(ctx context.Context, req *workloadsvcpb.ListWorkloadEventsRequest) (*workloadsvcpb.ListWorkloadEventsResponse, error) {
+	f.receivedEventsFilter = req.GetFilter()
+	f.receivedEventsPagination = req.GetPagination()
+	return &workloadsvcpb.ListWorkloadEventsResponse{
+		Events:     f.events,
+		Pagination: &paginationpb.PageResponse{NextPageToken: f.nextPageToken},
+	}, nil
 }
 
 func (f *fakeWorkloadService) PublishWorkloads(stream grpc.ClientStreamingServer[workloadsvcpb.PublishWorkloadsRequest, workloadsvcpb.PublishWorkloadsResponse]) error {
