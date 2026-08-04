@@ -1,0 +1,95 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+package v1alpha1
+
+import (
+	"context"
+	"io"
+	"testing"
+
+	workloadsvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/workload_service/v1alpha1"
+	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"google.golang.org/grpc"
+)
+
+func TestWorkloadClient_implementsMethods(t *testing.T) {
+	test.AssertClientImplementsService(t, &workloadClient{}, workloadsvcpb.WorkloadService_ServiceDesc)
+}
+
+// TestWorkloadClient_Unimplemented tests WorkloadClient against an unimplemented server.
+// This ensures that all errors returned are not wrapped can be converted to a gRPC Status using Status.Convert.
+func TestWorkloadClient_Unimplemented(t *testing.T) {
+	server := test.NewTestServer(t)
+	workloadsvcpb.RegisterWorkloadServiceServer(server.Server, &workloadsvcpb.UnimplementedWorkloadServiceServer{})
+	server.Serve()
+
+	conn := server.CreateClientConn()
+	client := New(conn)
+	ctx := context.Background()
+
+	workloads, err := client.ListWorkloads(ctx, nil)
+	test.RequireUnimplemented(t, err)
+	if workloads != nil {
+		t.Errorf("expected nil workloads, got %v", workloads)
+	}
+
+	stream, err := client.PublishWorkloads(ctx)
+	require.NoError(t, err)
+	_ = stream.Send([]*workloadpb.Workload{{Id: "workload-1"}})
+	test.RequireUnimplemented(t, stream.Close())
+
+	eventsStream, err := client.PublishWorkloadEvents(ctx)
+	require.NoError(t, err)
+	_ = eventsStream.Send([]*workloadpb.WorkloadEvent{{OrgId: "org-1"}})
+	test.RequireUnimplemented(t, eventsStream.Close())
+}
+
+func TestWorkloadClient_PublishWorkloads(t *testing.T) {
+	fakeService := &fakeWorkloadService{}
+	server := test.NewTestServer(t)
+	workloadsvcpb.RegisterWorkloadServiceServer(server.Server, fakeService)
+	server.Serve()
+
+	conn := server.CreateClientConn()
+	client := New(conn)
+	ctx := context.Background()
+
+	stream, err := client.PublishWorkloads(ctx)
+	require.NoError(t, err)
+
+	workloads := []*workloadpb.Workload{
+		{Id: "workload-1", OrgId: "org-1"},
+		{Id: "workload-2", OrgId: "org-1"},
+	}
+	require.NoError(t, stream.Send(workloads))
+	require.NoError(t, stream.Send([]*workloadpb.Workload{{Id: "workload-3", OrgId: "org-1"}}))
+	require.NoError(t, stream.Close())
+
+	assert.Len(t, fakeService.received, 3)
+	assert.Equal(t, "workload-1", fakeService.received[0].GetId())
+	assert.Equal(t, "workload-2", fakeService.received[1].GetId())
+	assert.Equal(t, "workload-3", fakeService.received[2].GetId())
+}
+
+type fakeWorkloadService struct {
+	workloadsvcpb.UnimplementedWorkloadServiceServer
+
+	received []*workloadpb.Workload
+}
+
+func (f *fakeWorkloadService) PublishWorkloads(stream grpc.ClientStreamingServer[workloadsvcpb.PublishWorkloadsRequest, workloadsvcpb.PublishWorkloadsResponse]) error {
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&workloadsvcpb.PublishWorkloadsResponse{})
+		}
+		if err != nil {
+			return err
+		}
+		f.received = append(f.received, req.GetWorkloads()...)
+	}
+}
