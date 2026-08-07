@@ -97,7 +97,9 @@ export type Event = Message<"proto.audit.v1alpha1.Event"> & {
 
   /**
    * Identifier of the actor that caused the event. For users this is the JWT sub claim, for workloads this is their
-   * SPIFFE ID, and for internal events not triggered by an external actor this is "system".
+   * SPIFFE ID, for internal events not triggered by an external actor this is "system", and for Cofide Agent
+   * registrations authenticated with a one-time join token this is "join-token" since the token only proves
+   * possession of a cluster-scoped credential, not a specific agent's identity.
    *
    * @generated from field: string actor = 7;
    */
