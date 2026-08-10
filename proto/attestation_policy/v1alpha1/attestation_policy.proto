@@ -23,6 +23,8 @@ message AttestationPolicy {
   optional string id = 4;
   string name = 1;
   optional string org_id = 5;
+  string trust_zone_id = 9;
+  repeated Federation federations = 10;
   oneof policy {
     APKubernetes kubernetes = 2;
     APStatic static = 3;
@@ -32,6 +34,12 @@ message AttestationPolicy {
   google.protobuf.Timestamp created_at = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update by user.
   google.protobuf.Timestamp last_updated_at = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Federation identifies a trust zone that is included in the federated
+// scope of an attestation policy.
+message Federation {
+  optional string trust_zone_id = 1;
 }
 
 // APKubernetes represents a Kubernetes attestation policy.
