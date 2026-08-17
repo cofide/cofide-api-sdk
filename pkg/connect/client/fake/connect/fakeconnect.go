@@ -7,6 +7,8 @@ import (
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	cloudorganizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_organization/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
@@ -30,6 +32,8 @@ type FakeConnect struct {
 	TrustZones          map[string]*trustzonepb.TrustZone
 	TrustZoneBundles    map[string]*types.Bundle
 	TrustZoneServers    map[string]*trustzoneserverpb.TrustZoneServer
+	CloudOrganizations  map[string]*cloudorganizationpb.CloudOrganization
+	CloudAccounts       map[string]*cloudaccountpb.CloudAccount
 	Clusters            map[string]*clusterpb.Cluster
 	Agents              map[string]*agentpb.Agent
 	AgentJoinTokens     map[string]map[string]string
@@ -53,6 +57,8 @@ func New() *FakeConnect {
 		TrustZones:          make(map[string]*trustzonepb.TrustZone),
 		TrustZoneBundles:    make(map[string]*types.Bundle),
 		TrustZoneServers:    make(map[string]*trustzoneserverpb.TrustZoneServer),
+		CloudOrganizations:  make(map[string]*cloudorganizationpb.CloudOrganization),
+		CloudAccounts:       make(map[string]*cloudaccountpb.CloudAccount),
 		Clusters:            make(map[string]*clusterpb.Cluster),
 		Agents:              make(map[string]*agentpb.Agent),
 		AgentJoinTokens:     make(map[string]map[string]string),
@@ -88,6 +94,13 @@ func (f *FakeConnect) ValidateTrustZone(trustZoneID string) error {
 func (f *FakeConnect) ValidateTrustZoneServer(trustZoneServerID string) error {
 	if _, ok := f.TrustZoneServers[trustZoneServerID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid trust zone server")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateCloudOrganization(cloudOrganizationID string) error {
+	if _, ok := f.CloudOrganizations[cloudOrganizationID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud organization")
 	}
 	return nil
 }

@@ -26,6 +26,8 @@ message Workload {
   WorkloadType type = 9;
   oneof workload {
     KubernetesPod kubernetes_pod = 5;
+    AWSLambdaFunction lambda_function = 10;
+    AWSAgentCoreRuntime agentcore_workload = 11;
   }
   // Security posture observations.
   repeated Observation observations = 6;
@@ -39,6 +41,8 @@ message Workload {
 enum WorkloadType {
   WORKLOAD_TYPE_UNSPECIFIED = 0;
   WORKLOAD_TYPE_KUBERNETES_POD = 1;
+  WORKLOAD_TYPE_AWS_LAMBDA_FUNCTION = 2;
+  WORKLOAD_TYPE_AWS_AGENTCORE_RUNTIME = 3;
 }
 
 // Observation is a structured data point describing the security posture of
@@ -73,4 +77,33 @@ message KubernetesMetadata {
 message KubernetesContainer {
   string name = 1;
   string image = 2;
+}
+
+// AWSLambdaFunction contains the runtime details of an AWS Lambda function
+// workload as discovered by Connect's cloud resource discovery.
+message AWSLambdaFunction {
+  string function_name = 1;
+  string function_arn = 2;
+  string region = 3;
+  string iam_role_arn = 4;
+  // The cloud account this function was discovered in, for traceability back
+  // to the discovery source.
+  string cloud_account_id = 5;
+  // AWS resource tags on this Lambda function, as returned by lambda:ListTags.
+  map<string, string> tags = 6;
+}
+
+// AWSAgentCoreRuntime contains the runtime details of an AWS Bedrock AgentCore Runtime
+// workload as discovered by Connect's cloud resource discovery.
+message AWSAgentCoreRuntime {
+  string agent_runtime_name = 1;
+  string agent_runtime_arn = 2;
+  string region = 3;
+  // The IAM role ARN used at execution time.
+  string role_arn = 4;
+  // AWS's dedicated workload-identity ARN for this runtime.
+  string workload_identity_arn = 5;
+  // The cloud account this runtime was discovered in, for traceability back to the discovery
+  // source.
+  string cloud_account_id = 6;
 }
