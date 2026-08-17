@@ -1,6 +1,6 @@
 module github.com/cofide/cofide-api-sdk
 
-go 1.25.12
+go 1.25.13
 
 // NOTE: Take care to avoid forcing unnecessary upgrades on consumers when
 // updating dependencies.
@@ -17,9 +17,7 @@ require (
 require github.com/spiffe/go-spiffe/v2 v2.6.0
 
 require (
-	github.com/Microsoft/go-winio v0.6.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	golang.org/x/net v0.55.0 // indirect
