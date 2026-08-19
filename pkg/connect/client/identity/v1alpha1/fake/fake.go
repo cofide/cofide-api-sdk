@@ -63,11 +63,35 @@ func identityMatches(identity *identitypb.Identity, filter *identitysvcpb.ListId
 	if filter.ClusterId != nil && identity.GetClusterId() != *filter.ClusterId {
 		return false
 	}
-	if filter.AttestationPolicyId != nil && identity.GetAttestationPolicyId() != *filter.AttestationPolicyId {
-		return false
+	if filter.AttestationPolicyId != nil {
+		var found bool
+		for _, policy := range identity.GetPolicies() {
+			if policy.GetAttestationPolicy().GetAttestationPolicyId() == filter.GetAttestationPolicyId() {
+				found = true
+				break
+			}
+			if policy.GetAttestationPolicyWithBinding().GetAttestationPolicyId() == filter.GetAttestationPolicyId() {
+				found = true
+				break
+			}
+		}
+		//nolint:staticcheck // depcated field is still supported
+		if !found && identity.GetAttestationPolicyId() != filter.GetAttestationPolicyId() {
+			return false
+		}
 	}
-	if filter.ApBindingId != nil && identity.GetApBindingId() != *filter.ApBindingId {
-		return false
+	if filter.ApBindingId != nil {
+		var found bool
+		for _, policy := range identity.GetPolicies() {
+			if policy.GetAttestationPolicyWithBinding().GetAttestationPolicyBindingId() == filter.GetApBindingId() {
+				found = true
+				break
+			}
+		}
+		//nolint:staticcheck // depcated field is still supported
+		if !found && identity.GetApBindingId() != filter.GetApBindingId() {
+			return false
+		}
 	}
 	if filter.WorkloadId != nil && identity.GetWorkloadId() != *filter.WorkloadId {
 		return false
