@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/attestation_policy/v1alpha1/attestation_policy.proto.
  */
 export const file_proto_attestation_policy_v1alpha1_attestation_policy: GenFile = /*@__PURE__*/
-  fileDesc("Cjpwcm90by9hdHRlc3RhdGlvbl9wb2xpY3kvdjFhbHBoYTEvYXR0ZXN0YXRpb25fcG9saWN5LnByb3RvEiFwcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEimgMKEUF0dGVzdGF0aW9uUG9saWN5Eg8KAmlkGAQgASgJSAGIAQESDAoEbmFtZRgBIAEoCRITCgZvcmdfaWQYBSABKAlIAogBARJFCgprdWJlcm5ldGVzGAIgASgLMi8ucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQS3ViZXJuZXRlc0gAEj0KBnN0YXRpYxgDIAEoCzIrLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUFN0YXRpY0gAEkAKCHRwbV9ub2RlGAYgASgLMiwucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQVFBNTm9kZUgAEjMKCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQggKBnBvbGljeUIFCgNfaWRCCQoHX29yZ19pZCK4AgoMQVBLdWJlcm5ldGVzElMKEm5hbWVzcGFjZV9zZWxlY3RvchgBIAEoCzIyLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUExhYmVsU2VsZWN0b3JIAIgBARJNCgxwb2Rfc2VsZWN0b3IYAiABKAsyMi5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9ySAGIAQESGgoSZG5zX25hbWVfdGVtcGxhdGVzGAMgAygJEiQKF3NwaWZmZV9pZF9wYXRoX3RlbXBsYXRlGAQgASgJSAKIAQFCFQoTX25hbWVzcGFjZV9zZWxlY3RvckIPCg1fcG9kX3NlbGVjdG9yQhoKGF9zcGlmZmVfaWRfcGF0aF90ZW1wbGF0ZSLxAQoPQVBMYWJlbFNlbGVjdG9yElkKDG1hdGNoX2xhYmVscxgBIAMoCzJDLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUExhYmVsU2VsZWN0b3IuTWF0Y2hMYWJlbHNFbnRyeRJPChFtYXRjaF9leHByZXNzaW9ucxgCIAMoCzI0LnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUE1hdGNoRXhwcmVzc2lvbhoyChBNYXRjaExhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiQgoRQVBNYXRjaEV4cHJlc3Npb24SCwoDa2V5GAEgASgJEhAKCG9wZXJhdG9yGAIgASgJEg4KBnZhbHVlcxgDIAMoCSLpAQoIQVBTdGF0aWMSGgoJc3BpZmZlX2lkGAEgASgJQgIYAUgAiAEBEhsKDnNwaWZmZV9pZF9wYXRoGAUgASgJSAGIAQESGwoOcGFyZW50X2lkX3BhdGgYAyABKAlIAogBARIsCglzZWxlY3RvcnMYAiADKAsyGS5zcGlyZS5hcGkudHlwZXMuU2VsZWN0b3ISEQoJZG5zX25hbWVzGAQgAygJEhIKCnN0b3JlX3N2aWQYBiABKAhCDAoKX3NwaWZmZV9pZEIRCg9fc3BpZmZlX2lkX3BhdGhCEQoPX3BhcmVudF9pZF9wYXRoImwKCUFQVFBNTm9kZRJGCgthdHRlc3RhdGlvbhgBIAEoCzIxLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5UUE1BdHRlc3RhdGlvbhIXCg9zZWxlY3Rvcl92YWx1ZXMYAiADKAkiMgoOVFBNQXR0ZXN0YXRpb24SFAoHZWtfaGFzaBgBIAEoCUgAiAEBQgoKCF9la19oYXNoQktaSWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9hdHRlc3RhdGlvbl9wb2xpY3kvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_spire_api_types_selector]);
+  fileDesc("Cjpwcm90by9hdHRlc3RhdGlvbl9wb2xpY3kvdjFhbHBoYTEvYXR0ZXN0YXRpb25fcG9saWN5LnByb3RvEiFwcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEi9QMKEUF0dGVzdGF0aW9uUG9saWN5Eg8KAmlkGAQgASgJSAGIAQESDAoEbmFtZRgBIAEoCRITCgZvcmdfaWQYBSABKAlIAogBARIVCg10cnVzdF96b25lX2lkGAkgASgJEkIKC2ZlZGVyYXRpb25zGAogAygLMi0ucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkZlZGVyYXRpb24SRQoKa3ViZXJuZXRlcxgCIAEoCzIvLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUEt1YmVybmV0ZXNIABI9CgZzdGF0aWMYAyABKAsyKy5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBTdGF0aWNIABJACgh0cG1fbm9kZRgGIAEoCzIsLnByb3RvLmF0dGVzdGF0aW9uX3BvbGljeS52MWFscGhhMS5BUFRQTU5vZGVIABIzCgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IICgZwb2xpY3lCBQoDX2lkQgkKB19vcmdfaWQiOgoKRmVkZXJhdGlvbhIaCg10cnVzdF96b25lX2lkGAEgASgJSACIAQFCEAoOX3RydXN0X3pvbmVfaWQiuAIKDEFQS3ViZXJuZXRlcxJTChJuYW1lc3BhY2Vfc2VsZWN0b3IYASABKAsyMi5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9ySACIAQESTQoMcG9kX3NlbGVjdG9yGAIgASgLMjIucHJvdG8uYXR0ZXN0YXRpb25fcG9saWN5LnYxYWxwaGExLkFQTGFiZWxTZWxlY3RvckgBiAEBEhoKEmRuc19uYW1lX3RlbXBsYXRlcxgDIAMoCRIkChdzcGlmZmVfaWRfcGF0aF90ZW1wbGF0ZRgEIAEoCUgCiAEBQhUKE19uYW1lc3BhY2Vfc2VsZWN0b3JCDwoNX3BvZF9zZWxlY3RvckIaChhfc3BpZmZlX2lkX3BhdGhfdGVtcGxhdGUi8QEKD0FQTGFiZWxTZWxlY3RvchJZCgxtYXRjaF9sYWJlbHMYASADKAsyQy5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBMYWJlbFNlbGVjdG9yLk1hdGNoTGFiZWxzRW50cnkSTwoRbWF0Y2hfZXhwcmVzc2lvbnMYAiADKAsyNC5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuQVBNYXRjaEV4cHJlc3Npb24aMgoQTWF0Y2hMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIkIKEUFQTWF0Y2hFeHByZXNzaW9uEgsKA2tleRgBIAEoCRIQCghvcGVyYXRvchgCIAEoCRIOCgZ2YWx1ZXMYAyADKAki6QEKCEFQU3RhdGljEhoKCXNwaWZmZV9pZBgBIAEoCUICGAFIAIgBARIbCg5zcGlmZmVfaWRfcGF0aBgFIAEoCUgBiAEBEhsKDnBhcmVudF9pZF9wYXRoGAMgASgJSAKIAQESLAoJc2VsZWN0b3JzGAIgAygLMhkuc3BpcmUuYXBpLnR5cGVzLlNlbGVjdG9yEhEKCWRuc19uYW1lcxgEIAMoCRISCgpzdG9yZV9zdmlkGAYgASgIQgwKCl9zcGlmZmVfaWRCEQoPX3NwaWZmZV9pZF9wYXRoQhEKD19wYXJlbnRfaWRfcGF0aCJsCglBUFRQTU5vZGUSRgoLYXR0ZXN0YXRpb24YASABKAsyMS5wcm90by5hdHRlc3RhdGlvbl9wb2xpY3kudjFhbHBoYTEuVFBNQXR0ZXN0YXRpb24SFwoPc2VsZWN0b3JfdmFsdWVzGAIgAygJIjIKDlRQTUF0dGVzdGF0aW9uEhQKB2VrX2hhc2gYASABKAlIAIgBAUIKCghfZWtfaGFzaEJLWklnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vYXR0ZXN0YXRpb25fcG9saWN5L3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp, file_proto_spire_api_types_selector]);
 
 /**
  * AttestationPolicy defines criteria used to issue a SPIFFE identity to a
@@ -48,6 +48,16 @@ export type AttestationPolicy = Message<"proto.attestation_policy.v1alpha1.Attes
    * @generated from field: optional string org_id = 5;
    */
   orgId?: string;
+
+  /**
+   * @generated from field: string trust_zone_id = 9;
+   */
+  trustZoneId: string;
+
+  /**
+   * @generated from field: repeated proto.attestation_policy.v1alpha1.Federation federations = 10;
+   */
+  federations: Federation[];
 
   /**
    * @generated from oneof proto.attestation_policy.v1alpha1.AttestationPolicy.policy
@@ -93,6 +103,26 @@ export type AttestationPolicy = Message<"proto.attestation_policy.v1alpha1.Attes
  */
 export const AttestationPolicySchema: GenMessage<AttestationPolicy> = /*@__PURE__*/
   messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 0);
+
+/**
+ * Federation identifies a trust zone that is included in the federated
+ * scope of an attestation policy.
+ *
+ * @generated from message proto.attestation_policy.v1alpha1.Federation
+ */
+export type Federation = Message<"proto.attestation_policy.v1alpha1.Federation"> & {
+  /**
+   * @generated from field: optional string trust_zone_id = 1;
+   */
+  trustZoneId?: string;
+};
+
+/**
+ * Describes the message proto.attestation_policy.v1alpha1.Federation.
+ * Use `create(FederationSchema)` to create a new message.
+ */
+export const FederationSchema: GenMessage<Federation> = /*@__PURE__*/
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 1);
 
 /**
  * APKubernetes represents a Kubernetes attestation policy.
@@ -146,7 +176,7 @@ export type APKubernetes = Message<"proto.attestation_policy.v1alpha1.APKubernet
  * Use `create(APKubernetesSchema)` to create a new message.
  */
 export const APKubernetesSchema: GenMessage<APKubernetes> = /*@__PURE__*/
-  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 1);
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 2);
 
 /**
  * This definition has been adapted from the LabelSelector message in Kubernetes.
@@ -171,7 +201,7 @@ export type APLabelSelector = Message<"proto.attestation_policy.v1alpha1.APLabel
  * Use `create(APLabelSelectorSchema)` to create a new message.
  */
 export const APLabelSelectorSchema: GenMessage<APLabelSelector> = /*@__PURE__*/
-  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 2);
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 3);
 
 /**
  * APMatchExpression represents a single label requirement using a key, operator,
@@ -201,7 +231,7 @@ export type APMatchExpression = Message<"proto.attestation_policy.v1alpha1.APMat
  * Use `create(APMatchExpressionSchema)` to create a new message.
  */
 export const APMatchExpressionSchema: GenMessage<APMatchExpression> = /*@__PURE__*/
-  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 3);
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 4);
 
 /**
  * APStatic represents a static attestation policy
@@ -250,7 +280,7 @@ export type APStatic = Message<"proto.attestation_policy.v1alpha1.APStatic"> & {
  * Use `create(APStaticSchema)` to create a new message.
  */
 export const APStaticSchema: GenMessage<APStatic> = /*@__PURE__*/
-  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 4);
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 5);
 
 /**
  * APTPMNode represents a node (agent) attesting using a Trusted Platform Module (TPM).
@@ -277,7 +307,7 @@ export type APTPMNode = Message<"proto.attestation_policy.v1alpha1.APTPMNode"> &
  * Use `create(APTPMNodeSchema)` to create a new message.
  */
 export const APTPMNodeSchema: GenMessage<APTPMNode> = /*@__PURE__*/
-  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 5);
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 6);
 
 /**
  * TPMAttestation represents attestation requirements for a node (agent) attesting using a Trusted
@@ -299,5 +329,5 @@ export type TPMAttestation = Message<"proto.attestation_policy.v1alpha1.TPMAttes
  * Use `create(TPMAttestationSchema)` to create a new message.
  */
 export const TPMAttestationSchema: GenMessage<TPMAttestation> = /*@__PURE__*/
-  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 6);
+  messageDesc(file_proto_attestation_policy_v1alpha1_attestation_policy, 7);
 
