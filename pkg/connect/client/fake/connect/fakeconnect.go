@@ -36,15 +36,16 @@ type FakeConnect struct {
 	AgentStatus         map[string]*agentpb.AgentStatus
 	FederatedServices   map[string]*federatedservicepb.FederatedService
 	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
-	APBindings          map[string]*apbindingpb.APBinding
-	ExchangePolicies    map[string]*exchangepolicypb.ExchangePolicy
-	Federations         map[string]*federationpb.Federation
-	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
-	Workloads           map[string]*workloadpb.Workload
-	WorkloadEvents      []*workloadpb.WorkloadEvent
-	Identities          map[string]*identitypb.Identity
-	RoleBindings        map[string]*rolebindingpb.RoleBinding
-	AuditEvents         map[string]*auditpb.Event
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
+	APBindings       map[string]*apbindingpb.APBinding
+	ExchangePolicies map[string]*exchangepolicypb.ExchangePolicy
+	Federations      map[string]*federationpb.Federation
+	AttestedNodes    map[string]*datastoresvcpb.AttestedNode
+	Workloads        map[string]*workloadpb.Workload
+	WorkloadEvents   []*workloadpb.WorkloadEvent
+	Identities       map[string]*identitypb.Identity
+	RoleBindings     map[string]*rolebindingpb.RoleBinding
+	AuditEvents      map[string]*auditpb.Event
 }
 
 func New() *FakeConnect {
@@ -59,15 +60,16 @@ func New() *FakeConnect {
 		AgentStatus:         make(map[string]*agentpb.AgentStatus),
 		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
 		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
-		APBindings:          make(map[string]*apbindingpb.APBinding),
-		ExchangePolicies:    make(map[string]*exchangepolicypb.ExchangePolicy),
-		Federations:         make(map[string]*federationpb.Federation),
-		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
-		Workloads:           make(map[string]*workloadpb.Workload),
-		WorkloadEvents:      []*workloadpb.WorkloadEvent{},
-		Identities:          make(map[string]*identitypb.Identity),
-		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
-		AuditEvents:         make(map[string]*auditpb.Event),
+		//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
+		APBindings:       make(map[string]*apbindingpb.APBinding),
+		ExchangePolicies: make(map[string]*exchangepolicypb.ExchangePolicy),
+		Federations:      make(map[string]*federationpb.Federation),
+		AttestedNodes:    make(map[string]*datastoresvcpb.AttestedNode),
+		Workloads:        make(map[string]*workloadpb.Workload),
+		WorkloadEvents:   []*workloadpb.WorkloadEvent{},
+		Identities:       make(map[string]*identitypb.Identity),
+		RoleBindings:     make(map[string]*rolebindingpb.RoleBinding),
+		AuditEvents:      make(map[string]*auditpb.Event),
 	}
 }
 

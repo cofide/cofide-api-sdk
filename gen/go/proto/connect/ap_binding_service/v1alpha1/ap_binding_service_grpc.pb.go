@@ -43,16 +43,27 @@ const (
 // identities to workloads that match the policy within that zone. Bindings can
 // also specify federated trust zones to provide the bundles of federated trust
 // zones to matching workloads.
+// Deprecated: assign attestation policies to a trust zone directly instead.
 type APBindingServiceClient interface {
+	// Deprecated: Do not use.
 	// CreateAPBinding creates a new attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	CreateAPBinding(ctx context.Context, in *CreateAPBindingRequest, opts ...grpc.CallOption) (*CreateAPBindingResponse, error)
+	// Deprecated: Do not use.
 	// DestroyAPBinding deletes an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	DestroyAPBinding(ctx context.Context, in *DestroyAPBindingRequest, opts ...grpc.CallOption) (*DestroyAPBindingResponse, error)
+	// Deprecated: Do not use.
 	// GetAPBinding retrieves an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	GetAPBinding(ctx context.Context, in *GetAPBindingRequest, opts ...grpc.CallOption) (*GetAPBindingResponse, error)
+	// Deprecated: Do not use.
 	// ListAPBindings returns all attestation policy bindings matching the optional filter.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	ListAPBindings(ctx context.Context, in *ListAPBindingsRequest, opts ...grpc.CallOption) (*ListAPBindingsResponse, error)
+	// Deprecated: Do not use.
 	// UpdateAPBinding updates an existing attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	UpdateAPBinding(ctx context.Context, in *UpdateAPBindingRequest, opts ...grpc.CallOption) (*UpdateAPBindingResponse, error)
 }
 
@@ -64,6 +75,7 @@ func NewAPBindingServiceClient(cc grpc.ClientConnInterface) APBindingServiceClie
 	return &aPBindingServiceClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *aPBindingServiceClient) CreateAPBinding(ctx context.Context, in *CreateAPBindingRequest, opts ...grpc.CallOption) (*CreateAPBindingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateAPBindingResponse)
@@ -74,6 +86,7 @@ func (c *aPBindingServiceClient) CreateAPBinding(ctx context.Context, in *Create
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *aPBindingServiceClient) DestroyAPBinding(ctx context.Context, in *DestroyAPBindingRequest, opts ...grpc.CallOption) (*DestroyAPBindingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DestroyAPBindingResponse)
@@ -84,6 +97,7 @@ func (c *aPBindingServiceClient) DestroyAPBinding(ctx context.Context, in *Destr
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *aPBindingServiceClient) GetAPBinding(ctx context.Context, in *GetAPBindingRequest, opts ...grpc.CallOption) (*GetAPBindingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetAPBindingResponse)
@@ -94,6 +108,7 @@ func (c *aPBindingServiceClient) GetAPBinding(ctx context.Context, in *GetAPBind
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *aPBindingServiceClient) ListAPBindings(ctx context.Context, in *ListAPBindingsRequest, opts ...grpc.CallOption) (*ListAPBindingsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListAPBindingsResponse)
@@ -104,6 +119,7 @@ func (c *aPBindingServiceClient) ListAPBindings(ctx context.Context, in *ListAPB
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *aPBindingServiceClient) UpdateAPBinding(ctx context.Context, in *UpdateAPBindingRequest, opts ...grpc.CallOption) (*UpdateAPBindingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateAPBindingResponse)
@@ -123,16 +139,27 @@ func (c *aPBindingServiceClient) UpdateAPBinding(ctx context.Context, in *Update
 // identities to workloads that match the policy within that zone. Bindings can
 // also specify federated trust zones to provide the bundles of federated trust
 // zones to matching workloads.
+// Deprecated: assign attestation policies to a trust zone directly instead.
 type APBindingServiceServer interface {
+	// Deprecated: Do not use.
 	// CreateAPBinding creates a new attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	CreateAPBinding(context.Context, *CreateAPBindingRequest) (*CreateAPBindingResponse, error)
+	// Deprecated: Do not use.
 	// DestroyAPBinding deletes an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	DestroyAPBinding(context.Context, *DestroyAPBindingRequest) (*DestroyAPBindingResponse, error)
+	// Deprecated: Do not use.
 	// GetAPBinding retrieves an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	GetAPBinding(context.Context, *GetAPBindingRequest) (*GetAPBindingResponse, error)
+	// Deprecated: Do not use.
 	// ListAPBindings returns all attestation policy bindings matching the optional filter.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	ListAPBindings(context.Context, *ListAPBindingsRequest) (*ListAPBindingsResponse, error)
+	// Deprecated: Do not use.
 	// UpdateAPBinding updates an existing attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
 	UpdateAPBinding(context.Context, *UpdateAPBindingRequest) (*UpdateAPBindingResponse, error)
 }
 
