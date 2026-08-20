@@ -13,10 +13,14 @@ import (
 
 // APBindingClient is an interface for a gRPC client for the v1alpha1 version of the Connect APBindingService.
 type APBindingClient interface {
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	CreateAPBinding(ctx context.Context, binding *apbindingpb.APBinding) (*apbindingpb.APBinding, error)
 	DestroyAPBinding(ctx context.Context, bindingID string) error
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	GetAPBinding(ctx context.Context, bindingID string) (*apbindingpb.APBinding, error)
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	ListAPBindings(ctx context.Context, filter *apbindingsvcpb.ListAPBindingsRequest_Filter) ([]*apbindingpb.APBinding, error)
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	UpdateAPBinding(ctx context.Context, binding *apbindingpb.APBinding) (*apbindingpb.APBinding, error)
 }
 
@@ -31,7 +35,9 @@ func New(conn grpc.ClientConnInterface) APBindingClient {
 	}
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *apBindingClient) CreateAPBinding(ctx context.Context, binding *apbindingpb.APBinding) (*apbindingpb.APBinding, error) {
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	resp, err := c.client.CreateAPBinding(ctx, &apbindingsvcpb.CreateAPBindingRequest{
 		Binding: binding,
 	})
@@ -42,6 +48,7 @@ func (c *apBindingClient) CreateAPBinding(ctx context.Context, binding *apbindin
 }
 
 func (c *apBindingClient) DestroyAPBinding(ctx context.Context, bindingID string) error {
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	_, err := c.client.DestroyAPBinding(ctx, &apbindingsvcpb.DestroyAPBindingRequest{
 		BindingId: &bindingID,
 	})
@@ -51,7 +58,9 @@ func (c *apBindingClient) DestroyAPBinding(ctx context.Context, bindingID string
 	return nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *apBindingClient) GetAPBinding(ctx context.Context, bindingID string) (*apbindingpb.APBinding, error) {
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	resp, err := c.client.GetAPBinding(ctx, &apbindingsvcpb.GetAPBindingRequest{
 		BindingId: &bindingID,
 	})
@@ -61,7 +70,9 @@ func (c *apBindingClient) GetAPBinding(ctx context.Context, bindingID string) (*
 	return resp.Binding, nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *apBindingClient) ListAPBindings(ctx context.Context, filter *apbindingsvcpb.ListAPBindingsRequest_Filter) ([]*apbindingpb.APBinding, error) {
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	resp, err := c.client.ListAPBindings(ctx, &apbindingsvcpb.ListAPBindingsRequest{
 		Filter: filter,
 	})
@@ -71,7 +82,9 @@ func (c *apBindingClient) ListAPBindings(ctx context.Context, filter *apbindings
 	return resp.Bindings, nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *apBindingClient) UpdateAPBinding(ctx context.Context, binding *apbindingpb.APBinding) (*apbindingpb.APBinding, error) {
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	resp, err := c.client.UpdateAPBinding(ctx, &apbindingsvcpb.UpdateAPBindingRequest{
 		Binding: binding,
 	})

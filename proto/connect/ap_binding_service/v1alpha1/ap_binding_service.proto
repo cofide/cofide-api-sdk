@@ -18,42 +18,71 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/ap_bi
 // identities to workloads that match the policy within that zone. Bindings can
 // also specify federated trust zones to provide the bundles of federated trust
 // zones to matching workloads.
+// Deprecated: assign attestation policies to a trust zone directly instead.
 service APBindingService {
   // CreateAPBinding creates a new attestation policy binding.
-  rpc CreateAPBinding(CreateAPBindingRequest) returns (CreateAPBindingResponse);
+  // Deprecated: assign attestation policies to a trust zone directly instead.
+  rpc CreateAPBinding(CreateAPBindingRequest) returns (CreateAPBindingResponse) {
+    option deprecated = true;
+  }
   // DestroyAPBinding deletes an attestation policy binding by ID.
-  rpc DestroyAPBinding(DestroyAPBindingRequest) returns (DestroyAPBindingResponse);
+  // Deprecated: assign attestation policies to a trust zone directly instead.
+  rpc DestroyAPBinding(DestroyAPBindingRequest) returns (DestroyAPBindingResponse) {
+    option deprecated = true;
+  }
   // GetAPBinding retrieves an attestation policy binding by ID.
-  rpc GetAPBinding(GetAPBindingRequest) returns (GetAPBindingResponse);
+  // Deprecated: assign attestation policies to a trust zone directly instead.
+  rpc GetAPBinding(GetAPBindingRequest) returns (GetAPBindingResponse) {
+    option deprecated = true;
+  }
   // ListAPBindings returns all attestation policy bindings matching the optional filter.
-  rpc ListAPBindings(ListAPBindingsRequest) returns (ListAPBindingsResponse);
+  // Deprecated: assign attestation policies to a trust zone directly instead.
+  rpc ListAPBindings(ListAPBindingsRequest) returns (ListAPBindingsResponse) {
+    option deprecated = true;
+  }
   // UpdateAPBinding updates an existing attestation policy binding.
-  rpc UpdateAPBinding(UpdateAPBindingRequest) returns (UpdateAPBindingResponse);
+  // Deprecated: assign attestation policies to a trust zone directly instead.
+  rpc UpdateAPBinding(UpdateAPBindingRequest) returns (UpdateAPBindingResponse) {
+    option deprecated = true;
+  }
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message CreateAPBindingRequest {
+  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message CreateAPBindingResponse {
+  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message DestroyAPBindingRequest {
+  option deprecated = true;
   optional string binding_id = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message DestroyAPBindingResponse {}
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message GetAPBindingRequest {
+  option deprecated = true;
   optional string binding_id = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message GetAPBindingResponse {
+  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message ListAPBindingsRequest {
+  option deprecated = true;
   message Filter {
     optional string org_id = 1;
     optional string trust_zone_id = 2;
@@ -62,14 +91,20 @@ message ListAPBindingsRequest {
   optional Filter filter = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message ListAPBindingsResponse {
+  option deprecated = true;
   repeated proto.ap_binding.v1alpha1.APBinding bindings = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message UpdateAPBindingRequest {
+  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message UpdateAPBindingResponse {
+  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }

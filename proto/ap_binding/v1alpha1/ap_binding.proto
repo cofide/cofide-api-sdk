@@ -19,7 +19,9 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1
 // Optionally, federations can be specified to restrict which federated trust
 // zones will be visible to matching workloads, allowing the same policy to be
 // re-used across multiple trust zones.
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message APBinding {
+  option deprecated = true;
   reserved 1, 2, 3;
   reserved "trust_zone", "policy", "federates_with";
 
@@ -38,6 +40,8 @@ message APBinding {
 
 // APBindingFederation identifies a trust zone that is included in the federated
 // scope of an attestation policy binding.
+// Deprecated: assign attestation policies to a trust zone directly instead.
 message APBindingFederation {
+  option deprecated = true;
   optional string trust_zone_id = 1;
 }

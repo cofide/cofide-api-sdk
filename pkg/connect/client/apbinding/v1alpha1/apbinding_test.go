@@ -81,6 +81,7 @@ func TestAPBindingClient(t *testing.T) {
 	filter := &apbindingsvcpb.ListAPBindingsRequest_Filter{TrustZoneId: test.PtrOf(fakeTrustZoneID)}
 	bindings, err := client.ListAPBindings(ctx, filter)
 	require.NoError(t, err)
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	assert.EqualExportedValues(t, []*apbindingpb.APBinding{fakeAPBinding()}, bindings)
 
 	updatedAPBinding, err := client.UpdateAPBinding(ctx, binding)
@@ -93,33 +94,46 @@ type fakeAPBindingService struct {
 	t *testing.T
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (f *fakeAPBindingService) CreateAPBinding(ctx context.Context, req *apbindingsvcpb.CreateAPBindingRequest) (*apbindingsvcpb.CreateAPBindingResponse, error) {
 	assert.EqualExportedValues(f.t, fakeAPBinding(), req.Binding)
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	return &apbindingsvcpb.CreateAPBindingResponse{Binding: req.Binding}, nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (f *fakeAPBindingService) DestroyAPBinding(ctx context.Context, req *apbindingsvcpb.DestroyAPBindingRequest) (*apbindingsvcpb.DestroyAPBindingResponse, error) {
 	assert.Equal(f.t, fakeAPBindingID, req.GetBindingId())
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	return &apbindingsvcpb.DestroyAPBindingResponse{}, nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (f *fakeAPBindingService) GetAPBinding(ctx context.Context, req *apbindingsvcpb.GetAPBindingRequest) (*apbindingsvcpb.GetAPBindingResponse, error) {
 	assert.Equal(f.t, fakeAPBindingID, req.GetBindingId())
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	return &apbindingsvcpb.GetAPBindingResponse{Binding: fakeAPBinding()}, nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (f *fakeAPBindingService) ListAPBindings(ctx context.Context, req *apbindingsvcpb.ListAPBindingsRequest) (*apbindingsvcpb.ListAPBindingsResponse, error) {
 	assert.Equal(f.t, fakeTrustZoneID, req.Filter.GetTrustZoneId())
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	bindings := []*apbindingpb.APBinding{fakeAPBinding()}
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	return &apbindingsvcpb.ListAPBindingsResponse{Bindings: bindings}, nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (f *fakeAPBindingService) UpdateAPBinding(ctx context.Context, req *apbindingsvcpb.UpdateAPBindingRequest) (*apbindingsvcpb.UpdateAPBindingResponse, error) {
 	assert.EqualExportedValues(f.t, fakeAPBinding(), req.Binding)
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	return &apbindingsvcpb.UpdateAPBindingResponse{Binding: fakeAPBinding()}, nil
 }
 
+//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func fakeAPBinding() *apbindingpb.APBinding {
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	return &apbindingpb.APBinding{
 		Id:          test.PtrOf(fakeAPBindingID),
 		TrustZoneId: test.PtrOf(fakeTrustZoneID),
