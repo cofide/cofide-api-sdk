@@ -24,4 +24,5 @@ func TestClientSet(t *testing.T) {
 	require.NotNil(t, client.TrustZoneV1Alpha1())
 	require.NotNil(t, client.TrustZoneServerV1Alpha1())
 	require.NotNil(t, client.WorkloadV1Alpha1())
+	require.NotNil(t, client.WorkloadSuppressionRuleV1Alpha1())
 }

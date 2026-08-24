@@ -18,6 +18,7 @@ import (
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
+	workloadsuppressionrulepb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload_suppression_rule/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -25,49 +26,51 @@ import (
 
 // FakeConnect implements the state for a fake Connect service.
 type FakeConnect struct {
-	Mu                  sync.Mutex
-	Organizations       map[string]*organizationpb.Organization
-	TrustZones          map[string]*trustzonepb.TrustZone
-	TrustZoneBundles    map[string]*types.Bundle
-	TrustZoneServers    map[string]*trustzoneserverpb.TrustZoneServer
-	Clusters            map[string]*clusterpb.Cluster
-	Agents              map[string]*agentpb.Agent
-	AgentJoinTokens     map[string]map[string]string
-	AgentStatus         map[string]*agentpb.AgentStatus
-	FederatedServices   map[string]*federatedservicepb.FederatedService
-	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
-	APBindings          map[string]*apbindingpb.APBinding
-	ExchangePolicies    map[string]*exchangepolicypb.ExchangePolicy
-	Federations         map[string]*federationpb.Federation
-	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
-	Workloads           map[string]*workloadpb.Workload
-	WorkloadEvents      []*workloadpb.WorkloadEvent
-	Identities          map[string]*identitypb.Identity
-	RoleBindings        map[string]*rolebindingpb.RoleBinding
-	AuditEvents         map[string]*auditpb.Event
+	Mu                       sync.Mutex
+	Organizations            map[string]*organizationpb.Organization
+	TrustZones               map[string]*trustzonepb.TrustZone
+	TrustZoneBundles         map[string]*types.Bundle
+	TrustZoneServers         map[string]*trustzoneserverpb.TrustZoneServer
+	Clusters                 map[string]*clusterpb.Cluster
+	Agents                   map[string]*agentpb.Agent
+	AgentJoinTokens          map[string]map[string]string
+	AgentStatus              map[string]*agentpb.AgentStatus
+	FederatedServices        map[string]*federatedservicepb.FederatedService
+	AttestationPolicies      map[string]*attestationpolicypb.AttestationPolicy
+	APBindings               map[string]*apbindingpb.APBinding
+	ExchangePolicies         map[string]*exchangepolicypb.ExchangePolicy
+	Federations              map[string]*federationpb.Federation
+	AttestedNodes            map[string]*datastoresvcpb.AttestedNode
+	Workloads                map[string]*workloadpb.Workload
+	WorkloadEvents           []*workloadpb.WorkloadEvent
+	Identities               map[string]*identitypb.Identity
+	RoleBindings             map[string]*rolebindingpb.RoleBinding
+	AuditEvents              map[string]*auditpb.Event
+	WorkloadSuppressionRules map[string]*workloadsuppressionrulepb.WorkloadSuppressionRule
 }
 
 func New() *FakeConnect {
 	return &FakeConnect{
-		Organizations:       make(map[string]*organizationpb.Organization),
-		TrustZones:          make(map[string]*trustzonepb.TrustZone),
-		TrustZoneBundles:    make(map[string]*types.Bundle),
-		TrustZoneServers:    make(map[string]*trustzoneserverpb.TrustZoneServer),
-		Clusters:            make(map[string]*clusterpb.Cluster),
-		Agents:              make(map[string]*agentpb.Agent),
-		AgentJoinTokens:     make(map[string]map[string]string),
-		AgentStatus:         make(map[string]*agentpb.AgentStatus),
-		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
-		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
-		APBindings:          make(map[string]*apbindingpb.APBinding),
-		ExchangePolicies:    make(map[string]*exchangepolicypb.ExchangePolicy),
-		Federations:         make(map[string]*federationpb.Federation),
-		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
-		Workloads:           make(map[string]*workloadpb.Workload),
-		WorkloadEvents:      []*workloadpb.WorkloadEvent{},
-		Identities:          make(map[string]*identitypb.Identity),
-		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
-		AuditEvents:         make(map[string]*auditpb.Event),
+		Organizations:            make(map[string]*organizationpb.Organization),
+		TrustZones:               make(map[string]*trustzonepb.TrustZone),
+		TrustZoneBundles:         make(map[string]*types.Bundle),
+		TrustZoneServers:         make(map[string]*trustzoneserverpb.TrustZoneServer),
+		Clusters:                 make(map[string]*clusterpb.Cluster),
+		Agents:                   make(map[string]*agentpb.Agent),
+		AgentJoinTokens:          make(map[string]map[string]string),
+		AgentStatus:              make(map[string]*agentpb.AgentStatus),
+		FederatedServices:        make(map[string]*federatedservicepb.FederatedService),
+		AttestationPolicies:      make(map[string]*attestationpolicypb.AttestationPolicy),
+		APBindings:               make(map[string]*apbindingpb.APBinding),
+		ExchangePolicies:         make(map[string]*exchangepolicypb.ExchangePolicy),
+		Federations:              make(map[string]*federationpb.Federation),
+		AttestedNodes:            make(map[string]*datastoresvcpb.AttestedNode),
+		Workloads:                make(map[string]*workloadpb.Workload),
+		WorkloadEvents:           []*workloadpb.WorkloadEvent{},
+		Identities:               make(map[string]*identitypb.Identity),
+		RoleBindings:             make(map[string]*rolebindingpb.RoleBinding),
+		AuditEvents:              make(map[string]*auditpb.Event),
+		WorkloadSuppressionRules: make(map[string]*workloadsuppressionrulepb.WorkloadSuppressionRule),
 	}
 }
 
@@ -165,6 +168,13 @@ func (f *FakeConnect) ValidateRoleBinding(roleBindingID string) error {
 func (f *FakeConnect) ValidateAuditEvent(auditEventID string) error {
 	if _, ok := f.AuditEvents[auditEventID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid audit event")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateWorkloadSuppressionRule(ruleID string) error {
+	if _, ok := f.WorkloadSuppressionRules[ruleID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid workload suppression rule")
 	}
 	return nil
 }

@@ -18,6 +18,7 @@ import (
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	trustzoneserverv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzoneserver/v1alpha1"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
+	workloadsuppressionrulev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workloadsuppressionrule/v1alpha1"
 
 	"google.golang.org/grpc"
 )
@@ -39,42 +40,45 @@ type ClientSet interface {
 	IdentityV1Alpha1() identityv1alpha1.IdentityClient
 	RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient
 	AuditV1Alpha1() auditv1alpha1.AuditClient
+	WorkloadSuppressionRuleV1Alpha1() workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient
 }
 
 type clientSet struct {
-	agentV1Alpha1             agentv1alpha1.AgentClient
-	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
-	auditV1Alpha1             auditv1alpha1.AuditClient
-	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
-	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
-	clusterV1Alpha1           clusterv1alpha1.ClusterClient
-	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
-	federationV1Alpha1        federationV1Alpha1.FederationClient
-	identityV1Alpha1          identityv1alpha1.IdentityClient
-	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
-	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
-	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
-	trustZoneServerV1Alpha1   trustzoneserverv1alpha1.TrustZoneServerClient
-	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
+	agentV1Alpha1                   agentv1alpha1.AgentClient
+	apBindingV1Alpha1               apbindingv1alpha1.APBindingClient
+	auditV1Alpha1                   auditv1alpha1.AuditClient
+	exchangePolicyV1Alpha1          exchangepolicyv1alpha1.ExchangePolicyClient
+	attestationPolicyV1Alpha1       attestationpolicyv1alpha1.AttestationPolicyClient
+	clusterV1Alpha1                 clusterv1alpha1.ClusterClient
+	datastoreV1Alpha1               datastorev1alpha1.DataStoreClient
+	federationV1Alpha1              federationV1Alpha1.FederationClient
+	identityV1Alpha1                identityv1alpha1.IdentityClient
+	organizationV1Alpha1            organizationv1alpha1.OrganizationClient
+	roleBindingV1Alpha1             rolebindingv1alpha1.RoleBindingClient
+	trustZoneV1Alpha1               trustzonev1alpha1.TrustZoneClient
+	trustZoneServerV1Alpha1         trustzoneserverv1alpha1.TrustZoneServerClient
+	workloadV1Alpha1                workloadv1alpha1.WorkloadClient
+	workloadSuppressionRuleV1Alpha1 workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient
 }
 
 // New instantiates a new ClientSet for communication with a Connect API.
 func New(conn grpc.ClientConnInterface) ClientSet {
 	return &clientSet{
-		agentV1Alpha1:             agentv1alpha1.New(conn),
-		apBindingV1Alpha1:         apbindingv1alpha1.New(conn),
-		auditV1Alpha1:             auditv1alpha1.New(conn),
-		exchangePolicyV1Alpha1:    exchangepolicyv1alpha1.New(conn),
-		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
-		clusterV1Alpha1:           clusterv1alpha1.New(conn),
-		datastoreV1Alpha1:         datastorev1alpha1.New(conn),
-		federationV1Alpha1:        federationV1Alpha1.New(conn),
-		identityV1Alpha1:          identityv1alpha1.New(conn),
-		organizationV1Alpha1:      organizationv1alpha1.New(conn),
-		roleBindingV1Alpha1:       rolebindingv1alpha1.New(conn),
-		trustZoneV1Alpha1:         trustzonev1alpha1.New(conn),
-		trustZoneServerV1Alpha1:   trustzoneserverv1alpha1.New(conn),
-		workloadV1Alpha1:          workloadv1alpha1.New(conn),
+		agentV1Alpha1:                   agentv1alpha1.New(conn),
+		apBindingV1Alpha1:               apbindingv1alpha1.New(conn),
+		auditV1Alpha1:                   auditv1alpha1.New(conn),
+		exchangePolicyV1Alpha1:          exchangepolicyv1alpha1.New(conn),
+		attestationPolicyV1Alpha1:       attestationpolicyv1alpha1.New(conn),
+		clusterV1Alpha1:                 clusterv1alpha1.New(conn),
+		datastoreV1Alpha1:               datastorev1alpha1.New(conn),
+		federationV1Alpha1:              federationV1Alpha1.New(conn),
+		identityV1Alpha1:                identityv1alpha1.New(conn),
+		organizationV1Alpha1:            organizationv1alpha1.New(conn),
+		roleBindingV1Alpha1:             rolebindingv1alpha1.New(conn),
+		trustZoneV1Alpha1:               trustzonev1alpha1.New(conn),
+		trustZoneServerV1Alpha1:         trustzoneserverv1alpha1.New(conn),
+		workloadV1Alpha1:                workloadv1alpha1.New(conn),
+		workloadSuppressionRuleV1Alpha1: workloadsuppressionrulev1alpha1.New(conn),
 	}
 }
 
@@ -132,4 +136,8 @@ func (c *clientSet) TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneS
 
 func (c *clientSet) WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient {
 	return c.workloadV1Alpha1
+}
+
+func (c *clientSet) WorkloadSuppressionRuleV1Alpha1() workloadsuppressionrulev1alpha1.WorkloadSuppressionRuleClient {
+	return c.workloadSuppressionRuleV1Alpha1
 }
