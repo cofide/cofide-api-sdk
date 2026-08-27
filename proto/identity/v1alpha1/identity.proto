@@ -22,10 +22,12 @@ message Identity {
   string org_id = 2;
   string trust_zone_id = 3;
   string cluster_id = 4;
-  // The attestation policy that matched this workload.
-  string attestation_policy_id = 5;
-  // The attestation policy binding through which this identity was issued.
-  string ap_binding_id = 6;
+  // The policies that all grant this same identity to this workload (if set)
+  repeated Policy policies = 15;
+  // Deprecated: use policies instead. The attestation policy that matched this workload.
+  string attestation_policy_id = 5 [deprecated = true];
+  // Deprecated: use policies instead. The attestation policy binding through which this identity was issued.
+  string ap_binding_id = 6 [deprecated = true];
   // The workload to which this identity was issued.
   string workload_id = 7;
   // The SPIFFE ID issued to the workload, e.g. spiffe://trust-domain/ns/foo/sa/bar.
@@ -42,6 +44,31 @@ message Identity {
   // (if the svidstore agent plugin is enabled).
   bool store_svid = 14;
   google.protobuf.Timestamp created_at = 12;
+}
+
+// Policy is the policy granting an identity. More than one policy can grant the same identity.
+message Policy {
+  oneof policy {
+    AttestationPolicy attestation_policy = 1;
+    ExchangePolicy exchange_policy = 2;
+    AttestationPolicyWithBinding attestation_policy_with_binding = 3;
+  }
+}
+
+// AttestationPolicy references identities granted by an attestation policy without needing an attestation policy binding.
+message AttestationPolicy {
+  string attestation_policy_id = 1;
+}
+
+// ExchangePolicy references identities granted by an exchange policy.
+message ExchangePolicy {
+  string exchange_policy_id = 1;
+}
+
+// AttestationPolicyWithBinding references identities granted by an attestation policy through an attestation policy binding.
+message AttestationPolicyWithBinding {
+  string attestation_policy_id = 1;
+  string attestation_policy_binding_id = 2;
 }
 
 // Selector is an attestation selector produced by a workload attestation plugin
