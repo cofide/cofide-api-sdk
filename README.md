@@ -13,7 +13,7 @@ For more information about the Cofide Connect Workload Identity platform, take a
 This repository uses the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview) to help generate and manage Cofide's protobuf definitions and schemas.
 The following tools must be available in order to generate code stubs.
 
-- [Go 1.25.11 toolchain](https://golang.org/doc/install)
+- [Go 1.26.8 toolchain](https://golang.org/doc/install)
 - [protobuf version 3 compiler](https://grpc.io/docs/protoc-installation/)
 - [Go gRPC and protobuf](https://grpc.io/docs/languages/go/quickstart/#prerequisites) build tools.
 - [Connect RPC tools](https://connectrpc.com/docs/go/getting-started#prerequisites)
