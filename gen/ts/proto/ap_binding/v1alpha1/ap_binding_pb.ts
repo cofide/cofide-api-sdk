@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/ap_binding/v1alpha1/ap_binding.proto.
  */
 export const file_proto_ap_binding_v1alpha1_ap_binding: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by9hcF9iaW5kaW5nL3YxYWxwaGExL2FwX2JpbmRpbmcucHJvdG8SGXByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEigQMKCUFQQmluZGluZxIPCgJpZBgEIAEoCUgAiAEBEhMKBm9yZ19pZBgFIAEoCUgBiAEBEhoKDXRydXN0X3pvbmVfaWQYBiABKAlIAogBARIWCglwb2xpY3lfaWQYByABKAlIA4gBARJDCgtmZWRlcmF0aW9ucxgIIAMoCzIuLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nRmVkZXJhdGlvbhIzCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IFCgNfaWRCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkSgQIARACSgQIAhADSgQIAxAEUgp0cnVzdF96b25lUgZwb2xpY3lSDmZlZGVyYXRlc193aXRoIkMKE0FQQmluZGluZ0ZlZGVyYXRpb24SGgoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAiAEBQhAKDl90cnVzdF96b25lX2lkQkNaQWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9hcF9iaW5kaW5nL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("Cipwcm90by9hcF9iaW5kaW5nL3YxYWxwaGExL2FwX2JpbmRpbmcucHJvdG8SGXByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEihQMKCUFQQmluZGluZxIPCgJpZBgEIAEoCUgAiAEBEhMKBm9yZ19pZBgFIAEoCUgBiAEBEhoKDXRydXN0X3pvbmVfaWQYBiABKAlIAogBARIWCglwb2xpY3lfaWQYByABKAlIA4gBARJDCgtmZWRlcmF0aW9ucxgIIAMoCzIuLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nRmVkZXJhdGlvbhIzCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAzoCGAFCBQoDX2lkQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCDAoKX3BvbGljeV9pZEoECAEQAkoECAIQA0oECAMQBFIKdHJ1c3Rfem9uZVIGcG9saWN5Ug5mZWRlcmF0ZXNfd2l0aCJHChNBUEJpbmRpbmdGZWRlcmF0aW9uEhoKDXRydXN0X3pvbmVfaWQYASABKAlIAIgBAToCGAFCEAoOX3RydXN0X3pvbmVfaWRCQ1pBZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2FwX2JpbmRpbmcvdjFhbHBoYTFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * APBinding binds an attestation policy to a trust zone, enabling Connect to
@@ -29,8 +29,10 @@ export const file_proto_ap_binding_v1alpha1_ap_binding: GenFile = /*@__PURE__*/
  * Optionally, federations can be specified to restrict which federated trust
  * zones will be visible to matching workloads, allowing the same policy to be
  * re-used across multiple trust zones.
+ * Deprecated: assign attestation policies to a trust zone directly instead.
  *
  * @generated from message proto.ap_binding.v1alpha1.APBinding
+ * @deprecated
  */
 export type APBinding = Message<"proto.ap_binding.v1alpha1.APBinding"> & {
   /**
@@ -79,6 +81,7 @@ export type APBinding = Message<"proto.ap_binding.v1alpha1.APBinding"> & {
 /**
  * Describes the message proto.ap_binding.v1alpha1.APBinding.
  * Use `create(APBindingSchema)` to create a new message.
+ * @deprecated
  */
 export const APBindingSchema: GenMessage<APBinding> = /*@__PURE__*/
   messageDesc(file_proto_ap_binding_v1alpha1_ap_binding, 0);
@@ -86,8 +89,10 @@ export const APBindingSchema: GenMessage<APBinding> = /*@__PURE__*/
 /**
  * APBindingFederation identifies a trust zone that is included in the federated
  * scope of an attestation policy binding.
+ * Deprecated: assign attestation policies to a trust zone directly instead.
  *
  * @generated from message proto.ap_binding.v1alpha1.APBindingFederation
+ * @deprecated
  */
 export type APBindingFederation = Message<"proto.ap_binding.v1alpha1.APBindingFederation"> & {
   /**
@@ -99,6 +104,7 @@ export type APBindingFederation = Message<"proto.ap_binding.v1alpha1.APBindingFe
 /**
  * Describes the message proto.ap_binding.v1alpha1.APBindingFederation.
  * Use `create(APBindingFederationSchema)` to create a new message.
+ * @deprecated
  */
 export const APBindingFederationSchema: GenMessage<APBindingFederation> = /*@__PURE__*/
   messageDesc(file_proto_ap_binding_v1alpha1_ap_binding, 1);

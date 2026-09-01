@@ -84,6 +84,7 @@ func Test_fakeAPBindingClient_ListAPBindings(t *testing.T) {
 
 	bindings, err := client.ListAPBindings(ctx, nil)
 	require.NoError(t, err)
+	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	assert.EqualExportedValues(t, []*apbindingpb.APBinding{binding}, bindings)
 }
 

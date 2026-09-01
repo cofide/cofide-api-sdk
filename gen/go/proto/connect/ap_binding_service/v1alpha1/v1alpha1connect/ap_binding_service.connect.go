@@ -62,14 +62,29 @@ const (
 // proto.connect.ap_binding_service.v1alpha1.APBindingService service.
 type APBindingServiceClient interface {
 	// CreateAPBinding creates a new attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	CreateAPBinding(context.Context, *connect.Request[v1alpha1.CreateAPBindingRequest]) (*connect.Response[v1alpha1.CreateAPBindingResponse], error)
 	// DestroyAPBinding deletes an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	DestroyAPBinding(context.Context, *connect.Request[v1alpha1.DestroyAPBindingRequest]) (*connect.Response[v1alpha1.DestroyAPBindingResponse], error)
 	// GetAPBinding retrieves an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	GetAPBinding(context.Context, *connect.Request[v1alpha1.GetAPBindingRequest]) (*connect.Response[v1alpha1.GetAPBindingResponse], error)
 	// ListAPBindings returns all attestation policy bindings matching the optional filter.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	ListAPBindings(context.Context, *connect.Request[v1alpha1.ListAPBindingsRequest]) (*connect.Response[v1alpha1.ListAPBindingsResponse], error)
 	// UpdateAPBinding updates an existing attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	UpdateAPBinding(context.Context, *connect.Request[v1alpha1.UpdateAPBindingRequest]) (*connect.Response[v1alpha1.UpdateAPBindingResponse], error)
 }
 
@@ -128,27 +143,37 @@ type aPBindingServiceClient struct {
 }
 
 // CreateAPBinding calls proto.connect.ap_binding_service.v1alpha1.APBindingService.CreateAPBinding.
+//
+// Deprecated: do not use.
 func (c *aPBindingServiceClient) CreateAPBinding(ctx context.Context, req *connect.Request[v1alpha1.CreateAPBindingRequest]) (*connect.Response[v1alpha1.CreateAPBindingResponse], error) {
 	return c.createAPBinding.CallUnary(ctx, req)
 }
 
 // DestroyAPBinding calls
 // proto.connect.ap_binding_service.v1alpha1.APBindingService.DestroyAPBinding.
+//
+// Deprecated: do not use.
 func (c *aPBindingServiceClient) DestroyAPBinding(ctx context.Context, req *connect.Request[v1alpha1.DestroyAPBindingRequest]) (*connect.Response[v1alpha1.DestroyAPBindingResponse], error) {
 	return c.destroyAPBinding.CallUnary(ctx, req)
 }
 
 // GetAPBinding calls proto.connect.ap_binding_service.v1alpha1.APBindingService.GetAPBinding.
+//
+// Deprecated: do not use.
 func (c *aPBindingServiceClient) GetAPBinding(ctx context.Context, req *connect.Request[v1alpha1.GetAPBindingRequest]) (*connect.Response[v1alpha1.GetAPBindingResponse], error) {
 	return c.getAPBinding.CallUnary(ctx, req)
 }
 
 // ListAPBindings calls proto.connect.ap_binding_service.v1alpha1.APBindingService.ListAPBindings.
+//
+// Deprecated: do not use.
 func (c *aPBindingServiceClient) ListAPBindings(ctx context.Context, req *connect.Request[v1alpha1.ListAPBindingsRequest]) (*connect.Response[v1alpha1.ListAPBindingsResponse], error) {
 	return c.listAPBindings.CallUnary(ctx, req)
 }
 
 // UpdateAPBinding calls proto.connect.ap_binding_service.v1alpha1.APBindingService.UpdateAPBinding.
+//
+// Deprecated: do not use.
 func (c *aPBindingServiceClient) UpdateAPBinding(ctx context.Context, req *connect.Request[v1alpha1.UpdateAPBindingRequest]) (*connect.Response[v1alpha1.UpdateAPBindingResponse], error) {
 	return c.updateAPBinding.CallUnary(ctx, req)
 }
@@ -157,14 +182,29 @@ func (c *aPBindingServiceClient) UpdateAPBinding(ctx context.Context, req *conne
 // proto.connect.ap_binding_service.v1alpha1.APBindingService service.
 type APBindingServiceHandler interface {
 	// CreateAPBinding creates a new attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	CreateAPBinding(context.Context, *connect.Request[v1alpha1.CreateAPBindingRequest]) (*connect.Response[v1alpha1.CreateAPBindingResponse], error)
 	// DestroyAPBinding deletes an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	DestroyAPBinding(context.Context, *connect.Request[v1alpha1.DestroyAPBindingRequest]) (*connect.Response[v1alpha1.DestroyAPBindingResponse], error)
 	// GetAPBinding retrieves an attestation policy binding by ID.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	GetAPBinding(context.Context, *connect.Request[v1alpha1.GetAPBindingRequest]) (*connect.Response[v1alpha1.GetAPBindingResponse], error)
 	// ListAPBindings returns all attestation policy bindings matching the optional filter.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	ListAPBindings(context.Context, *connect.Request[v1alpha1.ListAPBindingsRequest]) (*connect.Response[v1alpha1.ListAPBindingsResponse], error)
 	// UpdateAPBinding updates an existing attestation policy binding.
+	// Deprecated: assign attestation policies to a trust zone directly instead.
+	//
+	// Deprecated: do not use.
 	UpdateAPBinding(context.Context, *connect.Request[v1alpha1.UpdateAPBindingRequest]) (*connect.Response[v1alpha1.UpdateAPBindingResponse], error)
 }
 
