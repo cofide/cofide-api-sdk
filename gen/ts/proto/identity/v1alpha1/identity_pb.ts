@@ -20,7 +20,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/identity/v1alpha1/identity.proto.
  */
 export const file_proto_identity_v1alpha1_identity: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by9pZGVudGl0eS92MWFscGhhMS9pZGVudGl0eS5wcm90bxIXcHJvdG8uaWRlbnRpdHkudjFhbHBoYTEizAMKCElkZW50aXR5EgoKAmlkGAEgASgJEg4KBm9yZ19pZBgCIAEoCRIVCg10cnVzdF96b25lX2lkGAMgASgJEhIKCmNsdXN0ZXJfaWQYBCABKAkSMQoIcG9saWNpZXMYDyADKAsyHy5wcm90by5pZGVudGl0eS52MWFscGhhMS5Qb2xpY3kSIQoVYXR0ZXN0YXRpb25fcG9saWN5X2lkGAUgASgJQgIYARIZCg1hcF9iaW5kaW5nX2lkGAYgASgJQgIYARITCgt3b3JrbG9hZF9pZBgHIAEoCRIRCglzcGlmZmVfaWQYCCABKAkSEQoJcGFyZW50X2lkGAkgASgJEjQKCXNlbGVjdG9ycxgKIAMoCzIhLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLlNlbGVjdG9yEhEKCWRuc19uYW1lcxgNIAMoCRJACgtmZWRlcmF0aW9ucxgLIAMoCzIrLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5RmVkZXJhdGlvbhISCgpzdG9yZV9zdmlkGA4gASgIEi4KCmNyZWF0ZWRfYXQYDCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIoICCgZQb2xpY3kSSAoSYXR0ZXN0YXRpb25fcG9saWN5GAEgASgLMioucHJvdG8uaWRlbnRpdHkudjFhbHBoYTEuQXR0ZXN0YXRpb25Qb2xpY3lIABJCCg9leGNoYW5nZV9wb2xpY3kYAiABKAsyJy5wcm90by5pZGVudGl0eS52MWFscGhhMS5FeGNoYW5nZVBvbGljeUgAEmAKH2F0dGVzdGF0aW9uX3BvbGljeV93aXRoX2JpbmRpbmcYAyABKAsyNS5wcm90by5pZGVudGl0eS52MWFscGhhMS5BdHRlc3RhdGlvblBvbGljeVdpdGhCaW5kaW5nSABCCAoGcG9saWN5IjIKEUF0dGVzdGF0aW9uUG9saWN5Eh0KFWF0dGVzdGF0aW9uX3BvbGljeV9pZBgBIAEoCSIsCg5FeGNoYW5nZVBvbGljeRIaChJleGNoYW5nZV9wb2xpY3lfaWQYASABKAkiZAocQXR0ZXN0YXRpb25Qb2xpY3lXaXRoQmluZGluZxIdChVhdHRlc3RhdGlvbl9wb2xpY3lfaWQYASABKAkSJQodYXR0ZXN0YXRpb25fcG9saWN5X2JpbmRpbmdfaWQYAiABKAkiJwoIU2VsZWN0b3ISDAoEdHlwZRgBIAEoCRINCgV2YWx1ZRgCIAEoCSJTChJJZGVudGl0eUZlZGVyYXRpb24SFwoNdHJ1c3Rfem9uZV9pZBgBIAEoCUgAEhYKDHRydXN0X2RvbWFpbhgCIAEoCUgAQgwKCmZlZGVyYXRpb25CQVo/Z2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2lkZW50aXR5L3YxYWxwaGExYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by9pZGVudGl0eS92MWFscGhhMS9pZGVudGl0eS5wcm90bxIXcHJvdG8uaWRlbnRpdHkudjFhbHBoYTEisQMKCElkZW50aXR5EgoKAmlkGAEgASgJEg4KBm9yZ19pZBgCIAEoCRIVCg10cnVzdF96b25lX2lkGAMgASgJEhIKCmNsdXN0ZXJfaWQYBCABKAkSHQoVYXR0ZXN0YXRpb25fcG9saWN5X2lkGAUgASgJEhkKDWFwX2JpbmRpbmdfaWQYBiABKAlCAhgBEhoKEmV4Y2hhbmdlX3BvbGljeV9pZBgPIAEoCRITCgt3b3JrbG9hZF9pZBgHIAEoCRIRCglzcGlmZmVfaWQYCCABKAkSEQoJcGFyZW50X2lkGAkgASgJEjQKCXNlbGVjdG9ycxgKIAMoCzIhLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLlNlbGVjdG9yEhEKCWRuc19uYW1lcxgNIAMoCRJACgtmZWRlcmF0aW9ucxgLIAMoCzIrLnByb3RvLmlkZW50aXR5LnYxYWxwaGExLklkZW50aXR5RmVkZXJhdGlvbhISCgpzdG9yZV9zdmlkGA4gASgIEi4KCmNyZWF0ZWRfYXQYDCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIicKCFNlbGVjdG9yEgwKBHR5cGUYASABKAkSDQoFdmFsdWUYAiABKAkiUwoSSWRlbnRpdHlGZWRlcmF0aW9uEhcKDXRydXN0X3pvbmVfaWQYASABKAlIABIWCgx0cnVzdF9kb21haW4YAiABKAlIAEIMCgpmZWRlcmF0aW9uQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9pZGVudGl0eS92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_timestamp]);
 
 /**
  * Identity represents a SPIFFE identity (SVID) issued by Connect to a workload
@@ -52,17 +52,7 @@ export type Identity = Message<"proto.identity.v1alpha1.Identity"> & {
   clusterId: string;
 
   /**
-   * The policies that all grant this same identity to this workload (if set)
-   *
-   * @generated from field: repeated proto.identity.v1alpha1.Policy policies = 15;
-   */
-  policies: Policy[];
-
-  /**
-   * Deprecated: use policies instead. The attestation policy that matched this workload.
-   *
-   * @generated from field: string attestation_policy_id = 5 [deprecated = true];
-   * @deprecated
+   * @generated from field: string attestation_policy_id = 5;
    */
   attestationPolicyId: string;
 
@@ -73,6 +63,11 @@ export type Identity = Message<"proto.identity.v1alpha1.Identity"> & {
    * @deprecated
    */
   apBindingId: string;
+
+  /**
+   * @generated from field: string exchange_policy_id = 15;
+   */
+  exchangePolicyId: string;
 
   /**
    * The workload to which this identity was issued.
@@ -138,105 +133,6 @@ export const IdentitySchema: GenMessage<Identity> = /*@__PURE__*/
   messageDesc(file_proto_identity_v1alpha1_identity, 0);
 
 /**
- * Policy is the policy granting an identity. More than one policy can grant the same identity.
- *
- * @generated from message proto.identity.v1alpha1.Policy
- */
-export type Policy = Message<"proto.identity.v1alpha1.Policy"> & {
-  /**
-   * @generated from oneof proto.identity.v1alpha1.Policy.policy
-   */
-  policy: {
-    /**
-     * @generated from field: proto.identity.v1alpha1.AttestationPolicy attestation_policy = 1;
-     */
-    value: AttestationPolicy;
-    case: "attestationPolicy";
-  } | {
-    /**
-     * @generated from field: proto.identity.v1alpha1.ExchangePolicy exchange_policy = 2;
-     */
-    value: ExchangePolicy;
-    case: "exchangePolicy";
-  } | {
-    /**
-     * @generated from field: proto.identity.v1alpha1.AttestationPolicyWithBinding attestation_policy_with_binding = 3;
-     */
-    value: AttestationPolicyWithBinding;
-    case: "attestationPolicyWithBinding";
-  } | { case: undefined; value?: undefined };
-};
-
-/**
- * Describes the message proto.identity.v1alpha1.Policy.
- * Use `create(PolicySchema)` to create a new message.
- */
-export const PolicySchema: GenMessage<Policy> = /*@__PURE__*/
-  messageDesc(file_proto_identity_v1alpha1_identity, 1);
-
-/**
- * AttestationPolicy references identities granted by an attestation policy without needing an attestation policy binding.
- *
- * @generated from message proto.identity.v1alpha1.AttestationPolicy
- */
-export type AttestationPolicy = Message<"proto.identity.v1alpha1.AttestationPolicy"> & {
-  /**
-   * @generated from field: string attestation_policy_id = 1;
-   */
-  attestationPolicyId: string;
-};
-
-/**
- * Describes the message proto.identity.v1alpha1.AttestationPolicy.
- * Use `create(AttestationPolicySchema)` to create a new message.
- */
-export const AttestationPolicySchema: GenMessage<AttestationPolicy> = /*@__PURE__*/
-  messageDesc(file_proto_identity_v1alpha1_identity, 2);
-
-/**
- * ExchangePolicy references identities granted by an exchange policy.
- *
- * @generated from message proto.identity.v1alpha1.ExchangePolicy
- */
-export type ExchangePolicy = Message<"proto.identity.v1alpha1.ExchangePolicy"> & {
-  /**
-   * @generated from field: string exchange_policy_id = 1;
-   */
-  exchangePolicyId: string;
-};
-
-/**
- * Describes the message proto.identity.v1alpha1.ExchangePolicy.
- * Use `create(ExchangePolicySchema)` to create a new message.
- */
-export const ExchangePolicySchema: GenMessage<ExchangePolicy> = /*@__PURE__*/
-  messageDesc(file_proto_identity_v1alpha1_identity, 3);
-
-/**
- * AttestationPolicyWithBinding references identities granted by an attestation policy through an attestation policy binding.
- *
- * @generated from message proto.identity.v1alpha1.AttestationPolicyWithBinding
- */
-export type AttestationPolicyWithBinding = Message<"proto.identity.v1alpha1.AttestationPolicyWithBinding"> & {
-  /**
-   * @generated from field: string attestation_policy_id = 1;
-   */
-  attestationPolicyId: string;
-
-  /**
-   * @generated from field: string attestation_policy_binding_id = 2;
-   */
-  attestationPolicyBindingId: string;
-};
-
-/**
- * Describes the message proto.identity.v1alpha1.AttestationPolicyWithBinding.
- * Use `create(AttestationPolicyWithBindingSchema)` to create a new message.
- */
-export const AttestationPolicyWithBindingSchema: GenMessage<AttestationPolicyWithBinding> = /*@__PURE__*/
-  messageDesc(file_proto_identity_v1alpha1_identity, 4);
-
-/**
  * Selector is an attestation selector produced by a workload attestation plugin
  * (e.g. k8s, unix, docker). Selectors are used to match a workload against
  * attestation policies to determine which SPIFFE ID to issue.
@@ -264,7 +160,7 @@ export type Selector = Message<"proto.identity.v1alpha1.Selector"> & {
  * Use `create(SelectorSchema)` to create a new message.
  */
 export const SelectorSchema: GenMessage<Selector> = /*@__PURE__*/
-  messageDesc(file_proto_identity_v1alpha1_identity, 5);
+  messageDesc(file_proto_identity_v1alpha1_identity, 1);
 
 /**
  * IdentityFederation specifies a federated trust zone or trust domain with
@@ -297,5 +193,5 @@ export type IdentityFederation = Message<"proto.identity.v1alpha1.IdentityFedera
  * Use `create(IdentityFederationSchema)` to create a new message.
  */
 export const IdentityFederationSchema: GenMessage<IdentityFederation> = /*@__PURE__*/
-  messageDesc(file_proto_identity_v1alpha1_identity, 6);
+  messageDesc(file_proto_identity_v1alpha1_identity, 2);
 
