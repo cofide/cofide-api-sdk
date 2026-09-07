@@ -20,13 +20,10 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/connect/ap_binding_service/v1alpha1/ap_binding_service.proto.
  */
 export const file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service: GenFile = /*@__PURE__*/
-  fileDesc("CkJwcm90by9jb25uZWN0L2FwX2JpbmRpbmdfc2VydmljZS92MWFscGhhMS9hcF9iaW5kaW5nX3NlcnZpY2UucHJvdG8SKXByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExImQKFkNyZWF0ZUFQQmluZGluZ1JlcXVlc3QSOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQE6AhgBQgoKCF9iaW5kaW5nImUKF0NyZWF0ZUFQQmluZGluZ1Jlc3BvbnNlEjoKB2JpbmRpbmcYASABKAsyJC5wcm90by5hcF9iaW5kaW5nLnYxYWxwaGExLkFQQmluZGluZ0gAiAEBOgIYAUIKCghfYmluZGluZyJFChdEZXN0cm95QVBCaW5kaW5nUmVxdWVzdBIXCgpiaW5kaW5nX2lkGAEgASgJSACIAQE6AhgBQg0KC19iaW5kaW5nX2lkIhoKGERlc3Ryb3lBUEJpbmRpbmdSZXNwb25zZSJBChNHZXRBUEJpbmRpbmdSZXF1ZXN0EhcKCmJpbmRpbmdfaWQYASABKAlIAIgBAToCGAFCDQoLX2JpbmRpbmdfaWQiYgoUR2V0QVBCaW5kaW5nUmVzcG9uc2USOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQE6AhgBQgoKCF9iaW5kaW5nIoICChVMaXN0QVBCaW5kaW5nc1JlcXVlc3QSXAoGZmlsdGVyGAEgASgLMkcucHJvdG8uY29ubmVjdC5hcF9iaW5kaW5nX3NlcnZpY2UudjFhbHBoYTEuTGlzdEFQQmluZGluZ3NSZXF1ZXN0LkZpbHRlckgAiAEBGnwKBkZpbHRlchITCgZvcmdfaWQYASABKAlIAIgBARIaCg10cnVzdF96b25lX2lkGAIgASgJSAGIAQESFgoJcG9saWN5X2lkGAMgASgJSAKIAQFCCQoHX29yZ19pZEIQCg5fdHJ1c3Rfem9uZV9pZEIMCgpfcG9saWN5X2lkOgIYAUIJCgdfZmlsdGVyIlQKFkxpc3RBUEJpbmRpbmdzUmVzcG9uc2USNgoIYmluZGluZ3MYASADKAsyJC5wcm90by5hcF9iaW5kaW5nLnYxYWxwaGExLkFQQmluZGluZzoCGAEiZAoWVXBkYXRlQVBCaW5kaW5nUmVxdWVzdBI6CgdiaW5kaW5nGAEgASgLMiQucHJvdG8uYXBfYmluZGluZy52MWFscGhhMS5BUEJpbmRpbmdIAIgBAToCGAFCCgoIX2JpbmRpbmciZQoXVXBkYXRlQVBCaW5kaW5nUmVzcG9uc2USOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQE6AhgBQgoKCF9iaW5kaW5nMqkGChBBUEJpbmRpbmdTZXJ2aWNlEp0BCg9DcmVhdGVBUEJpbmRpbmcSQS5wcm90by5jb25uZWN0LmFwX2JpbmRpbmdfc2VydmljZS52MWFscGhhMS5DcmVhdGVBUEJpbmRpbmdSZXF1ZXN0GkIucHJvdG8uY29ubmVjdC5hcF9iaW5kaW5nX3NlcnZpY2UudjFhbHBoYTEuQ3JlYXRlQVBCaW5kaW5nUmVzcG9uc2UiA4gCARKgAQoQRGVzdHJveUFQQmluZGluZxJCLnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkRlc3Ryb3lBUEJpbmRpbmdSZXF1ZXN0GkMucHJvdG8uY29ubmVjdC5hcF9iaW5kaW5nX3NlcnZpY2UudjFhbHBoYTEuRGVzdHJveUFQQmluZGluZ1Jlc3BvbnNlIgOIAgESlAEKDEdldEFQQmluZGluZxI+LnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkdldEFQQmluZGluZ1JlcXVlc3QaPy5wcm90by5jb25uZWN0LmFwX2JpbmRpbmdfc2VydmljZS52MWFscGhhMS5HZXRBUEJpbmRpbmdSZXNwb25zZSIDiAIBEpoBCg5MaXN0QVBCaW5kaW5ncxJALnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkxpc3RBUEJpbmRpbmdzUmVxdWVzdBpBLnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkxpc3RBUEJpbmRpbmdzUmVzcG9uc2UiA4gCARKdAQoPVXBkYXRlQVBCaW5kaW5nEkEucHJvdG8uY29ubmVjdC5hcF9iaW5kaW5nX3NlcnZpY2UudjFhbHBoYTEuVXBkYXRlQVBCaW5kaW5nUmVxdWVzdBpCLnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZUFQQmluZGluZ1Jlc3BvbnNlIgOIAgFCU1pRZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nvbm5lY3QvYXBfYmluZGluZ19zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_proto_ap_binding_v1alpha1_ap_binding]);
+  fileDesc("CkJwcm90by9jb25uZWN0L2FwX2JpbmRpbmdfc2VydmljZS92MWFscGhhMS9hcF9iaW5kaW5nX3NlcnZpY2UucHJvdG8SKXByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExImAKFkNyZWF0ZUFQQmluZGluZ1JlcXVlc3QSOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQFCCgoIX2JpbmRpbmciYQoXQ3JlYXRlQVBCaW5kaW5nUmVzcG9uc2USOgoHYmluZGluZxgBIAEoCzIkLnByb3RvLmFwX2JpbmRpbmcudjFhbHBoYTEuQVBCaW5kaW5nSACIAQFCCgoIX2JpbmRpbmciQQoXRGVzdHJveUFQQmluZGluZ1JlcXVlc3QSFwoKYmluZGluZ19pZBgBIAEoCUgAiAEBQg0KC19iaW5kaW5nX2lkIhoKGERlc3Ryb3lBUEJpbmRpbmdSZXNwb25zZSI9ChNHZXRBUEJpbmRpbmdSZXF1ZXN0EhcKCmJpbmRpbmdfaWQYASABKAlIAIgBAUINCgtfYmluZGluZ19pZCJeChRHZXRBUEJpbmRpbmdSZXNwb25zZRI6CgdiaW5kaW5nGAEgASgLMiQucHJvdG8uYXBfYmluZGluZy52MWFscGhhMS5BUEJpbmRpbmdIAIgBAUIKCghfYmluZGluZyL+AQoVTGlzdEFQQmluZGluZ3NSZXF1ZXN0ElwKBmZpbHRlchgBIAEoCzJHLnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkxpc3RBUEJpbmRpbmdzUmVxdWVzdC5GaWx0ZXJIAIgBARp8CgZGaWx0ZXISEwoGb3JnX2lkGAEgASgJSACIAQESGgoNdHJ1c3Rfem9uZV9pZBgCIAEoCUgBiAEBEhYKCXBvbGljeV9pZBgDIAEoCUgCiAEBQgkKB19vcmdfaWRCEAoOX3RydXN0X3pvbmVfaWRCDAoKX3BvbGljeV9pZEIJCgdfZmlsdGVyIlAKFkxpc3RBUEJpbmRpbmdzUmVzcG9uc2USNgoIYmluZGluZ3MYASADKAsyJC5wcm90by5hcF9iaW5kaW5nLnYxYWxwaGExLkFQQmluZGluZyJgChZVcGRhdGVBUEJpbmRpbmdSZXF1ZXN0EjoKB2JpbmRpbmcYASABKAsyJC5wcm90by5hcF9iaW5kaW5nLnYxYWxwaGExLkFQQmluZGluZ0gAiAEBQgoKCF9iaW5kaW5nImEKF1VwZGF0ZUFQQmluZGluZ1Jlc3BvbnNlEjoKB2JpbmRpbmcYASABKAsyJC5wcm90by5hcF9iaW5kaW5nLnYxYWxwaGExLkFQQmluZGluZ0gAiAEBQgoKCF9iaW5kaW5nMqkGChBBUEJpbmRpbmdTZXJ2aWNlEp0BCg9DcmVhdGVBUEJpbmRpbmcSQS5wcm90by5jb25uZWN0LmFwX2JpbmRpbmdfc2VydmljZS52MWFscGhhMS5DcmVhdGVBUEJpbmRpbmdSZXF1ZXN0GkIucHJvdG8uY29ubmVjdC5hcF9iaW5kaW5nX3NlcnZpY2UudjFhbHBoYTEuQ3JlYXRlQVBCaW5kaW5nUmVzcG9uc2UiA4gCARKgAQoQRGVzdHJveUFQQmluZGluZxJCLnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkRlc3Ryb3lBUEJpbmRpbmdSZXF1ZXN0GkMucHJvdG8uY29ubmVjdC5hcF9iaW5kaW5nX3NlcnZpY2UudjFhbHBoYTEuRGVzdHJveUFQQmluZGluZ1Jlc3BvbnNlIgOIAgESlAEKDEdldEFQQmluZGluZxI+LnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkdldEFQQmluZGluZ1JlcXVlc3QaPy5wcm90by5jb25uZWN0LmFwX2JpbmRpbmdfc2VydmljZS52MWFscGhhMS5HZXRBUEJpbmRpbmdSZXNwb25zZSIDiAIBEpoBCg5MaXN0QVBCaW5kaW5ncxJALnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkxpc3RBUEJpbmRpbmdzUmVxdWVzdBpBLnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLkxpc3RBUEJpbmRpbmdzUmVzcG9uc2UiA4gCARKdAQoPVXBkYXRlQVBCaW5kaW5nEkEucHJvdG8uY29ubmVjdC5hcF9iaW5kaW5nX3NlcnZpY2UudjFhbHBoYTEuVXBkYXRlQVBCaW5kaW5nUmVxdWVzdBpCLnByb3RvLmNvbm5lY3QuYXBfYmluZGluZ19zZXJ2aWNlLnYxYWxwaGExLlVwZGF0ZUFQQmluZGluZ1Jlc3BvbnNlIgOIAgFCU1pRZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2Nvbm5lY3QvYXBfYmluZGluZ19zZXJ2aWNlL3YxYWxwaGExYgZwcm90bzM", [file_proto_ap_binding_v1alpha1_ap_binding]);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.CreateAPBindingRequest
- * @deprecated
  */
 export type CreateAPBindingRequest = Message<"proto.connect.ap_binding_service.v1alpha1.CreateAPBindingRequest"> & {
   /**
@@ -38,16 +35,12 @@ export type CreateAPBindingRequest = Message<"proto.connect.ap_binding_service.v
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.CreateAPBindingRequest.
  * Use `create(CreateAPBindingRequestSchema)` to create a new message.
- * @deprecated
  */
 export const CreateAPBindingRequestSchema: GenMessage<CreateAPBindingRequest> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 0);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.CreateAPBindingResponse
- * @deprecated
  */
 export type CreateAPBindingResponse = Message<"proto.connect.ap_binding_service.v1alpha1.CreateAPBindingResponse"> & {
   /**
@@ -59,16 +52,12 @@ export type CreateAPBindingResponse = Message<"proto.connect.ap_binding_service.
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.CreateAPBindingResponse.
  * Use `create(CreateAPBindingResponseSchema)` to create a new message.
- * @deprecated
  */
 export const CreateAPBindingResponseSchema: GenMessage<CreateAPBindingResponse> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 1);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.DestroyAPBindingRequest
- * @deprecated
  */
 export type DestroyAPBindingRequest = Message<"proto.connect.ap_binding_service.v1alpha1.DestroyAPBindingRequest"> & {
   /**
@@ -80,14 +69,11 @@ export type DestroyAPBindingRequest = Message<"proto.connect.ap_binding_service.
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.DestroyAPBindingRequest.
  * Use `create(DestroyAPBindingRequestSchema)` to create a new message.
- * @deprecated
  */
 export const DestroyAPBindingRequestSchema: GenMessage<DestroyAPBindingRequest> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 2);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.DestroyAPBindingResponse
  */
 export type DestroyAPBindingResponse = Message<"proto.connect.ap_binding_service.v1alpha1.DestroyAPBindingResponse"> & {
@@ -101,10 +87,7 @@ export const DestroyAPBindingResponseSchema: GenMessage<DestroyAPBindingResponse
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 3);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.GetAPBindingRequest
- * @deprecated
  */
 export type GetAPBindingRequest = Message<"proto.connect.ap_binding_service.v1alpha1.GetAPBindingRequest"> & {
   /**
@@ -116,16 +99,12 @@ export type GetAPBindingRequest = Message<"proto.connect.ap_binding_service.v1al
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.GetAPBindingRequest.
  * Use `create(GetAPBindingRequestSchema)` to create a new message.
- * @deprecated
  */
 export const GetAPBindingRequestSchema: GenMessage<GetAPBindingRequest> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 4);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.GetAPBindingResponse
- * @deprecated
  */
 export type GetAPBindingResponse = Message<"proto.connect.ap_binding_service.v1alpha1.GetAPBindingResponse"> & {
   /**
@@ -137,16 +116,12 @@ export type GetAPBindingResponse = Message<"proto.connect.ap_binding_service.v1a
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.GetAPBindingResponse.
  * Use `create(GetAPBindingResponseSchema)` to create a new message.
- * @deprecated
  */
 export const GetAPBindingResponseSchema: GenMessage<GetAPBindingResponse> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 5);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.ListAPBindingsRequest
- * @deprecated
  */
 export type ListAPBindingsRequest = Message<"proto.connect.ap_binding_service.v1alpha1.ListAPBindingsRequest"> & {
   /**
@@ -158,14 +133,12 @@ export type ListAPBindingsRequest = Message<"proto.connect.ap_binding_service.v1
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.ListAPBindingsRequest.
  * Use `create(ListAPBindingsRequestSchema)` to create a new message.
- * @deprecated
  */
 export const ListAPBindingsRequestSchema: GenMessage<ListAPBindingsRequest> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 6);
 
 /**
  * @generated from message proto.connect.ap_binding_service.v1alpha1.ListAPBindingsRequest.Filter
- * @deprecated
  */
 export type ListAPBindingsRequest_Filter = Message<"proto.connect.ap_binding_service.v1alpha1.ListAPBindingsRequest.Filter"> & {
   /**
@@ -187,16 +160,12 @@ export type ListAPBindingsRequest_Filter = Message<"proto.connect.ap_binding_ser
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.ListAPBindingsRequest.Filter.
  * Use `create(ListAPBindingsRequest_FilterSchema)` to create a new message.
- * @deprecated
  */
 export const ListAPBindingsRequest_FilterSchema: GenMessage<ListAPBindingsRequest_Filter> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 6, 0);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.ListAPBindingsResponse
- * @deprecated
  */
 export type ListAPBindingsResponse = Message<"proto.connect.ap_binding_service.v1alpha1.ListAPBindingsResponse"> & {
   /**
@@ -208,16 +177,12 @@ export type ListAPBindingsResponse = Message<"proto.connect.ap_binding_service.v
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.ListAPBindingsResponse.
  * Use `create(ListAPBindingsResponseSchema)` to create a new message.
- * @deprecated
  */
 export const ListAPBindingsResponseSchema: GenMessage<ListAPBindingsResponse> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 7);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.UpdateAPBindingRequest
- * @deprecated
  */
 export type UpdateAPBindingRequest = Message<"proto.connect.ap_binding_service.v1alpha1.UpdateAPBindingRequest"> & {
   /**
@@ -229,16 +194,12 @@ export type UpdateAPBindingRequest = Message<"proto.connect.ap_binding_service.v
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.UpdateAPBindingRequest.
  * Use `create(UpdateAPBindingRequestSchema)` to create a new message.
- * @deprecated
  */
 export const UpdateAPBindingRequestSchema: GenMessage<UpdateAPBindingRequest> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 8);
 
 /**
- * Deprecated: assign attestation policies to a trust zone directly instead.
- *
  * @generated from message proto.connect.ap_binding_service.v1alpha1.UpdateAPBindingResponse
- * @deprecated
  */
 export type UpdateAPBindingResponse = Message<"proto.connect.ap_binding_service.v1alpha1.UpdateAPBindingResponse"> & {
   /**
@@ -250,7 +211,6 @@ export type UpdateAPBindingResponse = Message<"proto.connect.ap_binding_service.
 /**
  * Describes the message proto.connect.ap_binding_service.v1alpha1.UpdateAPBindingResponse.
  * Use `create(UpdateAPBindingResponseSchema)` to create a new message.
- * @deprecated
  */
 export const UpdateAPBindingResponseSchema: GenMessage<UpdateAPBindingResponse> = /*@__PURE__*/
   messageDesc(file_proto_connect_ap_binding_service_v1alpha1_ap_binding_service, 9);

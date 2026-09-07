@@ -47,42 +47,29 @@ service APBindingService {
   }
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message CreateAPBindingRequest {
-  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message CreateAPBindingResponse {
-  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message DestroyAPBindingRequest {
-  option deprecated = true;
   optional string binding_id = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message DestroyAPBindingResponse {}
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message GetAPBindingRequest {
-  option deprecated = true;
   optional string binding_id = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message GetAPBindingResponse {
-  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message ListAPBindingsRequest {
-  option deprecated = true;
   message Filter {
     optional string org_id = 1;
     optional string trust_zone_id = 2;
@@ -91,20 +78,14 @@ message ListAPBindingsRequest {
   optional Filter filter = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message ListAPBindingsResponse {
-  option deprecated = true;
   repeated proto.ap_binding.v1alpha1.APBinding bindings = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message UpdateAPBindingRequest {
-  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }
 
-// Deprecated: assign attestation policies to a trust zone directly instead.
 message UpdateAPBindingResponse {
-  option deprecated = true;
   optional proto.ap_binding.v1alpha1.APBinding binding = 1;
 }

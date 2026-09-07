@@ -25,7 +25,6 @@ func New(fake *fakeconnect.FakeConnect) apbindingv1alpha1.APBindingClient {
 	return &fakeAPBindingClient{fake: fake}
 }
 
-//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *fakeAPBindingClient) CreateAPBinding(ctx context.Context, binding *apbindingpb.APBinding) (*apbindingpb.APBinding, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
@@ -54,7 +53,6 @@ func (c *fakeAPBindingClient) DestroyAPBinding(ctx context.Context, bindingID st
 	return nil
 }
 
-//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *fakeAPBindingClient) GetAPBinding(ctx context.Context, bindingID string) (*apbindingpb.APBinding, error) {
 	binding, ok := c.fake.APBindings[bindingID]
 	if !ok {
@@ -63,7 +61,6 @@ func (c *fakeAPBindingClient) GetAPBinding(ctx context.Context, bindingID string
 	return clone(binding), nil
 }
 
-//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *fakeAPBindingClient) ListAPBindings(ctx context.Context, filter *apbindingsvcpb.ListAPBindingsRequest_Filter) ([]*apbindingpb.APBinding, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
@@ -77,7 +74,6 @@ func (c *fakeAPBindingClient) ListAPBindings(ctx context.Context, filter *apbind
 	return bindings, nil
 }
 
-//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func bindingMatches(binding *apbindingpb.APBinding, filter *apbindingsvcpb.ListAPBindingsRequest_Filter) bool {
 	if filter == nil {
 		return true
@@ -94,7 +90,6 @@ func bindingMatches(binding *apbindingpb.APBinding, filter *apbindingsvcpb.ListA
 	return true
 }
 
-//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func (c *fakeAPBindingClient) UpdateAPBinding(ctx context.Context, binding *apbindingpb.APBinding) (*apbindingpb.APBinding, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
@@ -112,8 +107,6 @@ func (c *fakeAPBindingClient) UpdateAPBinding(ctx context.Context, binding *apbi
 	return clone(binding), nil
 }
 
-//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func clone(binding *apbindingpb.APBinding) *apbindingpb.APBinding {
-	//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 	return proto.Clone(binding).(*apbindingpb.APBinding)
 }
