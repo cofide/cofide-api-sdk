@@ -122,7 +122,6 @@ func FakeAttestationPolicy() *attestationpolicypb.AttestationPolicy {
 	}
 }
 
-//nolint:staticcheck // attestation policy bindngs are deprecated but still supported
 func FakeAPBinding() *apbindingpb.APBinding {
 	return &apbindingpb.APBinding{
 		Id:          PtrOf(FakeAPBindingID),
