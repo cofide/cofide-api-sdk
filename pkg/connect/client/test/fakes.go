@@ -7,6 +7,9 @@ import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	cloudorganizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_organization/v1alpha1"
+	cloudproviderpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_provider/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	federatedservicepb "github.com/cofide/cofide-api-sdk/gen/go/proto/federated_service/v1alpha1"
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
@@ -32,6 +35,15 @@ const (
 
 	FakeClusterID   = "fake-cluster-id"
 	FakeClusterName = "fake-cluster-name"
+
+	FakeCloudOrganizationID   = "fake-cloud-org-id"
+	FakeCloudOrganizationName = "fake-cloud-org-name"
+	FakeAWSOrgID              = "o-fakeorgid12"
+	FakeIAMRoleARN            = "arn:aws:iam::123456789012:role/fake-role"
+
+	FakeCloudAccountID   = "fake-cloud-account-id"
+	FakeCloudAccountName = "fake-cloud-account-name"
+	FakeAWSAccountID     = "123456789012"
 
 	FakeAgentToken = "fake-agent-token"
 	FakeAgentID    = "fake-agent-id"
@@ -93,6 +105,37 @@ func FakeCluster() *clusterpb.Cluster {
 		Id:          PtrOf(FakeClusterID),
 		Name:        PtrOf(FakeClusterName),
 		TrustZoneId: PtrOf(FakeTrustZoneID),
+	}
+}
+
+func FakeCloudOrganization() *cloudorganizationpb.CloudOrganization {
+	return &cloudorganizationpb.CloudOrganization{
+		Id:    FakeCloudOrganizationID,
+		OrgId: FakeOrganizationID,
+		Name:  FakeCloudOrganizationName,
+		Provider: &cloudorganizationpb.CloudOrganization_Aws{
+			Aws: &cloudorganizationpb.AWSOrganization{
+				AwsOrgId: FakeAWSOrgID,
+				Audience: "fake-audience",
+				RoleChain: []*cloudproviderpb.AWSAssumeRoleConfig{
+					{IamRoleArn: FakeIAMRoleARN},
+				},
+			},
+		},
+	}
+}
+
+func FakeCloudAccount() *cloudaccountpb.CloudAccount {
+	return &cloudaccountpb.CloudAccount{
+		Id:                  FakeCloudAccountID,
+		OrgId:               FakeOrganizationID,
+		CloudOrganizationId: PtrOf(FakeCloudOrganizationID),
+		Name:                FakeCloudAccountName,
+		Provider: &cloudaccountpb.CloudAccount_Aws{
+			Aws: &cloudaccountpb.AWSAccount{
+				AccountId: FakeAWSAccountID,
+			},
+		},
 	}
 }
 
