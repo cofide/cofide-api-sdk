@@ -30,8 +30,12 @@ message TrustZone {
   // URL of the SPIFFE bundle endpoint, used by remote trust zones to fetch this
   // zone's trust bundle for federation.
   optional string bundle_endpoint_url = 3;
-  // The current SPIRE trust bundle for this zone, containing the root CA certificates.
-  optional spire.api.types.Bundle bundle = 4;
+  // Deprecated: this field is not populated. Bundles are bootstrapped by
+  // proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterAgent or
+  // proto.connect.trust_zone_service.v1alpha1.TrustZoneService.RegisterTrustZoneServer, updated using
+  // proto.connect.trust_zone_service.v1alpha1.TrustZoneService.UpdateTrustZoneBundle and retrived from
+  // bundle_endpoint_url.
+  optional spire.api.types.Bundle bundle = 4 [deprecated = true];
   // JWT issuer URL for SVIDs issued within this trust zone.
   optional string jwt_issuer = 7;
   // The SPIFFE federation profile used to serve and consume trust bundles.
