@@ -64,32 +64,13 @@ func identityMatches(identity *identitypb.Identity, filter *identitysvcpb.ListId
 		return false
 	}
 	if filter.AttestationPolicyId != nil {
-		var found bool
-		for _, policy := range identity.GetPolicies() {
-			if policy.GetAttestationPolicy().GetAttestationPolicyId() == filter.GetAttestationPolicyId() {
-				found = true
-				break
-			}
-			if policy.GetAttestationPolicyWithBinding().GetAttestationPolicyId() == filter.GetAttestationPolicyId() {
-				found = true
-				break
-			}
-		}
-		//nolint:staticcheck // depcated field is still supported
-		if !found && identity.GetAttestationPolicyId() != filter.GetAttestationPolicyId() {
+		if identity.GetAttestationPolicyId() != filter.GetAttestationPolicyId() {
 			return false
 		}
 	}
 	if filter.ApBindingId != nil {
-		var found bool
-		for _, policy := range identity.GetPolicies() {
-			if policy.GetAttestationPolicyWithBinding().GetAttestationPolicyBindingId() == filter.GetApBindingId() {
-				found = true
-				break
-			}
-		}
 		//nolint:staticcheck // depcated field is still supported
-		if !found && identity.GetApBindingId() != filter.GetApBindingId() {
+		if identity.GetApBindingId() != filter.GetApBindingId() {
 			return false
 		}
 	}
