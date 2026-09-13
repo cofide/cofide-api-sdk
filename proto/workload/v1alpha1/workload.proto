@@ -9,6 +9,7 @@ syntax = "proto3";
 
 package proto.workload.v1alpha1;
 
+import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -33,6 +34,12 @@ message Workload {
   google.protobuf.Timestamp observed_timestamp = 7;
   // Whether this workload has been deleted since it was last observed.
   bool deleted = 8;
+  // Whether this workload currently matches an enabled WorkloadSuppressionRule
+  // scoped to it. Computed dynamically against the current rule set at query
+  // time rather than stored, so it reflects rule state as of the request, not
+  // the observation. Only populated in ListWorkloads responses; workloads
+  // reported via PublishWorkloads should leave it unset.
+  bool suppressed = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // WorkloadType enumerates the supported workload runtime types.

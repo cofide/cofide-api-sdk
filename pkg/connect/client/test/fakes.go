@@ -15,6 +15,7 @@ import (
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
+	workloadsuppressionrulepb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload_suppression_rule/v1alpha1"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 )
 
@@ -61,6 +62,10 @@ const (
 	FakeUserSubject   = "fake-user-subject"
 	FakeResourceID    = FakeAPBindingID
 	FakeResourceType  = "AttestationPolicyBinding"
+
+	FakeWorkloadSuppressionRuleID          = "fake-wsr-id"
+	FakeWorkloadSuppressionRuleName        = "fake-wsr-name"
+	FakeWorkloadSuppressionRuleDescription = "fake-wsr-description"
 )
 
 func FakeOrganization() *organizationpb.Organization {
@@ -170,6 +175,23 @@ func FakeIdentity() *identitypb.Identity {
 				Federation: &identitypb.IdentityFederation_TrustZoneId{
 					TrustZoneId: FakeTrustZoneID,
 				},
+			},
+		},
+	}
+}
+
+func FakeWorkloadSuppressionRule() *workloadsuppressionrulepb.WorkloadSuppressionRule {
+	return &workloadsuppressionrulepb.WorkloadSuppressionRule{
+		Id:          FakeWorkloadSuppressionRuleID,
+		OrgId:       FakeOrganizationID,
+		Name:        FakeWorkloadSuppressionRuleName,
+		Description: FakeWorkloadSuppressionRuleDescription,
+		Enabled:     true,
+		Matcher: &workloadsuppressionrulepb.WorkloadSuppressionRule_KubernetesPod{
+			KubernetesPod: &workloadsuppressionrulepb.KubernetesPodMatcher{
+				TrustZoneIds: []string{FakeTrustZoneID},
+				ClusterIds:   []string{FakeClusterID},
+				Namespaces:   []string{FakeK8sPodNamespace},
 			},
 		},
 	}
