@@ -17,8 +17,8 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_p
 
 // AttestationPolicy defines criteria used to issue a SPIFFE identity to a
 // workload. Policies specify attributes of the workload that must be attested
-// before an identity (SVID) is issued. Policies are bound to trust zones via
-// APBindings and support Kubernetes, static, and TPM node attestation methods.
+// before an identity (SVID) is issued. Policies are scoped to trust zones
+// and support Kubernetes, static, and TPM node attestation methods.
 message AttestationPolicy {
   optional string id = 4;
   string name = 1;

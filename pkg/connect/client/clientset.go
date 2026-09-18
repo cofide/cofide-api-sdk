@@ -5,7 +5,6 @@ package client
 
 import (
 	agentv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/agent/v1alpha1"
-	apbindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/apbinding/v1alpha1"
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
@@ -31,7 +30,6 @@ type ClientSet interface {
 	ClusterV1Alpha1() clusterv1alpha1.ClusterClient
 	AgentV1Alpha1() agentv1alpha1.AgentClient
 	AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient
-	APBindingV1Alpha1() apbindingv1alpha1.APBindingClient
 	ExchangePolicyV1Alpha1() exchangepolicyv1alpha1.ExchangePolicyClient
 	FederationV1Alpha1() federationV1Alpha1.FederationClient
 	DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient
@@ -43,7 +41,6 @@ type ClientSet interface {
 
 type clientSet struct {
 	agentV1Alpha1             agentv1alpha1.AgentClient
-	apBindingV1Alpha1         apbindingv1alpha1.APBindingClient
 	auditV1Alpha1             auditv1alpha1.AuditClient
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
@@ -62,7 +59,6 @@ type clientSet struct {
 func New(conn grpc.ClientConnInterface) ClientSet {
 	return &clientSet{
 		agentV1Alpha1:             agentv1alpha1.New(conn),
-		apBindingV1Alpha1:         apbindingv1alpha1.New(conn),
 		auditV1Alpha1:             auditv1alpha1.New(conn),
 		exchangePolicyV1Alpha1:    exchangepolicyv1alpha1.New(conn),
 		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
@@ -80,10 +76,6 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 
 func (c *clientSet) AgentV1Alpha1() agentv1alpha1.AgentClient {
 	return c.agentV1Alpha1
-}
-
-func (c *clientSet) APBindingV1Alpha1() apbindingv1alpha1.APBindingClient {
-	return c.apBindingV1Alpha1
 }
 
 func (c *clientSet) AuditV1Alpha1() auditv1alpha1.AuditClient {

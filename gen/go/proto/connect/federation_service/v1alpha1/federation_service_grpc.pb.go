@@ -41,7 +41,7 @@ const (
 // FederationService manages federations between trust zones. A federation
 // establishes a trust relationship that allows workloads in each zone to present
 // their SPIFFE identities to workloads in the other, enabling secure
-// connectivity across zone boundaries. Attestation policy bindings control
+// connectivity across zone boundaries. Attestation policies control
 // which workloads can federate.
 type FederationServiceClient interface {
 	// CreateFederation creates a new federation between two trust zones.
@@ -109,7 +109,7 @@ func (c *federationServiceClient) GetFederation(ctx context.Context, in *GetFede
 // FederationService manages federations between trust zones. A federation
 // establishes a trust relationship that allows workloads in each zone to present
 // their SPIFFE identities to workloads in the other, enabling secure
-// connectivity across zone boundaries. Attestation policy bindings control
+// connectivity across zone boundaries. Attestation policies control
 // which workloads can federate.
 type FederationServiceServer interface {
 	// CreateFederation creates a new federation between two trust zones.

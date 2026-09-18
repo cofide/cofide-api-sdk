@@ -278,8 +278,7 @@ export const AttestationPolicyKindSchema: GenEnum<AttestationPolicyKind> = /*@__
 /**
  * AttestationPolicyService manages attestation policies. Attestation policies
  * define the criteria (namespace selectors, pod labels, TPM EK hashes, etc.)
- * used to issue SPIFFE identities to workloads. Policies are bound to trust
- * zones via the APBindingService.
+ * used to issue SPIFFE identities to workloads.
  *
  * @generated from service proto.connect.attestation_policy_service.v1alpha1.AttestationPolicyService
  */

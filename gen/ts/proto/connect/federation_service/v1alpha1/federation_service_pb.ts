@@ -186,7 +186,7 @@ export const GetFederationResponseSchema: GenMessage<GetFederationResponse> = /*
  * FederationService manages federations between trust zones. A federation
  * establishes a trust relationship that allows workloads in each zone to present
  * their SPIFFE identities to workloads in the other, enabling secure
- * connectivity across zone boundaries. Attestation policy bindings control
+ * connectivity across zone boundaries. Attestation policies control
  * which workloads can federate.
  *
  * @generated from service proto.connect.federation_service.v1alpha1.FederationService

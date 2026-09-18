@@ -40,8 +40,7 @@ const (
 //
 // AttestationPolicyService manages attestation policies. Attestation policies
 // define the criteria (namespace selectors, pod labels, TPM EK hashes, etc.)
-// used to issue SPIFFE identities to workloads. Policies are bound to trust
-// zones via the APBindingService.
+// used to issue SPIFFE identities to workloads.
 type AttestationPolicyServiceClient interface {
 	// CreateAttestationPolicy creates a new attestation policy.
 	CreateAttestationPolicy(ctx context.Context, in *CreateAttestationPolicyRequest, opts ...grpc.CallOption) (*CreateAttestationPolicyResponse, error)
@@ -119,8 +118,7 @@ func (c *attestationPolicyServiceClient) UpdateAttestationPolicy(ctx context.Con
 //
 // AttestationPolicyService manages attestation policies. Attestation policies
 // define the criteria (namespace selectors, pod labels, TPM EK hashes, etc.)
-// used to issue SPIFFE identities to workloads. Policies are bound to trust
-// zones via the APBindingService.
+// used to issue SPIFFE identities to workloads.
 type AttestationPolicyServiceServer interface {
 	// CreateAttestationPolicy creates a new attestation policy.
 	CreateAttestationPolicy(context.Context, *CreateAttestationPolicyRequest) (*CreateAttestationPolicyResponse, error)

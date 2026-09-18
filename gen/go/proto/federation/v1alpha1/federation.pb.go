@@ -34,7 +34,7 @@ const (
 // Federation represents a trust relationship between two trust zones. It allows
 // workloads in each zone to establish secure connections with workloads in the
 // other, while keeping each zone's root of trust securely isolated. Attestation
-// policies on AP bindings determine which workloads are permitted to federate.
+// policies determine which workloads are permitted to federate.
 type Federation struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Id    *string                `protobuf:"bytes,6,opt,name=id,proto3,oneof" json:"id,omitempty"`

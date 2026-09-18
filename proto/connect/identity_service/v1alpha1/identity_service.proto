@@ -3,7 +3,7 @@
 
 // This file defines the IdentityService gRPC service, which provides read-only
 // access to SPIFFE identities (SVIDs) issued by Connect. Identities are derived
-// from attestation policy bindings and record the SPIFFE ID, attestation
+// from attestation policies and record the SPIFFE ID, attestation
 // selectors, and federation configuration for each attested workload.
 syntax = "proto3";
 
@@ -15,7 +15,7 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/ident
 
 // IdentityService provides read-only access to the SPIFFE identities (SVIDs)
 // issued by Connect to workloads on attested nodes. Identities are derived from
-// attestation policy bindings and carry the SPIFFE ID, selectors, and federation
+// attestation policies and carry the SPIFFE ID, selectors, and federation
 // configuration for each workload.
 service IdentityService {
   // GetIdentity retrieves a SPIFFE identity by ID.

@@ -83,7 +83,6 @@ func Test_fakeAttestationPolicyClient_ListAttestationPolicies_TrustZoneIDFilter(
 
 	policy := test.FakeAttestationPolicy()
 	fake.AttestationPolicies[test.FakeAttestationPolicyID] = policy
-	fake.APBindings[*test.FakeAPBinding().Id] = test.FakeAPBinding()
 
 	policies, err := client.ListAttestationPolicies(ctx, &v1alpha1.ListAttestationPoliciesRequest_Filter{TrustZoneId: test.PtrOf(test.FakeTrustZoneID)})
 	require.NoError(t, err)

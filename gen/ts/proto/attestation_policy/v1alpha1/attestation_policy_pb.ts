@@ -28,8 +28,8 @@ export const file_proto_attestation_policy_v1alpha1_attestation_policy: GenFile 
 /**
  * AttestationPolicy defines criteria used to issue a SPIFFE identity to a
  * workload. Policies specify attributes of the workload that must be attested
- * before an identity (SVID) is issued. Policies are bound to trust zones via
- * APBindings and support Kubernetes, static, and TPM node attestation methods.
+ * before an identity (SVID) is issued. Policies are scoped to trust zones
+ * and support Kubernetes, static, and TPM node attestation methods.
  *
  * @generated from message proto.attestation_policy.v1alpha1.AttestationPolicy
  */

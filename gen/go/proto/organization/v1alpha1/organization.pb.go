@@ -28,8 +28,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Organization is the top-level grouping of Connect resources. Trust zones,
-// attestation policies, and role bindings are all scoped to an organization.
+// Organization is the top-level grouping of Connect resources. Trust zones
+// and role bindings are all scoped to an organization.
 type Organization struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
