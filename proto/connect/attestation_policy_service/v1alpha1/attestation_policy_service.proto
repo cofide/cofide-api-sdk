@@ -15,8 +15,7 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/attes
 
 // AttestationPolicyService manages attestation policies. Attestation policies
 // define the criteria (namespace selectors, pod labels, TPM EK hashes, etc.)
-// used to issue SPIFFE identities to workloads. Policies are bound to trust
-// zones via the APBindingService.
+// used to issue SPIFFE identities to workloads.
 service AttestationPolicyService {
   // CreateAttestationPolicy creates a new attestation policy.
   rpc CreateAttestationPolicy(CreateAttestationPolicyRequest) returns (CreateAttestationPolicyResponse);

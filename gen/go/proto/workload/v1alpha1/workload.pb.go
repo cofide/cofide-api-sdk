@@ -81,7 +81,7 @@ func (WorkloadType) EnumDescriptor() ([]byte, []int) {
 // Workload represents a process, container, or unit of software running on an
 // attested node. Workloads are observed by the Cofide Observer and reported to the
 // Connect control plane. A SPIFFE identity (SVID) can be issued to a workload
-// if it matches an active attestation policy binding within its trust zone.
+// if it matches an active attestation policy within its trust zone.
 type Workload struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
 	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`

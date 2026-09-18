@@ -79,16 +79,8 @@ func (c *fakeAttestationPolicyClient) policyMatches(policy *attestationpolicypb.
 	if filter.OrgId != nil && policy.GetOrgId() != *filter.OrgId {
 		return false
 	}
-	if filter.TrustZoneId != nil {
-		for _, apb := range c.fake.APBindings {
-			if apb.GetTrustZoneId() == *filter.TrustZoneId {
-				// If we find an APB with this trust_zone_id
-				// then exit the search through the APBs
-				break
-			}
-			// No trust_zone_id matches found => return false
-			return false
-		}
+	if filter.GetTrustZoneId() != "" && policy.GetTrustZoneId() != filter.GetTrustZoneId() {
+		return false
 	}
 	return true
 }

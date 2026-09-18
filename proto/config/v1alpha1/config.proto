@@ -6,7 +6,6 @@ syntax = "proto3";
 package proto.config.v1alpha1;
 
 import "google/protobuf/struct.proto";
-import "proto/ap_binding/v1alpha1/ap_binding.proto";
 import "proto/attestation_policy/v1alpha1/attestation_policy.proto";
 import "proto/cluster/v1alpha1/cluster.proto";
 import "proto/federation/v1alpha1/federation.proto";
@@ -22,5 +21,4 @@ message Config {
   map<string, google.protobuf.Struct> plugin_config = 4;
   optional proto.plugins.v1alpha1.Plugins plugins = 5;
   repeated proto.federation.v1alpha1.Federation federations = 6;
-  repeated proto.ap_binding.v1alpha1.APBinding ap_bindings = 7;
 }

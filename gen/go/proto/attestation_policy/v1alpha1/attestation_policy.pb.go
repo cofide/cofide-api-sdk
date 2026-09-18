@@ -34,8 +34,8 @@ const (
 
 // AttestationPolicy defines criteria used to issue a SPIFFE identity to a
 // workload. Policies specify attributes of the workload that must be attested
-// before an identity (SVID) is issued. Policies are bound to trust zones via
-// APBindings and support Kubernetes, static, and TPM node attestation methods.
+// before an identity (SVID) is issued. Policies are scoped to trust zones
+// and support Kubernetes, static, and TPM node attestation methods.
 type AttestationPolicy struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
 	Id          *string                `protobuf:"bytes,4,opt,name=id,proto3,oneof" json:"id,omitempty"`

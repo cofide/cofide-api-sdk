@@ -20,8 +20,8 @@ export const file_proto_organization_v1alpha1_organization: GenFile = /*@__PURE_
   fileDesc("Ci5wcm90by9vcmdhbml6YXRpb24vdjFhbHBoYTEvb3JnYW5pemF0aW9uLnByb3RvEhtwcm90by5vcmdhbml6YXRpb24udjFhbHBoYTEiKAoMT3JnYW5pemF0aW9uEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAlCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL29yZ2FuaXphdGlvbi92MWFscGhhMWIGcHJvdG8z");
 
 /**
- * Organization is the top-level grouping of Connect resources. Trust zones,
- * attestation policies, and role bindings are all scoped to an organization.
+ * Organization is the top-level grouping of Connect resources. Trust zones
+ * and role bindings are all scoped to an organization.
  *
  * @generated from message proto.organization.v1alpha1.Organization
  */

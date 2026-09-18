@@ -10,8 +10,8 @@ package proto.organization.v1alpha1;
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1";
 
-// Organization is the top-level grouping of Connect resources. Trust zones,
-// attestation policies, and role bindings are all scoped to an organization.
+// Organization is the top-level grouping of Connect resources. Trust zones
+// and role bindings are all scoped to an organization.
 message Organization {
   string id = 1;
   string name = 2;

@@ -26,7 +26,7 @@ export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
  * Workload represents a process, container, or unit of software running on an
  * attested node. Workloads are observed by the Cofide Observer and reported to the
  * Connect control plane. A SPIFFE identity (SVID) can be issued to a workload
- * if it matches an active attestation policy binding within its trust zone.
+ * if it matches an active attestation policy within its trust zone.
  *
  * @generated from message proto.workload.v1alpha1.Workload
  */

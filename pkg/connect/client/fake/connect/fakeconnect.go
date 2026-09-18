@@ -4,7 +4,6 @@ import (
 	"sync"
 
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
-	apbindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/ap_binding/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
@@ -36,7 +35,6 @@ type FakeConnect struct {
 	AgentStatus         map[string]*agentpb.AgentStatus
 	FederatedServices   map[string]*federatedservicepb.FederatedService
 	AttestationPolicies map[string]*attestationpolicypb.AttestationPolicy
-	APBindings          map[string]*apbindingpb.APBinding
 	ExchangePolicies    map[string]*exchangepolicypb.ExchangePolicy
 	Federations         map[string]*federationpb.Federation
 	AttestedNodes       map[string]*datastoresvcpb.AttestedNode
@@ -59,7 +57,6 @@ func New() *FakeConnect {
 		AgentStatus:         make(map[string]*agentpb.AgentStatus),
 		FederatedServices:   make(map[string]*federatedservicepb.FederatedService),
 		AttestationPolicies: make(map[string]*attestationpolicypb.AttestationPolicy),
-		APBindings:          make(map[string]*apbindingpb.APBinding),
 		ExchangePolicies:    make(map[string]*exchangepolicypb.ExchangePolicy),
 		Federations:         make(map[string]*federationpb.Federation),
 		AttestedNodes:       make(map[string]*datastoresvcpb.AttestedNode),
@@ -123,13 +120,6 @@ func (f *FakeConnect) ValidateAttestationPolicy(policyID string) error {
 func (f *FakeConnect) ValidateExchangePolicy(policyID string) error {
 	if _, ok := f.ExchangePolicies[policyID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid exchange policy")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateAPBinding(bindingID string) error {
-	if _, ok := f.APBindings[bindingID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid attestation policy binding")
 	}
 	return nil
 }
