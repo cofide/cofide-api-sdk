@@ -8,6 +8,7 @@ import (
 	apbindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/apbinding/v1alpha1"
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
+	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
@@ -39,6 +40,7 @@ type ClientSet interface {
 	IdentityV1Alpha1() identityv1alpha1.IdentityClient
 	RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient
 	AuditV1Alpha1() auditv1alpha1.AuditClient
+	CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient
 }
 
 type clientSet struct {
@@ -56,6 +58,7 @@ type clientSet struct {
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
 	trustZoneServerV1Alpha1   trustzoneserverv1alpha1.TrustZoneServerClient
 	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
+	cloudAccountV1Alpha1      cloudaccountv1alpha1.CloudAccountClient
 }
 
 // New instantiates a new ClientSet for communication with a Connect API.
@@ -75,6 +78,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		trustZoneV1Alpha1:         trustzonev1alpha1.New(conn),
 		trustZoneServerV1Alpha1:   trustzoneserverv1alpha1.New(conn),
 		workloadV1Alpha1:          workloadv1alpha1.New(conn),
+		cloudAccountV1Alpha1:      cloudaccountv1alpha1.New(conn),
 	}
 }
 
@@ -96,6 +100,10 @@ func (c *clientSet) ExchangePolicyV1Alpha1() exchangepolicyv1alpha1.ExchangePoli
 
 func (c *clientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient {
 	return c.attestationPolicyV1Alpha1
+}
+
+func (c *clientSet) CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient {
+	return c.cloudAccountV1Alpha1
 }
 
 func (c *clientSet) ClusterV1Alpha1() clusterv1alpha1.ClusterClient {

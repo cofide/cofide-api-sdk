@@ -1,0 +1,20 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the general discovery status used across all discovery of
+// resources within cloud accounts.
+
+syntax = "proto3";
+
+package proto.cloud_account.v1alpha1;
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1";
+
+// DiscoveryStatus represents the current status of cloud resource discovery.
+enum DiscoveryStatus {
+  DISCOVERY_STATUS_UNSPECIFIED = 0;
+  // Discvoery is active
+  DISCOVERY_STATUS_DISCOVERING = 1;
+  // Most recent discovery attempt errored
+  DISCOVERY_STATUS_ERROR = 2;
+}
