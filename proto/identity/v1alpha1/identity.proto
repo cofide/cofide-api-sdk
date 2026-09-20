@@ -18,13 +18,14 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1al
 // policy and carries the SPIFFE ID, attestation selectors, and optional
 // federation configuration for the workload.
 message Identity {
+  reserved 6;
+  reserved "ap_binding_id";
+
   string id = 1;
   string org_id = 2;
   string trust_zone_id = 3;
   string cluster_id = 4;
   string attestation_policy_id = 5;
-  // Deprecated: use policies instead. The attestation policy binding through which this identity was issued.
-  string ap_binding_id = 6 [deprecated = true];
   string exchange_policy_id = 15;
   // The workload to which this identity was issued.
   string workload_id = 7;

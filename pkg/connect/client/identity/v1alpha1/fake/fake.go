@@ -68,12 +68,6 @@ func identityMatches(identity *identitypb.Identity, filter *identitysvcpb.ListId
 			return false
 		}
 	}
-	if filter.ApBindingId != nil {
-		//nolint:staticcheck // depcated field is still supported
-		if identity.GetApBindingId() != filter.GetApBindingId() {
-			return false
-		}
-	}
 	if filter.WorkloadId != nil && identity.GetWorkloadId() != *filter.WorkloadId {
 		return false
 	}
