@@ -20,10 +20,16 @@ option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_p
 // before an identity (SVID) is issued. Policies are scoped to trust zones
 // and support Kubernetes, static, and TPM node attestation methods.
 message AttestationPolicy {
-  optional string id = 4;
-  string name = 1;
-  optional string org_id = 5;
-  string trust_zone_id = 9;
+  optional string id = 4 [(google.api.field_behavior) = IDENTIFIER];
+  string name = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
+  optional string org_id = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string trust_zone_id = 9 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
   repeated Federation federations = 10;
   oneof policy {
     APKubernetes kubernetes = 2;
