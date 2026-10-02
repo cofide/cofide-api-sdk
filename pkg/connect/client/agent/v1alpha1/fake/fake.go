@@ -116,7 +116,7 @@ func (c *fakeAgentClient) ListFederatedServices(ctx context.Context) ([]*federat
 	defer c.fake.Mu.Unlock()
 
 	fss := []*federatedservicepb.FederatedService{}
-	for _, fs := range c.fake.FederatedServices {
+	for fs := range fakeconnect.SortedValues(c.fake.FederatedServices) {
 		fss = append(fss, cloneFS(fs))
 	}
 	return fss, nil

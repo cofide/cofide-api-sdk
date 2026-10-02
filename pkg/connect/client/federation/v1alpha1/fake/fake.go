@@ -54,7 +54,7 @@ func (c *fakeFederationClient) ListFederations(ctx context.Context, filter *fede
 	defer c.fake.Mu.Unlock()
 
 	federations := []*federationpb.Federation{}
-	for _, federation := range c.fake.Federations {
+	for federation := range fakeconnect.SortedValues(c.fake.Federations) {
 		if federationMatches(federation, filter) {
 			federations = append(federations, proto.Clone(federation).(*federationpb.Federation))
 		}

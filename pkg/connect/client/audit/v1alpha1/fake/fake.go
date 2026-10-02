@@ -51,7 +51,7 @@ func (c *fakeAuditClient) ListEvents(ctx context.Context, filter *auditsvcpb.Lis
 	defer c.fake.Mu.Unlock()
 
 	events := []*auditpb.Event{}
-	for _, event := range c.fake.AuditEvents {
+	for event := range fakeconnect.SortedValues(c.fake.AuditEvents) {
 		if c.eventMatches(event, filter) {
 			events = append(events, clone(event))
 		}

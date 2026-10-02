@@ -1,6 +1,10 @@
 package fakeconnect
 
 import (
+	"cmp"
+	"iter"
+	"maps"
+	"slices"
 	"sync"
 
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
@@ -157,4 +161,17 @@ func (f *FakeConnect) ValidateAuditEvent(auditEventID string) error {
 		return status.Error(codes.InvalidArgument, "invalid audit event")
 	}
 	return nil
+}
+
+// SortedValues returns an iterator over the values of m in ascending key order.
+// Fake List methods use it so that their results are deterministic, which Go map
+// iteration is not.
+func SortedValues[M ~map[K]V, K cmp.Ordered, V any](m M) iter.Seq[V] {
+	return func(yield func(V) bool) {
+		for _, k := range slices.Sorted(maps.Keys(m)) {
+			if !yield(m[k]) {
+				return
+			}
+		}
+	}
 }

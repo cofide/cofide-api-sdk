@@ -65,7 +65,7 @@ func (c *fakeRoleBindingClient) ListRoleBindings(ctx context.Context, filter *ro
 	defer c.fake.Mu.Unlock()
 
 	roleBindings := []*rolebindingpb.RoleBinding{}
-	for _, roleBinding := range c.fake.RoleBindings {
+	for roleBinding := range fakeconnect.SortedValues(c.fake.RoleBindings) {
 		if roleBindingMatches(roleBinding, filter) {
 			roleBindings = append(roleBindings, clone(roleBinding))
 		}

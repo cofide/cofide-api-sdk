@@ -63,7 +63,7 @@ func (c *fakeExchangePolicyClient) ListExchangePolicies(ctx context.Context, fil
 	defer c.fake.Mu.Unlock()
 
 	policies := []*exchangepolicypb.ExchangePolicy{}
-	for _, policy := range c.fake.ExchangePolicies {
+	for policy := range fakeconnect.SortedValues(c.fake.ExchangePolicies) {
 		if policyMatches(policy, filter) {
 			policies = append(policies, clone(policy))
 		}

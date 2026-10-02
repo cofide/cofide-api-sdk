@@ -37,7 +37,7 @@ func (c *fakeOrganizationClient) ListOrganizations(ctx context.Context, filter *
 	defer c.fake.Mu.Unlock()
 
 	organizations := []*organizationpb.Organization{}
-	for _, organization := range c.fake.Organizations {
+	for organization := range fakeconnect.SortedValues(c.fake.Organizations) {
 		if organizationMatches(organization, filter) {
 			organizations = append(organizations, clone(organization))
 		}
