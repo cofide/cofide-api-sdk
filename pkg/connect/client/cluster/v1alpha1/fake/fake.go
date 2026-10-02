@@ -63,7 +63,7 @@ func (c *fakeClusterClient) ListClusters(ctx context.Context, filter *clustersvc
 	defer c.fake.Mu.Unlock()
 
 	clusters := []*clusterpb.Cluster{}
-	for _, cluster := range c.fake.Clusters {
+	for cluster := range fakeconnect.SortedValues(c.fake.Clusters) {
 		if clusterMatches(cluster, filter) {
 			clusters = append(clusters, clone(cluster))
 		}

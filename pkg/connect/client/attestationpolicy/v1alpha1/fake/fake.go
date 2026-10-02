@@ -61,7 +61,7 @@ func (c *fakeAttestationPolicyClient) ListAttestationPolicies(ctx context.Contex
 	defer c.fake.Mu.Unlock()
 
 	policies := []*attestationpolicypb.AttestationPolicy{}
-	for _, policy := range c.fake.AttestationPolicies {
+	for policy := range fakeconnect.SortedValues(c.fake.AttestationPolicies) {
 		if c.policyMatches(policy, filter) {
 			policies = append(policies, clone(policy))
 		}

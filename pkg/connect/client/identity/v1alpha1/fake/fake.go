@@ -42,7 +42,7 @@ func (c *fakeIdentityClient) ListIdentities(ctx context.Context, filter *identit
 	defer c.fake.Mu.Unlock()
 
 	identities := []*identitypb.Identity{}
-	for _, identity := range c.fake.Identities {
+	for identity := range fakeconnect.SortedValues(c.fake.Identities) {
 		if identityMatches(identity, filter) {
 			identities = append(identities, clone(identity))
 		}

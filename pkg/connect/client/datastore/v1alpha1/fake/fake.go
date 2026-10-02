@@ -39,7 +39,7 @@ func (c *fakeDataStoreClient) ListAttestedNodes(ctx context.Context, req *datast
 	defer c.fake.Mu.Unlock()
 
 	var nodes []*datastorev1alpha1.AttestedNode
-	for _, node := range c.fake.AttestedNodes {
+	for node := range fakeconnect.SortedValues(c.fake.AttestedNodes) {
 		nodes = append(nodes, proto.Clone(node).(*datastorev1alpha1.AttestedNode))
 	}
 

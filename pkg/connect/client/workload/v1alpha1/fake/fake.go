@@ -31,7 +31,7 @@ func (c *fakeWorkloadClient) ListWorkloads(ctx context.Context, filter *workload
 	defer c.fake.Mu.Unlock()
 
 	workloads := []*workloadpb.Workload{}
-	for _, workload := range c.fake.Workloads {
+	for workload := range fakeconnect.SortedValues(c.fake.Workloads) {
 		if workloadMatches(workload, filter) {
 			workloads = append(workloads, proto.Clone(workload).(*workloadpb.Workload))
 		}

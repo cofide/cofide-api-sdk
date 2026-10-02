@@ -68,7 +68,7 @@ func (c *fakeTrustZoneServerClient) ListTrustZoneServers(ctx context.Context, fi
 	defer c.fake.Mu.Unlock()
 
 	trustZoneServers := []*trustzoneserverpb.TrustZoneServer{}
-	for _, trustZoneServer := range c.fake.TrustZoneServers {
+	for trustZoneServer := range fakeconnect.SortedValues(c.fake.TrustZoneServers) {
 		if c.trustZoneServerMatches(trustZoneServer, filter) {
 			trustZoneServers = append(trustZoneServers, clone(trustZoneServer))
 		}
