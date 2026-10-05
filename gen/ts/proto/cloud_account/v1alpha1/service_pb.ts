@@ -13,8 +13,12 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
+import type { Duration } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { CloudAccount } from "./cloud_account_pb";
 import { file_proto_cloud_account_v1alpha1_cloud_account } from "./cloud_account_pb";
+import type { CloudResourceDiscovery } from "./discovery_pb";
+import { file_proto_cloud_account_v1alpha1_discovery } from "./discovery_pb";
 import type { PageRequest, PageResponse } from "../../common/pagination/v1beta1/pagination_pb";
 import { file_proto_common_pagination_v1beta1_pagination } from "../../common/pagination/v1beta1/pagination_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -23,7 +27,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_account/v1alpha1/service.proto.
  */
 export const file_proto_cloud_account_v1alpha1_service: GenFile = /*@__PURE__*/
-  fileDesc("Cipwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL3NlcnZpY2UucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiYwoZQ3JlYXRlQ2xvdWRBY2NvdW50UmVxdWVzdBJGCg1jbG91ZF9hY2NvdW50GAEgASgLMioucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnRCA+BBAiJfChpDcmVhdGVDbG91ZEFjY291bnRSZXNwb25zZRJBCg1jbG91ZF9hY2NvdW50GAEgASgLMioucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnQiNwoWR2V0Q2xvdWRBY2NvdW50UmVxdWVzdBIdChBjbG91ZF9hY2NvdW50X2lkGAEgASgJQgPgQQIiXAoXR2V0Q2xvdWRBY2NvdW50UmVzcG9uc2USQQoNY2xvdWRfYWNjb3VudBgBIAEoCzIqLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRBY2NvdW50Ir8BChhMaXN0Q2xvdWRBY2NvdW50c1JlcXVlc3QSUgoGZmlsdGVyGAEgASgLMj0ucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5MaXN0Q2xvdWRBY2NvdW50c1JlcXVlc3QuRmlsdGVyQgPgQQESRQoKcGFnaW5hdGlvbhgCIAEoCzIsLnByb3RvLmNvbW1vbi5wYWdpbmF0aW9uLnYxYmV0YTEuUGFnZVJlcXVlc3RCA+BBARoICgZGaWx0ZXIiogEKGUxpc3RDbG91ZEFjY291bnRzUmVzcG9uc2USQgoOY2xvdWRfYWNjb3VudHMYASADKAsyKi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkNsb3VkQWNjb3VudBJBCgpwYWdpbmF0aW9uGAIgASgLMi0ucHJvdG8uY29tbW9uLnBhZ2luYXRpb24udjFiZXRhMS5QYWdlUmVzcG9uc2Ui2AIKGVVwZGF0ZUNsb3VkQWNjb3VudFJlcXVlc3QSRgoNY2xvdWRfYWNjb3VudBgBIAEoCzIqLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRBY2NvdW50QgPgQQISXAoLdXBkYXRlX21hc2sYAiABKAsyQi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLlVwZGF0ZUNsb3VkQWNjb3VudFJlcXVlc3QuVXBkYXRlTWFza0ID4EEBGpQBCgpVcGRhdGVNYXNrEhEKBG5hbWUYASABKAhCA+BBARIbCg5hd3NfYWNjb3VudF9pZBgCIAEoCEID4EEBEigKG2F3c19sYW1iZGFfZGlzY292ZXJ5X2NvbmZpZxgDIAEoCEID4EEBEiwKH2F3c19hZ2VudF9jb3JlX2Rpc2NvdmVyeV9jb25maWcYBCABKAhCA+BBASJfChpVcGRhdGVDbG91ZEFjY291bnRSZXNwb25zZRJBCg1jbG91ZF9hY2NvdW50GAEgASgLMioucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnQiOgoZRGVsZXRlQ2xvdWRBY2NvdW50UmVxdWVzdBIdChBjbG91ZF9hY2NvdW50X2lkGAEgASgJQgPgQQIiHAoaRGVsZXRlQ2xvdWRBY2NvdW50UmVzcG9uc2UyugUKE0Nsb3VkQWNjb3VudFNlcnZpY2UShwEKEkNyZWF0ZUNsb3VkQWNjb3VudBI3LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ3JlYXRlQ2xvdWRBY2NvdW50UmVxdWVzdBo4LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ3JlYXRlQ2xvdWRBY2NvdW50UmVzcG9uc2USfgoPR2V0Q2xvdWRBY2NvdW50EjQucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5HZXRDbG91ZEFjY291bnRSZXF1ZXN0GjUucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5HZXRDbG91ZEFjY291bnRSZXNwb25zZRKEAQoRTGlzdENsb3VkQWNjb3VudHMSNi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxpc3RDbG91ZEFjY291bnRzUmVxdWVzdBo3LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuTGlzdENsb3VkQWNjb3VudHNSZXNwb25zZRKHAQoSVXBkYXRlQ2xvdWRBY2NvdW50EjcucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5VcGRhdGVDbG91ZEFjY291bnRSZXF1ZXN0GjgucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5VcGRhdGVDbG91ZEFjY291bnRSZXNwb25zZRKHAQoSRGVsZXRlQ2xvdWRBY2NvdW50EjcucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EZWxldGVDbG91ZEFjY291bnRSZXF1ZXN0GjgucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EZWxldGVDbG91ZEFjY291bnRSZXNwb25zZUJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_proto_cloud_account_v1alpha1_cloud_account, file_proto_common_pagination_v1beta1_pagination]);
+  fileDesc("Cipwcm90by9jbG91ZF9hY2NvdW50L3YxYWxwaGExL3NlcnZpY2UucHJvdG8SHHByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEiYwoZQ3JlYXRlQ2xvdWRBY2NvdW50UmVxdWVzdBJGCg1jbG91ZF9hY2NvdW50GAEgASgLMioucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnRCA+BBAiJfChpDcmVhdGVDbG91ZEFjY291bnRSZXNwb25zZRJBCg1jbG91ZF9hY2NvdW50GAEgASgLMioucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnQiNwoWR2V0Q2xvdWRBY2NvdW50UmVxdWVzdBIdChBjbG91ZF9hY2NvdW50X2lkGAEgASgJQgPgQQIiXAoXR2V0Q2xvdWRBY2NvdW50UmVzcG9uc2USQQoNY2xvdWRfYWNjb3VudBgBIAEoCzIqLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRBY2NvdW50Ir8BChhMaXN0Q2xvdWRBY2NvdW50c1JlcXVlc3QSUgoGZmlsdGVyGAEgASgLMj0ucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5MaXN0Q2xvdWRBY2NvdW50c1JlcXVlc3QuRmlsdGVyQgPgQQESRQoKcGFnaW5hdGlvbhgCIAEoCzIsLnByb3RvLmNvbW1vbi5wYWdpbmF0aW9uLnYxYmV0YTEuUGFnZVJlcXVlc3RCA+BBARoICgZGaWx0ZXIiogEKGUxpc3RDbG91ZEFjY291bnRzUmVzcG9uc2USQgoOY2xvdWRfYWNjb3VudHMYASADKAsyKi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkNsb3VkQWNjb3VudBJBCgpwYWdpbmF0aW9uGAIgASgLMi0ucHJvdG8uY29tbW9uLnBhZ2luYXRpb24udjFiZXRhMS5QYWdlUmVzcG9uc2UiqwIKGVVwZGF0ZUNsb3VkQWNjb3VudFJlcXVlc3QSRgoNY2xvdWRfYWNjb3VudBgBIAEoCzIqLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRBY2NvdW50QgPgQQISbwoXYXdzX2FjY291bnRfdXBkYXRlX21hc2sYAiABKAsyTC5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLlVwZGF0ZUNsb3VkQWNjb3VudFJlcXVlc3QuQVdTQWNjb3VudFVwZGF0ZU1hc2tIABpGChRBV1NBY2NvdW50VXBkYXRlTWFzaxIRCgRuYW1lGAEgASgIQgPgQQESGwoOYXdzX2FjY291bnRfaWQYAiABKAhCA+BBAUINCgt1cGRhdGVfbWFzayJfChpVcGRhdGVDbG91ZEFjY291bnRSZXNwb25zZRJBCg1jbG91ZF9hY2NvdW50GAEgASgLMioucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnQiOgoZRGVsZXRlQ2xvdWRBY2NvdW50UmVxdWVzdBIdChBjbG91ZF9hY2NvdW50X2lkGAEgASgJQgPgQQIiHAoaRGVsZXRlQ2xvdWRBY2NvdW50UmVzcG9uc2UiggEKI0NyZWF0ZUNsb3VkUmVzb3VyY2VEaXNjb3ZlcnlSZXF1ZXN0ElsKGGNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeRgBIAEoCzI0LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRSZXNvdXJjZURpc2NvdmVyeUID4EECIn4KJENyZWF0ZUNsb3VkUmVzb3VyY2VEaXNjb3ZlcnlSZXNwb25zZRJWChhjbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnkYASABKAsyNC5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkNsb3VkUmVzb3VyY2VEaXNjb3ZlcnkiTAogR2V0Q2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlcXVlc3QSKAobY2xvdWRfcmVzb3VyY2VfZGlzY292ZXJ5X2lkGAEgASgJQgPgQQIiewohR2V0Q2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlc3BvbnNlElYKGGNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeRgBIAEoCzI0LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRSZXNvdXJjZURpc2NvdmVyeSLfAQooTGlzdENsb3VkUmVzb3VyY2VEaXNjb3ZlcnlDb25maWdzUmVxdWVzdBJiCgZmaWx0ZXIYASABKAsyTS5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxpc3RDbG91ZFJlc291cmNlRGlzY292ZXJ5Q29uZmlnc1JlcXVlc3QuRmlsdGVyQgPgQQESRQoKcGFnaW5hdGlvbhgCIAEoCzIsLnByb3RvLmNvbW1vbi5wYWdpbmF0aW9uLnYxYmV0YTEuUGFnZVJlcXVlc3RCA+BBARoICgZGaWx0ZXIizgEKKUxpc3RDbG91ZFJlc291cmNlRGlzY292ZXJ5Q29uZmlnc1Jlc3BvbnNlEl4KIGNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeV9jb25maWdzGAEgAygLMjQucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZFJlc291cmNlRGlzY292ZXJ5EkEKCnBhZ2luYXRpb24YAiABKAsyLS5wcm90by5jb21tb24ucGFnaW5hdGlvbi52MWJldGExLlBhZ2VSZXNwb25zZSKvBwojVXBkYXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlcXVlc3QSWwoYY2xvdWRfcmVzb3VyY2VfZGlzY292ZXJ5GAEgASgLMjQucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZFJlc291cmNlRGlzY292ZXJ5QgPgQQISlwEKJ2F3c19sYW1iZGFfZGlzY292ZXJ5X2NvbmZpZ191cGRhdGVfbWFzaxgCIAEoCzJkLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuVXBkYXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlcXVlc3QuQVdTTGFtYmRhRGlzY292ZXJ5Q29uZmlnVXBkYXRlTWFza0gAEp4BCithd3NfYWdlbnRfY29yZV9kaXNjb3ZlcnlfY29uZmlnX3VwZGF0ZV9tYXNrGAMgASgLMmcucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5VcGRhdGVDbG91ZFJlc291cmNlRGlzY292ZXJ5UmVxdWVzdC5BV1NBZ2VudENvcmVEaXNjb3ZlcnlDb25maWdVcGRhdGVNYXNrSAAa7QEKIkFXU0xhbWJkYURpc2NvdmVyeUNvbmZpZ1VwZGF0ZU1hc2sSEQoEbmFtZRgBIAEoCEID4EEBEhUKCGRpc2FibGVkGAIgASgIQgPgQQESOgoSZGlzY292ZXJ5X2ludGVydmFsGAMgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQESFAoHcmVnaW9ucxgEIAEoCEID4EEBEiAKE2Fzc3VtZV90aHJvdWdoX29pZGMYBSABKAhCA+BBARIVCghhdWRpZW5jZRgGIAEoCEID4EEBEhIKBXJvbGVzGAcgASgIQgPgQQEa8AEKJUFXU0FnZW50Q29yZURpc2NvdmVyeUNvbmZpZ1VwZGF0ZU1hc2sSEQoEbmFtZRgBIAEoCEID4EEBEhUKCGRpc2FibGVkGAIgASgIQgPgQQESOgoSZGlzY292ZXJ5X2ludGVydmFsGAMgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQESFAoHcmVnaW9ucxgEIAEoCEID4EEBEiAKE2Fzc3VtZV90aHJvdWdoX29pZGMYBSABKAhCA+BBARIVCghhdWRpZW5jZRgGIAEoCEID4EEBEhIKBXJvbGVzGAcgASgIQgPgQQFCDQoLdXBkYXRlX21hc2sifgokVXBkYXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlc3BvbnNlElYKGGNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeRgBIAEoCzI0LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRSZXNvdXJjZURpc2NvdmVyeSJPCiNEZWxldGVDbG91ZFJlc291cmNlRGlzY292ZXJ5UmVxdWVzdBIoChtjbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnlfaWQYASABKAlCA+BBAiImCiREZWxldGVDbG91ZFJlc291cmNlRGlzY292ZXJ5UmVzcG9uc2UyiAwKE0Nsb3VkQWNjb3VudFNlcnZpY2UShwEKEkNyZWF0ZUNsb3VkQWNjb3VudBI3LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ3JlYXRlQ2xvdWRBY2NvdW50UmVxdWVzdBo4LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ3JlYXRlQ2xvdWRBY2NvdW50UmVzcG9uc2USfgoPR2V0Q2xvdWRBY2NvdW50EjQucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5HZXRDbG91ZEFjY291bnRSZXF1ZXN0GjUucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5HZXRDbG91ZEFjY291bnRSZXNwb25zZRKEAQoRTGlzdENsb3VkQWNjb3VudHMSNi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxpc3RDbG91ZEFjY291bnRzUmVxdWVzdBo3LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuTGlzdENsb3VkQWNjb3VudHNSZXNwb25zZRKHAQoSVXBkYXRlQ2xvdWRBY2NvdW50EjcucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5VcGRhdGVDbG91ZEFjY291bnRSZXF1ZXN0GjgucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5VcGRhdGVDbG91ZEFjY291bnRSZXNwb25zZRKHAQoSRGVsZXRlQ2xvdWRBY2NvdW50EjcucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EZWxldGVDbG91ZEFjY291bnRSZXF1ZXN0GjgucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5EZWxldGVDbG91ZEFjY291bnRSZXNwb25zZRKlAQocQ3JlYXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeRJBLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ3JlYXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlcXVlc3QaQi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkNyZWF0ZUNsb3VkUmVzb3VyY2VEaXNjb3ZlcnlSZXNwb25zZRKcAQoZR2V0Q2xvdWRSZXNvdXJjZURpc2NvdmVyeRI+LnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuR2V0Q2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlcXVlc3QaPy5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkdldENsb3VkUmVzb3VyY2VEaXNjb3ZlcnlSZXNwb25zZRK0AQohTGlzdENsb3VkUmVzb3VyY2VEaXNjb3ZlcnlDb25maWdzEkYucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5MaXN0Q2xvdWRSZXNvdXJjZURpc2NvdmVyeUNvbmZpZ3NSZXF1ZXN0GkcucHJvdG8uY2xvdWRfYWNjb3VudC52MWFscGhhMS5MaXN0Q2xvdWRSZXNvdXJjZURpc2NvdmVyeUNvbmZpZ3NSZXNwb25zZRKlAQocVXBkYXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeRJBLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuVXBkYXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlcXVlc3QaQi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLlVwZGF0ZUNsb3VkUmVzb3VyY2VEaXNjb3ZlcnlSZXNwb25zZRKlAQocRGVsZXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeRJBLnByb3RvLmNsb3VkX2FjY291bnQudjFhbHBoYTEuRGVsZXRlQ2xvdWRSZXNvdXJjZURpc2NvdmVyeVJlcXVlc3QaQi5wcm90by5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkRlbGV0ZUNsb3VkUmVzb3VyY2VEaXNjb3ZlcnlSZXNwb25zZUJGWkRnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_duration, file_proto_cloud_account_v1alpha1_cloud_account, file_proto_cloud_account_v1alpha1_discovery, file_proto_common_pagination_v1beta1_pagination]);
 
 /**
  * @generated from message proto.cloud_account.v1alpha1.CreateCloudAccountRequest
@@ -161,10 +165,17 @@ export type UpdateCloudAccountRequest = Message<"proto.cloud_account.v1alpha1.Up
 
   /**
    * The list of fields to be updated. If not provided a full replacement will be made.
+   * The update mask should align with the type being updated.
    *
-   * @generated from field: proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.UpdateMask update_mask = 2;
+   * @generated from oneof proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.update_mask
    */
-  updateMask?: UpdateCloudAccountRequest_UpdateMask;
+  updateMask: {
+    /**
+     * @generated from field: proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask aws_account_update_mask = 2;
+     */
+    value: UpdateCloudAccountRequest_AWSAccountUpdateMask;
+    case: "awsAccountUpdateMask";
+  } | { case: undefined; value?: undefined };
 };
 
 /**
@@ -175,9 +186,9 @@ export const UpdateCloudAccountRequestSchema: GenMessage<UpdateCloudAccountReque
   messageDesc(file_proto_cloud_account_v1alpha1_service, 6);
 
 /**
- * @generated from message proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.UpdateMask
+ * @generated from message proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask
  */
-export type UpdateCloudAccountRequest_UpdateMask = Message<"proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.UpdateMask"> & {
+export type UpdateCloudAccountRequest_AWSAccountUpdateMask = Message<"proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask"> & {
   /**
    * Set to true to update the name field.
    *
@@ -186,32 +197,18 @@ export type UpdateCloudAccountRequest_UpdateMask = Message<"proto.cloud_account.
   name: boolean;
 
   /**
-   * Set to true to update the name field.
+   * Set to true to update the aws account ID field (only valid for AWS accounts).
    *
    * @generated from field: bool aws_account_id = 2;
    */
   awsAccountId: boolean;
-
-  /**
-   * Set to true to update the aws lambda discovery config field.
-   *
-   * @generated from field: bool aws_lambda_discovery_config = 3;
-   */
-  awsLambdaDiscoveryConfig: boolean;
-
-  /**
-   * Set to true to update the aws agent core discovery config field.
-   *
-   * @generated from field: bool aws_agent_core_discovery_config = 4;
-   */
-  awsAgentCoreDiscoveryConfig: boolean;
 };
 
 /**
- * Describes the message proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.UpdateMask.
- * Use `create(UpdateCloudAccountRequest_UpdateMaskSchema)` to create a new message.
+ * Describes the message proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask.
+ * Use `create(UpdateCloudAccountRequest_AWSAccountUpdateMaskSchema)` to create a new message.
  */
-export const UpdateCloudAccountRequest_UpdateMaskSchema: GenMessage<UpdateCloudAccountRequest_UpdateMask> = /*@__PURE__*/
+export const UpdateCloudAccountRequest_AWSAccountUpdateMaskSchema: GenMessage<UpdateCloudAccountRequest_AWSAccountUpdateMask> = /*@__PURE__*/
   messageDesc(file_proto_cloud_account_v1alpha1_service, 6, 0);
 
 /**
@@ -260,6 +257,339 @@ export type DeleteCloudAccountResponse = Message<"proto.cloud_account.v1alpha1.D
  */
 export const DeleteCloudAccountResponseSchema: GenMessage<DeleteCloudAccountResponse> = /*@__PURE__*/
   messageDesc(file_proto_cloud_account_v1alpha1_service, 9);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.CreateCloudResourceDiscoveryRequest
+ */
+export type CreateCloudResourceDiscoveryRequest = Message<"proto.cloud_account.v1alpha1.CreateCloudResourceDiscoveryRequest"> & {
+  /**
+   * @generated from field: proto.cloud_account.v1alpha1.CloudResourceDiscovery cloud_resource_discovery = 1;
+   */
+  cloudResourceDiscovery?: CloudResourceDiscovery;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.CreateCloudResourceDiscoveryRequest.
+ * Use `create(CreateCloudResourceDiscoveryRequestSchema)` to create a new message.
+ */
+export const CreateCloudResourceDiscoveryRequestSchema: GenMessage<CreateCloudResourceDiscoveryRequest> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 10);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.CreateCloudResourceDiscoveryResponse
+ */
+export type CreateCloudResourceDiscoveryResponse = Message<"proto.cloud_account.v1alpha1.CreateCloudResourceDiscoveryResponse"> & {
+  /**
+   * @generated from field: proto.cloud_account.v1alpha1.CloudResourceDiscovery cloud_resource_discovery = 1;
+   */
+  cloudResourceDiscovery?: CloudResourceDiscovery;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.CreateCloudResourceDiscoveryResponse.
+ * Use `create(CreateCloudResourceDiscoveryResponseSchema)` to create a new message.
+ */
+export const CreateCloudResourceDiscoveryResponseSchema: GenMessage<CreateCloudResourceDiscoveryResponse> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 11);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.GetCloudResourceDiscoveryRequest
+ */
+export type GetCloudResourceDiscoveryRequest = Message<"proto.cloud_account.v1alpha1.GetCloudResourceDiscoveryRequest"> & {
+  /**
+   * @generated from field: string cloud_resource_discovery_id = 1;
+   */
+  cloudResourceDiscoveryId: string;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.GetCloudResourceDiscoveryRequest.
+ * Use `create(GetCloudResourceDiscoveryRequestSchema)` to create a new message.
+ */
+export const GetCloudResourceDiscoveryRequestSchema: GenMessage<GetCloudResourceDiscoveryRequest> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 12);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.GetCloudResourceDiscoveryResponse
+ */
+export type GetCloudResourceDiscoveryResponse = Message<"proto.cloud_account.v1alpha1.GetCloudResourceDiscoveryResponse"> & {
+  /**
+   * @generated from field: proto.cloud_account.v1alpha1.CloudResourceDiscovery cloud_resource_discovery = 1;
+   */
+  cloudResourceDiscovery?: CloudResourceDiscovery;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.GetCloudResourceDiscoveryResponse.
+ * Use `create(GetCloudResourceDiscoveryResponseSchema)` to create a new message.
+ */
+export const GetCloudResourceDiscoveryResponseSchema: GenMessage<GetCloudResourceDiscoveryResponse> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 13);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsRequest
+ */
+export type ListCloudResourceDiscoveryConfigsRequest = Message<"proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsRequest"> & {
+  /**
+   * @generated from field: proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsRequest.Filter filter = 1;
+   */
+  filter?: ListCloudResourceDiscoveryConfigsRequest_Filter;
+
+  /**
+   * @generated from field: proto.common.pagination.v1beta1.PageRequest pagination = 2;
+   */
+  pagination?: PageRequest;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsRequest.
+ * Use `create(ListCloudResourceDiscoveryConfigsRequestSchema)` to create a new message.
+ */
+export const ListCloudResourceDiscoveryConfigsRequestSchema: GenMessage<ListCloudResourceDiscoveryConfigsRequest> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 14);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsRequest.Filter
+ */
+export type ListCloudResourceDiscoveryConfigsRequest_Filter = Message<"proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsRequest.Filter"> & {
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsRequest.Filter.
+ * Use `create(ListCloudResourceDiscoveryConfigsRequest_FilterSchema)` to create a new message.
+ */
+export const ListCloudResourceDiscoveryConfigsRequest_FilterSchema: GenMessage<ListCloudResourceDiscoveryConfigsRequest_Filter> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 14, 0);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsResponse
+ */
+export type ListCloudResourceDiscoveryConfigsResponse = Message<"proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsResponse"> & {
+  /**
+   * @generated from field: repeated proto.cloud_account.v1alpha1.CloudResourceDiscovery cloud_resource_discovery_configs = 1;
+   */
+  cloudResourceDiscoveryConfigs: CloudResourceDiscovery[];
+
+  /**
+   * @generated from field: proto.common.pagination.v1beta1.PageResponse pagination = 2;
+   */
+  pagination?: PageResponse;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.ListCloudResourceDiscoveryConfigsResponse.
+ * Use `create(ListCloudResourceDiscoveryConfigsResponseSchema)` to create a new message.
+ */
+export const ListCloudResourceDiscoveryConfigsResponseSchema: GenMessage<ListCloudResourceDiscoveryConfigsResponse> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 15);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest
+ */
+export type UpdateCloudResourceDiscoveryRequest = Message<"proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest"> & {
+  /**
+   * @generated from field: proto.cloud_account.v1alpha1.CloudResourceDiscovery cloud_resource_discovery = 1;
+   */
+  cloudResourceDiscovery?: CloudResourceDiscovery;
+
+  /**
+   * The list of fields to be updated. If not provided a full replacement will be made.
+   * The update mask should align with the type being updated.
+   *
+   * @generated from oneof proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.update_mask
+   */
+  updateMask: {
+    /**
+     * @generated from field: proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSLambdaDiscoveryConfigUpdateMask aws_lambda_discovery_config_update_mask = 2;
+     */
+    value: UpdateCloudResourceDiscoveryRequest_AWSLambdaDiscoveryConfigUpdateMask;
+    case: "awsLambdaDiscoveryConfigUpdateMask";
+  } | {
+    /**
+     * @generated from field: proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSAgentCoreDiscoveryConfigUpdateMask aws_agent_core_discovery_config_update_mask = 3;
+     */
+    value: UpdateCloudResourceDiscoveryRequest_AWSAgentCoreDiscoveryConfigUpdateMask;
+    case: "awsAgentCoreDiscoveryConfigUpdateMask";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.
+ * Use `create(UpdateCloudResourceDiscoveryRequestSchema)` to create a new message.
+ */
+export const UpdateCloudResourceDiscoveryRequestSchema: GenMessage<UpdateCloudResourceDiscoveryRequest> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 16);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSLambdaDiscoveryConfigUpdateMask
+ */
+export type UpdateCloudResourceDiscoveryRequest_AWSLambdaDiscoveryConfigUpdateMask = Message<"proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSLambdaDiscoveryConfigUpdateMask"> & {
+  /**
+   * Set to true to update the name field.
+   *
+   * @generated from field: bool name = 1;
+   */
+  name: boolean;
+
+  /**
+   * Set to true to update the disabled field.
+   *
+   * @generated from field: bool disabled = 2;
+   */
+  disabled: boolean;
+
+  /**
+   * Set to true to update the discovery_interval field.
+   *
+   * @generated from field: google.protobuf.Duration discovery_interval = 3;
+   */
+  discoveryInterval?: Duration;
+
+  /**
+   * Set to true to update the regions field.
+   *
+   * @generated from field: bool regions = 4;
+   */
+  regions: boolean;
+
+  /**
+   * Set to true to update the assume through OIDC field on the assume role config.
+   *
+   * @generated from field: bool assume_through_oidc = 5;
+   */
+  assumeThroughOidc: boolean;
+
+  /**
+   * Set to true to update the audience field on the assume role config.
+   *
+   * @generated from field: bool audience = 6;
+   */
+  audience: boolean;
+
+  /**
+   * Set to true to update the roles field on the assume role config.
+   *
+   * Human-readable name for the cloud resource discovery config within Connect.
+   *
+   * @generated from field: bool roles = 7;
+   */
+  roles: boolean;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSLambdaDiscoveryConfigUpdateMask.
+ * Use `create(UpdateCloudResourceDiscoveryRequest_AWSLambdaDiscoveryConfigUpdateMaskSchema)` to create a new message.
+ */
+export const UpdateCloudResourceDiscoveryRequest_AWSLambdaDiscoveryConfigUpdateMaskSchema: GenMessage<UpdateCloudResourceDiscoveryRequest_AWSLambdaDiscoveryConfigUpdateMask> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 16, 0);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSAgentCoreDiscoveryConfigUpdateMask
+ */
+export type UpdateCloudResourceDiscoveryRequest_AWSAgentCoreDiscoveryConfigUpdateMask = Message<"proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSAgentCoreDiscoveryConfigUpdateMask"> & {
+  /**
+   * Set to true to update the name field.
+   *
+   * @generated from field: bool name = 1;
+   */
+  name: boolean;
+
+  /**
+   * Set to true to update the disabled field.
+   *
+   * @generated from field: bool disabled = 2;
+   */
+  disabled: boolean;
+
+  /**
+   * Set to true to update the discovery_interval field.
+   *
+   * @generated from field: google.protobuf.Duration discovery_interval = 3;
+   */
+  discoveryInterval?: Duration;
+
+  /**
+   * Set to true to update the regions field.
+   *
+   * @generated from field: bool regions = 4;
+   */
+  regions: boolean;
+
+  /**
+   * Set to true to update the assume through OIDC field on the assume role config.
+   *
+   * @generated from field: bool assume_through_oidc = 5;
+   */
+  assumeThroughOidc: boolean;
+
+  /**
+   * Set to true to update the audience field on the assume role config.
+   *
+   * @generated from field: bool audience = 6;
+   */
+  audience: boolean;
+
+  /**
+   * Set to true to update the roles field on the assume role config.
+   *
+   * @generated from field: bool roles = 7;
+   */
+  roles: boolean;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryRequest.AWSAgentCoreDiscoveryConfigUpdateMask.
+ * Use `create(UpdateCloudResourceDiscoveryRequest_AWSAgentCoreDiscoveryConfigUpdateMaskSchema)` to create a new message.
+ */
+export const UpdateCloudResourceDiscoveryRequest_AWSAgentCoreDiscoveryConfigUpdateMaskSchema: GenMessage<UpdateCloudResourceDiscoveryRequest_AWSAgentCoreDiscoveryConfigUpdateMask> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 16, 1);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryResponse
+ */
+export type UpdateCloudResourceDiscoveryResponse = Message<"proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryResponse"> & {
+  /**
+   * @generated from field: proto.cloud_account.v1alpha1.CloudResourceDiscovery cloud_resource_discovery = 1;
+   */
+  cloudResourceDiscovery?: CloudResourceDiscovery;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.UpdateCloudResourceDiscoveryResponse.
+ * Use `create(UpdateCloudResourceDiscoveryResponseSchema)` to create a new message.
+ */
+export const UpdateCloudResourceDiscoveryResponseSchema: GenMessage<UpdateCloudResourceDiscoveryResponse> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 17);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.DeleteCloudResourceDiscoveryRequest
+ */
+export type DeleteCloudResourceDiscoveryRequest = Message<"proto.cloud_account.v1alpha1.DeleteCloudResourceDiscoveryRequest"> & {
+  /**
+   * @generated from field: string cloud_resource_discovery_id = 1;
+   */
+  cloudResourceDiscoveryId: string;
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.DeleteCloudResourceDiscoveryRequest.
+ * Use `create(DeleteCloudResourceDiscoveryRequestSchema)` to create a new message.
+ */
+export const DeleteCloudResourceDiscoveryRequestSchema: GenMessage<DeleteCloudResourceDiscoveryRequest> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 18);
+
+/**
+ * @generated from message proto.cloud_account.v1alpha1.DeleteCloudResourceDiscoveryResponse
+ */
+export type DeleteCloudResourceDiscoveryResponse = Message<"proto.cloud_account.v1alpha1.DeleteCloudResourceDiscoveryResponse"> & {
+};
+
+/**
+ * Describes the message proto.cloud_account.v1alpha1.DeleteCloudResourceDiscoveryResponse.
+ * Use `create(DeleteCloudResourceDiscoveryResponseSchema)` to create a new message.
+ */
+export const DeleteCloudResourceDiscoveryResponseSchema: GenMessage<DeleteCloudResourceDiscoveryResponse> = /*@__PURE__*/
+  messageDesc(file_proto_cloud_account_v1alpha1_service, 19);
 
 /**
  * CloudAccountService manages cloud accounts in the Connect control plane.
@@ -316,6 +646,56 @@ export const CloudAccountService: GenService<{
     methodKind: "unary";
     input: typeof DeleteCloudAccountRequestSchema;
     output: typeof DeleteCloudAccountResponseSchema;
+  },
+  /**
+   * CreateCloudResourceDiscovery creates an additinoal cloud resource discvoery config within a cloud account.
+   *
+   * @generated from rpc proto.cloud_account.v1alpha1.CloudAccountService.CreateCloudResourceDiscovery
+   */
+  createCloudResourceDiscovery: {
+    methodKind: "unary";
+    input: typeof CreateCloudResourceDiscoveryRequestSchema;
+    output: typeof CreateCloudResourceDiscoveryResponseSchema;
+  },
+  /**
+   * GetCloudResourceDiscovery retrieves a cloud resource discovery config by ID.
+   *
+   * @generated from rpc proto.cloud_account.v1alpha1.CloudAccountService.GetCloudResourceDiscovery
+   */
+  getCloudResourceDiscovery: {
+    methodKind: "unary";
+    input: typeof GetCloudResourceDiscoveryRequestSchema;
+    output: typeof GetCloudResourceDiscoveryResponseSchema;
+  },
+  /**
+   * ListCloudResourceDiscoveryConfigs returns all cloud resource discovery configs matching the optional filter.
+   *
+   * @generated from rpc proto.cloud_account.v1alpha1.CloudAccountService.ListCloudResourceDiscoveryConfigs
+   */
+  listCloudResourceDiscoveryConfigs: {
+    methodKind: "unary";
+    input: typeof ListCloudResourceDiscoveryConfigsRequestSchema;
+    output: typeof ListCloudResourceDiscoveryConfigsResponseSchema;
+  },
+  /**
+   * UpdateCloudResourceDiscovery updates an existing cloud resource discovery config.
+   *
+   * @generated from rpc proto.cloud_account.v1alpha1.CloudAccountService.UpdateCloudResourceDiscovery
+   */
+  updateCloudResourceDiscovery: {
+    methodKind: "unary";
+    input: typeof UpdateCloudResourceDiscoveryRequestSchema;
+    output: typeof UpdateCloudResourceDiscoveryResponseSchema;
+  },
+  /**
+   * DeleteCloudResourceDiscovery deletes a cloud resource discovery config by ID.
+   *
+   * @generated from rpc proto.cloud_account.v1alpha1.CloudAccountService.DeleteCloudResourceDiscovery
+   */
+  deleteCloudResourceDiscovery: {
+    methodKind: "unary";
+    input: typeof DeleteCloudResourceDiscoveryRequestSchema;
+    output: typeof DeleteCloudResourceDiscoveryResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_cloud_account_v1alpha1_service, 0);

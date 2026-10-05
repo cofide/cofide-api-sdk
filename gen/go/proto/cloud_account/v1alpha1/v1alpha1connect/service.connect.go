@@ -55,6 +55,21 @@ const (
 	// CloudAccountServiceDeleteCloudAccountProcedure is the fully-qualified name of the
 	// CloudAccountService's DeleteCloudAccount RPC.
 	CloudAccountServiceDeleteCloudAccountProcedure = "/proto.cloud_account.v1alpha1.CloudAccountService/DeleteCloudAccount"
+	// CloudAccountServiceCreateCloudResourceDiscoveryProcedure is the fully-qualified name of the
+	// CloudAccountService's CreateCloudResourceDiscovery RPC.
+	CloudAccountServiceCreateCloudResourceDiscoveryProcedure = "/proto.cloud_account.v1alpha1.CloudAccountService/CreateCloudResourceDiscovery"
+	// CloudAccountServiceGetCloudResourceDiscoveryProcedure is the fully-qualified name of the
+	// CloudAccountService's GetCloudResourceDiscovery RPC.
+	CloudAccountServiceGetCloudResourceDiscoveryProcedure = "/proto.cloud_account.v1alpha1.CloudAccountService/GetCloudResourceDiscovery"
+	// CloudAccountServiceListCloudResourceDiscoveryConfigsProcedure is the fully-qualified name of the
+	// CloudAccountService's ListCloudResourceDiscoveryConfigs RPC.
+	CloudAccountServiceListCloudResourceDiscoveryConfigsProcedure = "/proto.cloud_account.v1alpha1.CloudAccountService/ListCloudResourceDiscoveryConfigs"
+	// CloudAccountServiceUpdateCloudResourceDiscoveryProcedure is the fully-qualified name of the
+	// CloudAccountService's UpdateCloudResourceDiscovery RPC.
+	CloudAccountServiceUpdateCloudResourceDiscoveryProcedure = "/proto.cloud_account.v1alpha1.CloudAccountService/UpdateCloudResourceDiscovery"
+	// CloudAccountServiceDeleteCloudResourceDiscoveryProcedure is the fully-qualified name of the
+	// CloudAccountService's DeleteCloudResourceDiscovery RPC.
+	CloudAccountServiceDeleteCloudResourceDiscoveryProcedure = "/proto.cloud_account.v1alpha1.CloudAccountService/DeleteCloudResourceDiscovery"
 )
 
 // CloudAccountServiceClient is a client for the proto.cloud_account.v1alpha1.CloudAccountService
@@ -70,6 +85,16 @@ type CloudAccountServiceClient interface {
 	UpdateCloudAccount(context.Context, *connect.Request[v1alpha1.UpdateCloudAccountRequest]) (*connect.Response[v1alpha1.UpdateCloudAccountResponse], error)
 	// DeleteCloudAccount deletes a cloud account by ID.
 	DeleteCloudAccount(context.Context, *connect.Request[v1alpha1.DeleteCloudAccountRequest]) (*connect.Response[v1alpha1.DeleteCloudAccountResponse], error)
+	// CreateCloudResourceDiscovery creates an additinoal cloud resource discvoery config within a cloud account.
+	CreateCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.CreateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.CreateCloudResourceDiscoveryResponse], error)
+	// GetCloudResourceDiscovery retrieves a cloud resource discovery config by ID.
+	GetCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.GetCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.GetCloudResourceDiscoveryResponse], error)
+	// ListCloudResourceDiscoveryConfigs returns all cloud resource discovery configs matching the optional filter.
+	ListCloudResourceDiscoveryConfigs(context.Context, *connect.Request[v1alpha1.ListCloudResourceDiscoveryConfigsRequest]) (*connect.Response[v1alpha1.ListCloudResourceDiscoveryConfigsResponse], error)
+	// UpdateCloudResourceDiscovery updates an existing cloud resource discovery config.
+	UpdateCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.UpdateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.UpdateCloudResourceDiscoveryResponse], error)
+	// DeleteCloudResourceDiscovery deletes a cloud resource discovery config by ID.
+	DeleteCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.DeleteCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.DeleteCloudResourceDiscoveryResponse], error)
 }
 
 // NewCloudAccountServiceClient constructs a client for the
@@ -114,16 +139,51 @@ func NewCloudAccountServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(cloudAccountServiceMethods.ByName("DeleteCloudAccount")),
 			connect.WithClientOptions(opts...),
 		),
+		createCloudResourceDiscovery: connect.NewClient[v1alpha1.CreateCloudResourceDiscoveryRequest, v1alpha1.CreateCloudResourceDiscoveryResponse](
+			httpClient,
+			baseURL+CloudAccountServiceCreateCloudResourceDiscoveryProcedure,
+			connect.WithSchema(cloudAccountServiceMethods.ByName("CreateCloudResourceDiscovery")),
+			connect.WithClientOptions(opts...),
+		),
+		getCloudResourceDiscovery: connect.NewClient[v1alpha1.GetCloudResourceDiscoveryRequest, v1alpha1.GetCloudResourceDiscoveryResponse](
+			httpClient,
+			baseURL+CloudAccountServiceGetCloudResourceDiscoveryProcedure,
+			connect.WithSchema(cloudAccountServiceMethods.ByName("GetCloudResourceDiscovery")),
+			connect.WithClientOptions(opts...),
+		),
+		listCloudResourceDiscoveryConfigs: connect.NewClient[v1alpha1.ListCloudResourceDiscoveryConfigsRequest, v1alpha1.ListCloudResourceDiscoveryConfigsResponse](
+			httpClient,
+			baseURL+CloudAccountServiceListCloudResourceDiscoveryConfigsProcedure,
+			connect.WithSchema(cloudAccountServiceMethods.ByName("ListCloudResourceDiscoveryConfigs")),
+			connect.WithClientOptions(opts...),
+		),
+		updateCloudResourceDiscovery: connect.NewClient[v1alpha1.UpdateCloudResourceDiscoveryRequest, v1alpha1.UpdateCloudResourceDiscoveryResponse](
+			httpClient,
+			baseURL+CloudAccountServiceUpdateCloudResourceDiscoveryProcedure,
+			connect.WithSchema(cloudAccountServiceMethods.ByName("UpdateCloudResourceDiscovery")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteCloudResourceDiscovery: connect.NewClient[v1alpha1.DeleteCloudResourceDiscoveryRequest, v1alpha1.DeleteCloudResourceDiscoveryResponse](
+			httpClient,
+			baseURL+CloudAccountServiceDeleteCloudResourceDiscoveryProcedure,
+			connect.WithSchema(cloudAccountServiceMethods.ByName("DeleteCloudResourceDiscovery")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // cloudAccountServiceClient implements CloudAccountServiceClient.
 type cloudAccountServiceClient struct {
-	createCloudAccount *connect.Client[v1alpha1.CreateCloudAccountRequest, v1alpha1.CreateCloudAccountResponse]
-	getCloudAccount    *connect.Client[v1alpha1.GetCloudAccountRequest, v1alpha1.GetCloudAccountResponse]
-	listCloudAccounts  *connect.Client[v1alpha1.ListCloudAccountsRequest, v1alpha1.ListCloudAccountsResponse]
-	updateCloudAccount *connect.Client[v1alpha1.UpdateCloudAccountRequest, v1alpha1.UpdateCloudAccountResponse]
-	deleteCloudAccount *connect.Client[v1alpha1.DeleteCloudAccountRequest, v1alpha1.DeleteCloudAccountResponse]
+	createCloudAccount                *connect.Client[v1alpha1.CreateCloudAccountRequest, v1alpha1.CreateCloudAccountResponse]
+	getCloudAccount                   *connect.Client[v1alpha1.GetCloudAccountRequest, v1alpha1.GetCloudAccountResponse]
+	listCloudAccounts                 *connect.Client[v1alpha1.ListCloudAccountsRequest, v1alpha1.ListCloudAccountsResponse]
+	updateCloudAccount                *connect.Client[v1alpha1.UpdateCloudAccountRequest, v1alpha1.UpdateCloudAccountResponse]
+	deleteCloudAccount                *connect.Client[v1alpha1.DeleteCloudAccountRequest, v1alpha1.DeleteCloudAccountResponse]
+	createCloudResourceDiscovery      *connect.Client[v1alpha1.CreateCloudResourceDiscoveryRequest, v1alpha1.CreateCloudResourceDiscoveryResponse]
+	getCloudResourceDiscovery         *connect.Client[v1alpha1.GetCloudResourceDiscoveryRequest, v1alpha1.GetCloudResourceDiscoveryResponse]
+	listCloudResourceDiscoveryConfigs *connect.Client[v1alpha1.ListCloudResourceDiscoveryConfigsRequest, v1alpha1.ListCloudResourceDiscoveryConfigsResponse]
+	updateCloudResourceDiscovery      *connect.Client[v1alpha1.UpdateCloudResourceDiscoveryRequest, v1alpha1.UpdateCloudResourceDiscoveryResponse]
+	deleteCloudResourceDiscovery      *connect.Client[v1alpha1.DeleteCloudResourceDiscoveryRequest, v1alpha1.DeleteCloudResourceDiscoveryResponse]
 }
 
 // CreateCloudAccount calls proto.cloud_account.v1alpha1.CloudAccountService.CreateCloudAccount.
@@ -151,6 +211,36 @@ func (c *cloudAccountServiceClient) DeleteCloudAccount(ctx context.Context, req 
 	return c.deleteCloudAccount.CallUnary(ctx, req)
 }
 
+// CreateCloudResourceDiscovery calls
+// proto.cloud_account.v1alpha1.CloudAccountService.CreateCloudResourceDiscovery.
+func (c *cloudAccountServiceClient) CreateCloudResourceDiscovery(ctx context.Context, req *connect.Request[v1alpha1.CreateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.CreateCloudResourceDiscoveryResponse], error) {
+	return c.createCloudResourceDiscovery.CallUnary(ctx, req)
+}
+
+// GetCloudResourceDiscovery calls
+// proto.cloud_account.v1alpha1.CloudAccountService.GetCloudResourceDiscovery.
+func (c *cloudAccountServiceClient) GetCloudResourceDiscovery(ctx context.Context, req *connect.Request[v1alpha1.GetCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.GetCloudResourceDiscoveryResponse], error) {
+	return c.getCloudResourceDiscovery.CallUnary(ctx, req)
+}
+
+// ListCloudResourceDiscoveryConfigs calls
+// proto.cloud_account.v1alpha1.CloudAccountService.ListCloudResourceDiscoveryConfigs.
+func (c *cloudAccountServiceClient) ListCloudResourceDiscoveryConfigs(ctx context.Context, req *connect.Request[v1alpha1.ListCloudResourceDiscoveryConfigsRequest]) (*connect.Response[v1alpha1.ListCloudResourceDiscoveryConfigsResponse], error) {
+	return c.listCloudResourceDiscoveryConfigs.CallUnary(ctx, req)
+}
+
+// UpdateCloudResourceDiscovery calls
+// proto.cloud_account.v1alpha1.CloudAccountService.UpdateCloudResourceDiscovery.
+func (c *cloudAccountServiceClient) UpdateCloudResourceDiscovery(ctx context.Context, req *connect.Request[v1alpha1.UpdateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.UpdateCloudResourceDiscoveryResponse], error) {
+	return c.updateCloudResourceDiscovery.CallUnary(ctx, req)
+}
+
+// DeleteCloudResourceDiscovery calls
+// proto.cloud_account.v1alpha1.CloudAccountService.DeleteCloudResourceDiscovery.
+func (c *cloudAccountServiceClient) DeleteCloudResourceDiscovery(ctx context.Context, req *connect.Request[v1alpha1.DeleteCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.DeleteCloudResourceDiscoveryResponse], error) {
+	return c.deleteCloudResourceDiscovery.CallUnary(ctx, req)
+}
+
 // CloudAccountServiceHandler is an implementation of the
 // proto.cloud_account.v1alpha1.CloudAccountService service.
 type CloudAccountServiceHandler interface {
@@ -164,6 +254,16 @@ type CloudAccountServiceHandler interface {
 	UpdateCloudAccount(context.Context, *connect.Request[v1alpha1.UpdateCloudAccountRequest]) (*connect.Response[v1alpha1.UpdateCloudAccountResponse], error)
 	// DeleteCloudAccount deletes a cloud account by ID.
 	DeleteCloudAccount(context.Context, *connect.Request[v1alpha1.DeleteCloudAccountRequest]) (*connect.Response[v1alpha1.DeleteCloudAccountResponse], error)
+	// CreateCloudResourceDiscovery creates an additinoal cloud resource discvoery config within a cloud account.
+	CreateCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.CreateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.CreateCloudResourceDiscoveryResponse], error)
+	// GetCloudResourceDiscovery retrieves a cloud resource discovery config by ID.
+	GetCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.GetCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.GetCloudResourceDiscoveryResponse], error)
+	// ListCloudResourceDiscoveryConfigs returns all cloud resource discovery configs matching the optional filter.
+	ListCloudResourceDiscoveryConfigs(context.Context, *connect.Request[v1alpha1.ListCloudResourceDiscoveryConfigsRequest]) (*connect.Response[v1alpha1.ListCloudResourceDiscoveryConfigsResponse], error)
+	// UpdateCloudResourceDiscovery updates an existing cloud resource discovery config.
+	UpdateCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.UpdateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.UpdateCloudResourceDiscoveryResponse], error)
+	// DeleteCloudResourceDiscovery deletes a cloud resource discovery config by ID.
+	DeleteCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.DeleteCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.DeleteCloudResourceDiscoveryResponse], error)
 }
 
 // NewCloudAccountServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -203,6 +303,36 @@ func NewCloudAccountServiceHandler(svc CloudAccountServiceHandler, opts ...conne
 		connect.WithSchema(cloudAccountServiceMethods.ByName("DeleteCloudAccount")),
 		connect.WithHandlerOptions(opts...),
 	)
+	cloudAccountServiceCreateCloudResourceDiscoveryHandler := connect.NewUnaryHandler(
+		CloudAccountServiceCreateCloudResourceDiscoveryProcedure,
+		svc.CreateCloudResourceDiscovery,
+		connect.WithSchema(cloudAccountServiceMethods.ByName("CreateCloudResourceDiscovery")),
+		connect.WithHandlerOptions(opts...),
+	)
+	cloudAccountServiceGetCloudResourceDiscoveryHandler := connect.NewUnaryHandler(
+		CloudAccountServiceGetCloudResourceDiscoveryProcedure,
+		svc.GetCloudResourceDiscovery,
+		connect.WithSchema(cloudAccountServiceMethods.ByName("GetCloudResourceDiscovery")),
+		connect.WithHandlerOptions(opts...),
+	)
+	cloudAccountServiceListCloudResourceDiscoveryConfigsHandler := connect.NewUnaryHandler(
+		CloudAccountServiceListCloudResourceDiscoveryConfigsProcedure,
+		svc.ListCloudResourceDiscoveryConfigs,
+		connect.WithSchema(cloudAccountServiceMethods.ByName("ListCloudResourceDiscoveryConfigs")),
+		connect.WithHandlerOptions(opts...),
+	)
+	cloudAccountServiceUpdateCloudResourceDiscoveryHandler := connect.NewUnaryHandler(
+		CloudAccountServiceUpdateCloudResourceDiscoveryProcedure,
+		svc.UpdateCloudResourceDiscovery,
+		connect.WithSchema(cloudAccountServiceMethods.ByName("UpdateCloudResourceDiscovery")),
+		connect.WithHandlerOptions(opts...),
+	)
+	cloudAccountServiceDeleteCloudResourceDiscoveryHandler := connect.NewUnaryHandler(
+		CloudAccountServiceDeleteCloudResourceDiscoveryProcedure,
+		svc.DeleteCloudResourceDiscovery,
+		connect.WithSchema(cloudAccountServiceMethods.ByName("DeleteCloudResourceDiscovery")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.cloud_account.v1alpha1.CloudAccountService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case CloudAccountServiceCreateCloudAccountProcedure:
@@ -215,6 +345,16 @@ func NewCloudAccountServiceHandler(svc CloudAccountServiceHandler, opts ...conne
 			cloudAccountServiceUpdateCloudAccountHandler.ServeHTTP(w, r)
 		case CloudAccountServiceDeleteCloudAccountProcedure:
 			cloudAccountServiceDeleteCloudAccountHandler.ServeHTTP(w, r)
+		case CloudAccountServiceCreateCloudResourceDiscoveryProcedure:
+			cloudAccountServiceCreateCloudResourceDiscoveryHandler.ServeHTTP(w, r)
+		case CloudAccountServiceGetCloudResourceDiscoveryProcedure:
+			cloudAccountServiceGetCloudResourceDiscoveryHandler.ServeHTTP(w, r)
+		case CloudAccountServiceListCloudResourceDiscoveryConfigsProcedure:
+			cloudAccountServiceListCloudResourceDiscoveryConfigsHandler.ServeHTTP(w, r)
+		case CloudAccountServiceUpdateCloudResourceDiscoveryProcedure:
+			cloudAccountServiceUpdateCloudResourceDiscoveryHandler.ServeHTTP(w, r)
+		case CloudAccountServiceDeleteCloudResourceDiscoveryProcedure:
+			cloudAccountServiceDeleteCloudResourceDiscoveryHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -242,4 +382,24 @@ func (UnimplementedCloudAccountServiceHandler) UpdateCloudAccount(context.Contex
 
 func (UnimplementedCloudAccountServiceHandler) DeleteCloudAccount(context.Context, *connect.Request[v1alpha1.DeleteCloudAccountRequest]) (*connect.Response[v1alpha1.DeleteCloudAccountResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cloud_account.v1alpha1.CloudAccountService.DeleteCloudAccount is not implemented"))
+}
+
+func (UnimplementedCloudAccountServiceHandler) CreateCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.CreateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.CreateCloudResourceDiscoveryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cloud_account.v1alpha1.CloudAccountService.CreateCloudResourceDiscovery is not implemented"))
+}
+
+func (UnimplementedCloudAccountServiceHandler) GetCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.GetCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.GetCloudResourceDiscoveryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cloud_account.v1alpha1.CloudAccountService.GetCloudResourceDiscovery is not implemented"))
+}
+
+func (UnimplementedCloudAccountServiceHandler) ListCloudResourceDiscoveryConfigs(context.Context, *connect.Request[v1alpha1.ListCloudResourceDiscoveryConfigsRequest]) (*connect.Response[v1alpha1.ListCloudResourceDiscoveryConfigsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cloud_account.v1alpha1.CloudAccountService.ListCloudResourceDiscoveryConfigs is not implemented"))
+}
+
+func (UnimplementedCloudAccountServiceHandler) UpdateCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.UpdateCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.UpdateCloudResourceDiscoveryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cloud_account.v1alpha1.CloudAccountService.UpdateCloudResourceDiscovery is not implemented"))
+}
+
+func (UnimplementedCloudAccountServiceHandler) DeleteCloudResourceDiscovery(context.Context, *connect.Request[v1alpha1.DeleteCloudResourceDiscoveryRequest]) (*connect.Response[v1alpha1.DeleteCloudResourceDiscoveryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.cloud_account.v1alpha1.CloudAccountService.DeleteCloudResourceDiscovery is not implemented"))
 }

@@ -27,11 +27,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CloudAccountService_CreateCloudAccount_FullMethodName = "/proto.cloud_account.v1alpha1.CloudAccountService/CreateCloudAccount"
-	CloudAccountService_GetCloudAccount_FullMethodName    = "/proto.cloud_account.v1alpha1.CloudAccountService/GetCloudAccount"
-	CloudAccountService_ListCloudAccounts_FullMethodName  = "/proto.cloud_account.v1alpha1.CloudAccountService/ListCloudAccounts"
-	CloudAccountService_UpdateCloudAccount_FullMethodName = "/proto.cloud_account.v1alpha1.CloudAccountService/UpdateCloudAccount"
-	CloudAccountService_DeleteCloudAccount_FullMethodName = "/proto.cloud_account.v1alpha1.CloudAccountService/DeleteCloudAccount"
+	CloudAccountService_CreateCloudAccount_FullMethodName                = "/proto.cloud_account.v1alpha1.CloudAccountService/CreateCloudAccount"
+	CloudAccountService_GetCloudAccount_FullMethodName                   = "/proto.cloud_account.v1alpha1.CloudAccountService/GetCloudAccount"
+	CloudAccountService_ListCloudAccounts_FullMethodName                 = "/proto.cloud_account.v1alpha1.CloudAccountService/ListCloudAccounts"
+	CloudAccountService_UpdateCloudAccount_FullMethodName                = "/proto.cloud_account.v1alpha1.CloudAccountService/UpdateCloudAccount"
+	CloudAccountService_DeleteCloudAccount_FullMethodName                = "/proto.cloud_account.v1alpha1.CloudAccountService/DeleteCloudAccount"
+	CloudAccountService_CreateCloudResourceDiscovery_FullMethodName      = "/proto.cloud_account.v1alpha1.CloudAccountService/CreateCloudResourceDiscovery"
+	CloudAccountService_GetCloudResourceDiscovery_FullMethodName         = "/proto.cloud_account.v1alpha1.CloudAccountService/GetCloudResourceDiscovery"
+	CloudAccountService_ListCloudResourceDiscoveryConfigs_FullMethodName = "/proto.cloud_account.v1alpha1.CloudAccountService/ListCloudResourceDiscoveryConfigs"
+	CloudAccountService_UpdateCloudResourceDiscovery_FullMethodName      = "/proto.cloud_account.v1alpha1.CloudAccountService/UpdateCloudResourceDiscovery"
+	CloudAccountService_DeleteCloudResourceDiscovery_FullMethodName      = "/proto.cloud_account.v1alpha1.CloudAccountService/DeleteCloudResourceDiscovery"
 )
 
 // CloudAccountServiceClient is the client API for CloudAccountService service.
@@ -50,6 +55,16 @@ type CloudAccountServiceClient interface {
 	UpdateCloudAccount(ctx context.Context, in *UpdateCloudAccountRequest, opts ...grpc.CallOption) (*UpdateCloudAccountResponse, error)
 	// DeleteCloudAccount deletes a cloud account by ID.
 	DeleteCloudAccount(ctx context.Context, in *DeleteCloudAccountRequest, opts ...grpc.CallOption) (*DeleteCloudAccountResponse, error)
+	// CreateCloudResourceDiscovery creates an additinoal cloud resource discvoery config within a cloud account.
+	CreateCloudResourceDiscovery(ctx context.Context, in *CreateCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*CreateCloudResourceDiscoveryResponse, error)
+	// GetCloudResourceDiscovery retrieves a cloud resource discovery config by ID.
+	GetCloudResourceDiscovery(ctx context.Context, in *GetCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*GetCloudResourceDiscoveryResponse, error)
+	// ListCloudResourceDiscoveryConfigs returns all cloud resource discovery configs matching the optional filter.
+	ListCloudResourceDiscoveryConfigs(ctx context.Context, in *ListCloudResourceDiscoveryConfigsRequest, opts ...grpc.CallOption) (*ListCloudResourceDiscoveryConfigsResponse, error)
+	// UpdateCloudResourceDiscovery updates an existing cloud resource discovery config.
+	UpdateCloudResourceDiscovery(ctx context.Context, in *UpdateCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*UpdateCloudResourceDiscoveryResponse, error)
+	// DeleteCloudResourceDiscovery deletes a cloud resource discovery config by ID.
+	DeleteCloudResourceDiscovery(ctx context.Context, in *DeleteCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*DeleteCloudResourceDiscoveryResponse, error)
 }
 
 type cloudAccountServiceClient struct {
@@ -110,6 +125,56 @@ func (c *cloudAccountServiceClient) DeleteCloudAccount(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *cloudAccountServiceClient) CreateCloudResourceDiscovery(ctx context.Context, in *CreateCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*CreateCloudResourceDiscoveryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateCloudResourceDiscoveryResponse)
+	err := c.cc.Invoke(ctx, CloudAccountService_CreateCloudResourceDiscovery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudAccountServiceClient) GetCloudResourceDiscovery(ctx context.Context, in *GetCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*GetCloudResourceDiscoveryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCloudResourceDiscoveryResponse)
+	err := c.cc.Invoke(ctx, CloudAccountService_GetCloudResourceDiscovery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudAccountServiceClient) ListCloudResourceDiscoveryConfigs(ctx context.Context, in *ListCloudResourceDiscoveryConfigsRequest, opts ...grpc.CallOption) (*ListCloudResourceDiscoveryConfigsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListCloudResourceDiscoveryConfigsResponse)
+	err := c.cc.Invoke(ctx, CloudAccountService_ListCloudResourceDiscoveryConfigs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudAccountServiceClient) UpdateCloudResourceDiscovery(ctx context.Context, in *UpdateCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*UpdateCloudResourceDiscoveryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateCloudResourceDiscoveryResponse)
+	err := c.cc.Invoke(ctx, CloudAccountService_UpdateCloudResourceDiscovery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudAccountServiceClient) DeleteCloudResourceDiscovery(ctx context.Context, in *DeleteCloudResourceDiscoveryRequest, opts ...grpc.CallOption) (*DeleteCloudResourceDiscoveryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteCloudResourceDiscoveryResponse)
+	err := c.cc.Invoke(ctx, CloudAccountService_DeleteCloudResourceDiscovery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CloudAccountServiceServer is the server API for CloudAccountService service.
 // All implementations should embed UnimplementedCloudAccountServiceServer
 // for forward compatibility.
@@ -126,6 +191,16 @@ type CloudAccountServiceServer interface {
 	UpdateCloudAccount(context.Context, *UpdateCloudAccountRequest) (*UpdateCloudAccountResponse, error)
 	// DeleteCloudAccount deletes a cloud account by ID.
 	DeleteCloudAccount(context.Context, *DeleteCloudAccountRequest) (*DeleteCloudAccountResponse, error)
+	// CreateCloudResourceDiscovery creates an additinoal cloud resource discvoery config within a cloud account.
+	CreateCloudResourceDiscovery(context.Context, *CreateCloudResourceDiscoveryRequest) (*CreateCloudResourceDiscoveryResponse, error)
+	// GetCloudResourceDiscovery retrieves a cloud resource discovery config by ID.
+	GetCloudResourceDiscovery(context.Context, *GetCloudResourceDiscoveryRequest) (*GetCloudResourceDiscoveryResponse, error)
+	// ListCloudResourceDiscoveryConfigs returns all cloud resource discovery configs matching the optional filter.
+	ListCloudResourceDiscoveryConfigs(context.Context, *ListCloudResourceDiscoveryConfigsRequest) (*ListCloudResourceDiscoveryConfigsResponse, error)
+	// UpdateCloudResourceDiscovery updates an existing cloud resource discovery config.
+	UpdateCloudResourceDiscovery(context.Context, *UpdateCloudResourceDiscoveryRequest) (*UpdateCloudResourceDiscoveryResponse, error)
+	// DeleteCloudResourceDiscovery deletes a cloud resource discovery config by ID.
+	DeleteCloudResourceDiscovery(context.Context, *DeleteCloudResourceDiscoveryRequest) (*DeleteCloudResourceDiscoveryResponse, error)
 }
 
 // UnimplementedCloudAccountServiceServer should be embedded to have
@@ -149,6 +224,21 @@ func (UnimplementedCloudAccountServiceServer) UpdateCloudAccount(context.Context
 }
 func (UnimplementedCloudAccountServiceServer) DeleteCloudAccount(context.Context, *DeleteCloudAccountRequest) (*DeleteCloudAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCloudAccount not implemented")
+}
+func (UnimplementedCloudAccountServiceServer) CreateCloudResourceDiscovery(context.Context, *CreateCloudResourceDiscoveryRequest) (*CreateCloudResourceDiscoveryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCloudResourceDiscovery not implemented")
+}
+func (UnimplementedCloudAccountServiceServer) GetCloudResourceDiscovery(context.Context, *GetCloudResourceDiscoveryRequest) (*GetCloudResourceDiscoveryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCloudResourceDiscovery not implemented")
+}
+func (UnimplementedCloudAccountServiceServer) ListCloudResourceDiscoveryConfigs(context.Context, *ListCloudResourceDiscoveryConfigsRequest) (*ListCloudResourceDiscoveryConfigsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCloudResourceDiscoveryConfigs not implemented")
+}
+func (UnimplementedCloudAccountServiceServer) UpdateCloudResourceDiscovery(context.Context, *UpdateCloudResourceDiscoveryRequest) (*UpdateCloudResourceDiscoveryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCloudResourceDiscovery not implemented")
+}
+func (UnimplementedCloudAccountServiceServer) DeleteCloudResourceDiscovery(context.Context, *DeleteCloudResourceDiscoveryRequest) (*DeleteCloudResourceDiscoveryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCloudResourceDiscovery not implemented")
 }
 func (UnimplementedCloudAccountServiceServer) testEmbeddedByValue() {}
 
@@ -260,6 +350,96 @@ func _CloudAccountService_DeleteCloudAccount_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CloudAccountService_CreateCloudResourceDiscovery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCloudResourceDiscoveryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountServiceServer).CreateCloudResourceDiscovery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountService_CreateCloudResourceDiscovery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountServiceServer).CreateCloudResourceDiscovery(ctx, req.(*CreateCloudResourceDiscoveryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudAccountService_GetCloudResourceDiscovery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCloudResourceDiscoveryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountServiceServer).GetCloudResourceDiscovery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountService_GetCloudResourceDiscovery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountServiceServer).GetCloudResourceDiscovery(ctx, req.(*GetCloudResourceDiscoveryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudAccountService_ListCloudResourceDiscoveryConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCloudResourceDiscoveryConfigsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountServiceServer).ListCloudResourceDiscoveryConfigs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountService_ListCloudResourceDiscoveryConfigs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountServiceServer).ListCloudResourceDiscoveryConfigs(ctx, req.(*ListCloudResourceDiscoveryConfigsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudAccountService_UpdateCloudResourceDiscovery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCloudResourceDiscoveryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountServiceServer).UpdateCloudResourceDiscovery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountService_UpdateCloudResourceDiscovery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountServiceServer).UpdateCloudResourceDiscovery(ctx, req.(*UpdateCloudResourceDiscoveryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudAccountService_DeleteCloudResourceDiscovery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCloudResourceDiscoveryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountServiceServer).DeleteCloudResourceDiscovery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountService_DeleteCloudResourceDiscovery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountServiceServer).DeleteCloudResourceDiscovery(ctx, req.(*DeleteCloudResourceDiscoveryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CloudAccountService_ServiceDesc is the grpc.ServiceDesc for CloudAccountService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -286,6 +466,26 @@ var CloudAccountService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCloudAccount",
 			Handler:    _CloudAccountService_DeleteCloudAccount_Handler,
+		},
+		{
+			MethodName: "CreateCloudResourceDiscovery",
+			Handler:    _CloudAccountService_CreateCloudResourceDiscovery_Handler,
+		},
+		{
+			MethodName: "GetCloudResourceDiscovery",
+			Handler:    _CloudAccountService_GetCloudResourceDiscovery_Handler,
+		},
+		{
+			MethodName: "ListCloudResourceDiscoveryConfigs",
+			Handler:    _CloudAccountService_ListCloudResourceDiscoveryConfigs_Handler,
+		},
+		{
+			MethodName: "UpdateCloudResourceDiscovery",
+			Handler:    _CloudAccountService_UpdateCloudResourceDiscovery_Handler,
+		},
+		{
+			MethodName: "DeleteCloudResourceDiscovery",
+			Handler:    _CloudAccountService_DeleteCloudResourceDiscovery_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
