@@ -1,0 +1,89 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the CloudAccountService gRPC service for managing
+// cloud accounts in the Connect control plane. Cloud accounts represent
+// cloud provider accounts linked to a Cofide organization and are the
+// target for workload discovery.
+
+syntax = "proto3";
+
+package proto.connect.cloud_account_service.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "proto/cloud_account/v1alpha1/cloud_account.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/cloud_account_service/v1alpha1";
+
+// CloudAccountService manages cloud accounts in the Connect control plane.
+service CloudAccountService {
+  // CreateCloudAccount creates a new cloud account.
+  rpc CreateCloudAccount(CreateCloudAccountRequest) returns (CreateCloudAccountResponse);
+  // GetCloudAccount retrieves a cloud account by ID.
+  rpc GetCloudAccount(GetCloudAccountRequest) returns (GetCloudAccountResponse);
+  // ListCloudAccounts returns all cloud accounts matching the optional filter.
+  rpc ListCloudAccounts(ListCloudAccountsRequest) returns (ListCloudAccountsResponse);
+  // UpdateCloudAccount updates an existing cloud account.
+  rpc UpdateCloudAccount(UpdateCloudAccountRequest) returns (UpdateCloudAccountResponse);
+  // DestroyCloudAccount deletes a cloud account by ID.
+  rpc DestroyCloudAccount(DestroyCloudAccountRequest) returns (DestroyCloudAccountResponse);
+}
+
+message CreateCloudAccountRequest {
+  proto.cloud_account.v1alpha1.CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateCloudAccountResponse {
+  proto.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
+}
+
+message GetCloudAccountRequest {
+  string cloud_account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetCloudAccountResponse {
+  optional proto.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
+}
+
+message ListCloudAccountsRequest {
+  message Filter {
+    repeated string org_ids = 1 [(google.api.field_behavior) = OPTIONAL];
+    repeated string cloud_organization_ids = 2 [(google.api.field_behavior) = OPTIONAL];
+    // When true, suppressed accounts are included in the response. Defaults to false.
+    bool include_suppressed = 3 [(google.api.field_behavior) = OPTIONAL];
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListCloudAccountsResponse {
+  repeated proto.cloud_account.v1alpha1.CloudAccount cloud_accounts = 1;
+}
+
+message UpdateCloudAccountRequest {
+  message UpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws lambda discovery config field.
+    bool aws_lambda_discovery_config = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws agent core discovery config field.
+    bool aws_agent_core_discovery_config = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the suppressed field.
+    bool suppressed = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the managed by discovery field.
+    bool managed_by_discovery = 5 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  proto.cloud_account.v1alpha1.CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateCloudAccountResponse {
+  proto.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
+}
+
+message DestroyCloudAccountRequest {
+  string cloud_account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DestroyCloudAccountResponse {}
