@@ -10,6 +10,7 @@ import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
@@ -47,6 +48,7 @@ type FakeConnect struct {
 	Identities          map[string]*identitypb.Identity
 	RoleBindings        map[string]*rolebindingpb.RoleBinding
 	AuditEvents         map[string]*auditpb.Event
+	CloudAccounts       map[string]*cloudaccountpb.CloudAccount
 }
 
 func New() *FakeConnect {
@@ -69,6 +71,7 @@ func New() *FakeConnect {
 		Identities:          make(map[string]*identitypb.Identity),
 		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
 		AuditEvents:         make(map[string]*auditpb.Event),
+		CloudAccounts:       make(map[string]*cloudaccountpb.CloudAccount),
 	}
 }
 
@@ -159,6 +162,13 @@ func (f *FakeConnect) ValidateRoleBinding(roleBindingID string) error {
 func (f *FakeConnect) ValidateAuditEvent(auditEventID string) error {
 	if _, ok := f.AuditEvents[auditEventID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid audit event")
+	}
+	return nil
+}
+
+func (f *FakeConnect) ValidateCloudAccount(cloudAccountID string) error {
+	if _, ok := f.CloudAccounts[cloudAccountID]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid cloud account")
 	}
 	return nil
 }

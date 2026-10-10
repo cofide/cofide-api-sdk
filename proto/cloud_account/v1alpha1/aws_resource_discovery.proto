@@ -1,0 +1,55 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// TODO - update
+// This file defines the AWSAccount message and messages used only as fields within it.
+// AWSAccount is a sub-type within the more general CloudAccount resource providing AWS
+// specific configuration. This is used to configure automatic discovery of AWS resources
+// and make them visible through Connect.
+
+syntax = "proto3";
+
+package proto.cloud_account.v1alpha1;
+
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1";
+
+// AWSLambdaDiscoveryConfig contains configuration for Lambda function discovery.
+message AWSLambdaDiscoveryConfig {
+  // AWS regions to discover resources in. An empty list effectively disables discovery.
+  repeated string regions = 1 [(google.api.field_behavior) = OPTIONAL];;
+  // Ordered chain of IAM roles to assume.
+  AWSAssumeRoleConfig role_chain = 6 [(google.api.field_behavior) = REQUIRED];
+}
+
+// AWSAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
+message AWSAgentCoreDiscoveryConfig {
+  // AWS regions to discover resources in. An empty list effectively disables discovery.
+  repeated string regions = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Ordered chain of IAM roles to assume.
+  AWSAssumeRoleConfig role_chain = 6 [(google.api.field_behavior) = REQUIRED];
+}
+
+// AWSAssumeRoleConfig configures a single step in an IAM role chain.
+// Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
+// ambient credentials (e.g. EKS Pod Identity) is controlled by the
+// assume_through_oidc field on the owning config; subsequent steps always use
+// plain AssumeRole with the credentials from the prior step.
+message AWSAssumeRoleConfig {
+  message Role {
+    // ARN of the IAM role to assume.
+    string iam_role_arn = 1 [(google.api.field_behavior) = REQUIRED];
+    // Optional external ID for confused-deputy protection.
+    string external_id = 2 [(google.api.field_behavior) = OPTIONAL];
+  }
+  // Whether the first role in role_chain is assumed via SPIFFE JWT-based
+  // AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
+  // such as EKS Pod Identity (false).
+  bool assume_through_oidc = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Audience value for the initial SPIFFE JWT-based assume role call.
+  // Only used when assume_through_oidc is true.
+  // Required when assume_through_oidc is true.
+  string audience = 2 [(google.api.field_behavior) = OPTIONAL];
+  repeated Role roles = 3 [(google.api.field_behavior) = REQUIRED];
+}

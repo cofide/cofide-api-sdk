@@ -1,0 +1,178 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the CloudAccountService gRPC service for managing
+// cloud accounts in the Connect control plane. Cloud accounts represent
+// cloud provider accounts linked to a Cofide organization and are used for
+// target for workload discovery.
+
+syntax = "proto3";
+
+package proto.cloud_account.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/duration.proto";
+import "proto/cloud_account/v1alpha1/cloud_account.proto";
+import "proto/cloud_account/v1alpha1/discovery.proto";
+import "proto/common/pagination/v1beta1/pagination.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1";
+
+// CloudAccountService manages cloud accounts in the Connect control plane.
+service CloudAccountService {
+  // CreateCloudAccount creates a new cloud account.
+  rpc CreateCloudAccount(CreateCloudAccountRequest) returns (CreateCloudAccountResponse);
+  // GetCloudAccount retrieves a cloud account by ID.
+  rpc GetCloudAccount(GetCloudAccountRequest) returns (GetCloudAccountResponse);
+  // ListCloudAccounts returns all cloud accounts matching the optional filter.
+  rpc ListCloudAccounts(ListCloudAccountsRequest) returns (ListCloudAccountsResponse);
+  // UpdateCloudAccount updates an existing cloud account.
+  rpc UpdateCloudAccount(UpdateCloudAccountRequest) returns (UpdateCloudAccountResponse);
+  // DeleteCloudAccount deletes a cloud account by ID.
+  rpc DeleteCloudAccount(DeleteCloudAccountRequest) returns (DeleteCloudAccountResponse);
+
+  // CreateCloudResourceDiscovery creates an additinoal cloud resource discvoery config within a cloud account.
+  rpc CreateCloudResourceDiscovery(CreateCloudResourceDiscoveryRequest) returns (CreateCloudResourceDiscoveryResponse);
+  // GetCloudResourceDiscovery retrieves a cloud resource discovery config by ID.
+  rpc GetCloudResourceDiscovery(GetCloudResourceDiscoveryRequest) returns (GetCloudResourceDiscoveryResponse);
+  // ListCloudResourceDiscoveryConfigs returns all cloud resource discovery configs matching the optional filter.
+  rpc ListCloudResourceDiscoveryConfigs(ListCloudResourceDiscoveryConfigsRequest) returns (ListCloudResourceDiscoveryConfigsResponse);
+  // UpdateCloudResourceDiscovery updates an existing cloud resource discovery config.
+  rpc UpdateCloudResourceDiscovery(UpdateCloudResourceDiscoveryRequest) returns (UpdateCloudResourceDiscoveryResponse);
+  // DeleteCloudResourceDiscovery deletes a cloud resource discovery config by ID.
+  rpc DeleteCloudResourceDiscovery(DeleteCloudResourceDiscoveryRequest) returns (DeleteCloudResourceDiscoveryResponse);
+}
+
+message CreateCloudAccountRequest {
+  CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateCloudAccountResponse {
+  CloudAccount cloud_account = 1;
+}
+
+message GetCloudAccountRequest {
+  string cloud_account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetCloudAccountResponse {
+  CloudAccount cloud_account = 1;
+}
+
+message ListCloudAccountsRequest {
+  message Filter {}
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  proto.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListCloudAccountsResponse {
+  repeated CloudAccount cloud_accounts = 1;
+  proto.common.pagination.v1beta1.PageResponse pagination = 2;
+}
+
+message UpdateCloudAccountRequest {
+  message AWSAccountUpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the aws account ID field (only valid for AWS accounts).
+    bool aws_account_id = 2 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  // The update mask should align with the type being updated.
+  oneof update_mask {
+    AWSAccountUpdateMask aws_account_update_mask = 2;
+  }
+}
+
+message UpdateCloudAccountResponse {
+  CloudAccount cloud_account = 1;
+}
+
+message DeleteCloudAccountRequest {
+  string cloud_account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteCloudAccountResponse {}
+
+message CreateCloudResourceDiscoveryRequest {
+  CloudResourceDiscovery cloud_resource_discovery = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateCloudResourceDiscoveryResponse {
+  CloudResourceDiscovery cloud_resource_discovery = 1;
+}
+
+message GetCloudResourceDiscoveryRequest {
+  string cloud_resource_discovery_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetCloudResourceDiscoveryResponse {
+  CloudResourceDiscovery cloud_resource_discovery = 1;
+}
+
+message ListCloudResourceDiscoveryConfigsRequest {
+  message Filter {}
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  proto.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListCloudResourceDiscoveryConfigsResponse {
+  repeated CloudResourceDiscovery cloud_resource_discovery_configs = 1;
+  proto.common.pagination.v1beta1.PageResponse pagination = 2;
+}
+
+message UpdateCloudResourceDiscoveryRequest {
+  message AWSLambdaDiscoveryConfigUpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the disabled field.
+    bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the discovery_interval field.
+    google.protobuf.Duration discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the regions field.
+    bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the assume through OIDC field on the assume role config.
+    bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the audience field on the assume role config.
+    bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the roles field on the assume role config.
+    bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
+    // Human-readable name for the cloud resource discovery config within Connect.
+  }
+  message AWSAgentCoreDiscoveryConfigUpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the disabled field.
+    bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the discovery_interval field.
+    google.protobuf.Duration discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the regions field.
+    bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the assume through OIDC field on the assume role config.
+    bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the audience field on the assume role config.
+    bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the roles field on the assume role config.
+    bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  CloudResourceDiscovery cloud_resource_discovery = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement will be made.
+  // The update mask should align with the type being updated.
+  oneof update_mask {
+    AWSLambdaDiscoveryConfigUpdateMask aws_lambda_discovery_config_update_mask = 2;
+    AWSAgentCoreDiscoveryConfigUpdateMask aws_agent_core_discovery_config_update_mask = 3;
+  }
+}
+
+message UpdateCloudResourceDiscoveryResponse {
+  CloudResourceDiscovery cloud_resource_discovery = 1;
+}
+
+message DeleteCloudResourceDiscoveryRequest {
+  string cloud_resource_discovery_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteCloudResourceDiscoveryResponse {}
