@@ -75,12 +75,26 @@ enum ExchangeDenyReason {
   EXCHANGE_DENY_REASON_NO_MATCHING_POLICY = 3;
 }
 
+// ExchangeActor identifies an actor in a token exchange request.
+message ExchangeActor {
+  string identity = 1 [(google.api.field_behavior) = REQUIRED];
+  string issuer = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
 message RecordExchangeRequest {
   // Exchange request details — populated for all outcomes.
   string subject_identity = 1 [(google.api.field_behavior) = REQUIRED];
   string subject_issuer = 2 [(google.api.field_behavior) = REQUIRED];
-  string actor_identity = 3 [(google.api.field_behavior) = OPTIONAL];
-  string actor_issuer = 4 [(google.api.field_behavior) = OPTIONAL];
+  // Deprecated: use actors instead.
+  string actor_identity = 3 [
+    deprecated = true,
+    (google.api.field_behavior) = OPTIONAL
+  ];
+  // Deprecated: use actors instead.
+  string actor_issuer = 4 [
+    deprecated = true,
+    (google.api.field_behavior) = OPTIONAL
+  ];
   string client_id = 5 [(google.api.field_behavior) = OPTIONAL];
   repeated string target_audiences = 6 [(google.api.field_behavior) = OPTIONAL];
   repeated string requested_scopes = 7 [(google.api.field_behavior) = OPTIONAL];
@@ -98,6 +112,8 @@ message RecordExchangeRequest {
   string outbound_identity = 12 [(google.api.field_behavior) = OPTIONAL];
   // Outbound scopes granted on the exchanged token. Only set when outcome = OUTCOME_SUCCESS.
   repeated string outbound_scopes = 13 [(google.api.field_behavior) = OPTIONAL];
+  // Actors in the exchange request. Replaces actor_identity and actor_issuer.
+  repeated ExchangeActor actors = 14 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message RecordExchangeResponse {}
