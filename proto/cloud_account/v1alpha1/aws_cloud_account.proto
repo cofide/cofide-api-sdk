@@ -1,0 +1,25 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// TODO - update
+// This file defines the AWSAccount message and messages used only as fields within it.
+// AWSAccount is a sub-type within the more general CloudAccount resource providing AWS
+// specific configuration. This is used to configure automatic discovery of AWS resources
+// and make them visible through Connect.
+
+syntax = "proto3";
+
+package proto.cloud_account.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "proto/cloud_account/v1alpha1/discovery.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1";
+
+// AWSAccount contains AWS-specific configuration for a cloud account.
+message AWSAccount {
+  // 12-digit AWS account ID.
+  string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
