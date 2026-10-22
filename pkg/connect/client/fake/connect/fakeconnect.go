@@ -10,6 +10,7 @@ import (
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
@@ -27,8 +28,14 @@ import (
 )
 
 // FakeConnect implements the state for a fake Connect service.
+//
+// Mu guards all of the maps below. Fake client methods must hold it for the
+// whole of any operation that reads or writes them: Lock for operations that
+// modify state, RLock for read-only operations such as Get and List. This
+// includes the Validate* helpers, which read the maps without locking and so
+// must only be called with Mu held.
 type FakeConnect struct {
-	Mu                  sync.Mutex
+	Mu                  sync.RWMutex
 	Organizations       map[string]*organizationpb.Organization
 	TrustZones          map[string]*trustzonepb.TrustZone
 	TrustZoneBundles    map[string]*types.Bundle
@@ -47,6 +54,7 @@ type FakeConnect struct {
 	Identities          map[string]*identitypb.Identity
 	RoleBindings        map[string]*rolebindingpb.RoleBinding
 	AuditEvents         map[string]*auditpb.Event
+	CloudAccounts       map[string]*cloudaccountpb.CloudAccount
 }
 
 func New() *FakeConnect {
@@ -69,6 +77,7 @@ func New() *FakeConnect {
 		Identities:          make(map[string]*identitypb.Identity),
 		RoleBindings:        make(map[string]*rolebindingpb.RoleBinding),
 		AuditEvents:         make(map[string]*auditpb.Event),
+		CloudAccounts:       make(map[string]*cloudaccountpb.CloudAccount),
 	}
 }
 
