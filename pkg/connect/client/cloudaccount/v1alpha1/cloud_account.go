@@ -1,0 +1,83 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+package v1alpha1
+
+import (
+	"context"
+
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
+	"google.golang.org/grpc"
+)
+
+// CloudAccountClient is an interface for a gRPC client for the v1alpha1 version of the Connect CloudAccountService.
+type CloudAccountClient interface {
+	CreateCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount) (*cloudaccountpb.CloudAccount, error)
+	DeleteCloudAccount(ctx context.Context, cloudAccountID string) error
+	GetCloudAccount(ctx context.Context, cloudAccountID string) (*cloudaccountpb.CloudAccount, error)
+	ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, pagination *v1beta1.PageRequest) ([]*cloudaccountpb.CloudAccount, string, error)
+	UpdateAWSCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask) (*cloudaccountpb.CloudAccount, error)
+}
+
+type cloudAccountClient struct {
+	client cloudaccountpb.CloudAccountServiceClient
+}
+
+// New instantiates a new ExchangePolicyClient for communication with a Connect API.
+func New(conn grpc.ClientConnInterface) CloudAccountClient {
+	return &cloudAccountClient{
+		client: cloudaccountpb.NewCloudAccountServiceClient(conn),
+	}
+}
+
+func (c *cloudAccountClient) CreateCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount) (*cloudaccountpb.CloudAccount, error) {
+	resp, err := c.client.CreateCloudAccount(ctx, &cloudaccountpb.CreateCloudAccountRequest{
+		CloudAccount: cloudAccount,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return resp.GetCloudAccount(), nil
+}
+
+func (c *cloudAccountClient) DeleteCloudAccount(ctx context.Context, cloudAccountID string) error {
+	_, err := c.client.DeleteCloudAccount(ctx, &cloudaccountpb.DeleteCloudAccountRequest{
+		CloudAccountId: cloudAccountID,
+	})
+	return err
+}
+
+func (c *cloudAccountClient) GetCloudAccount(ctx context.Context, cloudAccountID string) (*cloudaccountpb.CloudAccount, error) {
+	resp, err := c.client.GetCloudAccount(ctx, &cloudaccountpb.GetCloudAccountRequest{
+		CloudAccountId: cloudAccountID,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return resp.GetCloudAccount(), nil
+}
+
+func (c *cloudAccountClient) ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, pagination *v1beta1.PageRequest) ([]*cloudaccountpb.CloudAccount, string, error) {
+	resp, err := c.client.ListCloudAccounts(ctx, &cloudaccountpb.ListCloudAccountsRequest{
+		Filter:     filter,
+		Pagination: pagination,
+	})
+	if err != nil {
+		return nil, "", err
+	}
+	return resp.GetCloudAccounts(), resp.GetPagination().GetNextPageToken(), nil
+}
+
+func (c *cloudAccountClient) UpdateAWSCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask) (*cloudaccountpb.CloudAccount, error) {
+	resp, err := c.client.UpdateCloudAccount(ctx, &cloudaccountpb.UpdateCloudAccountRequest{
+		CloudAccount: cloudAccount,
+		UpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
+			AwsAccountUpdateMask: updateMask,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return resp.GetCloudAccount(), nil
+}
