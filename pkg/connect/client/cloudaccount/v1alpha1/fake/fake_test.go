@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_resource_discovery_config/v1alpha1"
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1/fake"
@@ -141,12 +142,32 @@ func Test_DeleteCloudAccount(t *testing.T) {
 		},
 	)
 	require.NoError(t, err)
+	withConfigs, err := fakeClient.CreateCloudAccount(
+		t.Context(),
+		&cloudaccountpb.CloudAccount{
+			OrgId: org.GetId(),
+			Name:  "fake-aws-cloud-account-2",
+			Provider: &cloudaccountpb.CloudAccount_Aws{
+				Aws: &cloudaccountpb.AWSAccount{
+					AccountId: "1234566789013",
+				},
+			},
+		},
+	)
+	require.NoError(t, err)
+	config := &crdcpb.CloudResourceDiscoveryConfig{
+		Id:             uuid.New().String(),
+		CloudAccountId: withConfigs.GetId(),
+		Name:           "fake-config",
+	}
+	fakeConnect.CloudResourceDiscoveryConfigs[config.GetId()] = config
 
 	tests := []struct {
 		name            string
 		cloudAccountID  string
 		expectedErr     string
 		expectedErrCode codes.Code
+		expectStored    bool // whether the cloud account should remain in the fake after an error
 	}{
 		{
 			name:           "success",
@@ -157,6 +178,13 @@ func Test_DeleteCloudAccount(t *testing.T) {
 			cloudAccountID:  "non-existent",
 			expectedErr:     "rpc error: code = NotFound desc = cloud account not found",
 			expectedErrCode: codes.NotFound,
+		},
+		{
+			name:            "error - has cloud resource discovery configs",
+			cloudAccountID:  withConfigs.GetId(),
+			expectedErr:     "rpc error: code = FailedPrecondition desc = cloud account has cloud resource discovery configs",
+			expectedErrCode: codes.FailedPrecondition,
+			expectStored:    true,
 		},
 	}
 	for _, tt := range tests {
@@ -170,6 +198,10 @@ func Test_DeleteCloudAccount(t *testing.T) {
 			if tt.expectedErr != "" {
 				require.EqualError(t, err, tt.expectedErr)
 				assert.Equal(t, tt.expectedErrCode, status.Code(err))
+				if tt.expectStored {
+					_, err = fakeClient.GetCloudAccount(t.Context(), tt.cloudAccountID)
+					assert.NoError(t, err)
+				}
 				return
 			}
 			require.NoError(t, err)
