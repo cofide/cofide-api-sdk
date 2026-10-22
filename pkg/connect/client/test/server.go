@@ -32,10 +32,15 @@ func NewTestServer(t *testing.T) *TestServer {
 }
 
 func (ts *TestServer) Serve() {
+	errCh := make(chan error, 1)
 	go func() {
-		err := ts.Server.Serve(ts.Listener)
-		require.NoError(ts.t, err)
+		errCh <- ts.Server.Serve(ts.Listener)
 	}()
+	ts.t.Cleanup(func() {
+		ts.Server.Stop()
+		require.NoError(ts.t, <-errCh)
+	})
+
 }
 
 // BuildTestConn creates a gRPC client connection for the provided TestServer.
