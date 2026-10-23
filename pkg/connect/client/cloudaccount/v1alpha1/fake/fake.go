@@ -57,6 +57,11 @@ func (c *fakeCloudAccountClient) DeleteCloudAccount(ctx context.Context, cloudAc
 	if _, ok := c.fake.CloudAccounts[cloudAccountID]; !ok {
 		return status.Error(codes.NotFound, "cloud account not found")
 	}
+	for config := range fakeconnect.SortedValues(c.fake.CloudResourceDiscoveryConfigs) {
+		if config.GetCloudAccountId() == cloudAccountID {
+			return status.Error(codes.FailedPrecondition, "cloud account has cloud resource discovery configs")
+		}
+	}
 	delete(c.fake.CloudAccounts, cloudAccountID)
 	return nil
 }
