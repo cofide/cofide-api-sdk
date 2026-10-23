@@ -7,6 +7,7 @@ import (
 	agentv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/agent/v1alpha1"
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
+	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
@@ -27,6 +28,7 @@ type ClientSet interface {
 	OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient
 	TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient
 	TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneServerClient
+	CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient
 	ClusterV1Alpha1() clusterv1alpha1.ClusterClient
 	AgentV1Alpha1() agentv1alpha1.AgentClient
 	AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient
@@ -44,6 +46,7 @@ type clientSet struct {
 	auditV1Alpha1             auditv1alpha1.AuditClient
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
+	cloudAccountV1Alpha1      cloudaccountv1alpha1.CloudAccountClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	federationV1Alpha1        federationV1Alpha1.FederationClient
@@ -62,6 +65,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		auditV1Alpha1:             auditv1alpha1.New(conn),
 		exchangePolicyV1Alpha1:    exchangepolicyv1alpha1.New(conn),
 		attestationPolicyV1Alpha1: attestationpolicyv1alpha1.New(conn),
+		cloudAccountV1Alpha1:      cloudaccountv1alpha1.New(conn),
 		clusterV1Alpha1:           clusterv1alpha1.New(conn),
 		datastoreV1Alpha1:         datastorev1alpha1.New(conn),
 		federationV1Alpha1:        federationV1Alpha1.New(conn),
@@ -88,6 +92,10 @@ func (c *clientSet) ExchangePolicyV1Alpha1() exchangepolicyv1alpha1.ExchangePoli
 
 func (c *clientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient {
 	return c.attestationPolicyV1Alpha1
+}
+
+func (c *clientSet) CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient {
+	return c.cloudAccountV1Alpha1
 }
 
 func (c *clientSet) ClusterV1Alpha1() clusterv1alpha1.ClusterClient {
