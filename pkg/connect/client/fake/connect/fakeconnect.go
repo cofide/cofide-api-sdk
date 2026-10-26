@@ -72,23 +72,9 @@ func New() *FakeConnect {
 	}
 }
 
-func (f *FakeConnect) ValidateOrganization(organizationID string) error {
-	if _, ok := f.Organizations[organizationID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid organization")
-	}
-	return nil
-}
-
 func (f *FakeConnect) ValidateTrustZone(trustZoneID string) error {
 	if _, ok := f.TrustZones[trustZoneID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid trust zone")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateTrustZoneServer(trustZoneServerID string) error {
-	if _, ok := f.TrustZoneServers[trustZoneServerID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid trust zone server")
 	}
 	return nil
 }
@@ -110,55 +96,6 @@ func (f *FakeConnect) ValidateAgent(agentID string) error {
 func (f *FakeConnect) ValidateFederatedService(federatedServiceID string) error {
 	if _, ok := f.FederatedServices[federatedServiceID]; !ok {
 		return status.Error(codes.InvalidArgument, "invalid federated service")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateAttestationPolicy(policyID string) error {
-	if _, ok := f.AttestationPolicies[policyID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid attestation policy")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateExchangePolicy(policyID string) error {
-	if _, ok := f.ExchangePolicies[policyID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid exchange policy")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateFederation(federationID string) error {
-	if _, ok := f.Federations[federationID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid federation")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateWorkload(workloadID string) error {
-	if _, ok := f.Workloads[workloadID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid workload")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateIdentity(identityID string) error {
-	if _, ok := f.Identities[identityID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid identity")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateRoleBinding(roleBindingID string) error {
-	if _, ok := f.RoleBindings[roleBindingID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid role binding")
-	}
-	return nil
-}
-
-func (f *FakeConnect) ValidateAuditEvent(auditEventID string) error {
-	if _, ok := f.AuditEvents[auditEventID]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid audit event")
 	}
 	return nil
 }
