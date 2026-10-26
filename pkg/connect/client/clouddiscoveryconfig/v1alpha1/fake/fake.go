@@ -106,10 +106,39 @@ func configMatches(_ *crdcpb.CloudDiscoveryConfig, filter *crdcpb.ListCloudDisco
 	return true
 }
 
-func (c *fakeCloudDiscoveryConfigClient) UpdateAWSLambdaCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
+func (c *fakeCloudDiscoveryConfigClient) UpdateCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask crdcv1alpha1.UpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
+	// Build the request as the real client does, so that the mask is interpreted as the server would see it.
+	req := crdcv1alpha1.NewUpdateRequest(config, updateMask)
+	switch mask := req.GetUpdateMask().(type) {
+	case *crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask:
+		return c.updateAWSLambda(config, mask.AwsLambdaDiscoveryConfigUpdateMask)
+	case *crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask:
+		return c.updateAWSAgentCore(config, mask.AwsAgentCoreDiscoveryConfigUpdateMask)
+	case nil:
+		// No mask is a full replacement of a config of the same type as the existing config.
+		existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
+		if !ok {
+			return nil, status.Error(codes.NotFound, "cloud resource discovery config not found")
+		}
+		switch existing.GetDiscoveryConfig().(type) {
+		case *crdcpb.CloudDiscoveryConfig_AwsLambdaDiscoveryConfig:
+			return c.updateAWSLambda(config, nil)
+		case *crdcpb.CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig:
+			return c.updateAWSAgentCore(config, nil)
+		default:
+			return nil, status.Error(codes.Internal, "cloud resource discovery config has an unsupported type")
+		}
+	default:
+		return nil, status.Error(codes.InvalidArgument, "unsupported update mask")
+	}
+}
+
+// updateAWSLambda updates an AWS Lambda discovery config. A nil mask is a full replacement.
+// The caller must hold the fake's lock.
+func (c *fakeCloudDiscoveryConfigClient) updateAWSLambda(config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
 	existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
 	if !ok {
 		return nil, status.Error(codes.NotFound, "cloud resource discovery config not found")
@@ -145,10 +174,9 @@ func (c *fakeCloudDiscoveryConfigClient) UpdateAWSLambdaCloudDiscoveryConfig(ctx
 	return c.store(existing), nil
 }
 
-func (c *fakeCloudDiscoveryConfigClient) UpdateAWSAgentCoreCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
-	c.fake.Mu.Lock()
-	defer c.fake.Mu.Unlock()
-
+// updateAWSAgentCore updates an AWS AgentCore discovery config. A nil mask is a full replacement.
+// The caller must hold the fake's lock.
+func (c *fakeCloudDiscoveryConfigClient) updateAWSAgentCore(config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
 	existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
 	if !ok {
 		return nil, status.Error(codes.NotFound, "cloud resource discovery config not found")

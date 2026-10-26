@@ -39,10 +39,7 @@ func Test_CloudDiscoveryConfigClient_Unimplemented(t *testing.T) {
 	_, _, err = client.ListCloudDiscoveryConfigs(t.Context(), nil, pagination.Pagination{})
 	test.RequireUnimplemented(t, err)
 
-	_, err = client.UpdateAWSLambdaCloudDiscoveryConfig(t.Context(), nil, nil)
-	test.RequireUnimplemented(t, err)
-
-	_, err = client.UpdateAWSAgentCoreCloudDiscoveryConfig(t.Context(), nil, nil)
+	_, err = client.UpdateCloudDiscoveryConfig(t.Context(), nil, nil)
 	test.RequireUnimplemented(t, err)
 }
 
@@ -96,67 +93,61 @@ func Test_ListCloudDiscoveryConfigs(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
+func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 	client, fakeService := clientForTest(t)
 
 	input := lambdaConfig()
 	input.Id = "test-id"
-	updateMask := &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
-		Name:     true,
-		Regions:  true,
-		Audience: true,
-	}
 	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{
 		CloudDiscoveryConfig: input,
 		UpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask{
-			AwsLambdaDiscoveryConfigUpdateMask: updateMask,
+			AwsLambdaDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
+				Name:     true,
+				Regions:  true,
+				Audience: true,
+			},
 		},
 	}
 
-	_, err := client.UpdateAWSLambdaCloudDiscoveryConfig(t.Context(), input, updateMask)
+	_, err := client.UpdateCloudDiscoveryConfig(t.Context(), input, v1alpha1.AWSLambdaUpdateMask(v1alpha1.AWSLambdaUpdateFields{
+		Name:     true,
+		Regions:  true,
+		Audience: true,
+	}))
 	require.NoError(t, err)
 }
 
-func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
+func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 	client, fakeService := clientForTest(t)
 
 	input := agentCoreConfig()
 	input.Id = "test-id"
-	updateMask := &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
-		Disabled: true,
-		Roles:    true,
-	}
 	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{
 		CloudDiscoveryConfig: input,
 		UpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask{
-			AwsAgentCoreDiscoveryConfigUpdateMask: updateMask,
+			AwsAgentCoreDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
+				Disabled: true,
+				Roles:    true,
+			},
 		},
 	}
 
-	_, err := client.UpdateAWSAgentCoreCloudDiscoveryConfig(t.Context(), input, updateMask)
+	_, err := client.UpdateCloudDiscoveryConfig(t.Context(), input, v1alpha1.AWSAgentCoreUpdateMask(v1alpha1.AWSAgentCoreUpdateFields{
+		Disabled: true,
+		Roles:    true,
+	}))
 	require.NoError(t, err)
 }
 
 // A nil mask must not be sent as an empty mask, which the server would treat as "update nothing".
-func Test_UpdateAWSLambdaCloudDiscoveryConfig_NilUpdateMask(t *testing.T) {
+func Test_UpdateCloudDiscoveryConfig_NilUpdateMask(t *testing.T) {
 	client, fakeService := clientForTest(t)
 
 	input := lambdaConfig()
 	input.Id = "test-id"
 	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: input}
 
-	_, err := client.UpdateAWSLambdaCloudDiscoveryConfig(t.Context(), input, nil)
-	require.NoError(t, err)
-}
-
-func Test_UpdateAWSAgentCoreCloudDiscoveryConfig_NilUpdateMask(t *testing.T) {
-	client, fakeService := clientForTest(t)
-
-	input := agentCoreConfig()
-	input.Id = "test-id"
-	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: input}
-
-	_, err := client.UpdateAWSAgentCoreCloudDiscoveryConfig(t.Context(), input, nil)
+	_, err := client.UpdateCloudDiscoveryConfig(t.Context(), input, nil)
 	require.NoError(t, err)
 }
 

@@ -18,8 +18,7 @@ type CloudDiscoveryConfigClient interface {
 	DeleteCloudDiscoveryConfig(ctx context.Context, configID string) error
 	GetCloudDiscoveryConfig(ctx context.Context, configID string) (*crdcpb.CloudDiscoveryConfig, error)
 	ListCloudDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter, pagination pagination.Pagination) ([]*crdcpb.CloudDiscoveryConfig, pagination.Pagination, error)
-	UpdateAWSLambdaCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error)
-	UpdateAWSAgentCoreCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error)
+	UpdateCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask UpdateMask) (*crdcpb.CloudDiscoveryConfig, error)
 }
 
 type cloudDiscoveryConfigClient struct {
@@ -71,32 +70,8 @@ func (c *cloudDiscoveryConfigClient) ListCloudDiscoveryConfigs(ctx context.Conte
 	return resp.GetCloudDiscoveryConfigs(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
 }
 
-func (c *cloudDiscoveryConfigClient) UpdateAWSLambdaCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
-	req := &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: config}
-	// Only set the oneof when a mask is provided. A wrapper around a nil mask is encoded as an empty (present) mask,
-	// which the server would treat as "update no fields" rather than a full replacement.
-	if updateMask != nil {
-		req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask{
-			AwsLambdaDiscoveryConfigUpdateMask: updateMask,
-		}
-	}
-	resp, err := c.client.UpdateCloudDiscoveryConfig(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp.GetCloudDiscoveryConfig(), nil
-}
-
-func (c *cloudDiscoveryConfigClient) UpdateAWSAgentCoreCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
-	req := &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: config}
-	// Only set the oneof when a mask is provided. A wrapper around a nil mask is encoded as an empty (present) mask,
-	// which the server would treat as "update no fields" rather than a full replacement.
-	if updateMask != nil {
-		req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask{
-			AwsAgentCoreDiscoveryConfigUpdateMask: updateMask,
-		}
-	}
-	resp, err := c.client.UpdateCloudDiscoveryConfig(ctx, req)
+func (c *cloudDiscoveryConfigClient) UpdateCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask UpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
+	resp, err := c.client.UpdateCloudDiscoveryConfig(ctx, NewUpdateRequest(config, updateMask))
 	if err != nil {
 		return nil, err
 	}

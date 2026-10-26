@@ -11,6 +11,7 @@ import (
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
+	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1/fake"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
@@ -450,7 +451,7 @@ var updateCases = []updateCase{
 	},
 }
 
-func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
+func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
@@ -462,21 +463,21 @@ func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 		return created
 	}
 
-	masks := []*crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
-		{Name: true},
-		{Disabled: true},
-		{DiscoveryInterval: true},
-		{Regions: true},
-		{AssumeThroughOidc: true},
-		{Audience: true},
-		{Roles: true},
+	masks := []crdcv1alpha1.UpdateMask{
+		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Name: true}),
+		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Disabled: true}),
+		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{DiscoveryInterval: true}),
+		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Regions: true}),
+		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{AssumeThroughOIDC: true}),
+		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Audience: true}),
+		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Roles: true}),
 	}
 	require.Len(t, masks, len(updateCases))
 
 	type testCase struct {
 		name            string
 		input           *crdcpb.CloudDiscoveryConfig
-		updateMask      *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask
+		updateMask      crdcv1alpha1.UpdateMask
 		original        *crdcpb.CloudDiscoveryConfig
 		expected        *crdcpb.CloudDiscoveryConfig
 		expectedErr     string
@@ -488,7 +489,7 @@ func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 	expectedFull.CloudAccountId = original.GetCloudAccountId()
 	tests := []testCase{
 		{
-			name:     "success - empty mask updates all fields",
+			name:     "success - nil mask updates all fields",
 			input:    updateInput(original),
 			original: original,
 			expected: expectedFull,
@@ -511,6 +512,8 @@ func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 	existingAgentCore := create(agentCoreConfig(cloudAccountID, "fake-agent-core"))
 	emptyNameInput := updateInput(original)
 	emptyNameInput.Name = ""
+	wrongTypeInput := updateInput(existingAgentCore)
+	wrongTypeInput.Id = original.GetId()
 	tests = append(tests,
 		testCase{
 			name:            "error - not found",
@@ -521,13 +524,21 @@ func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 		testCase{
 			name:            "error - existing config is not an aws lambda config",
 			input:           updateInput(existingAgentCore),
+			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Name: true}),
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - input is not an aws lambda config",
 			input:           updateInput(existingAgentCore),
-			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{Regions: true},
+			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Regions: true}),
+			original:        original,
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
+			expectedErrCode: codes.InvalidArgument,
+		},
+		testCase{
+			name:            "error - nil mask with input that is not an aws lambda config",
+			input:           wrongTypeInput,
 			original:        original,
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
@@ -535,7 +546,7 @@ func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 		testCase{
 			name:            "error - empty name in mask",
 			input:           emptyNameInput,
-			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{Name: true},
+			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Name: true}),
 			original:        original,
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
@@ -553,7 +564,7 @@ func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			updated, err := fakeClient.UpdateAWSLambdaCloudDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
+			updated, err := fakeClient.UpdateCloudDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
 
 			// Assert - response as expected
 			if tt.expectedErr != "" {
@@ -573,7 +584,7 @@ func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 	}
 }
 
-func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
+func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
@@ -585,21 +596,21 @@ func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
 		return created
 	}
 
-	masks := []*crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
-		{Name: true},
-		{Disabled: true},
-		{DiscoveryInterval: true},
-		{Regions: true},
-		{AssumeThroughOidc: true},
-		{Audience: true},
-		{Roles: true},
+	masks := []crdcv1alpha1.UpdateMask{
+		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Name: true}),
+		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Disabled: true}),
+		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{DiscoveryInterval: true}),
+		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Regions: true}),
+		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{AssumeThroughOIDC: true}),
+		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Audience: true}),
+		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Roles: true}),
 	}
 	require.Len(t, masks, len(updateCases))
 
 	type testCase struct {
 		name            string
 		input           *crdcpb.CloudDiscoveryConfig
-		updateMask      *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask
+		updateMask      crdcv1alpha1.UpdateMask
 		original        *crdcpb.CloudDiscoveryConfig
 		expected        *crdcpb.CloudDiscoveryConfig
 		expectedErr     string
@@ -611,7 +622,7 @@ func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
 	expectedFull.CloudAccountId = original.GetCloudAccountId()
 	tests := []testCase{
 		{
-			name:     "success - empty mask updates all fields",
+			name:     "success - nil mask updates all fields",
 			input:    updateInput(original),
 			original: original,
 			expected: expectedFull,
@@ -646,20 +657,27 @@ func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
 		testCase{
 			name:            "error - existing config is not an aws agent core config",
 			input:           updateInput(existingLambda),
+			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Name: true}),
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - input is not an aws agent core config",
 			input:           wrongTypeInput,
-			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{Regions: true},
+			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Regions: true}),
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
+			expectedErrCode: codes.InvalidArgument,
+		},
+		testCase{
+			name:            "error - nil mask with input that is not an aws agent core config",
+			input:           wrongTypeInput,
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - empty name in mask",
 			input:           emptyNameInput,
-			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{Name: true},
+			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Name: true}),
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
 		},
@@ -670,7 +688,7 @@ func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			updated, err := fakeClient.UpdateAWSAgentCoreCloudDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
+			updated, err := fakeClient.UpdateCloudDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
 
 			// Assert - response as expected
 			if tt.expectedErr != "" {
