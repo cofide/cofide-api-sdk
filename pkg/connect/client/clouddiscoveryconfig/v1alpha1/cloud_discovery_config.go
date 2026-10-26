@@ -72,12 +72,15 @@ func (c *cloudDiscoveryConfigClient) ListCloudDiscoveryConfigs(ctx context.Conte
 }
 
 func (c *cloudDiscoveryConfigClient) UpdateAWSLambdaCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
-	resp, err := c.client.UpdateCloudDiscoveryConfig(ctx, &crdcpb.UpdateCloudDiscoveryConfigRequest{
-		CloudDiscoveryConfig: config,
-		UpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask{
+	req := &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: config}
+	// Only set the oneof when a mask is provided. A wrapper around a nil mask is encoded as an empty (present) mask,
+	// which the server would treat as "update no fields" rather than a full replacement.
+	if updateMask != nil {
+		req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask{
 			AwsLambdaDiscoveryConfigUpdateMask: updateMask,
-		},
-	})
+		}
+	}
+	resp, err := c.client.UpdateCloudDiscoveryConfig(ctx, req)
 	if err != nil {
 		return nil, err
 	}
@@ -85,12 +88,15 @@ func (c *cloudDiscoveryConfigClient) UpdateAWSLambdaCloudDiscoveryConfig(ctx con
 }
 
 func (c *cloudDiscoveryConfigClient) UpdateAWSAgentCoreCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
-	resp, err := c.client.UpdateCloudDiscoveryConfig(ctx, &crdcpb.UpdateCloudDiscoveryConfigRequest{
-		CloudDiscoveryConfig: config,
-		UpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask{
+	req := &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: config}
+	// Only set the oneof when a mask is provided. A wrapper around a nil mask is encoded as an empty (present) mask,
+	// which the server would treat as "update no fields" rather than a full replacement.
+	if updateMask != nil {
+		req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask{
 			AwsAgentCoreDiscoveryConfigUpdateMask: updateMask,
-		},
-	})
+		}
+	}
+	resp, err := c.client.UpdateCloudDiscoveryConfig(ctx, req)
 	if err != nil {
 		return nil, err
 	}

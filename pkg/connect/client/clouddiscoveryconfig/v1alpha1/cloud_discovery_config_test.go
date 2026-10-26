@@ -137,6 +137,29 @@ func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
 	require.NoError(t, err)
 }
 
+// A nil mask must not be sent as an empty mask, which the server would treat as "update nothing".
+func Test_UpdateAWSLambdaCloudDiscoveryConfig_NilUpdateMask(t *testing.T) {
+	client, fakeService := clientForTest(t)
+
+	input := lambdaConfig()
+	input.Id = "test-id"
+	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: input}
+
+	_, err := client.UpdateAWSLambdaCloudDiscoveryConfig(t.Context(), input, nil)
+	require.NoError(t, err)
+}
+
+func Test_UpdateAWSAgentCoreCloudDiscoveryConfig_NilUpdateMask(t *testing.T) {
+	client, fakeService := clientForTest(t)
+
+	input := agentCoreConfig()
+	input.Id = "test-id"
+	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{CloudDiscoveryConfig: input}
+
+	_, err := client.UpdateAWSAgentCoreCloudDiscoveryConfig(t.Context(), input, nil)
+	require.NoError(t, err)
+}
+
 func lambdaConfig() *crdcpb.CloudDiscoveryConfig {
 	return &crdcpb.CloudDiscoveryConfig{
 		CloudAccountId:    "test-cloud-account-id",
