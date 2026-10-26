@@ -8,6 +8,7 @@ import (
 
 	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
 	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1"
+	fakepagination "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/client/pagination"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/google/uuid"
@@ -88,19 +89,13 @@ func (c *fakeCloudDiscoveryConfigClient) ListCloudDiscoveryConfigs(ctx context.C
 		}
 	}
 
-	// Pagination (token is ID of first item that didn't fit on previous page)
-	if requestPagination.Token != "" {
-		for len(configs) > 0 && configs[0].GetId() != requestPagination.Token {
-			configs = configs[1:]
-		}
-	}
-	var nextPageToken string
-	if requestPagination.PageSize > 0 && len(configs) > int(requestPagination.PageSize) {
-		nextPageToken = configs[requestPagination.PageSize].GetId()
-		configs = configs[:requestPagination.PageSize]
-	}
+	configs, pagination := fakepagination.Apply(
+		configs,
+		func(config *crdcpb.CloudDiscoveryConfig) string { return config.GetId() },
+		requestPagination,
+	)
 
-	return configs, pagination.Pagination{PageSize: requestPagination.PageSize, Token: nextPageToken}, nil
+	return configs, pagination, nil
 }
 
 func configMatches(_ *crdcpb.CloudDiscoveryConfig, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter) bool {

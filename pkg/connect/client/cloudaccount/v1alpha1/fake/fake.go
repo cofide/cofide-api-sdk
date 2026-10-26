@@ -5,10 +5,10 @@ package fake
 
 import (
 	"context"
-	"slices"
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
+	fakepagination "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/client/pagination"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/google/uuid"
@@ -90,20 +90,13 @@ func (c *fakeCloudAccountClient) ListCloudAccounts(ctx context.Context, filter *
 		}
 	}
 
-	// Pagination (token is ID of first item that didn't fit on previous page).
-	// Items are sorted by ID, so skip those before the token. The token's item may since have been deleted.
-	if requestPagination.Token != "" {
-		cloudAccounts = slices.DeleteFunc(cloudAccounts, func(ca *cloudaccountpb.CloudAccount) bool {
-			return ca.GetId() < requestPagination.Token
-		})
-	}
-	var nextPageToken string
-	if requestPagination.PageSize > 0 && len(cloudAccounts) > int(requestPagination.PageSize) {
-		nextPageToken = cloudAccounts[requestPagination.PageSize].GetId()
-		cloudAccounts = cloudAccounts[:requestPagination.PageSize]
-	}
+	cloudAccounts, pagination := fakepagination.Apply(
+		cloudAccounts,
+		func(cloudAccount *cloudaccountpb.CloudAccount) string { return cloudAccount.GetId() },
+		requestPagination,
+	)
 
-	return cloudAccounts, pagination.Pagination{PageSize: requestPagination.PageSize, Token: nextPageToken}, nil
+	return cloudAccounts, pagination, nil
 }
 
 func cloudAccountMatches(_ *cloudaccountpb.CloudAccount, filter *cloudaccountpb.ListCloudAccountsRequest_Filter) bool {
