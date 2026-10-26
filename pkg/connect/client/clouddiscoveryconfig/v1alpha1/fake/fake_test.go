@@ -9,9 +9,9 @@ import (
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
-	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1/fake"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -278,26 +278,27 @@ func Test_ListCloudDiscoveryConfigs(t *testing.T) {
 
 	// When filters are added, add test cases here
 	tests := []struct {
-		name                  string
-		filter                *crdcpb.ListCloudDiscoveryConfigsRequest_Filter
-		pagination            *v1beta1.PageRequest
-		expected              []*crdcpb.CloudDiscoveryConfig
-		expectedNextPageToken string
+		name               string
+		filter             *crdcpb.ListCloudDiscoveryConfigsRequest_Filter
+		pagination         pagination.Pagination
+		expected           []*crdcpb.CloudDiscoveryConfig
+		expectedPagination pagination.Pagination
 	}{
 		{
 			name:     "success",
 			expected: []*crdcpb.CloudDiscoveryConfig{existing1, existing2},
 		},
 		{
-			name:                  "success - page with results remaining",
-			pagination:            &v1beta1.PageRequest{PageSize: 1},
-			expected:              []*crdcpb.CloudDiscoveryConfig{existing1},
-			expectedNextPageToken: existing2.GetId(),
+			name:               "success - page with results remaining",
+			pagination:         pagination.Pagination{PageSize: 1},
+			expected:           []*crdcpb.CloudDiscoveryConfig{existing1},
+			expectedPagination: pagination.Pagination{PageSize: 1, Token: existing2.GetId()},
 		},
 		{
-			name:       "success - last page",
-			pagination: &v1beta1.PageRequest{PageSize: 1, PageToken: existing2.GetId()},
-			expected:   []*crdcpb.CloudDiscoveryConfig{existing2},
+			name:               "success - last page",
+			pagination:         pagination.Pagination{PageSize: 1, Token: existing2.GetId()},
+			expected:           []*crdcpb.CloudDiscoveryConfig{existing2},
+			expectedPagination: pagination.Pagination{PageSize: 1},
 		},
 	}
 	for _, tt := range tests {
@@ -305,12 +306,12 @@ func Test_ListCloudDiscoveryConfigs(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			found, nextPageToken, err := fakeClient.ListCloudDiscoveryConfigs(t.Context(), tt.filter, tt.pagination)
+			found, pagination, err := fakeClient.ListCloudDiscoveryConfigs(t.Context(), tt.filter, tt.pagination)
 
 			// Assert
 			require.NoError(t, err)
 			assert.EqualExportedValues(t, tt.expected, found)
-			assert.Equal(t, tt.expectedNextPageToken, nextPageToken)
+			assert.Equal(t, tt.expectedPagination, pagination)
 		})
 	}
 }

@@ -8,6 +8,7 @@ import (
 
 	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/grpc"
 )
 
@@ -16,7 +17,7 @@ type CloudDiscoveryConfigClient interface {
 	CreateCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig) (*crdcpb.CloudDiscoveryConfig, error)
 	DeleteCloudDiscoveryConfig(ctx context.Context, configID string) error
 	GetCloudDiscoveryConfig(ctx context.Context, configID string) (*crdcpb.CloudDiscoveryConfig, error)
-	ListCloudDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter, pagination *v1beta1.PageRequest) ([]*crdcpb.CloudDiscoveryConfig, string, error)
+	ListCloudDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter, pagination pagination.Pagination) ([]*crdcpb.CloudDiscoveryConfig, pagination.Pagination, error)
 	UpdateAWSLambdaCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error)
 	UpdateAWSAgentCoreCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error)
 }
@@ -59,15 +60,15 @@ func (c *cloudDiscoveryConfigClient) GetCloudDiscoveryConfig(ctx context.Context
 	return resp.GetCloudDiscoveryConfig(), nil
 }
 
-func (c *cloudDiscoveryConfigClient) ListCloudDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter, pagination *v1beta1.PageRequest) ([]*crdcpb.CloudDiscoveryConfig, string, error) {
+func (c *cloudDiscoveryConfigClient) ListCloudDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter, requestPagination pagination.Pagination) ([]*crdcpb.CloudDiscoveryConfig, pagination.Pagination, error) {
 	resp, err := c.client.ListCloudDiscoveryConfigs(ctx, &crdcpb.ListCloudDiscoveryConfigsRequest{
 		Filter:     filter,
-		Pagination: pagination,
+		Pagination: &v1beta1.PageRequest{PageSize: requestPagination.PageSize, PageToken: requestPagination.Token},
 	})
 	if err != nil {
-		return nil, "", err
+		return nil, pagination.Pagination{}, err
 	}
-	return resp.GetCloudDiscoveryConfigs(), resp.GetPagination().GetNextPageToken(), nil
+	return resp.GetCloudDiscoveryConfigs(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
 }
 
 func (c *cloudDiscoveryConfigClient) UpdateAWSLambdaCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {

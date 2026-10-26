@@ -10,6 +10,7 @@ import (
 	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -35,7 +36,7 @@ func Test_CloudDiscoveryConfigClient_Unimplemented(t *testing.T) {
 	_, err = client.GetCloudDiscoveryConfig(t.Context(), "")
 	test.RequireUnimplemented(t, err)
 
-	_, _, err = client.ListCloudDiscoveryConfigs(t.Context(), nil, nil)
+	_, _, err = client.ListCloudDiscoveryConfigs(t.Context(), nil, pagination.Pagination{})
 	test.RequireUnimplemented(t, err)
 
 	_, err = client.UpdateAWSLambdaCloudDiscoveryConfig(t.Context(), nil, nil)
@@ -85,13 +86,13 @@ func Test_ListCloudDiscoveryConfigs(t *testing.T) {
 	client, fakeService := clientForTest(t)
 
 	filter := &crdcpb.ListCloudDiscoveryConfigsRequest_Filter{}
-	pagination := v1beta1.PageRequest{PageSize: 100}
+	pagination := pagination.Pagination{PageSize: 100}
 	fakeService.expectedListRequest = &crdcpb.ListCloudDiscoveryConfigsRequest{
 		Filter:     filter,
-		Pagination: &pagination,
+		Pagination: &v1beta1.PageRequest{PageSize: pagination.PageSize},
 	}
 
-	_, _, err := client.ListCloudDiscoveryConfigs(t.Context(), filter, &pagination)
+	_, _, err := client.ListCloudDiscoveryConfigs(t.Context(), filter, pagination)
 	require.NoError(t, err)
 }
 
