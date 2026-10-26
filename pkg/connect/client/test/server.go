@@ -5,6 +5,7 @@ package test
 
 import (
 	"context"
+	"errors"
 	"net"
 	"testing"
 
@@ -38,7 +39,10 @@ func (ts *TestServer) Serve() {
 	}()
 	ts.t.Cleanup(func() {
 		ts.Server.Stop()
-		require.NoError(ts.t, <-errCh)
+		err := <-errCh
+		if err != nil && !errors.Is(err, grpc.ErrServerStopped) {
+			ts.t.Fatalf("unexpected error shutting down server: %s", err)
+		}
 	})
 
 }
