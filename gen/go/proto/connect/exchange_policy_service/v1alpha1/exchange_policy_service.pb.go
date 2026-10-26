@@ -378,7 +378,7 @@ func (x *ListExchangePoliciesResponse) GetExchangePolicies() []*v1alpha1.Exchang
 type UpdateExchangePolicyRequest struct {
 	state          protoimpl.MessageState   `protogen:"open.v1"`
 	ExchangePolicy *v1alpha1.ExchangePolicy `protobuf:"bytes,1,opt,name=exchange_policy,json=exchangePolicy,proto3" json:"exchange_policy,omitempty"`
-	// The list of fields to be updated. If not provided a full replacement will be made.
+	// The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
 	UpdateMask    *UpdateExchangePolicyRequest_UpdateMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

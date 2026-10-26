@@ -314,7 +314,7 @@ func (x *ListCloudAccountsResponse) GetPagination() *v1beta1.PageResponse {
 type UpdateCloudAccountRequest struct {
 	state        protoimpl.MessageState `protogen:"open.v1"`
 	CloudAccount *CloudAccount          `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
-	// The list of fields to be updated. If not provided a full replacement will be made.
+	// The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
 	// The update mask should align with the type being updated.
 	//
 	// Types that are valid to be assigned to UpdateMask:

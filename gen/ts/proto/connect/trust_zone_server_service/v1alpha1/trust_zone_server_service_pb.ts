@@ -193,7 +193,7 @@ export type UpdateTrustZoneServerRequest = Message<"proto.connect.trust_zone_ser
   trustZoneServer?: TrustZoneServer;
 
   /**
-   * The list of fields to be updated. If not provided a full replacement will be made.
+   * The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
    *
    * @generated from field: optional proto.connect.trust_zone_server_service.v1alpha1.UpdateTrustZoneServerRequest.UpdateMask update_mask = 2;
    */

@@ -66,7 +66,7 @@ message UpdateCloudAccountRequest {
   }
 
   CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
-  // The list of fields to be updated. If not provided a full replacement will be made.
+  // The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
   // The update mask should align with the type being updated.
   oneof update_mask {
     AWSAccountUpdateMask aws_account_update_mask = 2;

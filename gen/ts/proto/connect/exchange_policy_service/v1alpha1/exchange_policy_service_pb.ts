@@ -192,7 +192,7 @@ export type UpdateExchangePolicyRequest = Message<"proto.connect.exchange_policy
   exchangePolicy?: ExchangePolicy;
 
   /**
-   * The list of fields to be updated. If not provided a full replacement will be made.
+   * The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
    *
    * @generated from field: proto.connect.exchange_policy_service.v1alpha1.UpdateExchangePolicyRequest.UpdateMask update_mask = 2;
    */

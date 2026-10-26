@@ -94,7 +94,7 @@ message UpdateTrustZoneServerRequest {
 
   proto.trust_zone_server.v1alpha1.TrustZoneServer trust_zone_server = 1 [(google.api.field_behavior) = REQUIRED];
 
-  // The list of fields to be updated. If not provided a full replacement will be made.
+  // The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
   optional UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 

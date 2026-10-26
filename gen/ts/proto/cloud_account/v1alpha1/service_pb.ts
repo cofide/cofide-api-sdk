@@ -160,7 +160,7 @@ export type UpdateCloudAccountRequest = Message<"proto.cloud_account.v1alpha1.Up
   cloudAccount?: CloudAccount;
 
   /**
-   * The list of fields to be updated. If not provided a full replacement will be made.
+   * The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
    * The update mask should align with the type being updated.
    *
    * @generated from oneof proto.cloud_account.v1alpha1.UpdateCloudAccountRequest.update_mask

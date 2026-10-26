@@ -378,7 +378,7 @@ func (x *ListTrustZoneServersResponse) GetTrustZoneServers() []*v1alpha1.TrustZo
 type UpdateTrustZoneServerRequest struct {
 	state           protoimpl.MessageState    `protogen:"open.v1"`
 	TrustZoneServer *v1alpha1.TrustZoneServer `protobuf:"bytes,1,opt,name=trust_zone_server,json=trustZoneServer,proto3" json:"trust_zone_server,omitempty"`
-	// The list of fields to be updated. If not provided a full replacement will be made.
+	// The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
 	UpdateMask    *UpdateTrustZoneServerRequest_UpdateMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3,oneof" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

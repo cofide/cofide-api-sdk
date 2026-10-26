@@ -100,7 +100,7 @@ message UpdateExchangePolicyRequest {
 
   proto.exchange_policy.v1alpha1.ExchangePolicy exchange_policy = 1 [(google.api.field_behavior) = REQUIRED];
 
-  // The list of fields to be updated. If not provided a full replacement will be made.
+  // The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
   UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
