@@ -168,7 +168,7 @@ func Test_DeleteCloudAccount(t *testing.T) {
 			// Assert - response as expected
 			if tt.expectedErr != "" {
 				require.EqualError(t, err, tt.expectedErr)
-				assert.Equal(t, status.Code(err), tt.expectedErrCode)
+				assert.Equal(t, tt.expectedErrCode, status.Code(err))
 				return
 			}
 			require.NoError(t, err)
@@ -235,7 +235,7 @@ func Test_GetCloudAccount(t *testing.T) {
 			// Assert
 			if tt.expectedErr != "" {
 				require.EqualError(t, err, tt.expectedErr)
-				assert.Equal(t, status.Code(err), tt.expectedErrCode)
+				assert.Equal(t, tt.expectedErrCode, status.Code(err))
 				return
 			}
 			require.NoError(t, err)
