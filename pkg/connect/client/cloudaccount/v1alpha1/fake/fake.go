@@ -5,6 +5,7 @@ package fake
 
 import (
 	"context"
+	"slices"
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
@@ -84,15 +85,12 @@ func (c *fakeCloudAccountClient) ListCloudAccounts(ctx context.Context, filter *
 		}
 	}
 
-	// Pagination (token is ID of first item that didn't fit on previous page)
+	// Pagination (token is ID of first item that didn't fit on previous page).
+	// Items are sorted by ID, so skip those before the token. The token's item may since have been deleted.
 	if requestPagination.Token != "" {
-		for len(cloudAccounts) > 0 && cloudAccounts[0].GetId() != requestPagination.Token {
-			if len(cloudAccounts) == 1 {
-				cloudAccounts = []*cloudaccountpb.CloudAccount{}
-			} else {
-				cloudAccounts = cloudAccounts[1:]
-			}
-		}
+		cloudAccounts = slices.DeleteFunc(cloudAccounts, func(ca *cloudaccountpb.CloudAccount) bool {
+			return ca.GetId() < requestPagination.Token
+		})
 	}
 	var nextPageToken string
 	if requestPagination.PageSize > 0 && len(cloudAccounts) > int(requestPagination.PageSize) {

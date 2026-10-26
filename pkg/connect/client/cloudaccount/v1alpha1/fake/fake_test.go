@@ -312,6 +312,13 @@ func Test_ListCloudAccounts(t *testing.T) {
 			expected:           []*cloudaccountpb.CloudAccount{existing2},
 			expectedPagination: pagination.Pagination{PageSize: 1},
 		},
+		{
+			// A token sorting between the two IDs, as if the item it referred to was deleted after the previous page.
+			name:               "success - token for deleted item resumes at next item",
+			pagination:         pagination.Pagination{PageSize: 1, Token: existing1.GetId() + "0"},
+			expected:           []*cloudaccountpb.CloudAccount{existing2},
+			expectedPagination: pagination.Pagination{PageSize: 1},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
