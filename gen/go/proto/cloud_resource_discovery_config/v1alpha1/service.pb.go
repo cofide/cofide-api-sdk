@@ -314,7 +314,7 @@ func (x *ListCloudResourceDiscoveryConfigsResponse) GetPagination() *v1beta1.Pag
 type UpdateCloudResourceDiscoveryConfigRequest struct {
 	state                        protoimpl.MessageState        `protogen:"open.v1"`
 	CloudResourceDiscoveryConfig *CloudResourceDiscoveryConfig `protobuf:"bytes,1,opt,name=cloud_resource_discovery_config,json=cloudResourceDiscoveryConfig,proto3" json:"cloud_resource_discovery_config,omitempty"`
-	// The list of fields to be updated. If not provided a full replacement will be made.
+	// The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
 	// The update mask should align with the type being updated.
 	//
 	// Types that are valid to be assigned to UpdateMask:

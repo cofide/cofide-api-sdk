@@ -92,7 +92,7 @@ message UpdateCloudResourceDiscoveryConfigRequest {
   }
 
   CloudResourceDiscoveryConfig cloud_resource_discovery_config = 1 [(google.api.field_behavior) = REQUIRED];
-  // The list of fields to be updated. If not provided a full replacement will be made.
+  // The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
   // The update mask should align with the type being updated.
   oneof update_mask {
     AWSLambdaDiscoveryConfigUpdateMask aws_lambda_discovery_config_update_mask = 2;

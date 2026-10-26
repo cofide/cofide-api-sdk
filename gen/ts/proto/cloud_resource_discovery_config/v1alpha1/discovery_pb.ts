@@ -37,7 +37,7 @@ export type CloudResourceDiscoveryConfig = Message<"proto.cloud_resource_discove
   id: string;
 
   /**
-   * Cloud account ID this resource discovery config belongs to.
+   * ID of CloudAccount in Connect that this resource discovery config belongs to.
    *
    * @generated from field: string cloud_account_id = 2;
    */
@@ -65,7 +65,7 @@ export type CloudResourceDiscoveryConfig = Message<"proto.cloud_resource_discove
   discoveryInterval?: Duration;
 
   /**
-   * Cloud provider-specific configuration.
+   * Cloud provider service-specific configuration.
    *
    * @generated from oneof proto.cloud_resource_discovery_config.v1alpha1.CloudResourceDiscoveryConfig.discovery_config
    */

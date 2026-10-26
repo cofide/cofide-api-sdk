@@ -35,7 +35,7 @@ type AWSLambdaDiscoveryConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// AWS regions to discover resources in. An empty list effectively disables discovery.
 	Regions []string `protobuf:"bytes,1,rep,name=regions,proto3" json:"regions,omitempty"`
-	// Ordered chain of IAM roles to assume.
+	// Configuration of how IAM credentials should be assumed.
 	RoleChain     *AWSAssumeRoleConfig `protobuf:"bytes,6,opt,name=role_chain,json=roleChain,proto3" json:"role_chain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -90,7 +90,7 @@ type AWSAgentCoreDiscoveryConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// AWS regions to discover resources in. An empty list effectively disables discovery.
 	Regions []string `protobuf:"bytes,1,rep,name=regions,proto3" json:"regions,omitempty"`
-	// Ordered chain of IAM roles to assume.
+	// Configuration of how IAM credentials should be assumed.
 	RoleChain     *AWSAssumeRoleConfig `protobuf:"bytes,6,opt,name=role_chain,json=roleChain,proto3" json:"role_chain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -140,21 +140,27 @@ func (x *AWSAgentCoreDiscoveryConfig) GetRoleChain() *AWSAssumeRoleConfig {
 	return nil
 }
 
-// AWSAssumeRoleConfig configures a single step in an IAM role chain.
+// AWSAssumeRoleConfig configures role assumption.
 // Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
 // ambient credentials (e.g. EKS Pod Identity) is controlled by the
 // assume_through_oidc field on the owning config; subsequent steps always use
 // plain AssumeRole with the credentials from the prior step.
+// If ambient credentials are used (assume_through_oidc is false) and the list of
+// roles is empty then those credentials are used directly rather than used to assume
+// another role.
 type AWSAssumeRoleConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Whether the first role in role_chain is assumed via SPIFFE JWT-based
-	// AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
-	// such as EKS Pod Identity (false).
+	// Whether the first role in roles is assumed via ambient credentials
+	// such as EKS Pod Identity (false, the default) or via SPIFFE JWT-based
+	// AssumeRoleWithWebIdentity (true).
 	AssumeThroughOidc bool `protobuf:"varint,1,opt,name=assume_through_oidc,json=assumeThroughOidc,proto3" json:"assume_through_oidc,omitempty"`
 	// Audience value for the initial SPIFFE JWT-based assume role call.
 	// Only used when assume_through_oidc is true.
 	// Required when assume_through_oidc is true.
-	Audience      string                      `protobuf:"bytes,2,opt,name=audience,proto3" json:"audience,omitempty"`
+	Audience string `protobuf:"bytes,2,opt,name=audience,proto3" json:"audience,omitempty"`
+	// Ordered chain of IAM roles to assume.
+	// If ambient credentials are used this may be empty, in which case the ambient
+	// credentials are used directly rather than used to assume another role.
 	Roles         []*AWSAssumeRoleConfig_Role `protobuf:"bytes,3,rep,name=roles,proto3" json:"roles,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -311,7 +317,7 @@ var file_proto_cloud_resource_discovery_config_v1alpha1_aws_resource_discovery_p
 	0x64, 0x69, 0x73, 0x63, 0x6f, 0x76, 0x65, 0x72, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67,
 	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x2e, 0x41, 0x57, 0x53, 0x41, 0x73, 0x73,
 	0x75, 0x6d, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2e, 0x52, 0x6f,
-	0x6c, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x05, 0x72, 0x6f, 0x6c, 0x65, 0x73, 0x1a, 0x53,
+	0x6c, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x05, 0x72, 0x6f, 0x6c, 0x65, 0x73, 0x1a, 0x53,
 	0x0a, 0x04, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x25, 0x0a, 0x0c, 0x69, 0x61, 0x6d, 0x5f, 0x72, 0x6f,
 	0x6c, 0x65, 0x5f, 0x61, 0x72, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41,
 	0x02, 0x52, 0x0a, 0x69, 0x61, 0x6d, 0x52, 0x6f, 0x6c, 0x65, 0x41, 0x72, 0x6e, 0x12, 0x24, 0x0a,

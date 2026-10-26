@@ -19,7 +19,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/cloud_resource_discovery_config/v1alpha1/aws_resource_discovery.proto.
  */
 export const file_proto_cloud_resource_discovery_config_v1alpha1_aws_resource_discovery: GenFile = /*@__PURE__*/
-  fileDesc("Cktwcm90by9jbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnlfY29uZmlnL3YxYWxwaGExL2F3c19yZXNvdXJjZV9kaXNjb3ZlcnkucHJvdG8SLnByb3RvLmNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEijgEKGEFXU0xhbWJkYURpc2NvdmVyeUNvbmZpZxIUCgdyZWdpb25zGAEgAygJQgPgQQESXAoKcm9sZV9jaGFpbhgGIAEoCzJDLnByb3RvLmNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZ0ID4EECIpEBChtBV1NBZ2VudENvcmVEaXNjb3ZlcnlDb25maWcSFAoHcmVnaW9ucxgBIAMoCUID4EEBElwKCnJvbGVfY2hhaW4YBiABKAsyQy5wcm90by5jbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkFXU0Fzc3VtZVJvbGVDb25maWdCA+BBAiLpAQoTQVdTQXNzdW1lUm9sZUNvbmZpZxIgChNhc3N1bWVfdGhyb3VnaF9vaWRjGAEgASgIQgPgQQESFQoIYXVkaWVuY2UYAiABKAlCA+BBARJcCgVyb2xlcxgDIAMoCzJILnByb3RvLmNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZy5Sb2xlQgPgQQIaOwoEUm9sZRIZCgxpYW1fcm9sZV9hcm4YASABKAlCA+BBAhIYCgtleHRlcm5hbF9pZBgCIAEoCUID4EEBQlhaVmdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnlfY29uZmlnL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior]);
+  fileDesc("Cktwcm90by9jbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnlfY29uZmlnL3YxYWxwaGExL2F3c19yZXNvdXJjZV9kaXNjb3ZlcnkucHJvdG8SLnByb3RvLmNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEijgEKGEFXU0xhbWJkYURpc2NvdmVyeUNvbmZpZxIUCgdyZWdpb25zGAEgAygJQgPgQQESXAoKcm9sZV9jaGFpbhgGIAEoCzJDLnByb3RvLmNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZ0ID4EECIpEBChtBV1NBZ2VudENvcmVEaXNjb3ZlcnlDb25maWcSFAoHcmVnaW9ucxgBIAMoCUID4EEBElwKCnJvbGVfY2hhaW4YBiABKAsyQy5wcm90by5jbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkFXU0Fzc3VtZVJvbGVDb25maWdCA+BBAiLpAQoTQVdTQXNzdW1lUm9sZUNvbmZpZxIgChNhc3N1bWVfdGhyb3VnaF9vaWRjGAEgASgIQgPgQQESFQoIYXVkaWVuY2UYAiABKAlCA+BBARJcCgVyb2xlcxgDIAMoCzJILnByb3RvLmNsb3VkX3Jlc291cmNlX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZy5Sb2xlQgPgQQEaOwoEUm9sZRIZCgxpYW1fcm9sZV9hcm4YASABKAlCA+BBAhIYCgtleHRlcm5hbF9pZBgCIAEoCUID4EEBQlhaVmdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by9jbG91ZF9yZXNvdXJjZV9kaXNjb3ZlcnlfY29uZmlnL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior]);
 
 /**
  * AWSLambdaDiscoveryConfig contains configuration for Lambda function discovery.
@@ -35,7 +35,7 @@ export type AWSLambdaDiscoveryConfig = Message<"proto.cloud_resource_discovery_c
   regions: string[];
 
   /**
-   * Ordered chain of IAM roles to assume.
+   * Configuration of how IAM credentials should be assumed.
    *
    * @generated from field: proto.cloud_resource_discovery_config.v1alpha1.AWSAssumeRoleConfig role_chain = 6;
    */
@@ -63,7 +63,7 @@ export type AWSAgentCoreDiscoveryConfig = Message<"proto.cloud_resource_discover
   regions: string[];
 
   /**
-   * Ordered chain of IAM roles to assume.
+   * Configuration of how IAM credentials should be assumed.
    *
    * @generated from field: proto.cloud_resource_discovery_config.v1alpha1.AWSAssumeRoleConfig role_chain = 6;
    */
@@ -78,19 +78,22 @@ export const AWSAgentCoreDiscoveryConfigSchema: GenMessage<AWSAgentCoreDiscovery
   messageDesc(file_proto_cloud_resource_discovery_config_v1alpha1_aws_resource_discovery, 1);
 
 /**
- * AWSAssumeRoleConfig configures a single step in an IAM role chain.
+ * AWSAssumeRoleConfig configures role assumption.
  * Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
  * ambient credentials (e.g. EKS Pod Identity) is controlled by the
  * assume_through_oidc field on the owning config; subsequent steps always use
  * plain AssumeRole with the credentials from the prior step.
+ * If ambient credentials are used (assume_through_oidc is false) and the list of
+ * roles is empty then those credentials are used directly rather than used to assume
+ * another role.
  *
  * @generated from message proto.cloud_resource_discovery_config.v1alpha1.AWSAssumeRoleConfig
  */
 export type AWSAssumeRoleConfig = Message<"proto.cloud_resource_discovery_config.v1alpha1.AWSAssumeRoleConfig"> & {
   /**
-   * Whether the first role in role_chain is assumed via SPIFFE JWT-based
-   * AssumeRoleWithWebIdentity (true, the default) or via ambient credentials
-   * such as EKS Pod Identity (false).
+   * Whether the first role in roles is assumed via ambient credentials
+   * such as EKS Pod Identity (false, the default) or via SPIFFE JWT-based
+   * AssumeRoleWithWebIdentity (true).
    *
    * @generated from field: bool assume_through_oidc = 1;
    */
@@ -106,6 +109,10 @@ export type AWSAssumeRoleConfig = Message<"proto.cloud_resource_discovery_config
   audience: string;
 
   /**
+   * Ordered chain of IAM roles to assume.
+   * If ambient credentials are used this may be empty, in which case the ambient
+   * credentials are used directly rather than used to assume another role.
+   *
    * @generated from field: repeated proto.cloud_resource_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role roles = 3;
    */
   roles: AWSAssumeRoleConfig_Role[];

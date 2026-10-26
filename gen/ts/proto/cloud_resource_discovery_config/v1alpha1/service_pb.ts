@@ -160,7 +160,7 @@ export type UpdateCloudResourceDiscoveryConfigRequest = Message<"proto.cloud_res
   cloudResourceDiscoveryConfig?: CloudResourceDiscoveryConfig;
 
   /**
-   * The list of fields to be updated. If not provided a full replacement will be made.
+   * The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
    * The update mask should align with the type being updated.
    *
    * @generated from oneof proto.cloud_resource_discovery_config.v1alpha1.UpdateCloudResourceDiscoveryConfigRequest.update_mask
