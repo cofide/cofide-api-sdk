@@ -125,26 +125,17 @@ func (c *fakeCloudAccountClient) UpdateAWSCloudAccount(ctx context.Context, clou
 		return nil, status.Error(codes.InvalidArgument, "cloud account is not an aws cloud account")
 	}
 
-	if updateMask == nil {
-		// Full replacement, but preserve immutable properties
-		orgId := existing.GetOrgId()
-		createdAt := existing.GetCreatedAt()
-		existing = clone(cloudAccount)
-		existing.OrgId = orgId
-		existing.CreatedAt = createdAt
-	} else {
-		if updateMask.GetName() {
-			if cloudAccount.GetName() == "" {
-				return nil, status.Error(codes.InvalidArgument, "cloud account name must not be empty")
-			}
-			existing.Name = cloudAccount.GetName()
+	if updateMask == nil || updateMask.GetName() {
+		if cloudAccount.GetName() == "" {
+			return nil, status.Error(codes.InvalidArgument, "cloud account name must not be empty")
 		}
-		if updateMask.GetAwsAccountId() {
-			if cloudAccount.GetAws().GetAccountId() == "" {
-				return nil, status.Error(codes.InvalidArgument, "aws account id must not be empty")
-			}
-			existing.GetAws().AccountId = cloudAccount.GetAws().GetAccountId()
+		existing.Name = cloudAccount.GetName()
+	}
+	if updateMask == nil || updateMask.GetAwsAccountId() {
+		if cloudAccount.GetAws().GetAccountId() == "" {
+			return nil, status.Error(codes.InvalidArgument, "aws account id must not be empty")
 		}
+		existing.GetAws().AccountId = cloudAccount.GetAws().GetAccountId()
 	}
 
 	existing.LastUpdatedAt = timestamppb.Now()
