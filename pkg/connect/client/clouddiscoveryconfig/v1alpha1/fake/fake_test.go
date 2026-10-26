@@ -4,6 +4,8 @@
 package fake_test
 
 import (
+	"cmp"
+	"slices"
 	"testing"
 	"time"
 
@@ -300,6 +302,13 @@ func Test_ListCloudDiscoveryConfigs(t *testing.T) {
 			expected:           []*crdcpb.CloudDiscoveryConfig{existing2},
 			expectedPagination: pagination.Pagination{PageSize: 1},
 		},
+		{
+			// A token sorting between the two IDs, as if the item it referred to was deleted after the previous page.
+			name:               "success - token for deleted item resumes at next item",
+			pagination:         pagination.Pagination{PageSize: 1, Token: existing1.GetId() + "0"},
+			expected:           []*crdcpb.CloudDiscoveryConfig{existing2},
+			expectedPagination: pagination.Pagination{PageSize: 1},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -314,6 +323,37 @@ func Test_ListCloudDiscoveryConfigs(t *testing.T) {
 			assert.Equal(t, tt.expectedPagination, pagination)
 		})
 	}
+}
+
+// Test_ListCloudDiscoveryConfigs_DeleteBetweenPages checks that paging continues when the item that the page token
+// refers to is deleted after the previous page was fetched.
+func Test_ListCloudDiscoveryConfigs_DeleteBetweenPages(t *testing.T) {
+	t.Parallel()
+
+	// Arrange
+	fakeConnect, cloudAccountID := newFake(t)
+	fakeClient := fake.New(fakeConnect)
+	var created []*crdcpb.CloudDiscoveryConfig
+	for _, name := range []string{"fake-1", "fake-2", "fake-3"} {
+		config, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), lambdaConfig(cloudAccountID, name))
+		require.NoError(t, err)
+		created = append(created, config)
+	}
+	// The fake returns results ordered by ID, and IDs are random.
+	slices.SortFunc(created, func(a, b *crdcpb.CloudDiscoveryConfig) int { return cmp.Compare(a.GetId(), b.GetId()) })
+
+	// Act - fetch the first page, then delete the item that the next page starts at
+	page1, next, err := fakeClient.ListCloudDiscoveryConfigs(t.Context(), nil, pagination.Pagination{PageSize: 1})
+	require.NoError(t, err)
+	require.Equal(t, created[1].GetId(), next.Token)
+	require.NoError(t, fakeClient.DeleteCloudDiscoveryConfig(t.Context(), next.Token))
+	page2, last, err := fakeClient.ListCloudDiscoveryConfigs(t.Context(), nil, next)
+
+	// Assert - the remaining item is returned rather than being dropped
+	require.NoError(t, err)
+	assert.EqualExportedValues(t, []*crdcpb.CloudDiscoveryConfig{created[0]}, page1)
+	assert.EqualExportedValues(t, []*crdcpb.CloudDiscoveryConfig{created[2]}, page2)
+	assert.Equal(t, pagination.Pagination{PageSize: 1}, last)
 }
 
 func cloneConfig(c *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
