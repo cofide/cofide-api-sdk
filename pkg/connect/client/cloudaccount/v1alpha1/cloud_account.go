@@ -8,6 +8,7 @@ import (
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/grpc"
 )
 
@@ -16,7 +17,7 @@ type CloudAccountClient interface {
 	CreateCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount) (*cloudaccountpb.CloudAccount, error)
 	DeleteCloudAccount(ctx context.Context, cloudAccountID string) error
 	GetCloudAccount(ctx context.Context, cloudAccountID string) (*cloudaccountpb.CloudAccount, error)
-	ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, pagination *v1beta1.PageRequest) ([]*cloudaccountpb.CloudAccount, string, error)
+	ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, pagination pagination.Pagination) ([]*cloudaccountpb.CloudAccount, pagination.Pagination, error)
 	UpdateAWSCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask) (*cloudaccountpb.CloudAccount, error)
 }
 
@@ -58,15 +59,15 @@ func (c *cloudAccountClient) GetCloudAccount(ctx context.Context, cloudAccountID
 	return resp.GetCloudAccount(), nil
 }
 
-func (c *cloudAccountClient) ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, pagination *v1beta1.PageRequest) ([]*cloudaccountpb.CloudAccount, string, error) {
+func (c *cloudAccountClient) ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, requestPagination pagination.Pagination) ([]*cloudaccountpb.CloudAccount, pagination.Pagination, error) {
 	resp, err := c.client.ListCloudAccounts(ctx, &cloudaccountpb.ListCloudAccountsRequest{
 		Filter:     filter,
-		Pagination: pagination,
+		Pagination: &v1beta1.PageRequest{PageSize: requestPagination.PageSize, PageToken: requestPagination.Token},
 	})
 	if err != nil {
-		return nil, "", err
+		return nil, pagination.Pagination{}, err
 	}
-	return resp.GetCloudAccounts(), resp.GetPagination().GetNextPageToken(), nil
+	return resp.GetCloudAccounts(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
 }
 
 func (c *cloudAccountClient) UpdateAWSCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask) (*cloudaccountpb.CloudAccount, error) {

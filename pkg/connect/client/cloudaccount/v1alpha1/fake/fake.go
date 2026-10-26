@@ -7,9 +7,9 @@ import (
 	"context"
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
-	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -72,7 +72,7 @@ func (c *fakeCloudAccountClient) GetCloudAccount(ctx context.Context, cloudAccou
 	return clone(cloudAccount), nil
 }
 
-func (c *fakeCloudAccountClient) ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, pagination *v1beta1.PageRequest) ([]*cloudaccountpb.CloudAccount, string, error) {
+func (c *fakeCloudAccountClient) ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, requestPagination pagination.Pagination) ([]*cloudaccountpb.CloudAccount, pagination.Pagination, error) {
 	c.fake.Mu.RLock()
 	defer c.fake.Mu.RUnlock()
 
@@ -85,8 +85,8 @@ func (c *fakeCloudAccountClient) ListCloudAccounts(ctx context.Context, filter *
 	}
 
 	// Pagination (token is ID of first item that didn't fit on previous page)
-	if pagination.GetPageToken() != "" {
-		for len(cloudAccounts) > 0 && cloudAccounts[0].GetId() != pagination.GetPageToken() {
+	if requestPagination.Token != "" {
+		for len(cloudAccounts) > 0 && cloudAccounts[0].GetId() != requestPagination.Token {
 			if len(cloudAccounts) == 1 {
 				cloudAccounts = []*cloudaccountpb.CloudAccount{}
 			} else {
@@ -95,12 +95,12 @@ func (c *fakeCloudAccountClient) ListCloudAccounts(ctx context.Context, filter *
 		}
 	}
 	var nextPageToken string
-	if pagination.GetPageSize() > 0 && len(cloudAccounts) > int(pagination.GetPageSize()) {
-		nextPageToken = cloudAccounts[pagination.GetPageSize()].GetId()
-		cloudAccounts = cloudAccounts[:pagination.GetPageSize()]
+	if requestPagination.PageSize > 0 && len(cloudAccounts) > int(requestPagination.PageSize) {
+		nextPageToken = cloudAccounts[requestPagination.PageSize].GetId()
+		cloudAccounts = cloudAccounts[:requestPagination.PageSize]
 	}
 
-	return cloudAccounts, nextPageToken, nil
+	return cloudAccounts, pagination.Pagination{PageSize: requestPagination.PageSize, Token: nextPageToken}, nil
 }
 
 func cloudAccountMatches(_ *cloudaccountpb.CloudAccount, filter *cloudaccountpb.ListCloudAccountsRequest_Filter) bool {

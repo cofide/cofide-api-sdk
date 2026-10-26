@@ -10,6 +10,7 @@ import (
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -34,7 +35,7 @@ func Test_CloudAccountClient_Unimplemented(t *testing.T) {
 	_, err = client.GetCloudAccount(t.Context(), "")
 	test.RequireUnimplemented(t, err)
 
-	_, _, err = client.ListCloudAccounts(t.Context(), nil, nil)
+	_, _, err = client.ListCloudAccounts(t.Context(), nil, pagination.Pagination{})
 	test.RequireUnimplemented(t, err)
 
 	_, err = client.UpdateAWSCloudAccount(t.Context(), nil, nil)
@@ -89,13 +90,13 @@ func Test_ListCloudAccounts(t *testing.T) {
 	client, fakeCloudAccountService := clientForTest(t)
 
 	filter := &cloudaccountpb.ListCloudAccountsRequest_Filter{}
-	pagination := v1beta1.PageRequest{PageSize: 100}
+	requestPagination := pagination.Pagination{PageSize: 100}
 	fakeCloudAccountService.expectedListRequest = &cloudaccountpb.ListCloudAccountsRequest{
 		Filter:     filter,
-		Pagination: &pagination,
+		Pagination: &v1beta1.PageRequest{PageSize: requestPagination.PageSize, PageToken: requestPagination.Token},
 	}
 
-	_, _, err := client.ListCloudAccounts(t.Context(), filter, &pagination)
+	_, _, err := client.ListCloudAccounts(t.Context(), filter, requestPagination)
 	require.NoError(t, err)
 }
 
