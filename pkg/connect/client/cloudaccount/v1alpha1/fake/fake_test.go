@@ -8,6 +8,7 @@ import (
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
+	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1/fake"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
@@ -327,7 +328,7 @@ func Test_ListCloudAccounts(t *testing.T) {
 	}
 }
 
-func Test_UpdateAWSCloudAccount(t *testing.T) {
+func Test_UpdateCloudAccount(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
@@ -381,13 +382,13 @@ func Test_UpdateAWSCloudAccount(t *testing.T) {
 	tests := []struct {
 		name            string
 		input           *cloudaccountpb.CloudAccount
-		updateMask      *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask
+		updateMask      cloudaccountv1alpha1.UpdateMask
 		expected        *cloudaccountpb.CloudAccount
 		expectedErr     string
 		expectedErrCode codes.Code
 	}{
 		{
-			name: "success - empty mask updates all fields",
+			name: "success - nil mask updates all fields",
 			input: &cloudaccountpb.CloudAccount{
 				Id:   existing1.GetId(),
 				Name: "updated name",
@@ -417,9 +418,7 @@ func Test_UpdateAWSCloudAccount(t *testing.T) {
 					},
 				},
 			},
-			updateMask: &cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask{
-				Name: true,
-			},
+			updateMask: cloudaccountv1alpha1.AWSUpdateMask(true, false),
 			expected: &cloudaccountpb.CloudAccount{
 				Name:     "updated name",
 				Provider: existing2.GetProvider(),
@@ -436,9 +435,7 @@ func Test_UpdateAWSCloudAccount(t *testing.T) {
 					},
 				},
 			},
-			updateMask: &cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask{
-				AwsAccountId: true,
-			},
+			updateMask: cloudaccountv1alpha1.AWSUpdateMask(false, true),
 			expected: &cloudaccountpb.CloudAccount{
 				Name: existing3.GetName(),
 				Provider: &cloudaccountpb.CloudAccount_Aws{
@@ -491,7 +488,7 @@ func Test_UpdateAWSCloudAccount(t *testing.T) {
 			}
 
 			// Act
-			updated, err := fakeClient.UpdateAWSCloudAccount(t.Context(), tt.input, tt.updateMask)
+			updated, err := fakeClient.UpdateCloudAccount(t.Context(), tt.input, tt.updateMask)
 
 			// Assert - response as expected
 			if tt.expectedErr != "" {

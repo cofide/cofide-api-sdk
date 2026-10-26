@@ -18,7 +18,7 @@ type CloudAccountClient interface {
 	DeleteCloudAccount(ctx context.Context, cloudAccountID string) error
 	GetCloudAccount(ctx context.Context, cloudAccountID string) (*cloudaccountpb.CloudAccount, error)
 	ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, pagination pagination.Pagination) ([]*cloudaccountpb.CloudAccount, pagination.Pagination, error)
-	UpdateAWSCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask) (*cloudaccountpb.CloudAccount, error)
+	UpdateCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask UpdateMask) (*cloudaccountpb.CloudAccount, error)
 }
 
 type cloudAccountClient struct {
@@ -70,16 +70,8 @@ func (c *cloudAccountClient) ListCloudAccounts(ctx context.Context, filter *clou
 	return resp.GetCloudAccounts(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
 }
 
-func (c *cloudAccountClient) UpdateAWSCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask) (*cloudaccountpb.CloudAccount, error) {
-	req := &cloudaccountpb.UpdateCloudAccountRequest{CloudAccount: cloudAccount}
-	// Only set the oneof when a mask is provided. A wrapper around a nil mask is encoded as an empty (present) mask,
-	// which the server would treat as "update no fields" rather than a full replacement.
-	if updateMask != nil {
-		req.UpdateMask = &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
-			AwsAccountUpdateMask: updateMask,
-		}
-	}
-	resp, err := c.client.UpdateCloudAccount(ctx, req)
+func (c *cloudAccountClient) UpdateCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask UpdateMask) (*cloudaccountpb.CloudAccount, error) {
+	resp, err := c.client.UpdateCloudAccount(ctx, NewUpdateRequest(cloudAccount, updateMask))
 	if err != nil {
 		return nil, err
 	}

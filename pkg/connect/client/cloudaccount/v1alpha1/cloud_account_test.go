@@ -38,7 +38,7 @@ func Test_CloudAccountClient_Unimplemented(t *testing.T) {
 	_, _, err = client.ListCloudAccounts(t.Context(), nil, pagination.Pagination{})
 	test.RequireUnimplemented(t, err)
 
-	_, err = client.UpdateAWSCloudAccount(t.Context(), nil, nil)
+	_, err = client.UpdateCloudAccount(t.Context(), nil, nil)
 	test.RequireUnimplemented(t, err)
 }
 
@@ -100,7 +100,7 @@ func Test_ListCloudAccounts(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func Test_UpdateAWSCloudAccount(t *testing.T) {
+func Test_UpdateCloudAccount(t *testing.T) {
 	client, fakeCloudAccountService := clientForTest(t)
 
 	input := &cloudaccountpb.CloudAccount{
@@ -112,21 +112,18 @@ func Test_UpdateAWSCloudAccount(t *testing.T) {
 			},
 		},
 	}
-	updateMask := &cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask{
-		Name: true,
-	}
 	fakeCloudAccountService.expectedUpdateRequest = &cloudaccountpb.UpdateCloudAccountRequest{
 		CloudAccount: input,
 		UpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
-			AwsAccountUpdateMask: updateMask,
+			AwsAccountUpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask{Name: true},
 		},
 	}
 
-	_, err := client.UpdateAWSCloudAccount(t.Context(), input, updateMask)
+	_, err := client.UpdateCloudAccount(t.Context(), input, v1alpha1.AWSUpdateMask(true, false))
 	require.NoError(t, err)
 }
 
-func Test_UpdateAWSCloudAccount_NilUpdateMask(t *testing.T) {
+func Test_UpdateCloudAccount_NilUpdateMask(t *testing.T) {
 	client, fakeCloudAccountService := clientForTest(t)
 
 	input := &cloudaccountpb.CloudAccount{Id: "test-id", Name: "test-name"}
@@ -135,7 +132,7 @@ func Test_UpdateAWSCloudAccount_NilUpdateMask(t *testing.T) {
 		CloudAccount: input,
 	}
 
-	_, err := client.UpdateAWSCloudAccount(t.Context(), input, nil)
+	_, err := client.UpdateCloudAccount(t.Context(), input, nil)
 	require.NoError(t, err)
 }
 
