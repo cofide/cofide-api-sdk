@@ -57,6 +57,9 @@ message ExchangePolicy {
   string outbound_identity = 16 [(google.api.field_behavior) = OPTIONAL];
   // Outbound scopes to grant. Only relevant when action is ALLOW.
   repeated string outbound_scopes = 12 [(google.api.field_behavior) = OPTIONAL];
+  // Skip policy-based scope checks and instead defer all scope
+  // checks and constraints to the downstream outbound issuer.
+  bool allow_any_scope = 20 [(google.api.field_behavior) = OPTIONAL];
   // Outbound issuer to use. Only relevant when action is ALLOW.
   // If set, requests matching this policy will cause Credex to request a
   // credential from the specified issuer and return it to the client instead
