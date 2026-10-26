@@ -126,6 +126,19 @@ func Test_UpdateAWSCloudAccount(t *testing.T) {
 	require.NoError(t, err)
 }
 
+func Test_UpdateAWSCloudAccount_NilUpdateMask(t *testing.T) {
+	client, fakeCloudAccountService := clientForTest(t)
+
+	input := &cloudaccountpb.CloudAccount{Id: "test-id", Name: "test-name"}
+	// A nil mask must not be sent as an empty mask, which the server would treat as "update nothing".
+	fakeCloudAccountService.expectedUpdateRequest = &cloudaccountpb.UpdateCloudAccountRequest{
+		CloudAccount: input,
+	}
+
+	_, err := client.UpdateAWSCloudAccount(t.Context(), input, nil)
+	require.NoError(t, err)
+}
+
 func clientForTest(t *testing.T) (v1alpha1.CloudAccountClient, *fakeCloudAccountService) {
 	t.Helper()
 	server := test.NewTestServer(t)

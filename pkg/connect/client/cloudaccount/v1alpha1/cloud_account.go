@@ -71,12 +71,15 @@ func (c *cloudAccountClient) ListCloudAccounts(ctx context.Context, filter *clou
 }
 
 func (c *cloudAccountClient) UpdateAWSCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask *cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask) (*cloudaccountpb.CloudAccount, error) {
-	resp, err := c.client.UpdateCloudAccount(ctx, &cloudaccountpb.UpdateCloudAccountRequest{
-		CloudAccount: cloudAccount,
-		UpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
+	req := &cloudaccountpb.UpdateCloudAccountRequest{CloudAccount: cloudAccount}
+	// Only set the oneof when a mask is provided. A wrapper around a nil mask is encoded as an empty (present) mask,
+	// which the server would treat as "update no fields" rather than a full replacement.
+	if updateMask != nil {
+		req.UpdateMask = &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
 			AwsAccountUpdateMask: updateMask,
-		},
-	})
+		}
+	}
+	resp, err := c.client.UpdateCloudAccount(ctx, req)
 	if err != nil {
 		return nil, err
 	}
