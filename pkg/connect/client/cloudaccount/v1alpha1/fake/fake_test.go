@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
-	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_resource_discovery_config/v1alpha1"
+	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1/fake"
@@ -155,12 +155,12 @@ func Test_DeleteCloudAccount(t *testing.T) {
 		},
 	)
 	require.NoError(t, err)
-	config := &crdcpb.CloudResourceDiscoveryConfig{
+	config := &crdcpb.CloudDiscoveryConfig{
 		Id:             uuid.New().String(),
 		CloudAccountId: withConfigs.GetId(),
 		Name:           "fake-config",
 	}
-	fakeConnect.CloudResourceDiscoveryConfigs[config.GetId()] = config
+	fakeConnect.CloudDiscoveryConfigs[config.GetId()] = config
 
 	tests := []struct {
 		name            string

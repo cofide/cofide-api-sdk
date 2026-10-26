@@ -6,9 +6,9 @@ package fake
 import (
 	"context"
 
-	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_resource_discovery_config/v1alpha1"
+	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
-	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresourcediscoveryconfig/v1alpha1"
+	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
@@ -17,16 +17,16 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-type fakeCloudResourceDiscoveryConfigClient struct {
+type fakeCloudDiscoveryConfigClient struct {
 	fake *fakeconnect.FakeConnect
 }
 
-// New instantiates a new CloudResourceDiscoveryConfigClient for communication with a fake Connect API.
-func New(fake *fakeconnect.FakeConnect) crdcv1alpha1.CloudResourceDiscoveryConfigClient {
-	return &fakeCloudResourceDiscoveryConfigClient{fake: fake}
+// New instantiates a new CloudDiscoveryConfigClient for communication with a fake Connect API.
+func New(fake *fakeconnect.FakeConnect) crdcv1alpha1.CloudDiscoveryConfigClient {
+	return &fakeCloudDiscoveryConfigClient{fake: fake}
 }
 
-func (c *fakeCloudResourceDiscoveryConfigClient) CreateCloudResourceDiscoveryConfig(ctx context.Context, config *crdcpb.CloudResourceDiscoveryConfig) (*crdcpb.CloudResourceDiscoveryConfig, error) {
+func (c *fakeCloudDiscoveryConfigClient) CreateCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig) (*crdcpb.CloudDiscoveryConfig, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
@@ -50,39 +50,39 @@ func (c *fakeCloudResourceDiscoveryConfigClient) CreateCloudResourceDiscoveryCon
 	config.Status = crdcpb.DiscoveryStatus_DISCOVERY_STATUS_UNSPECIFIED
 	config.LastSuccessfulDiscovery = nil
 	config.StatusLastUpdatedAt = nil
-	c.fake.CloudResourceDiscoveryConfigs[config.GetId()] = config
+	c.fake.CloudDiscoveryConfigs[config.GetId()] = config
 	return clone(config), nil
 }
 
-func (c *fakeCloudResourceDiscoveryConfigClient) DeleteCloudResourceDiscoveryConfig(ctx context.Context, configID string) error {
+func (c *fakeCloudDiscoveryConfigClient) DeleteCloudDiscoveryConfig(ctx context.Context, configID string) error {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	if _, ok := c.fake.CloudResourceDiscoveryConfigs[configID]; !ok {
+	if _, ok := c.fake.CloudDiscoveryConfigs[configID]; !ok {
 		return status.Error(codes.NotFound, "cloud resource discovery config not found")
 	}
-	delete(c.fake.CloudResourceDiscoveryConfigs, configID)
+	delete(c.fake.CloudDiscoveryConfigs, configID)
 	return nil
 }
 
-func (c *fakeCloudResourceDiscoveryConfigClient) GetCloudResourceDiscoveryConfig(ctx context.Context, configID string) (*crdcpb.CloudResourceDiscoveryConfig, error) {
+func (c *fakeCloudDiscoveryConfigClient) GetCloudDiscoveryConfig(ctx context.Context, configID string) (*crdcpb.CloudDiscoveryConfig, error) {
 	c.fake.Mu.RLock()
 	defer c.fake.Mu.RUnlock()
 
-	config, ok := c.fake.CloudResourceDiscoveryConfigs[configID]
+	config, ok := c.fake.CloudDiscoveryConfigs[configID]
 	if !ok {
 		return nil, status.Error(codes.NotFound, "cloud resource discovery config not found")
 	}
 	return clone(config), nil
 }
 
-func (c *fakeCloudResourceDiscoveryConfigClient) ListCloudResourceDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudResourceDiscoveryConfigsRequest_Filter, pagination *v1beta1.PageRequest) ([]*crdcpb.CloudResourceDiscoveryConfig, string, error) {
+func (c *fakeCloudDiscoveryConfigClient) ListCloudDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter, pagination *v1beta1.PageRequest) ([]*crdcpb.CloudDiscoveryConfig, string, error) {
 	c.fake.Mu.RLock()
 	defer c.fake.Mu.RUnlock()
 
 	// Filter
-	configs := []*crdcpb.CloudResourceDiscoveryConfig{}
-	for config := range fakeconnect.SortedValues(c.fake.CloudResourceDiscoveryConfigs) {
+	configs := []*crdcpb.CloudDiscoveryConfig{}
+	for config := range fakeconnect.SortedValues(c.fake.CloudDiscoveryConfigs) {
 		if configMatches(config, filter) {
 			configs = append(configs, clone(config))
 		}
@@ -103,7 +103,7 @@ func (c *fakeCloudResourceDiscoveryConfigClient) ListCloudResourceDiscoveryConfi
 	return configs, nextPageToken, nil
 }
 
-func configMatches(_ *crdcpb.CloudResourceDiscoveryConfig, filter *crdcpb.ListCloudResourceDiscoveryConfigsRequest_Filter) bool {
+func configMatches(_ *crdcpb.CloudDiscoveryConfig, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter) bool {
 	if filter == nil {
 		return true
 	}
@@ -111,11 +111,11 @@ func configMatches(_ *crdcpb.CloudResourceDiscoveryConfig, filter *crdcpb.ListCl
 	return true
 }
 
-func (c *fakeCloudResourceDiscoveryConfigClient) UpdateAWSLambdaCloudResourceDiscoveryConfig(ctx context.Context, config *crdcpb.CloudResourceDiscoveryConfig, updateMask *crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudResourceDiscoveryConfig, error) {
+func (c *fakeCloudDiscoveryConfigClient) UpdateAWSLambdaCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	existing, ok := c.fake.CloudResourceDiscoveryConfigs[config.GetId()]
+	existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
 	if !ok {
 		return nil, status.Error(codes.NotFound, "cloud resource discovery config not found")
 	}
@@ -150,11 +150,11 @@ func (c *fakeCloudResourceDiscoveryConfigClient) UpdateAWSLambdaCloudResourceDis
 	return c.store(existing), nil
 }
 
-func (c *fakeCloudResourceDiscoveryConfigClient) UpdateAWSAgentCoreCloudResourceDiscoveryConfig(ctx context.Context, config *crdcpb.CloudResourceDiscoveryConfig, updateMask *crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudResourceDiscoveryConfig, error) {
+func (c *fakeCloudDiscoveryConfigClient) UpdateAWSAgentCoreCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	existing, ok := c.fake.CloudResourceDiscoveryConfigs[config.GetId()]
+	existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
 	if !ok {
 		return nil, status.Error(codes.NotFound, "cloud resource discovery config not found")
 	}
@@ -191,14 +191,14 @@ func (c *fakeCloudResourceDiscoveryConfigClient) UpdateAWSAgentCoreCloudResource
 
 // store sets the last updated time, saves the config in the fake and returns a copy.
 // The caller must hold the fake's lock.
-func (c *fakeCloudResourceDiscoveryConfigClient) store(config *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudResourceDiscoveryConfig {
+func (c *fakeCloudDiscoveryConfigClient) store(config *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
 	config.LastUpdatedAt = timestamppb.Now()
-	c.fake.CloudResourceDiscoveryConfigs[config.GetId()] = config
+	c.fake.CloudDiscoveryConfigs[config.GetId()] = config
 	return clone(config)
 }
 
 // replace returns a full replacement of existing with config, preserving immutable and output only properties.
-func replace(existing, config *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudResourceDiscoveryConfig {
+func replace(existing, config *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
 	replacement := clone(config)
 	replacement.CloudAccountId = existing.GetCloudAccountId()
 	replacement.Status = existing.GetStatus()
@@ -209,7 +209,7 @@ func replace(existing, config *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.Clou
 }
 
 // applyCommonMask applies the update mask fields common to all discovery config types.
-func applyCommonMask(existing, config *crdcpb.CloudResourceDiscoveryConfig, name, disabled, discoveryInterval bool) error {
+func applyCommonMask(existing, config *crdcpb.CloudDiscoveryConfig, name, disabled, discoveryInterval bool) error {
 	if name {
 		if config.GetName() == "" {
 			return status.Error(codes.InvalidArgument, "cloud resource discovery config name must not be empty")
@@ -238,6 +238,6 @@ func applyRoleChainMask(existing, config *crdcpb.AWSAssumeRoleConfig, assumeThro
 	}
 }
 
-func clone(config *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudResourceDiscoveryConfig {
-	return proto.Clone(config).(*crdcpb.CloudResourceDiscoveryConfig)
+func clone(config *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
+	return proto.Clone(config).(*crdcpb.CloudDiscoveryConfig)
 }

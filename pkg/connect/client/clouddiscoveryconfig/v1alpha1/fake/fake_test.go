@@ -8,9 +8,9 @@ import (
 	"time"
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
-	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_resource_discovery_config/v1alpha1"
+	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
-	"github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresourcediscoveryconfig/v1alpha1/fake"
+	"github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1/fake"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -41,12 +41,12 @@ func roleChain(arn string) *crdcpb.AWSAssumeRoleConfig {
 	}
 }
 
-func lambdaConfig(cloudAccountID, name string) *crdcpb.CloudResourceDiscoveryConfig {
-	return &crdcpb.CloudResourceDiscoveryConfig{
+func lambdaConfig(cloudAccountID, name string) *crdcpb.CloudDiscoveryConfig {
+	return &crdcpb.CloudDiscoveryConfig{
 		CloudAccountId:    cloudAccountID,
 		Name:              name,
 		DiscoveryInterval: durationpb.New(time.Minute),
-		DiscoveryConfig: &crdcpb.CloudResourceDiscoveryConfig_AwsLambdaDiscoveryConfig{
+		DiscoveryConfig: &crdcpb.CloudDiscoveryConfig_AwsLambdaDiscoveryConfig{
 			AwsLambdaDiscoveryConfig: &crdcpb.AWSLambdaDiscoveryConfig{
 				Regions:   []string{"eu-west-1"},
 				RoleChain: roleChain("arn:aws:iam::123456789012:role/lambda"),
@@ -55,12 +55,12 @@ func lambdaConfig(cloudAccountID, name string) *crdcpb.CloudResourceDiscoveryCon
 	}
 }
 
-func agentCoreConfig(cloudAccountID, name string) *crdcpb.CloudResourceDiscoveryConfig {
-	return &crdcpb.CloudResourceDiscoveryConfig{
+func agentCoreConfig(cloudAccountID, name string) *crdcpb.CloudDiscoveryConfig {
+	return &crdcpb.CloudDiscoveryConfig{
 		CloudAccountId:    cloudAccountID,
 		Name:              name,
 		DiscoveryInterval: durationpb.New(time.Minute),
-		DiscoveryConfig: &crdcpb.CloudResourceDiscoveryConfig_AwsAgentCoreDiscoveryConfig{
+		DiscoveryConfig: &crdcpb.CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig{
 			AwsAgentCoreDiscoveryConfig: &crdcpb.AWSAgentCoreDiscoveryConfig{
 				Regions:   []string{"us-east-1"},
 				RoleChain: roleChain("arn:aws:iam::123456789012:role/agentcore"),
@@ -69,7 +69,7 @@ func agentCoreConfig(cloudAccountID, name string) *crdcpb.CloudResourceDiscovery
 	}
 }
 
-func Test_CreateCloudResourceDiscoveryConfig(t *testing.T) {
+func Test_CreateCloudDiscoveryConfig(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
@@ -82,7 +82,7 @@ func Test_CreateCloudResourceDiscoveryConfig(t *testing.T) {
 
 	tests := []struct {
 		name            string
-		input           *crdcpb.CloudResourceDiscoveryConfig
+		input           *crdcpb.CloudDiscoveryConfig
 		expectedErr     string
 		expectedErrCode codes.Code
 	}{
@@ -118,7 +118,7 @@ func Test_CreateCloudResourceDiscoveryConfig(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			created, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), tt.input)
+			created, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), tt.input)
 
 			// Assert - response as expected
 			if tt.expectedErr != "" {
@@ -139,14 +139,14 @@ func Test_CreateCloudResourceDiscoveryConfig(t *testing.T) {
 			assert.EqualExportedValues(t, tt.input.GetAwsAgentCoreDiscoveryConfig(), created.GetAwsAgentCoreDiscoveryConfig())
 
 			// Assert - stored in fake
-			found, err := fakeClient.GetCloudResourceDiscoveryConfig(t.Context(), created.GetId())
+			found, err := fakeClient.GetCloudDiscoveryConfig(t.Context(), created.GetId())
 			require.NoError(t, err)
 			assert.EqualExportedValues(t, created, found)
 		})
 	}
 }
 
-func Test_CreateCloudResourceDiscoveryConfig_IgnoresOutputOnlyFields(t *testing.T) {
+func Test_CreateCloudDiscoveryConfig_IgnoresOutputOnlyFields(t *testing.T) {
 	t.Parallel()
 
 	fakeConnect, cloudAccountID := newFake(t)
@@ -156,20 +156,20 @@ func Test_CreateCloudResourceDiscoveryConfig_IgnoresOutputOnlyFields(t *testing.
 	input.Id = "client-supplied"
 	input.Status = crdcpb.DiscoveryStatus_DISCOVERY_STATUS_ERROR
 
-	created, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), input)
+	created, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), input)
 
 	require.NoError(t, err)
 	assert.NotEqual(t, "client-supplied", created.GetId())
 	assert.Equal(t, crdcpb.DiscoveryStatus_DISCOVERY_STATUS_UNSPECIFIED, created.GetStatus())
 }
 
-func Test_DeleteCloudResourceDiscoveryConfig(t *testing.T) {
+func Test_DeleteCloudDiscoveryConfig(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
 	fakeConnect, cloudAccountID := newFake(t)
 	fakeClient := fake.New(fakeConnect)
-	existing, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), lambdaConfig(cloudAccountID, "fake-lambda"))
+	existing, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), lambdaConfig(cloudAccountID, "fake-lambda"))
 	require.NoError(t, err)
 
 	tests := []struct {
@@ -194,7 +194,7 @@ func Test_DeleteCloudResourceDiscoveryConfig(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			err := fakeClient.DeleteCloudResourceDiscoveryConfig(t.Context(), tt.configID)
+			err := fakeClient.DeleteCloudDiscoveryConfig(t.Context(), tt.configID)
 
 			// Assert - response as expected
 			if tt.expectedErr != "" {
@@ -205,26 +205,26 @@ func Test_DeleteCloudResourceDiscoveryConfig(t *testing.T) {
 			require.NoError(t, err)
 
 			// Assert - no longer stored in fake
-			_, err = fakeClient.GetCloudResourceDiscoveryConfig(t.Context(), tt.configID)
+			_, err = fakeClient.GetCloudDiscoveryConfig(t.Context(), tt.configID)
 			require.Error(t, err)
 			assert.Equal(t, codes.NotFound, status.Code(err))
 		})
 	}
 }
 
-func Test_GetCloudResourceDiscoveryConfig(t *testing.T) {
+func Test_GetCloudDiscoveryConfig(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
 	fakeConnect, cloudAccountID := newFake(t)
 	fakeClient := fake.New(fakeConnect)
-	existing, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), lambdaConfig(cloudAccountID, "fake-lambda"))
+	existing, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), lambdaConfig(cloudAccountID, "fake-lambda"))
 	require.NoError(t, err)
 
 	tests := []struct {
 		name            string
 		configID        string
-		expected        *crdcpb.CloudResourceDiscoveryConfig
+		expected        *crdcpb.CloudDiscoveryConfig
 		expectedErr     string
 		expectedErrCode codes.Code
 	}{
@@ -245,7 +245,7 @@ func Test_GetCloudResourceDiscoveryConfig(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			found, err := fakeClient.GetCloudResourceDiscoveryConfig(t.Context(), tt.configID)
+			found, err := fakeClient.GetCloudDiscoveryConfig(t.Context(), tt.configID)
 
 			// Assert
 			if tt.expectedErr != "" {
@@ -260,15 +260,15 @@ func Test_GetCloudResourceDiscoveryConfig(t *testing.T) {
 	}
 }
 
-func Test_ListCloudResourceDiscoveryConfigs(t *testing.T) {
+func Test_ListCloudDiscoveryConfigs(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
 	fakeConnect, cloudAccountID := newFake(t)
 	fakeClient := fake.New(fakeConnect)
-	existing1, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), lambdaConfig(cloudAccountID, "fake-lambda"))
+	existing1, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), lambdaConfig(cloudAccountID, "fake-lambda"))
 	require.NoError(t, err)
-	existing2, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), agentCoreConfig(cloudAccountID, "fake-agent-core"))
+	existing2, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), agentCoreConfig(cloudAccountID, "fake-agent-core"))
 	require.NoError(t, err)
 
 	// The fake returns results ordered by ID, and IDs are random.
@@ -279,25 +279,25 @@ func Test_ListCloudResourceDiscoveryConfigs(t *testing.T) {
 	// When filters are added, add test cases here
 	tests := []struct {
 		name                  string
-		filter                *crdcpb.ListCloudResourceDiscoveryConfigsRequest_Filter
+		filter                *crdcpb.ListCloudDiscoveryConfigsRequest_Filter
 		pagination            *v1beta1.PageRequest
-		expected              []*crdcpb.CloudResourceDiscoveryConfig
+		expected              []*crdcpb.CloudDiscoveryConfig
 		expectedNextPageToken string
 	}{
 		{
 			name:     "success",
-			expected: []*crdcpb.CloudResourceDiscoveryConfig{existing1, existing2},
+			expected: []*crdcpb.CloudDiscoveryConfig{existing1, existing2},
 		},
 		{
 			name:                  "success - page with results remaining",
 			pagination:            &v1beta1.PageRequest{PageSize: 1},
-			expected:              []*crdcpb.CloudResourceDiscoveryConfig{existing1},
+			expected:              []*crdcpb.CloudDiscoveryConfig{existing1},
 			expectedNextPageToken: existing2.GetId(),
 		},
 		{
 			name:       "success - last page",
 			pagination: &v1beta1.PageRequest{PageSize: 1, PageToken: existing2.GetId()},
-			expected:   []*crdcpb.CloudResourceDiscoveryConfig{existing2},
+			expected:   []*crdcpb.CloudDiscoveryConfig{existing2},
 		},
 	}
 	for _, tt := range tests {
@@ -305,7 +305,7 @@ func Test_ListCloudResourceDiscoveryConfigs(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			found, nextPageToken, err := fakeClient.ListCloudResourceDiscoveryConfigs(t.Context(), tt.filter, tt.pagination)
+			found, nextPageToken, err := fakeClient.ListCloudDiscoveryConfigs(t.Context(), tt.filter, tt.pagination)
 
 			// Assert
 			require.NoError(t, err)
@@ -315,8 +315,8 @@ func Test_ListCloudResourceDiscoveryConfigs(t *testing.T) {
 	}
 }
 
-func cloneConfig(c *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudResourceDiscoveryConfig {
-	return proto.Clone(c).(*crdcpb.CloudResourceDiscoveryConfig)
+func cloneConfig(c *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
+	return proto.Clone(c).(*crdcpb.CloudDiscoveryConfig)
 }
 
 // updatedRoleChain is a role chain with every field different to that returned by roleChain.
@@ -329,8 +329,8 @@ func updatedRoleChain() *crdcpb.AWSAssumeRoleConfig {
 }
 
 // updateInput returns an update input with every mutable field changed, for the discovery config type of existing.
-func updateInput(existing *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudResourceDiscoveryConfig {
-	input := &crdcpb.CloudResourceDiscoveryConfig{
+func updateInput(existing *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
+	input := &crdcpb.CloudDiscoveryConfig{
 		Id:                existing.GetId(),
 		CloudAccountId:    "ignored",
 		Name:              "updated name",
@@ -338,14 +338,14 @@ func updateInput(existing *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudRes
 		DiscoveryInterval: durationpb.New(time.Hour),
 	}
 	if existing.GetAwsLambdaDiscoveryConfig() != nil {
-		input.DiscoveryConfig = &crdcpb.CloudResourceDiscoveryConfig_AwsLambdaDiscoveryConfig{
+		input.DiscoveryConfig = &crdcpb.CloudDiscoveryConfig_AwsLambdaDiscoveryConfig{
 			AwsLambdaDiscoveryConfig: &crdcpb.AWSLambdaDiscoveryConfig{
 				Regions:   []string{"us-west-2", "eu-central-1"},
 				RoleChain: updatedRoleChain(),
 			},
 		}
 	} else {
-		input.DiscoveryConfig = &crdcpb.CloudResourceDiscoveryConfig_AwsAgentCoreDiscoveryConfig{
+		input.DiscoveryConfig = &crdcpb.CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig{
 			AwsAgentCoreDiscoveryConfig: &crdcpb.AWSAgentCoreDiscoveryConfig{
 				Regions:   []string{"us-west-2", "eu-central-1"},
 				RoleChain: updatedRoleChain(),
@@ -359,7 +359,7 @@ func updateInput(existing *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudRes
 // The mutate function applies the expected changes to a copy of the original config.
 type updateCase struct {
 	name   string
-	mutate func(c *crdcpb.CloudResourceDiscoveryConfig, roleChain *crdcpb.AWSAssumeRoleConfig, setRegions func([]string))
+	mutate func(c *crdcpb.CloudDiscoveryConfig, roleChain *crdcpb.AWSAssumeRoleConfig, setRegions func([]string))
 }
 
 // updateCases are the success cases shared by the lambda and agent core update tests, in the same order as the masks
@@ -367,61 +367,61 @@ type updateCase struct {
 var updateCases = []updateCase{
 	{
 		name: "mask with just name",
-		mutate: func(c *crdcpb.CloudResourceDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
 			c.Name = "updated name"
 		},
 	},
 	{
 		name: "mask with just disabled",
-		mutate: func(c *crdcpb.CloudResourceDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
 			c.Disabled = true
 		},
 	},
 	{
 		name: "mask with just discovery interval",
-		mutate: func(c *crdcpb.CloudResourceDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
 			c.DiscoveryInterval = durationpb.New(time.Hour)
 		},
 	},
 	{
 		name: "mask with just regions",
-		mutate: func(_ *crdcpb.CloudResourceDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, setRegions func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, setRegions func([]string)) {
 			setRegions([]string{"us-west-2", "eu-central-1"})
 		},
 	},
 	{
 		name: "mask with just assume through OIDC",
-		mutate: func(_ *crdcpb.CloudResourceDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
 			rc.AssumeThroughOidc = false
 		},
 	},
 	{
 		name: "mask with just audience",
-		mutate: func(_ *crdcpb.CloudResourceDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
 			rc.Audience = "updated-audience"
 		},
 	},
 	{
 		name: "mask with just roles",
-		mutate: func(_ *crdcpb.CloudResourceDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
 			rc.Roles = updatedRoleChain().GetRoles()
 		},
 	},
 }
 
-func Test_UpdateAWSLambdaCloudResourceDiscoveryConfig(t *testing.T) {
+func Test_UpdateAWSLambdaCloudDiscoveryConfig(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
 	fakeConnect, cloudAccountID := newFake(t)
 	fakeClient := fake.New(fakeConnect)
-	create := func(c *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudResourceDiscoveryConfig {
-		created, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), c)
+	create := func(c *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
+		created, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), c)
 		require.NoError(t, err)
 		return created
 	}
 
-	masks := []*crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
+	masks := []*crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
 		{Name: true},
 		{Disabled: true},
 		{DiscoveryInterval: true},
@@ -434,10 +434,10 @@ func Test_UpdateAWSLambdaCloudResourceDiscoveryConfig(t *testing.T) {
 
 	type testCase struct {
 		name            string
-		input           *crdcpb.CloudResourceDiscoveryConfig
-		updateMask      *crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask
-		original        *crdcpb.CloudResourceDiscoveryConfig
-		expected        *crdcpb.CloudResourceDiscoveryConfig
+		input           *crdcpb.CloudDiscoveryConfig
+		updateMask      *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask
+		original        *crdcpb.CloudDiscoveryConfig
+		expected        *crdcpb.CloudDiscoveryConfig
 		expectedErr     string
 		expectedErrCode codes.Code
 	}
@@ -473,7 +473,7 @@ func Test_UpdateAWSLambdaCloudResourceDiscoveryConfig(t *testing.T) {
 	tests = append(tests,
 		testCase{
 			name:            "error - not found",
-			input:           &crdcpb.CloudResourceDiscoveryConfig{Id: "non-existent"},
+			input:           &crdcpb.CloudDiscoveryConfig{Id: "non-existent"},
 			expectedErr:     "rpc error: code = NotFound desc = cloud resource discovery config not found",
 			expectedErrCode: codes.NotFound,
 		},
@@ -486,7 +486,7 @@ func Test_UpdateAWSLambdaCloudResourceDiscoveryConfig(t *testing.T) {
 		testCase{
 			name:            "error - input is not an aws lambda config",
 			input:           updateInput(existingAgentCore),
-			updateMask:      &crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{Regions: true},
+			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{Regions: true},
 			original:        original,
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
@@ -494,7 +494,7 @@ func Test_UpdateAWSLambdaCloudResourceDiscoveryConfig(t *testing.T) {
 		testCase{
 			name:            "error - empty name in mask",
 			input:           emptyNameInput,
-			updateMask:      &crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{Name: true},
+			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{Name: true},
 			original:        original,
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
@@ -512,7 +512,7 @@ func Test_UpdateAWSLambdaCloudResourceDiscoveryConfig(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			updated, err := fakeClient.UpdateAWSLambdaCloudResourceDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
+			updated, err := fakeClient.UpdateAWSLambdaCloudDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
 
 			// Assert - response as expected
 			if tt.expectedErr != "" {
@@ -525,26 +525,26 @@ func Test_UpdateAWSLambdaCloudResourceDiscoveryConfig(t *testing.T) {
 			assert.EqualExportedValues(t, tt.expected.GetAwsLambdaDiscoveryConfig(), updated.GetAwsLambdaDiscoveryConfig())
 
 			// Assert - stored in fake
-			found, err := fakeClient.GetCloudResourceDiscoveryConfig(t.Context(), updated.GetId())
+			found, err := fakeClient.GetCloudDiscoveryConfig(t.Context(), updated.GetId())
 			require.NoError(t, err)
 			assert.EqualExportedValues(t, updated, found)
 		})
 	}
 }
 
-func Test_UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t *testing.T) {
+func Test_UpdateAWSAgentCoreCloudDiscoveryConfig(t *testing.T) {
 	t.Parallel()
 
 	// Arrange
 	fakeConnect, cloudAccountID := newFake(t)
 	fakeClient := fake.New(fakeConnect)
-	create := func(c *crdcpb.CloudResourceDiscoveryConfig) *crdcpb.CloudResourceDiscoveryConfig {
-		created, err := fakeClient.CreateCloudResourceDiscoveryConfig(t.Context(), c)
+	create := func(c *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
+		created, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), c)
 		require.NoError(t, err)
 		return created
 	}
 
-	masks := []*crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
+	masks := []*crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
 		{Name: true},
 		{Disabled: true},
 		{DiscoveryInterval: true},
@@ -557,10 +557,10 @@ func Test_UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t *testing.T) {
 
 	type testCase struct {
 		name            string
-		input           *crdcpb.CloudResourceDiscoveryConfig
-		updateMask      *crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask
-		original        *crdcpb.CloudResourceDiscoveryConfig
-		expected        *crdcpb.CloudResourceDiscoveryConfig
+		input           *crdcpb.CloudDiscoveryConfig
+		updateMask      *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask
+		original        *crdcpb.CloudDiscoveryConfig
+		expected        *crdcpb.CloudDiscoveryConfig
 		expectedErr     string
 		expectedErrCode codes.Code
 	}
@@ -598,7 +598,7 @@ func Test_UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t *testing.T) {
 	tests = append(tests,
 		testCase{
 			name:            "error - not found",
-			input:           &crdcpb.CloudResourceDiscoveryConfig{Id: "non-existent"},
+			input:           &crdcpb.CloudDiscoveryConfig{Id: "non-existent"},
 			expectedErr:     "rpc error: code = NotFound desc = cloud resource discovery config not found",
 			expectedErrCode: codes.NotFound,
 		},
@@ -611,14 +611,14 @@ func Test_UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t *testing.T) {
 		testCase{
 			name:            "error - input is not an aws agent core config",
 			input:           wrongTypeInput,
-			updateMask:      &crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{Regions: true},
+			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{Regions: true},
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - empty name in mask",
 			input:           emptyNameInput,
-			updateMask:      &crdcpb.UpdateCloudResourceDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{Name: true},
+			updateMask:      &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{Name: true},
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
 		},
@@ -629,7 +629,7 @@ func Test_UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t *testing.T) {
 			t.Parallel()
 
 			// Act
-			updated, err := fakeClient.UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
+			updated, err := fakeClient.UpdateAWSAgentCoreCloudDiscoveryConfig(t.Context(), tt.input, tt.updateMask)
 
 			// Assert - response as expected
 			if tt.expectedErr != "" {
@@ -642,7 +642,7 @@ func Test_UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t *testing.T) {
 			assert.EqualExportedValues(t, tt.expected.GetAwsAgentCoreDiscoveryConfig(), updated.GetAwsAgentCoreDiscoveryConfig())
 
 			// Assert - stored in fake
-			found, err := fakeClient.GetCloudResourceDiscoveryConfig(t.Context(), updated.GetId())
+			found, err := fakeClient.GetCloudDiscoveryConfig(t.Context(), updated.GetId())
 			require.NoError(t, err)
 			assert.EqualExportedValues(t, updated, found)
 		})
@@ -650,7 +650,7 @@ func Test_UpdateAWSAgentCoreCloudResourceDiscoveryConfig(t *testing.T) {
 }
 
 // assertUpdated asserts the type independent properties of an updated config.
-func assertUpdated(t *testing.T, input, original, expected, updated *crdcpb.CloudResourceDiscoveryConfig) {
+func assertUpdated(t *testing.T, input, original, expected, updated *crdcpb.CloudDiscoveryConfig) {
 	t.Helper()
 	assert.NotSame(t, input, updated)
 	assert.Equal(t, input.GetId(), updated.GetId())                            // ID unchanged

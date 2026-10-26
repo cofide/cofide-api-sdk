@@ -11,7 +11,7 @@ import (
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
-	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_resource_discovery_config/v1alpha1"
+	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
 	datastoresvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/datastore_service/v1alpha1"
 	exchangepolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/exchange_policy/v1alpha1"
@@ -37,50 +37,50 @@ type FakeConnect struct {
 	// must only be called with Mu held.
 	Mu sync.RWMutex
 
-	Organizations                 map[string]*organizationpb.Organization
-	TrustZones                    map[string]*trustzonepb.TrustZone
-	TrustZoneBundles              map[string]*types.Bundle
-	TrustZoneServers              map[string]*trustzoneserverpb.TrustZoneServer
-	Clusters                      map[string]*clusterpb.Cluster
-	Agents                        map[string]*agentpb.Agent
-	AgentJoinTokens               map[string]map[string]string
-	AgentStatus                   map[string]*agentpb.AgentStatus
-	FederatedServices             map[string]*federatedservicepb.FederatedService
-	AttestationPolicies           map[string]*attestationpolicypb.AttestationPolicy
-	ExchangePolicies              map[string]*exchangepolicypb.ExchangePolicy
-	Federations                   map[string]*federationpb.Federation
-	AttestedNodes                 map[string]*datastoresvcpb.AttestedNode
-	Workloads                     map[string]*workloadpb.Workload
-	WorkloadEvents                []*workloadpb.WorkloadEvent
-	Identities                    map[string]*identitypb.Identity
-	RoleBindings                  map[string]*rolebindingpb.RoleBinding
-	AuditEvents                   map[string]*auditpb.Event
-	CloudAccounts                 map[string]*cloudaccountpb.CloudAccount
-	CloudResourceDiscoveryConfigs map[string]*crdcpb.CloudResourceDiscoveryConfig
+	Organizations         map[string]*organizationpb.Organization
+	TrustZones            map[string]*trustzonepb.TrustZone
+	TrustZoneBundles      map[string]*types.Bundle
+	TrustZoneServers      map[string]*trustzoneserverpb.TrustZoneServer
+	Clusters              map[string]*clusterpb.Cluster
+	Agents                map[string]*agentpb.Agent
+	AgentJoinTokens       map[string]map[string]string
+	AgentStatus           map[string]*agentpb.AgentStatus
+	FederatedServices     map[string]*federatedservicepb.FederatedService
+	AttestationPolicies   map[string]*attestationpolicypb.AttestationPolicy
+	ExchangePolicies      map[string]*exchangepolicypb.ExchangePolicy
+	Federations           map[string]*federationpb.Federation
+	AttestedNodes         map[string]*datastoresvcpb.AttestedNode
+	Workloads             map[string]*workloadpb.Workload
+	WorkloadEvents        []*workloadpb.WorkloadEvent
+	Identities            map[string]*identitypb.Identity
+	RoleBindings          map[string]*rolebindingpb.RoleBinding
+	AuditEvents           map[string]*auditpb.Event
+	CloudAccounts         map[string]*cloudaccountpb.CloudAccount
+	CloudDiscoveryConfigs map[string]*crdcpb.CloudDiscoveryConfig
 }
 
 func New() *FakeConnect {
 	return &FakeConnect{
-		Organizations:                 make(map[string]*organizationpb.Organization),
-		TrustZones:                    make(map[string]*trustzonepb.TrustZone),
-		TrustZoneBundles:              make(map[string]*types.Bundle),
-		TrustZoneServers:              make(map[string]*trustzoneserverpb.TrustZoneServer),
-		Clusters:                      make(map[string]*clusterpb.Cluster),
-		Agents:                        make(map[string]*agentpb.Agent),
-		AgentJoinTokens:               make(map[string]map[string]string),
-		AgentStatus:                   make(map[string]*agentpb.AgentStatus),
-		FederatedServices:             make(map[string]*federatedservicepb.FederatedService),
-		AttestationPolicies:           make(map[string]*attestationpolicypb.AttestationPolicy),
-		ExchangePolicies:              make(map[string]*exchangepolicypb.ExchangePolicy),
-		Federations:                   make(map[string]*federationpb.Federation),
-		AttestedNodes:                 make(map[string]*datastoresvcpb.AttestedNode),
-		Workloads:                     make(map[string]*workloadpb.Workload),
-		WorkloadEvents:                []*workloadpb.WorkloadEvent{},
-		Identities:                    make(map[string]*identitypb.Identity),
-		RoleBindings:                  make(map[string]*rolebindingpb.RoleBinding),
-		AuditEvents:                   make(map[string]*auditpb.Event),
-		CloudAccounts:                 make(map[string]*cloudaccountpb.CloudAccount),
-		CloudResourceDiscoveryConfigs: make(map[string]*crdcpb.CloudResourceDiscoveryConfig),
+		Organizations:         make(map[string]*organizationpb.Organization),
+		TrustZones:            make(map[string]*trustzonepb.TrustZone),
+		TrustZoneBundles:      make(map[string]*types.Bundle),
+		TrustZoneServers:      make(map[string]*trustzoneserverpb.TrustZoneServer),
+		Clusters:              make(map[string]*clusterpb.Cluster),
+		Agents:                make(map[string]*agentpb.Agent),
+		AgentJoinTokens:       make(map[string]map[string]string),
+		AgentStatus:           make(map[string]*agentpb.AgentStatus),
+		FederatedServices:     make(map[string]*federatedservicepb.FederatedService),
+		AttestationPolicies:   make(map[string]*attestationpolicypb.AttestationPolicy),
+		ExchangePolicies:      make(map[string]*exchangepolicypb.ExchangePolicy),
+		Federations:           make(map[string]*federationpb.Federation),
+		AttestedNodes:         make(map[string]*datastoresvcpb.AttestedNode),
+		Workloads:             make(map[string]*workloadpb.Workload),
+		WorkloadEvents:        []*workloadpb.WorkloadEvent{},
+		Identities:            make(map[string]*identitypb.Identity),
+		RoleBindings:          make(map[string]*rolebindingpb.RoleBinding),
+		AuditEvents:           make(map[string]*auditpb.Event),
+		CloudAccounts:         make(map[string]*cloudaccountpb.CloudAccount),
+		CloudDiscoveryConfigs: make(map[string]*crdcpb.CloudDiscoveryConfig),
 	}
 }
 

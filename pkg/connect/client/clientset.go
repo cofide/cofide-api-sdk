@@ -8,7 +8,7 @@ import (
 	attestationpolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/attestationpolicy/v1alpha1"
 	auditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
-	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudresourcediscoveryconfig/v1alpha1"
+	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
@@ -30,7 +30,7 @@ type ClientSet interface {
 	TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient
 	TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneServerClient
 	CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient
-	CloudResourceDiscoveryConfigV1Alpha1() crdcv1alpha1.CloudResourceDiscoveryConfigClient
+	CloudDiscoveryConfigV1Alpha1() crdcv1alpha1.CloudDiscoveryConfigClient
 	ClusterV1Alpha1() clusterv1alpha1.ClusterClient
 	AgentV1Alpha1() agentv1alpha1.AgentClient
 	AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient
@@ -49,7 +49,7 @@ type clientSet struct {
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	cloudAccountV1Alpha1      cloudaccountv1alpha1.CloudAccountClient
-	crdcV1Alpha1              crdcv1alpha1.CloudResourceDiscoveryConfigClient
+	crdcV1Alpha1              crdcv1alpha1.CloudDiscoveryConfigClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	federationV1Alpha1        federationV1Alpha1.FederationClient
@@ -102,7 +102,7 @@ func (c *clientSet) CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClie
 	return c.cloudAccountV1Alpha1
 }
 
-func (c *clientSet) CloudResourceDiscoveryConfigV1Alpha1() crdcv1alpha1.CloudResourceDiscoveryConfigClient {
+func (c *clientSet) CloudDiscoveryConfigV1Alpha1() crdcv1alpha1.CloudDiscoveryConfigClient {
 	return c.crdcV1Alpha1
 }
 
