@@ -28,14 +28,14 @@ import (
 )
 
 // FakeConnect implements the state for a fake Connect service.
-//
-// Mu guards all of the maps below. Fake client methods must hold it for the
-// whole of any operation that reads or writes them: Lock for operations that
-// modify state, RLock for read-only operations such as Get and List. This
-// includes the Validate* helpers, which read the maps without locking and so
-// must only be called with Mu held.
 type FakeConnect struct {
-	Mu                  sync.RWMutex
+	// Mu guards all of the maps below. Fake client methods must hold it for the
+	// whole of any operation that reads or writes them: Lock for operations that
+	// modify state, RLock for read-only operations such as Get and List. This
+	// includes the Validate* helpers, which read the maps without locking and so
+	// must only be called with Mu held.
+	Mu sync.RWMutex
+
 	Organizations       map[string]*organizationpb.Organization
 	TrustZones          map[string]*trustzonepb.TrustZone
 	TrustZoneBundles    map[string]*types.Bundle
