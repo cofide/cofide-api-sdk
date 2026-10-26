@@ -25,7 +25,7 @@ type cloudAccountClient struct {
 	client cloudaccountpb.CloudAccountServiceClient
 }
 
-// New instantiates a new ExchangePolicyClient for communication with a Connect API.
+// New instantiates a new CloudAccountClient for communication with a Connect API.
 func New(conn grpc.ClientConnInterface) CloudAccountClient {
 	return &cloudAccountClient{
 		client: cloudaccountpb.NewCloudAccountServiceClient(conn),
