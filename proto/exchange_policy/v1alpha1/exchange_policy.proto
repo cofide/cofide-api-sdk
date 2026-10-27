@@ -66,6 +66,8 @@ message ExchangePolicy {
     OutboundOAuthAS oauth_as = 18 [(google.api.field_behavior) = OPTIONAL];
     // A SPIFFE identity issuer
     OutboundSPIFFE spiffe = 19 [(google.api.field_behavior) = OPTIONAL];
+    // A JWT client assertion targeting another OAuth AS.
+    OutboundClientAssertion client_assertion = 21 [(google.api.field_behavior) = OPTIONAL];
   }
 
   // Time of resource creation by user.
@@ -117,6 +119,28 @@ message OutboundOAuthAS {
   // value when unset. If the AS does not respond within this duration, the
   // exchange is denied.
   google.protobuf.Duration timeout = 5 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// A JWT client assertion spec for a downstream OAuth Authorization Server.
+message OutboundClientAssertion {
+  // The iss/sub claim in the minted assertions (unless overridden
+  // by an external hook).
+  string client_id = 1;
+  // Audience list to use as the minted assertion's aud claim. When
+  // empty, aud defaults to the resolved token endpoint (one of
+  // IssuerURL or TokenURL must then be set).
+  repeated string audiences = 2;
+  // Token URL to use as the minted assertion's aud claim. Not used
+  // when an explicit audience list is set.
+  string token_url = 3;
+  // Issuer URL used to discover the AS's token URL via OAuth / OIDC
+  // discovery. Not used when either audiences or token_url are set.
+  string issuer_url = 4;
+  // Maximum time to wait for the AS to respond during token URL
+  // discovery. Defaults to a server-defined value when unset and is
+  // only used when issuer_url is set. If the AS does not respond
+  // within this duration, the exchange is denied.
+  google.protobuf.Duration timeout = 5;
 }
 
 // Marker denoting an OIDC to SPIFFE exchange policy. An empty struct is used to

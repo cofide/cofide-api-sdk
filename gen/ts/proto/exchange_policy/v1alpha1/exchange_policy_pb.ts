@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/exchange_policy/v1alpha1/exchange_policy.proto.
  */
 export const file_proto_exchange_policy_v1alpha1_exchange_policy: GenFile = /*@__PURE__*/
-  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEi2AgKDkV4Y2hhbmdlUG9saWN5Eg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQPgQQUSEQoEbmFtZRgDIAEoCUID4EECEh0KDXRydXN0X3pvbmVfaWQYBCABKAlCBuBBAuBBBRJOCgZhY3Rpb24YBSABKA4yNC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lBY3Rpb25CA+BBAUgBiAEBEkgKEHN1YmplY3RfaWRlbnRpdHkYBiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRgoOc3ViamVjdF9pc3N1ZXIYByABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESSAoQc3ViamVjdF9hdWRpZW5jZRgPIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJGCg5hY3Rvcl9pZGVudGl0eRgIIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJECgxhY3Rvcl9pc3N1ZXIYCSABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESQQoJY2xpZW50X2lkGAogASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkcKD3RhcmdldF9hdWRpZW5jZRgLIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARIeChFvdXRib3VuZF9pZGVudGl0eRgQIAEoCUID4EEBEhwKD291dGJvdW5kX3Njb3BlcxgMIAMoCUID4EEBEkgKCG9hdXRoX2FzGBIgASgLMi8ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kT0F1dGhBU0ID4EEBSAASRQoGc3BpZmZlGBMgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kU1BJRkZFQgPgQQFIABIzCgpjcmVhdGVkX2F0GA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgOIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxJJCg5leHRlcm5hbF9ob29rcxgRIAMoCzIsLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeHRlcm5hbEhvb2tCA+BBAUIRCg9vdXRib3VuZF9pc3N1ZXJCCQoHX2FjdGlvbiI5Cg1TdHJpbmdNYXRjaGVyEg8KBWV4YWN0GAEgASgJSAASDgoEZ2xvYhgCIAEoCUgAQgcKBW1hdGNoIkwKCVN0cmluZ1NldBI/CghtYXRjaGVycxgBIAMoCzItLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdNYXRjaGVyIqQBCg9PdXRib3VuZE9BdXRoQVMSFwoKZ3JhbnRfdHlwZRgBIAEoCUID4EECEhcKCmlzc3Vlcl91cmwYAiABKAlCA+BBARIWCgl0b2tlbl91cmwYAyABKAlCA+BBARIWCglhdWRpZW5jZXMYBCADKAlCA+BBARIvCgd0aW1lb3V0GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQEiEAoOT3V0Ym91bmRTUElGRkUi0gEKDEV4dGVybmFsSG9vaxIRCgRuYW1lGAEgASgJQgPgQQISGAoLZGVzY3JpcHRpb24YAiABKAlCA+BBARIQCgN1cmwYAyABKAlCA+BBAhJKCgtzcGlmZmVfbXRscxgEIAEoCzIuLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TcGlmZmVNdGxzQXV0aEID4EECSAASLwoHdGltZW91dBgFIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkID4EEBQgYKBGF1dGgiKAoOU3BpZmZlTXRsc0F1dGgSFgoJc3BpZmZlX2lkGAEgASgJQgPgQQIqgQEKFEV4Y2hhbmdlUG9saWN5QWN0aW9uEiYKIkVYQ0hBTkdFX1BPTElDWV9BQ1RJT05fVU5TUEVDSUZJRUQQABIgChxFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX0FMTE9XEAESHwobRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9ERU5ZEAJCSFpGZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2V4Y2hhbmdlX3BvbGljeS92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp]);
+  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEisgkKDkV4Y2hhbmdlUG9saWN5Eg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQPgQQUSEQoEbmFtZRgDIAEoCUID4EECEh0KDXRydXN0X3pvbmVfaWQYBCABKAlCBuBBAuBBBRJOCgZhY3Rpb24YBSABKA4yNC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lBY3Rpb25CA+BBAUgBiAEBEkgKEHN1YmplY3RfaWRlbnRpdHkYBiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRgoOc3ViamVjdF9pc3N1ZXIYByABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESSAoQc3ViamVjdF9hdWRpZW5jZRgPIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJGCg5hY3Rvcl9pZGVudGl0eRgIIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJECgxhY3Rvcl9pc3N1ZXIYCSABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESQQoJY2xpZW50X2lkGAogASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkcKD3RhcmdldF9hdWRpZW5jZRgLIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARIeChFvdXRib3VuZF9pZGVudGl0eRgQIAEoCUID4EEBEhwKD291dGJvdW5kX3Njb3BlcxgMIAMoCUID4EEBEkgKCG9hdXRoX2FzGBIgASgLMi8ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kT0F1dGhBU0ID4EEBSAASRQoGc3BpZmZlGBMgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kU1BJRkZFQgPgQQFIABJYChBjbGllbnRfYXNzZXJ0aW9uGBUgASgLMjcucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kQ2xpZW50QXNzZXJ0aW9uQgPgQQFIABIzCgpjcmVhdGVkX2F0GA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgOIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxJJCg5leHRlcm5hbF9ob29rcxgRIAMoCzIsLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeHRlcm5hbEhvb2tCA+BBAUIRCg9vdXRib3VuZF9pc3N1ZXJCCQoHX2FjdGlvbiI5Cg1TdHJpbmdNYXRjaGVyEg8KBWV4YWN0GAEgASgJSAASDgoEZ2xvYhgCIAEoCUgAQgcKBW1hdGNoIkwKCVN0cmluZ1NldBI/CghtYXRjaGVycxgBIAMoCzItLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdNYXRjaGVyIqQBCg9PdXRib3VuZE9BdXRoQVMSFwoKZ3JhbnRfdHlwZRgBIAEoCUID4EECEhcKCmlzc3Vlcl91cmwYAiABKAlCA+BBARIWCgl0b2tlbl91cmwYAyABKAlCA+BBARIWCglhdWRpZW5jZXMYBCADKAlCA+BBARIvCgd0aW1lb3V0GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQEikgEKF091dGJvdW5kQ2xpZW50QXNzZXJ0aW9uEhEKCWNsaWVudF9pZBgBIAEoCRIRCglhdWRpZW5jZXMYAiADKAkSEQoJdG9rZW5fdXJsGAMgASgJEhIKCmlzc3Vlcl91cmwYBCABKAkSKgoHdGltZW91dBgFIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbiIQCg5PdXRib3VuZFNQSUZGRSLSAQoMRXh0ZXJuYWxIb29rEhEKBG5hbWUYASABKAlCA+BBAhIYCgtkZXNjcmlwdGlvbhgCIAEoCUID4EEBEhAKA3VybBgDIAEoCUID4EECEkoKC3NwaWZmZV9tdGxzGAQgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlNwaWZmZU10bHNBdXRoQgPgQQJIABIvCgd0aW1lb3V0GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQFCBgoEYXV0aCIoCg5TcGlmZmVNdGxzQXV0aBIWCglzcGlmZmVfaWQYASABKAlCA+BBAiqBAQoURXhjaGFuZ2VQb2xpY3lBY3Rpb24SJgoiRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9VTlNQRUNJRklFRBAAEiAKHEVYQ0hBTkdFX1BPTElDWV9BQ1RJT05fQUxMT1cQARIfChtFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX0RFTlkQAkJIWkZnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vZXhjaGFuZ2VfcG9saWN5L3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp]);
 
 /**
  * ExchangePolicy defines a rule for permitting or denying Credex token exchanges
@@ -147,6 +147,14 @@ export type ExchangePolicy = Message<"proto.exchange_policy.v1alpha1.ExchangePol
      */
     value: OutboundSPIFFE;
     case: "spiffe";
+  } | {
+    /**
+     * A JWT client assertion targeting another OAuth AS.
+     *
+     * @generated from field: proto.exchange_policy.v1alpha1.OutboundClientAssertion client_assertion = 21;
+     */
+    value: OutboundClientAssertion;
+    case: "clientAssertion";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -286,6 +294,63 @@ export const OutboundOAuthASSchema: GenMessage<OutboundOAuthAS> = /*@__PURE__*/
   messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 3);
 
 /**
+ * A JWT client assertion spec for a downstream OAuth Authorization Server.
+ *
+ * @generated from message proto.exchange_policy.v1alpha1.OutboundClientAssertion
+ */
+export type OutboundClientAssertion = Message<"proto.exchange_policy.v1alpha1.OutboundClientAssertion"> & {
+  /**
+   * The iss/sub claim in the minted assertions (unless overridden
+   * by an external hook).
+   *
+   * @generated from field: string client_id = 1;
+   */
+  clientId: string;
+
+  /**
+   * Audience list to use as the minted assertion's aud claim. When
+   * empty, aud defaults to the resolved token endpoint (one of
+   * IssuerURL or TokenURL must then be set).
+   *
+   * @generated from field: repeated string audiences = 2;
+   */
+  audiences: string[];
+
+  /**
+   * Token URL to use as the minted assertion's aud claim. Not used
+   * when an explicit audience list is set.
+   *
+   * @generated from field: string token_url = 3;
+   */
+  tokenUrl: string;
+
+  /**
+   * Issuer URL used to discover the AS's token URL via OAuth / OIDC
+   * discovery. Not used when either audiences or token_url are set.
+   *
+   * @generated from field: string issuer_url = 4;
+   */
+  issuerUrl: string;
+
+  /**
+   * Maximum time to wait for the AS to respond during token URL
+   * discovery. Defaults to a server-defined value when unset and is
+   * only used when issuer_url is set. If the AS does not respond
+   * within this duration, the exchange is denied.
+   *
+   * @generated from field: google.protobuf.Duration timeout = 5;
+   */
+  timeout?: Duration;
+};
+
+/**
+ * Describes the message proto.exchange_policy.v1alpha1.OutboundClientAssertion.
+ * Use `create(OutboundClientAssertionSchema)` to create a new message.
+ */
+export const OutboundClientAssertionSchema: GenMessage<OutboundClientAssertion> = /*@__PURE__*/
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 4);
+
+/**
  * Marker denoting an OIDC to SPIFFE exchange policy. An empty struct is used to
  * allow new fields in the future if required. For now, the SPIFFE ID for the
  * issued SVID is derived from the OutboundIdentity policy field and the
@@ -302,7 +367,7 @@ export type OutboundSPIFFE = Message<"proto.exchange_policy.v1alpha1.OutboundSPI
  * Use `create(OutboundSPIFFESchema)` to create a new message.
  */
 export const OutboundSPIFFESchema: GenMessage<OutboundSPIFFE> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 4);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 5);
 
 /**
  * ExternalHook defines an HTTP endpoint that Credex calls after an exchange policy
@@ -368,7 +433,7 @@ export type ExternalHook = Message<"proto.exchange_policy.v1alpha1.ExternalHook"
  * Use `create(ExternalHookSchema)` to create a new message.
  */
 export const ExternalHookSchema: GenMessage<ExternalHook> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 5);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 6);
 
 /**
  * SpiffeMtlsAuth configures SPIFFE mTLS authentication for an ExternalHook.
@@ -390,7 +455,7 @@ export type SpiffeMtlsAuth = Message<"proto.exchange_policy.v1alpha1.SpiffeMtlsA
  * Use `create(SpiffeMtlsAuthSchema)` to create a new message.
  */
 export const SpiffeMtlsAuthSchema: GenMessage<SpiffeMtlsAuth> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 6);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 7);
 
 /**
  * ExchangePolicyAction determines whether a Credex token exchange is permitted
