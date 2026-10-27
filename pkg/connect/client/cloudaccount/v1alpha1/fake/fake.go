@@ -31,7 +31,7 @@ func (c *fakeCloudAccountClient) CreateCloudAccount(ctx context.Context, cloudAc
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	if err := c.fake.ValidateOrganization(cloudAccount.GetOrgId()); err != nil {
+	if _, ok := c.fake.Organizations[cloudAccount.GetOrgId()]; !ok {
 		return nil, status.Error(codes.InvalidArgument, "organization not found")
 	}
 
