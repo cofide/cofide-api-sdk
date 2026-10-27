@@ -119,7 +119,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 		},
 	}
 
-	_, err := client.UpdateCloudAccount(t.Context(), input, v1alpha1.AWSUpdateMask(true, false))
+	_, err := client.UpdateCloudAccount(t.Context(), input, v1alpha1.AWSUpdateMask{Name: true})
 	require.NoError(t, err)
 }
 

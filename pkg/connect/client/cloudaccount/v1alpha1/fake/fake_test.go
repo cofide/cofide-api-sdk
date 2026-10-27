@@ -425,7 +425,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 					},
 				},
 			},
-			updateMask: cloudaccountv1alpha1.AWSUpdateMask(true, false),
+			updateMask: cloudaccountv1alpha1.AWSUpdateMask{Name: true},
 			expected: &cloudaccountpb.CloudAccount{
 				Name:     "updated name",
 				Provider: existing2.GetProvider(),
@@ -442,7 +442,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 					},
 				},
 			},
-			updateMask: cloudaccountv1alpha1.AWSUpdateMask(false, true),
+			updateMask: cloudaccountv1alpha1.AWSUpdateMask{AWSAccountID: true},
 			expected: &cloudaccountpb.CloudAccount{
 				Name: existing3.GetName(),
 				Provider: &cloudaccountpb.CloudAccount_Aws{

@@ -15,22 +15,18 @@ type UpdateMask interface {
 	apply(req *cloudaccountpb.UpdateCloudAccountRequest)
 }
 
-type awsUpdateMask struct {
-	name         bool
-	awsAccountID bool
+// AWSUpdateMask is an UpdateMask for an AWS cloud account.
+// Set fields to true to update themname to update the name, and awsAccountID to update the AWS account ID.
+type AWSUpdateMask struct {
+	Name         bool
+	AWSAccountID bool
 }
 
-// AWSUpdateMask returns an UpdateMask for an AWS cloud account.
-// Set name to update the name, and awsAccountID to update the AWS account ID.
-func AWSUpdateMask(name, awsAccountID bool) UpdateMask {
-	return awsUpdateMask{name: name, awsAccountID: awsAccountID}
-}
-
-func (m awsUpdateMask) apply(req *cloudaccountpb.UpdateCloudAccountRequest) {
+func (m AWSUpdateMask) apply(req *cloudaccountpb.UpdateCloudAccountRequest) {
 	req.UpdateMask = &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
 		AwsAccountUpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask{
-			Name:         m.name,
-			AwsAccountId: m.awsAccountID,
+			Name:         m.Name,
+			AwsAccountId: m.AWSAccountID,
 		},
 	}
 }
