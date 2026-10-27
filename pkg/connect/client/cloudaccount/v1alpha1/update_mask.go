@@ -16,7 +16,7 @@ type UpdateMask interface {
 }
 
 // AWSUpdateMask is an UpdateMask for an AWS cloud account.
-// Set fields to true to update themname to update the name, and awsAccountID to update the AWS account ID.
+// Set fields to true to update them: name to update the name, and awsAccountID to update the AWS account ID.
 type AWSUpdateMask struct {
 	Name         bool
 	AWSAccountID bool
