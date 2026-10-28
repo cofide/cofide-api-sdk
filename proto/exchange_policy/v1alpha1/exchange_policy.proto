@@ -55,11 +55,14 @@ message ExchangePolicy {
 
   // Outbound identity to set on the exchanged token. Only relevant when action is ALLOW.
   string outbound_identity = 16 [(google.api.field_behavior) = OPTIONAL];
+
   // Outbound scopes to grant. Only relevant when action is ALLOW.
   repeated string outbound_scopes = 12 [(google.api.field_behavior) = OPTIONAL];
-  // Skip policy-based scope checks and instead defer all scope
-  // checks and constraints to the downstream outbound issuer.
-  bool allow_any_scope = 20 [(google.api.field_behavior) = OPTIONAL];
+
+  // Constraints on the scopes a caller may request. Only relevant when action is ALLOW.
+  // When unset, the defaults documented on ScopeConstraints apply.
+  ScopeConstraints scope_constraints = 20 [(google.api.field_behavior) = OPTIONAL];
+
   // Outbound issuer to use. Only relevant when action is ALLOW.
   // If set, requests matching this policy will cause Credex to request a
   // credential from the specified issuer and return it to the client instead
@@ -88,6 +91,32 @@ enum ExchangePolicyAction {
   EXCHANGE_POLICY_ACTION_UNSPECIFIED = 0; // treated as ALLOW
   EXCHANGE_POLICY_ACTION_ALLOW = 1;
   EXCHANGE_POLICY_ACTION_DENY = 2;
+}
+
+// ScopeConstraints controls which checks are applied to the scopes requested
+// in a token exchange. Each check is applied independently, so setting both to
+// SKIP grants all requested scopes, e.g. when a downstream OAuth AS enforces its
+// own scope restrictions in an OAuth bridge exchange flow.
+message ScopeConstraints {
+  // Requested scopes must be a subset of the scopes on the subject token.
+  // UNSPECIFIED: ENFORCE for subject tokens that carry scopes, SKIP for
+  // subject tokens that carry identity only (OIDC ID tokens and JWT-SVIDs).
+  // An explicit ENFORCE on an identity-only subject token denies every
+  // requested scope.
+  ScopeCheckAction subject_scopes = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Requested scopes must be a subset of the policy's outbound_scopes.
+  // UNSPECIFIED: ENFORCE.
+  ScopeCheckAction policy_scopes = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// ScopeCheckAction determines whether a single scope check is applied.
+enum ScopeCheckAction {
+  // Use the default for the field, as documented on ScopeConstraints.
+  SCOPE_CHECK_ACTION_UNSPECIFIED = 0;
+  // Apply the check. Requested scopes that fail it cause the exchange to be denied.
+  SCOPE_CHECK_ACTION_ENFORCE = 1;
+  // Do not apply the check.
+  SCOPE_CHECK_ACTION_SKIP = 2;
 }
 
 message StringMatcher {
