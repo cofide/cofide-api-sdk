@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/exchange_policy/v1alpha1/exchange_policy.proto.
  */
 export const file_proto_exchange_policy_v1alpha1_exchange_policy: GenFile = /*@__PURE__*/
-  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEisgkKDkV4Y2hhbmdlUG9saWN5Eg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQPgQQUSEQoEbmFtZRgDIAEoCUID4EECEh0KDXRydXN0X3pvbmVfaWQYBCABKAlCBuBBAuBBBRJOCgZhY3Rpb24YBSABKA4yNC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lBY3Rpb25CA+BBAUgBiAEBEkgKEHN1YmplY3RfaWRlbnRpdHkYBiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRgoOc3ViamVjdF9pc3N1ZXIYByABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESSAoQc3ViamVjdF9hdWRpZW5jZRgPIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJGCg5hY3Rvcl9pZGVudGl0eRgIIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJECgxhY3Rvcl9pc3N1ZXIYCSABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESQQoJY2xpZW50X2lkGAogASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkcKD3RhcmdldF9hdWRpZW5jZRgLIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARIeChFvdXRib3VuZF9pZGVudGl0eRgQIAEoCUID4EEBEhwKD291dGJvdW5kX3Njb3BlcxgMIAMoCUID4EEBEkgKCG9hdXRoX2FzGBIgASgLMi8ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kT0F1dGhBU0ID4EEBSAASRQoGc3BpZmZlGBMgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kU1BJRkZFQgPgQQFIABJYChBjbGllbnRfYXNzZXJ0aW9uGBUgASgLMjcucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLk91dGJvdW5kQ2xpZW50QXNzZXJ0aW9uQgPgQQFIABIzCgpjcmVhdGVkX2F0GA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgOIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxJJCg5leHRlcm5hbF9ob29rcxgRIAMoCzIsLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5FeHRlcm5hbEhvb2tCA+BBAUIRCg9vdXRib3VuZF9pc3N1ZXJCCQoHX2FjdGlvbiI5Cg1TdHJpbmdNYXRjaGVyEg8KBWV4YWN0GAEgASgJSAASDgoEZ2xvYhgCIAEoCUgAQgcKBW1hdGNoIkwKCVN0cmluZ1NldBI/CghtYXRjaGVycxgBIAMoCzItLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdNYXRjaGVyIqQBCg9PdXRib3VuZE9BdXRoQVMSFwoKZ3JhbnRfdHlwZRgBIAEoCUID4EECEhcKCmlzc3Vlcl91cmwYAiABKAlCA+BBARIWCgl0b2tlbl91cmwYAyABKAlCA+BBARIWCglhdWRpZW5jZXMYBCADKAlCA+BBARIvCgd0aW1lb3V0GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQEifwoXT3V0Ym91bmRDbGllbnRBc3NlcnRpb24SEQoJY2xpZW50X2lkGAEgASgJEhEKCWF1ZGllbmNlcxgCIAMoCRISCgppc3N1ZXJfdXJsGAMgASgJEioKB3RpbWVvdXQYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24iEAoOT3V0Ym91bmRTUElGRkUi0gEKDEV4dGVybmFsSG9vaxIRCgRuYW1lGAEgASgJQgPgQQISGAoLZGVzY3JpcHRpb24YAiABKAlCA+BBARIQCgN1cmwYAyABKAlCA+BBAhJKCgtzcGlmZmVfbXRscxgEIAEoCzIuLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TcGlmZmVNdGxzQXV0aEID4EECSAASLwoHdGltZW91dBgFIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkID4EEBQgYKBGF1dGgiKAoOU3BpZmZlTXRsc0F1dGgSFgoJc3BpZmZlX2lkGAEgASgJQgPgQQIqgQEKFEV4Y2hhbmdlUG9saWN5QWN0aW9uEiYKIkVYQ0hBTkdFX1BPTElDWV9BQ1RJT05fVU5TUEVDSUZJRUQQABIgChxFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX0FMTE9XEAESHwobRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9ERU5ZEAJCSFpGZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL2V4Y2hhbmdlX3BvbGljeS92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp]);
+  fileDesc("CjRwcm90by9leGNoYW5nZV9wb2xpY3kvdjFhbHBoYTEvZXhjaGFuZ2VfcG9saWN5LnByb3RvEh5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEihAoKDkV4Y2hhbmdlUG9saWN5Eg8KAmlkGAEgASgJQgPgQQgSFgoGb3JnX2lkGAIgASgJQgbgQQPgQQUSEQoEbmFtZRgDIAEoCUID4EECEh0KDXRydXN0X3pvbmVfaWQYBCABKAlCBuBBAuBBBRJOCgZhY3Rpb24YBSABKA4yNC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXhjaGFuZ2VQb2xpY3lBY3Rpb25CA+BBAUgBiAEBEkgKEHN1YmplY3RfaWRlbnRpdHkYBiABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESRgoOc3ViamVjdF9pc3N1ZXIYByABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESSAoQc3ViamVjdF9hdWRpZW5jZRgPIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJGCg5hY3Rvcl9pZGVudGl0eRgIIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARJECgxhY3Rvcl9pc3N1ZXIYCSABKAsyKS5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU3RyaW5nU2V0QgPgQQESQQoJY2xpZW50X2lkGAogASgLMikucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ1NldEID4EEBEkcKD3RhcmdldF9hdWRpZW5jZRgLIAEoCzIpLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5TdHJpbmdTZXRCA+BBARIeChFvdXRib3VuZF9pZGVudGl0eRgQIAEoCUID4EEBEhwKD291dGJvdW5kX3Njb3BlcxgMIAMoCUID4EEBElAKEXNjb3BlX2NvbnN0cmFpbnRzGBQgASgLMjAucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlNjb3BlQ29uc3RyYWludHNCA+BBARJICghvYXV0aF9hcxgSIAEoCzIvLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5PdXRib3VuZE9BdXRoQVNCA+BBAUgAEkUKBnNwaWZmZRgTIAEoCzIuLnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5PdXRib3VuZFNQSUZGRUID4EEBSAASWAoQY2xpZW50X2Fzc2VydGlvbhgVIAEoCzI3LnByb3RvLmV4Y2hhbmdlX3BvbGljeS52MWFscGhhMS5PdXRib3VuZENsaWVudEFzc2VydGlvbkID4EEBSAASMwoKY3JlYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI4Cg9sYXN0X3VwZGF0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSSQoOZXh0ZXJuYWxfaG9va3MYESADKAsyLC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuRXh0ZXJuYWxIb29rQgPgQQFCEQoPb3V0Ym91bmRfaXNzdWVyQgkKB19hY3Rpb24irwEKEFNjb3BlQ29uc3RyYWludHMSTQoOc3ViamVjdF9zY29wZXMYASABKA4yMC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU2NvcGVDaGVja0FjdGlvbkID4EEBEkwKDXBvbGljeV9zY29wZXMYAiABKA4yMC5wcm90by5leGNoYW5nZV9wb2xpY3kudjFhbHBoYTEuU2NvcGVDaGVja0FjdGlvbkID4EEBIjkKDVN0cmluZ01hdGNoZXISDwoFZXhhY3QYASABKAlIABIOCgRnbG9iGAIgASgJSABCBwoFbWF0Y2giTAoJU3RyaW5nU2V0Ej8KCG1hdGNoZXJzGAEgAygLMi0ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlN0cmluZ01hdGNoZXIipAEKD091dGJvdW5kT0F1dGhBUxIXCgpncmFudF90eXBlGAEgASgJQgPgQQISFwoKaXNzdWVyX3VybBgCIAEoCUID4EEBEhYKCXRva2VuX3VybBgDIAEoCUID4EEBEhYKCWF1ZGllbmNlcxgEIAMoCUID4EEBEi8KB3RpbWVvdXQYBSABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CA+BBASJ/ChdPdXRib3VuZENsaWVudEFzc2VydGlvbhIRCgljbGllbnRfaWQYASABKAkSEQoJYXVkaWVuY2VzGAIgAygJEhIKCmlzc3Vlcl91cmwYAyABKAkSKgoHdGltZW91dBgEIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbiIQCg5PdXRib3VuZFNQSUZGRSLSAQoMRXh0ZXJuYWxIb29rEhEKBG5hbWUYASABKAlCA+BBAhIYCgtkZXNjcmlwdGlvbhgCIAEoCUID4EEBEhAKA3VybBgDIAEoCUID4EECEkoKC3NwaWZmZV9tdGxzGAQgASgLMi4ucHJvdG8uZXhjaGFuZ2VfcG9saWN5LnYxYWxwaGExLlNwaWZmZU10bHNBdXRoQgPgQQJIABIvCgd0aW1lb3V0GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgPgQQFCBgoEYXV0aCIoCg5TcGlmZmVNdGxzQXV0aBIWCglzcGlmZmVfaWQYASABKAlCA+BBAiqBAQoURXhjaGFuZ2VQb2xpY3lBY3Rpb24SJgoiRVhDSEFOR0VfUE9MSUNZX0FDVElPTl9VTlNQRUNJRklFRBAAEiAKHEVYQ0hBTkdFX1BPTElDWV9BQ1RJT05fQUxMT1cQARIfChtFWENIQU5HRV9QT0xJQ1lfQUNUSU9OX0RFTlkQAipzChBTY29wZUNoZWNrQWN0aW9uEiIKHlNDT1BFX0NIRUNLX0FDVElPTl9VTlNQRUNJRklFRBAAEh4KGlNDT1BFX0NIRUNLX0FDVElPTl9FTkZPUkNFEAESGwoXU0NPUEVfQ0hFQ0tfQUNUSU9OX1NLSVAQAkJIWkZnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vcHJvdG8vZXhjaGFuZ2VfcG9saWN5L3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp]);
 
 /**
  * ExchangePolicy defines a rule for permitting or denying Credex token exchanges
@@ -124,6 +124,14 @@ export type ExchangePolicy = Message<"proto.exchange_policy.v1alpha1.ExchangePol
   outboundScopes: string[];
 
   /**
+   * Constraints on the scopes a caller may request. Only relevant when action is ALLOW.
+   * When unset, the defaults documented on ScopeConstraints apply.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.ScopeConstraints scope_constraints = 20;
+   */
+  scopeConstraints?: ScopeConstraints;
+
+  /**
    * Outbound issuer to use. Only relevant when action is ALLOW.
    * If set, requests matching this policy will cause Credex to request a
    * credential from the specified issuer and return it to the client instead
@@ -187,6 +195,42 @@ export const ExchangePolicySchema: GenMessage<ExchangePolicy> = /*@__PURE__*/
   messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 0);
 
 /**
+ * ScopeConstraints controls which checks are applied to the scopes requested
+ * in a token exchange. Each check is applied independently, so setting both to
+ * SKIP grants all requested scopes, e.g. when a downstream OAuth AS enforces its
+ * own scope restrictions in an OAuth bridge exchange flow.
+ *
+ * @generated from message proto.exchange_policy.v1alpha1.ScopeConstraints
+ */
+export type ScopeConstraints = Message<"proto.exchange_policy.v1alpha1.ScopeConstraints"> & {
+  /**
+   * Requested scopes must be a subset of the scopes on the subject token.
+   * UNSPECIFIED: ENFORCE for subject tokens that carry scopes, SKIP for
+   * subject tokens that carry identity only (OIDC ID tokens and JWT-SVIDs).
+   * An explicit ENFORCE on an identity-only subject token denies every
+   * requested scope.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.ScopeCheckAction subject_scopes = 1;
+   */
+  subjectScopes: ScopeCheckAction;
+
+  /**
+   * Requested scopes must be a subset of the policy's outbound_scopes.
+   * UNSPECIFIED: ENFORCE.
+   *
+   * @generated from field: proto.exchange_policy.v1alpha1.ScopeCheckAction policy_scopes = 2;
+   */
+  policyScopes: ScopeCheckAction;
+};
+
+/**
+ * Describes the message proto.exchange_policy.v1alpha1.ScopeConstraints.
+ * Use `create(ScopeConstraintsSchema)` to create a new message.
+ */
+export const ScopeConstraintsSchema: GenMessage<ScopeConstraints> = /*@__PURE__*/
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 1);
+
+/**
  * @generated from message proto.exchange_policy.v1alpha1.StringMatcher
  */
 export type StringMatcher = Message<"proto.exchange_policy.v1alpha1.StringMatcher"> & {
@@ -217,7 +261,7 @@ export type StringMatcher = Message<"proto.exchange_policy.v1alpha1.StringMatche
  * Use `create(StringMatcherSchema)` to create a new message.
  */
 export const StringMatcherSchema: GenMessage<StringMatcher> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 1);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 2);
 
 /**
  * StringSet holds a collection of StringMatchers evaluated with OR semantics.
@@ -236,7 +280,7 @@ export type StringSet = Message<"proto.exchange_policy.v1alpha1.StringSet"> & {
  * Use `create(StringSetSchema)` to create a new message.
  */
 export const StringSetSchema: GenMessage<StringSet> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 2);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 3);
 
 /**
  * Outbound OAuth Authorization Server (AS).
@@ -291,7 +335,7 @@ export type OutboundOAuthAS = Message<"proto.exchange_policy.v1alpha1.OutboundOA
  * Use `create(OutboundOAuthASSchema)` to create a new message.
  */
 export const OutboundOAuthASSchema: GenMessage<OutboundOAuthAS> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 3);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 4);
 
 /**
  * A JWT client assertion spec for another OAuth Authorization Server.
@@ -341,7 +385,7 @@ export type OutboundClientAssertion = Message<"proto.exchange_policy.v1alpha1.Ou
  * Use `create(OutboundClientAssertionSchema)` to create a new message.
  */
 export const OutboundClientAssertionSchema: GenMessage<OutboundClientAssertion> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 4);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 5);
 
 /**
  * Marker denoting an OIDC to SPIFFE exchange policy. An empty struct is used to
@@ -360,7 +404,7 @@ export type OutboundSPIFFE = Message<"proto.exchange_policy.v1alpha1.OutboundSPI
  * Use `create(OutboundSPIFFESchema)` to create a new message.
  */
 export const OutboundSPIFFESchema: GenMessage<OutboundSPIFFE> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 5);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 6);
 
 /**
  * ExternalHook defines an HTTP endpoint that Credex calls after an exchange policy
@@ -426,7 +470,7 @@ export type ExternalHook = Message<"proto.exchange_policy.v1alpha1.ExternalHook"
  * Use `create(ExternalHookSchema)` to create a new message.
  */
 export const ExternalHookSchema: GenMessage<ExternalHook> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 6);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 7);
 
 /**
  * SpiffeMtlsAuth configures SPIFFE mTLS authentication for an ExternalHook.
@@ -448,7 +492,7 @@ export type SpiffeMtlsAuth = Message<"proto.exchange_policy.v1alpha1.SpiffeMtlsA
  * Use `create(SpiffeMtlsAuthSchema)` to create a new message.
  */
 export const SpiffeMtlsAuthSchema: GenMessage<SpiffeMtlsAuth> = /*@__PURE__*/
-  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 7);
+  messageDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 8);
 
 /**
  * ExchangePolicyAction determines whether a Credex token exchange is permitted
@@ -480,4 +524,38 @@ export enum ExchangePolicyAction {
  */
 export const ExchangePolicyActionSchema: GenEnum<ExchangePolicyAction> = /*@__PURE__*/
   enumDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 0);
+
+/**
+ * ScopeCheckAction determines whether a single scope check is applied.
+ *
+ * @generated from enum proto.exchange_policy.v1alpha1.ScopeCheckAction
+ */
+export enum ScopeCheckAction {
+  /**
+   * Use the default for the field, as documented on ScopeConstraints.
+   *
+   * @generated from enum value: SCOPE_CHECK_ACTION_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Apply the check. Requested scopes that fail it cause the exchange to be denied.
+   *
+   * @generated from enum value: SCOPE_CHECK_ACTION_ENFORCE = 1;
+   */
+  ENFORCE = 1,
+
+  /**
+   * Do not apply the check.
+   *
+   * @generated from enum value: SCOPE_CHECK_ACTION_SKIP = 2;
+   */
+  SKIP = 2,
+}
+
+/**
+ * Describes the enum proto.exchange_policy.v1alpha1.ScopeCheckAction.
+ */
+export const ScopeCheckActionSchema: GenEnum<ScopeCheckAction> = /*@__PURE__*/
+  enumDesc(file_proto_exchange_policy_v1alpha1_exchange_policy, 1);
 
