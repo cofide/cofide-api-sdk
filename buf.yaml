@@ -4,9 +4,6 @@ deps:
 lint:
   use:
     - STANDARD
-  except:
-    - FIELD_NOT_REQUIRED
-    - PACKAGE_NO_IMPORT_CYCLE
   disallow_comment_ignores: true
   ignore_only:
     # Ignore some rules for files copied from spire-api-sdk.
