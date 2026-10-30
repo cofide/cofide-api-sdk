@@ -1,7 +1,7 @@
 // Copyright 2026 Cofide Limited.
 // SPDX-License-Identifier: Apache-2.0
 
-// This file defines the AWS specific cloud resource discovery config messages
+// This file defines the AWS specific cloud discovery config messages
 // and messages used only as fields within them. These are sub-types within the
 // more general CloudDiscoveryConfig resource, used to configure automatic
 // discovery of AWS resources and make them visible through Connect.

@@ -180,9 +180,9 @@ func Test_DeleteCloudAccount(t *testing.T) {
 			expectedErrCode: codes.NotFound,
 		},
 		{
-			name:            "error - has cloud resource discovery configs",
+			name:            "error - has cloud discovery configs",
 			cloudAccountID:  withConfigs.GetId(),
-			expectedErr:     "rpc error: code = FailedPrecondition desc = cloud account has cloud resource discovery configs",
+			expectedErr:     "rpc error: code = FailedPrecondition desc = cloud account has cloud discovery configs",
 			expectedErrCode: codes.FailedPrecondition,
 			expectStored:    true,
 		},

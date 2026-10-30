@@ -188,7 +188,7 @@ func Test_DeleteCloudDiscoveryConfig(t *testing.T) {
 		{
 			name:            "error - does not exist",
 			configID:        "non-existent",
-			expectedErr:     "rpc error: code = NotFound desc = cloud resource discovery config not found",
+			expectedErr:     "rpc error: code = NotFound desc = cloud discovery config not found",
 			expectedErrCode: codes.NotFound,
 		},
 	}
@@ -239,7 +239,7 @@ func Test_GetCloudDiscoveryConfig(t *testing.T) {
 		{
 			name:            "error - does not exist",
 			configID:        "non-existent",
-			expectedErr:     "rpc error: code = NotFound desc = cloud resource discovery config not found",
+			expectedErr:     "rpc error: code = NotFound desc = cloud discovery config not found",
 			expectedErrCode: codes.NotFound,
 		},
 	}
@@ -518,14 +518,14 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 		testCase{
 			name:            "error - not found",
 			input:           &crdcpb.CloudDiscoveryConfig{Id: "non-existent"},
-			expectedErr:     "rpc error: code = NotFound desc = cloud resource discovery config not found",
+			expectedErr:     "rpc error: code = NotFound desc = cloud discovery config not found",
 			expectedErrCode: codes.NotFound,
 		},
 		testCase{
 			name:            "error - existing config is not an aws lambda config",
 			input:           updateInput(existingAgentCore),
 			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask{Name: true},
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
@@ -533,14 +533,14 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 			input:           updateInput(existingAgentCore),
 			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask{Regions: true},
 			original:        original,
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - nil mask with input that is not an aws lambda config",
 			input:           wrongTypeInput,
 			original:        original,
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
@@ -548,7 +548,7 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 			input:           emptyNameInput,
 			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask{Name: true},
 			original:        original,
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
 		},
 	)
@@ -651,34 +651,34 @@ func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 		testCase{
 			name:            "error - not found",
 			input:           &crdcpb.CloudDiscoveryConfig{Id: "non-existent"},
-			expectedErr:     "rpc error: code = NotFound desc = cloud resource discovery config not found",
+			expectedErr:     "rpc error: code = NotFound desc = cloud discovery config not found",
 			expectedErrCode: codes.NotFound,
 		},
 		testCase{
 			name:            "error - existing config is not an aws agent core config",
 			input:           updateInput(existingLambda),
 			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask{Name: true},
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - input is not an aws agent core config",
 			input:           wrongTypeInput,
 			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask{Regions: true},
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - nil mask with input that is not an aws agent core config",
 			input:           wrongTypeInput,
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - empty name in mask",
 			input:           emptyNameInput,
 			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask{Name: true},
-			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
+			expectedErr:     "rpc error: code = InvalidArgument desc = cloud discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
 		},
 	)
