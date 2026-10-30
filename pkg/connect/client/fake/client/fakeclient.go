@@ -13,6 +13,8 @@ import (
 	fakeauditv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/audit/v1alpha1/fake"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	fakecloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1/fake"
+	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1"
+	fakecrdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1/fake"
 	clusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1"
 	fakeclusterv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cluster/v1alpha1/fake"
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
@@ -42,6 +44,7 @@ type fakeClientSet struct {
 	exchangePolicyV1Alpha1    exchangepolicyv1alpha1.ExchangePolicyClient
 	attestationPolicyV1Alpha1 attestationpolicyv1alpha1.AttestationPolicyClient
 	cloudAccountV1Alpha1      cloudaccountv1alpha1.CloudAccountClient
+	crdcV1Alpha1              crdcv1alpha1.CloudDiscoveryConfigClient
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	federationV1Alpha1        federationV1Alpha1.FederationClient
@@ -61,6 +64,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		exchangePolicyV1Alpha1:    fakeexchangepolicyv1alpha1.New(fake),
 		attestationPolicyV1Alpha1: fakeattestationpolicyv1alpha1.New(fake),
 		cloudAccountV1Alpha1:      fakecloudaccountv1alpha1.New(fake),
+		crdcV1Alpha1:              fakecrdcv1alpha1.New(fake),
 		clusterV1Alpha1:           fakeclusterv1alpha1.New(fake),
 		datastoreV1Alpha1:         fakedatastorev1alpha1.New(fake),
 		federationV1Alpha1:        fakefederationV1Alpha1.New(fake),
@@ -91,6 +95,10 @@ func (c *fakeClientSet) AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.At
 
 func (c *fakeClientSet) CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient {
 	return c.cloudAccountV1Alpha1
+}
+
+func (c *fakeClientSet) CloudDiscoveryConfigV1Alpha1() crdcv1alpha1.CloudDiscoveryConfigClient {
+	return c.crdcV1Alpha1
 }
 
 func (c *fakeClientSet) ClusterV1Alpha1() clusterv1alpha1.ClusterClient {

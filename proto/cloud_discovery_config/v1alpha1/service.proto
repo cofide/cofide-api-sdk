@@ -1,0 +1,111 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the CloudDiscoveryConfigService gRPC service for
+// managing cloud discovery configs in the Connect control plane. A
+// cloud discovery config configures discovery of resources, such as
+// workloads, within a cloud account linked to a Cofide organization.
+
+syntax = "proto3";
+
+package proto.cloud_discovery_config.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "proto/cloud_discovery_config/v1alpha1/discovery.proto";
+import "proto/common/pagination/v1beta1/pagination.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1";
+
+// CloudDiscoveryConfigService manages cloud discovery configs in the Connect control plane.
+service CloudDiscoveryConfigService {
+  // CreateCloudDiscoveryConfig creates a cloud discovery config within a cloud account.
+  rpc CreateCloudDiscoveryConfig(CreateCloudDiscoveryConfigRequest) returns (CreateCloudDiscoveryConfigResponse);
+  // GetCloudDiscoveryConfig retrieves a cloud discovery config by ID.
+  rpc GetCloudDiscoveryConfig(GetCloudDiscoveryConfigRequest) returns (GetCloudDiscoveryConfigResponse);
+  // ListCloudDiscoveryConfigs returns all cloud discovery configs matching the optional filter.
+  rpc ListCloudDiscoveryConfigs(ListCloudDiscoveryConfigsRequest) returns (ListCloudDiscoveryConfigsResponse);
+  // UpdateCloudDiscoveryConfig updates an existing cloud discovery config.
+  rpc UpdateCloudDiscoveryConfig(UpdateCloudDiscoveryConfigRequest) returns (UpdateCloudDiscoveryConfigResponse);
+  // DeleteCloudDiscoveryConfig deletes a cloud discovery config by ID.
+  rpc DeleteCloudDiscoveryConfig(DeleteCloudDiscoveryConfigRequest) returns (DeleteCloudDiscoveryConfigResponse);
+}
+
+message CreateCloudDiscoveryConfigRequest {
+  CloudDiscoveryConfig cloud_discovery_config = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateCloudDiscoveryConfigResponse {
+  CloudDiscoveryConfig cloud_discovery_config = 1;
+}
+
+message GetCloudDiscoveryConfigRequest {
+  string cloud_discovery_config_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetCloudDiscoveryConfigResponse {
+  CloudDiscoveryConfig cloud_discovery_config = 1;
+}
+
+message ListCloudDiscoveryConfigsRequest {
+  message Filter {}
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  proto.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListCloudDiscoveryConfigsResponse {
+  repeated CloudDiscoveryConfig cloud_discovery_configs = 1;
+  proto.common.pagination.v1beta1.PageResponse pagination = 2;
+}
+
+message UpdateCloudDiscoveryConfigRequest {
+  message AWSLambdaDiscoveryConfigUpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the disabled field.
+    bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the discovery_interval field.
+    bool discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the regions field.
+    bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the assume through OIDC field on the assume role config.
+    bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the audience field on the assume role config.
+    bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the roles field on the assume role config.
+    bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
+  }
+  message AWSAgentCoreDiscoveryConfigUpdateMask {
+    // Set to true to update the name field.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the disabled field.
+    bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the discovery_interval field.
+    bool discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the regions field.
+    bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the assume through OIDC field on the assume role config.
+    bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the audience field on the assume role config.
+    bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
+    // Set to true to update the roles field on the assume role config.
+    bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  CloudDiscoveryConfig cloud_discovery_config = 1 [(google.api.field_behavior) = REQUIRED];
+  // The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
+  // The update mask should align with the type being updated.
+  oneof update_mask {
+    AWSLambdaDiscoveryConfigUpdateMask aws_lambda_discovery_config_update_mask = 2;
+    AWSAgentCoreDiscoveryConfigUpdateMask aws_agent_core_discovery_config_update_mask = 3;
+  }
+}
+
+message UpdateCloudDiscoveryConfigResponse {
+  CloudDiscoveryConfig cloud_discovery_config = 1;
+}
+
+message DeleteCloudDiscoveryConfigRequest {
+  string cloud_discovery_config_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteCloudDiscoveryConfigResponse {}

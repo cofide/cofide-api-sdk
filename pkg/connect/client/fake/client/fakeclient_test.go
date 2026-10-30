@@ -16,6 +16,7 @@ func TestFakeClientSet(t *testing.T) {
 	require.NotNil(t, client.AuditV1Alpha1())
 	require.NotNil(t, client.AttestationPolicyV1Alpha1())
 	require.NotNil(t, client.CloudAccountV1Alpha1())
+	require.NotNil(t, client.CloudDiscoveryConfigV1Alpha1())
 	require.NotNil(t, client.ClusterV1Alpha1())
 	require.NotNil(t, client.DataStoreV1Alpha1())
 	require.NotNil(t, client.FederationV1Alpha1())
