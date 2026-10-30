@@ -118,16 +118,20 @@ func (c *fakeCloudDiscoveryConfigClient) UpdateCloudDiscoveryConfig(ctx context.
 	case *crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask:
 		return c.updateAWSAgentCore(config, mask.AwsAgentCoreDiscoveryConfigUpdateMask)
 	case nil:
-		// No mask is a full replacement of a config of the same type as the existing config.
+		// No mask is a full replacement, equivalent to a mask with all fields set, of a config of the same type as the existing config.
 		existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
 		if !ok {
 			return nil, status.Error(codes.NotFound, "cloud resource discovery config not found")
 		}
 		switch existing.GetDiscoveryConfig().(type) {
 		case *crdcpb.CloudDiscoveryConfig_AwsLambdaDiscoveryConfig:
-			return c.updateAWSLambda(config, nil)
+			return c.updateAWSLambda(config, &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
+				Name: true, Disabled: true, DiscoveryInterval: true, Regions: true, AssumeThroughOidc: true, Audience: true, Roles: true,
+			})
 		case *crdcpb.CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig:
-			return c.updateAWSAgentCore(config, nil)
+			return c.updateAWSAgentCore(config, &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
+				Name: true, Disabled: true, DiscoveryInterval: true, Regions: true, AssumeThroughOidc: true, Audience: true, Roles: true,
+			})
 		default:
 			return nil, status.Error(codes.Internal, "cloud resource discovery config has an unsupported type")
 		}
@@ -136,7 +140,7 @@ func (c *fakeCloudDiscoveryConfigClient) UpdateCloudDiscoveryConfig(ctx context.
 	}
 }
 
-// updateAWSLambda updates an AWS Lambda discovery config. A nil mask is a full replacement.
+// updateAWSLambda updates the fields of an AWS Lambda discovery config selected by the update mask.
 // The caller must hold the fake's lock.
 func (c *fakeCloudDiscoveryConfigClient) updateAWSLambda(config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
 	existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
@@ -149,32 +153,25 @@ func (c *fakeCloudDiscoveryConfigClient) updateAWSLambda(config *crdcpb.CloudDis
 		return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws lambda discovery config")
 	}
 
-	if updateMask == nil {
-		existing = replace(existing, config)
-		if existing.GetAwsLambdaDiscoveryConfig() == nil {
-			return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws lambda discovery config")
-		}
-	} else {
-		if err := applyCommonMask(existing, config, updateMask.GetName(), updateMask.GetDisabled(), updateMask.GetDiscoveryInterval()); err != nil {
-			return nil, err
-		}
-		if config.GetAwsLambdaDiscoveryConfig() == nil {
-			return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws lambda discovery config")
-		}
-		existingLambda := existing.GetAwsLambdaDiscoveryConfig()
-		if existingLambda.GetRoleChain() == nil {
-			existingLambda.RoleChain = &crdcpb.AWSAssumeRoleConfig{}
-		}
-		if updateMask.GetRegions() {
-			existingLambda.Regions = config.GetAwsLambdaDiscoveryConfig().GetRegions()
-		}
-		applyRoleChainMask(existingLambda.GetRoleChain(), config.GetAwsLambdaDiscoveryConfig().GetRoleChain(), updateMask.GetAssumeThroughOidc(), updateMask.GetAudience(), updateMask.GetRoles())
+	if err := applyCommonMask(existing, config, updateMask.GetName(), updateMask.GetDisabled(), updateMask.GetDiscoveryInterval()); err != nil {
+		return nil, err
 	}
+	if config.GetAwsLambdaDiscoveryConfig() == nil {
+		return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws lambda discovery config")
+	}
+	existingLambda := existing.GetAwsLambdaDiscoveryConfig()
+	if existingLambda.GetRoleChain() == nil {
+		existingLambda.RoleChain = &crdcpb.AWSAssumeRoleConfig{}
+	}
+	if updateMask.GetRegions() {
+		existingLambda.Regions = config.GetAwsLambdaDiscoveryConfig().GetRegions()
+	}
+	applyRoleChainMask(existingLambda.GetRoleChain(), config.GetAwsLambdaDiscoveryConfig().GetRoleChain(), updateMask.GetAssumeThroughOidc(), updateMask.GetAudience(), updateMask.GetRoles())
 
 	return c.store(existing), nil
 }
 
-// updateAWSAgentCore updates an AWS AgentCore discovery config. A nil mask is a full replacement.
+// updateAWSAgentCore updates the fields of an AWS AgentCore discovery config selected by the update mask.
 // The caller must hold the fake's lock.
 func (c *fakeCloudDiscoveryConfigClient) updateAWSAgentCore(config *crdcpb.CloudDiscoveryConfig, updateMask *crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {
 	existing, ok := c.fake.CloudDiscoveryConfigs[config.GetId()]
@@ -187,27 +184,20 @@ func (c *fakeCloudDiscoveryConfigClient) updateAWSAgentCore(config *crdcpb.Cloud
 		return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws agent core discovery config")
 	}
 
-	if updateMask == nil {
-		existing = replace(existing, config)
-		if existing.GetAwsAgentCoreDiscoveryConfig() == nil {
-			return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws agent core discovery config")
-		}
-	} else {
-		if err := applyCommonMask(existing, config, updateMask.GetName(), updateMask.GetDisabled(), updateMask.GetDiscoveryInterval()); err != nil {
-			return nil, err
-		}
-		if config.GetAwsAgentCoreDiscoveryConfig() == nil {
-			return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws agent core discovery config")
-		}
-		existingAgentCore := existing.GetAwsAgentCoreDiscoveryConfig()
-		if existingAgentCore.GetRoleChain() == nil {
-			existingAgentCore.RoleChain = &crdcpb.AWSAssumeRoleConfig{}
-		}
-		if updateMask.GetRegions() {
-			existingAgentCore.Regions = config.GetAwsAgentCoreDiscoveryConfig().GetRegions()
-		}
-		applyRoleChainMask(existingAgentCore.GetRoleChain(), config.GetAwsAgentCoreDiscoveryConfig().GetRoleChain(), updateMask.GetAssumeThroughOidc(), updateMask.GetAudience(), updateMask.GetRoles())
+	if err := applyCommonMask(existing, config, updateMask.GetName(), updateMask.GetDisabled(), updateMask.GetDiscoveryInterval()); err != nil {
+		return nil, err
 	}
+	if config.GetAwsAgentCoreDiscoveryConfig() == nil {
+		return nil, status.Error(codes.InvalidArgument, "cloud resource discovery config is not an aws agent core discovery config")
+	}
+	existingAgentCore := existing.GetAwsAgentCoreDiscoveryConfig()
+	if existingAgentCore.GetRoleChain() == nil {
+		existingAgentCore.RoleChain = &crdcpb.AWSAssumeRoleConfig{}
+	}
+	if updateMask.GetRegions() {
+		existingAgentCore.Regions = config.GetAwsAgentCoreDiscoveryConfig().GetRegions()
+	}
+	applyRoleChainMask(existingAgentCore.GetRoleChain(), config.GetAwsAgentCoreDiscoveryConfig().GetRoleChain(), updateMask.GetAssumeThroughOidc(), updateMask.GetAudience(), updateMask.GetRoles())
 
 	return c.store(existing), nil
 }
@@ -218,17 +208,6 @@ func (c *fakeCloudDiscoveryConfigClient) store(config *crdcpb.CloudDiscoveryConf
 	config.LastUpdatedAt = timestamppb.Now()
 	c.fake.CloudDiscoveryConfigs[config.GetId()] = config
 	return clone(config)
-}
-
-// replace returns a full replacement of existing with config, preserving immutable and output only properties.
-func replace(existing, config *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
-	replacement := clone(config)
-	replacement.CloudAccountId = existing.GetCloudAccountId()
-	replacement.Status = existing.GetStatus()
-	replacement.LastSuccessfulDiscovery = existing.GetLastSuccessfulDiscovery()
-	replacement.StatusLastUpdatedAt = existing.GetStatusLastUpdatedAt()
-	replacement.CreatedAt = existing.GetCreatedAt()
-	return replacement
 }
 
 // applyCommonMask applies the update mask fields common to all discovery config types.
