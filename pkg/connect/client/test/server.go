@@ -5,6 +5,7 @@ package test
 
 import (
 	"context"
+	"errors"
 	"net"
 	"testing"
 
@@ -32,10 +33,18 @@ func NewTestServer(t *testing.T) *TestServer {
 }
 
 func (ts *TestServer) Serve() {
+	errCh := make(chan error, 1)
 	go func() {
-		err := ts.Server.Serve(ts.Listener)
-		require.NoError(ts.t, err)
+		errCh <- ts.Server.Serve(ts.Listener)
 	}()
+	ts.t.Cleanup(func() {
+		ts.Server.Stop()
+		err := <-errCh
+		if err != nil && !errors.Is(err, grpc.ErrServerStopped) {
+			ts.t.Fatalf("unexpected error shutting down server: %s", err)
+		}
+	})
+
 }
 
 // BuildTestConn creates a gRPC client connection for the provided TestServer.
