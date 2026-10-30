@@ -3,11 +3,11 @@
 
 syntax = "proto3";
 
-package proto.common.pagination.v1beta1;
+package cofide.common.pagination.v1beta1;
 
 import "google/api/field_behavior.proto";
 
-option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1";
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/common/pagination/v1beta1";
 
 // PageRequest holds pagination parameters for List RPCs, following AIP-132
 // https://google.aip.dev/132

@@ -6,8 +6,8 @@ package v1alpha1
 import (
 	"context"
 
+	"github.com/cofide/cofide-api-sdk/gen/go/cofide/common/pagination/v1beta1"
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
-	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/grpc"
 )

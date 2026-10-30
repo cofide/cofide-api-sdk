@@ -31,7 +31,7 @@ Some of the key commands include:
 - `just proto-docs [out=<dir>]` - Generates Markdown API documentation from the protobuf definitions (defaults to `./docs/`); requires `protoc-gen-doc` (`go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest`)
 - `just test` - Runs Go unit tests
 
-The `.proto` files are in the `proto` directory, and the generated stubs for Go are in the `gen/proto/go` directory.
+The `.proto` files are in the `proto` directory, with the new APIs under `proto/cofide` and the old ones alongside them. The generated Go stubs are in `gen/go` and the TypeScript stubs in `gen/ts`.
 The Cofide Connect API client is in the `pkg/connect/client` directory.
 
 ## Stability
