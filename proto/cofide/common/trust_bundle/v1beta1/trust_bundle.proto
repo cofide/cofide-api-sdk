@@ -1,0 +1,56 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the Bundle message and related types representing a
+// SPIFFE trust bundle: the X.509 and JWT authorities for a trust domain.
+//
+// The messages mirror spire.api.types.Bundle from the SPIRE API, with the same
+// fields and field numbers, but use well-known types for times and durations
+// where SPIRE uses integer seconds. The Go package
+// github.com/cofide/cofide-api-sdk/pkg/trustbundle/v1beta1 converts between
+// the two.
+
+syntax = "proto3";
+
+package cofide.common.trust_bundle.v1beta1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/common/trust_bundle/v1beta1";
+
+// Bundle is the trust bundle for a SPIFFE trust domain.
+message Bundle {
+  // The name of the trust domain the bundle belongs to, e.g. "example.org".
+  string trust_domain = 1 [(google.api.field_behavior) = REQUIRED];
+  // X.509 authorities for authenticating X509-SVIDs.
+  repeated X509Certificate x509_authorities = 2 [(google.api.field_behavior) = OPTIONAL];
+  // JWT authorities for authenticating JWT-SVIDs.
+  repeated JWTKey jwt_authorities = 3 [(google.api.field_behavior) = OPTIONAL];
+  // A hint on how often the bundle should be refreshed from the bundle
+  // provider. Unset means no hint is available.
+  google.protobuf.Duration refresh_hint = 4 [(google.api.field_behavior) = OPTIONAL];
+  // The sequence number of the bundle.
+  uint64 sequence_number = 5 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// X509Certificate is an X.509 authority in a trust bundle.
+message X509Certificate {
+  // The ASN.1 DER encoded bytes of the X.509 certificate.
+  bytes asn1 = 1 [(google.api.field_behavior) = REQUIRED];
+  // Whether this authority is no longer secure and must not be used.
+  bool tainted = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// JWTKey is a JWT authority in a trust bundle.
+message JWTKey {
+  // The PKIX encoded public key.
+  bytes public_key = 1 [(google.api.field_behavior) = REQUIRED];
+  // The key identifier.
+  string key_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // When the key expires. Unset means the key does not expire.
+  google.protobuf.Timestamp expires_at = 3 [(google.api.field_behavior) = OPTIONAL];
+  // Whether this authority is no longer secure and must not be used.
+  bool tainted = 4 [(google.api.field_behavior) = OPTIONAL];
+}

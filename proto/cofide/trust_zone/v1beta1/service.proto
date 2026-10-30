@@ -1,0 +1,150 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the TrustZoneService gRPC service for managing trust zones
+// and handling the registration of Cofide Agents and trust zone servers. Trust
+// zones represent SPIFFE trust domains within the Connect platform; each has
+// its own root of trust and can federate with other zones.
+
+syntax = "proto3";
+
+package cofide.trust_zone.v1beta1;
+
+import "cofide/common/pagination/v1beta1/pagination.proto";
+import "cofide/common/trust_bundle/v1beta1/trust_bundle.proto";
+import "cofide/trust_zone/v1beta1/trust_zone.proto";
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/trust_zone/v1beta1";
+
+// TrustZoneService manages trust zones and handles the registration of Cofide
+// Agents and trust zone servers.
+service TrustZoneService {
+  // CreateTrustZone creates a new trust zone.
+  rpc CreateTrustZone(CreateTrustZoneRequest) returns (CreateTrustZoneResponse);
+  // GetTrustZone retrieves a trust zone by ID, by name within an organization,
+  // or by trust domain.
+  rpc GetTrustZone(GetTrustZoneRequest) returns (GetTrustZoneResponse);
+  // ListTrustZones returns all trust zones matching the optional filter.
+  rpc ListTrustZones(ListTrustZonesRequest) returns (ListTrustZonesResponse);
+  // UpdateTrustZone updates an existing trust zone.
+  rpc UpdateTrustZone(UpdateTrustZoneRequest) returns (UpdateTrustZoneResponse);
+  // DeleteTrustZone deletes a trust zone by ID.
+  rpc DeleteTrustZone(DeleteTrustZoneRequest) returns (DeleteTrustZoneResponse);
+
+  // RegisterCofideAgent registers a Cofide Agent with its trust zone, storing
+  // its SPIRE bundle in the control plane. The trust zone is determined from
+  // the bundle's trust domain.
+  rpc RegisterCofideAgent(RegisterCofideAgentRequest) returns (RegisterCofideAgentResponse);
+  // RegisterTrustZoneServer registers the SPIRE server for a trust zone,
+  // storing its bundle in the control plane. The trust zone is determined from
+  // the bundle's trust domain.
+  rpc RegisterTrustZoneServer(RegisterTrustZoneServerRequest) returns (RegisterTrustZoneServerResponse);
+
+  // UpdateTrustZoneBundle updates the stored SPIRE trust bundle for a trust
+  // zone. Called by a trust zone server or Cofide Agent when the SPIRE server
+  // rotates its bundle. The trust zone is determined from the bundle's trust
+  // domain.
+  rpc UpdateTrustZoneBundle(UpdateTrustZoneBundleRequest) returns (UpdateTrustZoneBundleResponse);
+}
+
+message CreateTrustZoneRequest {
+  TrustZone trust_zone = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateTrustZoneResponse {
+  TrustZone trust_zone = 1;
+}
+
+message GetTrustZoneRequest {
+  // NameWithOrgID identifies a trust zone by its name, which is unique within
+  // an organization.
+  message NameWithOrgID {
+    string org_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string name = 2 [(google.api.field_behavior) = REQUIRED];
+  }
+
+  // The identifier of the trust zone to retrieve. Exactly one must be set.
+  oneof identifier {
+    string trust_zone_id = 1;
+    NameWithOrgID name_with_org_id = 2;
+    string trust_domain = 3;
+  }
+}
+
+message GetTrustZoneResponse {
+  TrustZone trust_zone = 1;
+}
+
+message ListTrustZonesRequest {
+  message Filter {
+    // Return only trust zones belonging to one of these organizations.
+    repeated string org_ids = 1;
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListTrustZonesResponse {
+  repeated TrustZone trust_zones = 1;
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
+}
+
+message UpdateTrustZoneRequest {
+  message UpdateMask {
+    // Set to true to update the name field. The new name must be unique within
+    // the trust zone's organization.
+    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  TrustZone trust_zone = 1 [(google.api.field_behavior) = REQUIRED];
+  // The fields to be updated. If not provided a full replacement of all
+  // updatable fields will be made.
+  UpdateMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateTrustZoneResponse {
+  TrustZone trust_zone = 1;
+}
+
+message DeleteTrustZoneRequest {
+  string trust_zone_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteTrustZoneResponse {}
+
+message RegisterCofideAgentRequest {
+  // The credential used to authenticate the registration. Exactly one must be
+  // set.
+  oneof auth {
+    // A join token issued for the trust zone.
+    string join_token = 1;
+    // A Kubernetes projected service account token issued by a cluster in the
+    // trust zone.
+    string k8s_psat = 2;
+  }
+  cofide.common.trust_bundle.v1beta1.Bundle bundle = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message RegisterCofideAgentResponse {}
+
+message RegisterTrustZoneServerRequest {
+  // The credential used to authenticate the registration. Exactly one must be
+  // set.
+  oneof auth {
+    // A join token issued for the trust zone.
+    string join_token = 1;
+    // A Kubernetes projected service account token issued by the trust zone
+    // server's cluster.
+    string k8s_psat = 2;
+  }
+  cofide.common.trust_bundle.v1beta1.Bundle bundle = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message RegisterTrustZoneServerResponse {}
+
+message UpdateTrustZoneBundleRequest {
+  cofide.common.trust_bundle.v1beta1.Bundle bundle = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateTrustZoneBundleResponse {}
