@@ -109,11 +109,11 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 		},
 	}
 
-	_, err := client.UpdateCloudDiscoveryConfig(t.Context(), input, v1alpha1.AWSLambdaUpdateMask(v1alpha1.AWSLambdaUpdateFields{
+	_, err := client.UpdateCloudDiscoveryConfig(t.Context(), input, v1alpha1.AWSLambdaUpdateMask{
 		Name:     true,
 		Regions:  true,
 		Audience: true,
-	}))
+	})
 	require.NoError(t, err)
 }
 
@@ -132,10 +132,10 @@ func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 		},
 	}
 
-	_, err := client.UpdateCloudDiscoveryConfig(t.Context(), input, v1alpha1.AWSAgentCoreUpdateMask(v1alpha1.AWSAgentCoreUpdateFields{
+	_, err := client.UpdateCloudDiscoveryConfig(t.Context(), input, v1alpha1.AWSAgentCoreUpdateMask{
 		Disabled: true,
 		Roles:    true,
-	}))
+	})
 	require.NoError(t, err)
 }
 

@@ -9,14 +9,15 @@ import (
 
 // UpdateMask selects the fields changed by CloudDiscoveryConfigClient.UpdateCloudDiscoveryConfig.
 // A nil UpdateMask requests a full replacement of all updatable fields.
-// Construct an UpdateMask using a type-specific constructor, e.g. AWSLambdaUpdateMask.
+// Use the UpdateMask type matching the discovery config type, e.g. AWSLambdaUpdateMask.
 type UpdateMask interface {
 	// apply sets the type-specific update mask on the request.
 	apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest)
 }
 
-// AWSLambdaUpdateFields selects the fields of an AWS Lambda discovery config to update.
-type AWSLambdaUpdateFields struct {
+// AWSLambdaUpdateMask is an UpdateMask for an AWS Lambda discovery config.
+// It selects the fields of the config to update.
+type AWSLambdaUpdateMask struct {
 	Name              bool
 	Disabled          bool
 	DiscoveryInterval bool
@@ -27,14 +28,7 @@ type AWSLambdaUpdateFields struct {
 	Roles             bool
 }
 
-type awsLambdaUpdateMask AWSLambdaUpdateFields
-
-// AWSLambdaUpdateMask returns an UpdateMask for an AWS Lambda discovery config.
-func AWSLambdaUpdateMask(fields AWSLambdaUpdateFields) UpdateMask {
-	return awsLambdaUpdateMask(fields)
-}
-
-func (m awsLambdaUpdateMask) apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest) {
+func (m AWSLambdaUpdateMask) apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest) {
 	req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask{
 		AwsLambdaDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
 			Name:              m.Name,
@@ -48,8 +42,9 @@ func (m awsLambdaUpdateMask) apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest
 	}
 }
 
-// AWSAgentCoreUpdateFields selects the fields of an AWS AgentCore discovery config to update.
-type AWSAgentCoreUpdateFields struct {
+// AWSAgentCoreUpdateMask is an UpdateMask for an AWS AgentCore discovery config.
+// It selects the fields of the config to update.
+type AWSAgentCoreUpdateMask struct {
 	Name              bool
 	Disabled          bool
 	DiscoveryInterval bool
@@ -60,14 +55,7 @@ type AWSAgentCoreUpdateFields struct {
 	Roles             bool
 }
 
-type awsAgentCoreUpdateMask AWSAgentCoreUpdateFields
-
-// AWSAgentCoreUpdateMask returns an UpdateMask for an AWS AgentCore discovery config.
-func AWSAgentCoreUpdateMask(fields AWSAgentCoreUpdateFields) UpdateMask {
-	return awsAgentCoreUpdateMask(fields)
-}
-
-func (m awsAgentCoreUpdateMask) apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest) {
+func (m AWSAgentCoreUpdateMask) apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest) {
 	req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask{
 		AwsAgentCoreDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
 			Name:              m.Name,

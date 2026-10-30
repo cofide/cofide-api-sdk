@@ -464,13 +464,13 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 	}
 
 	masks := []crdcv1alpha1.UpdateMask{
-		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Name: true}),
-		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Disabled: true}),
-		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{DiscoveryInterval: true}),
-		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Regions: true}),
-		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{AssumeThroughOIDC: true}),
-		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Audience: true}),
-		crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Roles: true}),
+		crdcv1alpha1.AWSLambdaUpdateMask{Name: true},
+		crdcv1alpha1.AWSLambdaUpdateMask{Disabled: true},
+		crdcv1alpha1.AWSLambdaUpdateMask{DiscoveryInterval: true},
+		crdcv1alpha1.AWSLambdaUpdateMask{Regions: true},
+		crdcv1alpha1.AWSLambdaUpdateMask{AssumeThroughOIDC: true},
+		crdcv1alpha1.AWSLambdaUpdateMask{Audience: true},
+		crdcv1alpha1.AWSLambdaUpdateMask{Roles: true},
 	}
 	require.Len(t, masks, len(updateCases))
 
@@ -524,14 +524,14 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 		testCase{
 			name:            "error - existing config is not an aws lambda config",
 			input:           updateInput(existingAgentCore),
-			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Name: true}),
+			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask{Name: true},
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - input is not an aws lambda config",
 			input:           updateInput(existingAgentCore),
-			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Regions: true}),
+			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask{Regions: true},
 			original:        original,
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws lambda discovery config",
 			expectedErrCode: codes.InvalidArgument,
@@ -546,7 +546,7 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 		testCase{
 			name:            "error - empty name in mask",
 			input:           emptyNameInput,
-			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask(crdcv1alpha1.AWSLambdaUpdateFields{Name: true}),
+			updateMask:      crdcv1alpha1.AWSLambdaUpdateMask{Name: true},
 			original:        original,
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
@@ -597,13 +597,13 @@ func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 	}
 
 	masks := []crdcv1alpha1.UpdateMask{
-		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Name: true}),
-		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Disabled: true}),
-		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{DiscoveryInterval: true}),
-		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Regions: true}),
-		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{AssumeThroughOIDC: true}),
-		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Audience: true}),
-		crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Roles: true}),
+		crdcv1alpha1.AWSAgentCoreUpdateMask{Name: true},
+		crdcv1alpha1.AWSAgentCoreUpdateMask{Disabled: true},
+		crdcv1alpha1.AWSAgentCoreUpdateMask{DiscoveryInterval: true},
+		crdcv1alpha1.AWSAgentCoreUpdateMask{Regions: true},
+		crdcv1alpha1.AWSAgentCoreUpdateMask{AssumeThroughOIDC: true},
+		crdcv1alpha1.AWSAgentCoreUpdateMask{Audience: true},
+		crdcv1alpha1.AWSAgentCoreUpdateMask{Roles: true},
 	}
 	require.Len(t, masks, len(updateCases))
 
@@ -657,14 +657,14 @@ func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 		testCase{
 			name:            "error - existing config is not an aws agent core config",
 			input:           updateInput(existingLambda),
-			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Name: true}),
+			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask{Name: true},
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		testCase{
 			name:            "error - input is not an aws agent core config",
 			input:           wrongTypeInput,
-			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Regions: true}),
+			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask{Regions: true},
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config is not an aws agent core discovery config",
 			expectedErrCode: codes.InvalidArgument,
 		},
@@ -677,7 +677,7 @@ func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 		testCase{
 			name:            "error - empty name in mask",
 			input:           emptyNameInput,
-			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask(crdcv1alpha1.AWSAgentCoreUpdateFields{Name: true}),
+			updateMask:      crdcv1alpha1.AWSAgentCoreUpdateMask{Name: true},
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud resource discovery config name must not be empty",
 			expectedErrCode: codes.InvalidArgument,
 		},
