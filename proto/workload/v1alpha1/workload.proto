@@ -89,12 +89,12 @@ message AWSLambdaFunction {
   // The ID of the cloud account in Connect that this function was discovered in, for traceability back
   // to the discovery source.
   string cloud_account_id = 3;
-  string region = 4;
-  string iam_role_arn = 5;
-  // AWS resource tags on this Lambda function, as returned by lambda:ListTags.
-  map<string, string> tags = 6;
   // The ID of the cloud discovery config in Connect that discovered this function.
-  string cloud_discovery_config_id = 7;
+  string cloud_discovery_config_id = 4;
+  string region = 5;
+  string iam_role_arn = 6;
+  // AWS resource tags on this Lambda function, as returned by lambda:ListTags.
+  map<string, string> tags = 7;
 }
 
 // AWSAgentCoreRuntime contains the runtime details of an AWS Bedrock AgentCore Runtime
@@ -106,11 +106,11 @@ message AWSAgentCoreRuntime {
   // The ID of the cloud account in Connect that this runtime was discovered in, for traceability back to the discovery
   // source.
   string cloud_account_id = 3;
-  string region = 4;
-  // The IAM role ARN used at execution time.
-  string iam_role_arn = 5;
-  // AWS's dedicated workload-identity ARN for this runtime.
-  string workload_identity_arn = 6;
   // The ID of the cloud discovery config in Connect that discovered this runtime.
-  string cloud_discovery_config_id = 7;
+  string cloud_discovery_config_id = 4;
+  string region = 5;
+  // The IAM role ARN used at execution time.
+  string iam_role_arn = 6;
+  // AWS's dedicated workload-identity ARN for this runtime.
+  string workload_identity_arn = 7;
 }

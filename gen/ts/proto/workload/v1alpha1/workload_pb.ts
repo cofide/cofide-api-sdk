@@ -20,7 +20,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi8wMKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSMwoEdHlwZRgJIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZRJACg5rdWJlcm5ldGVzX3BvZBgFIAEoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNQb2RIABJJChNhd3NfbGFtYmRhX2Z1bmN0aW9uGAogASgLMioucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuQVdTTGFtYmRhRnVuY3Rpb25IABJNChVhd3NfYWdlbnRjb3JlX3J1bnRpbWUYCyABKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5BV1NBZ2VudENvcmVSdW50aW1lSAASOgoMb2JzZXJ2YXRpb25zGAYgAygLMiQucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuT2JzZXJ2YXRpb24SNgoSb2JzZXJ2ZWRfdGltZXN0YW1wGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIPCgdkZWxldGVkGAggASgIQgoKCHdvcmtsb2FkIkYKC09ic2VydmF0aW9uEhAKCHR5cGVfdXJsGAEgASgJEiUKBXZhbHVlGAIgASgLMhYuZ29vZ2xlLnByb3RvYnVmLlZhbHVlIoMCCg1LdWJlcm5ldGVzUG9kEj0KCG1ldGFkYXRhGAEgASgLMisucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJEhEKCW5vZGVfbmFtZRgDIAEoCRIQCghub2RlX3VpZBgGIAEoCRJACgpjb250YWluZXJzGAQgAygLMiwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc0NvbnRhaW5lchIuCgpzdGFydF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCL5AgoSS3ViZXJuZXRlc01ldGFkYXRhEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRJHCgZsYWJlbHMYBCADKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuTGFiZWxzRW50cnkSUQoLYW5ub3RhdGlvbnMYBSADKAsyPC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuQW5ub3RhdGlvbnNFbnRyeRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIjIKE0t1YmVybmV0ZXNDb250YWluZXISDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSKUAgoRQVdTTGFtYmRhRnVuY3Rpb24SFAoMZnVuY3Rpb25fYXJuGAEgASgJEhUKDWZ1bmN0aW9uX25hbWUYAiABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCRIOCgZyZWdpb24YBCABKAkSFAoMaWFtX3JvbGVfYXJuGAUgASgJEkIKBHRhZ3MYBiADKAsyNC5wcm90by53b3JrbG9hZC52MWFscGhhMS5BV1NMYW1iZGFGdW5jdGlvbi5UYWdzRW50cnkSIQoZY2xvdWRfZGlzY292ZXJ5X2NvbmZpZ19pZBgHIAEoCRorCglUYWdzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASLOAQoTQVdTQWdlbnRDb3JlUnVudGltZRIZChFhZ2VudF9ydW50aW1lX2FybhgBIAEoCRIaChJhZ2VudF9ydW50aW1lX25hbWUYAiABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCRIOCgZyZWdpb24YBCABKAkSFAoMaWFtX3JvbGVfYXJuGAUgASgJEh0KFXdvcmtsb2FkX2lkZW50aXR5X2FybhgGIAEoCRIhChljbG91ZF9kaXNjb3ZlcnlfY29uZmlnX2lkGAcgASgJKp8BCgxXb3JrbG9hZFR5cGUSHQoZV09SS0xPQURfVFlQRV9VTlNQRUNJRklFRBAAEiAKHFdPUktMT0FEX1RZUEVfS1VCRVJORVRFU19QT0QQARIlCiFXT1JLTE9BRF9UWVBFX0FXU19MQU1CREFfRlVOQ1RJT04QAhInCiNXT1JLTE9BRF9UWVBFX0FXU19BR0VOVENPUkVfUlVOVElNRRADQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi8wMKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSMwoEdHlwZRgJIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZRJACg5rdWJlcm5ldGVzX3BvZBgFIAEoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNQb2RIABJJChNhd3NfbGFtYmRhX2Z1bmN0aW9uGAogASgLMioucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuQVdTTGFtYmRhRnVuY3Rpb25IABJNChVhd3NfYWdlbnRjb3JlX3J1bnRpbWUYCyABKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5BV1NBZ2VudENvcmVSdW50aW1lSAASOgoMb2JzZXJ2YXRpb25zGAYgAygLMiQucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuT2JzZXJ2YXRpb24SNgoSb2JzZXJ2ZWRfdGltZXN0YW1wGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIPCgdkZWxldGVkGAggASgIQgoKCHdvcmtsb2FkIkYKC09ic2VydmF0aW9uEhAKCHR5cGVfdXJsGAEgASgJEiUKBXZhbHVlGAIgASgLMhYuZ29vZ2xlLnByb3RvYnVmLlZhbHVlIoMCCg1LdWJlcm5ldGVzUG9kEj0KCG1ldGFkYXRhGAEgASgLMisucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJEhEKCW5vZGVfbmFtZRgDIAEoCRIQCghub2RlX3VpZBgGIAEoCRJACgpjb250YWluZXJzGAQgAygLMiwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc0NvbnRhaW5lchIuCgpzdGFydF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCL5AgoSS3ViZXJuZXRlc01ldGFkYXRhEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRJHCgZsYWJlbHMYBCADKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuTGFiZWxzRW50cnkSUQoLYW5ub3RhdGlvbnMYBSADKAsyPC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuQW5ub3RhdGlvbnNFbnRyeRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIjIKE0t1YmVybmV0ZXNDb250YWluZXISDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSKUAgoRQVdTTGFtYmRhRnVuY3Rpb24SFAoMZnVuY3Rpb25fYXJuGAEgASgJEhUKDWZ1bmN0aW9uX25hbWUYAiABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCRIhChljbG91ZF9kaXNjb3ZlcnlfY29uZmlnX2lkGAQgASgJEg4KBnJlZ2lvbhgFIAEoCRIUCgxpYW1fcm9sZV9hcm4YBiABKAkSQgoEdGFncxgHIAMoCzI0LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFXU0xhbWJkYUZ1bmN0aW9uLlRhZ3NFbnRyeRorCglUYWdzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASLOAQoTQVdTQWdlbnRDb3JlUnVudGltZRIZChFhZ2VudF9ydW50aW1lX2FybhgBIAEoCRIaChJhZ2VudF9ydW50aW1lX25hbWUYAiABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCRIhChljbG91ZF9kaXNjb3ZlcnlfY29uZmlnX2lkGAQgASgJEg4KBnJlZ2lvbhgFIAEoCRIUCgxpYW1fcm9sZV9hcm4YBiABKAkSHQoVd29ya2xvYWRfaWRlbnRpdHlfYXJuGAcgASgJKp8BCgxXb3JrbG9hZFR5cGUSHQoZV09SS0xPQURfVFlQRV9VTlNQRUNJRklFRBAAEiAKHFdPUktMT0FEX1RZUEVfS1VCRVJORVRFU19QT0QQARIlCiFXT1JLTE9BRF9UWVBFX0FXU19MQU1CREFfRlVOQ1RJT04QAhInCiNXT1JLTE9BRF9UWVBFX0FXU19BR0VOVENPUkVfUlVOVElNRRADQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Workload represents a process, container, or unit of software running on an
@@ -276,28 +276,28 @@ export type AWSLambdaFunction = Message<"proto.workload.v1alpha1.AWSLambdaFuncti
   cloudAccountId: string;
 
   /**
-   * @generated from field: string region = 4;
+   * The ID of the cloud discovery config in Connect that discovered this function.
+   *
+   * @generated from field: string cloud_discovery_config_id = 4;
+   */
+  cloudDiscoveryConfigId: string;
+
+  /**
+   * @generated from field: string region = 5;
    */
   region: string;
 
   /**
-   * @generated from field: string iam_role_arn = 5;
+   * @generated from field: string iam_role_arn = 6;
    */
   iamRoleArn: string;
 
   /**
    * AWS resource tags on this Lambda function, as returned by lambda:ListTags.
    *
-   * @generated from field: map<string, string> tags = 6;
+   * @generated from field: map<string, string> tags = 7;
    */
   tags: { [key: string]: string };
-
-  /**
-   * The ID of the cloud discovery config in Connect that discovered this function.
-   *
-   * @generated from field: string cloud_discovery_config_id = 7;
-   */
-  cloudDiscoveryConfigId: string;
 };
 
 /**
@@ -335,30 +335,30 @@ export type AWSAgentCoreRuntime = Message<"proto.workload.v1alpha1.AWSAgentCoreR
   cloudAccountId: string;
 
   /**
-   * @generated from field: string region = 4;
+   * The ID of the cloud discovery config in Connect that discovered this runtime.
+   *
+   * @generated from field: string cloud_discovery_config_id = 4;
+   */
+  cloudDiscoveryConfigId: string;
+
+  /**
+   * @generated from field: string region = 5;
    */
   region: string;
 
   /**
    * The IAM role ARN used at execution time.
    *
-   * @generated from field: string iam_role_arn = 5;
+   * @generated from field: string iam_role_arn = 6;
    */
   iamRoleArn: string;
 
   /**
    * AWS's dedicated workload-identity ARN for this runtime.
    *
-   * @generated from field: string workload_identity_arn = 6;
+   * @generated from field: string workload_identity_arn = 7;
    */
   workloadIdentityArn: string;
-
-  /**
-   * The ID of the cloud discovery config in Connect that discovered this runtime.
-   *
-   * @generated from field: string cloud_discovery_config_id = 7;
-   */
-  cloudDiscoveryConfigId: string;
 };
 
 /**
