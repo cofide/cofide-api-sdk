@@ -1,4 +1,17 @@
 version: v2
+modules:
+  # The old APIs. This module is rooted at the repo, so their file names and
+  # packages start with proto.
+  - path: .
+    excludes:
+      - proto/cofide
+      - node_modules
+  # The new APIs, under proto/cofide. This module is rooted at proto/, so their
+  # file names and packages start with cofide. They are imported as
+  # cofide/<name>/<version>/<file>.proto, without the proto/ prefix.
+  - path: proto
+    includes:
+      - proto/cofide
 deps:
   - buf.build/googleapis/googleapis
 lint:

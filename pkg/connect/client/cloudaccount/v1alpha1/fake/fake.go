@@ -6,7 +6,7 @@ package fake
 import (
 	"context"
 
-	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_account/v1alpha1"
 	cloudaccountv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	fakepagination "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/client/pagination"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"

@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
-	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_account/v1alpha1"
+	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_discovery_config/v1alpha1"
 	crdcv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/clouddiscoveryconfig/v1alpha1/fake"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"

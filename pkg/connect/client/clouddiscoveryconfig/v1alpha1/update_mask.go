@@ -4,7 +4,7 @@
 package v1alpha1
 
 import (
-	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1"
+	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_discovery_config/v1alpha1"
 )
 
 // UpdateMask selects the fields changed by CloudDiscoveryConfigClient.UpdateCloudDiscoveryConfig.
