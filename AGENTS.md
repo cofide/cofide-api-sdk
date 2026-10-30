@@ -51,7 +51,7 @@ The project follows a strict layered pattern:
 - `pkg/connect/client/clientset.go` - `ClientSet` interface + `New()` constructor
 - `pkg/connect/client/config.go` - `Config` struct (ConnectURL + ConnectTrustDomain)
 - `buf.gen.yaml` - Code generation config (4 plugins: protoc-gen-go, protoc-gen-connect-go, grpc/go, bufbuild/es)
-- `buf.yaml` - Buf linting rules (STANDARD minus FIELD_NOT_REQUIRED and PACKAGE_NO_IMPORT_CYCLE)
+- `buf.yaml` - Buf linting rules (STANDARD)
 
 ### Adding a new service
 
