@@ -4,7 +4,7 @@
 package v1alpha1
 
 import (
-	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_account/v1alpha1"
 )
 
 // UpdateMask selects the fields changed by CloudAccountClient.UpdateCloudAccount.

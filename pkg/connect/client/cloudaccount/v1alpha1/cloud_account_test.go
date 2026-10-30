@@ -7,8 +7,8 @@ import (
 	"context"
 	"testing"
 
-	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_account/v1alpha1"
-	"github.com/cofide/cofide-api-sdk/gen/go/proto/common/pagination/v1beta1"
+	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_account/v1alpha1"
+	"github.com/cofide/cofide-api-sdk/gen/go/cofide/common/pagination/v1beta1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/cloudaccount/v1alpha1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
