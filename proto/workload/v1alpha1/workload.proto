@@ -22,12 +22,13 @@ message Workload {
   string id = 1;
   string org_id = 4;
   string trust_zone_id = 2;
+  // The ID of the cluster this workload runs in. Empty for non-Kubernetes workloads.
   string cluster_id = 3;
   WorkloadType type = 9;
   oneof workload {
     KubernetesPod kubernetes_pod = 5;
-    AWSLambdaFunction lambda_function = 10;
-    AWSAgentCoreRuntime agentcore_workload = 11;
+    AWSLambdaFunction aws_lambda_function = 10;
+    AWSAgentCoreRuntime aws_agentcore_runtime = 11;
   }
   // Security posture observations.
   repeated Observation observations = 6;
@@ -82,28 +83,34 @@ message KubernetesContainer {
 // AWSLambdaFunction contains the runtime details of an AWS Lambda function
 // workload as discovered by Connect's cloud resource discovery.
 message AWSLambdaFunction {
+  // The unqualified ARN of the function, without a version or alias suffix.
   string function_arn = 1;
   string function_name = 2;
-  // The cloud account this function was discovered in, for traceability back
+  // The ID of the cloud account in Connect that this function was discovered in, for traceability back
   // to the discovery source.
   string cloud_account_id = 3;
   string region = 4;
   string iam_role_arn = 5;
   // AWS resource tags on this Lambda function, as returned by lambda:ListTags.
   map<string, string> tags = 6;
+  // The ID of the cloud discovery config in Connect that discovered this function.
+  string cloud_discovery_config_id = 7;
 }
 
 // AWSAgentCoreRuntime contains the runtime details of an AWS Bedrock AgentCore Runtime
 // workload as discovered by Connect's cloud resource discovery.
 message AWSAgentCoreRuntime {
+  // The unqualified ARN of the runtime, without a version or endpoint suffix.
   string agent_runtime_arn = 1;
   string agent_runtime_name = 2;
-  // The cloud account this runtime was discovered in, for traceability back to the discovery
+  // The ID of the cloud account in Connect that this runtime was discovered in, for traceability back to the discovery
   // source.
   string cloud_account_id = 3;
   string region = 4;
   // The IAM role ARN used at execution time.
-  string role_arn = 5;
+  string iam_role_arn = 5;
   // AWS's dedicated workload-identity ARN for this runtime.
   string workload_identity_arn = 6;
+  // The ID of the cloud discovery config in Connect that discovered this runtime.
+  string cloud_discovery_config_id = 7;
 }

@@ -20,7 +20,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/workload/v1alpha1/workload.proto.
  */
 export const file_proto_workload_v1alpha1_workload: GenFile = /*@__PURE__*/
-  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi7AMKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSMwoEdHlwZRgJIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZRJACg5rdWJlcm5ldGVzX3BvZBgFIAEoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNQb2RIABJFCg9sYW1iZGFfZnVuY3Rpb24YCiABKAsyKi5wcm90by53b3JrbG9hZC52MWFscGhhMS5BV1NMYW1iZGFGdW5jdGlvbkgAEkoKEmFnZW50Y29yZV93b3JrbG9hZBgLIAEoCzIsLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFXU0FnZW50Q29yZVJ1bnRpbWVIABI6CgxvYnNlcnZhdGlvbnMYBiADKAsyJC5wcm90by53b3JrbG9hZC52MWFscGhhMS5PYnNlcnZhdGlvbhI2ChJvYnNlcnZlZF90aW1lc3RhbXAYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2RlbGV0ZWQYCCABKAhCCgoId29ya2xvYWQiRgoLT2JzZXJ2YXRpb24SEAoIdHlwZV91cmwYASABKAkSJQoFdmFsdWUYAiABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUigwIKDUt1YmVybmV0ZXNQb2QSPQoIbWV0YWRhdGEYASABKAsyKy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGESHAoUc2VydmljZV9hY2NvdW50X25hbWUYAiABKAkSEQoJbm9kZV9uYW1lGAMgASgJEhAKCG5vZGVfdWlkGAYgASgJEkAKCmNvbnRhaW5lcnMYBCADKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzQ29udGFpbmVyEi4KCnN0YXJ0X3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIvkCChJLdWJlcm5ldGVzTWV0YWRhdGESCwoDdWlkGAEgASgJEgwKBG5hbWUYAiABKAkSEQoJbmFtZXNwYWNlGAMgASgJEkcKBmxhYmVscxgEIAMoCzI3LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5MYWJlbHNFbnRyeRJRCgthbm5vdGF0aW9ucxgFIAMoCzI8LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNNZXRhZGF0YS5Bbm5vdGF0aW9uc0VudHJ5EjYKEmNyZWF0aW9uX3RpbWVzdGFtcBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLQoLTGFiZWxzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARoyChBBbm5vdGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiMgoTS3ViZXJuZXRlc0NvbnRhaW5lchIMCgRuYW1lGAEgASgJEg0KBWltYWdlGAIgASgJIvEBChFBV1NMYW1iZGFGdW5jdGlvbhIUCgxmdW5jdGlvbl9hcm4YASABKAkSFQoNZnVuY3Rpb25fbmFtZRgCIAEoCRIYChBjbG91ZF9hY2NvdW50X2lkGAMgASgJEg4KBnJlZ2lvbhgEIAEoCRIUCgxpYW1fcm9sZV9hcm4YBSABKAkSQgoEdGFncxgGIAMoCzI0LnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkFXU0xhbWJkYUZ1bmN0aW9uLlRhZ3NFbnRyeRorCglUYWdzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASKnAQoTQVdTQWdlbnRDb3JlUnVudGltZRIZChFhZ2VudF9ydW50aW1lX2FybhgBIAEoCRIaChJhZ2VudF9ydW50aW1lX25hbWUYAiABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCRIOCgZyZWdpb24YBCABKAkSEAoIcm9sZV9hcm4YBSABKAkSHQoVd29ya2xvYWRfaWRlbnRpdHlfYXJuGAYgASgJKp8BCgxXb3JrbG9hZFR5cGUSHQoZV09SS0xPQURfVFlQRV9VTlNQRUNJRklFRBAAEiAKHFdPUktMT0FEX1RZUEVfS1VCRVJORVRFU19QT0QQARIlCiFXT1JLTE9BRF9UWVBFX0FXU19MQU1CREFfRlVOQ1RJT04QAhInCiNXT1JLTE9BRF9UWVBFX0FXU19BR0VOVENPUkVfUlVOVElNRRADQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("CiZwcm90by93b3JrbG9hZC92MWFscGhhMS93b3JrbG9hZC5wcm90bxIXcHJvdG8ud29ya2xvYWQudjFhbHBoYTEi8wMKCFdvcmtsb2FkEgoKAmlkGAEgASgJEg4KBm9yZ19pZBgEIAEoCRIVCg10cnVzdF96b25lX2lkGAIgASgJEhIKCmNsdXN0ZXJfaWQYAyABKAkSMwoEdHlwZRgJIAEoDjIlLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLldvcmtsb2FkVHlwZRJACg5rdWJlcm5ldGVzX3BvZBgFIAEoCzImLnByb3RvLndvcmtsb2FkLnYxYWxwaGExLkt1YmVybmV0ZXNQb2RIABJJChNhd3NfbGFtYmRhX2Z1bmN0aW9uGAogASgLMioucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuQVdTTGFtYmRhRnVuY3Rpb25IABJNChVhd3NfYWdlbnRjb3JlX3J1bnRpbWUYCyABKAsyLC5wcm90by53b3JrbG9hZC52MWFscGhhMS5BV1NBZ2VudENvcmVSdW50aW1lSAASOgoMb2JzZXJ2YXRpb25zGAYgAygLMiQucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuT2JzZXJ2YXRpb24SNgoSb2JzZXJ2ZWRfdGltZXN0YW1wGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIPCgdkZWxldGVkGAggASgIQgoKCHdvcmtsb2FkIkYKC09ic2VydmF0aW9uEhAKCHR5cGVfdXJsGAEgASgJEiUKBXZhbHVlGAIgASgLMhYuZ29vZ2xlLnByb3RvYnVmLlZhbHVlIoMCCg1LdWJlcm5ldGVzUG9kEj0KCG1ldGFkYXRhGAEgASgLMisucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc01ldGFkYXRhEhwKFHNlcnZpY2VfYWNjb3VudF9uYW1lGAIgASgJEhEKCW5vZGVfbmFtZRgDIAEoCRIQCghub2RlX3VpZBgGIAEoCRJACgpjb250YWluZXJzGAQgAygLMiwucHJvdG8ud29ya2xvYWQudjFhbHBoYTEuS3ViZXJuZXRlc0NvbnRhaW5lchIuCgpzdGFydF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCL5AgoSS3ViZXJuZXRlc01ldGFkYXRhEgsKA3VpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKCW5hbWVzcGFjZRgDIAEoCRJHCgZsYWJlbHMYBCADKAsyNy5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuTGFiZWxzRW50cnkSUQoLYW5ub3RhdGlvbnMYBSADKAsyPC5wcm90by53b3JrbG9hZC52MWFscGhhMS5LdWJlcm5ldGVzTWV0YWRhdGEuQW5ub3RhdGlvbnNFbnRyeRI2ChJjcmVhdGlvbl90aW1lc3RhbXAYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIjIKE0t1YmVybmV0ZXNDb250YWluZXISDAoEbmFtZRgBIAEoCRINCgVpbWFnZRgCIAEoCSKUAgoRQVdTTGFtYmRhRnVuY3Rpb24SFAoMZnVuY3Rpb25fYXJuGAEgASgJEhUKDWZ1bmN0aW9uX25hbWUYAiABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCRIOCgZyZWdpb24YBCABKAkSFAoMaWFtX3JvbGVfYXJuGAUgASgJEkIKBHRhZ3MYBiADKAsyNC5wcm90by53b3JrbG9hZC52MWFscGhhMS5BV1NMYW1iZGFGdW5jdGlvbi5UYWdzRW50cnkSIQoZY2xvdWRfZGlzY292ZXJ5X2NvbmZpZ19pZBgHIAEoCRorCglUYWdzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASLOAQoTQVdTQWdlbnRDb3JlUnVudGltZRIZChFhZ2VudF9ydW50aW1lX2FybhgBIAEoCRIaChJhZ2VudF9ydW50aW1lX25hbWUYAiABKAkSGAoQY2xvdWRfYWNjb3VudF9pZBgDIAEoCRIOCgZyZWdpb24YBCABKAkSFAoMaWFtX3JvbGVfYXJuGAUgASgJEh0KFXdvcmtsb2FkX2lkZW50aXR5X2FybhgGIAEoCRIhChljbG91ZF9kaXNjb3ZlcnlfY29uZmlnX2lkGAcgASgJKp8BCgxXb3JrbG9hZFR5cGUSHQoZV09SS0xPQURfVFlQRV9VTlNQRUNJRklFRBAAEiAKHFdPUktMT0FEX1RZUEVfS1VCRVJORVRFU19QT0QQARIlCiFXT1JLTE9BRF9UWVBFX0FXU19MQU1CREFfRlVOQ1RJT04QAhInCiNXT1JLTE9BRF9UWVBFX0FXU19BR0VOVENPUkVfUlVOVElNRRADQkFaP2dpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9wcm90by93b3JrbG9hZC92MWFscGhhMWIGcHJvdG8z", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Workload represents a process, container, or unit of software running on an
@@ -47,6 +47,8 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
   trustZoneId: string;
 
   /**
+   * The ID of the cluster this workload runs in. Empty for non-Kubernetes workloads.
+   *
    * @generated from field: string cluster_id = 3;
    */
   clusterId: string;
@@ -67,16 +69,16 @@ export type Workload = Message<"proto.workload.v1alpha1.Workload"> & {
     case: "kubernetesPod";
   } | {
     /**
-     * @generated from field: proto.workload.v1alpha1.AWSLambdaFunction lambda_function = 10;
+     * @generated from field: proto.workload.v1alpha1.AWSLambdaFunction aws_lambda_function = 10;
      */
     value: AWSLambdaFunction;
-    case: "lambdaFunction";
+    case: "awsLambdaFunction";
   } | {
     /**
-     * @generated from field: proto.workload.v1alpha1.AWSAgentCoreRuntime agentcore_workload = 11;
+     * @generated from field: proto.workload.v1alpha1.AWSAgentCoreRuntime aws_agentcore_runtime = 11;
      */
     value: AWSAgentCoreRuntime;
-    case: "agentcoreWorkload";
+    case: "awsAgentcoreRuntime";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -254,6 +256,8 @@ export const KubernetesContainerSchema: GenMessage<KubernetesContainer> = /*@__P
  */
 export type AWSLambdaFunction = Message<"proto.workload.v1alpha1.AWSLambdaFunction"> & {
   /**
+   * The unqualified ARN of the function, without a version or alias suffix.
+   *
    * @generated from field: string function_arn = 1;
    */
   functionArn: string;
@@ -264,7 +268,7 @@ export type AWSLambdaFunction = Message<"proto.workload.v1alpha1.AWSLambdaFuncti
   functionName: string;
 
   /**
-   * The cloud account this function was discovered in, for traceability back
+   * The ID of the cloud account in Connect that this function was discovered in, for traceability back
    * to the discovery source.
    *
    * @generated from field: string cloud_account_id = 3;
@@ -287,6 +291,13 @@ export type AWSLambdaFunction = Message<"proto.workload.v1alpha1.AWSLambdaFuncti
    * @generated from field: map<string, string> tags = 6;
    */
   tags: { [key: string]: string };
+
+  /**
+   * The ID of the cloud discovery config in Connect that discovered this function.
+   *
+   * @generated from field: string cloud_discovery_config_id = 7;
+   */
+  cloudDiscoveryConfigId: string;
 };
 
 /**
@@ -304,6 +315,8 @@ export const AWSLambdaFunctionSchema: GenMessage<AWSLambdaFunction> = /*@__PURE_
  */
 export type AWSAgentCoreRuntime = Message<"proto.workload.v1alpha1.AWSAgentCoreRuntime"> & {
   /**
+   * The unqualified ARN of the runtime, without a version or endpoint suffix.
+   *
    * @generated from field: string agent_runtime_arn = 1;
    */
   agentRuntimeArn: string;
@@ -314,7 +327,7 @@ export type AWSAgentCoreRuntime = Message<"proto.workload.v1alpha1.AWSAgentCoreR
   agentRuntimeName: string;
 
   /**
-   * The cloud account this runtime was discovered in, for traceability back to the discovery
+   * The ID of the cloud account in Connect that this runtime was discovered in, for traceability back to the discovery
    * source.
    *
    * @generated from field: string cloud_account_id = 3;
@@ -329,9 +342,9 @@ export type AWSAgentCoreRuntime = Message<"proto.workload.v1alpha1.AWSAgentCoreR
   /**
    * The IAM role ARN used at execution time.
    *
-   * @generated from field: string role_arn = 5;
+   * @generated from field: string iam_role_arn = 5;
    */
-  roleArn: string;
+  iamRoleArn: string;
 
   /**
    * AWS's dedicated workload-identity ARN for this runtime.
@@ -339,6 +352,13 @@ export type AWSAgentCoreRuntime = Message<"proto.workload.v1alpha1.AWSAgentCoreR
    * @generated from field: string workload_identity_arn = 6;
    */
   workloadIdentityArn: string;
+
+  /**
+   * The ID of the cloud discovery config in Connect that discovered this runtime.
+   *
+   * @generated from field: string cloud_discovery_config_id = 7;
+   */
+  cloudDiscoveryConfigId: string;
 };
 
 /**
