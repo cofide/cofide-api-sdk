@@ -10,9 +10,9 @@ syntax = "proto3";
 
 package proto.cloud_discovery_config.v1alpha1;
 
+import "cofide/common/pagination/v1beta1/pagination.proto";
 import "google/api/field_behavior.proto";
 import "proto/cloud_discovery_config/v1alpha1/discovery.proto";
-import "proto/common/pagination/v1beta1/pagination.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/cloud_discovery_config/v1alpha1";
 
@@ -49,12 +49,12 @@ message GetCloudDiscoveryConfigResponse {
 message ListCloudDiscoveryConfigsRequest {
   message Filter {}
   Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
-  proto.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message ListCloudDiscoveryConfigsResponse {
   repeated CloudDiscoveryConfig cloud_discovery_configs = 1;
-  proto.common.pagination.v1beta1.PageResponse pagination = 2;
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
 }
 
 message UpdateCloudDiscoveryConfigRequest {

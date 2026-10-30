@@ -27,13 +27,13 @@ ensure-protoc-gen-connect-go:
     fi
 
 fmt:
-    buf format -w --path proto
+    buf format -w
 
 buf-lint:
-    buf lint --path proto
+    buf lint
 
 proto-gen: ensure-protoc-gen-go ensure-protoc-gen-connect-go
-    buf generate --path ./proto
+    buf generate
 
 [private]
 ensure-protoc-gen-doc:
@@ -48,7 +48,7 @@ ensure-protoc-gen-doc:
 
 proto-docs out="docs": ensure-protoc-gen-doc
     mkdir -p {{out}}
-    buf generate --path ./proto --template buf.gen.docs.yaml --output {{out}}
+    buf generate --template buf.gen.docs.yaml --output {{out}}
 
 test *args:
     go run gotest.tools/gotestsum@latest --format github-actions ./... {{args}}
