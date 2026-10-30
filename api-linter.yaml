@@ -46,10 +46,11 @@
     - core::0158::response-next-page-token-field
     - core::0215::foreign-type-reference
 
-    # Updates take field mask messages of our own, such as AWSAccountUpdateMask,
+    # Updates take field mask messages of our own, such as AwsAccountUpdateMask,
     # rather than a google.protobuf.FieldMask. A mask message has a bool for
     # each field that can be updated, so it doesn't depend on field names in
     # strings and documents which fields are updatable.
+    - core::0134::request-mask-field
     - core::0134::request-mask-required
     - core::0134::request-required-fields
     - core::0134::request-unknown-fields
