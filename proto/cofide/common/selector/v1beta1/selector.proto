@@ -1,0 +1,23 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the Selector message, representing a SPIRE workload
+// attestation selector.
+
+syntax = "proto3";
+
+package cofide.common.selector.v1beta1;
+
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/common/selector/v1beta1";
+
+// Selector is an attestation selector produced by a workload attestation plugin
+// (e.g. k8s, unix, docker). Selectors are used to match a workload against an
+// identity.
+message Selector {
+  // The attestation plugin type, e.g. "k8s", "unix", "docker".
+  string type = 1 [(google.api.field_behavior) = REQUIRED];
+  // The selector value, e.g. "ns:foo", "user:1000".
+  string value = 2 [(google.api.field_behavior) = REQUIRED];
+}
