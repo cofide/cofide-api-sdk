@@ -1,0 +1,69 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the Identity message and related types representing a
+// SPIFFE identity issued by Connect to a workload.
+
+syntax = "proto3";
+
+package cofide.identity.v1beta1;
+
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/identity/v1beta1";
+
+// Identity represents a SPIFFE identity (SVID) that Connect issues to a
+// workload. It carries the SPIFFE ID, the attestation selectors that a
+// workload must match to receive it, and the trust zones or trust domains it
+// is federated with.
+//
+// Connect derives identities from trust zones, clusters, workloads,
+// attestation policies, exchange policies and federations whenever they are
+// requested, rather than storing them, so all of their fields are output only.
+message Identity {
+  // Unique identifier for the identity. Derived by Connect from the resources
+  // the identity is built from, so it is stable while they are unchanged.
+  string id = 1 [(google.api.field_behavior) = IDENTIFIER];
+  string org_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string trust_zone_id = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string cluster_id = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The attestation policy the identity is derived from, if any.
+  string attestation_policy_id = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The exchange policy the identity is derived from, if any.
+  string exchange_policy_id = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The workload to which this identity is issued, if any.
+  string workload_id = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The SPIFFE ID issued to the workload, e.g. spiffe://trust-domain/ns/foo/sa/bar.
+  string spiffe_id = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The SPIFFE ID of the SPIRE agent node that attests the workload.
+  string parent_id = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Attestation selectors that a workload must match to receive the identity.
+  repeated Selector selectors = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // DNS names to include as DNS Subject Alternative Names (SANs).
+  repeated string dns_names = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Federated trust zones or trust domains with which this identity is shared.
+  repeated IdentityFederation federations = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // When true, indicates to SPIRE agents that the X.509 SVID should be stored
+  // in the SVID store, if the svidstore agent plugin is enabled.
+  bool store_svid = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Selector is an attestation selector produced by a workload attestation plugin
+// (e.g. k8s, unix, docker). Selectors are used to match a workload against an
+// identity.
+message Selector {
+  // The attestation plugin type, e.g. "k8s", "unix", "docker".
+  string type = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // The selector value, e.g. "ns:foo", "user:1000".
+  string value = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// IdentityFederation specifies a federated trust zone or trust domain with
+// which an identity is shared, enabling the workload to present its SVID to
+// workloads in the remote zone.
+message IdentityFederation {
+  oneof federation {
+    string trust_zone_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    string trust_domain = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  }
+}

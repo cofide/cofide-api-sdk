@@ -1,0 +1,53 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the IdentityService gRPC service, which provides
+// read-only access to the SPIFFE identities Connect issues to workloads.
+
+syntax = "proto3";
+
+package cofide.identity.v1beta1;
+
+import "cofide/common/pagination/v1beta1/pagination.proto";
+import "cofide/identity/v1beta1/identity.proto";
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/identity/v1beta1";
+
+// IdentityService provides read-only access to the SPIFFE identities (SVIDs)
+// that Connect issues to workloads.
+service IdentityService {
+  // GetIdentity retrieves an identity by ID.
+  rpc GetIdentity(GetIdentityRequest) returns (GetIdentityResponse);
+  // ListIdentities returns all identities matching the optional filter.
+  rpc ListIdentities(ListIdentitiesRequest) returns (ListIdentitiesResponse);
+}
+
+message GetIdentityRequest {
+  string identity_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetIdentityResponse {
+  Identity identity = 1;
+}
+
+message ListIdentitiesRequest {
+  // Filter restricts the identities returned. Each field matches identities
+  // with any of the given values, and identities must match every field that
+  // is set.
+  message Filter {
+    repeated string org_ids = 1;
+    repeated string trust_zone_ids = 2;
+    repeated string cluster_ids = 3;
+    repeated string attestation_policy_ids = 4;
+    repeated string workload_ids = 5;
+    repeated string spiffe_ids = 6;
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListIdentitiesResponse {
+  repeated Identity identities = 1;
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
+}
