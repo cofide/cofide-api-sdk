@@ -1,0 +1,80 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the FederationService gRPC service for managing
+// federations between trust zones.
+
+syntax = "proto3";
+
+package cofide.federation.v1beta1;
+
+import "cofide/common/pagination/v1beta1/pagination.proto";
+import "cofide/federation/v1beta1/federation.proto";
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/federation/v1beta1";
+
+// FederationService manages federations between trust zones. Federations have
+// no fields that can change, so they are created and deleted but not updated.
+service FederationService {
+  // CreateFederation creates a new federation between two trust zones.
+  rpc CreateFederation(CreateFederationRequest) returns (CreateFederationResponse);
+  // GetFederation retrieves a federation by ID, or by the pair of trust zones
+  // it federates.
+  rpc GetFederation(GetFederationRequest) returns (GetFederationResponse);
+  // ListFederations returns all federations matching the optional filter.
+  rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse);
+  // DeleteFederation deletes a federation by ID.
+  rpc DeleteFederation(DeleteFederationRequest) returns (DeleteFederationResponse);
+}
+
+message CreateFederationRequest {
+  Federation federation = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateFederationResponse {
+  Federation federation = 1;
+}
+
+message GetFederationRequest {
+  // TrustZones identifies a federation by the trust zones it federates, as
+  // each pair of trust zones may be federated at most once.
+  message TrustZones {
+    string trust_zone_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string remote_trust_zone_id = 2 [(google.api.field_behavior) = REQUIRED];
+  }
+
+  // The identifier of the federation to retrieve. Exactly one must be set.
+  oneof identifier {
+    string federation_id = 1;
+    TrustZones trust_zones = 2;
+  }
+}
+
+message GetFederationResponse {
+  Federation federation = 1;
+}
+
+message ListFederationsRequest {
+  message Filter {
+    // Return only federations belonging to one of these organizations.
+    repeated string org_ids = 1;
+    // Return only federations from one of these local trust zones.
+    repeated string trust_zone_ids = 2;
+    // Return only federations to one of these remote trust zones.
+    repeated string remote_trust_zone_ids = 3;
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListFederationsResponse {
+  repeated Federation federations = 1;
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
+}
+
+message DeleteFederationRequest {
+  string federation_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteFederationResponse {}
