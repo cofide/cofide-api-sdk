@@ -1,0 +1,80 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the AgentService gRPC service, which provides access to
+// Cofide Agents, issues their join tokens and receives their status.
+
+syntax = "proto3";
+
+package cofide.agent.v1beta1;
+
+import "cofide/agent/v1beta1/agent.proto";
+import "cofide/common/pagination/v1beta1/pagination.proto";
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/agent/v1beta1";
+
+// AgentService provides read access to Cofide Agents, issues their join
+// tokens and receives the status they report.
+service AgentService {
+  // GetAgent retrieves an agent by ID, or by the cluster it runs in.
+  rpc GetAgent(GetAgentRequest) returns (GetAgentResponse);
+  // ListAgents returns all agents matching the optional filter.
+  rpc ListAgents(ListAgentsRequest) returns (ListAgentsResponse);
+
+  // CreateAgentJoinToken creates a single-use, short-lived token that a Cofide
+  // Agent presents to cofide.trust_zone.v1beta1.TrustZoneService.RegisterCofideAgent
+  // to register from a cluster.
+  rpc CreateAgentJoinToken(CreateAgentJoinTokenRequest) returns (CreateAgentJoinTokenResponse);
+  // UpdateAgentStatus reports the current operational status of the calling
+  // Cofide Agent, which Connect identifies from the caller's credentials.
+  // Connect records the time it receives the status.
+  rpc UpdateAgentStatus(UpdateAgentStatusRequest) returns (UpdateAgentStatusResponse);
+}
+
+message GetAgentRequest {
+  // The identifier of the agent to retrieve. Exactly one must be set.
+  oneof identifier {
+    string agent_id = 1;
+    // Each cluster has at most one agent.
+    string cluster_id = 2;
+  }
+}
+
+message GetAgentResponse {
+  Agent agent = 1;
+}
+
+message ListAgentsRequest {
+  message Filter {
+    // Return only agents belonging to one of these organizations.
+    repeated string org_ids = 1;
+    // Return only agents in one of these trust zones.
+    repeated string trust_zone_ids = 2;
+    // Return only agents in one of these clusters.
+    repeated string cluster_ids = 3;
+  }
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListAgentsResponse {
+  repeated Agent agents = 1;
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
+}
+
+message CreateAgentJoinTokenRequest {
+  // The cluster the agent runs in. The token is valid for the cluster's trust
+  // zone.
+  string cluster_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateAgentJoinTokenResponse {
+  string join_token = 1;
+}
+
+message UpdateAgentStatusRequest {
+  AgentStatus status = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateAgentStatusResponse {}
