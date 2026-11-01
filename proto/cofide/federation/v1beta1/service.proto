@@ -1,0 +1,102 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the FederationService gRPC service for managing
+// federations between trust zones.
+
+syntax = "proto3";
+
+package cofide.federation.v1beta1;
+
+import "cofide/common/pagination/v1beta1/pagination.proto";
+import "cofide/federation/v1beta1/federation.proto";
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/federation/v1beta1";
+
+// FederationService manages federations between trust zones. Federations have
+// no fields that can change, so they are created and deleted but not updated.
+service FederationService {
+  // CreateFederation creates a new federation between two trust zones.
+  rpc CreateFederation(CreateFederationRequest) returns (CreateFederationResponse);
+  // GetFederation retrieves a federation by ID, or by the pair of trust zones
+  // it federates.
+  rpc GetFederation(GetFederationRequest) returns (GetFederationResponse);
+  // ListFederations returns all federations matching the optional filter.
+  rpc ListFederations(ListFederationsRequest) returns (ListFederationsResponse);
+  // DeleteFederation deletes a federation by ID.
+  rpc DeleteFederation(DeleteFederationRequest) returns (DeleteFederationResponse);
+}
+
+// CreateFederationRequest is the request for CreateFederation.
+message CreateFederationRequest {
+  // The federation to create.
+  Federation federation = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// CreateFederationResponse is the response from CreateFederation.
+message CreateFederationResponse {
+  // The created federation.
+  Federation federation = 1;
+}
+
+// GetFederationRequest is the request for GetFederation.
+message GetFederationRequest {
+  // TrustZones identifies a federation by the trust zones it federates, as
+  // each ordered pair of trust zones may be federated at most once. The order
+  // matters: swapping the two IDs identifies a different federation.
+  message TrustZones {
+    // The local trust zone that trusts the remote trust zone.
+    string trust_zone_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // The remote trust zone that is trusted by the local trust zone.
+    string remote_trust_zone_id = 2 [(google.api.field_behavior) = REQUIRED];
+  }
+
+  // The identifier of the federation to retrieve. Exactly one must be set.
+  oneof identifier {
+    // ID of the federation to retrieve.
+    string federation_id = 1;
+    // The trust zones of the federation to retrieve.
+    TrustZones trust_zones = 2;
+  }
+}
+
+// GetFederationResponse is the response from GetFederation.
+message GetFederationResponse {
+  // The requested federation.
+  Federation federation = 1;
+}
+
+// ListFederationsRequest is the request for ListFederations.
+message ListFederationsRequest {
+  // Filters are combined with AND, repeated fields are OR'd.
+  message Filter {
+    // Return only federations belonging to one of these organizations.
+    repeated string org_ids = 1 [(google.api.field_behavior) = OPTIONAL];
+    // Return only federations from one of these local trust zones.
+    repeated string trust_zone_ids = 2 [(google.api.field_behavior) = OPTIONAL];
+    // Return only federations to one of these remote trust zones.
+    repeated string remote_trust_zone_ids = 3 [(google.api.field_behavior) = OPTIONAL];
+  }
+  // Restricts which federations are returned.
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  // The page of results to return.
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// ListFederationsResponse is the response from ListFederations.
+message ListFederationsResponse {
+  // The federations in this page of results.
+  repeated Federation federations = 1;
+  // How to retrieve the next page of results.
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
+}
+
+// DeleteFederationRequest is the request for DeleteFederation.
+message DeleteFederationRequest {
+  // ID of the federation to delete.
+  string federation_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// DeleteFederationResponse is the response from DeleteFederation.
+message DeleteFederationResponse {}
