@@ -1,0 +1,47 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the OrganizationService gRPC service, which provides
+// read-only access to organizations.
+
+syntax = "proto3";
+
+package cofide.organization.v1beta1;
+
+import "cofide/common/pagination/v1beta1/pagination.proto";
+import "cofide/organization/v1beta1/organization.proto";
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/organization/v1beta1";
+
+// OrganizationService provides read-only access to organizations.
+service OrganizationService {
+  // GetOrganization retrieves an organization by ID or by name.
+  rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
+  // ListOrganizations returns all organizations matching the optional filter.
+  rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
+}
+
+message GetOrganizationRequest {
+  // The identifier of the organization to retrieve. Exactly one must be set.
+  oneof identifier {
+    string org_id = 1;
+    // Organization names are unique within Connect.
+    string name = 2;
+  }
+}
+
+message GetOrganizationResponse {
+  Organization organization = 1;
+}
+
+message ListOrganizationsRequest {
+  message Filter {}
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListOrganizationsResponse {
+  repeated Organization organizations = 1;
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
+}
