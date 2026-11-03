@@ -15,8 +15,19 @@ import (
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
+
+func lambdaWorkload(arn string, deleted bool) *workloadpb.Workload {
+	return &workloadpb.Workload{
+		Type: workloadpb.WorkloadType_WORKLOAD_TYPE_AWS_LAMBDA_FUNCTION,
+		Workload: &workloadpb.Workload_AwsLambdaFunction{
+			AwsLambdaFunction: &workloadpb.AWSLambdaFunction{FunctionArn: arn},
+		},
+		Deleted: deleted,
+	}
+}
 
 func Test_fakeWorkloadClient_ListWorkloads(t *testing.T) {
 	fake := fakeconnect.New()
@@ -36,37 +47,94 @@ func Test_fakeWorkloadClient_ListWorkloads(t *testing.T) {
 	assert.EqualExportedValues(t, []*workloadpb.Workload{workload}, workloads)
 }
 
-func Test_fakeWorkloadsStream_Send_upsertsByID(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
+func Test_fakeWorkloadStream(t *testing.T) {
+	workloadWithID := lambdaWorkload("arn:aws:lambda:us-east-1:123456789012:function:a", false)
+	workloadWithID.Id = "workload-1"
 
-	stream, err := client.PublishWorkloads(t.Context())
-	require.NoError(t, err)
+	validWorkloadA := lambdaWorkload("arn:aws:lambda:us-east-1:123456789012:function:a", false)
+	validWorkloadB := lambdaWorkload("arn:aws:lambda:us-east-1:123456789012:function:b", false)
 
-	workload := &workloadpb.Workload{Id: "workload-1", OrgId: "org-1"}
-	require.NoError(t, stream.Send([]*workloadpb.Workload{workload}))
+	updatedWorkloadA := proto.Clone(validWorkloadA).(*workloadpb.Workload)
+	updatedWorkloadA.Observations = []*workloadpb.Observation{{TypeUrl: "test"}}
 
-	assert.EqualExportedValues(t, workload, fake.Workloads["workload-1"])
+	deletedWorkloadA := proto.Clone(validWorkloadA).(*workloadpb.Workload)
+	deletedWorkloadA.Deleted = true
 
-	updated := &workloadpb.Workload{Id: "workload-1", OrgId: "org-1", Deleted: true}
-	require.NoError(t, stream.Send([]*workloadpb.Workload{updated}))
+	tests := []struct {
+		name                      string
+		workloads                 []*workloadpb.Workload
+		expectedWorkloads         []*workloadpb.Workload
+		expectedRejectedWorkloads []*workloadpb.Workload
+	}{
+		{
+			// Connect generates workload IDs, and drops a published workload that has one without failing the stream.
+			name:                      "workload with ID rejected",
+			workloads:                 []*workloadpb.Workload{workloadWithID},
+			expectedRejectedWorkloads: []*workloadpb.Workload{workloadWithID},
+		},
+		{
+			name:              "workloads get generated IDs",
+			workloads:         []*workloadpb.Workload{validWorkloadA, validWorkloadB},
+			expectedWorkloads: []*workloadpb.Workload{validWorkloadA, validWorkloadB},
+		},
+		{
+			name:              "observations upsert by platform ID",
+			workloads:         []*workloadpb.Workload{validWorkloadA, updatedWorkloadA},
+			expectedWorkloads: []*workloadpb.Workload{updatedWorkloadA},
+		},
+		{
+			name:              "deleted observations remove workload",
+			workloads:         []*workloadpb.Workload{validWorkloadA, validWorkloadB, deletedWorkloadA},
+			expectedWorkloads: []*workloadpb.Workload{validWorkloadB},
+		},
+		{
+			name:              "nil workloads are skipped",
+			workloads:         []*workloadpb.Workload{nil, validWorkloadA, nil},
+			expectedWorkloads: []*workloadpb.Workload{validWorkloadA},
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			fake := fakeconnect.New()
+			client := New(fake)
 
-	assert.Len(t, fake.Workloads, 1)
-	assert.EqualExportedValues(t, updated, fake.Workloads["workload-1"])
-}
+			stream, err := client.PublishWorkloads(t.Context())
+			require.NoError(t, err)
 
-func Test_fakeWorkloadsStream_Send_skipsNilWorkloads(t *testing.T) {
-	fake := fakeconnect.New()
-	client := New(fake)
+			require.NoError(t, stream.Send(tc.workloads))
 
-	stream, err := client.PublishWorkloads(t.Context())
-	require.NoError(t, err)
+			actualWorkloads, err := client.ListWorkloads(t.Context(), nil)
+			require.NoError(t, err)
 
-	workload := &workloadpb.Workload{Id: "workload-1"}
-	require.NoError(t, stream.Send([]*workloadpb.Workload{workload, nil}))
+			if assert.Equal(t, len(tc.expectedWorkloads), len(actualWorkloads)) {
+				for _, expectedWorkload := range tc.expectedWorkloads {
+					expectedPlatformID, err := platformID(expectedWorkload)
+					require.NoError(t, err)
+					var matchedWorkload *workloadpb.Workload
+					for _, workload := range actualWorkloads {
+						actualPlatformID, err := platformID(workload)
+						require.NoError(t, err)
+						if expectedPlatformID == actualPlatformID {
+							matchedWorkload = proto.Clone(workload).(*workloadpb.Workload)
+						}
+					}
+					if !assert.NotNilf(t, matchedWorkload, "workload with platform ID %q was not found", expectedPlatformID) {
+						continue
+					}
+					assert.NotEmptyf(t, matchedWorkload.GetId(), "workload with platform ID %q did not have generated ID", expectedPlatformID)
+					matchedWorkload.Id = ""
+					assert.EqualExportedValuesf(t, expectedWorkload, matchedWorkload, "workload with platform ID %q was not stored as expected", expectedPlatformID)
+				}
+			}
 
-	assert.Len(t, fake.Workloads, 1)
-	assert.EqualExportedValues(t, workload, fake.Workloads["workload-1"])
+			if assert.Equal(t, len(tc.expectedRejectedWorkloads), len(fake.RejectedWorkloads)) {
+				for i, expectedWorkload := range tc.expectedRejectedWorkloads {
+					actualWorkload := fake.RejectedWorkloads[i]
+					assert.EqualExportedValuesf(t, expectedWorkload, actualWorkload, "rejected workload %d was not stored as expected", i)
+				}
+			}
+		})
+	}
 }
 
 func Test_fakeWorkloadClient_ListWorkloadEvents_filterObservedTimeRange(t *testing.T) {

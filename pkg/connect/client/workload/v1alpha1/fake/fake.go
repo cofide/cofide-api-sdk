@@ -12,6 +12,9 @@ import (
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
+	"github.com/google/uuid"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -47,6 +50,16 @@ type fakeWorkloadsStream struct {
 	fake *fakeconnect.FakeConnect
 }
 
+// Send stores the workloads, as the real Connect API does for workloads published by an observer.
+//
+// The identity of a workload is the combination of its cluster ID, type and platform ID (see platformID). The fake
+// generates the workload ID: if a workload with the same identity is already stored it is replaced and keeps its ID,
+// otherwise the workload is added with a new ID. A workload marked as deleted removes the stored workload with the
+// same identity, if there is one, so it is no longer returned by ListWorkloads.
+//
+// A workload that Connect would never accept is dropped without failing the stream, and the publisher is not told.
+// Such a workload is recorded in the fake's RejectedWorkloads. These are workloads that are not marked as deleted but
+// have an ID, and workloads with an unknown type or without a platform ID.
 func (s *fakeWorkloadsStream) Send(workloads []*workloadpb.Workload) error {
 	s.fake.Mu.Lock()
 	defer s.fake.Mu.Unlock()
@@ -55,9 +68,82 @@ func (s *fakeWorkloadsStream) Send(workloads []*workloadpb.Workload) error {
 		if workload == nil {
 			continue
 		}
-		s.fake.Workloads[workload.GetId()] = proto.Clone(workload).(*workloadpb.Workload)
+		if err := s.publishWorkload(workload); err != nil {
+			s.fake.RejectedWorkloads = append(s.fake.RejectedWorkloads, proto.Clone(workload).(*workloadpb.Workload))
+		}
 	}
 	return nil
+}
+
+// publishWorkload stores or deletes a workload, or returns an error if Connect would reject it. The caller must hold
+// the lock.
+func (s *fakeWorkloadsStream) publishWorkload(workload *workloadpb.Workload) error {
+	// Connect generates the ID. The ID is ignored when deleting, which finds the workload by its identity.
+	if !workload.GetDeleted() && workload.GetId() != "" {
+		return status.Error(codes.InvalidArgument, "workload ID must be empty")
+	}
+	id, err := platformID(workload)
+	if err != nil {
+		return err
+	}
+	existingID, found := s.findObserved(workload, id)
+
+	if workload.GetDeleted() {
+		if found {
+			delete(s.fake.Workloads, existingID)
+		}
+		return nil
+	}
+
+	stored := proto.Clone(workload).(*workloadpb.Workload)
+	if found {
+		stored.Id = existingID
+	} else {
+		stored.Id = uuid.New().String()
+	}
+	s.fake.Workloads[stored.Id] = stored
+	return nil
+}
+
+// findObserved returns the ID of the stored workload with the same cluster ID, type and platform ID as workload. The
+// caller must hold the lock.
+func (s *fakeWorkloadsStream) findObserved(workload *workloadpb.Workload, wantPlatformID string) (string, bool) {
+	for id, existing := range s.fake.Workloads {
+		if existing.GetClusterId() != workload.GetClusterId() || existing.GetType() != workload.GetType() {
+			continue
+		}
+		// Workloads stored with an unsupported platform identity cannot match.
+		if existingPlatformID, err := platformID(existing); err == nil && existingPlatformID == wantPlatformID {
+			return id, true
+		}
+	}
+	return "", false
+}
+
+// platformID returns the identifier of a workload within its platform, which together with its cluster ID and type
+// identifies it to Connect. For Kubernetes pods this is <namespace>/<name>, which allows referencing a pod after it
+// has been deleted. For AWS resources it is the ARN.
+func platformID(workload *workloadpb.Workload) (string, error) {
+	var id string
+	switch wl := workload.GetWorkload().(type) {
+	case *workloadpb.Workload_KubernetesPod:
+		namespace := wl.KubernetesPod.GetMetadata().GetNamespace()
+		name := wl.KubernetesPod.GetMetadata().GetName()
+		if namespace == "" || name == "" {
+			return "", status.Error(codes.InvalidArgument, "kubernetes pod namespace and name must be set")
+		}
+		return namespace + "/" + name, nil
+	case *workloadpb.Workload_AwsLambdaFunction:
+		id = wl.AwsLambdaFunction.GetFunctionArn()
+	case *workloadpb.Workload_AwsAgentcoreRuntime:
+		id = wl.AwsAgentcoreRuntime.GetAgentRuntimeArn()
+	default:
+		return "", status.Errorf(codes.InvalidArgument, "unknown workload field: %T", wl)
+	}
+	if id == "" {
+		return "", status.Error(codes.InvalidArgument, "workload ARN must be set")
+	}
+	return id, nil
 }
 
 func (s *fakeWorkloadsStream) Close() error {
