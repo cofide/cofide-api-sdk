@@ -57,6 +57,10 @@ type FakeConnect struct {
 	AuditEvents           map[string]*auditpb.Event
 	CloudAccounts         map[string]*cloudaccountpb.CloudAccount
 	CloudDiscoveryConfigs map[string]*crdcpb.CloudDiscoveryConfig
+
+	// RejectedWorkloads are the published workloads that Connect would never accept. The real API drops these without
+	// telling the publisher, so the fake records them here to let tests check that none were published.
+	RejectedWorkloads []*workloadpb.Workload
 }
 
 func New() *FakeConnect {
@@ -81,6 +85,7 @@ func New() *FakeConnect {
 		AuditEvents:           make(map[string]*auditpb.Event),
 		CloudAccounts:         make(map[string]*cloudaccountpb.CloudAccount),
 		CloudDiscoveryConfigs: make(map[string]*crdcpb.CloudDiscoveryConfig),
+		RejectedWorkloads:     []*workloadpb.Workload{},
 	}
 }
 
