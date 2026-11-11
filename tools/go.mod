@@ -2,11 +2,17 @@ module github.com/cofide/cofide-api-sdk/tools
 
 go 1.26.11
 
-tool github.com/googleapis/api-linter/v2/cmd/api-linter
+tool (
+	connectrpc.com/connect/cmd/protoc-gen-connect-go
+	github.com/googleapis/api-linter/v2/cmd/api-linter
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc
+	google.golang.org/protobuf/cmd/protoc-gen-go
+)
 
 require (
 	bitbucket.org/creachadair/stringset v0.0.12 // indirect
 	cloud.google.com/go/longrunning v1.4.1 // indirect
+	connectrpc.com/connect v1.19.2 // indirect
 	github.com/bmatcuk/doublestar/v4 v4.10.4 // indirect
 	github.com/bufbuild/protocompile v0.14.1 // indirect
 	github.com/gertd/go-pluralize v0.2.1 // indirect
@@ -22,6 +28,7 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20261026165753-2ffab32bce7e // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20261019180522-ce908d29299b // indirect
 	google.golang.org/grpc v1.84.0 // indirect
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.5.1 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
