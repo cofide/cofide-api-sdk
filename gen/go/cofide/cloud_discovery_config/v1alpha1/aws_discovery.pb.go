@@ -30,31 +30,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// AWSLambdaDiscoveryConfig contains configuration for Lambda function discovery.
-type AWSLambdaDiscoveryConfig struct {
+// AwsLambdaDiscoveryConfig contains configuration for Lambda function discovery.
+type AwsLambdaDiscoveryConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// AWS regions to discover resources in. An empty list effectively disables discovery.
 	Regions []string `protobuf:"bytes,1,rep,name=regions,proto3" json:"regions,omitempty"`
 	// Configuration of how IAM credentials should be assumed.
-	RoleChain     *AWSAssumeRoleConfig `protobuf:"bytes,6,opt,name=role_chain,json=roleChain,proto3" json:"role_chain,omitempty"`
+	RoleChain     *AwsAssumeRoleConfig `protobuf:"bytes,6,opt,name=role_chain,json=roleChain,proto3" json:"role_chain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AWSLambdaDiscoveryConfig) Reset() {
-	*x = AWSLambdaDiscoveryConfig{}
+func (x *AwsLambdaDiscoveryConfig) Reset() {
+	*x = AwsLambdaDiscoveryConfig{}
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AWSLambdaDiscoveryConfig) String() string {
+func (x *AwsLambdaDiscoveryConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AWSLambdaDiscoveryConfig) ProtoMessage() {}
+func (*AwsLambdaDiscoveryConfig) ProtoMessage() {}
 
-func (x *AWSLambdaDiscoveryConfig) ProtoReflect() protoreflect.Message {
+func (x *AwsLambdaDiscoveryConfig) ProtoReflect() protoreflect.Message {
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -66,50 +66,50 @@ func (x *AWSLambdaDiscoveryConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AWSLambdaDiscoveryConfig.ProtoReflect.Descriptor instead.
-func (*AWSLambdaDiscoveryConfig) Descriptor() ([]byte, []int) {
+// Deprecated: Use AwsLambdaDiscoveryConfig.ProtoReflect.Descriptor instead.
+func (*AwsLambdaDiscoveryConfig) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *AWSLambdaDiscoveryConfig) GetRegions() []string {
+func (x *AwsLambdaDiscoveryConfig) GetRegions() []string {
 	if x != nil {
 		return x.Regions
 	}
 	return nil
 }
 
-func (x *AWSLambdaDiscoveryConfig) GetRoleChain() *AWSAssumeRoleConfig {
+func (x *AwsLambdaDiscoveryConfig) GetRoleChain() *AwsAssumeRoleConfig {
 	if x != nil {
 		return x.RoleChain
 	}
 	return nil
 }
 
-// AWSAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
-type AWSAgentCoreDiscoveryConfig struct {
+// AwsAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
+type AwsAgentCoreDiscoveryConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// AWS regions to discover resources in. An empty list effectively disables discovery.
 	Regions []string `protobuf:"bytes,1,rep,name=regions,proto3" json:"regions,omitempty"`
 	// Configuration of how IAM credentials should be assumed.
-	RoleChain     *AWSAssumeRoleConfig `protobuf:"bytes,6,opt,name=role_chain,json=roleChain,proto3" json:"role_chain,omitempty"`
+	RoleChain     *AwsAssumeRoleConfig `protobuf:"bytes,6,opt,name=role_chain,json=roleChain,proto3" json:"role_chain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AWSAgentCoreDiscoveryConfig) Reset() {
-	*x = AWSAgentCoreDiscoveryConfig{}
+func (x *AwsAgentCoreDiscoveryConfig) Reset() {
+	*x = AwsAgentCoreDiscoveryConfig{}
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AWSAgentCoreDiscoveryConfig) String() string {
+func (x *AwsAgentCoreDiscoveryConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AWSAgentCoreDiscoveryConfig) ProtoMessage() {}
+func (*AwsAgentCoreDiscoveryConfig) ProtoMessage() {}
 
-func (x *AWSAgentCoreDiscoveryConfig) ProtoReflect() protoreflect.Message {
+func (x *AwsAgentCoreDiscoveryConfig) ProtoReflect() protoreflect.Message {
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -121,26 +121,26 @@ func (x *AWSAgentCoreDiscoveryConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AWSAgentCoreDiscoveryConfig.ProtoReflect.Descriptor instead.
-func (*AWSAgentCoreDiscoveryConfig) Descriptor() ([]byte, []int) {
+// Deprecated: Use AwsAgentCoreDiscoveryConfig.ProtoReflect.Descriptor instead.
+func (*AwsAgentCoreDiscoveryConfig) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *AWSAgentCoreDiscoveryConfig) GetRegions() []string {
+func (x *AwsAgentCoreDiscoveryConfig) GetRegions() []string {
 	if x != nil {
 		return x.Regions
 	}
 	return nil
 }
 
-func (x *AWSAgentCoreDiscoveryConfig) GetRoleChain() *AWSAssumeRoleConfig {
+func (x *AwsAgentCoreDiscoveryConfig) GetRoleChain() *AwsAssumeRoleConfig {
 	if x != nil {
 		return x.RoleChain
 	}
 	return nil
 }
 
-// AWSAssumeRoleConfig configures role assumption.
+// AwsAssumeRoleConfig configures role assumption.
 // Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
 // ambient credentials (e.g. EKS Pod Identity) is controlled by the
 // assume_through_oidc field on the owning config; subsequent steps always use
@@ -148,7 +148,7 @@ func (x *AWSAgentCoreDiscoveryConfig) GetRoleChain() *AWSAssumeRoleConfig {
 // If ambient credentials are used (assume_through_oidc is false) and the list of
 // roles is empty then those credentials are used directly rather than used to assume
 // another role.
-type AWSAssumeRoleConfig struct {
+type AwsAssumeRoleConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Whether the first role in roles is assumed via ambient credentials
 	// such as EKS Pod Identity (false, the default) or via SPIFFE JWT-based
@@ -161,25 +161,25 @@ type AWSAssumeRoleConfig struct {
 	// Ordered chain of IAM roles to assume.
 	// If ambient credentials are used this may be empty, in which case the ambient
 	// credentials are used directly rather than used to assume another role.
-	Roles         []*AWSAssumeRoleConfig_Role `protobuf:"bytes,3,rep,name=roles,proto3" json:"roles,omitempty"`
+	Roles         []*AwsAssumeRoleConfig_Role `protobuf:"bytes,3,rep,name=roles,proto3" json:"roles,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AWSAssumeRoleConfig) Reset() {
-	*x = AWSAssumeRoleConfig{}
+func (x *AwsAssumeRoleConfig) Reset() {
+	*x = AwsAssumeRoleConfig{}
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AWSAssumeRoleConfig) String() string {
+func (x *AwsAssumeRoleConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AWSAssumeRoleConfig) ProtoMessage() {}
+func (*AwsAssumeRoleConfig) ProtoMessage() {}
 
-func (x *AWSAssumeRoleConfig) ProtoReflect() protoreflect.Message {
+func (x *AwsAssumeRoleConfig) ProtoReflect() protoreflect.Message {
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -191,26 +191,26 @@ func (x *AWSAssumeRoleConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AWSAssumeRoleConfig.ProtoReflect.Descriptor instead.
-func (*AWSAssumeRoleConfig) Descriptor() ([]byte, []int) {
+// Deprecated: Use AwsAssumeRoleConfig.ProtoReflect.Descriptor instead.
+func (*AwsAssumeRoleConfig) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *AWSAssumeRoleConfig) GetAssumeThroughOidc() bool {
+func (x *AwsAssumeRoleConfig) GetAssumeThroughOidc() bool {
 	if x != nil {
 		return x.AssumeThroughOidc
 	}
 	return false
 }
 
-func (x *AWSAssumeRoleConfig) GetAudience() string {
+func (x *AwsAssumeRoleConfig) GetAudience() string {
 	if x != nil {
 		return x.Audience
 	}
 	return ""
 }
 
-func (x *AWSAssumeRoleConfig) GetRoles() []*AWSAssumeRoleConfig_Role {
+func (x *AwsAssumeRoleConfig) GetRoles() []*AwsAssumeRoleConfig_Role {
 	if x != nil {
 		return x.Roles
 	}
@@ -218,7 +218,7 @@ func (x *AWSAssumeRoleConfig) GetRoles() []*AWSAssumeRoleConfig_Role {
 }
 
 // Role is an IAM role to assume, as one step in the chain.
-type AWSAssumeRoleConfig_Role struct {
+type AwsAssumeRoleConfig_Role struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// ARN of the IAM role to assume.
 	IamRoleArn string `protobuf:"bytes,1,opt,name=iam_role_arn,json=iamRoleArn,proto3" json:"iam_role_arn,omitempty"`
@@ -228,20 +228,20 @@ type AWSAssumeRoleConfig_Role struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AWSAssumeRoleConfig_Role) Reset() {
-	*x = AWSAssumeRoleConfig_Role{}
+func (x *AwsAssumeRoleConfig_Role) Reset() {
+	*x = AwsAssumeRoleConfig_Role{}
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AWSAssumeRoleConfig_Role) String() string {
+func (x *AwsAssumeRoleConfig_Role) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AWSAssumeRoleConfig_Role) ProtoMessage() {}
+func (*AwsAssumeRoleConfig_Role) ProtoMessage() {}
 
-func (x *AWSAssumeRoleConfig_Role) ProtoReflect() protoreflect.Message {
+func (x *AwsAssumeRoleConfig_Role) ProtoReflect() protoreflect.Message {
 	mi := &file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -253,19 +253,19 @@ func (x *AWSAssumeRoleConfig_Role) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AWSAssumeRoleConfig_Role.ProtoReflect.Descriptor instead.
-func (*AWSAssumeRoleConfig_Role) Descriptor() ([]byte, []int) {
+// Deprecated: Use AwsAssumeRoleConfig_Role.ProtoReflect.Descriptor instead.
+func (*AwsAssumeRoleConfig_Role) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_rawDescGZIP(), []int{2, 0}
 }
 
-func (x *AWSAssumeRoleConfig_Role) GetIamRoleArn() string {
+func (x *AwsAssumeRoleConfig_Role) GetIamRoleArn() string {
 	if x != nil {
 		return x.IamRoleArn
 	}
 	return ""
 }
 
-func (x *AWSAssumeRoleConfig_Role) GetExternalId() string {
+func (x *AwsAssumeRoleConfig_Role) GetExternalId() string {
 	if x != nil {
 		return x.ExternalId
 	}
@@ -277,18 +277,18 @@ var File_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto protoreflect
 const file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_rawDesc = "" +
 	"\n" +
 	":cofide/cloud_discovery_config/v1alpha1/aws_discovery.proto\x12&cofide.cloud_discovery_config.v1alpha1\x1a\x1fgoogle/api/field_behavior.proto\"\x9a\x01\n" +
-	"\x18AWSLambdaDiscoveryConfig\x12\x1d\n" +
+	"\x18AwsLambdaDiscoveryConfig\x12\x1d\n" +
 	"\aregions\x18\x01 \x03(\tB\x03\xe0A\x01R\aregions\x12_\n" +
 	"\n" +
-	"role_chain\x18\x06 \x01(\v2;.cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfigB\x03\xe0A\x02R\troleChain\"\x9d\x01\n" +
-	"\x1bAWSAgentCoreDiscoveryConfig\x12\x1d\n" +
+	"role_chain\x18\x06 \x01(\v2;.cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfigB\x03\xe0A\x02R\troleChain\"\x9d\x01\n" +
+	"\x1bAwsAgentCoreDiscoveryConfig\x12\x1d\n" +
 	"\aregions\x18\x01 \x03(\tB\x03\xe0A\x01R\aregions\x12_\n" +
 	"\n" +
-	"role_chain\x18\x06 \x01(\v2;.cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfigB\x03\xe0A\x02R\troleChain\"\x9d\x02\n" +
-	"\x13AWSAssumeRoleConfig\x123\n" +
+	"role_chain\x18\x06 \x01(\v2;.cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfigB\x03\xe0A\x02R\troleChain\"\x9d\x02\n" +
+	"\x13AwsAssumeRoleConfig\x123\n" +
 	"\x13assume_through_oidc\x18\x01 \x01(\bB\x03\xe0A\x01R\x11assumeThroughOidc\x12\x1f\n" +
 	"\baudience\x18\x02 \x01(\tB\x03\xe0A\x01R\baudience\x12[\n" +
-	"\x05roles\x18\x03 \x03(\v2@.cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.RoleB\x03\xe0A\x01R\x05roles\x1aS\n" +
+	"\x05roles\x18\x03 \x03(\v2@.cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.RoleB\x03\xe0A\x01R\x05roles\x1aS\n" +
 	"\x04Role\x12%\n" +
 	"\fiam_role_arn\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
 	"iamRoleArn\x12$\n" +
@@ -309,15 +309,15 @@ func file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_rawDescGZIP
 
 var file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_goTypes = []any{
-	(*AWSLambdaDiscoveryConfig)(nil),    // 0: cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig
-	(*AWSAgentCoreDiscoveryConfig)(nil), // 1: cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig
-	(*AWSAssumeRoleConfig)(nil),         // 2: cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig
-	(*AWSAssumeRoleConfig_Role)(nil),    // 3: cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role
+	(*AwsLambdaDiscoveryConfig)(nil),    // 0: cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfig
+	(*AwsAgentCoreDiscoveryConfig)(nil), // 1: cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfig
+	(*AwsAssumeRoleConfig)(nil),         // 2: cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig
+	(*AwsAssumeRoleConfig_Role)(nil),    // 3: cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.Role
 }
 var file_cofide_cloud_discovery_config_v1alpha1_aws_discovery_proto_depIdxs = []int32{
-	2, // 0: cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig.role_chain:type_name -> cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig
-	2, // 1: cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig.role_chain:type_name -> cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig
-	3, // 2: cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.roles:type_name -> cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role
+	2, // 0: cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfig.role_chain:type_name -> cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig
+	2, // 1: cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfig.role_chain:type_name -> cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig
+	3, // 2: cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.roles:type_name -> cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.Role
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

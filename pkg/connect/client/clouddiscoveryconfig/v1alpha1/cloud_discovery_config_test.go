@@ -101,7 +101,7 @@ func Test_UpdateCloudDiscoveryConfig_AWSLambda(t *testing.T) {
 	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{
 		CloudDiscoveryConfig: input,
 		UpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask{
-			AwsLambdaDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
+			AwsLambdaDiscoveryConfigUpdateMask: &crdcpb.AwsLambdaDiscoveryConfigUpdateMask{
 				Name:     true,
 				Regions:  true,
 				Audience: true,
@@ -125,7 +125,7 @@ func Test_UpdateCloudDiscoveryConfig_AWSAgentCore(t *testing.T) {
 	fakeService.expectedUpdateRequest = &crdcpb.UpdateCloudDiscoveryConfigRequest{
 		CloudDiscoveryConfig: input,
 		UpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask{
-			AwsAgentCoreDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
+			AwsAgentCoreDiscoveryConfigUpdateMask: &crdcpb.AwsAgentCoreDiscoveryConfigUpdateMask{
 				Disabled: true,
 				Roles:    true,
 			},
@@ -157,12 +157,12 @@ func lambdaConfig() *crdcpb.CloudDiscoveryConfig {
 		Name:              "test-name",
 		DiscoveryInterval: durationpb.New(60_000_000_000),
 		DiscoveryConfig: &crdcpb.CloudDiscoveryConfig_AwsLambdaDiscoveryConfig{
-			AwsLambdaDiscoveryConfig: &crdcpb.AWSLambdaDiscoveryConfig{
+			AwsLambdaDiscoveryConfig: &crdcpb.AwsLambdaDiscoveryConfig{
 				Regions: []string{"eu-west-1"},
-				RoleChain: &crdcpb.AWSAssumeRoleConfig{
+				RoleChain: &crdcpb.AwsAssumeRoleConfig{
 					AssumeThroughOidc: true,
 					Audience:          "test-audience",
-					Roles:             []*crdcpb.AWSAssumeRoleConfig_Role{{IamRoleArn: "arn:aws:iam::123456789012:role/test"}},
+					Roles:             []*crdcpb.AwsAssumeRoleConfig_Role{{IamRoleArn: "arn:aws:iam::123456789012:role/test"}},
 				},
 			},
 		},
@@ -174,10 +174,10 @@ func agentCoreConfig() *crdcpb.CloudDiscoveryConfig {
 		CloudAccountId: "test-cloud-account-id",
 		Name:           "test-name",
 		DiscoveryConfig: &crdcpb.CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig{
-			AwsAgentCoreDiscoveryConfig: &crdcpb.AWSAgentCoreDiscoveryConfig{
+			AwsAgentCoreDiscoveryConfig: &crdcpb.AwsAgentCoreDiscoveryConfig{
 				Regions: []string{"us-east-1"},
-				RoleChain: &crdcpb.AWSAssumeRoleConfig{
-					Roles: []*crdcpb.AWSAssumeRoleConfig_Role{{IamRoleArn: "arn:aws:iam::123456789012:role/test", ExternalId: "ext"}},
+				RoleChain: &crdcpb.AwsAssumeRoleConfig{
+					Roles: []*crdcpb.AwsAssumeRoleConfig_Role{{IamRoleArn: "arn:aws:iam::123456789012:role/test", ExternalId: "ext"}},
 				},
 			},
 		},

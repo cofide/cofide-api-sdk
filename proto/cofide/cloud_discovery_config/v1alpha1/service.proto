@@ -75,43 +75,6 @@ message ListCloudDiscoveryConfigsResponse {
 
 // UpdateCloudDiscoveryConfigRequest is the request for UpdateCloudDiscoveryConfig.
 message UpdateCloudDiscoveryConfigRequest {
-  // AWSLambdaDiscoveryConfigUpdateMask selects the fields of an AWS Lambda
-  // discovery config to update.
-  message AWSLambdaDiscoveryConfigUpdateMask {
-    // Set to true to update the name field.
-    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the disabled field.
-    bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the discovery_interval field.
-    bool discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the regions field.
-    bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the assume through OIDC field on the assume role config.
-    bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the audience field on the assume role config.
-    bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the roles field on the assume role config.
-    bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
-  }
-  // AWSAgentCoreDiscoveryConfigUpdateMask selects the fields of an AWS
-  // AgentCore discovery config to update.
-  message AWSAgentCoreDiscoveryConfigUpdateMask {
-    // Set to true to update the name field.
-    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the disabled field.
-    bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the discovery_interval field.
-    bool discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the regions field.
-    bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the assume through OIDC field on the assume role config.
-    bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the audience field on the assume role config.
-    bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the roles field on the assume role config.
-    bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
-  }
-
   // The cloud discovery config to update, identified by its ID, with the
   // new values of the fields to update.
   CloudDiscoveryConfig cloud_discovery_config = 1 [(google.api.field_behavior) = REQUIRED];
@@ -119,10 +82,48 @@ message UpdateCloudDiscoveryConfigRequest {
   // The update mask should align with the type being updated.
   oneof update_mask {
     // The fields to update in an AWS Lambda discovery config.
-    AWSLambdaDiscoveryConfigUpdateMask aws_lambda_discovery_config_update_mask = 2;
+    AwsLambdaDiscoveryConfigUpdateMask aws_lambda_discovery_config_update_mask = 2;
     // The fields to update in an AWS AgentCore discovery config.
-    AWSAgentCoreDiscoveryConfigUpdateMask aws_agent_core_discovery_config_update_mask = 3;
+    AwsAgentCoreDiscoveryConfigUpdateMask aws_agent_core_discovery_config_update_mask = 3;
   }
+}
+
+// AwsLambdaDiscoveryConfigUpdateMask selects the fields of an AWS Lambda
+// discovery config to update.
+message AwsLambdaDiscoveryConfigUpdateMask {
+  // Set to true to update the name field.
+  bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the disabled field.
+  bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the discovery_interval field.
+  bool discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the regions field.
+  bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the assume through OIDC field on the assume role config.
+  bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the audience field on the assume role config.
+  bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the roles field on the assume role config.
+  bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// AwsAgentCoreDiscoveryConfigUpdateMask selects the fields of an AWS
+// AgentCore discovery config to update.
+message AwsAgentCoreDiscoveryConfigUpdateMask {
+  // Set to true to update the name field.
+  bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the disabled field.
+  bool disabled = 2 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the discovery_interval field.
+  bool discovery_interval = 3 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the regions field.
+  bool regions = 4 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the assume through OIDC field on the assume role config.
+  bool assume_through_oidc = 5 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the audience field on the assume role config.
+  bool audience = 6 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the roles field on the assume role config.
+  bool roles = 7 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // UpdateCloudDiscoveryConfigResponse is the response from UpdateCloudDiscoveryConfig.

@@ -10,7 +10,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { AWSAccount } from "./aws_cloud_account_pb";
+import type { AwsAccount } from "./aws_cloud_account_pb";
 import { file_cofide_cloud_account_v1alpha1_aws_cloud_account } from "./aws_cloud_account_pb";
 import { file_google_api_field_behavior } from "../../../google/api/field_behavior_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file cofide/cloud_account/v1alpha1/cloud_account.proto.
  */
 export const file_cofide_cloud_account_v1alpha1_cloud_account: GenFile = /*@__PURE__*/
-  fileDesc("CjFjb2ZpZGUvY2xvdWRfYWNjb3VudC92MWFscGhhMS9jbG91ZF9hY2NvdW50LnByb3RvEh1jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMSKCAgoMQ2xvdWRBY2NvdW50EhIKAmlkGAEgASgJQgbgQQPgQQUSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSEQoEbmFtZRgEIAEoCUID4EECEjgKA2F3cxgFIAEoCzIpLmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkFXU0FjY291bnRIABIzCgpjcmVhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IKCghwcm92aWRlckJHWkVnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vY29maWRlL2Nsb3VkX2FjY291bnQvdjFhbHBoYTFiBnByb3RvMw", [file_cofide_cloud_account_v1alpha1_aws_cloud_account, file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("CjFjb2ZpZGUvY2xvdWRfYWNjb3VudC92MWFscGhhMS9jbG91ZF9hY2NvdW50LnByb3RvEh1jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMSKCAgoMQ2xvdWRBY2NvdW50EhIKAmlkGAEgASgJQgbgQQPgQQUSFgoGb3JnX2lkGAIgASgJQgbgQQLgQQUSEQoEbmFtZRgEIAEoCUID4EECEjgKA2F3cxgFIAEoCzIpLmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkF3c0FjY291bnRIABIzCgpjcmVhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0IKCghwcm92aWRlckJHWkVnaXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vY29maWRlL2Nsb3VkX2FjY291bnQvdjFhbHBoYTFiBnByb3RvMw", [file_cofide_cloud_account_v1alpha1_aws_cloud_account, file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * CloudAccount represents a cloud provider account linked to a Cofide organization.
@@ -59,9 +59,9 @@ export type CloudAccount = Message<"cofide.cloud_account.v1alpha1.CloudAccount">
     /**
      * Configuration for an AWS account.
      *
-     * @generated from field: cofide.cloud_account.v1alpha1.AWSAccount aws = 5;
+     * @generated from field: cofide.cloud_account.v1alpha1.AwsAccount aws = 5;
      */
-    value: AWSAccount;
+    value: AwsAccount;
     case: "aws";
   } | { case: undefined; value?: undefined };
 

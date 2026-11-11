@@ -49,7 +49,7 @@ func Test_CreateCloudAccount(t *testing.T) {
 		OrgId: "test-org",
 		Name:  "test-name",
 		Provider: &cloudaccountpb.CloudAccount_Aws{
-			Aws: &cloudaccountpb.AWSAccount{
+			Aws: &cloudaccountpb.AwsAccount{
 				AccountId: "123456789012",
 			},
 		},
@@ -107,7 +107,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 		Id:   "test-id",
 		Name: "test-name",
 		Provider: &cloudaccountpb.CloudAccount_Aws{
-			Aws: &cloudaccountpb.AWSAccount{
+			Aws: &cloudaccountpb.AwsAccount{
 				AccountId: "123456789012",
 			},
 		},
@@ -115,7 +115,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 	fakeCloudAccountService.expectedUpdateRequest = &cloudaccountpb.UpdateCloudAccountRequest{
 		CloudAccount: input,
 		UpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
-			AwsAccountUpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask{Name: true},
+			AwsAccountUpdateMask: &cloudaccountpb.AwsAccountUpdateMask{Name: true},
 		},
 	}
 

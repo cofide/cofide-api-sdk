@@ -75,15 +75,6 @@ message ListCloudAccountsResponse {
 
 // UpdateCloudAccountRequest is the request for UpdateCloudAccount.
 message UpdateCloudAccountRequest {
-  // AWSAccountUpdateMask selects the fields of an AWS cloud account to
-  // update.
-  message AWSAccountUpdateMask {
-    // Set to true to update the name field.
-    bool name = 1 [(google.api.field_behavior) = OPTIONAL];
-    // Set to true to update the aws account ID field (only valid for AWS accounts).
-    bool aws_account_id = 2 [(google.api.field_behavior) = OPTIONAL];
-  }
-
   // The cloud account to update, identified by its ID, with the new values
   // of the fields to update.
   CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
@@ -91,8 +82,17 @@ message UpdateCloudAccountRequest {
   // The update mask should align with the type being updated.
   oneof update_mask {
     // The fields to update in an AWS cloud account.
-    AWSAccountUpdateMask aws_account_update_mask = 2;
+    AwsAccountUpdateMask aws_account_update_mask = 2;
   }
+}
+
+// AwsAccountUpdateMask selects the fields of an AWS cloud account to
+// update.
+message AwsAccountUpdateMask {
+  // Set to true to update the name field.
+  bool name = 1 [(google.api.field_behavior) = OPTIONAL];
+  // Set to true to update the aws account ID field (only valid for AWS accounts).
+  bool aws_account_id = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // UpdateCloudAccountResponse is the response from UpdateCloudAccount.

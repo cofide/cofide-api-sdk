@@ -59,10 +59,6 @@
     - core::0140::prepositions
     - core::0142::time-field-names
 
-    # Message names in the v1alpha1 APIs keep acronyms in capitals, such as
-    # AWSAccount, rather than AwsAccount.
-    - core::0190::message-case
-
     # We don't publish Java stubs, so the Java file options aren't needed.
     - core::0191::java-multiple-files
     - core::0191::java-outer-classname

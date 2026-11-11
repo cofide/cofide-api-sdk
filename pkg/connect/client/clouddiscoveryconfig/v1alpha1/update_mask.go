@@ -30,7 +30,7 @@ type AWSLambdaUpdateMask struct {
 
 func (m AWSLambdaUpdateMask) apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest) {
 	req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask{
-		AwsLambdaDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{
+		AwsLambdaDiscoveryConfigUpdateMask: &crdcpb.AwsLambdaDiscoveryConfigUpdateMask{
 			Name:              m.Name,
 			Disabled:          m.Disabled,
 			DiscoveryInterval: m.DiscoveryInterval,
@@ -57,7 +57,7 @@ type AWSAgentCoreUpdateMask struct {
 
 func (m AWSAgentCoreUpdateMask) apply(req *crdcpb.UpdateCloudDiscoveryConfigRequest) {
 	req.UpdateMask = &crdcpb.UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask{
-		AwsAgentCoreDiscoveryConfigUpdateMask: &crdcpb.UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{
+		AwsAgentCoreDiscoveryConfigUpdateMask: &crdcpb.AwsAgentCoreDiscoveryConfigUpdateMask{
 			Name:              m.Name,
 			Disabled:          m.Disabled,
 			DiscoveryInterval: m.DiscoveryInterval,
