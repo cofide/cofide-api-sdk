@@ -1,6 +1,3 @@
-GOBIN := `go env GOPATH`+ "/bin"
-PROTOC_GEN_DOC := GOBIN + "/protoc-gen-doc"
-
 fmt:
     buf format -w
 
@@ -38,23 +35,18 @@ api-lint pattern="." *args:
 proto-gen:
     buf generate
 
-[private]
-ensure-protoc-gen-doc:
-    #!/usr/bin/env bash
-    if [ ! -f "{{PROTOC_GEN_DOC}}" ]; then
-        echo "Please install protoc-gen-doc:"
-        echo
-        echo "  go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest"
-        echo
-        exit 1
-    fi
-
-proto-docs out="docs": ensure-protoc-gen-doc
+proto-docs out="docs":
     mkdir -p {{out}}
     buf generate --template buf.gen.docs.yaml --output {{out}}
 
+# tools/ is a separate module, which ./... leaves out, so its tests are run on
+# their own. The args, such as package patterns, are for the SDK's tests, so
+# they aren't passed on.
+#
+# Run the Go tests, including those in tools/.
 test *args:
     go run gotest.tools/gotestsum@latest --format github-actions ./... {{args}}
+    go -C tools run gotest.tools/gotestsum@latest --format github-actions ./...
 
 test-race: (test "--" "-race")
 
