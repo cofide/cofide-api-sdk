@@ -19,3 +19,10 @@ updates:
       # force minor updates onto our consumers.
       - dependency-name: "*"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
+
+  # Development tools, such as api-linter. Consumers of the SDK don't depend on
+  # this module, so updates aren't restricted.
+  - package-ecosystem: "gomod"
+    directory: "/tools"
+    schedule:
+      interval: "weekly"

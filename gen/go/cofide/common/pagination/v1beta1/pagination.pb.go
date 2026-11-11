@@ -95,6 +95,11 @@ type PageResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// A token, which can be sent as `page_token` to retrieve the next page.
 	// If this field is omitted/empty, there are no subsequent pages.
+	// (-- api-linter: core::0158::response-repeated-first-field=disabled
+	//
+	//	api-linter: core::0158::response-plural-first-field=disabled
+	//	aip.dev/not-precedent: The linter thinks this is a list response
+	//	because it has a next_page_token field. --)
 	NextPageToken string `protobuf:"bytes,1,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
