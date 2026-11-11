@@ -30,58 +30,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// DiscoveryStatus represents the current status of cloud discovery.
-// (-- api-linter: core::0216::synonyms=disabled
-//
-//	aip.dev/not-precedent: Prefer Status to State here. --)
-type DiscoveryStatus int32
+// DiscoveryState represents the current state of cloud discovery.
+type DiscoveryState int32
 
 const (
-	DiscoveryStatus_DISCOVERY_STATUS_UNSPECIFIED DiscoveryStatus = 0
+	DiscoveryState_DISCOVERY_STATE_UNSPECIFIED DiscoveryState = 0
 	// Discovery is active
-	DiscoveryStatus_DISCOVERY_STATUS_DISCOVERING DiscoveryStatus = 1
+	DiscoveryState_DISCOVERY_STATE_DISCOVERING DiscoveryState = 1
 	// Most recent discovery attempt errored
-	DiscoveryStatus_DISCOVERY_STATUS_ERROR DiscoveryStatus = 2
+	DiscoveryState_DISCOVERY_STATE_ERROR DiscoveryState = 2
 )
 
-// Enum value maps for DiscoveryStatus.
+// Enum value maps for DiscoveryState.
 var (
-	DiscoveryStatus_name = map[int32]string{
-		0: "DISCOVERY_STATUS_UNSPECIFIED",
-		1: "DISCOVERY_STATUS_DISCOVERING",
-		2: "DISCOVERY_STATUS_ERROR",
+	DiscoveryState_name = map[int32]string{
+		0: "DISCOVERY_STATE_UNSPECIFIED",
+		1: "DISCOVERY_STATE_DISCOVERING",
+		2: "DISCOVERY_STATE_ERROR",
 	}
-	DiscoveryStatus_value = map[string]int32{
-		"DISCOVERY_STATUS_UNSPECIFIED": 0,
-		"DISCOVERY_STATUS_DISCOVERING": 1,
-		"DISCOVERY_STATUS_ERROR":       2,
+	DiscoveryState_value = map[string]int32{
+		"DISCOVERY_STATE_UNSPECIFIED": 0,
+		"DISCOVERY_STATE_DISCOVERING": 1,
+		"DISCOVERY_STATE_ERROR":       2,
 	}
 )
 
-func (x DiscoveryStatus) Enum() *DiscoveryStatus {
-	p := new(DiscoveryStatus)
+func (x DiscoveryState) Enum() *DiscoveryState {
+	p := new(DiscoveryState)
 	*p = x
 	return p
 }
 
-func (x DiscoveryStatus) String() string {
+func (x DiscoveryState) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (DiscoveryStatus) Descriptor() protoreflect.EnumDescriptor {
+func (DiscoveryState) Descriptor() protoreflect.EnumDescriptor {
 	return file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_enumTypes[0].Descriptor()
 }
 
-func (DiscoveryStatus) Type() protoreflect.EnumType {
+func (DiscoveryState) Type() protoreflect.EnumType {
 	return &file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_enumTypes[0]
 }
 
-func (x DiscoveryStatus) Number() protoreflect.EnumNumber {
+func (x DiscoveryState) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use DiscoveryStatus.Descriptor instead.
-func (DiscoveryStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use DiscoveryState.Descriptor instead.
+func (DiscoveryState) EnumDescriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_rawDescGZIP(), []int{0}
 }
 
@@ -108,12 +105,12 @@ type CloudDiscoveryConfig struct {
 	//	*CloudDiscoveryConfig_AwsLambdaDiscoveryConfig
 	//	*CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig
 	DiscoveryConfig isCloudDiscoveryConfig_DiscoveryConfig `protobuf_oneof:"discovery_config"`
-	// Current discovery status.
-	Status DiscoveryStatus `protobuf:"varint,8,opt,name=status,proto3,enum=cofide.cloud_discovery_config.v1alpha1.DiscoveryStatus" json:"status,omitempty"`
+	// Current discovery state.
+	State DiscoveryState `protobuf:"varint,8,opt,name=state,proto3,enum=cofide.cloud_discovery_config.v1alpha1.DiscoveryState" json:"state,omitempty"`
 	// Timestamp of the last successful discovery run.
 	LastSuccessfulDiscovery *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=last_successful_discovery,json=lastSuccessfulDiscovery,proto3" json:"last_successful_discovery,omitempty"`
-	// Timestamp of the last status update.
-	StatusLastUpdatedAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=status_last_updated_at,json=statusLastUpdatedAt,proto3" json:"status_last_updated_at,omitempty"`
+	// Timestamp of the last state update.
+	StateLastUpdatedAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=state_last_updated_at,json=stateLastUpdatedAt,proto3" json:"state_last_updated_at,omitempty"`
 	// Time of resource creation.
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Time of last resource update.
@@ -212,11 +209,11 @@ func (x *CloudDiscoveryConfig) GetAwsAgentCoreDiscoveryConfig() *AWSAgentCoreDis
 	return nil
 }
 
-func (x *CloudDiscoveryConfig) GetStatus() DiscoveryStatus {
+func (x *CloudDiscoveryConfig) GetState() DiscoveryState {
 	if x != nil {
-		return x.Status
+		return x.State
 	}
-	return DiscoveryStatus_DISCOVERY_STATUS_UNSPECIFIED
+	return DiscoveryState_DISCOVERY_STATE_UNSPECIFIED
 }
 
 func (x *CloudDiscoveryConfig) GetLastSuccessfulDiscovery() *timestamppb.Timestamp {
@@ -226,9 +223,9 @@ func (x *CloudDiscoveryConfig) GetLastSuccessfulDiscovery() *timestamppb.Timesta
 	return nil
 }
 
-func (x *CloudDiscoveryConfig) GetStatusLastUpdatedAt() *timestamppb.Timestamp {
+func (x *CloudDiscoveryConfig) GetStateLastUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.StatusLastUpdatedAt
+		return x.StateLastUpdatedAt
 	}
 	return nil
 }
@@ -267,7 +264,7 @@ var File_cofide_cloud_discovery_config_v1alpha1_discovery_proto protoreflect.Fil
 
 const file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_rawDesc = "" +
 	"\n" +
-	"6cofide/cloud_discovery_config/v1alpha1/discovery.proto\x12&cofide.cloud_discovery_config.v1alpha1\x1a:cofide/cloud_discovery_config/v1alpha1/aws_discovery.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9e\a\n" +
+	"6cofide/cloud_discovery_config/v1alpha1/discovery.proto\x12&cofide.cloud_discovery_config.v1alpha1\x1a:cofide/cloud_discovery_config/v1alpha1/aws_discovery.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x99\a\n" +
 	"\x14CloudDiscoveryConfig\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\tB\x03\xe0A\bR\x02id\x120\n" +
 	"\x10cloud_account_id\x18\x02 \x01(\tB\x06\xe0A\x02\xe0A\x05R\x0ecloudAccountId\x12\x17\n" +
@@ -275,19 +272,19 @@ const file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_rawDesc = "" +
 	"\bdisabled\x18\x04 \x01(\bB\x03\xe0A\x01R\bdisabled\x12M\n" +
 	"\x12discovery_interval\x18\x05 \x01(\v2\x19.google.protobuf.DurationB\x03\xe0A\x01R\x11discoveryInterval\x12\x81\x01\n" +
 	"\x1baws_lambda_discovery_config\x18\x06 \x01(\v2@.cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfigH\x00R\x18awsLambdaDiscoveryConfig\x12\x8b\x01\n" +
-	"\x1faws_agent_core_discovery_config\x18\a \x01(\v2C.cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfigH\x00R\x1bawsAgentCoreDiscoveryConfig\x12T\n" +
-	"\x06status\x18\b \x01(\x0e27.cofide.cloud_discovery_config.v1alpha1.DiscoveryStatusB\x03\xe0A\x03R\x06status\x12[\n" +
-	"\x19last_successful_discovery\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x17lastSuccessfulDiscovery\x12T\n" +
-	"\x16status_last_updated_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x13statusLastUpdatedAt\x12>\n" +
+	"\x1faws_agent_core_discovery_config\x18\a \x01(\v2C.cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfigH\x00R\x1bawsAgentCoreDiscoveryConfig\x12Q\n" +
+	"\x05state\x18\b \x01(\x0e26.cofide.cloud_discovery_config.v1alpha1.DiscoveryStateB\x03\xe0A\x03R\x05state\x12[\n" +
+	"\x19last_successful_discovery\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x17lastSuccessfulDiscovery\x12R\n" +
+	"\x15state_last_updated_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x12stateLastUpdatedAt\x12>\n" +
 	"\n" +
 	"created_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12G\n" +
 	"\x0flast_updated_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\rlastUpdatedAtB\x12\n" +
-	"\x10discovery_config*q\n" +
-	"\x0fDiscoveryStatus\x12 \n" +
-	"\x1cDISCOVERY_STATUS_UNSPECIFIED\x10\x00\x12 \n" +
-	"\x1cDISCOVERY_STATUS_DISCOVERING\x10\x01\x12\x1a\n" +
-	"\x16DISCOVERY_STATUS_ERROR\x10\x02BPZNgithub.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_discovery_config/v1alpha1b\x06proto3"
+	"\x10discovery_config*m\n" +
+	"\x0eDiscoveryState\x12\x1f\n" +
+	"\x1bDISCOVERY_STATE_UNSPECIFIED\x10\x00\x12\x1f\n" +
+	"\x1bDISCOVERY_STATE_DISCOVERING\x10\x01\x12\x19\n" +
+	"\x15DISCOVERY_STATE_ERROR\x10\x02BPZNgithub.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_discovery_config/v1alpha1b\x06proto3"
 
 var (
 	file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_rawDescOnce sync.Once
@@ -304,7 +301,7 @@ func file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_rawDescGZIP() [
 var file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_goTypes = []any{
-	(DiscoveryStatus)(0),                // 0: cofide.cloud_discovery_config.v1alpha1.DiscoveryStatus
+	(DiscoveryState)(0),                 // 0: cofide.cloud_discovery_config.v1alpha1.DiscoveryState
 	(*CloudDiscoveryConfig)(nil),        // 1: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
 	(*durationpb.Duration)(nil),         // 2: google.protobuf.Duration
 	(*AWSLambdaDiscoveryConfig)(nil),    // 3: cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig
@@ -315,9 +312,9 @@ var file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_depIdxs = []int3
 	2, // 0: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.discovery_interval:type_name -> google.protobuf.Duration
 	3, // 1: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.aws_lambda_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig
 	4, // 2: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.aws_agent_core_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig
-	0, // 3: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.status:type_name -> cofide.cloud_discovery_config.v1alpha1.DiscoveryStatus
+	0, // 3: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.state:type_name -> cofide.cloud_discovery_config.v1alpha1.DiscoveryState
 	5, // 4: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.last_successful_discovery:type_name -> google.protobuf.Timestamp
-	5, // 5: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.status_last_updated_at:type_name -> google.protobuf.Timestamp
+	5, // 5: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.state_last_updated_at:type_name -> google.protobuf.Timestamp
 	5, // 6: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.created_at:type_name -> google.protobuf.Timestamp
 	5, // 7: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.last_updated_at:type_name -> google.protobuf.Timestamp
 	8, // [8:8] is the sub-list for method output_type

@@ -37,25 +37,23 @@ message CloudDiscoveryConfig {
     AWSLambdaDiscoveryConfig aws_lambda_discovery_config = 6;
     AWSAgentCoreDiscoveryConfig aws_agent_core_discovery_config = 7;
   }
-  // Current discovery status.
-  DiscoveryStatus status = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Current discovery state.
+  DiscoveryState state = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Timestamp of the last successful discovery run.
   google.protobuf.Timestamp last_successful_discovery = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
-  // Timestamp of the last status update.
-  google.protobuf.Timestamp status_last_updated_at = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Timestamp of the last state update.
+  google.protobuf.Timestamp state_last_updated_at = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of resource creation.
   google.protobuf.Timestamp created_at = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Time of last resource update.
   google.protobuf.Timestamp last_updated_at = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// DiscoveryStatus represents the current status of cloud discovery.
-// (-- api-linter: core::0216::synonyms=disabled
-//     aip.dev/not-precedent: Prefer Status to State here. --)
-enum DiscoveryStatus {
-  DISCOVERY_STATUS_UNSPECIFIED = 0;
+// DiscoveryState represents the current state of cloud discovery.
+enum DiscoveryState {
+  DISCOVERY_STATE_UNSPECIFIED = 0;
   // Discovery is active
-  DISCOVERY_STATUS_DISCOVERING = 1;
+  DISCOVERY_STATE_DISCOVERING = 1;
   // Most recent discovery attempt errored
-  DISCOVERY_STATUS_ERROR = 2;
+  DISCOVERY_STATE_ERROR = 2;
 }

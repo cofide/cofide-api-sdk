@@ -157,13 +157,13 @@ func Test_CreateCloudDiscoveryConfig_IgnoresOutputOnlyFields(t *testing.T) {
 
 	input := lambdaConfig(cloudAccountID, "fake-lambda")
 	input.Id = "client-supplied"
-	input.Status = crdcpb.DiscoveryStatus_DISCOVERY_STATUS_ERROR
+	input.State = crdcpb.DiscoveryState_DISCOVERY_STATE_ERROR
 
 	created, err := fakeClient.CreateCloudDiscoveryConfig(t.Context(), input)
 
 	require.NoError(t, err)
 	assert.NotEqual(t, "client-supplied", created.GetId())
-	assert.Equal(t, crdcpb.DiscoveryStatus_DISCOVERY_STATUS_UNSPECIFIED, created.GetStatus())
+	assert.Equal(t, crdcpb.DiscoveryState_DISCOVERY_STATE_UNSPECIFIED, created.GetState())
 }
 
 func Test_DeleteCloudDiscoveryConfig(t *testing.T) {
@@ -717,9 +717,9 @@ func assertUpdated(t *testing.T, input, original, expected, updated *crdcpb.Clou
 	assert.Equal(t, expected.GetName(), updated.GetName())
 	assert.Equal(t, expected.GetDisabled(), updated.GetDisabled())
 	assert.EqualExportedValues(t, expected.GetDiscoveryInterval(), updated.GetDiscoveryInterval())
-	assert.Equal(t, original.GetStatus(), updated.GetStatus()) // output only fields unchanged
+	assert.Equal(t, original.GetState(), updated.GetState()) // output only fields unchanged
 	assert.Equal(t, original.GetLastSuccessfulDiscovery(), updated.GetLastSuccessfulDiscovery())
-	assert.Equal(t, original.GetStatusLastUpdatedAt(), updated.GetStatusLastUpdatedAt())
+	assert.Equal(t, original.GetStateLastUpdatedAt(), updated.GetStateLastUpdatedAt())
 	assert.Equal(t, original.GetCreatedAt(), updated.GetCreatedAt()) // created at unchanged
 	assert.NotEmpty(t, updated.GetLastUpdatedAt())
 }

@@ -48,9 +48,9 @@ func (c *fakeCloudDiscoveryConfigClient) CreateCloudDiscoveryConfig(ctx context.
 	config.CreatedAt = timestamppb.Now()
 	config.LastUpdatedAt = nil
 	// Output only fields are set by Connect
-	config.Status = crdcpb.DiscoveryStatus_DISCOVERY_STATUS_UNSPECIFIED
+	config.State = crdcpb.DiscoveryState_DISCOVERY_STATE_UNSPECIFIED
 	config.LastSuccessfulDiscovery = nil
-	config.StatusLastUpdatedAt = nil
+	config.StateLastUpdatedAt = nil
 	c.fake.CloudDiscoveryConfigs[config.GetId()] = config
 	return clone(config), nil
 }

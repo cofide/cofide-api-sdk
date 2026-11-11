@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file cofide/cloud_discovery_config/v1alpha1/discovery.proto.
  */
 export const file_cofide_cloud_discovery_config_v1alpha1_discovery: GenFile = /*@__PURE__*/
-  fileDesc("CjZjb2ZpZGUvY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy92MWFscGhhMS9kaXNjb3ZlcnkucHJvdG8SJmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExIt4FChRDbG91ZERpc2NvdmVyeUNvbmZpZxIPCgJpZBgBIAEoCUID4EEIEiAKEGNsb3VkX2FjY291bnRfaWQYAiABKAlCBuBBAuBBBRIRCgRuYW1lGAMgASgJQgPgQQISFQoIZGlzYWJsZWQYBCABKAhCA+BBARI6ChJkaXNjb3ZlcnlfaW50ZXJ2YWwYBSABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CA+BBARJnChthd3NfbGFtYmRhX2Rpc2NvdmVyeV9jb25maWcYBiABKAsyQC5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5BV1NMYW1iZGFEaXNjb3ZlcnlDb25maWdIABJuCh9hd3NfYWdlbnRfY29yZV9kaXNjb3ZlcnlfY29uZmlnGAcgASgLMkMuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQVdTQWdlbnRDb3JlRGlzY292ZXJ5Q29uZmlnSAASTAoGc3RhdHVzGAggASgOMjcuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuRGlzY292ZXJ5U3RhdHVzQgPgQQMSQgoZbGFzdF9zdWNjZXNzZnVsX2Rpc2NvdmVyeRgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxI/ChZzdGF0dXNfbGFzdF91cGRhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjMKCmNyZWF0ZWRfYXQYCyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAwgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQhIKEGRpc2NvdmVyeV9jb25maWcqcQoPRGlzY292ZXJ5U3RhdHVzEiAKHERJU0NPVkVSWV9TVEFUVVNfVU5TUEVDSUZJRUQQABIgChxESVNDT1ZFUllfU1RBVFVTX0RJU0NPVkVSSU5HEAESGgoWRElTQ09WRVJZX1NUQVRVU19FUlJPUhACQlBaTmdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9jb2ZpZGUvY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy92MWFscGhhMWIGcHJvdG8z", [file_cofide_cloud_discovery_config_v1alpha1_aws_discovery, file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp]);
+  fileDesc("CjZjb2ZpZGUvY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy92MWFscGhhMS9kaXNjb3ZlcnkucHJvdG8SJmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExItsFChRDbG91ZERpc2NvdmVyeUNvbmZpZxIPCgJpZBgBIAEoCUID4EEIEiAKEGNsb3VkX2FjY291bnRfaWQYAiABKAlCBuBBAuBBBRIRCgRuYW1lGAMgASgJQgPgQQISFQoIZGlzYWJsZWQYBCABKAhCA+BBARI6ChJkaXNjb3ZlcnlfaW50ZXJ2YWwYBSABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CA+BBARJnChthd3NfbGFtYmRhX2Rpc2NvdmVyeV9jb25maWcYBiABKAsyQC5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5BV1NMYW1iZGFEaXNjb3ZlcnlDb25maWdIABJuCh9hd3NfYWdlbnRfY29yZV9kaXNjb3ZlcnlfY29uZmlnGAcgASgLMkMuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQVdTQWdlbnRDb3JlRGlzY292ZXJ5Q29uZmlnSAASSgoFc3RhdGUYCCABKA4yNi5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5EaXNjb3ZlcnlTdGF0ZUID4EEDEkIKGWxhc3Rfc3VjY2Vzc2Z1bF9kaXNjb3ZlcnkYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSPgoVc3RhdGVfbGFzdF91cGRhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjMKCmNyZWF0ZWRfYXQYCyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAwgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQhIKEGRpc2NvdmVyeV9jb25maWcqbQoORGlzY292ZXJ5U3RhdGUSHwobRElTQ09WRVJZX1NUQVRFX1VOU1BFQ0lGSUVEEAASHwobRElTQ09WRVJZX1NUQVRFX0RJU0NPVkVSSU5HEAESGQoVRElTQ09WRVJZX1NUQVRFX0VSUk9SEAJCUFpOZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL2NvZmlkZS9jbG91ZF9kaXNjb3ZlcnlfY29uZmlnL3YxYWxwaGExYgZwcm90bzM", [file_cofide_cloud_discovery_config_v1alpha1_aws_discovery, file_google_api_field_behavior, file_google_protobuf_duration, file_google_protobuf_timestamp]);
 
 /**
  * CloudDiscoveryConfig represents a cloud discovery config linked to a cloud account.
@@ -86,11 +86,11 @@ export type CloudDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1alph
   } | { case: undefined; value?: undefined };
 
   /**
-   * Current discovery status.
+   * Current discovery state.
    *
-   * @generated from field: cofide.cloud_discovery_config.v1alpha1.DiscoveryStatus status = 8;
+   * @generated from field: cofide.cloud_discovery_config.v1alpha1.DiscoveryState state = 8;
    */
-  status: DiscoveryStatus;
+  state: DiscoveryState;
 
   /**
    * Timestamp of the last successful discovery run.
@@ -100,11 +100,11 @@ export type CloudDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1alph
   lastSuccessfulDiscovery?: Timestamp;
 
   /**
-   * Timestamp of the last status update.
+   * Timestamp of the last state update.
    *
-   * @generated from field: google.protobuf.Timestamp status_last_updated_at = 10;
+   * @generated from field: google.protobuf.Timestamp state_last_updated_at = 10;
    */
-  statusLastUpdatedAt?: Timestamp;
+  stateLastUpdatedAt?: Timestamp;
 
   /**
    * Time of resource creation.
@@ -129,36 +129,34 @@ export const CloudDiscoveryConfigSchema: GenMessage<CloudDiscoveryConfig> = /*@_
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_discovery, 0);
 
 /**
- * DiscoveryStatus represents the current status of cloud discovery.
- * (-- api-linter: core::0216::synonyms=disabled
- *     aip.dev/not-precedent: Prefer Status to State here. --)
+ * DiscoveryState represents the current state of cloud discovery.
  *
- * @generated from enum cofide.cloud_discovery_config.v1alpha1.DiscoveryStatus
+ * @generated from enum cofide.cloud_discovery_config.v1alpha1.DiscoveryState
  */
-export enum DiscoveryStatus {
+export enum DiscoveryState {
   /**
-   * @generated from enum value: DISCOVERY_STATUS_UNSPECIFIED = 0;
+   * @generated from enum value: DISCOVERY_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
    * Discovery is active
    *
-   * @generated from enum value: DISCOVERY_STATUS_DISCOVERING = 1;
+   * @generated from enum value: DISCOVERY_STATE_DISCOVERING = 1;
    */
   DISCOVERING = 1,
 
   /**
    * Most recent discovery attempt errored
    *
-   * @generated from enum value: DISCOVERY_STATUS_ERROR = 2;
+   * @generated from enum value: DISCOVERY_STATE_ERROR = 2;
    */
   ERROR = 2,
 }
 
 /**
- * Describes the enum cofide.cloud_discovery_config.v1alpha1.DiscoveryStatus.
+ * Describes the enum cofide.cloud_discovery_config.v1alpha1.DiscoveryState.
  */
-export const DiscoveryStatusSchema: GenEnum<DiscoveryStatus> = /*@__PURE__*/
+export const DiscoveryStateSchema: GenEnum<DiscoveryState> = /*@__PURE__*/
   enumDesc(file_cofide_cloud_discovery_config_v1alpha1_discovery, 0);
 
