@@ -22,3 +22,24 @@ jobs:
           repo-checkout: false
           go-version-file: go.mod
           go-version-input: ""
+
+  # tools/ is a separate Go module, holding the code generation plugins and
+  # api-linter, so it's checked on its own. Those are tool dependencies, not
+  # packages in the module, so they're found with the tool pattern rather than
+  # with ./...
+  govulncheck-tools:
+    name: govulncheck-tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      # See the govulncheck job for why Go isn't set up in an earlier step.
+      - id: govulncheck
+        uses: golang/govulncheck-action@v1
+        with:
+          go-package: tool
+          work-dir: tools
+          repo-checkout: false
+          go-version-file: tools/go.mod
+          go-version-input: ""
+          cache-dependency-path: tools/go.sum
