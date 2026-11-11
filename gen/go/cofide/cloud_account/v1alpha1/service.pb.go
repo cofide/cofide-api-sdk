@@ -386,7 +386,7 @@ func (x *UpdateCloudAccountRequest) GetUpdateMask() isUpdateCloudAccountRequest_
 	return nil
 }
 
-func (x *UpdateCloudAccountRequest) GetAwsAccountUpdateMask() *UpdateCloudAccountRequest_AWSAccountUpdateMask {
+func (x *UpdateCloudAccountRequest) GetAwsAccountUpdateMask() *AwsAccountUpdateMask {
 	if x != nil {
 		if x, ok := x.UpdateMask.(*UpdateCloudAccountRequest_AwsAccountUpdateMask); ok {
 			return x.AwsAccountUpdateMask
@@ -401,10 +401,66 @@ type isUpdateCloudAccountRequest_UpdateMask interface {
 
 type UpdateCloudAccountRequest_AwsAccountUpdateMask struct {
 	// The fields to update in an AWS cloud account.
-	AwsAccountUpdateMask *UpdateCloudAccountRequest_AWSAccountUpdateMask `protobuf:"bytes,2,opt,name=aws_account_update_mask,json=awsAccountUpdateMask,proto3,oneof"`
+	AwsAccountUpdateMask *AwsAccountUpdateMask `protobuf:"bytes,2,opt,name=aws_account_update_mask,json=awsAccountUpdateMask,proto3,oneof"`
 }
 
 func (*UpdateCloudAccountRequest_AwsAccountUpdateMask) isUpdateCloudAccountRequest_UpdateMask() {}
+
+// AwsAccountUpdateMask selects the fields of an AWS cloud account to
+// update.
+type AwsAccountUpdateMask struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Set to true to update the name field.
+	Name bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Set to true to update the aws account ID field (only valid for AWS accounts).
+	AwsAccountId  bool `protobuf:"varint,2,opt,name=aws_account_id,json=awsAccountId,proto3" json:"aws_account_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AwsAccountUpdateMask) Reset() {
+	*x = AwsAccountUpdateMask{}
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AwsAccountUpdateMask) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AwsAccountUpdateMask) ProtoMessage() {}
+
+func (x *AwsAccountUpdateMask) ProtoReflect() protoreflect.Message {
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AwsAccountUpdateMask.ProtoReflect.Descriptor instead.
+func (*AwsAccountUpdateMask) Descriptor() ([]byte, []int) {
+	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AwsAccountUpdateMask) GetName() bool {
+	if x != nil {
+		return x.Name
+	}
+	return false
+}
+
+func (x *AwsAccountUpdateMask) GetAwsAccountId() bool {
+	if x != nil {
+		return x.AwsAccountId
+	}
+	return false
+}
 
 // UpdateCloudAccountResponse is the response from UpdateCloudAccount.
 type UpdateCloudAccountResponse struct {
@@ -417,7 +473,7 @@ type UpdateCloudAccountResponse struct {
 
 func (x *UpdateCloudAccountResponse) Reset() {
 	*x = UpdateCloudAccountResponse{}
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[7]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -429,7 +485,7 @@ func (x *UpdateCloudAccountResponse) String() string {
 func (*UpdateCloudAccountResponse) ProtoMessage() {}
 
 func (x *UpdateCloudAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[7]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +498,7 @@ func (x *UpdateCloudAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCloudAccountResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCloudAccountResponse) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{7}
+	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateCloudAccountResponse) GetCloudAccount() *CloudAccount {
@@ -463,7 +519,7 @@ type DeleteCloudAccountRequest struct {
 
 func (x *DeleteCloudAccountRequest) Reset() {
 	*x = DeleteCloudAccountRequest{}
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[8]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -475,7 +531,7 @@ func (x *DeleteCloudAccountRequest) String() string {
 func (*DeleteCloudAccountRequest) ProtoMessage() {}
 
 func (x *DeleteCloudAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[8]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -488,7 +544,7 @@ func (x *DeleteCloudAccountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCloudAccountRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCloudAccountRequest) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{8}
+	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DeleteCloudAccountRequest) GetCloudAccountId() string {
@@ -507,7 +563,7 @@ type DeleteCloudAccountResponse struct {
 
 func (x *DeleteCloudAccountResponse) Reset() {
 	*x = DeleteCloudAccountResponse{}
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[9]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -519,7 +575,7 @@ func (x *DeleteCloudAccountResponse) String() string {
 func (*DeleteCloudAccountResponse) ProtoMessage() {}
 
 func (x *DeleteCloudAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[9]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -532,7 +588,7 @@ func (x *DeleteCloudAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCloudAccountResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCloudAccountResponse) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{9}
+	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{10}
 }
 
 // Filter restricts which cloud accounts are returned. It has no fields
@@ -545,7 +601,7 @@ type ListCloudAccountsRequest_Filter struct {
 
 func (x *ListCloudAccountsRequest_Filter) Reset() {
 	*x = ListCloudAccountsRequest_Filter{}
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[10]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +613,7 @@ func (x *ListCloudAccountsRequest_Filter) String() string {
 func (*ListCloudAccountsRequest_Filter) ProtoMessage() {}
 
 func (x *ListCloudAccountsRequest_Filter) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[10]
+	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -571,62 +627,6 @@ func (x *ListCloudAccountsRequest_Filter) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ListCloudAccountsRequest_Filter.ProtoReflect.Descriptor instead.
 func (*ListCloudAccountsRequest_Filter) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{4, 0}
-}
-
-// AWSAccountUpdateMask selects the fields of an AWS cloud account to
-// update.
-type UpdateCloudAccountRequest_AWSAccountUpdateMask struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Set to true to update the name field.
-	Name bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Set to true to update the aws account ID field (only valid for AWS accounts).
-	AwsAccountId  bool `protobuf:"varint,2,opt,name=aws_account_id,json=awsAccountId,proto3" json:"aws_account_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateCloudAccountRequest_AWSAccountUpdateMask) Reset() {
-	*x = UpdateCloudAccountRequest_AWSAccountUpdateMask{}
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateCloudAccountRequest_AWSAccountUpdateMask) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateCloudAccountRequest_AWSAccountUpdateMask) ProtoMessage() {}
-
-func (x *UpdateCloudAccountRequest_AWSAccountUpdateMask) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_account_v1alpha1_service_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateCloudAccountRequest_AWSAccountUpdateMask.ProtoReflect.Descriptor instead.
-func (*UpdateCloudAccountRequest_AWSAccountUpdateMask) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{6, 0}
-}
-
-func (x *UpdateCloudAccountRequest_AWSAccountUpdateMask) GetName() bool {
-	if x != nil {
-		return x.Name
-	}
-	return false
-}
-
-func (x *UpdateCloudAccountRequest_AWSAccountUpdateMask) GetAwsAccountId() bool {
-	if x != nil {
-		return x.AwsAccountId
-	}
-	return false
 }
 
 var File_cofide_cloud_account_v1alpha1_service_proto protoreflect.FileDescriptor
@@ -652,14 +652,14 @@ const file_cofide_cloud_account_v1alpha1_service_proto_rawDesc = "" +
 	"\x0ecloud_accounts\x18\x01 \x03(\v2+.cofide.cloud_account.v1alpha1.CloudAccountR\rcloudAccounts\x12N\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2..cofide.common.pagination.v1beta1.PageResponseR\n" +
-	"pagination\"\xe6\x02\n" +
+	"pagination\"\xef\x01\n" +
 	"\x19UpdateCloudAccountRequest\x12U\n" +
-	"\rcloud_account\x18\x01 \x01(\v2+.cofide.cloud_account.v1alpha1.CloudAccountB\x03\xe0A\x02R\fcloudAccount\x12\x86\x01\n" +
-	"\x17aws_account_update_mask\x18\x02 \x01(\v2M.cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMaskH\x00R\x14awsAccountUpdateMask\x1aZ\n" +
-	"\x14AWSAccountUpdateMask\x12\x17\n" +
+	"\rcloud_account\x18\x01 \x01(\v2+.cofide.cloud_account.v1alpha1.CloudAccountB\x03\xe0A\x02R\fcloudAccount\x12l\n" +
+	"\x17aws_account_update_mask\x18\x02 \x01(\v23.cofide.cloud_account.v1alpha1.AwsAccountUpdateMaskH\x00R\x14awsAccountUpdateMaskB\r\n" +
+	"\vupdate_mask\"Z\n" +
+	"\x14AwsAccountUpdateMask\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\bB\x03\xe0A\x01R\x04name\x12)\n" +
-	"\x0eaws_account_id\x18\x02 \x01(\bB\x03\xe0A\x01R\fawsAccountIdB\r\n" +
-	"\vupdate_mask\"n\n" +
+	"\x0eaws_account_id\x18\x02 \x01(\bB\x03\xe0A\x01R\fawsAccountId\"n\n" +
 	"\x1aUpdateCloudAccountResponse\x12P\n" +
 	"\rcloud_account\x18\x01 \x01(\v2+.cofide.cloud_account.v1alpha1.CloudAccountR\fcloudAccount\"J\n" +
 	"\x19DeleteCloudAccountRequest\x12-\n" +
@@ -686,43 +686,43 @@ func file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP() []byte {
 
 var file_cofide_cloud_account_v1alpha1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_cofide_cloud_account_v1alpha1_service_proto_goTypes = []any{
-	(*CreateCloudAccountRequest)(nil),                      // 0: cofide.cloud_account.v1alpha1.CreateCloudAccountRequest
-	(*CreateCloudAccountResponse)(nil),                     // 1: cofide.cloud_account.v1alpha1.CreateCloudAccountResponse
-	(*GetCloudAccountRequest)(nil),                         // 2: cofide.cloud_account.v1alpha1.GetCloudAccountRequest
-	(*GetCloudAccountResponse)(nil),                        // 3: cofide.cloud_account.v1alpha1.GetCloudAccountResponse
-	(*ListCloudAccountsRequest)(nil),                       // 4: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest
-	(*ListCloudAccountsResponse)(nil),                      // 5: cofide.cloud_account.v1alpha1.ListCloudAccountsResponse
-	(*UpdateCloudAccountRequest)(nil),                      // 6: cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest
-	(*UpdateCloudAccountResponse)(nil),                     // 7: cofide.cloud_account.v1alpha1.UpdateCloudAccountResponse
-	(*DeleteCloudAccountRequest)(nil),                      // 8: cofide.cloud_account.v1alpha1.DeleteCloudAccountRequest
-	(*DeleteCloudAccountResponse)(nil),                     // 9: cofide.cloud_account.v1alpha1.DeleteCloudAccountResponse
-	(*ListCloudAccountsRequest_Filter)(nil),                // 10: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.Filter
-	(*UpdateCloudAccountRequest_AWSAccountUpdateMask)(nil), // 11: cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask
-	(*CloudAccount)(nil),                                   // 12: cofide.cloud_account.v1alpha1.CloudAccount
-	(*v1beta1.PageRequest)(nil),                            // 13: cofide.common.pagination.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),                           // 14: cofide.common.pagination.v1beta1.PageResponse
+	(*CreateCloudAccountRequest)(nil),       // 0: cofide.cloud_account.v1alpha1.CreateCloudAccountRequest
+	(*CreateCloudAccountResponse)(nil),      // 1: cofide.cloud_account.v1alpha1.CreateCloudAccountResponse
+	(*GetCloudAccountRequest)(nil),          // 2: cofide.cloud_account.v1alpha1.GetCloudAccountRequest
+	(*GetCloudAccountResponse)(nil),         // 3: cofide.cloud_account.v1alpha1.GetCloudAccountResponse
+	(*ListCloudAccountsRequest)(nil),        // 4: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest
+	(*ListCloudAccountsResponse)(nil),       // 5: cofide.cloud_account.v1alpha1.ListCloudAccountsResponse
+	(*UpdateCloudAccountRequest)(nil),       // 6: cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest
+	(*AwsAccountUpdateMask)(nil),            // 7: cofide.cloud_account.v1alpha1.AwsAccountUpdateMask
+	(*UpdateCloudAccountResponse)(nil),      // 8: cofide.cloud_account.v1alpha1.UpdateCloudAccountResponse
+	(*DeleteCloudAccountRequest)(nil),       // 9: cofide.cloud_account.v1alpha1.DeleteCloudAccountRequest
+	(*DeleteCloudAccountResponse)(nil),      // 10: cofide.cloud_account.v1alpha1.DeleteCloudAccountResponse
+	(*ListCloudAccountsRequest_Filter)(nil), // 11: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.Filter
+	(*CloudAccount)(nil),                    // 12: cofide.cloud_account.v1alpha1.CloudAccount
+	(*v1beta1.PageRequest)(nil),             // 13: cofide.common.pagination.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),            // 14: cofide.common.pagination.v1beta1.PageResponse
 }
 var file_cofide_cloud_account_v1alpha1_service_proto_depIdxs = []int32{
 	12, // 0: cofide.cloud_account.v1alpha1.CreateCloudAccountRequest.cloud_account:type_name -> cofide.cloud_account.v1alpha1.CloudAccount
 	12, // 1: cofide.cloud_account.v1alpha1.CreateCloudAccountResponse.cloud_account:type_name -> cofide.cloud_account.v1alpha1.CloudAccount
 	12, // 2: cofide.cloud_account.v1alpha1.GetCloudAccountResponse.cloud_account:type_name -> cofide.cloud_account.v1alpha1.CloudAccount
-	10, // 3: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.filter:type_name -> cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.Filter
+	11, // 3: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.filter:type_name -> cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.Filter
 	13, // 4: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.pagination:type_name -> cofide.common.pagination.v1beta1.PageRequest
 	12, // 5: cofide.cloud_account.v1alpha1.ListCloudAccountsResponse.cloud_accounts:type_name -> cofide.cloud_account.v1alpha1.CloudAccount
 	14, // 6: cofide.cloud_account.v1alpha1.ListCloudAccountsResponse.pagination:type_name -> cofide.common.pagination.v1beta1.PageResponse
 	12, // 7: cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.cloud_account:type_name -> cofide.cloud_account.v1alpha1.CloudAccount
-	11, // 8: cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.aws_account_update_mask:type_name -> cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask
+	7,  // 8: cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.aws_account_update_mask:type_name -> cofide.cloud_account.v1alpha1.AwsAccountUpdateMask
 	12, // 9: cofide.cloud_account.v1alpha1.UpdateCloudAccountResponse.cloud_account:type_name -> cofide.cloud_account.v1alpha1.CloudAccount
 	0,  // 10: cofide.cloud_account.v1alpha1.CloudAccountService.CreateCloudAccount:input_type -> cofide.cloud_account.v1alpha1.CreateCloudAccountRequest
 	2,  // 11: cofide.cloud_account.v1alpha1.CloudAccountService.GetCloudAccount:input_type -> cofide.cloud_account.v1alpha1.GetCloudAccountRequest
 	4,  // 12: cofide.cloud_account.v1alpha1.CloudAccountService.ListCloudAccounts:input_type -> cofide.cloud_account.v1alpha1.ListCloudAccountsRequest
 	6,  // 13: cofide.cloud_account.v1alpha1.CloudAccountService.UpdateCloudAccount:input_type -> cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest
-	8,  // 14: cofide.cloud_account.v1alpha1.CloudAccountService.DeleteCloudAccount:input_type -> cofide.cloud_account.v1alpha1.DeleteCloudAccountRequest
+	9,  // 14: cofide.cloud_account.v1alpha1.CloudAccountService.DeleteCloudAccount:input_type -> cofide.cloud_account.v1alpha1.DeleteCloudAccountRequest
 	1,  // 15: cofide.cloud_account.v1alpha1.CloudAccountService.CreateCloudAccount:output_type -> cofide.cloud_account.v1alpha1.CreateCloudAccountResponse
 	3,  // 16: cofide.cloud_account.v1alpha1.CloudAccountService.GetCloudAccount:output_type -> cofide.cloud_account.v1alpha1.GetCloudAccountResponse
 	5,  // 17: cofide.cloud_account.v1alpha1.CloudAccountService.ListCloudAccounts:output_type -> cofide.cloud_account.v1alpha1.ListCloudAccountsResponse
-	7,  // 18: cofide.cloud_account.v1alpha1.CloudAccountService.UpdateCloudAccount:output_type -> cofide.cloud_account.v1alpha1.UpdateCloudAccountResponse
-	9,  // 19: cofide.cloud_account.v1alpha1.CloudAccountService.DeleteCloudAccount:output_type -> cofide.cloud_account.v1alpha1.DeleteCloudAccountResponse
+	8,  // 18: cofide.cloud_account.v1alpha1.CloudAccountService.UpdateCloudAccount:output_type -> cofide.cloud_account.v1alpha1.UpdateCloudAccountResponse
+	10, // 19: cofide.cloud_account.v1alpha1.CloudAccountService.DeleteCloudAccount:output_type -> cofide.cloud_account.v1alpha1.DeleteCloudAccountResponse
 	15, // [15:20] is the sub-list for method output_type
 	10, // [10:15] is the sub-list for method input_type
 	10, // [10:10] is the sub-list for extension type_name

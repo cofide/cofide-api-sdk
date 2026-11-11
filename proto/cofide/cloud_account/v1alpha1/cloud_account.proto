@@ -31,7 +31,7 @@ message CloudAccount {
   // Cloud provider-specific configuration.
   oneof provider {
     // Configuration for an AWS account.
-    AWSAccount aws = 5;
+    AwsAccount aws = 5;
   }
   // Time of resource creation.
   google.protobuf.Timestamp created_at = 6 [(google.api.field_behavior) = OUTPUT_ONLY];

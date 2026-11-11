@@ -387,7 +387,7 @@ func (x *UpdateCloudDiscoveryConfigRequest) GetUpdateMask() isUpdateCloudDiscove
 	return nil
 }
 
-func (x *UpdateCloudDiscoveryConfigRequest) GetAwsLambdaDiscoveryConfigUpdateMask() *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask {
+func (x *UpdateCloudDiscoveryConfigRequest) GetAwsLambdaDiscoveryConfigUpdateMask() *AwsLambdaDiscoveryConfigUpdateMask {
 	if x != nil {
 		if x, ok := x.UpdateMask.(*UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask); ok {
 			return x.AwsLambdaDiscoveryConfigUpdateMask
@@ -396,7 +396,7 @@ func (x *UpdateCloudDiscoveryConfigRequest) GetAwsLambdaDiscoveryConfigUpdateMas
 	return nil
 }
 
-func (x *UpdateCloudDiscoveryConfigRequest) GetAwsAgentCoreDiscoveryConfigUpdateMask() *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask {
+func (x *UpdateCloudDiscoveryConfigRequest) GetAwsAgentCoreDiscoveryConfigUpdateMask() *AwsAgentCoreDiscoveryConfigUpdateMask {
 	if x != nil {
 		if x, ok := x.UpdateMask.(*UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask); ok {
 			return x.AwsAgentCoreDiscoveryConfigUpdateMask
@@ -411,18 +411,220 @@ type isUpdateCloudDiscoveryConfigRequest_UpdateMask interface {
 
 type UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask struct {
 	// The fields to update in an AWS Lambda discovery config.
-	AwsLambdaDiscoveryConfigUpdateMask *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask `protobuf:"bytes,2,opt,name=aws_lambda_discovery_config_update_mask,json=awsLambdaDiscoveryConfigUpdateMask,proto3,oneof"`
+	AwsLambdaDiscoveryConfigUpdateMask *AwsLambdaDiscoveryConfigUpdateMask `protobuf:"bytes,2,opt,name=aws_lambda_discovery_config_update_mask,json=awsLambdaDiscoveryConfigUpdateMask,proto3,oneof"`
 }
 
 type UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask struct {
 	// The fields to update in an AWS AgentCore discovery config.
-	AwsAgentCoreDiscoveryConfigUpdateMask *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask `protobuf:"bytes,3,opt,name=aws_agent_core_discovery_config_update_mask,json=awsAgentCoreDiscoveryConfigUpdateMask,proto3,oneof"`
+	AwsAgentCoreDiscoveryConfigUpdateMask *AwsAgentCoreDiscoveryConfigUpdateMask `protobuf:"bytes,3,opt,name=aws_agent_core_discovery_config_update_mask,json=awsAgentCoreDiscoveryConfigUpdateMask,proto3,oneof"`
 }
 
 func (*UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask) isUpdateCloudDiscoveryConfigRequest_UpdateMask() {
 }
 
 func (*UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask) isUpdateCloudDiscoveryConfigRequest_UpdateMask() {
+}
+
+// AwsLambdaDiscoveryConfigUpdateMask selects the fields of an AWS Lambda
+// discovery config to update.
+type AwsLambdaDiscoveryConfigUpdateMask struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Set to true to update the name field.
+	Name bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Set to true to update the disabled field.
+	Disabled bool `protobuf:"varint,2,opt,name=disabled,proto3" json:"disabled,omitempty"`
+	// Set to true to update the discovery_interval field.
+	DiscoveryInterval bool `protobuf:"varint,3,opt,name=discovery_interval,json=discoveryInterval,proto3" json:"discovery_interval,omitempty"`
+	// Set to true to update the regions field.
+	Regions bool `protobuf:"varint,4,opt,name=regions,proto3" json:"regions,omitempty"`
+	// Set to true to update the assume through OIDC field on the assume role config.
+	AssumeThroughOidc bool `protobuf:"varint,5,opt,name=assume_through_oidc,json=assumeThroughOidc,proto3" json:"assume_through_oidc,omitempty"`
+	// Set to true to update the audience field on the assume role config.
+	Audience bool `protobuf:"varint,6,opt,name=audience,proto3" json:"audience,omitempty"`
+	// Set to true to update the roles field on the assume role config.
+	Roles         bool `protobuf:"varint,7,opt,name=roles,proto3" json:"roles,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) Reset() {
+	*x = AwsLambdaDiscoveryConfigUpdateMask{}
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AwsLambdaDiscoveryConfigUpdateMask) ProtoMessage() {}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) ProtoReflect() protoreflect.Message {
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AwsLambdaDiscoveryConfigUpdateMask.ProtoReflect.Descriptor instead.
+func (*AwsLambdaDiscoveryConfigUpdateMask) Descriptor() ([]byte, []int) {
+	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) GetName() bool {
+	if x != nil {
+		return x.Name
+	}
+	return false
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) GetDisabled() bool {
+	if x != nil {
+		return x.Disabled
+	}
+	return false
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) GetDiscoveryInterval() bool {
+	if x != nil {
+		return x.DiscoveryInterval
+	}
+	return false
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) GetRegions() bool {
+	if x != nil {
+		return x.Regions
+	}
+	return false
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) GetAssumeThroughOidc() bool {
+	if x != nil {
+		return x.AssumeThroughOidc
+	}
+	return false
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) GetAudience() bool {
+	if x != nil {
+		return x.Audience
+	}
+	return false
+}
+
+func (x *AwsLambdaDiscoveryConfigUpdateMask) GetRoles() bool {
+	if x != nil {
+		return x.Roles
+	}
+	return false
+}
+
+// AwsAgentCoreDiscoveryConfigUpdateMask selects the fields of an AWS
+// AgentCore discovery config to update.
+type AwsAgentCoreDiscoveryConfigUpdateMask struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Set to true to update the name field.
+	Name bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Set to true to update the disabled field.
+	Disabled bool `protobuf:"varint,2,opt,name=disabled,proto3" json:"disabled,omitempty"`
+	// Set to true to update the discovery_interval field.
+	DiscoveryInterval bool `protobuf:"varint,3,opt,name=discovery_interval,json=discoveryInterval,proto3" json:"discovery_interval,omitempty"`
+	// Set to true to update the regions field.
+	Regions bool `protobuf:"varint,4,opt,name=regions,proto3" json:"regions,omitempty"`
+	// Set to true to update the assume through OIDC field on the assume role config.
+	AssumeThroughOidc bool `protobuf:"varint,5,opt,name=assume_through_oidc,json=assumeThroughOidc,proto3" json:"assume_through_oidc,omitempty"`
+	// Set to true to update the audience field on the assume role config.
+	Audience bool `protobuf:"varint,6,opt,name=audience,proto3" json:"audience,omitempty"`
+	// Set to true to update the roles field on the assume role config.
+	Roles         bool `protobuf:"varint,7,opt,name=roles,proto3" json:"roles,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) Reset() {
+	*x = AwsAgentCoreDiscoveryConfigUpdateMask{}
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AwsAgentCoreDiscoveryConfigUpdateMask) ProtoMessage() {}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) ProtoReflect() protoreflect.Message {
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AwsAgentCoreDiscoveryConfigUpdateMask.ProtoReflect.Descriptor instead.
+func (*AwsAgentCoreDiscoveryConfigUpdateMask) Descriptor() ([]byte, []int) {
+	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) GetName() bool {
+	if x != nil {
+		return x.Name
+	}
+	return false
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) GetDisabled() bool {
+	if x != nil {
+		return x.Disabled
+	}
+	return false
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) GetDiscoveryInterval() bool {
+	if x != nil {
+		return x.DiscoveryInterval
+	}
+	return false
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) GetRegions() bool {
+	if x != nil {
+		return x.Regions
+	}
+	return false
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) GetAssumeThroughOidc() bool {
+	if x != nil {
+		return x.AssumeThroughOidc
+	}
+	return false
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) GetAudience() bool {
+	if x != nil {
+		return x.Audience
+	}
+	return false
+}
+
+func (x *AwsAgentCoreDiscoveryConfigUpdateMask) GetRoles() bool {
+	if x != nil {
+		return x.Roles
+	}
+	return false
 }
 
 // UpdateCloudDiscoveryConfigResponse is the response from UpdateCloudDiscoveryConfig.
@@ -436,7 +638,7 @@ type UpdateCloudDiscoveryConfigResponse struct {
 
 func (x *UpdateCloudDiscoveryConfigResponse) Reset() {
 	*x = UpdateCloudDiscoveryConfigResponse{}
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[7]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -448,7 +650,7 @@ func (x *UpdateCloudDiscoveryConfigResponse) String() string {
 func (*UpdateCloudDiscoveryConfigResponse) ProtoMessage() {}
 
 func (x *UpdateCloudDiscoveryConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[7]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -461,7 +663,7 @@ func (x *UpdateCloudDiscoveryConfigResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use UpdateCloudDiscoveryConfigResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCloudDiscoveryConfigResponse) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{7}
+	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateCloudDiscoveryConfigResponse) GetCloudDiscoveryConfig() *CloudDiscoveryConfig {
@@ -482,7 +684,7 @@ type DeleteCloudDiscoveryConfigRequest struct {
 
 func (x *DeleteCloudDiscoveryConfigRequest) Reset() {
 	*x = DeleteCloudDiscoveryConfigRequest{}
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[8]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -494,7 +696,7 @@ func (x *DeleteCloudDiscoveryConfigRequest) String() string {
 func (*DeleteCloudDiscoveryConfigRequest) ProtoMessage() {}
 
 func (x *DeleteCloudDiscoveryConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[8]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -507,7 +709,7 @@ func (x *DeleteCloudDiscoveryConfigRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteCloudDiscoveryConfigRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCloudDiscoveryConfigRequest) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{8}
+	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteCloudDiscoveryConfigRequest) GetCloudDiscoveryConfigId() string {
@@ -526,7 +728,7 @@ type DeleteCloudDiscoveryConfigResponse struct {
 
 func (x *DeleteCloudDiscoveryConfigResponse) Reset() {
 	*x = DeleteCloudDiscoveryConfigResponse{}
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[9]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -538,7 +740,7 @@ func (x *DeleteCloudDiscoveryConfigResponse) String() string {
 func (*DeleteCloudDiscoveryConfigResponse) ProtoMessage() {}
 
 func (x *DeleteCloudDiscoveryConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[9]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -551,7 +753,7 @@ func (x *DeleteCloudDiscoveryConfigResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeleteCloudDiscoveryConfigResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCloudDiscoveryConfigResponse) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{9}
+	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{11}
 }
 
 // Filter restricts which cloud discovery configs are returned. It has no
@@ -564,7 +766,7 @@ type ListCloudDiscoveryConfigsRequest_Filter struct {
 
 func (x *ListCloudDiscoveryConfigsRequest_Filter) Reset() {
 	*x = ListCloudDiscoveryConfigsRequest_Filter{}
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[10]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -576,7 +778,7 @@ func (x *ListCloudDiscoveryConfigsRequest_Filter) String() string {
 func (*ListCloudDiscoveryConfigsRequest_Filter) ProtoMessage() {}
 
 func (x *ListCloudDiscoveryConfigsRequest_Filter) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[10]
+	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -590,208 +792,6 @@ func (x *ListCloudDiscoveryConfigsRequest_Filter) ProtoReflect() protoreflect.Me
 // Deprecated: Use ListCloudDiscoveryConfigsRequest_Filter.ProtoReflect.Descriptor instead.
 func (*ListCloudDiscoveryConfigsRequest_Filter) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{4, 0}
-}
-
-// AWSLambdaDiscoveryConfigUpdateMask selects the fields of an AWS Lambda
-// discovery config to update.
-type UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Set to true to update the name field.
-	Name bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Set to true to update the disabled field.
-	Disabled bool `protobuf:"varint,2,opt,name=disabled,proto3" json:"disabled,omitempty"`
-	// Set to true to update the discovery_interval field.
-	DiscoveryInterval bool `protobuf:"varint,3,opt,name=discovery_interval,json=discoveryInterval,proto3" json:"discovery_interval,omitempty"`
-	// Set to true to update the regions field.
-	Regions bool `protobuf:"varint,4,opt,name=regions,proto3" json:"regions,omitempty"`
-	// Set to true to update the assume through OIDC field on the assume role config.
-	AssumeThroughOidc bool `protobuf:"varint,5,opt,name=assume_through_oidc,json=assumeThroughOidc,proto3" json:"assume_through_oidc,omitempty"`
-	// Set to true to update the audience field on the assume role config.
-	Audience bool `protobuf:"varint,6,opt,name=audience,proto3" json:"audience,omitempty"`
-	// Set to true to update the roles field on the assume role config.
-	Roles         bool `protobuf:"varint,7,opt,name=roles,proto3" json:"roles,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) Reset() {
-	*x = UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask{}
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) ProtoMessage() {}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask.ProtoReflect.Descriptor instead.
-func (*UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{6, 0}
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) GetName() bool {
-	if x != nil {
-		return x.Name
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) GetDisabled() bool {
-	if x != nil {
-		return x.Disabled
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) GetDiscoveryInterval() bool {
-	if x != nil {
-		return x.DiscoveryInterval
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) GetRegions() bool {
-	if x != nil {
-		return x.Regions
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) GetAssumeThroughOidc() bool {
-	if x != nil {
-		return x.AssumeThroughOidc
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) GetAudience() bool {
-	if x != nil {
-		return x.Audience
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) GetRoles() bool {
-	if x != nil {
-		return x.Roles
-	}
-	return false
-}
-
-// AWSAgentCoreDiscoveryConfigUpdateMask selects the fields of an AWS
-// AgentCore discovery config to update.
-type UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Set to true to update the name field.
-	Name bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Set to true to update the disabled field.
-	Disabled bool `protobuf:"varint,2,opt,name=disabled,proto3" json:"disabled,omitempty"`
-	// Set to true to update the discovery_interval field.
-	DiscoveryInterval bool `protobuf:"varint,3,opt,name=discovery_interval,json=discoveryInterval,proto3" json:"discovery_interval,omitempty"`
-	// Set to true to update the regions field.
-	Regions bool `protobuf:"varint,4,opt,name=regions,proto3" json:"regions,omitempty"`
-	// Set to true to update the assume through OIDC field on the assume role config.
-	AssumeThroughOidc bool `protobuf:"varint,5,opt,name=assume_through_oidc,json=assumeThroughOidc,proto3" json:"assume_through_oidc,omitempty"`
-	// Set to true to update the audience field on the assume role config.
-	Audience bool `protobuf:"varint,6,opt,name=audience,proto3" json:"audience,omitempty"`
-	// Set to true to update the roles field on the assume role config.
-	Roles         bool `protobuf:"varint,7,opt,name=roles,proto3" json:"roles,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) Reset() {
-	*x = UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask{}
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) ProtoMessage() {}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) ProtoReflect() protoreflect.Message {
-	mi := &file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask.ProtoReflect.Descriptor instead.
-func (*UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) Descriptor() ([]byte, []int) {
-	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{6, 1}
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) GetName() bool {
-	if x != nil {
-		return x.Name
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) GetDisabled() bool {
-	if x != nil {
-		return x.Disabled
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) GetDiscoveryInterval() bool {
-	if x != nil {
-		return x.DiscoveryInterval
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) GetRegions() bool {
-	if x != nil {
-		return x.Regions
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) GetAssumeThroughOidc() bool {
-	if x != nil {
-		return x.AssumeThroughOidc
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) GetAudience() bool {
-	if x != nil {
-		return x.Audience
-	}
-	return false
-}
-
-func (x *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask) GetRoles() bool {
-	if x != nil {
-		return x.Roles
-	}
-	return false
 }
 
 var File_cofide_cloud_discovery_config_v1alpha1_service_proto protoreflect.FileDescriptor
@@ -817,28 +817,28 @@ const file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDesc = "" +
 	"\x17cloud_discovery_configs\x18\x01 \x03(\v2<.cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigR\x15cloudDiscoveryConfigs\x12N\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2..cofide.common.pagination.v1beta1.PageResponseR\n" +
-	"pagination\"\x8e\t\n" +
+	"pagination\"\xfd\x03\n" +
 	"!UpdateCloudDiscoveryConfigRequest\x12w\n" +
-	"\x16cloud_discovery_config\x18\x01 \x01(\v2<.cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigB\x03\xe0A\x02R\x14cloudDiscoveryConfig\x12\xc3\x01\n" +
-	"'aws_lambda_discovery_config_update_mask\x18\x02 \x01(\v2l.cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSLambdaDiscoveryConfigUpdateMaskH\x00R\"awsLambdaDiscoveryConfigUpdateMask\x12\xcd\x01\n" +
-	"+aws_agent_core_discovery_config_update_mask\x18\x03 \x01(\v2o.cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSAgentCoreDiscoveryConfigUpdateMaskH\x00R%awsAgentCoreDiscoveryConfigUpdateMask\x1a\xa2\x02\n" +
-	"\"AWSLambdaDiscoveryConfigUpdateMask\x12\x17\n" +
+	"\x16cloud_discovery_config\x18\x01 \x01(\v2<.cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigB\x03\xe0A\x02R\x14cloudDiscoveryConfig\x12\xa1\x01\n" +
+	"'aws_lambda_discovery_config_update_mask\x18\x02 \x01(\v2J.cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfigUpdateMaskH\x00R\"awsLambdaDiscoveryConfigUpdateMask\x12\xab\x01\n" +
+	"+aws_agent_core_discovery_config_update_mask\x18\x03 \x01(\v2M.cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfigUpdateMaskH\x00R%awsAgentCoreDiscoveryConfigUpdateMaskB\r\n" +
+	"\vupdate_mask\"\xa2\x02\n" +
+	"\"AwsLambdaDiscoveryConfigUpdateMask\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\bB\x03\xe0A\x01R\x04name\x12\x1f\n" +
 	"\bdisabled\x18\x02 \x01(\bB\x03\xe0A\x01R\bdisabled\x122\n" +
 	"\x12discovery_interval\x18\x03 \x01(\bB\x03\xe0A\x01R\x11discoveryInterval\x12\x1d\n" +
 	"\aregions\x18\x04 \x01(\bB\x03\xe0A\x01R\aregions\x123\n" +
 	"\x13assume_through_oidc\x18\x05 \x01(\bB\x03\xe0A\x01R\x11assumeThroughOidc\x12\x1f\n" +
 	"\baudience\x18\x06 \x01(\bB\x03\xe0A\x01R\baudience\x12\x19\n" +
-	"\x05roles\x18\a \x01(\bB\x03\xe0A\x01R\x05roles\x1a\xa5\x02\n" +
-	"%AWSAgentCoreDiscoveryConfigUpdateMask\x12\x17\n" +
+	"\x05roles\x18\a \x01(\bB\x03\xe0A\x01R\x05roles\"\xa5\x02\n" +
+	"%AwsAgentCoreDiscoveryConfigUpdateMask\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\bB\x03\xe0A\x01R\x04name\x12\x1f\n" +
 	"\bdisabled\x18\x02 \x01(\bB\x03\xe0A\x01R\bdisabled\x122\n" +
 	"\x12discovery_interval\x18\x03 \x01(\bB\x03\xe0A\x01R\x11discoveryInterval\x12\x1d\n" +
 	"\aregions\x18\x04 \x01(\bB\x03\xe0A\x01R\aregions\x123\n" +
 	"\x13assume_through_oidc\x18\x05 \x01(\bB\x03\xe0A\x01R\x11assumeThroughOidc\x12\x1f\n" +
 	"\baudience\x18\x06 \x01(\bB\x03\xe0A\x01R\baudience\x12\x19\n" +
-	"\x05roles\x18\a \x01(\bB\x03\xe0A\x01R\x05rolesB\r\n" +
-	"\vupdate_mask\"\x98\x01\n" +
+	"\x05roles\x18\a \x01(\bB\x03\xe0A\x01R\x05roles\"\x98\x01\n" +
 	"\"UpdateCloudDiscoveryConfigResponse\x12r\n" +
 	"\x16cloud_discovery_config\x18\x01 \x01(\v2<.cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigR\x14cloudDiscoveryConfig\"c\n" +
 	"!DeleteCloudDiscoveryConfigRequest\x12>\n" +
@@ -865,45 +865,45 @@ func file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP() []b
 
 var file_cofide_cloud_discovery_config_v1alpha1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_cofide_cloud_discovery_config_v1alpha1_service_proto_goTypes = []any{
-	(*CreateCloudDiscoveryConfigRequest)(nil),                                       // 0: cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigRequest
-	(*CreateCloudDiscoveryConfigResponse)(nil),                                      // 1: cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigResponse
-	(*GetCloudDiscoveryConfigRequest)(nil),                                          // 2: cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigRequest
-	(*GetCloudDiscoveryConfigResponse)(nil),                                         // 3: cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigResponse
-	(*ListCloudDiscoveryConfigsRequest)(nil),                                        // 4: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest
-	(*ListCloudDiscoveryConfigsResponse)(nil),                                       // 5: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsResponse
-	(*UpdateCloudDiscoveryConfigRequest)(nil),                                       // 6: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest
-	(*UpdateCloudDiscoveryConfigResponse)(nil),                                      // 7: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigResponse
-	(*DeleteCloudDiscoveryConfigRequest)(nil),                                       // 8: cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigRequest
-	(*DeleteCloudDiscoveryConfigResponse)(nil),                                      // 9: cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigResponse
-	(*ListCloudDiscoveryConfigsRequest_Filter)(nil),                                 // 10: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.Filter
-	(*UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask)(nil),    // 11: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSLambdaDiscoveryConfigUpdateMask
-	(*UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask)(nil), // 12: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSAgentCoreDiscoveryConfigUpdateMask
-	(*CloudDiscoveryConfig)(nil),                                                    // 13: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
-	(*v1beta1.PageRequest)(nil),                                                     // 14: cofide.common.pagination.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),                                                    // 15: cofide.common.pagination.v1beta1.PageResponse
+	(*CreateCloudDiscoveryConfigRequest)(nil),       // 0: cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigRequest
+	(*CreateCloudDiscoveryConfigResponse)(nil),      // 1: cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigResponse
+	(*GetCloudDiscoveryConfigRequest)(nil),          // 2: cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigRequest
+	(*GetCloudDiscoveryConfigResponse)(nil),         // 3: cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigResponse
+	(*ListCloudDiscoveryConfigsRequest)(nil),        // 4: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest
+	(*ListCloudDiscoveryConfigsResponse)(nil),       // 5: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsResponse
+	(*UpdateCloudDiscoveryConfigRequest)(nil),       // 6: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest
+	(*AwsLambdaDiscoveryConfigUpdateMask)(nil),      // 7: cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfigUpdateMask
+	(*AwsAgentCoreDiscoveryConfigUpdateMask)(nil),   // 8: cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfigUpdateMask
+	(*UpdateCloudDiscoveryConfigResponse)(nil),      // 9: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigResponse
+	(*DeleteCloudDiscoveryConfigRequest)(nil),       // 10: cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigRequest
+	(*DeleteCloudDiscoveryConfigResponse)(nil),      // 11: cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigResponse
+	(*ListCloudDiscoveryConfigsRequest_Filter)(nil), // 12: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.Filter
+	(*CloudDiscoveryConfig)(nil),                    // 13: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
+	(*v1beta1.PageRequest)(nil),                     // 14: cofide.common.pagination.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),                    // 15: cofide.common.pagination.v1beta1.PageResponse
 }
 var file_cofide_cloud_discovery_config_v1alpha1_service_proto_depIdxs = []int32{
 	13, // 0: cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigRequest.cloud_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
 	13, // 1: cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigResponse.cloud_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
 	13, // 2: cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigResponse.cloud_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
-	10, // 3: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.filter:type_name -> cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.Filter
+	12, // 3: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.filter:type_name -> cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.Filter
 	14, // 4: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.pagination:type_name -> cofide.common.pagination.v1beta1.PageRequest
 	13, // 5: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsResponse.cloud_discovery_configs:type_name -> cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
 	15, // 6: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsResponse.pagination:type_name -> cofide.common.pagination.v1beta1.PageResponse
 	13, // 7: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.cloud_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
-	11, // 8: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.aws_lambda_discovery_config_update_mask:type_name -> cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSLambdaDiscoveryConfigUpdateMask
-	12, // 9: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.aws_agent_core_discovery_config_update_mask:type_name -> cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSAgentCoreDiscoveryConfigUpdateMask
+	7,  // 8: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.aws_lambda_discovery_config_update_mask:type_name -> cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfigUpdateMask
+	8,  // 9: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.aws_agent_core_discovery_config_update_mask:type_name -> cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfigUpdateMask
 	13, // 10: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigResponse.cloud_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
 	0,  // 11: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.CreateCloudDiscoveryConfig:input_type -> cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigRequest
 	2,  // 12: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.GetCloudDiscoveryConfig:input_type -> cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigRequest
 	4,  // 13: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.ListCloudDiscoveryConfigs:input_type -> cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest
 	6,  // 14: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.UpdateCloudDiscoveryConfig:input_type -> cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest
-	8,  // 15: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.DeleteCloudDiscoveryConfig:input_type -> cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigRequest
+	10, // 15: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.DeleteCloudDiscoveryConfig:input_type -> cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigRequest
 	1,  // 16: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.CreateCloudDiscoveryConfig:output_type -> cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigResponse
 	3,  // 17: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.GetCloudDiscoveryConfig:output_type -> cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigResponse
 	5,  // 18: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.ListCloudDiscoveryConfigs:output_type -> cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsResponse
-	7,  // 19: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.UpdateCloudDiscoveryConfig:output_type -> cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigResponse
-	9,  // 20: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.DeleteCloudDiscoveryConfig:output_type -> cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigResponse
+	9,  // 19: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.UpdateCloudDiscoveryConfig:output_type -> cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigResponse
+	11, // 20: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfigService.DeleteCloudDiscoveryConfig:output_type -> cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigResponse
 	16, // [16:21] is the sub-list for method output_type
 	11, // [11:16] is the sub-list for method input_type
 	11, // [11:11] is the sub-list for extension type_name

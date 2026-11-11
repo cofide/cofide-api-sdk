@@ -36,9 +36,9 @@ message CloudDiscoveryConfig {
   // Cloud provider service-specific configuration.
   oneof discovery_config {
     // Configuration for discovering AWS Lambda functions.
-    AWSLambdaDiscoveryConfig aws_lambda_discovery_config = 6;
+    AwsLambdaDiscoveryConfig aws_lambda_discovery_config = 6;
     // Configuration for discovering Amazon Bedrock AgentCore runtimes.
-    AWSAgentCoreDiscoveryConfig aws_agent_core_discovery_config = 7;
+    AwsAgentCoreDiscoveryConfig aws_agent_core_discovery_config = 7;
   }
   // Current discovery state.
   DiscoveryState state = 8 [(google.api.field_behavior) = OUTPUT_ONLY];

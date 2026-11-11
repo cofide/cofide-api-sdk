@@ -19,14 +19,14 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file cofide/cloud_discovery_config/v1alpha1/aws_discovery.proto.
  */
 export const file_cofide_cloud_discovery_config_v1alpha1_aws_discovery: GenFile = /*@__PURE__*/
-  fileDesc("Cjpjb2ZpZGUvY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy92MWFscGhhMS9hd3NfZGlzY292ZXJ5LnByb3RvEiZjb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMSKGAQoYQVdTTGFtYmRhRGlzY292ZXJ5Q29uZmlnEhQKB3JlZ2lvbnMYASADKAlCA+BBARJUCgpyb2xlX2NoYWluGAYgASgLMjsuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQVdTQXNzdW1lUm9sZUNvbmZpZ0ID4EECIokBChtBV1NBZ2VudENvcmVEaXNjb3ZlcnlDb25maWcSFAoHcmVnaW9ucxgBIAMoCUID4EEBElQKCnJvbGVfY2hhaW4YBiABKAsyOy5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5BV1NBc3N1bWVSb2xlQ29uZmlnQgPgQQIi4QEKE0FXU0Fzc3VtZVJvbGVDb25maWcSIAoTYXNzdW1lX3Rocm91Z2hfb2lkYxgBIAEoCEID4EEBEhUKCGF1ZGllbmNlGAIgASgJQgPgQQESVAoFcm9sZXMYAyADKAsyQC5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5BV1NBc3N1bWVSb2xlQ29uZmlnLlJvbGVCA+BBARo7CgRSb2xlEhkKDGlhbV9yb2xlX2FybhgBIAEoCUID4EECEhgKC2V4dGVybmFsX2lkGAIgASgJQgPgQQFCUFpOZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL2NvZmlkZS9jbG91ZF9kaXNjb3ZlcnlfY29uZmlnL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior]);
+  fileDesc("Cjpjb2ZpZGUvY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy92MWFscGhhMS9hd3NfZGlzY292ZXJ5LnByb3RvEiZjb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMSKGAQoYQXdzTGFtYmRhRGlzY292ZXJ5Q29uZmlnEhQKB3JlZ2lvbnMYASADKAlCA+BBARJUCgpyb2xlX2NoYWluGAYgASgLMjsuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQXdzQXNzdW1lUm9sZUNvbmZpZ0ID4EECIokBChtBd3NBZ2VudENvcmVEaXNjb3ZlcnlDb25maWcSFAoHcmVnaW9ucxgBIAMoCUID4EEBElQKCnJvbGVfY2hhaW4YBiABKAsyOy5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5Bd3NBc3N1bWVSb2xlQ29uZmlnQgPgQQIi4QEKE0F3c0Fzc3VtZVJvbGVDb25maWcSIAoTYXNzdW1lX3Rocm91Z2hfb2lkYxgBIAEoCEID4EEBEhUKCGF1ZGllbmNlGAIgASgJQgPgQQESVAoFcm9sZXMYAyADKAsyQC5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5Bd3NBc3N1bWVSb2xlQ29uZmlnLlJvbGVCA+BBARo7CgRSb2xlEhkKDGlhbV9yb2xlX2FybhgBIAEoCUID4EECEhgKC2V4dGVybmFsX2lkGAIgASgJQgPgQQFCUFpOZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL2NvZmlkZS9jbG91ZF9kaXNjb3ZlcnlfY29uZmlnL3YxYWxwaGExYgZwcm90bzM", [file_google_api_field_behavior]);
 
 /**
- * AWSLambdaDiscoveryConfig contains configuration for Lambda function discovery.
+ * AwsLambdaDiscoveryConfig contains configuration for Lambda function discovery.
  *
- * @generated from message cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig
+ * @generated from message cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfig
  */
-export type AWSLambdaDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig"> & {
+export type AwsLambdaDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfig"> & {
   /**
    * AWS regions to discover resources in. An empty list effectively disables discovery.
    *
@@ -37,24 +37,24 @@ export type AWSLambdaDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1
   /**
    * Configuration of how IAM credentials should be assumed.
    *
-   * @generated from field: cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig role_chain = 6;
+   * @generated from field: cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig role_chain = 6;
    */
-  roleChain?: AWSAssumeRoleConfig;
+  roleChain?: AwsAssumeRoleConfig;
 };
 
 /**
- * Describes the message cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig.
- * Use `create(AWSLambdaDiscoveryConfigSchema)` to create a new message.
+ * Describes the message cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfig.
+ * Use `create(AwsLambdaDiscoveryConfigSchema)` to create a new message.
  */
-export const AWSLambdaDiscoveryConfigSchema: GenMessage<AWSLambdaDiscoveryConfig> = /*@__PURE__*/
+export const AwsLambdaDiscoveryConfigSchema: GenMessage<AwsLambdaDiscoveryConfig> = /*@__PURE__*/
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_aws_discovery, 0);
 
 /**
- * AWSAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
+ * AwsAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
  *
- * @generated from message cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig
+ * @generated from message cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfig
  */
-export type AWSAgentCoreDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig"> & {
+export type AwsAgentCoreDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfig"> & {
   /**
    * AWS regions to discover resources in. An empty list effectively disables discovery.
    *
@@ -65,20 +65,20 @@ export type AWSAgentCoreDiscoveryConfig = Message<"cofide.cloud_discovery_config
   /**
    * Configuration of how IAM credentials should be assumed.
    *
-   * @generated from field: cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig role_chain = 6;
+   * @generated from field: cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig role_chain = 6;
    */
-  roleChain?: AWSAssumeRoleConfig;
+  roleChain?: AwsAssumeRoleConfig;
 };
 
 /**
- * Describes the message cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig.
- * Use `create(AWSAgentCoreDiscoveryConfigSchema)` to create a new message.
+ * Describes the message cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfig.
+ * Use `create(AwsAgentCoreDiscoveryConfigSchema)` to create a new message.
  */
-export const AWSAgentCoreDiscoveryConfigSchema: GenMessage<AWSAgentCoreDiscoveryConfig> = /*@__PURE__*/
+export const AwsAgentCoreDiscoveryConfigSchema: GenMessage<AwsAgentCoreDiscoveryConfig> = /*@__PURE__*/
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_aws_discovery, 1);
 
 /**
- * AWSAssumeRoleConfig configures role assumption.
+ * AwsAssumeRoleConfig configures role assumption.
  * Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
  * ambient credentials (e.g. EKS Pod Identity) is controlled by the
  * assume_through_oidc field on the owning config; subsequent steps always use
@@ -87,9 +87,9 @@ export const AWSAgentCoreDiscoveryConfigSchema: GenMessage<AWSAgentCoreDiscovery
  * roles is empty then those credentials are used directly rather than used to assume
  * another role.
  *
- * @generated from message cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig
+ * @generated from message cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig
  */
-export type AWSAssumeRoleConfig = Message<"cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig"> & {
+export type AwsAssumeRoleConfig = Message<"cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig"> & {
   /**
    * Whether the first role in roles is assumed via ambient credentials
    * such as EKS Pod Identity (false, the default) or via SPIFFE JWT-based
@@ -113,24 +113,24 @@ export type AWSAssumeRoleConfig = Message<"cofide.cloud_discovery_config.v1alpha
    * If ambient credentials are used this may be empty, in which case the ambient
    * credentials are used directly rather than used to assume another role.
    *
-   * @generated from field: repeated cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role roles = 3;
+   * @generated from field: repeated cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.Role roles = 3;
    */
-  roles: AWSAssumeRoleConfig_Role[];
+  roles: AwsAssumeRoleConfig_Role[];
 };
 
 /**
- * Describes the message cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.
- * Use `create(AWSAssumeRoleConfigSchema)` to create a new message.
+ * Describes the message cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.
+ * Use `create(AwsAssumeRoleConfigSchema)` to create a new message.
  */
-export const AWSAssumeRoleConfigSchema: GenMessage<AWSAssumeRoleConfig> = /*@__PURE__*/
+export const AwsAssumeRoleConfigSchema: GenMessage<AwsAssumeRoleConfig> = /*@__PURE__*/
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_aws_discovery, 2);
 
 /**
  * Role is an IAM role to assume, as one step in the chain.
  *
- * @generated from message cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role
+ * @generated from message cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.Role
  */
-export type AWSAssumeRoleConfig_Role = Message<"cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role"> & {
+export type AwsAssumeRoleConfig_Role = Message<"cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.Role"> & {
   /**
    * ARN of the IAM role to assume.
    *
@@ -147,9 +147,9 @@ export type AWSAssumeRoleConfig_Role = Message<"cofide.cloud_discovery_config.v1
 };
 
 /**
- * Describes the message cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role.
- * Use `create(AWSAssumeRoleConfig_RoleSchema)` to create a new message.
+ * Describes the message cofide.cloud_discovery_config.v1alpha1.AwsAssumeRoleConfig.Role.
+ * Use `create(AwsAssumeRoleConfig_RoleSchema)` to create a new message.
  */
-export const AWSAssumeRoleConfig_RoleSchema: GenMessage<AWSAssumeRoleConfig_Role> = /*@__PURE__*/
+export const AwsAssumeRoleConfig_RoleSchema: GenMessage<AwsAssumeRoleConfig_Role> = /*@__PURE__*/
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_aws_discovery, 2, 0);
 

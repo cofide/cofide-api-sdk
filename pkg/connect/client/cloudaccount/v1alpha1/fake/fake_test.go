@@ -44,7 +44,7 @@ func Test_CreateCloudAccount(t *testing.T) {
 				OrgId: org.GetId(),
 				Name:  "fake-aws-cloud-account-1",
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "1234566789012",
 					},
 				},
@@ -56,7 +56,7 @@ func Test_CreateCloudAccount(t *testing.T) {
 				OrgId: "non-existent",
 				Name:  "fake-aws-cloud-account-2",
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "1234566789013",
 					},
 				},
@@ -69,7 +69,7 @@ func Test_CreateCloudAccount(t *testing.T) {
 			input: &cloudaccountpb.CloudAccount{
 				OrgId: org.GetId(),
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "1234566789014",
 					},
 				},
@@ -135,7 +135,7 @@ func Test_DeleteCloudAccount(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-1",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789012",
 				},
 			},
@@ -148,7 +148,7 @@ func Test_DeleteCloudAccount(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-2",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789013",
 				},
 			},
@@ -231,7 +231,7 @@ func Test_GetCloudAccount(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-1",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789012",
 				},
 			},
@@ -294,7 +294,7 @@ func Test_ListCloudAccounts(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-1",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789012",
 				},
 			},
@@ -307,7 +307,7 @@ func Test_ListCloudAccounts(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-2",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789013",
 				},
 			},
@@ -384,7 +384,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-1",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789012",
 				},
 			},
@@ -397,7 +397,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-2",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789013",
 				},
 			},
@@ -410,7 +410,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 			OrgId: org.GetId(),
 			Name:  "fake-aws-cloud-account-3",
 			Provider: &cloudaccountpb.CloudAccount_Aws{
-				Aws: &cloudaccountpb.AWSAccount{
+				Aws: &cloudaccountpb.AwsAccount{
 					AccountId: "1234566789014",
 				},
 			},
@@ -432,7 +432,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 				Id:   existing1.GetId(),
 				Name: "updated name",
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "999999999999",
 					},
 				},
@@ -440,7 +440,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 			expected: &cloudaccountpb.CloudAccount{
 				Name: "updated name",
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "999999999999",
 					},
 				},
@@ -452,7 +452,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 				Id:   existing2.GetId(),
 				Name: "updated name",
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "999999999999",
 					},
 				},
@@ -469,7 +469,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 				Id:   existing3.GetId(),
 				Name: "updated name",
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "999999999999",
 					},
 				},
@@ -478,7 +478,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 			expected: &cloudaccountpb.CloudAccount{
 				Name: existing3.GetName(),
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "999999999999",
 					},
 				},
@@ -489,7 +489,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 			input: &cloudaccountpb.CloudAccount{
 				Id: existing3.GetId(),
 				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AWSAccount{
+					Aws: &cloudaccountpb.AwsAccount{
 						AccountId: "999999999999",
 					},
 				},

@@ -14,23 +14,23 @@ import "google/api/field_behavior.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_discovery_config/v1alpha1";
 
-// AWSLambdaDiscoveryConfig contains configuration for Lambda function discovery.
-message AWSLambdaDiscoveryConfig {
+// AwsLambdaDiscoveryConfig contains configuration for Lambda function discovery.
+message AwsLambdaDiscoveryConfig {
   // AWS regions to discover resources in. An empty list effectively disables discovery.
   repeated string regions = 1 [(google.api.field_behavior) = OPTIONAL];
   // Configuration of how IAM credentials should be assumed.
-  AWSAssumeRoleConfig role_chain = 6 [(google.api.field_behavior) = REQUIRED];
+  AwsAssumeRoleConfig role_chain = 6 [(google.api.field_behavior) = REQUIRED];
 }
 
-// AWSAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
-message AWSAgentCoreDiscoveryConfig {
+// AwsAgentCoreDiscoveryConfig contains configuration for Amazon Bedrock AgentCore Runtime discovery.
+message AwsAgentCoreDiscoveryConfig {
   // AWS regions to discover resources in. An empty list effectively disables discovery.
   repeated string regions = 1 [(google.api.field_behavior) = OPTIONAL];
   // Configuration of how IAM credentials should be assumed.
-  AWSAssumeRoleConfig role_chain = 6 [(google.api.field_behavior) = REQUIRED];
+  AwsAssumeRoleConfig role_chain = 6 [(google.api.field_behavior) = REQUIRED];
 }
 
-// AWSAssumeRoleConfig configures role assumption.
+// AwsAssumeRoleConfig configures role assumption.
 // Whether the first step uses SPIFFE JWT-SVID (AssumeRoleWithWebIdentity) or
 // ambient credentials (e.g. EKS Pod Identity) is controlled by the
 // assume_through_oidc field on the owning config; subsequent steps always use
@@ -38,7 +38,7 @@ message AWSAgentCoreDiscoveryConfig {
 // If ambient credentials are used (assume_through_oidc is false) and the list of
 // roles is empty then those credentials are used directly rather than used to assume
 // another role.
-message AWSAssumeRoleConfig {
+message AwsAssumeRoleConfig {
   // Role is an IAM role to assume, as one step in the chain.
   message Role {
     // ARN of the IAM role to assume.

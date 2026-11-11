@@ -110,7 +110,7 @@ func (x *CloudAccount) GetProvider() isCloudAccount_Provider {
 	return nil
 }
 
-func (x *CloudAccount) GetAws() *AWSAccount {
+func (x *CloudAccount) GetAws() *AwsAccount {
 	if x != nil {
 		if x, ok := x.Provider.(*CloudAccount_Aws); ok {
 			return x.Aws
@@ -139,7 +139,7 @@ type isCloudAccount_Provider interface {
 
 type CloudAccount_Aws struct {
 	// Configuration for an AWS account.
-	Aws *AWSAccount `protobuf:"bytes,5,opt,name=aws,proto3,oneof"`
+	Aws *AwsAccount `protobuf:"bytes,5,opt,name=aws,proto3,oneof"`
 }
 
 func (*CloudAccount_Aws) isCloudAccount_Provider() {}
@@ -153,7 +153,7 @@ const file_cofide_cloud_account_v1alpha1_cloud_account_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tB\x06\xe0A\x03\xe0A\x05R\x02id\x12\x1d\n" +
 	"\x06org_id\x18\x02 \x01(\tB\x06\xe0A\x02\xe0A\x05R\x05orgId\x12\x17\n" +
 	"\x04name\x18\x04 \x01(\tB\x03\xe0A\x02R\x04name\x12=\n" +
-	"\x03aws\x18\x05 \x01(\v2).cofide.cloud_account.v1alpha1.AWSAccountH\x00R\x03aws\x12>\n" +
+	"\x03aws\x18\x05 \x01(\v2).cofide.cloud_account.v1alpha1.AwsAccountH\x00R\x03aws\x12>\n" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12G\n" +
 	"\x0flast_updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\rlastUpdatedAtB\n" +
@@ -175,11 +175,11 @@ func file_cofide_cloud_account_v1alpha1_cloud_account_proto_rawDescGZIP() []byte
 var file_cofide_cloud_account_v1alpha1_cloud_account_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cofide_cloud_account_v1alpha1_cloud_account_proto_goTypes = []any{
 	(*CloudAccount)(nil),          // 0: cofide.cloud_account.v1alpha1.CloudAccount
-	(*AWSAccount)(nil),            // 1: cofide.cloud_account.v1alpha1.AWSAccount
+	(*AwsAccount)(nil),            // 1: cofide.cloud_account.v1alpha1.AwsAccount
 	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_cofide_cloud_account_v1alpha1_cloud_account_proto_depIdxs = []int32{
-	1, // 0: cofide.cloud_account.v1alpha1.CloudAccount.aws:type_name -> cofide.cloud_account.v1alpha1.AWSAccount
+	1, // 0: cofide.cloud_account.v1alpha1.CloudAccount.aws:type_name -> cofide.cloud_account.v1alpha1.AwsAccount
 	2, // 1: cofide.cloud_account.v1alpha1.CloudAccount.created_at:type_name -> google.protobuf.Timestamp
 	2, // 2: cofide.cloud_account.v1alpha1.CloudAccount.last_updated_at:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type

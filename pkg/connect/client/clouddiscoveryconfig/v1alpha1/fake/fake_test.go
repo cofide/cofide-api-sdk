@@ -36,11 +36,11 @@ func newFake(t *testing.T) (*fakeconnect.FakeConnect, string) {
 	return fakeConnect, cloudAccount.GetId()
 }
 
-func roleChain(arn string) *crdcpb.AWSAssumeRoleConfig {
-	return &crdcpb.AWSAssumeRoleConfig{
+func roleChain(arn string) *crdcpb.AwsAssumeRoleConfig {
+	return &crdcpb.AwsAssumeRoleConfig{
 		AssumeThroughOidc: true,
 		Audience:          "audience",
-		Roles:             []*crdcpb.AWSAssumeRoleConfig_Role{{IamRoleArn: arn, ExternalId: "external-id"}},
+		Roles:             []*crdcpb.AwsAssumeRoleConfig_Role{{IamRoleArn: arn, ExternalId: "external-id"}},
 	}
 }
 
@@ -50,7 +50,7 @@ func lambdaConfig(cloudAccountID, name string) *crdcpb.CloudDiscoveryConfig {
 		Name:              name,
 		DiscoveryInterval: durationpb.New(time.Minute),
 		DiscoveryConfig: &crdcpb.CloudDiscoveryConfig_AwsLambdaDiscoveryConfig{
-			AwsLambdaDiscoveryConfig: &crdcpb.AWSLambdaDiscoveryConfig{
+			AwsLambdaDiscoveryConfig: &crdcpb.AwsLambdaDiscoveryConfig{
 				Regions:   []string{"eu-west-1"},
 				RoleChain: roleChain("arn:aws:iam::123456789012:role/lambda"),
 			},
@@ -64,7 +64,7 @@ func agentCoreConfig(cloudAccountID, name string) *crdcpb.CloudDiscoveryConfig {
 		Name:              name,
 		DiscoveryInterval: durationpb.New(time.Minute),
 		DiscoveryConfig: &crdcpb.CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig{
-			AwsAgentCoreDiscoveryConfig: &crdcpb.AWSAgentCoreDiscoveryConfig{
+			AwsAgentCoreDiscoveryConfig: &crdcpb.AwsAgentCoreDiscoveryConfig{
 				Regions:   []string{"us-east-1"},
 				RoleChain: roleChain("arn:aws:iam::123456789012:role/agentcore"),
 			},
@@ -362,11 +362,11 @@ func cloneConfig(c *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryConfig {
 }
 
 // updatedRoleChain is a role chain with every field different to that returned by roleChain.
-func updatedRoleChain() *crdcpb.AWSAssumeRoleConfig {
-	return &crdcpb.AWSAssumeRoleConfig{
+func updatedRoleChain() *crdcpb.AwsAssumeRoleConfig {
+	return &crdcpb.AwsAssumeRoleConfig{
 		AssumeThroughOidc: false,
 		Audience:          "updated-audience",
-		Roles:             []*crdcpb.AWSAssumeRoleConfig_Role{{IamRoleArn: "arn:aws:iam::999999999999:role/updated"}},
+		Roles:             []*crdcpb.AwsAssumeRoleConfig_Role{{IamRoleArn: "arn:aws:iam::999999999999:role/updated"}},
 	}
 }
 
@@ -381,14 +381,14 @@ func updateInput(existing *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryCo
 	}
 	if existing.GetAwsLambdaDiscoveryConfig() != nil {
 		input.DiscoveryConfig = &crdcpb.CloudDiscoveryConfig_AwsLambdaDiscoveryConfig{
-			AwsLambdaDiscoveryConfig: &crdcpb.AWSLambdaDiscoveryConfig{
+			AwsLambdaDiscoveryConfig: &crdcpb.AwsLambdaDiscoveryConfig{
 				Regions:   []string{"us-west-2", "eu-central-1"},
 				RoleChain: updatedRoleChain(),
 			},
 		}
 	} else {
 		input.DiscoveryConfig = &crdcpb.CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig{
-			AwsAgentCoreDiscoveryConfig: &crdcpb.AWSAgentCoreDiscoveryConfig{
+			AwsAgentCoreDiscoveryConfig: &crdcpb.AwsAgentCoreDiscoveryConfig{
 				Regions:   []string{"us-west-2", "eu-central-1"},
 				RoleChain: updatedRoleChain(),
 			},
@@ -401,7 +401,7 @@ func updateInput(existing *crdcpb.CloudDiscoveryConfig) *crdcpb.CloudDiscoveryCo
 // The mutate function applies the expected changes to a copy of the original config.
 type updateCase struct {
 	name   string
-	mutate func(c *crdcpb.CloudDiscoveryConfig, roleChain *crdcpb.AWSAssumeRoleConfig, setRegions func([]string))
+	mutate func(c *crdcpb.CloudDiscoveryConfig, roleChain *crdcpb.AwsAssumeRoleConfig, setRegions func([]string))
 }
 
 // updateCases are the success cases shared by the lambda and agent core update tests, in the same order as the masks
@@ -409,43 +409,43 @@ type updateCase struct {
 var updateCases = []updateCase{
 	{
 		name: "mask with just name",
-		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AwsAssumeRoleConfig, _ func([]string)) {
 			c.Name = "updated name"
 		},
 	},
 	{
 		name: "mask with just disabled",
-		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AwsAssumeRoleConfig, _ func([]string)) {
 			c.Disabled = true
 		},
 	},
 	{
 		name: "mask with just discovery interval",
-		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(c *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AwsAssumeRoleConfig, _ func([]string)) {
 			c.DiscoveryInterval = durationpb.New(time.Hour)
 		},
 	},
 	{
 		name: "mask with just regions",
-		mutate: func(_ *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AWSAssumeRoleConfig, setRegions func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, _ *crdcpb.AwsAssumeRoleConfig, setRegions func([]string)) {
 			setRegions([]string{"us-west-2", "eu-central-1"})
 		},
 	},
 	{
 		name: "mask with just assume through OIDC",
-		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AwsAssumeRoleConfig, _ func([]string)) {
 			rc.AssumeThroughOidc = false
 		},
 	},
 	{
 		name: "mask with just audience",
-		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AwsAssumeRoleConfig, _ func([]string)) {
 			rc.Audience = "updated-audience"
 		},
 	},
 	{
 		name: "mask with just roles",
-		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AWSAssumeRoleConfig, _ func([]string)) {
+		mutate: func(_ *crdcpb.CloudDiscoveryConfig, rc *crdcpb.AwsAssumeRoleConfig, _ func([]string)) {
 			rc.Roles = updatedRoleChain().GetRoles()
 		},
 	},

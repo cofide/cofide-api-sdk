@@ -189,7 +189,7 @@ func (x *CloudDiscoveryConfig) GetDiscoveryConfig() isCloudDiscoveryConfig_Disco
 	return nil
 }
 
-func (x *CloudDiscoveryConfig) GetAwsLambdaDiscoveryConfig() *AWSLambdaDiscoveryConfig {
+func (x *CloudDiscoveryConfig) GetAwsLambdaDiscoveryConfig() *AwsLambdaDiscoveryConfig {
 	if x != nil {
 		if x, ok := x.DiscoveryConfig.(*CloudDiscoveryConfig_AwsLambdaDiscoveryConfig); ok {
 			return x.AwsLambdaDiscoveryConfig
@@ -198,7 +198,7 @@ func (x *CloudDiscoveryConfig) GetAwsLambdaDiscoveryConfig() *AWSLambdaDiscovery
 	return nil
 }
 
-func (x *CloudDiscoveryConfig) GetAwsAgentCoreDiscoveryConfig() *AWSAgentCoreDiscoveryConfig {
+func (x *CloudDiscoveryConfig) GetAwsAgentCoreDiscoveryConfig() *AwsAgentCoreDiscoveryConfig {
 	if x != nil {
 		if x, ok := x.DiscoveryConfig.(*CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig); ok {
 			return x.AwsAgentCoreDiscoveryConfig
@@ -248,12 +248,12 @@ type isCloudDiscoveryConfig_DiscoveryConfig interface {
 
 type CloudDiscoveryConfig_AwsLambdaDiscoveryConfig struct {
 	// Configuration for discovering AWS Lambda functions.
-	AwsLambdaDiscoveryConfig *AWSLambdaDiscoveryConfig `protobuf:"bytes,6,opt,name=aws_lambda_discovery_config,json=awsLambdaDiscoveryConfig,proto3,oneof"`
+	AwsLambdaDiscoveryConfig *AwsLambdaDiscoveryConfig `protobuf:"bytes,6,opt,name=aws_lambda_discovery_config,json=awsLambdaDiscoveryConfig,proto3,oneof"`
 }
 
 type CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig struct {
 	// Configuration for discovering Amazon Bedrock AgentCore runtimes.
-	AwsAgentCoreDiscoveryConfig *AWSAgentCoreDiscoveryConfig `protobuf:"bytes,7,opt,name=aws_agent_core_discovery_config,json=awsAgentCoreDiscoveryConfig,proto3,oneof"`
+	AwsAgentCoreDiscoveryConfig *AwsAgentCoreDiscoveryConfig `protobuf:"bytes,7,opt,name=aws_agent_core_discovery_config,json=awsAgentCoreDiscoveryConfig,proto3,oneof"`
 }
 
 func (*CloudDiscoveryConfig_AwsLambdaDiscoveryConfig) isCloudDiscoveryConfig_DiscoveryConfig() {}
@@ -271,8 +271,8 @@ const file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_rawDesc = "" +
 	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x02R\x04name\x12\x1f\n" +
 	"\bdisabled\x18\x04 \x01(\bB\x03\xe0A\x01R\bdisabled\x12M\n" +
 	"\x12discovery_interval\x18\x05 \x01(\v2\x19.google.protobuf.DurationB\x03\xe0A\x01R\x11discoveryInterval\x12\x81\x01\n" +
-	"\x1baws_lambda_discovery_config\x18\x06 \x01(\v2@.cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfigH\x00R\x18awsLambdaDiscoveryConfig\x12\x8b\x01\n" +
-	"\x1faws_agent_core_discovery_config\x18\a \x01(\v2C.cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfigH\x00R\x1bawsAgentCoreDiscoveryConfig\x12Q\n" +
+	"\x1baws_lambda_discovery_config\x18\x06 \x01(\v2@.cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfigH\x00R\x18awsLambdaDiscoveryConfig\x12\x8b\x01\n" +
+	"\x1faws_agent_core_discovery_config\x18\a \x01(\v2C.cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfigH\x00R\x1bawsAgentCoreDiscoveryConfig\x12Q\n" +
 	"\x05state\x18\b \x01(\x0e26.cofide.cloud_discovery_config.v1alpha1.DiscoveryStateB\x03\xe0A\x03R\x05state\x12[\n" +
 	"\x19last_successful_discovery\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x17lastSuccessfulDiscovery\x12R\n" +
 	"\x15state_last_updated_at\x18\n" +
@@ -304,14 +304,14 @@ var file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_goTypes = []any{
 	(DiscoveryState)(0),                 // 0: cofide.cloud_discovery_config.v1alpha1.DiscoveryState
 	(*CloudDiscoveryConfig)(nil),        // 1: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig
 	(*durationpb.Duration)(nil),         // 2: google.protobuf.Duration
-	(*AWSLambdaDiscoveryConfig)(nil),    // 3: cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig
-	(*AWSAgentCoreDiscoveryConfig)(nil), // 4: cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig
+	(*AwsLambdaDiscoveryConfig)(nil),    // 3: cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfig
+	(*AwsAgentCoreDiscoveryConfig)(nil), // 4: cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfig
 	(*timestamppb.Timestamp)(nil),       // 5: google.protobuf.Timestamp
 }
 var file_cofide_cloud_discovery_config_v1alpha1_discovery_proto_depIdxs = []int32{
 	2, // 0: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.discovery_interval:type_name -> google.protobuf.Duration
-	3, // 1: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.aws_lambda_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig
-	4, // 2: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.aws_agent_core_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig
+	3, // 1: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.aws_lambda_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.AwsLambdaDiscoveryConfig
+	4, // 2: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.aws_agent_core_discovery_config:type_name -> cofide.cloud_discovery_config.v1alpha1.AwsAgentCoreDiscoveryConfig
 	0, // 3: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.state:type_name -> cofide.cloud_discovery_config.v1alpha1.DiscoveryState
 	5, // 4: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.last_successful_discovery:type_name -> google.protobuf.Timestamp
 	5, // 5: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig.state_last_updated_at:type_name -> google.protobuf.Timestamp

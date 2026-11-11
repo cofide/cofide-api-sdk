@@ -24,7 +24,7 @@ type AWSUpdateMask struct {
 
 func (m AWSUpdateMask) apply(req *cloudaccountpb.UpdateCloudAccountRequest) {
 	req.UpdateMask = &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
-		AwsAccountUpdateMask: &cloudaccountpb.UpdateCloudAccountRequest_AWSAccountUpdateMask{
+		AwsAccountUpdateMask: &cloudaccountpb.AwsAccountUpdateMask{
 			Name:         m.Name,
 			AwsAccountId: m.AWSAccountID,
 		},
