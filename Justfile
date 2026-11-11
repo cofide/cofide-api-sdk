@@ -32,6 +32,32 @@ fmt:
 buf-lint:
     buf lint
 
+# Lint the new APIs against Google's AIPs. Only files whose path matches the
+# pattern are linted, which by default is all of the new APIs in proto/cofide.
+api-lint pattern="." *args:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # api-linter is pinned as a tool in tools/go.mod, which keeps its
+    # dependencies out of the SDK's own go.mod. `go tool -n` builds it if
+    # needed and prints its path, so it can run from the repo root.
+    api_linter=$(go -C tools tool -n api-linter)
+    # buf reads the image's format from its extension, and BSD mktemp can't
+    # add one, so the image goes in a temporary directory instead.
+    dir=$(mktemp -d)
+    trap 'rm -rf "$dir"' EXIT
+    image="$dir/image.binpb"
+    # Build a descriptor set to ensure api-linter can find the proto
+    # dependencies.
+    buf build --path proto/cofide -o "$image"
+    # Listing the image gives the names api-linter expects, such as
+    # cofide/federation/v1beta1/service.proto, without the imports.
+    files=$(buf ls-files "$image" | grep -e '{{pattern}}' || true)
+    if [ -z "$files" ]; then
+        echo "No files under proto/cofide match the pattern: {{pattern}}" >&2
+        exit 1
+    fi
+    "$api_linter" --config api-linter.yaml --descriptor-set-in "$image" --set-exit-status {{args}} $files
+
 proto-gen: ensure-protoc-gen-go ensure-protoc-gen-connect-go
     buf generate
 
@@ -58,4 +84,4 @@ test-race: (test "--" "-race")
 go-lint *args:
     golangci-lint run --show-stats {{args}}
 
-lint *args: buf-lint (go-lint args)
+lint *args: buf-lint api-lint (go-lint args)
