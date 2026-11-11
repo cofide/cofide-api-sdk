@@ -29,7 +29,7 @@ Some of the key commands include:
 - `just lint` - Lints the protobuf definitions and Go source code in accordance with best practices
 - `just api-lint [pattern]` - Lints the new APIs under `proto/cofide` against Google's [AIPs](https://google.aip.dev) with [api-linter](https://linter.aip.dev), configured in *api-linter.yaml*
 - `just proto-gen` - Generates the code stubs from the protobuf definitions using the defined plugins (specified in *buf.gen.yaml*)
-- `just proto-docs [out=<dir>]` - Generates Markdown API documentation from the protobuf definitions (defaults to `./docs/`); requires `protoc-gen-doc` (`go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest`)
+- `just proto-docs [out=<dir>]` - Generates Markdown API documentation from the protobuf definitions (defaults to `./docs/`), with AIP-192 internal comments left out
 - `just test` - Runs Go unit tests
 
 The `.proto` files are in the `proto` directory, with the new APIs under `proto/cofide` and the old ones alongside them. The generated Go stubs are in `gen/go` and the TypeScript stubs in `gen/ts`.

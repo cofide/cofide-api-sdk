@@ -79,7 +79,7 @@ just api-lint . --output-format=json
 
 When a rule fails, fix the proto if the rule fits. If it doesn't, either:
 - disable it in `api-linter.yaml`, with a comment saying why, if it conflicts with a convention all Cofide APIs follow, or
-- disable it with an AIP-192 internal comment beside the element, if the rule doesn't fit that one element but should still apply everywhere else. Our generators don't strip internal comments as Google's tooling does, so they appear in the generated code and docs like any other comment:
+- disable it with an AIP-192 internal comment beside the element, if the rule doesn't fit that one element but should still apply everywhere else. `just proto-docs` strips internal comments from the Markdown docs, but they still appear in the generated Go and TypeScript code:
   ```proto
   // (-- api-linter: core::0158::response-plural-first-field=disabled
   //     aip.dev/not-precedent: The linter thinks this is a list response

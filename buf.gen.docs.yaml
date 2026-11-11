@@ -1,6 +1,8 @@
 version: v2
 plugins:
-  - local: protoc-gen-doc
+  # A wrapper around protoc-gen-doc, pinned as a tool in tools/go.mod, which
+  # leaves AIP-192 internal comments out of the docs.
+  - local: ["go", "-C", "tools", "tool", "protoc-gen-doc"]
     out: .
     opt:
       - markdown,api.md
