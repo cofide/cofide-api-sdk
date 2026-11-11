@@ -1,6 +1,6 @@
 module github.com/cofide/cofide-api-sdk/tools
 
-go 1.26.10
+go 1.26.11
 
 tool github.com/googleapis/api-linter/v2/cmd/api-linter
 
