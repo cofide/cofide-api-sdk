@@ -1,0 +1,60 @@
+// Copyright 2026 Cofide Limited.
+// SPDX-License-Identifier: Apache-2.0
+
+// This file defines the OrganizationService gRPC service, which provides
+// read-only access to organizations.
+
+syntax = "proto3";
+
+package cofide.organization.v1beta1;
+
+import "cofide/common/pagination/v1beta1/pagination.proto";
+import "cofide/organization/v1beta1/organization.proto";
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/cofide/cofide-api-sdk/gen/go/cofide/organization/v1beta1";
+
+// OrganizationService provides read-only access to organizations.
+service OrganizationService {
+  // GetOrganization retrieves an organization by ID or by name.
+  rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
+  // ListOrganizations returns all organizations matching the optional filter.
+  rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
+}
+
+// GetOrganizationRequest is the request for GetOrganization.
+message GetOrganizationRequest {
+  // The identifier of the organization to retrieve. Exactly one must be set.
+  oneof identifier {
+    // ID of the organization to retrieve.
+    string org_id = 1;
+    // Name of the organization to retrieve. Organization names are unique
+    // within Connect.
+    string name = 2;
+  }
+}
+
+// GetOrganizationResponse is the response from GetOrganization.
+message GetOrganizationResponse {
+  // The requested organization.
+  Organization organization = 1;
+}
+
+// ListOrganizationsRequest is the request for ListOrganizations.
+message ListOrganizationsRequest {
+  // Filter restricts which organizations are returned. It has no fields yet,
+  // so every organization matches.
+  message Filter {}
+  // Restricts which organizations are returned.
+  Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  // The page of results to return.
+  cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// ListOrganizationsResponse is the response from ListOrganizations.
+message ListOrganizationsResponse {
+  // The organizations in this page of results.
+  repeated Organization organizations = 1;
+  // How to retrieve the next page of results.
+  cofide.common.pagination.v1beta1.PageResponse pagination = 2;
+}

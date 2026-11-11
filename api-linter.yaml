@@ -10,6 +10,8 @@
     # Cofide APIs `name` is a human-readable display name, not a resource name.
     - core::0123::resource-annotation
     - core::0131::method-signature
+    - core::0131::request-name-behavior
+    - core::0131::request-name-reference
     - core::0131::request-name-required
     - core::0131::request-required-fields
     - core::0131::request-unknown-fields
