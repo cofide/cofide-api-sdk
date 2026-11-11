@@ -2,6 +2,12 @@ module github.com/cofide/cofide-api-sdk
 
 go 1.26.10
 
+// The toolchain directive sets the Go version for building and testing this
+// module, including in CI, and doesn't apply to consumers. Update it for Go
+// releases with fixes, and keep the go directive at the minimum version
+// consumers need.
+toolchain go1.26.11
+
 // NOTE: Take care to avoid forcing unnecessary upgrades on consumers when
 // updating dependencies.
 require (
