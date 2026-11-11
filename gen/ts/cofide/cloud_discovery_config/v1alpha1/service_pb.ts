@@ -26,10 +26,14 @@ export const file_cofide_cloud_discovery_config_v1alpha1_service: GenFile = /*@_
   fileDesc("CjRjb2ZpZGUvY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy92MWFscGhhMS9zZXJ2aWNlLnByb3RvEiZjb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMSKGAQohQ3JlYXRlQ2xvdWREaXNjb3ZlcnlDb25maWdSZXF1ZXN0EmEKFmNsb3VkX2Rpc2NvdmVyeV9jb25maWcYASABKAsyPC5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5DbG91ZERpc2NvdmVyeUNvbmZpZ0ID4EECIoIBCiJDcmVhdGVDbG91ZERpc2NvdmVyeUNvbmZpZ1Jlc3BvbnNlElwKFmNsb3VkX2Rpc2NvdmVyeV9jb25maWcYASABKAsyPC5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5DbG91ZERpc2NvdmVyeUNvbmZpZyJICh5HZXRDbG91ZERpc2NvdmVyeUNvbmZpZ1JlcXVlc3QSJgoZY2xvdWRfZGlzY292ZXJ5X2NvbmZpZ19pZBgBIAEoCUID4EECIn8KH0dldENsb3VkRGlzY292ZXJ5Q29uZmlnUmVzcG9uc2USXAoWY2xvdWRfZGlzY292ZXJ5X2NvbmZpZxgBIAEoCzI8LmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkNsb3VkRGlzY292ZXJ5Q29uZmlnItoBCiBMaXN0Q2xvdWREaXNjb3ZlcnlDb25maWdzUmVxdWVzdBJkCgZmaWx0ZXIYASABKAsyTy5jb2ZpZGUuY2xvdWRfZGlzY292ZXJ5X2NvbmZpZy52MWFscGhhMS5MaXN0Q2xvdWREaXNjb3ZlcnlDb25maWdzUmVxdWVzdC5GaWx0ZXJCA+BBARJGCgpwYWdpbmF0aW9uGAIgASgLMi0uY29maWRlLmNvbW1vbi5wYWdpbmF0aW9uLnYxYmV0YTEuUGFnZVJlcXVlc3RCA+BBARoICgZGaWx0ZXIixgEKIUxpc3RDbG91ZERpc2NvdmVyeUNvbmZpZ3NSZXNwb25zZRJdChdjbG91ZF9kaXNjb3ZlcnlfY29uZmlncxgBIAMoCzI8LmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkNsb3VkRGlzY292ZXJ5Q29uZmlnEkIKCnBhZ2luYXRpb24YAiABKAsyLi5jb2ZpZGUuY29tbW9uLnBhZ2luYXRpb24udjFiZXRhMS5QYWdlUmVzcG9uc2UijQcKIVVwZGF0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVxdWVzdBJhChZjbG91ZF9kaXNjb3ZlcnlfY29uZmlnGAEgASgLMjwuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuQ2xvdWREaXNjb3ZlcnlDb25maWdCA+BBAhKfAQonYXdzX2xhbWJkYV9kaXNjb3ZlcnlfY29uZmlnX3VwZGF0ZV9tYXNrGAIgASgLMmwuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuVXBkYXRlQ2xvdWREaXNjb3ZlcnlDb25maWdSZXF1ZXN0LkFXU0xhbWJkYURpc2NvdmVyeUNvbmZpZ1VwZGF0ZU1hc2tIABKmAQorYXdzX2FnZW50X2NvcmVfZGlzY292ZXJ5X2NvbmZpZ191cGRhdGVfbWFzaxgDIAEoCzJvLmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLlVwZGF0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVxdWVzdC5BV1NBZ2VudENvcmVEaXNjb3ZlcnlDb25maWdVcGRhdGVNYXNrSAAa0gEKIkFXU0xhbWJkYURpc2NvdmVyeUNvbmZpZ1VwZGF0ZU1hc2sSEQoEbmFtZRgBIAEoCEID4EEBEhUKCGRpc2FibGVkGAIgASgIQgPgQQESHwoSZGlzY292ZXJ5X2ludGVydmFsGAMgASgIQgPgQQESFAoHcmVnaW9ucxgEIAEoCEID4EEBEiAKE2Fzc3VtZV90aHJvdWdoX29pZGMYBSABKAhCA+BBARIVCghhdWRpZW5jZRgGIAEoCEID4EEBEhIKBXJvbGVzGAcgASgIQgPgQQEa1QEKJUFXU0FnZW50Q29yZURpc2NvdmVyeUNvbmZpZ1VwZGF0ZU1hc2sSEQoEbmFtZRgBIAEoCEID4EEBEhUKCGRpc2FibGVkGAIgASgIQgPgQQESHwoSZGlzY292ZXJ5X2ludGVydmFsGAMgASgIQgPgQQESFAoHcmVnaW9ucxgEIAEoCEID4EEBEiAKE2Fzc3VtZV90aHJvdWdoX29pZGMYBSABKAhCA+BBARIVCghhdWRpZW5jZRgGIAEoCEID4EEBEhIKBXJvbGVzGAcgASgIQgPgQQFCDQoLdXBkYXRlX21hc2siggEKIlVwZGF0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVzcG9uc2USXAoWY2xvdWRfZGlzY292ZXJ5X2NvbmZpZxgBIAEoCzI8LmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkNsb3VkRGlzY292ZXJ5Q29uZmlnIksKIURlbGV0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVxdWVzdBImChljbG91ZF9kaXNjb3ZlcnlfY29uZmlnX2lkGAEgASgJQgPgQQIiJAoiRGVsZXRlQ2xvdWREaXNjb3ZlcnlDb25maWdSZXNwb25zZTKfBwobQ2xvdWREaXNjb3ZlcnlDb25maWdTZXJ2aWNlErMBChpDcmVhdGVDbG91ZERpc2NvdmVyeUNvbmZpZxJJLmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkNyZWF0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVxdWVzdBpKLmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkNyZWF0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVzcG9uc2USqgEKF0dldENsb3VkRGlzY292ZXJ5Q29uZmlnEkYuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuR2V0Q2xvdWREaXNjb3ZlcnlDb25maWdSZXF1ZXN0GkcuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuR2V0Q2xvdWREaXNjb3ZlcnlDb25maWdSZXNwb25zZRKwAQoZTGlzdENsb3VkRGlzY292ZXJ5Q29uZmlncxJILmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLkxpc3RDbG91ZERpc2NvdmVyeUNvbmZpZ3NSZXF1ZXN0GkkuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuTGlzdENsb3VkRGlzY292ZXJ5Q29uZmlnc1Jlc3BvbnNlErMBChpVcGRhdGVDbG91ZERpc2NvdmVyeUNvbmZpZxJJLmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLlVwZGF0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVxdWVzdBpKLmNvZmlkZS5jbG91ZF9kaXNjb3ZlcnlfY29uZmlnLnYxYWxwaGExLlVwZGF0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnUmVzcG9uc2USswEKGkRlbGV0ZUNsb3VkRGlzY292ZXJ5Q29uZmlnEkkuY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuRGVsZXRlQ2xvdWREaXNjb3ZlcnlDb25maWdSZXF1ZXN0GkouY29maWRlLmNsb3VkX2Rpc2NvdmVyeV9jb25maWcudjFhbHBoYTEuRGVsZXRlQ2xvdWREaXNjb3ZlcnlDb25maWdSZXNwb25zZUJQWk5naXRodWIuY29tL2NvZmlkZS9jb2ZpZGUtYXBpLXNkay9nZW4vZ28vY29maWRlL2Nsb3VkX2Rpc2NvdmVyeV9jb25maWcvdjFhbHBoYTFiBnByb3RvMw", [file_cofide_cloud_discovery_config_v1alpha1_discovery, file_cofide_common_pagination_v1beta1_pagination, file_google_api_field_behavior]);
 
 /**
+ * CreateCloudDiscoveryConfigRequest is the request for CreateCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigRequest
  */
 export type CreateCloudDiscoveryConfigRequest = Message<"cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigRequest"> & {
   /**
+   * The cloud discovery config to create.
+   *
    * @generated from field: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig cloud_discovery_config = 1;
    */
   cloudDiscoveryConfig?: CloudDiscoveryConfig;
@@ -43,10 +47,14 @@ export const CreateCloudDiscoveryConfigRequestSchema: GenMessage<CreateCloudDisc
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 0);
 
 /**
+ * CreateCloudDiscoveryConfigResponse is the response from CreateCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigResponse
  */
 export type CreateCloudDiscoveryConfigResponse = Message<"cofide.cloud_discovery_config.v1alpha1.CreateCloudDiscoveryConfigResponse"> & {
   /**
+   * The created cloud discovery config.
+   *
    * @generated from field: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig cloud_discovery_config = 1;
    */
   cloudDiscoveryConfig?: CloudDiscoveryConfig;
@@ -60,10 +68,14 @@ export const CreateCloudDiscoveryConfigResponseSchema: GenMessage<CreateCloudDis
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 1);
 
 /**
+ * GetCloudDiscoveryConfigRequest is the request for GetCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigRequest
  */
 export type GetCloudDiscoveryConfigRequest = Message<"cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigRequest"> & {
   /**
+   * ID of the cloud discovery config to retrieve.
+   *
    * @generated from field: string cloud_discovery_config_id = 1;
    */
   cloudDiscoveryConfigId: string;
@@ -77,10 +89,14 @@ export const GetCloudDiscoveryConfigRequestSchema: GenMessage<GetCloudDiscoveryC
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 2);
 
 /**
+ * GetCloudDiscoveryConfigResponse is the response from GetCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigResponse
  */
 export type GetCloudDiscoveryConfigResponse = Message<"cofide.cloud_discovery_config.v1alpha1.GetCloudDiscoveryConfigResponse"> & {
   /**
+   * The requested cloud discovery config.
+   *
    * @generated from field: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig cloud_discovery_config = 1;
    */
   cloudDiscoveryConfig?: CloudDiscoveryConfig;
@@ -94,15 +110,21 @@ export const GetCloudDiscoveryConfigResponseSchema: GenMessage<GetCloudDiscovery
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 3);
 
 /**
+ * ListCloudDiscoveryConfigsRequest is the request for ListCloudDiscoveryConfigs.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest
  */
 export type ListCloudDiscoveryConfigsRequest = Message<"cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest"> & {
   /**
+   * Restricts which cloud discovery configs are returned.
+   *
    * @generated from field: cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.Filter filter = 1;
    */
   filter?: ListCloudDiscoveryConfigsRequest_Filter;
 
   /**
+   * The page of results to return.
+   *
    * @generated from field: cofide.common.pagination.v1beta1.PageRequest pagination = 2;
    */
   pagination?: PageRequest;
@@ -116,6 +138,9 @@ export const ListCloudDiscoveryConfigsRequestSchema: GenMessage<ListCloudDiscove
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 4);
 
 /**
+ * Filter restricts which cloud discovery configs are returned. It has no
+ * fields yet, so every cloud discovery config matches.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.Filter
  */
 export type ListCloudDiscoveryConfigsRequest_Filter = Message<"cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsRequest.Filter"> & {
@@ -129,15 +154,21 @@ export const ListCloudDiscoveryConfigsRequest_FilterSchema: GenMessage<ListCloud
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 4, 0);
 
 /**
+ * ListCloudDiscoveryConfigsResponse is the response from ListCloudDiscoveryConfigs.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsResponse
  */
 export type ListCloudDiscoveryConfigsResponse = Message<"cofide.cloud_discovery_config.v1alpha1.ListCloudDiscoveryConfigsResponse"> & {
   /**
+   * The cloud discovery configs in this page of results.
+   *
    * @generated from field: repeated cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig cloud_discovery_configs = 1;
    */
   cloudDiscoveryConfigs: CloudDiscoveryConfig[];
 
   /**
+   * How to retrieve the next page of results.
+   *
    * @generated from field: cofide.common.pagination.v1beta1.PageResponse pagination = 2;
    */
   pagination?: PageResponse;
@@ -151,10 +182,15 @@ export const ListCloudDiscoveryConfigsResponseSchema: GenMessage<ListCloudDiscov
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 5);
 
 /**
+ * UpdateCloudDiscoveryConfigRequest is the request for UpdateCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest
  */
 export type UpdateCloudDiscoveryConfigRequest = Message<"cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest"> & {
   /**
+   * The cloud discovery config to update, identified by its ID, with the
+   * new values of the fields to update.
+   *
    * @generated from field: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig cloud_discovery_config = 1;
    */
   cloudDiscoveryConfig?: CloudDiscoveryConfig;
@@ -167,12 +203,16 @@ export type UpdateCloudDiscoveryConfigRequest = Message<"cofide.cloud_discovery_
    */
   updateMask: {
     /**
+     * The fields to update in an AWS Lambda discovery config.
+     *
      * @generated from field: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSLambdaDiscoveryConfigUpdateMask aws_lambda_discovery_config_update_mask = 2;
      */
     value: UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask;
     case: "awsLambdaDiscoveryConfigUpdateMask";
   } | {
     /**
+     * The fields to update in an AWS AgentCore discovery config.
+     *
      * @generated from field: cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSAgentCoreDiscoveryConfigUpdateMask aws_agent_core_discovery_config_update_mask = 3;
      */
     value: UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask;
@@ -188,6 +228,9 @@ export const UpdateCloudDiscoveryConfigRequestSchema: GenMessage<UpdateCloudDisc
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 6);
 
 /**
+ * AWSLambdaDiscoveryConfigUpdateMask selects the fields of an AWS Lambda
+ * discovery config to update.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSLambdaDiscoveryConfigUpdateMask
  */
 export type UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask = Message<"cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSLambdaDiscoveryConfigUpdateMask"> & {
@@ -249,6 +292,9 @@ export const UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMas
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 6, 0);
 
 /**
+ * AWSAgentCoreDiscoveryConfigUpdateMask selects the fields of an AWS
+ * AgentCore discovery config to update.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSAgentCoreDiscoveryConfigUpdateMask
  */
 export type UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask = Message<"cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigRequest.AWSAgentCoreDiscoveryConfigUpdateMask"> & {
@@ -310,10 +356,14 @@ export const UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdate
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 6, 1);
 
 /**
+ * UpdateCloudDiscoveryConfigResponse is the response from UpdateCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigResponse
  */
 export type UpdateCloudDiscoveryConfigResponse = Message<"cofide.cloud_discovery_config.v1alpha1.UpdateCloudDiscoveryConfigResponse"> & {
   /**
+   * The updated cloud discovery config.
+   *
    * @generated from field: cofide.cloud_discovery_config.v1alpha1.CloudDiscoveryConfig cloud_discovery_config = 1;
    */
   cloudDiscoveryConfig?: CloudDiscoveryConfig;
@@ -327,10 +377,14 @@ export const UpdateCloudDiscoveryConfigResponseSchema: GenMessage<UpdateCloudDis
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 7);
 
 /**
+ * DeleteCloudDiscoveryConfigRequest is the request for DeleteCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigRequest
  */
 export type DeleteCloudDiscoveryConfigRequest = Message<"cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigRequest"> & {
   /**
+   * ID of the cloud discovery config to delete.
+   *
    * @generated from field: string cloud_discovery_config_id = 1;
    */
   cloudDiscoveryConfigId: string;
@@ -344,6 +398,8 @@ export const DeleteCloudDiscoveryConfigRequestSchema: GenMessage<DeleteCloudDisc
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_service, 8);
 
 /**
+ * DeleteCloudDiscoveryConfigResponse is the response from DeleteCloudDiscoveryConfig.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigResponse
  */
 export type DeleteCloudDiscoveryConfigResponse = Message<"cofide.cloud_discovery_config.v1alpha1.DeleteCloudDiscoveryConfigResponse"> & {

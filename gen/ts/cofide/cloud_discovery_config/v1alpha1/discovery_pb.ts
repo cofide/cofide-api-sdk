@@ -71,12 +71,16 @@ export type CloudDiscoveryConfig = Message<"cofide.cloud_discovery_config.v1alph
    */
   discoveryConfig: {
     /**
+     * Configuration for discovering AWS Lambda functions.
+     *
      * @generated from field: cofide.cloud_discovery_config.v1alpha1.AWSLambdaDiscoveryConfig aws_lambda_discovery_config = 6;
      */
     value: AWSLambdaDiscoveryConfig;
     case: "awsLambdaDiscoveryConfig";
   } | {
     /**
+     * Configuration for discovering Amazon Bedrock AgentCore runtimes.
+     *
      * @generated from field: cofide.cloud_discovery_config.v1alpha1.AWSAgentCoreDiscoveryConfig aws_agent_core_discovery_config = 7;
      */
     value: AWSAgentCoreDiscoveryConfig;
@@ -133,6 +137,8 @@ export const CloudDiscoveryConfigSchema: GenMessage<CloudDiscoveryConfig> = /*@_
  */
 export enum DiscoveryState {
   /**
+   * Discovery state is unspecified.
+   *
    * @generated from enum value: DISCOVERY_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,

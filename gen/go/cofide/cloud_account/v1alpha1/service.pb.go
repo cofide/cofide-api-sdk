@@ -31,9 +31,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// CreateCloudAccountRequest is the request for CreateCloudAccount.
 type CreateCloudAccountRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccount  *CloudAccount          `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The cloud account to create.
+	CloudAccount  *CloudAccount `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -75,9 +77,11 @@ func (x *CreateCloudAccountRequest) GetCloudAccount() *CloudAccount {
 	return nil
 }
 
+// CreateCloudAccountResponse is the response from CreateCloudAccount.
 type CreateCloudAccountResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccount  *CloudAccount          `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The created cloud account.
+	CloudAccount  *CloudAccount `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -119,9 +123,11 @@ func (x *CreateCloudAccountResponse) GetCloudAccount() *CloudAccount {
 	return nil
 }
 
+// GetCloudAccountRequest is the request for GetCloudAccount.
 type GetCloudAccountRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccountId string                 `protobuf:"bytes,1,opt,name=cloud_account_id,json=cloudAccountId,proto3" json:"cloud_account_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ID of the cloud account to retrieve.
+	CloudAccountId string `protobuf:"bytes,1,opt,name=cloud_account_id,json=cloudAccountId,proto3" json:"cloud_account_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -163,9 +169,11 @@ func (x *GetCloudAccountRequest) GetCloudAccountId() string {
 	return ""
 }
 
+// GetCloudAccountResponse is the response from GetCloudAccount.
 type GetCloudAccountResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccount  *CloudAccount          `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The requested cloud account.
+	CloudAccount  *CloudAccount `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -207,10 +215,13 @@ func (x *GetCloudAccountResponse) GetCloudAccount() *CloudAccount {
 	return nil
 }
 
+// ListCloudAccountsRequest is the request for ListCloudAccounts.
 type ListCloudAccountsRequest struct {
-	state         protoimpl.MessageState           `protogen:"open.v1"`
-	Filter        *ListCloudAccountsRequest_Filter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	Pagination    *v1beta1.PageRequest             `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Restricts which cloud accounts are returned.
+	Filter *ListCloudAccountsRequest_Filter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	// The page of results to return.
+	Pagination    *v1beta1.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -259,10 +270,13 @@ func (x *ListCloudAccountsRequest) GetPagination() *v1beta1.PageRequest {
 	return nil
 }
 
+// ListCloudAccountsResponse is the response from ListCloudAccounts.
 type ListCloudAccountsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccounts []*CloudAccount        `protobuf:"bytes,1,rep,name=cloud_accounts,json=cloudAccounts,proto3" json:"cloud_accounts,omitempty"`
-	Pagination    *v1beta1.PageResponse  `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The cloud accounts in this page of results.
+	CloudAccounts []*CloudAccount `protobuf:"bytes,1,rep,name=cloud_accounts,json=cloudAccounts,proto3" json:"cloud_accounts,omitempty"`
+	// How to retrieve the next page of results.
+	Pagination    *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -311,9 +325,12 @@ func (x *ListCloudAccountsResponse) GetPagination() *v1beta1.PageResponse {
 	return nil
 }
 
+// UpdateCloudAccountRequest is the request for UpdateCloudAccount.
 type UpdateCloudAccountRequest struct {
-	state        protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccount *CloudAccount          `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The cloud account to update, identified by its ID, with the new values
+	// of the fields to update.
+	CloudAccount *CloudAccount `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
 	// The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
 	// The update mask should align with the type being updated.
 	//
@@ -383,14 +400,17 @@ type isUpdateCloudAccountRequest_UpdateMask interface {
 }
 
 type UpdateCloudAccountRequest_AwsAccountUpdateMask struct {
+	// The fields to update in an AWS cloud account.
 	AwsAccountUpdateMask *UpdateCloudAccountRequest_AWSAccountUpdateMask `protobuf:"bytes,2,opt,name=aws_account_update_mask,json=awsAccountUpdateMask,proto3,oneof"`
 }
 
 func (*UpdateCloudAccountRequest_AwsAccountUpdateMask) isUpdateCloudAccountRequest_UpdateMask() {}
 
+// UpdateCloudAccountResponse is the response from UpdateCloudAccount.
 type UpdateCloudAccountResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccount  *CloudAccount          `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The updated cloud account.
+	CloudAccount  *CloudAccount `protobuf:"bytes,1,opt,name=cloud_account,json=cloudAccount,proto3" json:"cloud_account,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -432,9 +452,11 @@ func (x *UpdateCloudAccountResponse) GetCloudAccount() *CloudAccount {
 	return nil
 }
 
+// DeleteCloudAccountRequest is the request for DeleteCloudAccount.
 type DeleteCloudAccountRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	CloudAccountId string                 `protobuf:"bytes,1,opt,name=cloud_account_id,json=cloudAccountId,proto3" json:"cloud_account_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ID of the cloud account to delete.
+	CloudAccountId string `protobuf:"bytes,1,opt,name=cloud_account_id,json=cloudAccountId,proto3" json:"cloud_account_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -476,6 +498,7 @@ func (x *DeleteCloudAccountRequest) GetCloudAccountId() string {
 	return ""
 }
 
+// DeleteCloudAccountResponse is the response from DeleteCloudAccount.
 type DeleteCloudAccountResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -512,6 +535,8 @@ func (*DeleteCloudAccountResponse) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{9}
 }
 
+// Filter restricts which cloud accounts are returned. It has no fields
+// yet, so every cloud account matches.
 type ListCloudAccountsRequest_Filter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -548,6 +573,8 @@ func (*ListCloudAccountsRequest_Filter) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_account_v1alpha1_service_proto_rawDescGZIP(), []int{4, 0}
 }
 
+// AWSAccountUpdateMask selects the fields of an AWS cloud account to
+// update.
 type UpdateCloudAccountRequest_AWSAccountUpdateMask struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Set to true to update the name field.

@@ -30,6 +30,7 @@ message CloudAccount {
   string name = 4 [(google.api.field_behavior) = REQUIRED];
   // Cloud provider-specific configuration.
   oneof provider {
+    // Configuration for an AWS account.
     AWSAccount aws = 5;
   }
   // Time of resource creation.

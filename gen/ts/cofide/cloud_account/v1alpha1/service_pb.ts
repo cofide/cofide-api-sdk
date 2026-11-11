@@ -26,10 +26,14 @@ export const file_cofide_cloud_account_v1alpha1_service: GenFile = /*@__PURE__*/
   fileDesc("Citjb2ZpZGUvY2xvdWRfYWNjb3VudC92MWFscGhhMS9zZXJ2aWNlLnByb3RvEh1jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMSJkChlDcmVhdGVDbG91ZEFjY291bnRSZXF1ZXN0EkcKDWNsb3VkX2FjY291bnQYASABKAsyKy5jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnRCA+BBAiJgChpDcmVhdGVDbG91ZEFjY291bnRSZXNwb25zZRJCCg1jbG91ZF9hY2NvdW50GAEgASgLMisuY29maWRlLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRBY2NvdW50IjcKFkdldENsb3VkQWNjb3VudFJlcXVlc3QSHQoQY2xvdWRfYWNjb3VudF9pZBgBIAEoCUID4EECIl0KF0dldENsb3VkQWNjb3VudFJlc3BvbnNlEkIKDWNsb3VkX2FjY291bnQYASABKAsyKy5jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnQiwQEKGExpc3RDbG91ZEFjY291bnRzUmVxdWVzdBJTCgZmaWx0ZXIYASABKAsyPi5jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMS5MaXN0Q2xvdWRBY2NvdW50c1JlcXVlc3QuRmlsdGVyQgPgQQESRgoKcGFnaW5hdGlvbhgCIAEoCzItLmNvZmlkZS5jb21tb24ucGFnaW5hdGlvbi52MWJldGExLlBhZ2VSZXF1ZXN0QgPgQQEaCAoGRmlsdGVyIqQBChlMaXN0Q2xvdWRBY2NvdW50c1Jlc3BvbnNlEkMKDmNsb3VkX2FjY291bnRzGAEgAygLMisuY29maWRlLmNsb3VkX2FjY291bnQudjFhbHBoYTEuQ2xvdWRBY2NvdW50EkIKCnBhZ2luYXRpb24YAiABKAsyLi5jb2ZpZGUuY29tbW9uLnBhZ2luYXRpb24udjFiZXRhMS5QYWdlUmVzcG9uc2UirQIKGVVwZGF0ZUNsb3VkQWNjb3VudFJlcXVlc3QSRwoNY2xvdWRfYWNjb3VudBgBIAEoCzIrLmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkNsb3VkQWNjb3VudEID4EECEnAKF2F3c19hY2NvdW50X3VwZGF0ZV9tYXNrGAIgASgLMk0uY29maWRlLmNsb3VkX2FjY291bnQudjFhbHBoYTEuVXBkYXRlQ2xvdWRBY2NvdW50UmVxdWVzdC5BV1NBY2NvdW50VXBkYXRlTWFza0gAGkYKFEFXU0FjY291bnRVcGRhdGVNYXNrEhEKBG5hbWUYASABKAhCA+BBARIbCg5hd3NfYWNjb3VudF9pZBgCIAEoCEID4EEBQg0KC3VwZGF0ZV9tYXNrImAKGlVwZGF0ZUNsb3VkQWNjb3VudFJlc3BvbnNlEkIKDWNsb3VkX2FjY291bnQYASABKAsyKy5jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMS5DbG91ZEFjY291bnQiOgoZRGVsZXRlQ2xvdWRBY2NvdW50UmVxdWVzdBIdChBjbG91ZF9hY2NvdW50X2lkGAEgASgJQgPgQQIiHAoaRGVsZXRlQ2xvdWRBY2NvdW50UmVzcG9uc2UyxQUKE0Nsb3VkQWNjb3VudFNlcnZpY2USiQEKEkNyZWF0ZUNsb3VkQWNjb3VudBI4LmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkNyZWF0ZUNsb3VkQWNjb3VudFJlcXVlc3QaOS5jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMS5DcmVhdGVDbG91ZEFjY291bnRSZXNwb25zZRKAAQoPR2V0Q2xvdWRBY2NvdW50EjUuY29maWRlLmNsb3VkX2FjY291bnQudjFhbHBoYTEuR2V0Q2xvdWRBY2NvdW50UmVxdWVzdBo2LmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkdldENsb3VkQWNjb3VudFJlc3BvbnNlEoYBChFMaXN0Q2xvdWRBY2NvdW50cxI3LmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxpc3RDbG91ZEFjY291bnRzUmVxdWVzdBo4LmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkxpc3RDbG91ZEFjY291bnRzUmVzcG9uc2USiQEKElVwZGF0ZUNsb3VkQWNjb3VudBI4LmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLlVwZGF0ZUNsb3VkQWNjb3VudFJlcXVlc3QaOS5jb2ZpZGUuY2xvdWRfYWNjb3VudC52MWFscGhhMS5VcGRhdGVDbG91ZEFjY291bnRSZXNwb25zZRKJAQoSRGVsZXRlQ2xvdWRBY2NvdW50EjguY29maWRlLmNsb3VkX2FjY291bnQudjFhbHBoYTEuRGVsZXRlQ2xvdWRBY2NvdW50UmVxdWVzdBo5LmNvZmlkZS5jbG91ZF9hY2NvdW50LnYxYWxwaGExLkRlbGV0ZUNsb3VkQWNjb3VudFJlc3BvbnNlQkdaRWdpdGh1Yi5jb20vY29maWRlL2NvZmlkZS1hcGktc2RrL2dlbi9nby9jb2ZpZGUvY2xvdWRfYWNjb3VudC92MWFscGhhMWIGcHJvdG8z", [file_cofide_cloud_account_v1alpha1_cloud_account, file_cofide_common_pagination_v1beta1_pagination, file_google_api_field_behavior]);
 
 /**
+ * CreateCloudAccountRequest is the request for CreateCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.CreateCloudAccountRequest
  */
 export type CreateCloudAccountRequest = Message<"cofide.cloud_account.v1alpha1.CreateCloudAccountRequest"> & {
   /**
+   * The cloud account to create.
+   *
    * @generated from field: cofide.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
    */
   cloudAccount?: CloudAccount;
@@ -43,10 +47,14 @@ export const CreateCloudAccountRequestSchema: GenMessage<CreateCloudAccountReque
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 0);
 
 /**
+ * CreateCloudAccountResponse is the response from CreateCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.CreateCloudAccountResponse
  */
 export type CreateCloudAccountResponse = Message<"cofide.cloud_account.v1alpha1.CreateCloudAccountResponse"> & {
   /**
+   * The created cloud account.
+   *
    * @generated from field: cofide.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
    */
   cloudAccount?: CloudAccount;
@@ -60,10 +68,14 @@ export const CreateCloudAccountResponseSchema: GenMessage<CreateCloudAccountResp
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 1);
 
 /**
+ * GetCloudAccountRequest is the request for GetCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.GetCloudAccountRequest
  */
 export type GetCloudAccountRequest = Message<"cofide.cloud_account.v1alpha1.GetCloudAccountRequest"> & {
   /**
+   * ID of the cloud account to retrieve.
+   *
    * @generated from field: string cloud_account_id = 1;
    */
   cloudAccountId: string;
@@ -77,10 +89,14 @@ export const GetCloudAccountRequestSchema: GenMessage<GetCloudAccountRequest> = 
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 2);
 
 /**
+ * GetCloudAccountResponse is the response from GetCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.GetCloudAccountResponse
  */
 export type GetCloudAccountResponse = Message<"cofide.cloud_account.v1alpha1.GetCloudAccountResponse"> & {
   /**
+   * The requested cloud account.
+   *
    * @generated from field: cofide.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
    */
   cloudAccount?: CloudAccount;
@@ -94,15 +110,21 @@ export const GetCloudAccountResponseSchema: GenMessage<GetCloudAccountResponse> 
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 3);
 
 /**
+ * ListCloudAccountsRequest is the request for ListCloudAccounts.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.ListCloudAccountsRequest
  */
 export type ListCloudAccountsRequest = Message<"cofide.cloud_account.v1alpha1.ListCloudAccountsRequest"> & {
   /**
+   * Restricts which cloud accounts are returned.
+   *
    * @generated from field: cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.Filter filter = 1;
    */
   filter?: ListCloudAccountsRequest_Filter;
 
   /**
+   * The page of results to return.
+   *
    * @generated from field: cofide.common.pagination.v1beta1.PageRequest pagination = 2;
    */
   pagination?: PageRequest;
@@ -116,6 +138,9 @@ export const ListCloudAccountsRequestSchema: GenMessage<ListCloudAccountsRequest
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 4);
 
 /**
+ * Filter restricts which cloud accounts are returned. It has no fields
+ * yet, so every cloud account matches.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.Filter
  */
 export type ListCloudAccountsRequest_Filter = Message<"cofide.cloud_account.v1alpha1.ListCloudAccountsRequest.Filter"> & {
@@ -129,15 +154,21 @@ export const ListCloudAccountsRequest_FilterSchema: GenMessage<ListCloudAccounts
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 4, 0);
 
 /**
+ * ListCloudAccountsResponse is the response from ListCloudAccounts.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.ListCloudAccountsResponse
  */
 export type ListCloudAccountsResponse = Message<"cofide.cloud_account.v1alpha1.ListCloudAccountsResponse"> & {
   /**
+   * The cloud accounts in this page of results.
+   *
    * @generated from field: repeated cofide.cloud_account.v1alpha1.CloudAccount cloud_accounts = 1;
    */
   cloudAccounts: CloudAccount[];
 
   /**
+   * How to retrieve the next page of results.
+   *
    * @generated from field: cofide.common.pagination.v1beta1.PageResponse pagination = 2;
    */
   pagination?: PageResponse;
@@ -151,10 +182,15 @@ export const ListCloudAccountsResponseSchema: GenMessage<ListCloudAccountsRespon
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 5);
 
 /**
+ * UpdateCloudAccountRequest is the request for UpdateCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest
  */
 export type UpdateCloudAccountRequest = Message<"cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest"> & {
   /**
+   * The cloud account to update, identified by its ID, with the new values
+   * of the fields to update.
+   *
    * @generated from field: cofide.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
    */
   cloudAccount?: CloudAccount;
@@ -167,6 +203,8 @@ export type UpdateCloudAccountRequest = Message<"cofide.cloud_account.v1alpha1.U
    */
   updateMask: {
     /**
+     * The fields to update in an AWS cloud account.
+     *
      * @generated from field: cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask aws_account_update_mask = 2;
      */
     value: UpdateCloudAccountRequest_AWSAccountUpdateMask;
@@ -182,6 +220,9 @@ export const UpdateCloudAccountRequestSchema: GenMessage<UpdateCloudAccountReque
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 6);
 
 /**
+ * AWSAccountUpdateMask selects the fields of an AWS cloud account to
+ * update.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask
  */
 export type UpdateCloudAccountRequest_AWSAccountUpdateMask = Message<"cofide.cloud_account.v1alpha1.UpdateCloudAccountRequest.AWSAccountUpdateMask"> & {
@@ -208,10 +249,14 @@ export const UpdateCloudAccountRequest_AWSAccountUpdateMaskSchema: GenMessage<Up
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 6, 0);
 
 /**
+ * UpdateCloudAccountResponse is the response from UpdateCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.UpdateCloudAccountResponse
  */
 export type UpdateCloudAccountResponse = Message<"cofide.cloud_account.v1alpha1.UpdateCloudAccountResponse"> & {
   /**
+   * The updated cloud account.
+   *
    * @generated from field: cofide.cloud_account.v1alpha1.CloudAccount cloud_account = 1;
    */
   cloudAccount?: CloudAccount;
@@ -225,10 +270,14 @@ export const UpdateCloudAccountResponseSchema: GenMessage<UpdateCloudAccountResp
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 7);
 
 /**
+ * DeleteCloudAccountRequest is the request for DeleteCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.DeleteCloudAccountRequest
  */
 export type DeleteCloudAccountRequest = Message<"cofide.cloud_account.v1alpha1.DeleteCloudAccountRequest"> & {
   /**
+   * ID of the cloud account to delete.
+   *
    * @generated from field: string cloud_account_id = 1;
    */
   cloudAccountId: string;
@@ -242,6 +291,8 @@ export const DeleteCloudAccountRequestSchema: GenMessage<DeleteCloudAccountReque
   messageDesc(file_cofide_cloud_account_v1alpha1_service, 8);
 
 /**
+ * DeleteCloudAccountResponse is the response from DeleteCloudAccount.
+ *
  * @generated from message cofide.cloud_account.v1alpha1.DeleteCloudAccountResponse
  */
 export type DeleteCloudAccountResponse = Message<"cofide.cloud_account.v1alpha1.DeleteCloudAccountResponse"> & {

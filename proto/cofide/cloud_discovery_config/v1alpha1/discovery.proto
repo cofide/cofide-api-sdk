@@ -35,7 +35,9 @@ message CloudDiscoveryConfig {
   google.protobuf.Duration discovery_interval = 5 [(google.api.field_behavior) = OPTIONAL];
   // Cloud provider service-specific configuration.
   oneof discovery_config {
+    // Configuration for discovering AWS Lambda functions.
     AWSLambdaDiscoveryConfig aws_lambda_discovery_config = 6;
+    // Configuration for discovering Amazon Bedrock AgentCore runtimes.
     AWSAgentCoreDiscoveryConfig aws_agent_core_discovery_config = 7;
   }
   // Current discovery state.
@@ -52,6 +54,7 @@ message CloudDiscoveryConfig {
 
 // DiscoveryState represents the current state of cloud discovery.
 enum DiscoveryState {
+  // Discovery state is unspecified.
   DISCOVERY_STATE_UNSPECIFIED = 0;
   // Discovery is active
   DISCOVERY_STATE_DISCOVERING = 1;

@@ -67,7 +67,3 @@
     - core::0191::java-multiple-files
     - core::0191::java-outer-classname
     - core::0191::java-package
-
-    # Request and response messages, and fields named after what they hold
-    # such as federation_id, don't need a comment to explain them.
-    - core::0192::has-comments

@@ -31,9 +31,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// CreateCloudDiscoveryConfigRequest is the request for CreateCloudDiscoveryConfig.
 type CreateCloudDiscoveryConfigRequest struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	CloudDiscoveryConfig *CloudDiscoveryConfig  `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The cloud discovery config to create.
+	CloudDiscoveryConfig *CloudDiscoveryConfig `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -75,9 +77,11 @@ func (x *CreateCloudDiscoveryConfigRequest) GetCloudDiscoveryConfig() *CloudDisc
 	return nil
 }
 
+// CreateCloudDiscoveryConfigResponse is the response from CreateCloudDiscoveryConfig.
 type CreateCloudDiscoveryConfigResponse struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	CloudDiscoveryConfig *CloudDiscoveryConfig  `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The created cloud discovery config.
+	CloudDiscoveryConfig *CloudDiscoveryConfig `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -119,9 +123,11 @@ func (x *CreateCloudDiscoveryConfigResponse) GetCloudDiscoveryConfig() *CloudDis
 	return nil
 }
 
+// GetCloudDiscoveryConfigRequest is the request for GetCloudDiscoveryConfig.
 type GetCloudDiscoveryConfigRequest struct {
-	state                  protoimpl.MessageState `protogen:"open.v1"`
-	CloudDiscoveryConfigId string                 `protobuf:"bytes,1,opt,name=cloud_discovery_config_id,json=cloudDiscoveryConfigId,proto3" json:"cloud_discovery_config_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ID of the cloud discovery config to retrieve.
+	CloudDiscoveryConfigId string `protobuf:"bytes,1,opt,name=cloud_discovery_config_id,json=cloudDiscoveryConfigId,proto3" json:"cloud_discovery_config_id,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -163,9 +169,11 @@ func (x *GetCloudDiscoveryConfigRequest) GetCloudDiscoveryConfigId() string {
 	return ""
 }
 
+// GetCloudDiscoveryConfigResponse is the response from GetCloudDiscoveryConfig.
 type GetCloudDiscoveryConfigResponse struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	CloudDiscoveryConfig *CloudDiscoveryConfig  `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The requested cloud discovery config.
+	CloudDiscoveryConfig *CloudDiscoveryConfig `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -207,10 +215,13 @@ func (x *GetCloudDiscoveryConfigResponse) GetCloudDiscoveryConfig() *CloudDiscov
 	return nil
 }
 
+// ListCloudDiscoveryConfigsRequest is the request for ListCloudDiscoveryConfigs.
 type ListCloudDiscoveryConfigsRequest struct {
-	state         protoimpl.MessageState                   `protogen:"open.v1"`
-	Filter        *ListCloudDiscoveryConfigsRequest_Filter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	Pagination    *v1beta1.PageRequest                     `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Restricts which cloud discovery configs are returned.
+	Filter *ListCloudDiscoveryConfigsRequest_Filter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	// The page of results to return.
+	Pagination    *v1beta1.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -259,12 +270,15 @@ func (x *ListCloudDiscoveryConfigsRequest) GetPagination() *v1beta1.PageRequest 
 	return nil
 }
 
+// ListCloudDiscoveryConfigsResponse is the response from ListCloudDiscoveryConfigs.
 type ListCloudDiscoveryConfigsResponse struct {
-	state                 protoimpl.MessageState  `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The cloud discovery configs in this page of results.
 	CloudDiscoveryConfigs []*CloudDiscoveryConfig `protobuf:"bytes,1,rep,name=cloud_discovery_configs,json=cloudDiscoveryConfigs,proto3" json:"cloud_discovery_configs,omitempty"`
-	Pagination            *v1beta1.PageResponse   `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	// How to retrieve the next page of results.
+	Pagination    *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListCloudDiscoveryConfigsResponse) Reset() {
@@ -311,9 +325,12 @@ func (x *ListCloudDiscoveryConfigsResponse) GetPagination() *v1beta1.PageRespons
 	return nil
 }
 
+// UpdateCloudDiscoveryConfigRequest is the request for UpdateCloudDiscoveryConfig.
 type UpdateCloudDiscoveryConfigRequest struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	CloudDiscoveryConfig *CloudDiscoveryConfig  `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The cloud discovery config to update, identified by its ID, with the
+	// new values of the fields to update.
+	CloudDiscoveryConfig *CloudDiscoveryConfig `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
 	// The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
 	// The update mask should align with the type being updated.
 	//
@@ -393,10 +410,12 @@ type isUpdateCloudDiscoveryConfigRequest_UpdateMask interface {
 }
 
 type UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask struct {
+	// The fields to update in an AWS Lambda discovery config.
 	AwsLambdaDiscoveryConfigUpdateMask *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask `protobuf:"bytes,2,opt,name=aws_lambda_discovery_config_update_mask,json=awsLambdaDiscoveryConfigUpdateMask,proto3,oneof"`
 }
 
 type UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask struct {
+	// The fields to update in an AWS AgentCore discovery config.
 	AwsAgentCoreDiscoveryConfigUpdateMask *UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask `protobuf:"bytes,3,opt,name=aws_agent_core_discovery_config_update_mask,json=awsAgentCoreDiscoveryConfigUpdateMask,proto3,oneof"`
 }
 
@@ -406,9 +425,11 @@ func (*UpdateCloudDiscoveryConfigRequest_AwsLambdaDiscoveryConfigUpdateMask) isU
 func (*UpdateCloudDiscoveryConfigRequest_AwsAgentCoreDiscoveryConfigUpdateMask) isUpdateCloudDiscoveryConfigRequest_UpdateMask() {
 }
 
+// UpdateCloudDiscoveryConfigResponse is the response from UpdateCloudDiscoveryConfig.
 type UpdateCloudDiscoveryConfigResponse struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	CloudDiscoveryConfig *CloudDiscoveryConfig  `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The updated cloud discovery config.
+	CloudDiscoveryConfig *CloudDiscoveryConfig `protobuf:"bytes,1,opt,name=cloud_discovery_config,json=cloudDiscoveryConfig,proto3" json:"cloud_discovery_config,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -450,9 +471,11 @@ func (x *UpdateCloudDiscoveryConfigResponse) GetCloudDiscoveryConfig() *CloudDis
 	return nil
 }
 
+// DeleteCloudDiscoveryConfigRequest is the request for DeleteCloudDiscoveryConfig.
 type DeleteCloudDiscoveryConfigRequest struct {
-	state                  protoimpl.MessageState `protogen:"open.v1"`
-	CloudDiscoveryConfigId string                 `protobuf:"bytes,1,opt,name=cloud_discovery_config_id,json=cloudDiscoveryConfigId,proto3" json:"cloud_discovery_config_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ID of the cloud discovery config to delete.
+	CloudDiscoveryConfigId string `protobuf:"bytes,1,opt,name=cloud_discovery_config_id,json=cloudDiscoveryConfigId,proto3" json:"cloud_discovery_config_id,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -494,6 +517,7 @@ func (x *DeleteCloudDiscoveryConfigRequest) GetCloudDiscoveryConfigId() string {
 	return ""
 }
 
+// DeleteCloudDiscoveryConfigResponse is the response from DeleteCloudDiscoveryConfig.
 type DeleteCloudDiscoveryConfigResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -530,6 +554,8 @@ func (*DeleteCloudDiscoveryConfigResponse) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{9}
 }
 
+// Filter restricts which cloud discovery configs are returned. It has no
+// fields yet, so every cloud discovery config matches.
 type ListCloudDiscoveryConfigsRequest_Filter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -566,6 +592,8 @@ func (*ListCloudDiscoveryConfigsRequest_Filter) Descriptor() ([]byte, []int) {
 	return file_cofide_cloud_discovery_config_v1alpha1_service_proto_rawDescGZIP(), []int{4, 0}
 }
 
+// AWSLambdaDiscoveryConfigUpdateMask selects the fields of an AWS Lambda
+// discovery config to update.
 type UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Set to true to update the name field.
@@ -665,6 +693,8 @@ func (x *UpdateCloudDiscoveryConfigRequest_AWSLambdaDiscoveryConfigUpdateMask) G
 	return false
 }
 
+// AWSAgentCoreDiscoveryConfigUpdateMask selects the fields of an AWS
+// AgentCore discovery config to update.
 type UpdateCloudDiscoveryConfigRequest_AWSAgentCoreDiscoveryConfigUpdateMask struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Set to true to update the name field.
