@@ -19,7 +19,6 @@
     - core::0135::request-name-required
     - core::0135::request-required-fields
     - core::0135::request-unknown-fields
-    - core::0203::resource-identifier-only
 
     # The APIs are served over ConnectRPC and gRPC, without HTTP/JSON
     # transcoding, so methods have no google.api.http annotations.
