@@ -57,6 +57,8 @@ export type CloudAccount = Message<"cofide.cloud_account.v1alpha1.CloudAccount">
    */
   provider: {
     /**
+     * Configuration for an AWS account.
+     *
      * @generated from field: cofide.cloud_account.v1alpha1.AWSAccount aws = 5;
      */
     value: AWSAccount;

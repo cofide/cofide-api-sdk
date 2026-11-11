@@ -34,6 +34,7 @@ const (
 type DiscoveryState int32
 
 const (
+	// Discovery state is unspecified.
 	DiscoveryState_DISCOVERY_STATE_UNSPECIFIED DiscoveryState = 0
 	// Discovery is active
 	DiscoveryState_DISCOVERY_STATE_DISCOVERING DiscoveryState = 1
@@ -246,10 +247,12 @@ type isCloudDiscoveryConfig_DiscoveryConfig interface {
 }
 
 type CloudDiscoveryConfig_AwsLambdaDiscoveryConfig struct {
+	// Configuration for discovering AWS Lambda functions.
 	AwsLambdaDiscoveryConfig *AWSLambdaDiscoveryConfig `protobuf:"bytes,6,opt,name=aws_lambda_discovery_config,json=awsLambdaDiscoveryConfig,proto3,oneof"`
 }
 
 type CloudDiscoveryConfig_AwsAgentCoreDiscoveryConfig struct {
+	// Configuration for discovering Amazon Bedrock AgentCore runtimes.
 	AwsAgentCoreDiscoveryConfig *AWSAgentCoreDiscoveryConfig `protobuf:"bytes,7,opt,name=aws_agent_core_discovery_config,json=awsAgentCoreDiscoveryConfig,proto3,oneof"`
 }
 

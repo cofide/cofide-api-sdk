@@ -126,6 +126,8 @@ export const AWSAssumeRoleConfigSchema: GenMessage<AWSAssumeRoleConfig> = /*@__P
   messageDesc(file_cofide_cloud_discovery_config_v1alpha1_aws_discovery, 2);
 
 /**
+ * Role is an IAM role to assume, as one step in the chain.
+ *
  * @generated from message cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role
  */
 export type AWSAssumeRoleConfig_Role = Message<"cofide.cloud_discovery_config.v1alpha1.AWSAssumeRoleConfig.Role"> & {

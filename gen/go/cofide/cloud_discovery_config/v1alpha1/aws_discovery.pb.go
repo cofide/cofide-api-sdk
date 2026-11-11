@@ -217,6 +217,7 @@ func (x *AWSAssumeRoleConfig) GetRoles() []*AWSAssumeRoleConfig_Role {
 	return nil
 }
 
+// Role is an IAM role to assume, as one step in the chain.
 type AWSAssumeRoleConfig_Role struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// ARN of the IAM role to assume.

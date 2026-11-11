@@ -39,6 +39,7 @@ message AWSAgentCoreDiscoveryConfig {
 // roles is empty then those credentials are used directly rather than used to assume
 // another role.
 message AWSAssumeRoleConfig {
+  // Role is an IAM role to assume, as one step in the chain.
   message Role {
     // ARN of the IAM role to assume.
     string iam_role_arn = 1 [(google.api.field_behavior) = REQUIRED];

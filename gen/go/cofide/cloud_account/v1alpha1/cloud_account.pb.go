@@ -138,6 +138,7 @@ type isCloudAccount_Provider interface {
 }
 
 type CloudAccount_Aws struct {
+	// Configuration for an AWS account.
 	Aws *AWSAccount `protobuf:"bytes,5,opt,name=aws,proto3,oneof"`
 }
 

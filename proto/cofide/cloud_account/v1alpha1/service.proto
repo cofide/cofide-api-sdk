@@ -30,34 +30,53 @@ service CloudAccountService {
   rpc DeleteCloudAccount(DeleteCloudAccountRequest) returns (DeleteCloudAccountResponse);
 }
 
+// CreateCloudAccountRequest is the request for CreateCloudAccount.
 message CreateCloudAccountRequest {
+  // The cloud account to create.
   CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
+// CreateCloudAccountResponse is the response from CreateCloudAccount.
 message CreateCloudAccountResponse {
+  // The created cloud account.
   CloudAccount cloud_account = 1;
 }
 
+// GetCloudAccountRequest is the request for GetCloudAccount.
 message GetCloudAccountRequest {
+  // ID of the cloud account to retrieve.
   string cloud_account_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
+// GetCloudAccountResponse is the response from GetCloudAccount.
 message GetCloudAccountResponse {
+  // The requested cloud account.
   CloudAccount cloud_account = 1;
 }
 
+// ListCloudAccountsRequest is the request for ListCloudAccounts.
 message ListCloudAccountsRequest {
+  // Filter restricts which cloud accounts are returned. It has no fields
+  // yet, so every cloud account matches.
   message Filter {}
+  // Restricts which cloud accounts are returned.
   Filter filter = 1 [(google.api.field_behavior) = OPTIONAL];
+  // The page of results to return.
   cofide.common.pagination.v1beta1.PageRequest pagination = 2 [(google.api.field_behavior) = OPTIONAL];
 }
 
+// ListCloudAccountsResponse is the response from ListCloudAccounts.
 message ListCloudAccountsResponse {
+  // The cloud accounts in this page of results.
   repeated CloudAccount cloud_accounts = 1;
+  // How to retrieve the next page of results.
   cofide.common.pagination.v1beta1.PageResponse pagination = 2;
 }
 
+// UpdateCloudAccountRequest is the request for UpdateCloudAccount.
 message UpdateCloudAccountRequest {
+  // AWSAccountUpdateMask selects the fields of an AWS cloud account to
+  // update.
   message AWSAccountUpdateMask {
     // Set to true to update the name field.
     bool name = 1 [(google.api.field_behavior) = OPTIONAL];
@@ -65,20 +84,28 @@ message UpdateCloudAccountRequest {
     bool aws_account_id = 2 [(google.api.field_behavior) = OPTIONAL];
   }
 
+  // The cloud account to update, identified by its ID, with the new values
+  // of the fields to update.
   CloudAccount cloud_account = 1 [(google.api.field_behavior) = REQUIRED];
   // The list of fields to be updated. If not provided a full replacement of all updatable fields will be made.
   // The update mask should align with the type being updated.
   oneof update_mask {
+    // The fields to update in an AWS cloud account.
     AWSAccountUpdateMask aws_account_update_mask = 2;
   }
 }
 
+// UpdateCloudAccountResponse is the response from UpdateCloudAccount.
 message UpdateCloudAccountResponse {
+  // The updated cloud account.
   CloudAccount cloud_account = 1;
 }
 
+// DeleteCloudAccountRequest is the request for DeleteCloudAccount.
 message DeleteCloudAccountRequest {
+  // ID of the cloud account to delete.
   string cloud_account_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
+// DeleteCloudAccountResponse is the response from DeleteCloudAccount.
 message DeleteCloudAccountResponse {}
