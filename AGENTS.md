@@ -66,7 +66,4 @@ When adding a new service, the typical flow is:
 
 ## Code Generation Prerequisites
 
-Required tools for `just proto-gen`:
-- `go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.5`
-- `go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest`
-- [Buf CLI](https://buf.build/docs/installation)
+`just proto-gen` needs Go and the [Buf CLI](https://buf.build/docs/installation). The Go plugins are pinned as tools in `tools/go.mod` and run with `go tool`, so they don't need installing; bump them there with `go -C tools get -tool <module>@<version>`. The TypeScript plugin is a remote plugin, pinned in `buf.gen.yaml`.

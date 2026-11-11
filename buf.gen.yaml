@@ -1,19 +1,25 @@
 version: v2
+# Delete each plugin's output directory before generating, so that code for
+# protos that were removed or renamed doesn't linger.
+clean: true
 plugins:
+  # The Go plugins are pinned as tools in tools/go.mod, so that everyone
+  # generates the same code, including the proto-gen check in CI.
+
   # Go
-  - local: protoc-gen-go
+  - local: ["go", "-C", "tools", "tool", "protoc-gen-go"]
     out: gen/go/
     opt:
       - paths=source_relative
 
   # Go ConnectRPC
-  - local: protoc-gen-connect-go
+  - local: ["go", "-C", "tools", "tool", "protoc-gen-connect-go"]
     out: gen/go
     opt:
       - paths=source_relative
 
   # Go gRPC
-  - remote: buf.build/grpc/go:v1.5.1
+  - local: ["go", "-C", "tools", "tool", "protoc-gen-go-grpc"]
     out: gen/go/
     opt:
       - paths=source_relative
