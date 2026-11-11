@@ -57,6 +57,33 @@ jobs:
               + ",title=\(.rule_id | prop)"
               + "::\(.message + "\n\n" + .rule_doc_uri | data)"'
 
+  proto-gen:
+    name: proto-gen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Install just
+        uses: taiki-e/install-action@just
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: tools/go.mod
+          cache-dependency-path: tools/go.sum
+      - name: Setup buf
+        uses: bufbuild/buf-action@v1
+        with:
+          setup_only: true
+      - name: Generate code
+        run: just proto-gen
+      - name: Check generated code is up to date
+        run: |
+          if [ -n "$(git status --porcelain gen)" ]; then
+            git status --short gen
+            echo "::error::Generated code is out of date. Run 'just proto-gen' and commit the result."
+            exit 1
+          fi
+
   test:
     name: test
     runs-on: ubuntu-latest

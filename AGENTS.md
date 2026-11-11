@@ -67,3 +67,5 @@ When adding a new service, the typical flow is:
 ## Code Generation Prerequisites
 
 `just proto-gen` needs Go and the [Buf CLI](https://buf.build/docs/installation). The Go plugins are pinned as tools in `tools/go.mod` and run with `go tool`, so they don't need installing; bump them there with `go -C tools get -tool <module>@<version>`. The TypeScript plugin is a remote plugin, pinned in `buf.gen.yaml`.
+
+CI regenerates the code from scratch and fails if `gen/` differs from what is committed, so commit regenerated code alongside proto changes.
