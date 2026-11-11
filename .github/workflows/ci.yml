@@ -36,7 +36,26 @@ jobs:
         with:
           setup_only: true
       - name: Run api-linter
+        id: api-lint
         run: just api-lint
+      # api-linter's own github output format reports paths relative to
+      # proto/, 0-based line numbers and wrong end lines, so annotate the PR
+      # from its JSON output instead. Lint failures already fail the previous
+      # step, so this step doesn't fail on them too.
+      - name: Annotate api-linter problems
+        if: failure() && steps.api-lint.outcome == 'failure'
+        run: |
+          { just api-lint . --output-format=json || true; } | jq -r '
+            def data: gsub("%"; "%25") | gsub("\r"; "%0D") | gsub("\n"; "%0A");
+            def prop: data | gsub(":"; "%3A") | gsub(","; "%2C");
+            .[] | .file_path as $file | .problems[] |
+            "::error file=proto/\($file | prop)"
+              + ",line=\(.location.start_position.line_number)"
+              + ",col=\(.location.start_position.column_number)"
+              + ",endLine=\(.location.end_position.line_number)"
+              + ",endColumn=\(.location.end_position.column_number)"
+              + ",title=\(.rule_id | prop)"
+              + "::\(.message + "\n\n" + .rule_doc_uri | data)"'
 
   test:
     name: test
