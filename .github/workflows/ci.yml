@@ -18,6 +18,25 @@ jobs:
         with:
           args: --timeout=5m
 
+  # tools/ is a separate Go module, which golangci-lint leaves out, so it's
+  # linted on its own.
+  lint-tools:
+    name: lint-tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: tools/go.mod
+          cache-dependency-path: tools/go.sum
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          working-directory: tools
+          args: --timeout=5m
+
   api-lint:
     name: api-lint
     runs-on: ubuntu-latest

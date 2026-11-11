@@ -50,7 +50,10 @@ test *args:
 
 test-race: (test "--" "-race")
 
+# tools/ is a separate module, which golangci-lint leaves out, so it's linted
+# on its own. The args are for the SDK's lint, so they aren't passed on.
 go-lint *args:
     golangci-lint run --show-stats {{args}}
+    cd tools && golangci-lint run --show-stats
 
 lint *args: buf-lint api-lint (go-lint args)
