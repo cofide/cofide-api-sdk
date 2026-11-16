@@ -122,14 +122,13 @@ func (c *fakeCloudAccountClient) UpdateCloudAccount(ctx context.Context, cloudAc
 	}
 
 	// Build the request as the real client does, so that the mask is interpreted as the server would see it.
-	var updateName, updateAWSAccountID bool
+	var updateName bool
 	switch mask := cloudaccountv1alpha1.NewUpdateRequest(cloudAccount, updateMask).GetUpdateMask().(type) {
 	case nil:
 		// No mask is a full replacement.
-		updateName, updateAWSAccountID = true, true
+		updateName = true
 	case *cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask:
 		updateName = mask.AwsAccountUpdateMask.GetName()
-		updateAWSAccountID = mask.AwsAccountUpdateMask.GetAwsAccountId()
 	default:
 		return nil, status.Error(codes.InvalidArgument, "update mask does not match the cloud account type")
 	}
@@ -139,12 +138,6 @@ func (c *fakeCloudAccountClient) UpdateCloudAccount(ctx context.Context, cloudAc
 			return nil, status.Error(codes.InvalidArgument, "cloud account name must not be empty")
 		}
 		existing.Name = cloudAccount.GetName()
-	}
-	if updateAWSAccountID {
-		if cloudAccount.GetAws().GetAccountId() == "" {
-			return nil, status.Error(codes.InvalidArgument, "aws account id must not be empty")
-		}
-		existing.GetAws().AccountId = cloudAccount.GetAws().GetAccountId()
 	}
 
 	existing.LastUpdatedAt = timestamppb.Now()

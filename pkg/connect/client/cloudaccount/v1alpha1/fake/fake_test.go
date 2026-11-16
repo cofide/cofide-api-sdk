@@ -441,7 +441,7 @@ func Test_UpdateCloudAccount(t *testing.T) {
 				Name: "updated name",
 				Provider: &cloudaccountpb.CloudAccount_Aws{
 					Aws: &cloudaccountpb.AwsAccount{
-						AccountId: "999999999999",
+						AccountId: "1234566789012",
 					},
 				},
 			},
@@ -464,27 +464,6 @@ func Test_UpdateCloudAccount(t *testing.T) {
 			},
 		},
 		{
-			name: "success - mask with just aws account ID",
-			input: &cloudaccountpb.CloudAccount{
-				Id:   existing3.GetId(),
-				Name: "updated name",
-				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AwsAccount{
-						AccountId: "999999999999",
-					},
-				},
-			},
-			updateMask: cloudaccountv1alpha1.AWSUpdateMask{AWSAccountID: true},
-			expected: &cloudaccountpb.CloudAccount{
-				Name: existing3.GetName(),
-				Provider: &cloudaccountpb.CloudAccount_Aws{
-					Aws: &cloudaccountpb.AwsAccount{
-						AccountId: "999999999999",
-					},
-				},
-			},
-		},
-		{
 			name: "error - nil mask with empty name",
 			input: &cloudaccountpb.CloudAccount{
 				Id: existing3.GetId(),
@@ -495,15 +474,6 @@ func Test_UpdateCloudAccount(t *testing.T) {
 				},
 			},
 			expectedErr:     "rpc error: code = InvalidArgument desc = cloud account name must not be empty",
-			expectedErrCode: codes.InvalidArgument,
-		},
-		{
-			name: "error - nil mask with no aws provider",
-			input: &cloudaccountpb.CloudAccount{
-				Id:   existing3.GetId(),
-				Name: "updated name",
-			},
-			expectedErr:     "rpc error: code = InvalidArgument desc = aws account id must not be empty",
 			expectedErrCode: codes.InvalidArgument,
 		},
 		{
