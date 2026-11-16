@@ -16,17 +16,15 @@ type UpdateMask interface {
 }
 
 // AWSUpdateMask is an UpdateMask for an AWS cloud account.
-// Set fields to true to update them: name to update the name, and awsAccountID to update the AWS account ID.
+// Set fields to true to update them: name to update the name.
 type AWSUpdateMask struct {
-	Name         bool
-	AWSAccountID bool
+	Name bool
 }
 
 func (m AWSUpdateMask) apply(req *cloudaccountpb.UpdateCloudAccountRequest) {
 	req.UpdateMask = &cloudaccountpb.UpdateCloudAccountRequest_AwsAccountUpdateMask{
 		AwsAccountUpdateMask: &cloudaccountpb.AwsAccountUpdateMask{
-			Name:         m.Name,
-			AwsAccountId: m.AWSAccountID,
+			Name: m.Name,
 		},
 	}
 }

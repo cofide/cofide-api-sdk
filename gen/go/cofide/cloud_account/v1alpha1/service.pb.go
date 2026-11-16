@@ -411,9 +411,7 @@ func (*UpdateCloudAccountRequest_AwsAccountUpdateMask) isUpdateCloudAccountReque
 type AwsAccountUpdateMask struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Set to true to update the name field.
-	Name bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Set to true to update the aws account ID field (only valid for AWS accounts).
-	AwsAccountId  bool `protobuf:"varint,2,opt,name=aws_account_id,json=awsAccountId,proto3" json:"aws_account_id,omitempty"`
+	Name          bool `protobuf:"varint,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -451,13 +449,6 @@ func (*AwsAccountUpdateMask) Descriptor() ([]byte, []int) {
 func (x *AwsAccountUpdateMask) GetName() bool {
 	if x != nil {
 		return x.Name
-	}
-	return false
-}
-
-func (x *AwsAccountUpdateMask) GetAwsAccountId() bool {
-	if x != nil {
-		return x.AwsAccountId
 	}
 	return false
 }
@@ -656,10 +647,9 @@ const file_cofide_cloud_account_v1alpha1_service_proto_rawDesc = "" +
 	"\x19UpdateCloudAccountRequest\x12U\n" +
 	"\rcloud_account\x18\x01 \x01(\v2+.cofide.cloud_account.v1alpha1.CloudAccountB\x03\xe0A\x02R\fcloudAccount\x12l\n" +
 	"\x17aws_account_update_mask\x18\x02 \x01(\v23.cofide.cloud_account.v1alpha1.AwsAccountUpdateMaskH\x00R\x14awsAccountUpdateMaskB\r\n" +
-	"\vupdate_mask\"Z\n" +
+	"\vupdate_mask\"/\n" +
 	"\x14AwsAccountUpdateMask\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\bB\x03\xe0A\x01R\x04name\x12)\n" +
-	"\x0eaws_account_id\x18\x02 \x01(\bB\x03\xe0A\x01R\fawsAccountId\"n\n" +
+	"\x04name\x18\x01 \x01(\bB\x03\xe0A\x01R\x04name\"n\n" +
 	"\x1aUpdateCloudAccountResponse\x12P\n" +
 	"\rcloud_account\x18\x01 \x01(\v2+.cofide.cloud_account.v1alpha1.CloudAccountR\fcloudAccount\"J\n" +
 	"\x19DeleteCloudAccountRequest\x12-\n" +
