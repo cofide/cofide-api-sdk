@@ -12,7 +12,7 @@ tool (
 
 require (
 	github.com/pseudomuto/protoc-gen-doc v1.5.1
-	github.com/pseudomuto/protokit v0.2.0
+	github.com/pseudomuto/protokit v0.3.0
 	google.golang.org/protobuf v1.36.12
 )
 
