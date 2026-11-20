@@ -19,6 +19,8 @@ deps:
 lint:
   use:
     - STANDARD
+    # From buf-plugin-cofide, below.
+    - GO_IDENT_CLASH
   disallow_comment_ignores: true
   ignore_only:
     # Ignore some rules for files copied from spire-api-sdk.
@@ -31,3 +33,8 @@ lint:
 breaking:
   use:
     - FILE
+plugins:
+  # Cofide's own lint rules, from tools/cmd/buf-plugin-cofide. buf runs check
+  # plugins with an empty environment, in which go tool can't find the module
+  # cache, so just buf-plugin builds the plugin into bin/ first.
+  - plugin: bin/buf-plugin-cofide
