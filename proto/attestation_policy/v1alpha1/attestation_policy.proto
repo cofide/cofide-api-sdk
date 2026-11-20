@@ -74,6 +74,11 @@ message APKubernetes {
   // {{ index .PodMeta.Annotations "key" }} - Pod annotation value of a provided key
   // {{ .PodSpec.ServiceAccountName }} - Service account of the pod
   optional string spiffe_id_path_template = 4;
+
+  // Additional workload selectors that a workload must have attested to be
+  // issued an identity by this policy. They are added to the selectors that
+  // identify the namespace and pod.
+  repeated spire.api.types.Selector selectors = 5;
 }
 
 // This definition has been adapted from the LabelSelector message in Kubernetes.

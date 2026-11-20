@@ -264,8 +264,12 @@ type APKubernetes struct {
 	// {{ index .PodMeta.Annotations "key" }} - Pod annotation value of a provided key
 	// {{ .PodSpec.ServiceAccountName }} - Service account of the pod
 	SpiffeIdPathTemplate *string `protobuf:"bytes,4,opt,name=spiffe_id_path_template,json=spiffeIdPathTemplate,proto3,oneof" json:"spiffe_id_path_template,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	// Additional workload selectors that a workload must have attested to be
+	// issued an identity by this policy. They are added to the selectors that
+	// identify the namespace and pod.
+	Selectors     []*types.Selector `protobuf:"bytes,5,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *APKubernetes) Reset() {
@@ -324,6 +328,13 @@ func (x *APKubernetes) GetSpiffeIdPathTemplate() string {
 		return *x.SpiffeIdPathTemplate
 	}
 	return ""
+}
+
+func (x *APKubernetes) GetSelectors() []*types.Selector {
+	if x != nil {
+		return x.Selectors
+	}
+	return nil
 }
 
 // This definition has been adapted from the LabelSelector message in Kubernetes.
@@ -660,12 +671,13 @@ const file_proto_attestation_policy_v1alpha1_attestation_policy_proto_rawDesc = 
 	"\n" +
 	"Federation\x12'\n" +
 	"\rtrust_zone_id\x18\x01 \x01(\tH\x00R\vtrustZoneId\x88\x01\x01B\x10\n" +
-	"\x0e_trust_zone_id\"\x80\x03\n" +
+	"\x0e_trust_zone_id\"\xb9\x03\n" +
 	"\fAPKubernetes\x12f\n" +
 	"\x12namespace_selector\x18\x01 \x01(\v22.proto.attestation_policy.v1alpha1.APLabelSelectorH\x00R\x11namespaceSelector\x88\x01\x01\x12Z\n" +
 	"\fpod_selector\x18\x02 \x01(\v22.proto.attestation_policy.v1alpha1.APLabelSelectorH\x01R\vpodSelector\x88\x01\x01\x12,\n" +
 	"\x12dns_name_templates\x18\x03 \x03(\tR\x10dnsNameTemplates\x12:\n" +
-	"\x17spiffe_id_path_template\x18\x04 \x01(\tH\x02R\x14spiffeIdPathTemplate\x88\x01\x01B\x15\n" +
+	"\x17spiffe_id_path_template\x18\x04 \x01(\tH\x02R\x14spiffeIdPathTemplate\x88\x01\x01\x127\n" +
+	"\tselectors\x18\x05 \x03(\v2\x19.spire.api.types.SelectorR\tselectorsB\x15\n" +
 	"\x13_namespace_selectorB\x0f\n" +
 	"\r_pod_selectorB\x1a\n" +
 	"\x18_spiffe_id_path_template\"\x9c\x02\n" +
@@ -734,15 +746,16 @@ var file_proto_attestation_policy_v1alpha1_attestation_policy_proto_depIdxs = []
 	9,  // 5: proto.attestation_policy.v1alpha1.AttestationPolicy.last_updated_at:type_name -> google.protobuf.Timestamp
 	3,  // 6: proto.attestation_policy.v1alpha1.APKubernetes.namespace_selector:type_name -> proto.attestation_policy.v1alpha1.APLabelSelector
 	3,  // 7: proto.attestation_policy.v1alpha1.APKubernetes.pod_selector:type_name -> proto.attestation_policy.v1alpha1.APLabelSelector
-	8,  // 8: proto.attestation_policy.v1alpha1.APLabelSelector.match_labels:type_name -> proto.attestation_policy.v1alpha1.APLabelSelector.MatchLabelsEntry
-	4,  // 9: proto.attestation_policy.v1alpha1.APLabelSelector.match_expressions:type_name -> proto.attestation_policy.v1alpha1.APMatchExpression
-	10, // 10: proto.attestation_policy.v1alpha1.APStatic.selectors:type_name -> spire.api.types.Selector
-	7,  // 11: proto.attestation_policy.v1alpha1.APTPMNode.attestation:type_name -> proto.attestation_policy.v1alpha1.TPMAttestation
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	10, // 8: proto.attestation_policy.v1alpha1.APKubernetes.selectors:type_name -> spire.api.types.Selector
+	8,  // 9: proto.attestation_policy.v1alpha1.APLabelSelector.match_labels:type_name -> proto.attestation_policy.v1alpha1.APLabelSelector.MatchLabelsEntry
+	4,  // 10: proto.attestation_policy.v1alpha1.APLabelSelector.match_expressions:type_name -> proto.attestation_policy.v1alpha1.APMatchExpression
+	10, // 11: proto.attestation_policy.v1alpha1.APStatic.selectors:type_name -> spire.api.types.Selector
+	7,  // 12: proto.attestation_policy.v1alpha1.APTPMNode.attestation:type_name -> proto.attestation_policy.v1alpha1.TPMAttestation
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_proto_attestation_policy_v1alpha1_attestation_policy_proto_init() }
