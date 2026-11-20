@@ -265,7 +265,7 @@ type APKubernetes struct {
 	// {{ .PodSpec.ServiceAccountName }} - Service account of the pod
 	SpiffeIdPathTemplate *string `protobuf:"bytes,4,opt,name=spiffe_id_path_template,json=spiffeIdPathTemplate,proto3,oneof" json:"spiffe_id_path_template,omitempty"`
 	// Additional workload selectors that a workload must have attested to be
-	// issued an identity by this policy. They are added to the selectors that
+	// issued an identity by this policy. They are added to the label selectors that
 	// identify the namespace and pod.
 	Selectors     []*types.Selector `protobuf:"bytes,5,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields

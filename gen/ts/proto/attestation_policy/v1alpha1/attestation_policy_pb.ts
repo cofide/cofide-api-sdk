@@ -172,7 +172,7 @@ export type APKubernetes = Message<"proto.attestation_policy.v1alpha1.APKubernet
 
   /**
    * Additional workload selectors that a workload must have attested to be
-   * issued an identity by this policy. They are added to the selectors that
+   * issued an identity by this policy. They are added to the label selectors that
    * identify the namespace and pod.
    *
    * @generated from field: repeated spire.api.types.Selector selectors = 5;
