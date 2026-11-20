@@ -24,7 +24,7 @@ func Test_fakeAgentClient_CreateAgentJoinToken(t *testing.T) {
 	_, err := client.CreateAgentJoinToken(ctx, test.FakeClusterID, test.FakeTrustZoneID)
 	require.Error(t, err)
 
-	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZoneV1Beta1()
 
 	_, err = client.CreateAgentJoinToken(ctx, test.FakeClusterID, test.FakeTrustZoneID)
 	require.Error(t, err)
