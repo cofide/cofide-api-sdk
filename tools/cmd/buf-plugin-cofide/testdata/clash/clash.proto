@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package clash.v1;
+
+message GetThingRequest {
+  message NameWithOrgId {
+    string org_id = 1;
+    string name = 2;
+  }
+
+  enum Kind {
+    KIND_UNSPECIFIED = 0;
+  }
+
+  oneof identifier {
+    string id = 1;
+    NameWithOrgId name_with_org_id = 2;
+    Kind kind = 3;
+  }
+}
+
+message Outer {
+  message Inner {
+    message Pair {}
+
+    oneof choice {
+      Pair pair = 1;
+    }
+  }
+}
+
+message Methods {
+  string reset = 1;
+  string descriptor = 2;
+  string foo = 3;
+  string get_foo = 4;
+}

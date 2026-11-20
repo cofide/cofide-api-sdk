@@ -15,4 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      # buf.yaml runs Cofide's lint rules from bin/buf-plugin-cofide, which is
+      # built from tools/.
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: tools/go.mod
+          cache-dependency-path: tools/go.sum
+      - name: Build buf-plugin-cofide
+        run: go -C tools build -o ../bin/ ./cmd/buf-plugin-cofide
       - uses: bufbuild/buf-action@v1
