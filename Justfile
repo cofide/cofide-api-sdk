@@ -1,8 +1,14 @@
 fmt:
     buf format -w
 
-buf-lint:
-    buf lint
+# buf.yaml runs tools/cmd/buf-plugin-cofide from bin/.
+#
+# Build buf-plugin-cofide into bin/.
+buf-plugin:
+    go -C tools build -o ../bin/ ./cmd/buf-plugin-cofide
+
+buf-lint *args: buf-plugin
+    buf lint {{args}}
 
 # Lint the new APIs against Google's AIPs. Only files whose path matches the
 # pattern are linted, which by default is all of the new APIs in proto/cofide.

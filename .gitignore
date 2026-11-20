@@ -2,3 +2,5 @@ node_modules/
 docs/api.md
 # Built from tools/cmd/protoc-gen-doc by go build in tools/.
 /tools/protoc-gen-doc
+# Built from tools/cmd/buf-plugin-cofide by just buf-plugin.
+/bin/
