@@ -42,10 +42,10 @@ message CreateFederationResponse {
 
 // GetFederationRequest is the request for GetFederation.
 message GetFederationRequest {
-  // TrustZones identifies a federation by the trust zones it federates, as
+  // TrustZonePair identifies a federation by the trust zones it federates, as
   // each ordered pair of trust zones may be federated at most once. The order
   // matters: swapping the two IDs identifies a different federation.
-  message TrustZones {
+  message TrustZonePair {
     // The local trust zone that trusts the remote trust zone.
     string trust_zone_id = 1 [(google.api.field_behavior) = REQUIRED];
     // The remote trust zone that is trusted by the local trust zone.
@@ -57,7 +57,7 @@ message GetFederationRequest {
     // ID of the federation to retrieve.
     string federation_id = 1;
     // The trust zones of the federation to retrieve.
-    TrustZones trust_zones = 2;
+    TrustZonePair trust_zones = 2;
   }
 }
 

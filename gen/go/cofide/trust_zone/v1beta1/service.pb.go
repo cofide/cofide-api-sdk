@@ -132,7 +132,7 @@ type GetTrustZoneRequest struct {
 	// Types that are valid to be assigned to Identifier:
 	//
 	//	*GetTrustZoneRequest_TrustZoneId
-	//	*GetTrustZoneRequest_NameWithOrgId_
+	//	*GetTrustZoneRequest_NameWithOrg
 	//	*GetTrustZoneRequest_TrustDomain
 	Identifier    isGetTrustZoneRequest_Identifier `protobuf_oneof:"identifier"`
 	unknownFields protoimpl.UnknownFields
@@ -185,10 +185,10 @@ func (x *GetTrustZoneRequest) GetTrustZoneId() string {
 	return ""
 }
 
-func (x *GetTrustZoneRequest) GetNameWithOrgId() *GetTrustZoneRequest_NameWithOrgId {
+func (x *GetTrustZoneRequest) GetNameWithOrg() *GetTrustZoneRequest_NameWithOrgId {
 	if x != nil {
-		if x, ok := x.Identifier.(*GetTrustZoneRequest_NameWithOrgId_); ok {
-			return x.NameWithOrgId
+		if x, ok := x.Identifier.(*GetTrustZoneRequest_NameWithOrg); ok {
+			return x.NameWithOrg
 		}
 	}
 	return nil
@@ -212,9 +212,9 @@ type GetTrustZoneRequest_TrustZoneId struct {
 	TrustZoneId string `protobuf:"bytes,1,opt,name=trust_zone_id,json=trustZoneId,proto3,oneof"`
 }
 
-type GetTrustZoneRequest_NameWithOrgId_ struct {
+type GetTrustZoneRequest_NameWithOrg struct {
 	// Name of the trust zone and the organization it belongs to.
-	NameWithOrgId *GetTrustZoneRequest_NameWithOrgId `protobuf:"bytes,2,opt,name=name_with_org_id,json=nameWithOrgId,proto3,oneof"`
+	NameWithOrg *GetTrustZoneRequest_NameWithOrgId `protobuf:"bytes,2,opt,name=name_with_org,json=nameWithOrg,proto3,oneof"`
 }
 
 type GetTrustZoneRequest_TrustDomain struct {
@@ -224,7 +224,7 @@ type GetTrustZoneRequest_TrustDomain struct {
 
 func (*GetTrustZoneRequest_TrustZoneId) isGetTrustZoneRequest_Identifier() {}
 
-func (*GetTrustZoneRequest_NameWithOrgId_) isGetTrustZoneRequest_Identifier() {}
+func (*GetTrustZoneRequest_NameWithOrg) isGetTrustZoneRequest_Identifier() {}
 
 func (*GetTrustZoneRequest_TrustDomain) isGetTrustZoneRequest_Identifier() {}
 
@@ -1087,10 +1087,10 @@ const file_cofide_trust_zone_v1beta1_service_proto_rawDesc = "" +
 	"trust_zone\x18\x01 \x01(\v2$.cofide.trust_zone.v1beta1.TrustZoneB\x03\xe0A\x02R\ttrustZone\"^\n" +
 	"\x17CreateTrustZoneResponse\x12C\n" +
 	"\n" +
-	"trust_zone\x18\x01 \x01(\v2$.cofide.trust_zone.v1beta1.TrustZoneR\ttrustZone\"\x9d\x02\n" +
+	"trust_zone\x18\x01 \x01(\v2$.cofide.trust_zone.v1beta1.TrustZoneR\ttrustZone\"\x98\x02\n" +
 	"\x13GetTrustZoneRequest\x12$\n" +
-	"\rtrust_zone_id\x18\x01 \x01(\tH\x00R\vtrustZoneId\x12g\n" +
-	"\x10name_with_org_id\x18\x02 \x01(\v2<.cofide.trust_zone.v1beta1.GetTrustZoneRequest.NameWithOrgIdH\x00R\rnameWithOrgId\x12#\n" +
+	"\rtrust_zone_id\x18\x01 \x01(\tH\x00R\vtrustZoneId\x12b\n" +
+	"\rname_with_org\x18\x02 \x01(\v2<.cofide.trust_zone.v1beta1.GetTrustZoneRequest.NameWithOrgIdH\x00R\vnameWithOrg\x12#\n" +
 	"\ftrust_domain\x18\x03 \x01(\tH\x00R\vtrustDomain\x1aD\n" +
 	"\rNameWithOrgId\x12\x1a\n" +
 	"\x06org_id\x18\x01 \x01(\tB\x03\xe0A\x02R\x05orgId\x12\x17\n" +
@@ -1194,7 +1194,7 @@ var file_cofide_trust_zone_v1beta1_service_proto_goTypes = []any{
 var file_cofide_trust_zone_v1beta1_service_proto_depIdxs = []int32{
 	19, // 0: cofide.trust_zone.v1beta1.CreateTrustZoneRequest.trust_zone:type_name -> cofide.trust_zone.v1beta1.TrustZone
 	19, // 1: cofide.trust_zone.v1beta1.CreateTrustZoneResponse.trust_zone:type_name -> cofide.trust_zone.v1beta1.TrustZone
-	17, // 2: cofide.trust_zone.v1beta1.GetTrustZoneRequest.name_with_org_id:type_name -> cofide.trust_zone.v1beta1.GetTrustZoneRequest.NameWithOrgId
+	17, // 2: cofide.trust_zone.v1beta1.GetTrustZoneRequest.name_with_org:type_name -> cofide.trust_zone.v1beta1.GetTrustZoneRequest.NameWithOrgId
 	19, // 3: cofide.trust_zone.v1beta1.GetTrustZoneResponse.trust_zone:type_name -> cofide.trust_zone.v1beta1.TrustZone
 	18, // 4: cofide.trust_zone.v1beta1.ListTrustZonesRequest.filter:type_name -> cofide.trust_zone.v1beta1.ListTrustZonesRequest.Filter
 	20, // 5: cofide.trust_zone.v1beta1.ListTrustZonesRequest.pagination:type_name -> cofide.common.pagination.v1beta1.PageRequest
@@ -1237,7 +1237,7 @@ func file_cofide_trust_zone_v1beta1_service_proto_init() {
 	file_cofide_trust_zone_v1beta1_trust_zone_proto_init()
 	file_cofide_trust_zone_v1beta1_service_proto_msgTypes[2].OneofWrappers = []any{
 		(*GetTrustZoneRequest_TrustZoneId)(nil),
-		(*GetTrustZoneRequest_NameWithOrgId_)(nil),
+		(*GetTrustZoneRequest_NameWithOrg)(nil),
 		(*GetTrustZoneRequest_TrustDomain)(nil),
 	}
 	file_cofide_trust_zone_v1beta1_service_proto_msgTypes[13].OneofWrappers = []any{

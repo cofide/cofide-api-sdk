@@ -75,7 +75,7 @@ message GetTrustZoneRequest {
     // ID of the trust zone.
     string trust_zone_id = 1;
     // Name of the trust zone and the organization it belongs to.
-    NameWithOrgId name_with_org_id = 2;
+    NameWithOrgId name_with_org = 2;
     // SPIFFE trust domain of the trust zone.
     string trust_domain = 3;
   }
