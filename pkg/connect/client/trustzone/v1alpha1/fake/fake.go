@@ -6,16 +6,18 @@ package fake
 import (
 	"context"
 
+	trustzonev1beta1pb "github.com/cofide/cofide-api-sdk/gen/go/cofide/trust_zone/v1beta1"
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	trustzonesvcpb "github.com/cofide/cofide-api-sdk/gen/go/proto/connect/trust_zone_service/v1alpha1"
 	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
+	trustbundlev1beta1 "github.com/cofide/cofide-api-sdk/pkg/trustbundle/v1beta1"
+	trustzonev1beta1 "github.com/cofide/cofide-api-sdk/pkg/trustzone/v1beta1"
 	"github.com/google/uuid"
 	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"google.golang.org/protobuf/proto"
 )
 
 type fakeTrustZoneClient struct {
@@ -33,11 +35,10 @@ func (c *fakeTrustZoneClient) CreateTrustZone(ctx context.Context, trustZone *tr
 	c.fake.Mu.Lock()
 	defer c.fake.Mu.Unlock()
 
-	id := uuid.New().String()
-	trustZone = clone(trustZone)
-	trustZone.Id = &id
-	c.fake.TrustZones[trustZone.GetId()] = trustZone
-	return clone(trustZone), nil
+	stored := trustzonev1beta1.FromV1Alpha1(trustZone)
+	stored.Id = uuid.New().String()
+	c.fake.TrustZones[stored.GetId()] = stored
+	return trustzonev1beta1.ToV1Alpha1(stored), nil
 }
 
 func (c *fakeTrustZoneClient) DestroyTrustZone(ctx context.Context, trustZoneID string) error {
@@ -59,7 +60,7 @@ func (c *fakeTrustZoneClient) GetTrustZone(ctx context.Context, trustZoneID stri
 	if !ok {
 		return nil, status.Error(codes.NotFound, "")
 	}
-	return clone(trustZone), nil
+	return trustzonev1beta1.ToV1Alpha1(trustZone), nil
 }
 
 func (c *fakeTrustZoneClient) ListTrustZones(ctx context.Context, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) ([]*trustzonepb.TrustZone, error) {
@@ -69,13 +70,13 @@ func (c *fakeTrustZoneClient) ListTrustZones(ctx context.Context, filter *trustz
 	trustZones := []*trustzonepb.TrustZone{}
 	for trustZone := range fakeconnect.SortedValues(c.fake.TrustZones) {
 		if trustZoneMatches(trustZone, filter) {
-			trustZones = append(trustZones, clone(trustZone))
+			trustZones = append(trustZones, trustzonev1beta1.ToV1Alpha1(trustZone))
 		}
 	}
 	return trustZones, nil
 }
 
-func trustZoneMatches(trustZone *trustzonepb.TrustZone, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) bool {
+func trustZoneMatches(trustZone *trustzonev1beta1pb.TrustZone, filter *trustzonesvcpb.ListTrustZonesRequest_Filter) bool {
 	if filter == nil {
 		return true
 	}
@@ -99,8 +100,9 @@ func (c *fakeTrustZoneClient) UpdateTrustZone(ctx context.Context, trustZone *tr
 		return nil, status.Error(codes.NotFound, "trust zone not found")
 	}
 
-	c.fake.TrustZones[trustZone.GetId()] = clone(trustZone)
-	return clone(trustZone), nil
+	stored := trustzonev1beta1.FromV1Alpha1(trustZone)
+	c.fake.TrustZones[stored.GetId()] = stored
+	return trustzonev1beta1.ToV1Alpha1(stored), nil
 }
 
 func (c *fakeTrustZoneClient) RegisterAgent(ctx context.Context, agent *trustzonesvcpb.Agent, token string, bundle *types.Bundle) (string, error) {
@@ -120,7 +122,7 @@ func (c *fakeTrustZoneClient) RegisterAgent(ctx context.Context, agent *trustzon
 		TrustZoneId: &agent.TrustZoneId,
 	}
 	c.fake.Agents[id] = &newAgent
-	c.fake.TrustZoneBundles[agent.GetTrustZoneId()] = cloneBundle(bundle)
+	c.fake.TrustZoneBundles[agent.GetTrustZoneId()] = trustbundlev1beta1.FromSPIRE(bundle)
 	return id, nil
 }
 
@@ -143,7 +145,7 @@ func (c *fakeTrustZoneClient) RegisterTrustZoneServer(ctx context.Context, serve
 		trustZoneID = cluster.GetTrustZoneId()
 	}
 
-	c.fake.TrustZoneBundles[trustZoneID] = cloneBundle(bundle)
+	c.fake.TrustZoneBundles[trustZoneID] = trustbundlev1beta1.FromSPIRE(bundle)
 	return nil
 }
 
@@ -154,29 +156,21 @@ func (c *fakeTrustZoneClient) UpdateTrustZoneBundle(ctx context.Context, trustZo
 	if err := c.fake.ValidateTrustZone(trustZoneID); err != nil {
 		return err
 	}
-	bundle = cloneBundle(bundle)
+	converted := trustbundlev1beta1.FromSPIRE(bundle)
 	if existing, ok := c.fake.TrustZoneBundles[trustZoneID]; ok {
-		if bundle.TrustDomain != existing.TrustDomain {
+		if converted.TrustDomain != existing.TrustDomain {
 			return status.Error(codes.InvalidArgument, "incorrect trust domain")
 		}
-		if bundle.X509Authorities != nil {
-			existing.X509Authorities = bundle.X509Authorities
+		if converted.X509Authorities != nil {
+			existing.X509Authorities = converted.X509Authorities
 		}
-		if bundle.JwtAuthorities != nil {
-			existing.JwtAuthorities = bundle.JwtAuthorities
+		if converted.JwtAuthorities != nil {
+			existing.JwtAuthorities = converted.JwtAuthorities
 		}
-		existing.RefreshHint = bundle.RefreshHint
-		existing.SequenceNumber = bundle.SequenceNumber
+		existing.RefreshHint = converted.RefreshHint
+		existing.SequenceNumber = converted.SequenceNumber
 	} else {
-		c.fake.TrustZoneBundles[trustZoneID] = bundle
+		c.fake.TrustZoneBundles[trustZoneID] = converted
 	}
 	return nil
-}
-
-func clone(trustZone *trustzonepb.TrustZone) *trustzonepb.TrustZone {
-	return proto.Clone(trustZone).(*trustzonepb.TrustZone)
-}
-
-func cloneBundle(bundle *types.Bundle) *types.Bundle {
-	return proto.Clone(bundle).(*types.Bundle)
 }

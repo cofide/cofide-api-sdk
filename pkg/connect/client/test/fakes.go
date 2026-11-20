@@ -4,6 +4,7 @@
 package test
 
 import (
+	trustzonev1beta1pb "github.com/cofide/cofide-api-sdk/gen/go/cofide/trust_zone/v1beta1"
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	clusterpb "github.com/cofide/cofide-api-sdk/gen/go/proto/cluster/v1alpha1"
@@ -72,6 +73,14 @@ func FakeOrganization() *organizationpb.Organization {
 func FakeTrustZone() *trustzonepb.TrustZone {
 	return &trustzonepb.TrustZone{
 		Id:          PtrOf(FakeTrustZoneID),
+		Name:        FakeTrustZoneName,
+		TrustDomain: FakeTrustDomain,
+	}
+}
+
+func FakeTrustZoneV1Beta1() *trustzonev1beta1pb.TrustZone {
+	return &trustzonev1beta1pb.TrustZone{
+		Id:          FakeTrustZoneID,
 		Name:        FakeTrustZoneName,
 		TrustDomain: FakeTrustDomain,
 	}

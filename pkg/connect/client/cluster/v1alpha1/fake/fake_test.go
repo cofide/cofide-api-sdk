@@ -24,7 +24,7 @@ func Test_fakeClusterClient_CreateCluster(t *testing.T) {
 	_, err := client.CreateCluster(ctx, cluster)
 	require.Error(t, err)
 
-	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZoneV1Beta1()
 
 	createdCluster, err := client.CreateCluster(ctx, cluster)
 	require.NoError(t, err)
@@ -90,7 +90,7 @@ func Test_fakeClusterClient_UpdateCluster(t *testing.T) {
 	_, err := client.UpdateCluster(ctx, cluster)
 	require.Error(t, err)
 
-	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZoneV1Beta1()
 	fake.Clusters[test.FakeClusterID] = cluster
 
 	cluster = clone(cluster)

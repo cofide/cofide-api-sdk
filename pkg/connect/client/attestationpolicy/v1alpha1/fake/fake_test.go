@@ -104,7 +104,7 @@ func Test_fakeAttestationPolicyClient_UpdateAttestationPolicy(t *testing.T) {
 	_, err := client.UpdateAttestationPolicy(ctx, policy)
 	require.Error(t, err)
 
-	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZone()
+	fake.TrustZones[test.FakeTrustZoneID] = test.FakeTrustZoneV1Beta1()
 	fake.AttestationPolicies[test.FakeAttestationPolicyID] = policy
 
 	policy = clone(policy)

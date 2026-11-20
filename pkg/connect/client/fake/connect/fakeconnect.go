@@ -9,6 +9,8 @@ import (
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_account/v1alpha1"
 	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_discovery_config/v1alpha1"
+	trustbundlepb "github.com/cofide/cofide-api-sdk/gen/go/cofide/common/trust_bundle/v1beta1"
+	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/cofide/trust_zone/v1beta1"
 	agentpb "github.com/cofide/cofide-api-sdk/gen/go/proto/agent/v1alpha1"
 	attestationpolicypb "github.com/cofide/cofide-api-sdk/gen/go/proto/attestation_policy/v1alpha1"
 	auditpb "github.com/cofide/cofide-api-sdk/gen/go/proto/audit/v1alpha1"
@@ -20,10 +22,8 @@ import (
 	identitypb "github.com/cofide/cofide-api-sdk/gen/go/proto/identity/v1alpha1"
 	organizationpb "github.com/cofide/cofide-api-sdk/gen/go/proto/organization/v1alpha1"
 	rolebindingpb "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1"
-	trustzonepb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone/v1alpha1"
 	trustzoneserverpb "github.com/cofide/cofide-api-sdk/gen/go/proto/trust_zone_server/v1alpha1"
 	workloadpb "github.com/cofide/cofide-api-sdk/gen/go/proto/workload/v1alpha1"
-	"github.com/spiffe/spire-api-sdk/proto/spire/api/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -39,7 +39,7 @@ type FakeConnect struct {
 
 	Organizations         map[string]*organizationpb.Organization
 	TrustZones            map[string]*trustzonepb.TrustZone
-	TrustZoneBundles      map[string]*types.Bundle
+	TrustZoneBundles      map[string]*trustbundlepb.Bundle
 	TrustZoneServers      map[string]*trustzoneserverpb.TrustZoneServer
 	Clusters              map[string]*clusterpb.Cluster
 	Agents                map[string]*agentpb.Agent
@@ -67,7 +67,7 @@ func New() *FakeConnect {
 	return &FakeConnect{
 		Organizations:         make(map[string]*organizationpb.Organization),
 		TrustZones:            make(map[string]*trustzonepb.TrustZone),
-		TrustZoneBundles:      make(map[string]*types.Bundle),
+		TrustZoneBundles:      make(map[string]*trustbundlepb.Bundle),
 		TrustZoneServers:      make(map[string]*trustzoneserverpb.TrustZoneServer),
 		Clusters:              make(map[string]*clusterpb.Cluster),
 		Agents:                make(map[string]*agentpb.Agent),

@@ -17,6 +17,7 @@ import (
 	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
 	rolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
+	trustzonev1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1beta1"
 	trustzoneserverv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzoneserver/v1alpha1"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
 
@@ -28,6 +29,7 @@ import (
 type ClientSet interface {
 	OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient
 	TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient
+	TrustZoneV1Beta1() trustzonev1beta1.TrustZoneClient
 	TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneServerClient
 	CloudAccountV1Alpha1() cloudaccountv1alpha1.CloudAccountClient
 	CloudDiscoveryConfigV1Alpha1() crdcv1alpha1.CloudDiscoveryConfigClient
@@ -57,6 +59,7 @@ type clientSet struct {
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
 	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
+	trustZoneV1Beta1          trustzonev1beta1.TrustZoneClient
 	trustZoneServerV1Alpha1   trustzoneserverv1alpha1.TrustZoneServerClient
 	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
 }
@@ -77,6 +80,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		organizationV1Alpha1:      organizationv1alpha1.New(conn),
 		roleBindingV1Alpha1:       rolebindingv1alpha1.New(conn),
 		trustZoneV1Alpha1:         trustzonev1alpha1.New(conn),
+		trustZoneV1Beta1:          trustzonev1beta1.New(conn),
 		trustZoneServerV1Alpha1:   trustzoneserverv1alpha1.New(conn),
 		workloadV1Alpha1:          workloadv1alpha1.New(conn),
 	}
@@ -132,6 +136,10 @@ func (c *clientSet) RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient 
 
 func (c *clientSet) TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient {
 	return c.trustZoneV1Alpha1
+}
+
+func (c *clientSet) TrustZoneV1Beta1() trustzonev1beta1.TrustZoneClient {
+	return c.trustZoneV1Beta1
 }
 
 func (c *clientSet) TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneServerClient {

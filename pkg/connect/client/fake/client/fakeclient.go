@@ -32,6 +32,8 @@ import (
 	fakerolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1/fake"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	faketrustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1/fake"
+	trustzonev1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1beta1"
+	faketrustzonev1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1beta1/fake"
 	trustzoneserverv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzoneserver/v1alpha1"
 	faketrustzoneserverv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzoneserver/v1alpha1/fake"
 	workloadv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/workload/v1alpha1"
@@ -52,6 +54,7 @@ type fakeClientSet struct {
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
 	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
+	trustZoneV1Beta1          trustzonev1beta1.TrustZoneClient
 	trustZoneServerV1Alpha1   trustzoneserverv1alpha1.TrustZoneServerClient
 	workloadV1Alpha1          workloadv1alpha1.WorkloadClient
 }
@@ -72,6 +75,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		organizationV1Alpha1:      fakeorganizationv1alpha1.New(fake),
 		roleBindingV1Alpha1:       fakerolebindingv1alpha1.New(fake),
 		trustZoneV1Alpha1:         faketrustzonev1alpha1.New(fake),
+		trustZoneV1Beta1:          faketrustzonev1beta1.New(fake),
 		trustZoneServerV1Alpha1:   faketrustzoneserverv1alpha1.New(fake),
 		workloadV1Alpha1:          fakeworkloadv1alpha1.New(fake),
 	}
@@ -127,6 +131,10 @@ func (c *fakeClientSet) RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingCli
 
 func (c *fakeClientSet) TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient {
 	return c.trustZoneV1Alpha1
+}
+
+func (c *fakeClientSet) TrustZoneV1Beta1() trustzonev1beta1.TrustZoneClient {
+	return c.trustZoneV1Beta1
 }
 
 func (c *fakeClientSet) TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneServerClient {
