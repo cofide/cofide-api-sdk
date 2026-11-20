@@ -129,7 +129,7 @@ type GetFederationRequest struct {
 	// Types that are valid to be assigned to Identifier:
 	//
 	//	*GetFederationRequest_FederationId
-	//	*GetFederationRequest_TrustZones_
+	//	*GetFederationRequest_TrustZones
 	Identifier    isGetFederationRequest_Identifier `protobuf_oneof:"identifier"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -181,9 +181,9 @@ func (x *GetFederationRequest) GetFederationId() string {
 	return ""
 }
 
-func (x *GetFederationRequest) GetTrustZones() *GetFederationRequest_TrustZones {
+func (x *GetFederationRequest) GetTrustZones() *GetFederationRequest_TrustZonePair {
 	if x != nil {
-		if x, ok := x.Identifier.(*GetFederationRequest_TrustZones_); ok {
+		if x, ok := x.Identifier.(*GetFederationRequest_TrustZones); ok {
 			return x.TrustZones
 		}
 	}
@@ -199,14 +199,14 @@ type GetFederationRequest_FederationId struct {
 	FederationId string `protobuf:"bytes,1,opt,name=federation_id,json=federationId,proto3,oneof"`
 }
 
-type GetFederationRequest_TrustZones_ struct {
+type GetFederationRequest_TrustZones struct {
 	// The trust zones of the federation to retrieve.
-	TrustZones *GetFederationRequest_TrustZones `protobuf:"bytes,2,opt,name=trust_zones,json=trustZones,proto3,oneof"`
+	TrustZones *GetFederationRequest_TrustZonePair `protobuf:"bytes,2,opt,name=trust_zones,json=trustZones,proto3,oneof"`
 }
 
 func (*GetFederationRequest_FederationId) isGetFederationRequest_Identifier() {}
 
-func (*GetFederationRequest_TrustZones_) isGetFederationRequest_Identifier() {}
+func (*GetFederationRequest_TrustZones) isGetFederationRequest_Identifier() {}
 
 // GetFederationResponse is the response from GetFederation.
 type GetFederationResponse struct {
@@ -447,10 +447,10 @@ func (*DeleteFederationResponse) Descriptor() ([]byte, []int) {
 	return file_cofide_federation_v1beta1_service_proto_rawDescGZIP(), []int{7}
 }
 
-// TrustZones identifies a federation by the trust zones it federates, as
+// TrustZonePair identifies a federation by the trust zones it federates, as
 // each ordered pair of trust zones may be federated at most once. The order
 // matters: swapping the two IDs identifies a different federation.
-type GetFederationRequest_TrustZones struct {
+type GetFederationRequest_TrustZonePair struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The local trust zone that trusts the remote trust zone.
 	TrustZoneId string `protobuf:"bytes,1,opt,name=trust_zone_id,json=trustZoneId,proto3" json:"trust_zone_id,omitempty"`
@@ -460,20 +460,20 @@ type GetFederationRequest_TrustZones struct {
 	sizeCache         protoimpl.SizeCache
 }
 
-func (x *GetFederationRequest_TrustZones) Reset() {
-	*x = GetFederationRequest_TrustZones{}
+func (x *GetFederationRequest_TrustZonePair) Reset() {
+	*x = GetFederationRequest_TrustZonePair{}
 	mi := &file_cofide_federation_v1beta1_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetFederationRequest_TrustZones) String() string {
+func (x *GetFederationRequest_TrustZonePair) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetFederationRequest_TrustZones) ProtoMessage() {}
+func (*GetFederationRequest_TrustZonePair) ProtoMessage() {}
 
-func (x *GetFederationRequest_TrustZones) ProtoReflect() protoreflect.Message {
+func (x *GetFederationRequest_TrustZonePair) ProtoReflect() protoreflect.Message {
 	mi := &file_cofide_federation_v1beta1_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -485,19 +485,19 @@ func (x *GetFederationRequest_TrustZones) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetFederationRequest_TrustZones.ProtoReflect.Descriptor instead.
-func (*GetFederationRequest_TrustZones) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetFederationRequest_TrustZonePair.ProtoReflect.Descriptor instead.
+func (*GetFederationRequest_TrustZonePair) Descriptor() ([]byte, []int) {
 	return file_cofide_federation_v1beta1_service_proto_rawDescGZIP(), []int{2, 0}
 }
 
-func (x *GetFederationRequest_TrustZones) GetTrustZoneId() string {
+func (x *GetFederationRequest_TrustZonePair) GetTrustZoneId() string {
 	if x != nil {
 		return x.TrustZoneId
 	}
 	return ""
 }
 
-func (x *GetFederationRequest_TrustZones) GetRemoteTrustZoneId() string {
+func (x *GetFederationRequest_TrustZonePair) GetRemoteTrustZoneId() string {
 	if x != nil {
 		return x.RemoteTrustZoneId
 	}
@@ -580,13 +580,12 @@ const file_cofide_federation_v1beta1_service_proto_rawDesc = "" +
 	"\x18CreateFederationResponse\x12E\n" +
 	"\n" +
 	"federation\x18\x01 \x01(\v2%.cofide.federation.v1beta1.FederationR\n" +
-	"federation\"\x97\x02\n" +
+	"federation\"\x9d\x02\n" +
 	"\x14GetFederationRequest\x12%\n" +
-	"\rfederation_id\x18\x01 \x01(\tH\x00R\ffederationId\x12]\n" +
-	"\vtrust_zones\x18\x02 \x01(\v2:.cofide.federation.v1beta1.GetFederationRequest.TrustZonesH\x00R\n" +
-	"trustZones\x1ak\n" +
-	"\n" +
-	"TrustZones\x12'\n" +
+	"\rfederation_id\x18\x01 \x01(\tH\x00R\ffederationId\x12`\n" +
+	"\vtrust_zones\x18\x02 \x01(\v2=.cofide.federation.v1beta1.GetFederationRequest.TrustZonePairH\x00R\n" +
+	"trustZones\x1an\n" +
+	"\rTrustZonePair\x12'\n" +
 	"\rtrust_zone_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vtrustZoneId\x124\n" +
 	"\x14remote_trust_zone_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x11remoteTrustZoneIdB\f\n" +
 	"\n" +
@@ -632,24 +631,24 @@ func file_cofide_federation_v1beta1_service_proto_rawDescGZIP() []byte {
 
 var file_cofide_federation_v1beta1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_cofide_federation_v1beta1_service_proto_goTypes = []any{
-	(*CreateFederationRequest)(nil),         // 0: cofide.federation.v1beta1.CreateFederationRequest
-	(*CreateFederationResponse)(nil),        // 1: cofide.federation.v1beta1.CreateFederationResponse
-	(*GetFederationRequest)(nil),            // 2: cofide.federation.v1beta1.GetFederationRequest
-	(*GetFederationResponse)(nil),           // 3: cofide.federation.v1beta1.GetFederationResponse
-	(*ListFederationsRequest)(nil),          // 4: cofide.federation.v1beta1.ListFederationsRequest
-	(*ListFederationsResponse)(nil),         // 5: cofide.federation.v1beta1.ListFederationsResponse
-	(*DeleteFederationRequest)(nil),         // 6: cofide.federation.v1beta1.DeleteFederationRequest
-	(*DeleteFederationResponse)(nil),        // 7: cofide.federation.v1beta1.DeleteFederationResponse
-	(*GetFederationRequest_TrustZones)(nil), // 8: cofide.federation.v1beta1.GetFederationRequest.TrustZones
-	(*ListFederationsRequest_Filter)(nil),   // 9: cofide.federation.v1beta1.ListFederationsRequest.Filter
-	(*Federation)(nil),                      // 10: cofide.federation.v1beta1.Federation
-	(*v1beta1.PageRequest)(nil),             // 11: cofide.common.pagination.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),            // 12: cofide.common.pagination.v1beta1.PageResponse
+	(*CreateFederationRequest)(nil),            // 0: cofide.federation.v1beta1.CreateFederationRequest
+	(*CreateFederationResponse)(nil),           // 1: cofide.federation.v1beta1.CreateFederationResponse
+	(*GetFederationRequest)(nil),               // 2: cofide.federation.v1beta1.GetFederationRequest
+	(*GetFederationResponse)(nil),              // 3: cofide.federation.v1beta1.GetFederationResponse
+	(*ListFederationsRequest)(nil),             // 4: cofide.federation.v1beta1.ListFederationsRequest
+	(*ListFederationsResponse)(nil),            // 5: cofide.federation.v1beta1.ListFederationsResponse
+	(*DeleteFederationRequest)(nil),            // 6: cofide.federation.v1beta1.DeleteFederationRequest
+	(*DeleteFederationResponse)(nil),           // 7: cofide.federation.v1beta1.DeleteFederationResponse
+	(*GetFederationRequest_TrustZonePair)(nil), // 8: cofide.federation.v1beta1.GetFederationRequest.TrustZonePair
+	(*ListFederationsRequest_Filter)(nil),      // 9: cofide.federation.v1beta1.ListFederationsRequest.Filter
+	(*Federation)(nil),                         // 10: cofide.federation.v1beta1.Federation
+	(*v1beta1.PageRequest)(nil),                // 11: cofide.common.pagination.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),               // 12: cofide.common.pagination.v1beta1.PageResponse
 }
 var file_cofide_federation_v1beta1_service_proto_depIdxs = []int32{
 	10, // 0: cofide.federation.v1beta1.CreateFederationRequest.federation:type_name -> cofide.federation.v1beta1.Federation
 	10, // 1: cofide.federation.v1beta1.CreateFederationResponse.federation:type_name -> cofide.federation.v1beta1.Federation
-	8,  // 2: cofide.federation.v1beta1.GetFederationRequest.trust_zones:type_name -> cofide.federation.v1beta1.GetFederationRequest.TrustZones
+	8,  // 2: cofide.federation.v1beta1.GetFederationRequest.trust_zones:type_name -> cofide.federation.v1beta1.GetFederationRequest.TrustZonePair
 	10, // 3: cofide.federation.v1beta1.GetFederationResponse.federation:type_name -> cofide.federation.v1beta1.Federation
 	9,  // 4: cofide.federation.v1beta1.ListFederationsRequest.filter:type_name -> cofide.federation.v1beta1.ListFederationsRequest.Filter
 	11, // 5: cofide.federation.v1beta1.ListFederationsRequest.pagination:type_name -> cofide.common.pagination.v1beta1.PageRequest
@@ -678,7 +677,7 @@ func file_cofide_federation_v1beta1_service_proto_init() {
 	file_cofide_federation_v1beta1_federation_proto_init()
 	file_cofide_federation_v1beta1_service_proto_msgTypes[2].OneofWrappers = []any{
 		(*GetFederationRequest_FederationId)(nil),
-		(*GetFederationRequest_TrustZones_)(nil),
+		(*GetFederationRequest_TrustZones)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
