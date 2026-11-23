@@ -15,7 +15,7 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1";
 
-// RoleBinding associates a principal (user or group) with a role on a specific
+// RoleBinding associates a principal (user, group or workload) with a role on a specific
 // resource. Permissions defined by the role are granted on the target resource
 // and inherited by all child resources in the resource hierarchy. Connect's
 // RBAC policies are enforced server-side.
@@ -27,6 +27,7 @@ message RoleBinding {
   oneof principal {
     User user = 3;
     Group group = 4;
+    Workload workload = 8;
   }
   Resource resource = 5;
   // Time of resource creation by user.
@@ -50,8 +51,14 @@ message Group {
   string claim_value = 1;
 }
 
-// Resource identifies the target of a role binding. Role bindings can be
-// applied to System, Organization, Trust Zone, or Cluster resources. Permissions
+// Workload identifies a workload principal by its SPIFFE ID. This allows role
+// bindings to be applied to workloads that authenticate with a SPIFFE identity.
+message Workload {
+  // Matches the SPIFFE ID of a workload, e.g. spiffe://example.org/ns/default/sa/my-service.
+  string spiffe_id = 1;
+}
+
+// Resource identifies the target of a role binding. Permissions
 // are inherited down the resource hierarchy from the bound resource.
 message Resource {
   /**

@@ -464,14 +464,16 @@ func (x *UpdateRoleBindingResponse) GetRoleBinding() *v1alpha1.RoleBinding {
 }
 
 type ListRoleBindingsRequest_Filter struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	RoleId          *string                `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3,oneof" json:"role_id,omitempty"`
-	UserSubject     *string                `protobuf:"bytes,2,opt,name=user_subject,json=userSubject,proto3,oneof" json:"user_subject,omitempty"`
-	GroupClaimValue *string                `protobuf:"bytes,3,opt,name=group_claim_value,json=groupClaimValue,proto3,oneof" json:"group_claim_value,omitempty"`
-	ResourceType    *string                `protobuf:"bytes,4,opt,name=resource_type,json=resourceType,proto3,oneof" json:"resource_type,omitempty"`
-	ResourceId      *string                `protobuf:"bytes,5,opt,name=resource_id,json=resourceId,proto3,oneof" json:"resource_id,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"open.v1"`
+	RoleId                    *string                `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3,oneof" json:"role_id,omitempty"`
+	UserSubject               *string                `protobuf:"bytes,2,opt,name=user_subject,json=userSubject,proto3,oneof" json:"user_subject,omitempty"`
+	GroupClaimValue           *string                `protobuf:"bytes,3,opt,name=group_claim_value,json=groupClaimValue,proto3,oneof" json:"group_claim_value,omitempty"`
+	WorkloadSpiffeTrustDomain *string                `protobuf:"bytes,6,opt,name=workload_spiffe_trust_domain,json=workloadSpiffeTrustDomain,proto3,oneof" json:"workload_spiffe_trust_domain,omitempty"`
+	WorkloadSpiffePath        *string                `protobuf:"bytes,7,opt,name=workload_spiffe_path,json=workloadSpiffePath,proto3,oneof" json:"workload_spiffe_path,omitempty"`
+	ResourceType              *string                `protobuf:"bytes,4,opt,name=resource_type,json=resourceType,proto3,oneof" json:"resource_type,omitempty"`
+	ResourceId                *string                `protobuf:"bytes,5,opt,name=resource_id,json=resourceId,proto3,oneof" json:"resource_id,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *ListRoleBindingsRequest_Filter) Reset() {
@@ -525,6 +527,20 @@ func (x *ListRoleBindingsRequest_Filter) GetGroupClaimValue() string {
 	return ""
 }
 
+func (x *ListRoleBindingsRequest_Filter) GetWorkloadSpiffeTrustDomain() string {
+	if x != nil && x.WorkloadSpiffeTrustDomain != nil {
+		return *x.WorkloadSpiffeTrustDomain
+	}
+	return ""
+}
+
+func (x *ListRoleBindingsRequest_Filter) GetWorkloadSpiffePath() string {
+	if x != nil && x.WorkloadSpiffePath != nil {
+		return *x.WorkloadSpiffePath
+	}
+	return ""
+}
+
 func (x *ListRoleBindingsRequest_Filter) GetResourceType() string {
 	if x != nil && x.ResourceType != nil {
 		return *x.ResourceType
@@ -555,20 +571,24 @@ const file_proto_connect_role_binding_service_v1alpha1_role_binding_service_prot
 	"\x0frole_binding_id\x18\x01 \x01(\tR\rroleBindingId\"{\n" +
 	"\x16GetRoleBindingResponse\x12P\n" +
 	"\frole_binding\x18\x01 \x01(\v2(.proto.role_binding.v1alpha1.RoleBindingH\x00R\vroleBinding\x88\x01\x01B\x0f\n" +
-	"\r_role_binding\"\xb5\x03\n" +
+	"\r_role_binding\"\xec\x04\n" +
 	"\x17ListRoleBindingsRequest\x12h\n" +
-	"\x06filter\x18\x01 \x01(\v2K.proto.connect.role_binding_service.v1alpha1.ListRoleBindingsRequest.FilterH\x00R\x06filter\x88\x01\x01\x1a\xa4\x02\n" +
+	"\x06filter\x18\x01 \x01(\v2K.proto.connect.role_binding_service.v1alpha1.ListRoleBindingsRequest.FilterH\x00R\x06filter\x88\x01\x01\x1a\xdb\x03\n" +
 	"\x06Filter\x12\x1c\n" +
 	"\arole_id\x18\x01 \x01(\tH\x00R\x06roleId\x88\x01\x01\x12&\n" +
 	"\fuser_subject\x18\x02 \x01(\tH\x01R\vuserSubject\x88\x01\x01\x12/\n" +
-	"\x11group_claim_value\x18\x03 \x01(\tH\x02R\x0fgroupClaimValue\x88\x01\x01\x12(\n" +
-	"\rresource_type\x18\x04 \x01(\tH\x03R\fresourceType\x88\x01\x01\x12$\n" +
-	"\vresource_id\x18\x05 \x01(\tH\x04R\n" +
+	"\x11group_claim_value\x18\x03 \x01(\tH\x02R\x0fgroupClaimValue\x88\x01\x01\x12D\n" +
+	"\x1cworkload_spiffe_trust_domain\x18\x06 \x01(\tH\x03R\x19workloadSpiffeTrustDomain\x88\x01\x01\x125\n" +
+	"\x14workload_spiffe_path\x18\a \x01(\tH\x04R\x12workloadSpiffePath\x88\x01\x01\x12(\n" +
+	"\rresource_type\x18\x04 \x01(\tH\x05R\fresourceType\x88\x01\x01\x12$\n" +
+	"\vresource_id\x18\x05 \x01(\tH\x06R\n" +
 	"resourceId\x88\x01\x01B\n" +
 	"\n" +
 	"\b_role_idB\x0f\n" +
 	"\r_user_subjectB\x14\n" +
-	"\x12_group_claim_valueB\x10\n" +
+	"\x12_group_claim_valueB\x1f\n" +
+	"\x1d_workload_spiffe_trust_domainB\x17\n" +
+	"\x15_workload_spiffe_pathB\x10\n" +
 	"\x0e_resource_typeB\x0e\n" +
 	"\f_resource_idB\t\n" +
 	"\a_filter\"i\n" +

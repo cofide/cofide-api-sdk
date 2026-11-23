@@ -11,6 +11,7 @@ import (
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	rolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1"
 	"github.com/google/uuid"
+	"github.com/spiffe/go-spiffe/v2/spiffeid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
@@ -85,6 +86,18 @@ func roleBindingMatches(roleBinding *rolebindingpb.RoleBinding, filter *rolebind
 	}
 	if filter.GroupClaimValue != nil && roleBinding.GetGroup().GetClaimValue() != *filter.GroupClaimValue {
 		return false
+	}
+	if filter.WorkloadSpiffeTrustDomain != nil || filter.WorkloadSpiffePath != nil {
+		spiffeID, err := spiffeid.FromString(roleBinding.GetWorkload().GetSpiffeId())
+		if err != nil {
+			return false
+		}
+		if filter.WorkloadSpiffeTrustDomain != nil && spiffeID.TrustDomain().Name() != *filter.WorkloadSpiffeTrustDomain {
+			return false
+		}
+		if filter.WorkloadSpiffePath != nil && spiffeID.Path() != *filter.WorkloadSpiffePath {
+			return false
+		}
 	}
 	if filter.ResourceId != nil && roleBinding.GetResource().GetId() != *filter.ResourceId {
 		return false
