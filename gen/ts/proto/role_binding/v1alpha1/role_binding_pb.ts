@@ -173,14 +173,17 @@ export type Resource = Message<"proto.role_binding.v1alpha1.Resource"> & {
   /**
    * *
    * type can be one of the following:
-   * AttestationPolicyBinding
    * AttestationPolicy
+   * CloudAccount
+   * CloudDiscoveryConfig
    * Cluster
+   * ExchangePolicy
    * FederatedService
    * Federation
    * Organization
    * System
    * TrustZone
+   * TrustZoneServer
    *
    * @generated from field: string type = 1;
    */

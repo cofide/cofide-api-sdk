@@ -326,14 +326,17 @@ type Resource struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// *
 	// type can be one of the following:
-	// AttestationPolicyBinding
 	// AttestationPolicy
+	// CloudAccount
+	// CloudDiscoveryConfig
 	// Cluster
+	// ExchangePolicy
 	// FederatedService
 	// Federation
 	// Organization
 	// System
 	// TrustZone
+	// TrustZoneServer
 	Type          string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
 	Id            string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
