@@ -192,11 +192,15 @@ func (*AttestationPolicy_Static) isAttestationPolicy_Policy() {}
 
 func (*AttestationPolicy_TpmNode) isAttestationPolicy_Policy() {}
 
-// Federation identifies a trust zone that is included in the federated
-// scope of an attestation policy.
+// Federation identifies a trust zone or trust domain that is included in the
+// federated scope of an attestation policy.
 type Federation struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustZoneId   *string                `protobuf:"bytes,1,opt,name=trust_zone_id,json=trustZoneId,proto3,oneof" json:"trust_zone_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Federation:
+	//
+	//	*Federation_TrustZoneId
+	//	*Federation_TrustDomain
+	Federation    isFederation_Federation `protobuf_oneof:"federation"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -231,12 +235,49 @@ func (*Federation) Descriptor() ([]byte, []int) {
 	return file_proto_attestation_policy_v1alpha1_attestation_policy_proto_rawDescGZIP(), []int{1}
 }
 
+func (x *Federation) GetFederation() isFederation_Federation {
+	if x != nil {
+		return x.Federation
+	}
+	return nil
+}
+
 func (x *Federation) GetTrustZoneId() string {
-	if x != nil && x.TrustZoneId != nil {
-		return *x.TrustZoneId
+	if x != nil {
+		if x, ok := x.Federation.(*Federation_TrustZoneId); ok {
+			return x.TrustZoneId
+		}
 	}
 	return ""
 }
+
+func (x *Federation) GetTrustDomain() string {
+	if x != nil {
+		if x, ok := x.Federation.(*Federation_TrustDomain); ok {
+			return x.TrustDomain
+		}
+	}
+	return ""
+}
+
+type isFederation_Federation interface {
+	isFederation_Federation()
+}
+
+type Federation_TrustZoneId struct {
+	// The ID of a trust zone in Connect.
+	TrustZoneId string `protobuf:"bytes,1,opt,name=trust_zone_id,json=trustZoneId,proto3,oneof"`
+}
+
+type Federation_TrustDomain struct {
+	// The trust domain of a trust zone in Connect, or the trust domain of Connect
+	// itself, which is not a trust zone.
+	TrustDomain string `protobuf:"bytes,2,opt,name=trust_domain,json=trustDomain,proto3,oneof"`
+}
+
+func (*Federation_TrustZoneId) isFederation_Federation() {}
+
+func (*Federation_TrustDomain) isFederation_Federation() {}
 
 // APKubernetes represents a Kubernetes attestation policy.
 // Identities are managed dynamically in the control plane based on workload
@@ -667,11 +708,13 @@ const file_proto_attestation_policy_v1alpha1_attestation_policy_proto_rawDesc = 
 	"\x0flast_updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\rlastUpdatedAtB\b\n" +
 	"\x06policyB\x05\n" +
 	"\x03_idB\t\n" +
-	"\a_org_id\"G\n" +
+	"\a_org_id\"e\n" +
 	"\n" +
-	"Federation\x12'\n" +
-	"\rtrust_zone_id\x18\x01 \x01(\tH\x00R\vtrustZoneId\x88\x01\x01B\x10\n" +
-	"\x0e_trust_zone_id\"\xb9\x03\n" +
+	"Federation\x12$\n" +
+	"\rtrust_zone_id\x18\x01 \x01(\tH\x00R\vtrustZoneId\x12#\n" +
+	"\ftrust_domain\x18\x02 \x01(\tH\x00R\vtrustDomainB\f\n" +
+	"\n" +
+	"federation\"\xb9\x03\n" +
 	"\fAPKubernetes\x12f\n" +
 	"\x12namespace_selector\x18\x01 \x01(\v22.proto.attestation_policy.v1alpha1.APLabelSelectorH\x00R\x11namespaceSelector\x88\x01\x01\x12Z\n" +
 	"\fpod_selector\x18\x02 \x01(\v22.proto.attestation_policy.v1alpha1.APLabelSelectorH\x01R\vpodSelector\x88\x01\x01\x12,\n" +
@@ -768,7 +811,10 @@ func file_proto_attestation_policy_v1alpha1_attestation_policy_proto_init() {
 		(*AttestationPolicy_Static)(nil),
 		(*AttestationPolicy_TpmNode)(nil),
 	}
-	file_proto_attestation_policy_v1alpha1_attestation_policy_proto_msgTypes[1].OneofWrappers = []any{}
+	file_proto_attestation_policy_v1alpha1_attestation_policy_proto_msgTypes[1].OneofWrappers = []any{
+		(*Federation_TrustZoneId)(nil),
+		(*Federation_TrustDomain)(nil),
+	}
 	file_proto_attestation_policy_v1alpha1_attestation_policy_proto_msgTypes[2].OneofWrappers = []any{}
 	file_proto_attestation_policy_v1alpha1_attestation_policy_proto_msgTypes[5].OneofWrappers = []any{}
 	file_proto_attestation_policy_v1alpha1_attestation_policy_proto_msgTypes[7].OneofWrappers = []any{}
