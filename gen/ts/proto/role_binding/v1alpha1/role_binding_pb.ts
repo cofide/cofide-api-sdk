@@ -22,10 +22,10 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/role_binding/v1alpha1/role_binding.proto.
  */
 export const file_proto_role_binding_v1alpha1_role_binding: GenFile = /*@__PURE__*/
-  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEixwIKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASMwoFZ3JvdXAYBCABKAsyIi5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuR3JvdXBIABI3CghyZXNvdXJjZRgFIAEoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5SZXNvdXJjZRIzCgpjcmVhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjgKD2xhc3RfdXBkYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0ILCglwcmluY2lwYWwiFwoEVXNlchIPCgdzdWJqZWN0GAEgASgJIhwKBUdyb3VwEhMKC2NsYWltX3ZhbHVlGAEgASgJIiQKCFJlc291cmNlEgwKBHR5cGUYASABKAkSCgoCaWQYAiABKAlCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3JvbGVfYmluZGluZy92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("Ci5wcm90by9yb2xlX2JpbmRpbmcvdjFhbHBoYTEvcm9sZV9iaW5kaW5nLnByb3RvEhtwcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEiggMKC1JvbGVCaW5kaW5nEgoKAmlkGAEgASgJEg8KB3JvbGVfaWQYAiABKAkSMQoEdXNlchgDIAEoCzIhLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Vc2VySAASMwoFZ3JvdXAYBCABKAsyIi5wcm90by5yb2xlX2JpbmRpbmcudjFhbHBoYTEuR3JvdXBIABI5Cgh3b3JrbG9hZBgIIAEoCzIlLnByb3RvLnJvbGVfYmluZGluZy52MWFscGhhMS5Xb3JrbG9hZEgAEjcKCHJlc291cmNlGAUgASgLMiUucHJvdG8ucm9sZV9iaW5kaW5nLnYxYWxwaGExLlJlc291cmNlEjMKCmNyZWF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSOAoPbGFzdF91cGRhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDQgsKCXByaW5jaXBhbCIXCgRVc2VyEg8KB3N1YmplY3QYASABKAkiHAoFR3JvdXASEwoLY2xhaW1fdmFsdWUYASABKAkiHQoIV29ya2xvYWQSEQoJc3BpZmZlX2lkGAEgASgJIiQKCFJlc291cmNlEgwKBHR5cGUYASABKAkSCgoCaWQYAiABKAlCRVpDZ2l0aHViLmNvbS9jb2ZpZGUvY29maWRlLWFwaS1zZGsvZ2VuL2dvL3Byb3RvL3JvbGVfYmluZGluZy92MWFscGhhMWIGcHJvdG8z", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
- * RoleBinding associates a principal (user or group) with a role on a specific
+ * RoleBinding associates a principal (user, group or workload) with a role on a specific
  * resource. Permissions defined by the role are granted on the target resource
  * and inherited by all child resources in the resource hierarchy. Connect's
  * RBAC policies are enforced server-side.
@@ -61,6 +61,12 @@ export type RoleBinding = Message<"proto.role_binding.v1alpha1.RoleBinding"> & {
      */
     value: Group;
     case: "group";
+  } | {
+    /**
+     * @generated from field: proto.role_binding.v1alpha1.Workload workload = 8;
+     */
+    value: Workload;
+    case: "workload";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -136,8 +142,29 @@ export const GroupSchema: GenMessage<Group> = /*@__PURE__*/
   messageDesc(file_proto_role_binding_v1alpha1_role_binding, 2);
 
 /**
- * Resource identifies the target of a role binding. Role bindings can be
- * applied to System, Organization, Trust Zone, or Cluster resources. Permissions
+ * Workload identifies a workload principal by its SPIFFE ID. This allows role
+ * bindings to be applied to workloads that authenticate with a SPIFFE identity.
+ *
+ * @generated from message proto.role_binding.v1alpha1.Workload
+ */
+export type Workload = Message<"proto.role_binding.v1alpha1.Workload"> & {
+  /**
+   * Matches the SPIFFE ID of a workload, e.g. spiffe://example.org/ns/default/sa/my-service.
+   *
+   * @generated from field: string spiffe_id = 1;
+   */
+  spiffeId: string;
+};
+
+/**
+ * Describes the message proto.role_binding.v1alpha1.Workload.
+ * Use `create(WorkloadSchema)` to create a new message.
+ */
+export const WorkloadSchema: GenMessage<Workload> = /*@__PURE__*/
+  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 3);
+
+/**
+ * Resource identifies the target of a role binding. Permissions
  * are inherited down the resource hierarchy from the bound resource.
  *
  * @generated from message proto.role_binding.v1alpha1.Resource
@@ -146,14 +173,17 @@ export type Resource = Message<"proto.role_binding.v1alpha1.Resource"> & {
   /**
    * *
    * type can be one of the following:
-   * AttestationPolicyBinding
    * AttestationPolicy
+   * CloudAccount
+   * CloudDiscoveryConfig
    * Cluster
+   * ExchangePolicy
    * FederatedService
    * Federation
    * Organization
    * System
    * TrustZone
+   * TrustZoneServer
    *
    * @generated from field: string type = 1;
    */
@@ -170,5 +200,5 @@ export type Resource = Message<"proto.role_binding.v1alpha1.Resource"> & {
  * Use `create(ResourceSchema)` to create a new message.
  */
 export const ResourceSchema: GenMessage<Resource> = /*@__PURE__*/
-  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 3);
+  messageDesc(file_proto_role_binding_v1alpha1_role_binding, 4);
 

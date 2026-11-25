@@ -32,7 +32,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// RoleBinding associates a principal (user or group) with a role on a specific
+// RoleBinding associates a principal (user, group or workload) with a role on a specific
 // resource. Permissions defined by the role are granted on the target resource
 // and inherited by all child resources in the resource hierarchy. Connect's
 // RBAC policies are enforced server-side.
@@ -46,6 +46,7 @@ type RoleBinding struct {
 	//
 	//	*RoleBinding_User
 	//	*RoleBinding_Group
+	//	*RoleBinding_Workload
 	Principal isRoleBinding_Principal `protobuf_oneof:"principal"`
 	Resource  *Resource               `protobuf:"bytes,5,opt,name=resource,proto3" json:"resource,omitempty"`
 	// Time of resource creation by user.
@@ -125,6 +126,15 @@ func (x *RoleBinding) GetGroup() *Group {
 	return nil
 }
 
+func (x *RoleBinding) GetWorkload() *Workload {
+	if x != nil {
+		if x, ok := x.Principal.(*RoleBinding_Workload); ok {
+			return x.Workload
+		}
+	}
+	return nil
+}
+
 func (x *RoleBinding) GetResource() *Resource {
 	if x != nil {
 		return x.Resource
@@ -158,9 +168,15 @@ type RoleBinding_Group struct {
 	Group *Group `protobuf:"bytes,4,opt,name=group,proto3,oneof"`
 }
 
+type RoleBinding_Workload struct {
+	Workload *Workload `protobuf:"bytes,8,opt,name=workload,proto3,oneof"`
+}
+
 func (*RoleBinding_User) isRoleBinding_Principal() {}
 
 func (*RoleBinding_Group) isRoleBinding_Principal() {}
+
+func (*RoleBinding_Workload) isRoleBinding_Principal() {}
 
 // User identifies an individual principal by the "sub" (subject) claim of the
 // JWT presented by that user to the configured identity provider.
@@ -257,21 +273,70 @@ func (x *Group) GetClaimValue() string {
 	return ""
 }
 
-// Resource identifies the target of a role binding. Role bindings can be
-// applied to System, Organization, Trust Zone, or Cluster resources. Permissions
+// Workload identifies a workload principal by its SPIFFE ID. This allows role
+// bindings to be applied to workloads that authenticate with a SPIFFE identity.
+type Workload struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Matches the SPIFFE ID of a workload, e.g. spiffe://example.org/ns/default/sa/my-service.
+	SpiffeId      string `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Workload) Reset() {
+	*x = Workload{}
+	mi := &file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Workload) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Workload) ProtoMessage() {}
+
+func (x *Workload) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Workload.ProtoReflect.Descriptor instead.
+func (*Workload) Descriptor() ([]byte, []int) {
+	return file_proto_role_binding_v1alpha1_role_binding_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Workload) GetSpiffeId() string {
+	if x != nil {
+		return x.SpiffeId
+	}
+	return ""
+}
+
+// Resource identifies the target of a role binding. Permissions
 // are inherited down the resource hierarchy from the bound resource.
 type Resource struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// *
 	// type can be one of the following:
-	// AttestationPolicyBinding
 	// AttestationPolicy
+	// CloudAccount
+	// CloudDiscoveryConfig
 	// Cluster
+	// ExchangePolicy
 	// FederatedService
 	// Federation
 	// Organization
 	// System
 	// TrustZone
+	// TrustZoneServer
 	Type          string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
 	Id            string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -280,7 +345,7 @@ type Resource struct {
 
 func (x *Resource) Reset() {
 	*x = Resource{}
-	mi := &file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes[3]
+	mi := &file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -292,7 +357,7 @@ func (x *Resource) String() string {
 func (*Resource) ProtoMessage() {}
 
 func (x *Resource) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes[3]
+	mi := &file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -305,7 +370,7 @@ func (x *Resource) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Resource.ProtoReflect.Descriptor instead.
 func (*Resource) Descriptor() ([]byte, []int) {
-	return file_proto_role_binding_v1alpha1_role_binding_proto_rawDescGZIP(), []int{3}
+	return file_proto_role_binding_v1alpha1_role_binding_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Resource) GetType() string {
@@ -326,12 +391,13 @@ var File_proto_role_binding_v1alpha1_role_binding_proto protoreflect.FileDescrip
 
 const file_proto_role_binding_v1alpha1_role_binding_proto_rawDesc = "" +
 	"\n" +
-	".proto/role_binding/v1alpha1/role_binding.proto\x12\x1bproto.role_binding.v1alpha1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x84\x03\n" +
+	".proto/role_binding/v1alpha1/role_binding.proto\x12\x1bproto.role_binding.v1alpha1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc9\x03\n" +
 	"\vRoleBinding\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\arole_id\x18\x02 \x01(\tR\x06roleId\x127\n" +
 	"\x04user\x18\x03 \x01(\v2!.proto.role_binding.v1alpha1.UserH\x00R\x04user\x12:\n" +
-	"\x05group\x18\x04 \x01(\v2\".proto.role_binding.v1alpha1.GroupH\x00R\x05group\x12A\n" +
+	"\x05group\x18\x04 \x01(\v2\".proto.role_binding.v1alpha1.GroupH\x00R\x05group\x12C\n" +
+	"\bworkload\x18\b \x01(\v2%.proto.role_binding.v1alpha1.WorkloadH\x00R\bworkload\x12A\n" +
 	"\bresource\x18\x05 \x01(\v2%.proto.role_binding.v1alpha1.ResourceR\bresource\x12>\n" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12G\n" +
@@ -341,7 +407,9 @@ const file_proto_role_binding_v1alpha1_role_binding_proto_rawDesc = "" +
 	"\asubject\x18\x01 \x01(\tR\asubject\"(\n" +
 	"\x05Group\x12\x1f\n" +
 	"\vclaim_value\x18\x01 \x01(\tR\n" +
-	"claimValue\".\n" +
+	"claimValue\"'\n" +
+	"\bWorkload\x12\x1b\n" +
+	"\tspiffe_id\x18\x01 \x01(\tR\bspiffeId\".\n" +
 	"\bResource\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02idBEZCgithub.com/cofide/cofide-api-sdk/gen/go/proto/role_binding/v1alpha1b\x06proto3"
@@ -358,25 +426,27 @@ func file_proto_role_binding_v1alpha1_role_binding_proto_rawDescGZIP() []byte {
 	return file_proto_role_binding_v1alpha1_role_binding_proto_rawDescData
 }
 
-var file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_proto_role_binding_v1alpha1_role_binding_proto_goTypes = []any{
 	(*RoleBinding)(nil),           // 0: proto.role_binding.v1alpha1.RoleBinding
 	(*User)(nil),                  // 1: proto.role_binding.v1alpha1.User
 	(*Group)(nil),                 // 2: proto.role_binding.v1alpha1.Group
-	(*Resource)(nil),              // 3: proto.role_binding.v1alpha1.Resource
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*Workload)(nil),              // 3: proto.role_binding.v1alpha1.Workload
+	(*Resource)(nil),              // 4: proto.role_binding.v1alpha1.Resource
+	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
 }
 var file_proto_role_binding_v1alpha1_role_binding_proto_depIdxs = []int32{
 	1, // 0: proto.role_binding.v1alpha1.RoleBinding.user:type_name -> proto.role_binding.v1alpha1.User
 	2, // 1: proto.role_binding.v1alpha1.RoleBinding.group:type_name -> proto.role_binding.v1alpha1.Group
-	3, // 2: proto.role_binding.v1alpha1.RoleBinding.resource:type_name -> proto.role_binding.v1alpha1.Resource
-	4, // 3: proto.role_binding.v1alpha1.RoleBinding.created_at:type_name -> google.protobuf.Timestamp
-	4, // 4: proto.role_binding.v1alpha1.RoleBinding.last_updated_at:type_name -> google.protobuf.Timestamp
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	3, // 2: proto.role_binding.v1alpha1.RoleBinding.workload:type_name -> proto.role_binding.v1alpha1.Workload
+	4, // 3: proto.role_binding.v1alpha1.RoleBinding.resource:type_name -> proto.role_binding.v1alpha1.Resource
+	5, // 4: proto.role_binding.v1alpha1.RoleBinding.created_at:type_name -> google.protobuf.Timestamp
+	5, // 5: proto.role_binding.v1alpha1.RoleBinding.last_updated_at:type_name -> google.protobuf.Timestamp
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_proto_role_binding_v1alpha1_role_binding_proto_init() }
@@ -387,6 +457,7 @@ func file_proto_role_binding_v1alpha1_role_binding_proto_init() {
 	file_proto_role_binding_v1alpha1_role_binding_proto_msgTypes[0].OneofWrappers = []any{
 		(*RoleBinding_User)(nil),
 		(*RoleBinding_Group)(nil),
+		(*RoleBinding_Workload)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -394,7 +465,7 @@ func file_proto_role_binding_v1alpha1_role_binding_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_role_binding_v1alpha1_role_binding_proto_rawDesc), len(file_proto_role_binding_v1alpha1_role_binding_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
