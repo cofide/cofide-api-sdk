@@ -19,7 +19,8 @@ Commands use [Just](https://github.com/casey/just) as the task runner.
 |---|---|
 | `just fmt` | Format proto files (`buf format -w`) |
 | `just lint` | Run all of the linters below |
-| `just buf-lint` | Lint proto files with buf |
+| `just buf-lint` | Lint proto files with buf, including Cofide's own rules (see [Cofide lint rules](#cofide-lint-rules)) |
+| `just buf-plugin` | Build the plugin with Cofide's lint rules into `bin/` |
 | `just api-lint` | Lint the new APIs against Google's AIPs with api-linter (see [API linting](#api-linting)) |
 | `just go-lint` | Run golangci-lint only |
 | `just proto-gen` | Regenerate Go and TypeScript stubs from proto files |
@@ -65,6 +66,12 @@ When adding a new service, the typical flow is:
 3. Create a wrapper client package at `pkg/connect/client/<service_name>/v1alpha1/`
 4. Add fake implementation in `pkg/connect/client/fake/`
 5. Register the new client in `ClientSet` interface and `clientSet` struct in `clientset.go`
+
+## Cofide lint rules
+
+`buf lint` runs Cofide's own lint rules from a buf check plugin, `tools/cmd/buf-plugin-cofide`, as well as buf's STANDARD rules. buf runs check plugins with an empty environment, in which `go tool` can't find the module cache, so `buf.yaml` runs the plugin from `bin/`, where `just buf-plugin` builds it. `just buf-lint` builds it first, but a plain `buf lint` fails until it has been built.
+
+`GO_IDENT_CLASH` reports proto names that protoc-gen-go would rename by appending underscores. A oneof field's wrapper type is named `<Message>_<Field>`, the same way as a nested message or enum, so a oneof field named after a nested type of its message, such as `NameWithOrgId name_with_org_id`, gets a wrapper named `GetTrustZoneRequest_NameWithOrgId_`. A field whose Go name matches a generated method, such as `reset`, or another field's getter, such as `get_foo` alongside `foo`, gets a struct field named `Reset_` or `GetFoo_`. protoc-gen-go has no option to name these differently, so rename the field or the nested type.
 
 ## API linting
 

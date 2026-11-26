@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package ok.v1;
+
+import "clash/clash.proto";
+
+message GetThingRequest {
+  message NameWithOrgId {
+    string org_id = 1;
+    string name = 2;
+  }
+
+  oneof identifier {
+    string id = 1;
+    NameWithOrgId name = 2;
+    clash.v1.Methods methods = 3;
+  }
+}
+
+// A proto3 optional field is in a synthetic oneof, which has no wrapper type.
+message ListThingsRequest {
+  message Filter {}
+
+  optional Filter filter = 1;
+}
