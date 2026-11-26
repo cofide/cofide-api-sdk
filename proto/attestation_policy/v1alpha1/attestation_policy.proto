@@ -42,10 +42,16 @@ message AttestationPolicy {
   google.protobuf.Timestamp last_updated_at = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// Federation identifies a trust zone that is included in the federated
-// scope of an attestation policy.
+// Federation identifies a trust zone or trust domain that is included in the
+// federated scope of an attestation policy.
 message Federation {
-  optional string trust_zone_id = 1;
+  oneof target {
+    // The ID of a trust zone in Connect.
+    string trust_zone_id = 1;
+    // The trust domain of a trust zone in Connect, or the trust domain of Connect
+    // itself, which is not a trust zone.
+    string trust_domain = 2;
+  }
 }
 
 // APKubernetes represents a Kubernetes attestation policy.
