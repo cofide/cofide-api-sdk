@@ -13,6 +13,7 @@ import (
 	datastorev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/datastore/v1alpha1"
 	exchangepolicyv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/exchangepolicy/v1alpha1"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
+	federationv1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1beta1"
 	identityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1"
 	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
 	organizationv1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1beta1"
@@ -40,6 +41,7 @@ type ClientSet interface {
 	AttestationPolicyV1Alpha1() attestationpolicyv1alpha1.AttestationPolicyClient
 	ExchangePolicyV1Alpha1() exchangepolicyv1alpha1.ExchangePolicyClient
 	FederationV1Alpha1() federationV1Alpha1.FederationClient
+	FederationV1Beta1() federationv1beta1.FederationClient
 	DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient
 	WorkloadV1Alpha1() workloadv1alpha1.WorkloadClient
 	IdentityV1Alpha1() identityv1alpha1.IdentityClient
@@ -57,6 +59,7 @@ type clientSet struct {
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	federationV1Alpha1        federationV1Alpha1.FederationClient
+	federationV1Beta1         federationv1beta1.FederationClient
 	identityV1Alpha1          identityv1alpha1.IdentityClient
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
 	organizationV1Beta1       organizationv1beta1.OrganizationClient
@@ -79,6 +82,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		clusterV1Alpha1:           clusterv1alpha1.New(conn),
 		datastoreV1Alpha1:         datastorev1alpha1.New(conn),
 		federationV1Alpha1:        federationV1Alpha1.New(conn),
+		federationV1Beta1:         federationv1beta1.New(conn),
 		identityV1Alpha1:          identityv1alpha1.New(conn),
 		organizationV1Alpha1:      organizationv1alpha1.New(conn),
 		organizationV1Beta1:       organizationv1beta1.New(conn),
@@ -124,6 +128,10 @@ func (c *clientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
 
 func (c *clientSet) FederationV1Alpha1() federationV1Alpha1.FederationClient {
 	return c.federationV1Alpha1
+}
+
+func (c *clientSet) FederationV1Beta1() federationv1beta1.FederationClient {
+	return c.federationV1Beta1
 }
 
 func (c *clientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
