@@ -28,6 +28,8 @@ import (
 	fakeidentityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1/fake"
 	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
 	fakeorganizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1/fake"
+	organizationv1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1beta1"
+	fakeorganizationv1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1beta1/fake"
 	rolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1"
 	fakerolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1/fake"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
@@ -52,6 +54,7 @@ type fakeClientSet struct {
 	federationV1Alpha1        federationV1Alpha1.FederationClient
 	identityV1Alpha1          identityv1alpha1.IdentityClient
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
+	organizationV1Beta1       organizationv1beta1.OrganizationClient
 	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
 	trustZoneV1Beta1          trustzonev1beta1.TrustZoneClient
@@ -73,6 +76,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		federationV1Alpha1:        fakefederationV1Alpha1.New(fake),
 		identityV1Alpha1:          fakeidentityv1alpha1.New(fake),
 		organizationV1Alpha1:      fakeorganizationv1alpha1.New(fake),
+		organizationV1Beta1:       fakeorganizationv1beta1.New(fake),
 		roleBindingV1Alpha1:       fakerolebindingv1alpha1.New(fake),
 		trustZoneV1Alpha1:         faketrustzonev1alpha1.New(fake),
 		trustZoneV1Beta1:          faketrustzonev1beta1.New(fake),
@@ -123,6 +127,10 @@ func (c *fakeClientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
 
 func (c *fakeClientSet) OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient {
 	return c.organizationV1Alpha1
+}
+
+func (c *fakeClientSet) OrganizationV1Beta1() organizationv1beta1.OrganizationClient {
+	return c.organizationV1Beta1
 }
 
 func (c *fakeClientSet) RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient {

@@ -15,6 +15,7 @@ import (
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
 	identityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1"
 	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
+	organizationv1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1beta1"
 	rolebindingv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/rolebinding/v1alpha1"
 	trustzonev1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1alpha1"
 	trustzonev1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/trustzone/v1beta1"
@@ -28,6 +29,7 @@ import (
 // versioned clients for specific gRPC services in Cofide Connect API.
 type ClientSet interface {
 	OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient
+	OrganizationV1Beta1() organizationv1beta1.OrganizationClient
 	TrustZoneV1Alpha1() trustzonev1alpha1.TrustZoneClient
 	TrustZoneV1Beta1() trustzonev1beta1.TrustZoneClient
 	TrustZoneServerV1Alpha1() trustzoneserverv1alpha1.TrustZoneServerClient
@@ -57,6 +59,7 @@ type clientSet struct {
 	federationV1Alpha1        federationV1Alpha1.FederationClient
 	identityV1Alpha1          identityv1alpha1.IdentityClient
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
+	organizationV1Beta1       organizationv1beta1.OrganizationClient
 	roleBindingV1Alpha1       rolebindingv1alpha1.RoleBindingClient
 	trustZoneV1Alpha1         trustzonev1alpha1.TrustZoneClient
 	trustZoneV1Beta1          trustzonev1beta1.TrustZoneClient
@@ -78,6 +81,7 @@ func New(conn grpc.ClientConnInterface) ClientSet {
 		federationV1Alpha1:        federationV1Alpha1.New(conn),
 		identityV1Alpha1:          identityv1alpha1.New(conn),
 		organizationV1Alpha1:      organizationv1alpha1.New(conn),
+		organizationV1Beta1:       organizationv1beta1.New(conn),
 		roleBindingV1Alpha1:       rolebindingv1alpha1.New(conn),
 		trustZoneV1Alpha1:         trustzonev1alpha1.New(conn),
 		trustZoneV1Beta1:          trustzonev1beta1.New(conn),
@@ -128,6 +132,10 @@ func (c *clientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
 
 func (c *clientSet) OrganizationV1Alpha1() organizationv1alpha1.OrganizationClient {
 	return c.organizationV1Alpha1
+}
+
+func (c *clientSet) OrganizationV1Beta1() organizationv1beta1.OrganizationClient {
+	return c.organizationV1Beta1
 }
 
 func (c *clientSet) RoleBindingV1Alpha1() rolebindingv1alpha1.RoleBindingClient {
