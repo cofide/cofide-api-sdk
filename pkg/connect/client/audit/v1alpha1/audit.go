@@ -42,7 +42,7 @@ func (c *auditClient) ListEvents(ctx context.Context, filter *auditsvcpb.ListEve
 		return nil, pagination.Pagination{}, err
 	}
 
-	return resp.GetEvents(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
+	return resp.GetEvents(), requestPagination.Next(resp.GetPagination()), nil
 }
 
 func (c *auditClient) RecordExchange(ctx context.Context, req *auditsvcpb.RecordExchangeRequest) error {

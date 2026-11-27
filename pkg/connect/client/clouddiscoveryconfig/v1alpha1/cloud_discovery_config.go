@@ -7,7 +7,6 @@ import (
 	"context"
 
 	crdcpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_discovery_config/v1alpha1"
-	"github.com/cofide/cofide-api-sdk/gen/go/cofide/common/pagination/v1beta1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/grpc"
 )
@@ -62,12 +61,12 @@ func (c *cloudDiscoveryConfigClient) GetCloudDiscoveryConfig(ctx context.Context
 func (c *cloudDiscoveryConfigClient) ListCloudDiscoveryConfigs(ctx context.Context, filter *crdcpb.ListCloudDiscoveryConfigsRequest_Filter, requestPagination pagination.Pagination) ([]*crdcpb.CloudDiscoveryConfig, pagination.Pagination, error) {
 	resp, err := c.client.ListCloudDiscoveryConfigs(ctx, &crdcpb.ListCloudDiscoveryConfigsRequest{
 		Filter:     filter,
-		Pagination: &v1beta1.PageRequest{PageSize: requestPagination.PageSize, PageToken: requestPagination.Token},
+		Pagination: requestPagination.PageRequestV1Beta1(),
 	})
 	if err != nil {
 		return nil, pagination.Pagination{}, err
 	}
-	return resp.GetCloudDiscoveryConfigs(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
+	return resp.GetCloudDiscoveryConfigs(), requestPagination.Next(resp.GetPagination()), nil
 }
 
 func (c *cloudDiscoveryConfigClient) UpdateCloudDiscoveryConfig(ctx context.Context, config *crdcpb.CloudDiscoveryConfig, updateMask UpdateMask) (*crdcpb.CloudDiscoveryConfig, error) {

@@ -73,7 +73,7 @@ func (c *workloadClient) ListWorkloadEvents(ctx context.Context, filter *workloa
 	if err != nil {
 		return nil, pagination.Pagination{}, err
 	}
-	return resp.GetEvents(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
+	return resp.GetEvents(), requestPagination.Next(resp.GetPagination()), nil
 }
 
 func (c *workloadClient) PublishWorkloadEvents(ctx context.Context) (WorkloadEventsStream, error) {
