@@ -7,7 +7,6 @@ import (
 	"context"
 
 	cloudaccountpb "github.com/cofide/cofide-api-sdk/gen/go/cofide/cloud_account/v1alpha1"
-	"github.com/cofide/cofide-api-sdk/gen/go/cofide/common/pagination/v1beta1"
 	"github.com/cofide/cofide-api-sdk/pkg/connect/client/pagination"
 	"google.golang.org/grpc"
 )
@@ -62,12 +61,12 @@ func (c *cloudAccountClient) GetCloudAccount(ctx context.Context, cloudAccountID
 func (c *cloudAccountClient) ListCloudAccounts(ctx context.Context, filter *cloudaccountpb.ListCloudAccountsRequest_Filter, requestPagination pagination.Pagination) ([]*cloudaccountpb.CloudAccount, pagination.Pagination, error) {
 	resp, err := c.client.ListCloudAccounts(ctx, &cloudaccountpb.ListCloudAccountsRequest{
 		Filter:     filter,
-		Pagination: &v1beta1.PageRequest{PageSize: requestPagination.PageSize, PageToken: requestPagination.Token},
+		Pagination: requestPagination.PageRequestV1Beta1(),
 	})
 	if err != nil {
 		return nil, pagination.Pagination{}, err
 	}
-	return resp.GetCloudAccounts(), pagination.Pagination{PageSize: requestPagination.PageSize, Token: resp.GetPagination().GetNextPageToken()}, nil
+	return resp.GetCloudAccounts(), requestPagination.Next(resp.GetPagination()), nil
 }
 
 func (c *cloudAccountClient) UpdateCloudAccount(ctx context.Context, cloudAccount *cloudaccountpb.CloudAccount, updateMask UpdateMask) (*cloudaccountpb.CloudAccount, error) {
