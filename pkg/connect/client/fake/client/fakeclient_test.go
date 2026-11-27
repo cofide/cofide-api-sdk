@@ -22,6 +22,7 @@ func TestFakeClientSet(t *testing.T) {
 	require.NotNil(t, client.FederationV1Alpha1())
 	require.NotNil(t, client.IdentityV1Alpha1())
 	require.NotNil(t, client.OrganizationV1Alpha1())
+	require.NotNil(t, client.OrganizationV1Beta1())
 	require.NotNil(t, client.RoleBindingV1Alpha1())
 	require.NotNil(t, client.TrustZoneV1Alpha1())
 	require.NotNil(t, client.TrustZoneV1Beta1())
