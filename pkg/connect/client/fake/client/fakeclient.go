@@ -24,6 +24,8 @@ import (
 	fakeconnect "github.com/cofide/cofide-api-sdk/pkg/connect/client/fake/connect"
 	federationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1"
 	fakefederationV1Alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1alpha1/fake"
+	federationv1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1beta1"
+	fakefederationv1beta1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/federation/v1beta1/fake"
 	identityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1"
 	fakeidentityv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/identity/v1alpha1/fake"
 	organizationv1alpha1 "github.com/cofide/cofide-api-sdk/pkg/connect/client/organization/v1alpha1"
@@ -52,6 +54,7 @@ type fakeClientSet struct {
 	clusterV1Alpha1           clusterv1alpha1.ClusterClient
 	datastoreV1Alpha1         datastorev1alpha1.DataStoreClient
 	federationV1Alpha1        federationV1Alpha1.FederationClient
+	federationV1Beta1         federationv1beta1.FederationClient
 	identityV1Alpha1          identityv1alpha1.IdentityClient
 	organizationV1Alpha1      organizationv1alpha1.OrganizationClient
 	organizationV1Beta1       organizationv1beta1.OrganizationClient
@@ -74,6 +77,7 @@ func New(fake *fakeconnect.FakeConnect) client.ClientSet {
 		clusterV1Alpha1:           fakeclusterv1alpha1.New(fake),
 		datastoreV1Alpha1:         fakedatastorev1alpha1.New(fake),
 		federationV1Alpha1:        fakefederationV1Alpha1.New(fake),
+		federationV1Beta1:         fakefederationv1beta1.New(fake),
 		identityV1Alpha1:          fakeidentityv1alpha1.New(fake),
 		organizationV1Alpha1:      fakeorganizationv1alpha1.New(fake),
 		organizationV1Beta1:       fakeorganizationv1beta1.New(fake),
@@ -119,6 +123,10 @@ func (c *fakeClientSet) DataStoreV1Alpha1() datastorev1alpha1.DataStoreClient {
 
 func (c *fakeClientSet) FederationV1Alpha1() federationV1Alpha1.FederationClient {
 	return c.federationV1Alpha1
+}
+
+func (c *fakeClientSet) FederationV1Beta1() federationv1beta1.FederationClient {
+	return c.federationV1Beta1
 }
 
 func (c *fakeClientSet) IdentityV1Alpha1() identityv1alpha1.IdentityClient {
